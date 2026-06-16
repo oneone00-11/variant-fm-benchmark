@@ -1,0 +1,21 @@
+# Data — large / re-downloadable, never commit
+data/raw/
+data/interim/
+*.vcf
+*.vcf.gz
+*.vcf.gz.tbi
+*.bcf
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Results that are regenerated (keep tables/figures if you want; ignore scratch)
+results/scratch/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/

@@ -1,0 +1,13 @@
+# Core data engineering + evaluation stack (CPU-only, no GPU needed)
+pandas
+numpy
+scipy
+scikit-learn
+matplotlib
+requests
+tqdm
+
+# Add later as phases need them:
+# pyfaidx          # reference genome FASTA access for model scoring
+# seaborn          # nicer plots
+# statsmodels      # multiple-testing correction, calibration
