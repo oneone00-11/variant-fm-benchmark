@@ -1,0 +1,3 @@
+gene	uniprot	DMS_id	n_mutants	assay
+BRCA1	P38398	BRCA1_HUMAN_Findlay_2018	1837	protein-level DMS (missense)
+BRCA2	P51587	BRCA2_HUMAN_Erwood_2022_HEK293T	265	protein-level DMS (missense)

@@ -1,0 +1,60 @@
+urn	gene	title	assay_type	is_sge	num_variants	transcripts	assembly	pmid	pub_title	license	mapping_state
+urn:mavedb:00001250-a-2	BARD1	Saturation Genome Editing of BARD1 scores	SGE	True	10911	NM_000465.4	GRCh38			CC0	incomplete
+urn:mavedb:00000097-0-2	BRCA1	BRCA1 SGE Normalized Scores	SGE	True	3893	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	incomplete
+urn:mavedb:00000097-a-2	BRCA1	BRCA1 SGE Exon 2 Replicate 1	SGE	True	312	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-b-2	BRCA1	BRCA1 SGE Exon 2 Replicate 2	SGE	True	312	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-y-2	BRCA1	BRCA1 SGE Exon 23 Replicate 1	SGE	True	312	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-z-2	BRCA1	BRCA1 SGE Exon 23 Replicate 2	SGE	True	312	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-k-2	BRCA1	BRCA1 SGE Exon 16 Replicate 1	SGE	True	311	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-l-2	BRCA1	BRCA1 SGE Exon 16 Replicate 2	SGE	True	311	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-i-2	BRCA1	BRCA1 SGE Exon 15 Replicate 1	SGE	True	306	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-j-2	BRCA1	BRCA1 SGE Exon 15 Replicate 2	SGE	True	306	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-u-2	BRCA1	BRCA1 SGE Exon 21 Replicate 1	SGE	True	305	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-v-2	BRCA1	BRCA1 SGE Exon 21 Replicate 2	SGE	True	305	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-g-2	BRCA1	BRCA1 SGE Exon 5 Replicate 1	SGE	True	303	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-h-2	BRCA1	BRCA1 SGE Exon 5 Replicate 2	SGE	True	303	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-q-2	BRCA1	BRCA1 SGE Exon 19 Replicate 1	SGE	True	303	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-r-2	BRCA1	BRCA1 SGE Exon 19 Replicate 2	SGE	True	303	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-o-2	BRCA1	BRCA1 SGE Exon 18 Replicate 1	SGE	True	294	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-p-2	BRCA1	BRCA1 SGE Exon 18 Replicate 2	SGE	True	294	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-e-2	BRCA1	BRCA1 SGE Exon 4 Replicate 1	SGE	True	293	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-f-2	BRCA1	BRCA1 SGE Exon 4 Replicate 2	SGE	True	293	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-c-2	BRCA1	BRCA1 SGE Exon 3 Replicate 1	SGE	True	292	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-d-2	BRCA1	BRCA1 SGE Exon 3 Replicate 2	SGE	True	292	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-w-2	BRCA1	BRCA1 SGE Exon 22 Replicate 1	SGE	True	288	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-x-2	BRCA1	BRCA1 SGE Exon 22 Replicate 2	SGE	True	288	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-m-2	BRCA1	BRCA1 SGE Exon 17 Replicate 1	SGE	True	287	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-n-2	BRCA1	BRCA1 SGE Exon 17 Replicate 2	SGE	True	287	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-s-2	BRCA1	BRCA1 SGE Exon 20 Replicate 1	SGE	True	287	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000097-t-2	BRCA1	BRCA1 SGE Exon 20 Replicate 2	SGE	True	287	NM_007294.3	GRCh38	30209399	Accurate classification of BRCA1 variants with saturation genome editing.	CC0	failed
+urn:mavedb:00000003-a-1	BRCA1	Enrich2 nucleotide variant scores for BRCA1 E3	other-MAVE	False	20724			28784151	A statistical framework for analyzing deep mutational scanning data.	CC0	incomplete
+urn:mavedb:00000003-b-1	BRCA1	Enrich2 nucleotide variant scores for BRCA1 Y2H	yeast-functional	False	20724			28784151	A statistical framework for analyzing deep mutational scanning data.	CC0	incomplete
+urn:mavedb:00000003-a-2	BRCA1	Enrich2 amino acid variant scores for BRCA1 E3	other-MAVE	False	12316			28784151	A statistical framework for analyzing deep mutational scanning data.	CC0	complete
+urn:mavedb:00000003-b-2	BRCA1	Enrich2 amino acid variant scores for BRCA1 Y2H	yeast-functional	False	12316			28784151	A statistical framework for analyzing deep mutational scanning data.	CC0	complete
+urn:mavedb:00000081-a-2	BRCA1	BRCA1 RING and BRCT domains mean HDR fluorescence score	HDR	False	2820			30219179	A Multiplex Homology-Directed DNA Repair Assay Reveals the Impact of More Than 1,000 BRCA1	CC0	complete
+urn:mavedb:00001222-b-2	BRCA1	Scores from multiplexed functional assay of BRCA1 variants	HDR	False	2271			35196514	The functional impact of BRCA1 BRCT domain variants using multiplexed DNA double-strand br	CC0	complete
+urn:mavedb:00001222-a-2	BRCA1	Scores from growth assay of BRCA1 variants	HDR	False	1427			35196514	The functional impact of BRCA1 BRCT domain variants using multiplexed DNA double-strand br	CC0	complete
+urn:mavedb:00000081-a-1	BRCA1	BRCA1 RING and BRCT domains depletion scores	HDR	False	1061			30219179	A Multiplex Homology-Directed DNA Repair Assay Reveals the Impact of More Than 1,000 BRCA1	CC0	complete
+urn:mavedb:00000093-a-1	BRCA1	BASE_ACMG quantities derived from the RING domain M2H functional assay	other-MAVE	False	853					CC0	incomplete
+urn:mavedb:00001237-a-1	BRCA1	VarChAMP_Imaging_Localization_May_2025	other-MAVE	False	430					CC0	failed
+urn:mavedb:00001237-a-2	BRCA1	VarChAMP_Imaging_Morphological_Change_May_2025	other-MAVE	False	430					CC0	failed
+urn:mavedb:00001225-a-1	BRCA2	Scores from sGE of BRCA2 exons 15 to 26 in Hap1 cells	SGE	True	6959	ENST00000380152.8	GRCh38	39779857	Functional evaluation and clinical classification of BRCA2 variants.	CC0	incomplete
+urn:mavedb:00001242-a-1	BRCA2	Scores from sGE of BRCA2 exons 15–26 in humanized mouse embryonic stem cells	SGE	True	6545	ENST00000380152.8		39779848	Saturation genome editing-based clinical classification of BRCA2 variants.	CC0	incomplete
+urn:mavedb:00001263-a-2	BRCA2	Saturation Genome Editing of BRCA2 scores	SGE	True	871	NM_000059.4	GRCh38			CC0	incomplete
+urn:mavedb:00001268-0-1	BRCA2	Global scores from saturation mutagenesis of BRCA2 exon 13	SGE	True	252	NM_000059.4		37713444	Saturation genome editing of 11 codons and exon 13 of BRCA2 coupled with chemotherapeutic 	CC0	incomplete
+urn:mavedb:00001268-a-1	BRCA2	Scores from SGE of BRCA2 exon 13 with cisplatin drug selection	SGE	True	252	NM_000059.4		37713444	Saturation genome editing of 11 codons and exon 13 of BRCA2 coupled with chemotherapeutic 	CC0	incomplete
+urn:mavedb:00001268-b-1	BRCA2	Scores from SGE of BRCA2 exon 13 with olaparib drug selection	SGE	True	252	NM_000059.4		37713444	Saturation genome editing of 11 codons and exon 13 of BRCA2 coupled with chemotherapeutic 	CC0	incomplete
+urn:mavedb:00001268-c-1	BRCA2	Scores from SGE of BRCA2 exon 13	SGE	True	252	NM_000059.4		37713444	Saturation genome editing of 11 codons and exon 13 of BRCA2 coupled with chemotherapeutic 	CC0	incomplete
+urn:mavedb:00001224-a-1	BRCA2	Scores from arrayed screen of BRCA2 homology directed repair function in VC-8 cells	HDR	False	462			38417439	Functional analysis and clinical classification of 462 germline BRCA2 missense variants af	CC0	complete
+urn:mavedb:00001223-a-1	BRCA2	Scores from saturation prime editing essentiality screen of BRCA2 in locally haploidized HEK293T cells	HDR	False	420	ENST00000380152.8	GRCh38	35190686	Saturation variant interpretation using CRISPR prime editing.	CC0	complete
+urn:mavedb:00001259-a-2	PALB2	Saturation Genome Editing of PALB2 scores	SGE	True	12851	NM_024675.4	GRCh38			CC0	incomplete
+urn:mavedb:00000673-0-1	RAD51C	RAD51C SGE	SGE	True	9188	ENST00000337432.9	GRCh38	39299233	High-resolution functional mapping of RAD51C by saturation genome editing.	CC BY 4.0	incomplete
+urn:mavedb:00000673-c-1	RAD51C	RAD51C SGE Exon 2	SGE	True	1829	ENST00000337432.9	GRCh38			CC BY 4.0	incomplete
+urn:mavedb:00000673-d-1	RAD51C	RAD51C SGE Exon 3	SGE	True	1288	ENST00000337432.9	GRCh38			CC BY 4.0	incomplete
+urn:mavedb:00000673-e-1	RAD51C	RAD51C SGE Exon 4	SGE	True	1095	ENST00000337432.9	GRCh38			CC BY 4.0	incomplete
+urn:mavedb:00000673-a-2	RAD51C	RAD51C SGE Exon 1	SGE	True	1092	ENST00000337432.9	GRCh38			CC BY 4.0	incomplete
+urn:mavedb:00000673-f-1	RAD51C	RAD51C SGE Exon 5	SGE	True	1086	ENST00000337432.9	GRCh38			CC BY 4.0	incomplete
+urn:mavedb:00000673-i-1	RAD51C	RAD51C SGE Exon 9	SGE	True	878	ENST00000337432.9	GRCh38			CC BY 4.0	incomplete
+urn:mavedb:00000673-h-1	RAD51C	RAD51C SGE Exon 8	SGE	True	677	ENST00000337432.9	GRCh38			CC BY 4.0	incomplete
+urn:mavedb:00000673-b-1	RAD51C	RAD51C SGE Exon 6	SGE	True	632	ENST00000337432.9	GRCh38			CC BY 4.0	incomplete
+urn:mavedb:00000673-g-1	RAD51C	RAD51C SGE Exon 7	SGE	True	611	ENST00000337432.9	GRCh38			CC BY 4.0	incomplete
