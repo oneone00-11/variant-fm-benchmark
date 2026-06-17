@@ -1,0 +1,64 @@
+model	region_class	n_total	n_scored	n_NA	applicable
+cadd_phred	intronic	1581	1455	126	all
+cadd_phred	missense	11979	11162	817	all
+cadd_phred	nonsense	956	893	63	all
+cadd_phred	other	18	16	2	all
+cadd_phred	splice	1781	1644	137	all
+cadd_phred	synonymous	4915	4568	347	all
+cadd_phred	utr	180	159	21	all
+alphamissense	intronic	1581	0	1581	missense-only
+alphamissense	missense	11979	11906	73	missense-only
+alphamissense	nonsense	956	11	945	missense-only
+alphamissense	other	18	8	10	missense-only
+alphamissense	splice	1781	1	1780	missense-only
+alphamissense	synonymous	4915	0	4915	missense-only
+alphamissense	utr	180	0	180	missense-only
+phylop100way	intronic	1581	1581	0	all
+phylop100way	missense	11979	11979	0	all
+phylop100way	nonsense	956	956	0	all
+phylop100way	other	18	18	0	all
+phylop100way	splice	1781	1781	0	all
+phylop100way	synonymous	4915	4915	0	all
+phylop100way	utr	180	180	0	all
+phastcons100way	intronic	1581	1581	0	all
+phastcons100way	missense	11979	11979	0	all
+phastcons100way	nonsense	956	956	0	all
+phastcons100way	other	18	18	0	all
+phastcons100way	splice	1781	1781	0	all
+phastcons100way	synonymous	4915	4915	0	all
+phastcons100way	utr	180	180	0	all
+gnomad_af_global	intronic	1581	618	963	all
+gnomad_af_global	missense	11979	4375	7604	all
+gnomad_af_global	nonsense	956	224	732	all
+gnomad_af_global	other	18	6	12	all
+gnomad_af_global	splice	1781	526	1255	all
+gnomad_af_global	synonymous	4915	1865	3050	all
+gnomad_af_global	utr	180	94	86	all
+gnomad_af_popmax	intronic	1581	618	963	all
+gnomad_af_popmax	missense	11979	4375	7604	all
+gnomad_af_popmax	nonsense	956	224	732	all
+gnomad_af_popmax	other	18	6	12	all
+gnomad_af_popmax	splice	1781	526	1255	all
+gnomad_af_popmax	synonymous	4915	1865	3050	all
+gnomad_af_popmax	utr	180	94	86	all
+spliceai_ds	intronic	1581	0	1581	n/a (not run this batch)
+spliceai_ds	missense	11979	0	11979	n/a (not run this batch)
+spliceai_ds	nonsense	956	0	956	n/a (not run this batch)
+spliceai_ds	other	18	0	18	n/a (not run this batch)
+spliceai_ds	splice	1781	0	1781	n/a (not run this batch)
+spliceai_ds	synonymous	4915	0	4915	n/a (not run this batch)
+spliceai_ds	utr	180	0	180	n/a (not run this batch)
+pangolin_score	intronic	1581	0	1581	n/a (not run this batch)
+pangolin_score	missense	11979	0	11979	n/a (not run this batch)
+pangolin_score	nonsense	956	0	956	n/a (not run this batch)
+pangolin_score	other	18	0	18	n/a (not run this batch)
+pangolin_score	splice	1781	0	1781	n/a (not run this batch)
+pangolin_score	synonymous	4915	0	4915	n/a (not run this batch)
+pangolin_score	utr	180	0	180	n/a (not run this batch)
+alphagenome_splice	intronic	1581	0	1581	n/a (not run this batch)
+alphagenome_splice	missense	11979	0	11979	n/a (not run this batch)
+alphagenome_splice	nonsense	956	0	956	n/a (not run this batch)
+alphagenome_splice	other	18	0	18	n/a (not run this batch)
+alphagenome_splice	splice	1781	0	1781	n/a (not run this batch)
+alphagenome_splice	synonymous	4915	0	4915	n/a (not run this batch)
+alphagenome_splice	utr	180	0	180	n/a (not run this batch)
