@@ -1,0 +1,11 @@
+gene	region	n_functional_snv	n_overlap_clinvar_ge1	n_overlap_vus
+VHL	coding	1585	880	317
+VHL	intronic	481	137	87
+VHL	splice_core	24	19	0
+VHL	splice_region	69	38	8
+VHL	utr	109	11	2
+BAP1	coding	6501	2363	1168
+BAP1	intronic	1692	361	14
+BAP1	splice_core	192	77	2
+BAP1	splice_region	576	191	65
+BAP1	utr	480	26	15

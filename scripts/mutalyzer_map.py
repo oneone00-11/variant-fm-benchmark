@@ -21,6 +21,9 @@ GENE_REF = {
     "BRCA2":  ("NC_000013.11", "NM_000059.4"),   # MANE equiv of ENST00000380152.8
     "PALB2":  ("NC_000016.10", "NM_024675.4"),
     "RAD51C": ("NC_000017.11", "NM_058216.3"),   # MANE equiv of ENST00000337432.9
+    # M4 candidate panel-expansion genes
+    "VHL":    ("NC_000003.12", "NM_000551.4"),   # MANE equiv of ENST00000256474.3
+    "BAP1":   ("NC_000003.12", "NM_004656.4"),   # MANE equiv of ENST00000460680.6
 }
 NC_CHROM = {
     **{f"NC_0000{n:02d}": str(n) for n in range(1, 23)},

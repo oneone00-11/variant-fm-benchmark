@@ -1,0 +1,50 @@
+urn	gene	title	assay_type	is_sge	num_variants	transcripts	assembly	pmid	license
+urn:mavedb:00000662-0-1	BAP1	BAP1 SGE	SGE	True	18108	ENST00000460680.6		38969833	CC BY 4.0
+urn:mavedb:00000662-r-1	BAP1	BAP1 SGE additional variant scores	SGE	True	1691	ENST00000460680.6		38969833	CC BY 4.0
+urn:mavedb:00000662-m-1	BAP1	BAP1 SGE Exon 13	SGE	True	1599	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-i-1	BAP1	BAP1 SGE Exon 11	SGE	True	1401	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-q-1	BAP1	BAP1 SGE Exon 17	SGE	True	1341	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-n-1	BAP1	BAP1 SGE Exon 14	SGE	True	1199	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-l-1	BAP1	BAP1 SGE Exon 12	SGE	True	1185	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-k-1	BAP1	BAP1 SGE Exon 10	SGE	True	1149	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-g-1	BAP1	BAP1 SGE Exon 7	SGE	True	1137	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-d-1	BAP1	BAP1 SGE Exon 4	SGE	True	1063	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-j-1	BAP1	BAP1 SGE Exon 9	SGE	True	1045	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-e-1	BAP1	BAP1 SGE Exon 5	SGE	True	1029	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-o-1	BAP1	BAP1 SGE Exon 15	SGE	True	819	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-p-1	BAP1	BAP1 SGE Exon 16	SGE	True	690	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-h-1	BAP1	BAP1 SGE Exon 8	SGE	True	656	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-a-2	BAP1	BAP1 SGE Exon 1	SGE	True	620	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-f-1	BAP1	BAP1 SGE Exon 6	SGE	True	608	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-c-1	BAP1	BAP1 SGE Exon 3	SGE	True	518	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00000662-b-1	BAP1	BAP1 SGE Exon 2	SGE	True	357	ENST00000460680.5	GRCh38		CC BY 4.0
+urn:mavedb:00001237-a-1	BAP1|MSH2	VarChAMP_Imaging_Localization_May_2025	other-MAVE	False	430				CC0
+urn:mavedb:00001237-a-2	BAP1|MSH2	VarChAMP_Imaging_Morphological_Change_May_2025	other-MAVE	False	430				CC0
+urn:mavedb:00001218-a-1	MLH1	Cellular abundance of MLH1	other-MAVE	False	5056			10.1101/2024.07.28.605491	CC0
+urn:mavedb:00001218-a-2	MLH1	PMS2 interaction of MLH1	other-MAVE	False	5056			10.1101/2024.07.28.605491	CC0
+urn:mavedb:00000050-a-1	MSH2	MSH2 LOF scores (HAP1)	other-MAVE	False	17746			33357406	CC0
+urn:mavedb:00000054-a-1	PTEN	PTEN lipid phosphatase scores	other-MAVE	False	8681			29706350	CC0
+urn:mavedb:00000102-0-1	PTEN	PTEN VAMP-seq Combined	VAMP-seq	False	5477			34649609	CC0
+urn:mavedb:00000101-a-1	PTEN	PTEN VAMP-seq Fill-in	VAMP-seq	False	4514			34649609	CC0
+urn:mavedb:00000013-a-1	PTEN	PTEN VAMP-seq	VAMP-seq	False	4409			29785012	CC0
+urn:mavedb:00001244-a-1	PTEN	PTEN Variant Imaging in Neurons	other-MAVE	False	1228				CC0
+urn:mavedb:00001244-b-1	PTEN	PTEN VIS-seq in hiPSCs	other-MAVE	False	1228				CC0
+urn:mavedb:00000068-a-1	TP53	Mutated p53 paired with wildtype under nutlin-3	other-MAVE	False	8274			30224644	CC0
+urn:mavedb:00000068-b-1	TP53	Mutated p53 with nutlin-3	other-MAVE	False	8274			30224644	CC0
+urn:mavedb:00000068-c-1	TP53	Mutated p53 with etoposide	other-MAVE	False	8274			30224644	CC0
+urn:mavedb:00000068-0-1	TP53	Combined score using three assays of TP53 activity that assess loss of function or dominant negative effect	other-MAVE	False	8258			30224644	CC0
+urn:mavedb:00001213-a-1	TP53	Deep mutational scan of human TP53 in HCT116 colorectal cancer cells covering Exons 5, 6, 7 and 8	other-MAVE	False	8052				CC0
+urn:mavedb:00001235-a-1	TP53	Scores from Nutlin-3a treatment of TP53 variant-expressing K562 reporter cells	other-MAVE	False	7893			31395785	CC0
+urn:mavedb:00001236-0-1	TP53	Combined score from naive Bayes classifier for TP53	other-MAVE	False	7893			34793697	CC0
+urn:mavedb:00001234-0-1	TP53	Median TP53 transcriptional activity scores	other-MAVE	False	2314			34273903	CC0
+urn:mavedb:00001234-a-1	TP53	Scores from arrayed yeast-based assay of TP53 p21WAF1 promoter	other-MAVE	False	2314			12826609	CC0
+urn:mavedb:00001234-b-1	TP53	Scores from arrayed yeast-based assay of TP53 MDM2 promoter	other-MAVE	False	2314			12826609	CC0
+urn:mavedb:00001234-c-1	TP53	Scores from arrayed yeast-based assay of TP53 BAX promoter	other-MAVE	False	2314			12826609	CC0
+urn:mavedb:00001234-d-1	TP53	Arrayed yeast-based assay of TP53 h1433snWT promoter	other-MAVE	False	2314			12826609	CC0
+urn:mavedb:00001234-e-1	TP53	Scores from arrayed yeast-based assay of TP53 p53AIP1 promoter	other-MAVE	False	2314			12826609	CC0
+urn:mavedb:00001234-f-1	TP53	Scores from arrayed yeast-based assay of TP53 GADD45 promoter	other-MAVE	False	2314			12826609	CC0
+urn:mavedb:00001234-g-1	TP53	Scores from arrayed yeast-based assay of TP53 Noxa promoter	other-MAVE	False	2314			12826609	CC0
+urn:mavedb:00001234-h-1	TP53	Scores from arrayed yeast-based assay of TP53 p53R2 promoter	other-MAVE	False	2314			12826609	CC0
+urn:mavedb:00001245-a-2	TP53	TP53 TadCBEd base editing tiling screen with activity based selection (Etoposide arm)	other-MAVE	False	518	ENSP00000269305.4|ENST00000269305.9		10.1101/2024.11.12.622254	CC0
+urn:mavedb:00001245-a-1	TP53	TP53 ABE8e tiling screen with activity based selection (Etoposide arm)	other-MAVE	False	465	ENSP00000269305.4|ENST00000269305.9		10.1101/2024.11.12.622254	CC0
+urn:mavedb:00000675-a-1	VHL	Complete VHL SGE data	SGE	True	2268	ENST00000256474.3	GRCh38	38969834	CC BY 4.0

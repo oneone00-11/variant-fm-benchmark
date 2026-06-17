@@ -1,0 +1,8 @@
+gene	splice_core	splice_region	splice_total	group
+BRCA1	137	399	536	existing
+BRCA2	138	414	552	existing
+BARD1	107	323	430	existing
+PALB2	144	384	528	existing
+RAD51C	96	288	384	existing
+VHL	24	69	93	CANDIDATE
+BAP1	192	576	768	CANDIDATE
