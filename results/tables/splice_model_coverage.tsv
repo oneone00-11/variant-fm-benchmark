@@ -1,0 +1,15 @@
+model	region_class	n_total	n_scored	n_scored_low(<0.01)	n_NA
+spliceai_ds	intronic	1581	1581	653	0
+spliceai_ds	missense	11979	11979	5433	0
+spliceai_ds	nonsense	956	956	319	0
+spliceai_ds	other	18	18	12	0
+spliceai_ds	splice	1781	1781	228	0
+spliceai_ds	synonymous	4915	4915	2260	0
+spliceai_ds	utr	180	180	84	0
+pangolin_score	intronic	1581	1581	974	0
+pangolin_score	missense	11979	11979	8499	0
+pangolin_score	nonsense	956	956	352	0
+pangolin_score	other	18	18	13	0
+pangolin_score	splice	1781	1781	440	0
+pangolin_score	synonymous	4915	4915	3564	0
+pangolin_score	utr	180	180	79	0
