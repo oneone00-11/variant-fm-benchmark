@@ -1,0 +1,11 @@
+model	sens_at_95spec	ci_lo	ci_hi	n_pos	n_neg
+cadd_phred	0.9853	0.9776	0.9914	1431	5416
+alphamissense	0.9003	0.8019	0.9367	301	422
+phylop100way	0.6469	0.6172	0.6745	1521	5793
+phastcons100way	0.6917	0.6689	0.7156	1521	5793
+spliceai_ds	0.3879	0.3642	0.4147	1521	5793
+pangolin_score	0.4793	0.4473	0.502	1521	5793
+alphagenome_splice	0.3918	0.3658	0.4157	1521	5793
+gpn_msa_score	0.831	0.8007	0.8516	1521	5793
+gnomad_af_global	0.1283	0.0962	0.17	374	2329
+gnomad_af_popmax	0.1578	0.1208	0.1963	374	2329
