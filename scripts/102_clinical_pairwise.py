@@ -24,7 +24,7 @@ rng = np.random.default_rng(20260619)
 N_BOOT = 2000
 
 # ---------- pairwise splice: Delta(mean per-gene rho) ----------
-PAIR_MODELS = DNA_SPLICE + ["cadd_phred"]
+PAIR_MODELS = DNA_SPLICE + ["nucleotide_transformer", "cadd_phred"]
 sp = df[region_mask(df, "splice")].copy()
 
 

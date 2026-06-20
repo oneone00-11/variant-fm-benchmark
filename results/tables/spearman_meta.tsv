@@ -69,3 +69,10 @@ gnomad_af_popmax	splice_region	0.1325	0.0044	0.2564	35.1	0.0104	7	391
 gnomad_af_popmax	intronic	0.0414	-0.0838	0.1654	51.0	0.0132	7	618
 gnomad_af_popmax	coding	0.0704	0.019	0.1215	76.3	0.0036	7	6464
 gnomad_af_popmax	missense	0.0739	0.028	0.1195	55.7	0.0021	7	4375
+nucleotide_transformer	all	0.1165	0.0804	0.1522	85.9	0.002	7	21410
+nucleotide_transformer	splice	0.4942	0.3736	0.5985	89.3	0.035	7	1781
+nucleotide_transformer	splice_core	0.0629	-0.0806	0.2039	64.3	0.023	7	590
+nucleotide_transformer	splice_region	0.2206	0.1274	0.31	59.7	0.0095	7	1191
+nucleotide_transformer	intronic	0.0299	-0.0197	0.0794	0.0	0.0	7	1581
+nucleotide_transformer	coding	0.0667	0.0304	0.1028	82.8	0.0019	7	17850
+nucleotide_transformer	missense	-0.003	-0.0418	0.0359	77.6	0.0021	7	11979

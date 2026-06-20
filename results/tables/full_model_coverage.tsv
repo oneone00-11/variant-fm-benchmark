@@ -1,92 +1,92 @@
-model	direction	region_class	n_total	n_scored	n_scored_low_abs<0.01	n_NA
-cadd_phred	higher=pathogenic	intronic	1581	1455	2	126
-cadd_phred	higher=pathogenic	missense	11979	11162	58	817
-cadd_phred	higher=pathogenic	nonsense	956	893	0	63
-cadd_phred	higher=pathogenic	other	18	16	0	2
-cadd_phred	higher=pathogenic	splice	1781	1644	0	137
-cadd_phred	higher=pathogenic	synonymous	4915	4568	3	347
-cadd_phred	higher=pathogenic	utr	180	159	0	21
-alphamissense	higher=pathogenic	intronic	1581	0	0	1581
-alphamissense	higher=pathogenic	missense	11979	11906	0	73
-alphamissense	higher=pathogenic	nonsense	956	11	0	945
-alphamissense	higher=pathogenic	other	18	8	0	10
-alphamissense	higher=pathogenic	splice	1781	1	0	1780
-alphamissense	higher=pathogenic	synonymous	4915	0	0	4915
-alphamissense	higher=pathogenic	utr	180	0	0	180
-phylop100way	higher=pathogenic	intronic	1581	1581	18	0
-phylop100way	higher=pathogenic	missense	11979	11979	41	0
-phylop100way	higher=pathogenic	nonsense	956	956	5	0
-phylop100way	higher=pathogenic	other	18	18	1	0
-phylop100way	higher=pathogenic	splice	1781	1781	13	0
-phylop100way	higher=pathogenic	synonymous	4915	4915	51	0
-phylop100way	higher=pathogenic	utr	180	180	3	0
-phastcons100way	higher=pathogenic	intronic	1581	1581	1053	0
-phastcons100way	higher=pathogenic	missense	11979	11979	2488	0
-phastcons100way	higher=pathogenic	nonsense	956	956	136	0
-phastcons100way	higher=pathogenic	other	18	18	3	0
-phastcons100way	higher=pathogenic	splice	1781	1781	341	0
-phastcons100way	higher=pathogenic	synonymous	4915	4915	1376	0
-phastcons100way	higher=pathogenic	utr	180	180	88	0
-gnomad_af_global	higher=benign	intronic	1581	618	613	963
-gnomad_af_global	higher=benign	missense	11979	4375	4363	7604
-gnomad_af_global	higher=benign	nonsense	956	224	224	732
-gnomad_af_global	higher=benign	other	18	6	6	12
-gnomad_af_global	higher=benign	splice	1781	526	526	1255
-gnomad_af_global	higher=benign	synonymous	4915	1865	1860	3050
-gnomad_af_global	higher=benign	utr	180	94	92	86
-gnomad_af_popmax	higher=benign	intronic	1581	618	606	963
-gnomad_af_popmax	higher=benign	missense	11979	4375	4347	7604
-gnomad_af_popmax	higher=benign	nonsense	956	224	224	732
-gnomad_af_popmax	higher=benign	other	18	6	6	12
-gnomad_af_popmax	higher=benign	splice	1781	526	523	1255
-gnomad_af_popmax	higher=benign	synonymous	4915	1865	1851	3050
-gnomad_af_popmax	higher=benign	utr	180	94	89	86
-spliceai_ds	higher=pathogenic	intronic	1581	1581	653	0
-spliceai_ds	higher=pathogenic	missense	11979	11979	5433	0
-spliceai_ds	higher=pathogenic	nonsense	956	956	319	0
-spliceai_ds	higher=pathogenic	other	18	18	12	0
-spliceai_ds	higher=pathogenic	splice	1781	1781	228	0
-spliceai_ds	higher=pathogenic	synonymous	4915	4915	2260	0
-spliceai_ds	higher=pathogenic	utr	180	180	84	0
-pangolin_score	higher=pathogenic	intronic	1581	1581	974	0
-pangolin_score	higher=pathogenic	missense	11979	11979	8499	0
-pangolin_score	higher=pathogenic	nonsense	956	956	352	0
-pangolin_score	higher=pathogenic	other	18	18	13	0
-pangolin_score	higher=pathogenic	splice	1781	1781	440	0
-pangolin_score	higher=pathogenic	synonymous	4915	4915	3564	0
-pangolin_score	higher=pathogenic	utr	180	180	79	0
-gpn_msa_score	LOWER=pathogenic	intronic	1581	1581	0	0
-gpn_msa_score	LOWER=pathogenic	missense	11979	11979	3	0
-gpn_msa_score	LOWER=pathogenic	nonsense	956	956	0	0
-gpn_msa_score	LOWER=pathogenic	other	18	18	0	0
-gpn_msa_score	LOWER=pathogenic	splice	1781	1781	0	0
-gpn_msa_score	LOWER=pathogenic	synonymous	4915	4915	0	0
-gpn_msa_score	LOWER=pathogenic	utr	180	180	0	0
-alphagenome_splice	higher=pathogenic	intronic	1581	1581	0	0
-alphagenome_splice	higher=pathogenic	missense	11979	11979	0	0
-alphagenome_splice	higher=pathogenic	nonsense	956	956	0	0
-alphagenome_splice	higher=pathogenic	other	18	18	0	0
-alphagenome_splice	higher=pathogenic	splice	1781	1781	0	0
-alphagenome_splice	higher=pathogenic	synonymous	4915	4915	0	0
-alphagenome_splice	higher=pathogenic	utr	180	180	0	0
-nucleotide_transformer	deferred	intronic	1581	0	0	1581
-nucleotide_transformer	deferred	missense	11979	0	0	11979
-nucleotide_transformer	deferred	nonsense	956	0	0	956
-nucleotide_transformer	deferred	other	18	0	0	18
-nucleotide_transformer	deferred	splice	1781	0	0	1781
-nucleotide_transformer	deferred	synonymous	4915	0	0	4915
-nucleotide_transformer	deferred	utr	180	0	0	180
-evo2	deferred	intronic	1581	0	0	1581
-evo2	deferred	missense	11979	0	0	11979
-evo2	deferred	nonsense	956	0	0	956
-evo2	deferred	other	18	0	0	18
-evo2	deferred	splice	1781	0	0	1781
-evo2	deferred	synonymous	4915	0	0	4915
-evo2	deferred	utr	180	0	0	180
-esm	deferred	intronic	1581	0	0	1581
-esm	deferred	missense	11979	0	0	11979
-esm	deferred	nonsense	956	0	0	956
-esm	deferred	other	18	0	0	18
-esm	deferred	splice	1781	0	0	1781
-esm	deferred	synonymous	4915	0	0	4915
-esm	deferred	utr	180	0	0	180
+model	region	n_total	n_scored	n_scored_low_abs<0.01	n_NA
+cadd_phred	all	21410	19897	63	1513
+cadd_phred	splice	1781	1644	0	137
+cadd_phred	splice_core	590	552	0	38
+cadd_phred	splice_region	1191	1092	0	99
+cadd_phred	intronic	1581	1455	2	126
+cadd_phred	coding	17850	16623	61	1227
+cadd_phred	missense	11979	11162	58	817
+alphamissense	all	21410	11926	0	9484
+alphamissense	splice	1781	1	0	1780
+alphamissense	splice_core	590	1	0	589
+alphamissense	splice_region	1191	0	0	1191
+alphamissense	intronic	1581	0	0	1581
+alphamissense	coding	17850	11917	0	5933
+alphamissense	missense	11979	11906	0	73
+phylop100way	all	21410	21410	132	0
+phylop100way	splice	1781	1781	13	0
+phylop100way	splice_core	590	590	3	0
+phylop100way	splice_region	1191	1191	10	0
+phylop100way	intronic	1581	1581	18	0
+phylop100way	coding	17850	17850	97	0
+phylop100way	missense	11979	11979	41	0
+phastcons100way	all	21410	21410	5485	0
+phastcons100way	splice	1781	1781	341	0
+phastcons100way	splice_core	590	590	4	0
+phastcons100way	splice_region	1191	1191	337	0
+phastcons100way	intronic	1581	1581	1053	0
+phastcons100way	coding	17850	17850	4000	0
+phastcons100way	missense	11979	11979	2488	0
+spliceai_ds	all	21410	21410	8989	0
+spliceai_ds	splice	1781	1781	228	0
+spliceai_ds	splice_core	590	590	0	0
+spliceai_ds	splice_region	1191	1191	228	0
+spliceai_ds	intronic	1581	1581	653	0
+spliceai_ds	coding	17850	17850	8012	0
+spliceai_ds	missense	11979	11979	5433	0
+pangolin_score	all	21410	21410	13921	0
+pangolin_score	splice	1781	1781	440	0
+pangolin_score	splice_core	590	590	4	0
+pangolin_score	splice_region	1191	1191	436	0
+pangolin_score	intronic	1581	1581	974	0
+pangolin_score	coding	17850	17850	12415	0
+pangolin_score	missense	11979	11979	8499	0
+alphagenome_splice	all	21410	21410	0	0
+alphagenome_splice	splice	1781	1781	0	0
+alphagenome_splice	splice_core	590	590	0	0
+alphagenome_splice	splice_region	1191	1191	0	0
+alphagenome_splice	intronic	1581	1581	0	0
+alphagenome_splice	coding	17850	17850	0	0
+alphagenome_splice	missense	11979	11979	0	0
+gpn_msa_score	all	21410	21410	3	0
+gpn_msa_score	splice	1781	1781	0	0
+gpn_msa_score	splice_core	590	590	0	0
+gpn_msa_score	splice_region	1191	1191	0	0
+gpn_msa_score	intronic	1581	1581	0	0
+gpn_msa_score	coding	17850	17850	3	0
+gpn_msa_score	missense	11979	11979	3	0
+gnomad_af_global	all	21410	7708	7684	13702
+gnomad_af_global	splice	1781	526	526	1255
+gnomad_af_global	splice_core	590	135	135	455
+gnomad_af_global	splice_region	1191	391	391	800
+gnomad_af_global	intronic	1581	618	613	963
+gnomad_af_global	coding	17850	6464	6447	11386
+gnomad_af_global	missense	11979	4375	4363	7604
+gnomad_af_popmax	all	21410	7708	7646	13702
+gnomad_af_popmax	splice	1781	526	523	1255
+gnomad_af_popmax	splice_core	590	135	135	455
+gnomad_af_popmax	splice_region	1191	391	388	800
+gnomad_af_popmax	intronic	1581	618	606	963
+gnomad_af_popmax	coding	17850	6464	6422	11386
+gnomad_af_popmax	missense	11979	4375	4347	7604
+nucleotide_transformer	all	21410	21410	188	0
+nucleotide_transformer	splice	1781	1781	10	0
+nucleotide_transformer	splice_core	590	590	2	0
+nucleotide_transformer	splice_region	1191	1191	8	0
+nucleotide_transformer	intronic	1581	1581	9	0
+nucleotide_transformer	coding	17850	17850	167	0
+nucleotide_transformer	missense	11979	11979	120	0
+evo2	all	21410	0	0	21410
+evo2	splice	1781	0	0	1781
+evo2	splice_core	590	0	0	590
+evo2	splice_region	1191	0	0	1191
+evo2	intronic	1581	0	0	1581
+evo2	coding	17850	0	0	17850
+evo2	missense	11979	0	0	11979
+esm	all	21410	0	0	21410
+esm	splice	1781	0	0	1781
+esm	splice_core	590	0	0	590
+esm	splice_region	1191	0	0	1191
+esm	intronic	1581	0	0	1581
+esm	coding	17850	0	0	17850
+esm	missense	11979	0	0	11979

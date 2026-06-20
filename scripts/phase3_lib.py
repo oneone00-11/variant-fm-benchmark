@@ -15,10 +15,12 @@ ORIENT = {
     "spliceai_ds": 1, "pangolin_score": 1, "alphagenome_splice": 1,
     "gpn_msa_score": -1,        # lower = pathogenic -> negate
     "gnomad_af_global": -1, "gnomad_af_popmax": -1,  # higher = benign -> negate
+    "nucleotide_transformer": 1,  # M8b: higher = pathogenic (already aligned)
 }
 MODELS = list(ORIENT)
 # DNA/splice-reading vs protein/missense (for the banner comparison)
 DNA_SPLICE = ["spliceai_ds", "pangolin_score", "gpn_msa_score", "alphagenome_splice"]
+DNA_LM = ["gpn_msa_score", "nucleotide_transformer"]  # the two DNA language models
 PROTEIN = ["alphamissense"]
 
 GENES = ["BRCA1", "BRCA2", "BARD1", "PALB2", "RAD51C", "VHL", "BAP1"]
