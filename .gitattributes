@@ -1,0 +1,12 @@
+# Normalize all text to LF in the repo (the dataset was assembled on Windows;
+# this removes the CRLF/LF churn so diffs reflect real content changes only).
+* text=auto eol=lf
+
+# Treat result/data tables and figures explicitly.
+*.tsv text eol=lf
+*.csv text eol=lf
+*.py  text eol=lf
+*.md  text eol=lf
+*.png binary
+*.gz  binary
+*.tbi binary

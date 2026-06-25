@@ -7,14 +7,18 @@ import os
 import subprocess
 import sys
 import time
+from pathlib import Path
 
 import pysam
 
+# Repo-relative paths (portable). The GPN-MSA bgz data is remote (HuggingFace);
+# only the small .tbi index lives in refs/ (see README for how to obtain it).
+ROOT = Path(__file__).resolve().parents[1]
 RESOLVE = ("https://huggingface.co/datasets/songlab/gpn-msa-hg38-scores/"
            "resolve/main/scores.tsv.bgz")
-TBI = "/mnt/d/variant-fm-benchmark/refs/gpn_scores.tsv.bgz.tbi"
-AR = "/mnt/d/variant-fm-benchmark/data/processed/analysis_ready_v2.tsv"
-OUT = "/mnt/d/variant-fm-benchmark/data/raw/scores/gpn/gpn.tsv"
+TBI = str(ROOT / "refs" / "gpn_scores.tsv.bgz.tbi")
+AR = str(ROOT / "data" / "processed" / "analysis_ready_v2.tsv")
+OUT = str(ROOT / "data" / "raw" / "scores" / "gpn" / "gpn.tsv")
 
 
 def resolve_url():

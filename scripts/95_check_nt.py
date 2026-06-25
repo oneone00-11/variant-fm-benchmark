@@ -2,7 +2,9 @@
 import pandas as pd
 from pathlib import Path
 
-SRC = Path(r"C:\Users\张宁一\Desktop\variant-fm-benchmark\score_matrix_final_with_nt.tsv")
+# Repo-relative path: the final, NT-included evaluation matrix.
+ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / "data" / "processed" / "score_matrix_final.tsv"
 df = pd.read_csv(SRC, sep="\t", dtype={"chrom": str}, low_memory=False)
 print("rows:", len(df))
 print("has nucleotide_transformer col:", "nucleotide_transformer" in df.columns)

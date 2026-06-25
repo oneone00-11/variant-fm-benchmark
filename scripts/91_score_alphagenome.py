@@ -12,6 +12,7 @@ import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
 
 if not os.environ.get("ALPHAGENOME_API_KEY"):
     sys.exit("ALPHAGENOME_API_KEY not set - aborting (key must come from env).")
@@ -19,8 +20,10 @@ if not os.environ.get("ALPHAGENOME_API_KEY"):
 from alphagenome.models import dna_client, variant_scorers
 from alphagenome.data import genome
 
-AR = "/mnt/d/variant-fm-benchmark/data/processed/analysis_ready_v2.tsv"
-OUTDIR = "/mnt/d/variant-fm-benchmark/data/raw/scores/alphagenome"
+# Repo-relative paths (portable). API key is read from the environment only.
+ROOT = Path(__file__).resolve().parents[1]
+AR = str(ROOT / "data" / "processed" / "analysis_ready_v2.tsv")
+OUTDIR = str(ROOT / "data" / "raw" / "scores" / "alphagenome")
 CACHE = os.path.join(OUTDIR, "ag_cache.tsv")
 os.makedirs(OUTDIR, exist_ok=True)
 N_WORKERS = 6

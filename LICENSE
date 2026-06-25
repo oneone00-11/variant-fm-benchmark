@@ -1,0 +1,39 @@
+MIT License
+
+Copyright (c) 2026 Zhang Ningyi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+NOTE ON DATA LICENSING (code vs. data are licensed separately):
+
+This MIT license covers the CODE in this repository only. Third-party data and
+model scores carry their own licenses and must be attributed to their sources:
+
+  - ClinVar (NCBI): public domain.
+  - gnomAD (Broad Institute): CC0 / ODC-ODbL per release terms.
+  - MaveDB functional score sets: per-dataset license (CC0 or CC BY) — see the
+    `source_urn` column and the URN table in README / docs/milestone2_goldstandard.md.
+  - AlphaMissense (Google DeepMind): CC BY-NC-SA 4.0 (non-commercial).
+  - AlphaGenome: Google AlphaGenome API terms.
+  - SpliceAI (Illumina), Pangolin, GPN-MSA (Song Lab), Nucleotide Transformer
+    (InstaDeep), CADD, phyloP/phastCons (UCSC): per each tool's own license.
+
+Redistribution of derived score columns follows the most restrictive applicable
+upstream license; AlphaMissense-derived columns are non-commercial.

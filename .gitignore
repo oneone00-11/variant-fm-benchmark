@@ -1,4 +1,11 @@
-# Data — large / re-downloadable, never commit
+# =============================================================================
+# variant-fm-benchmark — .gitignore
+# Large / re-downloadable inputs, caches, scratch, and anything that could ever
+# carry a credential are kept OUT of git. See README ("Data acquisition") for how
+# to obtain every excluded input.
+# =============================================================================
+
+# --- Raw / intermediate data (large, re-downloadable) ------------------------
 data/raw/
 data/interim/
 *.vcf
@@ -6,16 +13,37 @@ data/interim/
 *.vcf.gz.tbi
 *.bcf
 
-# Python
+# --- Reference genome & large binaries in refs/ (re-downloadable) ------------
+# Keep the small provenance scripts (refs/*.sh, refs/*.py) and the GPN .tbi index;
+# never commit FASTA/GTF/feature DBs (hundreds of MB to ~GB each).
+refs/*.fa
+refs/*.fa.gz
+refs/*.fai
+refs/*.fxi
+refs/*.gtf
+refs/*.gtf.gz
+refs/*.gtf.db
+refs/*.log
+
+# --- Model-score caches & scratch (may be large; never the source of truth) --
+# Belt-and-suspenders: cache files are excluded even outside data/raw/.
+*cache*.json
+*cache*.tsv
+/score_matrix_final_with_nt.tsv
+/nt_cache2.tsv
+
+# --- Python ------------------------------------------------------------------
 .venv/
+venv/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
 
-# Results that are regenerated (keep tables/figures if you want; ignore scratch)
+# --- Results scratch ---------------------------------------------------------
 results/scratch/
 
-# OS / editor
+# --- OS / editor -------------------------------------------------------------
 .DS_Store
 Thumbs.db
 .vscode/
+.idea/

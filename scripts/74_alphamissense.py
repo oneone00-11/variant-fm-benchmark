@@ -1,5 +1,5 @@
 """M5-B: AlphaMissense (hg38) pathogenicity for MISSENSE variants only.
-Downloads the Zenodo tsv.gz to D: (data/raw/scores) and stream-filters to the 7
+Downloads the Zenodo tsv.gz to data/raw/scores and stream-filters to the 7
 gene coordinate ranges, then extracts am_pathogenicity for our (chrom,pos,ref,alt).
 Non-missense variants are NOT scored (left absent — no extrapolation).
 Directionality: higher am_pathogenicity = more likely pathogenic.
