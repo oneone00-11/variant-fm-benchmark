@@ -42,8 +42,13 @@ the WSL/conda shell scripts in `refs/*.sh` — reference provenance)
 `90_score_gpn.py` (remote tabix; needs `pysam` + GPN `.tbi`) ·
 `91_score_alphagenome.py` (needs `ALPHAGENOME_API_KEY` env var) · `94_assemble_final.py`
 
-## Milestone 8b — Nucleotide Transformer  *(GPU-scored elsewhere)*
-`95_check_nt.py` · `96_update_coverage.py`
+## Milestone 8b / 11 — Nucleotide Transformer  *(reproducible; needs GPU)*
+`92_score_nt.py` — **archived NT scoring procedure** (InstaDeepAI/nucleotide-
+transformer-v2-500m-multi-species; masked 6-mer REF/ALT log-likelihood ratio,
+higher=pathogenic). Regenerates the git-ignored `nt_cache2.tsv`. The original run
+was on a cloud GPU; this restores reproducibility — see the file header and README.
+Requires a GPU env (`torch`, `transformers`, `pyfaidx`) and the Ensembl release-112
+reference FASTA. · `95_check_nt.py` (verify the NT-augmented matrix) · `96_update_coverage.py`
 
 ## Milestone 8 — Phase-3 evaluation  ← reproduce these
 | Script | Output |

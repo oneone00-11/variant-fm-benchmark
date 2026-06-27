@@ -82,6 +82,14 @@ regenerates every table in `results/tables/` and all three figures in
 `results/figures/`. All randomness is seeded (`np.random.default_rng(20260619)`),
 so output is deterministic. The script prints the headline splice ranking at the end.
 
+**Re-scoring Nucleotide Transformer (needs GPU).** Unlike the analysis above, the NT
+column is produced by a GPU model. `scripts/92_score_nt.py` archives that procedure
+(InstaDeepAI/nucleotide-transformer-v2-500m-multi-species; masked 6-mer REF/ALT
+log-likelihood ratio) and regenerates the git-ignored cache `nt_cache2.tsv`, which is
+merged into the matrix on `chrom:pos:ref:alt`. It needs a GPU env (`torch`,
+`transformers`, `pyfaidx`) and the Ensembl release-112 reference FASTA; the exact
+context window of the original run is flagged in `docs/OPEN_ITEMS.md`.
+
 ## The final evaluation matrix — `data/processed/score_matrix_final.tsv`
 
 One row per SNV (21,410). Key columns:
@@ -121,7 +129,7 @@ via `hf-mirror.com` if slow. (No proxy is required on a normal connection.)
 | Pangolin | supervised splice | Tiger Genomics |
 | AlphaGenome | DNA model (splice tracks) | Google AlphaGenome API |
 | GPN-MSA | DNA LM (multiple-sequence alignment) | Song Lab, hg38 precomputed |
-| Nucleotide Transformer | DNA LM (single sequence) | InstaDeep; masked REF/ALT log-likelihood ratio |
+| Nucleotide Transformer | DNA LM (single sequence) | InstaDeepAI/nucleotide-transformer-v2-500m-multi-species; masked 6-mer REF/ALT log-likelihood ratio. Reproducible via `scripts/92_score_nt.py` (needs GPU; regenerates the git-ignored `nt_cache2.tsv`) |
 | AlphaMissense | protein/missense LM | Google DeepMind, hg38 precomputed |
 | CADD | classical ensemble | CADD v1.6+ (GRCh38) |
 | phyloP / phastCons | conservation | UCSC 100-way |
@@ -164,4 +172,6 @@ non-commercial) — see the table above and the data-licensing note in `LICENSE`
 ## Status
 
 All milestones complete (see `docs/`). Phase-3 evaluation is fully reproducible on
-CPU. Pending future work: Evo2 / ESM (need GPU; columns reserved as NA).
+CPU; all model scores are reproducible, with Nucleotide Transformer requiring a GPU
+(`scripts/92_score_nt.py`). Pending future work: Evo2 / ESM (need GPU; columns
+reserved as NA).

@@ -1,0 +1,8 @@
+gene	mavedb_urn	assay_type	reference_transcript	mapped_via_mane_refseq	assembly	reference_pmid_source	license
+BRCA1	urn:mavedb:00000097-0-2	SGE	NM_007294.3	(native RefSeq)	GRCh38	Findlay et al. 2018; PMID 30209399	CC0
+BRCA2	urn:mavedb:00001225-a-1	SGE	ENST00000380152.8	NM_000059.4	GRCh38	2025; PMID 39779857 [verify]	CC0
+BARD1	urn:mavedb:00001250-a-2	SGE	NM_000465.4	(native RefSeq)	GRCh38	PMID not recorded [verify]	CC0
+PALB2	urn:mavedb:00001259-a-2	SGE	NM_024675.4	(native RefSeq)	GRCh38	PMID not recorded [verify]	CC0
+RAD51C	urn:mavedb:00000673-0-1	SGE	ENST00000337432.9	NM_058216.3	GRCh38	2024; PMID 39299233 [verify]	CC BY 4.0
+VHL	urn:mavedb:00000675-a-1	SGE	ENST00000256474.3	NM_000551.4	GRCh38	Buckley et al. 2023/2024; PMID 38969834 [verify]	CC BY 4.0
+BAP1	urn:mavedb:00000662-0-1	SGE	ENST00000460680.6	NM_004656.4	GRCh38	Waters et al. 2024; PMID 38969833 [verify]	CC BY 4.0
