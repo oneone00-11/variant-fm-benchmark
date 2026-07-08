@@ -1,0 +1,2 @@
+# Generated deterministically from data/processed/score_matrix_final.tsv by src/make_raw.py
+data/raw/variant_scores.parquet

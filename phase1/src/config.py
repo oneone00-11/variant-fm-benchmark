@@ -20,7 +20,9 @@ from pathlib import Path
 # >>> EDIT: point these at your real files / folders
 # Source matrix is score_matrix_final.tsv, converted to parquet (with an added
 # variant_id key) because load_raw() reads parquet or comma-CSV, not tab-TSV.
-RAW_MATRIX_PATH = Path("/Users/cliffzhang/Documents/variant-fm-benchmark/phase1/data/raw/variant_scores.parquet")
+# Relative (resolved from phase1/) so a clean clone rebuilds portably.
+# Regenerate this file from the tracked upstream TSV with:  python -m src.make_raw
+RAW_MATRIX_PATH = Path("data/raw/variant_scores.parquet")
 OUTPUT_DIR      = Path("data/frozen")                       # frozen matrix + manifest go here
 REPORT_DIR      = Path("reports/phase1")                    # diagnostic tables go here
 
