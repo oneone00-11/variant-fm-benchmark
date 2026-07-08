@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "frozen_at_utc": "2026-07-08T20:06:03+00:00",
+  "git_commit": "6bd274f16b5dd96ea805439266b17a2cc6bf61b4",
+  "source_path": "/Users/cliffzhang/Documents/variant-fm-benchmark/phase1/data/raw/variant_scores.parquet",
+  "n_rows": 21410,
+  "n_genes": 7,
+  "n_splice": 1781,
+  "sha256": "2a0e249b44906f11ed91ce4746aba7389d8fff70d791a17710a3e26ec66d3199",
+  "output_path": "data/frozen/frozen_matrix_v1.parquet"
+}

@@ -1,0 +1,8 @@
+gene,label_file,n_splice,n_labelled_splice,splice_coverage
+BRCA1,brca1_findlay2018.tsv,547,507,0.9269
+BRCA2,brca2_huang2025.tsv,278,268,0.964
+BARD1,bard1_woo2025.tsv,200,197,0.985
+PALB2,palb2_mavedb.csv,252,215,0.8532
+RAD51C,rad51c_mavedb.csv,171,168,0.9825
+VHL,vhl_buckley2024.tsv,59,53,0.8983
+BAP1,bap1_waters2024.tsv,274,267,0.9745
