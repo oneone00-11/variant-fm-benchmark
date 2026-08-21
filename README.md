@@ -1,23 +1,61 @@
 # Variant-FM-Benchmark
 
 **Functional-evidence benchmarking of splice and sequence-based variant-effect
-predictors in hereditary-cancer genes.**
-
-We benchmark language models and classical predictors for the clinical
-interpretation of cancer-gene variants, using **Saturation Genome Editing (SGE) /
+predictors in hereditary-cancer genes**, using **Saturation Genome Editing (SGE) /
 MAVE functional assays as the primary, independent gold standard** (not ClinVar
-labels — to avoid circularity). The signature question: **can DNA-reading models
-score the splice / non-coding variants that protein models (AlphaMissense) cannot?**
+labels — to avoid circularity).
 
 - **Gene panel (7):** BRCA1, BRCA2, BARD1, PALB2, RAD51C, VHL, BAP1
-- **Evaluation set:** 21,410 SNVs (GRCh38) that have **both** a functional score
-  **and** a ClinVar record — `data/processed/score_matrix_final.tsv`
-- **Primary metric:** per-gene Spearman of model score vs. continuous functional
-  score, pooled across genes by DerSimonian–Laird random-effects meta-analysis
-- **Auxiliary metric:** ClinVar binary AUROC, always reported with/without BRCA1
-  (BRCA1's ClinVar labels are circular with its SGE)
+- **Analysis set:** 21,410 SNVs (GRCh38) that have **both** a functional score
+  **and** a ClinVar record. Content-hash-pinned as **`frozen-matrix-v1`**
+  (`phase1/data/frozen/`); the flat TSV view is `data/processed/score_matrix_final.tsv`
+- **External held-out gene:** TP53 (192 splice SNVs), never used for fitting
 
-## Headline result
+## What this repository contains
+
+This repository carries **two related analyses** over the same frozen matrix. They
+answer different questions and have separate entry points.
+
+### Study A — calibration and fusion (the current manuscript)
+
+*"Ranking is saturated but calibration is not."* Given that the top splice
+predictors are statistically tied on **ranking**, the question becomes whether
+combining them buys anything that ranking cannot show — namely **calibrated
+probabilities**. Elastic-net fusion, out-of-gene isotonic/Platt calibration,
+ECE / Brier / clinical yield, all under **leave-one-gene-out (LOGO)**, plus
+external validation on the held-out gene **TP53**.
+
+- Code: [`phase1/src/`](phase1/src/) (`phase2_model.py`, `phase3_calibration.py`,
+  `phase4_external_tp53.py`)
+- Reproduce: **`python scripts/reproduce_calibration.py`** (see below)
+- Results: `phase1/reports/phase1/`
+- Method detail: [`docs/NOTE_S9.md`](docs/NOTE_S9.md) (= Supplementary Note S9)
+
+Headline numbers (frozen-matrix-v1, splice subset N = 1,781, LOGO):
+
+| | fusion (elastic net) | best single | Δ (fusion − single) |
+|---|--:|--:|---|
+| pooled Spearman ρ | 0.773 | 0.761 (Pangolin) | **+0.012** `[0.002, 0.021]` |
+| Brier (isotonic, `y_assay`) | 0.0631 | 0.0717 (Pangolin) | **−0.0085** `[0.0032, 0.0165]` |
+| Brier — TP53, fully held out | 0.0785 | 0.1216 (SpliceAI) | **−0.0431** (directional replication) |
+
+Ranking is effectively saturated (Δρ ≈ 0.01); calibration is not — and the
+calibration gap replicates on a gene the model has never seen.
+
+### Study B — coverage and model complementarity
+
+*Can DNA-reading models score the splice / non-coding variants that protein models
+(AlphaMissense) cannot?* Per-gene Spearman vs. the continuous functional score,
+pooled by DerSimonian–Laird random-effects meta-analysis; ClinVar binary AUROC as
+an auxiliary metric, always reported with/without BRCA1 (BRCA1's ClinVar labels are
+circular with its SGE).
+
+- Code: [`scripts/`](scripts/) (numbered by phase — see `scripts/README.md`)
+- Reproduce: **`python scripts/reproduce_main.py`**
+- Results: `results/tables/`, `results/figures/`
+- Method/results detail: `docs/milestone1`–`milestone8b`
+
+## Study B headline result
 
 On the splice subset (N = 1,781), meta Spearman ρ vs. the functional gold standard:
 
@@ -49,14 +87,20 @@ variant-fm-benchmark/
 ├── data/
 │   └── processed/             evaluation tables (IN repo).  score_matrix_final.tsv = FINAL matrix
 │       (data/raw/ is git-ignored — large, re-downloadable; see "Data acquisition")
-├── scripts/                   pipeline + analysis code, numbered by phase (see scripts/README.md)
+├── scripts/                   Study B pipeline + analysis, numbered by phase (see scripts/README.md)
 │   ├── config.py              shared paths, gene list, ClinVar maps
 │   ├── phase3_lib.py          orientation, Fisher-z CIs, DL meta, bootstrap
-│   ├── reproduce_main.py      >>> one-command reproduction of all main results <<<
-│   └── 0x–10x_*.py            data assembly → model scoring → Phase-3 evaluation
-├── docs/                      milestone reports 1–9 (the written record / Methods+Results)
+│   ├── reproduce_main.py      >>> one-command reproduction of Study B <<<
+│   └── reproduce_calibration.py  >>> one-command reproduction of Study A <<<
+├── phase1/                    Study A (fusion + calibration + TP53)
+│   ├── src/                   config.py, phase1_* (build/freeze), phase2_model.py
+│   │                          (fusion), phase3_calibration.py, phase4_external_tp53.py
+│   ├── data/frozen/           frozen-matrix-v1 + manifest (sha256-pinned)
+│   └── reports/phase1/        Study A result CSVs + figures
+├── docs/                      milestone reports 1–8b (Methods/Results record)
+│   └── NOTE_S9.md             Supplementary Note S9 (Study A reproduction)
 ├── results/
-│   ├── tables/                all result TSVs (spearman_meta, auroc_clinvar, …)
+│   ├── tables/                all Study B result TSVs (spearman_meta, auroc_clinvar, …)
 │   └── figures/               fig1 splice perf, fig2 forest, fig3 region heatmap
 └── refs/                      scoring provenance scripts (FASTA/GTF binaries git-ignored)
 ```
@@ -72,9 +116,28 @@ pip install -r requirements.txt
 Python 3.9; tested with pandas 2.3.3 / numpy 2.0.2 / scipy 1.13.1 /
 scikit-learn 1.6.1 / matplotlib 3.9.4.
 
-## Reproduce the main results (one command)
+## Reproduce the results
 
+Clean-clone reproduction is two commands per study — install, then run. Neither
+re-scores any model: both start from the frozen matrix that ships in the repo.
+
+**Study A — fusion & calibration** (the current manuscript):
 ```bash
+pip install -r requirements.txt
+python scripts/reproduce_calibration.py
+```
+Runs, in order: directionality gate → frozen-matrix integrity check (sha256 against
+`phase1/data/frozen/manifest_v1.json`) → H1/H2 fusion → H3 calibration → TP53
+external validation. Writes `phase1/reports/phase1/` and prints the headline
+Δρ / ΔBrier table. Seeded (`RANDOM_SEED` in `phase1/src/config.py`); deterministic.
+Checkout `frozen-matrix-v1` to pin the exact matrix the manuscript used:
+```bash
+git checkout frozen-matrix-v1
+```
+
+**Study B — coverage & complementarity:**
+```bash
+pip install -r requirements.txt
 python scripts/reproduce_main.py
 ```
 Starting from `data/processed/score_matrix_final.tsv` (no model re-scoring), this
@@ -82,13 +145,21 @@ regenerates every table in `results/tables/` and all three figures in
 `results/figures/`. All randomness is seeded (`np.random.default_rng(20260619)`),
 so output is deterministic. The script prints the headline splice ranking at the end.
 
-**Re-scoring Nucleotide Transformer (needs GPU).** Unlike the analysis above, the NT
-column is produced by a GPU model. `scripts/92_score_nt.py` archives that procedure
-(InstaDeepAI/nucleotide-transformer-v2-500m-multi-species; masked 6-mer REF/ALT
-log-likelihood ratio) and regenerates the git-ignored cache `nt_cache2.tsv`, which is
-merged into the matrix on `chrom:pos:ref:alt`. It needs a GPU env (`torch`,
-`transformers`, `pyfaidx`) and the Ensembl release-112 reference FASTA; the exact
-context window of the original run is flagged in `docs/OPEN_ITEMS.md`.
+### Reproducibility scope — what is and is not reproducible
+
+**The analyses above are fully reproducible on CPU from the committed matrix.**
+**The upstream model *scores* are not all reproducible**, and two are known not to be:
+
+| Model | Score reproducible? | Why |
+|---|---|---|
+| Nucleotide Transformer | **No** | The original scoring was a one-off cloud-GPU run; that script and its environment were not committed. `scripts/92_score_nt.py` is an *archival reconstruction* of the procedure, not the original code, and the exact context window of the original run is not confirmed. Re-running it needs a GPU and will not be byte-identical. |
+| Pangolin | **No** | Installed from an unpinned git revision; the exact revision was not recorded, so the scoring environment cannot be reconstructed byte-identically. |
+| All others | Yes | Deterministic given the pinned inputs in "Data acquisition". |
+
+Both models are therefore **excluded from the TP53 external validation** (Study A
+uses an 8-feature fusion there; see `phase1/src/phase4_external_tp53.py`). This
+matches the manuscript's Methods §2.5 — the limitation is declared, not worked
+around.
 
 ## The final evaluation matrix — `data/processed/score_matrix_final.tsv`
 
@@ -117,9 +188,6 @@ from scratch (not needed to reproduce results — the final matrix ships in the 
 | AlphaMissense (hg38) | Zenodo `AlphaMissense_hg38.tsv.gz` | missense only; CC BY-NC-SA 4.0 |
 | GPN-MSA scores | HuggingFace `songlab/gpn-msa-hg38-scores` (remote tabix) | only the small `.tbi` index is local |
 | MaveDB SGE score sets | MaveDB API `api.mavedb.org/api/v1` (URNs below) | the functional gold standard |
-
-China-network note: pip via Tsinghua mirror + `--timeout 180 --retries 10`; HuggingFace
-via `hf-mirror.com` if slow. (No proxy is required on a normal connection.)
 
 ## Models / tools evaluated
 
@@ -171,7 +239,8 @@ non-commercial) — see the table above and the data-licensing note in `LICENSE`
 
 ## Status
 
-All milestones complete (see `docs/`). Phase-3 evaluation is fully reproducible on
-CPU; all model scores are reproducible, with Nucleotide Transformer requiring a GPU
-(`scripts/92_score_nt.py`). Pending future work: Evo2 / ESM (need GPU; columns
-reserved as NA).
+Both analyses are complete and reproducible on CPU from the committed frozen matrix.
+Model *scoring* is not uniformly reproducible: the Nucleotide Transformer and
+Pangolin scores cannot be regenerated byte-identically (see "Reproducibility scope"
+above) — this is a declared limitation, and both are excluded from the external
+validation. Pending future work: Evo2 / ESM (need GPU; columns reserved as NA).

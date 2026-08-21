@@ -93,7 +93,9 @@ CLINVAR_ENUM_MAP = {"P/LP": 1.0, "B/LB": 0.0}   # everything else -> NA (VUS, Co
 # We define functional PATHOGENICITY = -func_score  (more damaging -> larger).
 # If a gene's assay is oriented so HIGHER raw score = MORE damaging, list it here
 # and it will be flipped so all genes share one convention.
-FLIP_GENES = []  # >>> EDIT if needed, e.g. ["VHL"]
+FLIP_GENES = ["TP53"]  # TP53 SGE (Funk 2024): higher raw score = more damaging;
+# directionality gate 2026-07-10 -> control AUROC 0.003 (default) vs 0.997 (flipped).
+# The 7 frozen genes are all correctly oriented (gate all-OK), so this is inert for them.
 
 # ---------------------------------------------------------------------------
 # Splice sub-classification (by |intron offset| to nearest splice site)
@@ -164,3 +166,26 @@ ASSAY_LABELS = {
 # "gmm" (the old unanchored placeholder, kept only for comparison/fallback).
 # ---------------------------------------------------------------------------
 METHOD_B = "official"
+
+
+# ---------------------------------------------------------------------------
+# Phase 2 -- feature orientation & evolution-axis groups (H2 ablation)
+# ---------------------------------------------------------------------------
+# Oriented so that "larger = more damaging" for every feature. Basis:
+#   gnomad_af : common variants are benign -> AF anti-correlates with pathogenicity
+#   gpn_msa   : stored score convention is anti-correlated on this matrix (matches
+#               benchmark |rho|=0.666 but with flipped sign)
+REVERSED_FEATURES = ["gpn_msa", "gnomad_af"]
+
+EVO_CONSERVATION = ["phylop", "phastcons"]   # pure conservation
+EVO_ALIGNMENT    = ["gpn_msa"]               # alignment-conditioned signal
+
+
+# ---------------------------------------------------------------------------
+# Phase 2 -- training target. Evaluation is per-gene Spearman (within-gene rank),
+# so the TRAINING target must be within-gene comparable too; pooling a raw target
+# whose per-gene scale differs ~100x lets the largest-scale gene dominate the loss.
+#   "rank_within_gene" : train on within-gene rank of func_pathogenicity (aligned)
+#   "raw"              : train on raw func_pathogenicity (mismatched; for comparison)
+# ---------------------------------------------------------------------------
+TRAIN_TARGET = "rank_within_gene"

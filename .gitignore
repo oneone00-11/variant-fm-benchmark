@@ -47,3 +47,6 @@ results/scratch/
 Thumbs.db
 .vscode/
 .idea/
+
+# --- Local working notes / envs (not part of the research record) ------------
+ag-env/

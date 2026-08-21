@@ -1,0 +1,9 @@
+region_subset	N_spearman	spearman_halfwidth_rho0.5	n_path	n_benign	auroc_halfwidth_0.85	verdict_spearman	verdict_auroc
+whole_gap	6304	0.0185	471	926	0.0234	sufficient	sufficient
+splice	2430	0.0298	463	280	0.0268	sufficient	sufficient
+splice_core	622	0.0591	397	0	—	sufficient	no_PB
+splice_region	1808	0.0346	66	280	0.0604	sufficient	marginal
+intronic	3874	0.0236	8	646	0.1681	sufficient	insufficient
+coding	14592	0.0122	1111	3899	0.0148	sufficient	sufficient
+missense	9876	0.0148	325	503	0.0286	sufficient	sufficient
+utr	136	0.1272	0	40	—	marginal	no_PB
