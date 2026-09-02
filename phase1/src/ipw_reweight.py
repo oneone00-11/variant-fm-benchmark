@@ -499,5 +499,51 @@ def run():
           f"ipw_predictor_table.csv to {C.REPORT_DIR}\n")
 
 
+def whole_gene_balance(repo_root: "Path", observed_keys):
+    """The same enrichment check with no splice-window restriction.
+
+    The Methods sentence contrasts recruitment across whole genes with
+    recruitment inside the proximal splice window. Only the second had an
+    output: load_target_frame() restricts to |offset| <= SPLICE_WINDOW before
+    standardising, so ipw_frame_balance.csv is the window figure and the
+    whole-gene figure was computed nowhere. Standardisation is within gene over
+    the whole-gene set, the analogue of what the window version does.
+    """
+    parts = []
+    for rel in FULL_SETS:
+        f = repo_root / rel
+        if not f.exists():
+            sys.exit(f"[ipw] full functional set not found: {f}")
+        parts.append(pd.read_csv(f, sep="\t", low_memory=False))
+    full = pd.concat(parts, ignore_index=True)
+    full = full[(full["is_snv"] == True) & full["functional_score"].notna()
+                & full["pos"].notna()].copy()
+    full["key"] = _key(full.chrom, full.pos, full.ref, full.alt).to_numpy()
+    full = full.drop_duplicates("key")
+    g = full.groupby("gene")["functional_score"]
+    full["z"] = -(full["functional_score"] - g.transform("mean")) / g.transform("std")
+    full["abs_z"] = full["z"].abs()
+    return frame_balance(full, observed_keys)
+
+
+def balance_only():
+    """Write the whole-gene balance table without re-running the estimation."""
+    from pathlib import Path
+
+    repo_root = Path(__file__).resolve().parents[2]
+    p = C.OUTPUT_DIR / f"frozen_matrix_{C.FROZEN_VERSION}.parquet"
+    df = pd.read_parquet(p)
+    df = df[df["is_splice"] & df["func_pathogenicity"].notna()].reset_index(drop=True)
+    df["key"] = _key(df.chrom, df.pos, df.ref, df.alt).to_numpy()
+    tab = whole_gene_balance(repo_root, set(df["key"]))
+    C.REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    tab.to_csv(C.REPORT_DIR / "ipw_frame_balance_wholegene.csv", index=False)
+    print("\n=== selection across whole genes (no window restriction) ===")
+    print(tab.round(4).to_string(index=False))
+
+
 if __name__ == "__main__":
-    run()
+    if len(sys.argv) > 1 and sys.argv[1] == "balance":
+        balance_only()
+    else:
+        run()

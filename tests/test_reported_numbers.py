@@ -120,3 +120,21 @@ def test_reweighting_does_not_reorder_the_predictors():
     d = _csv("ipw_predictor_table.csv")
     assert len(d) == 11
     assert (d.rank_unw == d.rank_wgt).all()
+
+
+def test_sampling_frame_enrichment_is_larger_across_whole_genes():
+    """The Methods sentence contrasts recruitment across whole genes with
+    recruitment inside the splice window. It reported 0.713 versus 0.578 for the
+    whole-gene comparison, which no output held: ipw_frame_balance.csv is
+    window-restricted, so that comparison had never been computed. Both figures
+    are pinned here, and so is the direction the sentence turns on."""
+    whole = _csv("ipw_frame_balance_wholegene.csv").set_index("gene")
+    window = _csv("ipw_frame_balance.csv").set_index("gene")
+    w, n = whole.loc["POOLED"], window.loc["POOLED"]
+    assert approx(w.mean_abs_z_observed, 1.26) and approx(w.mean_abs_z_remainder, 0.62)
+    assert approx(n.mean_abs_z_observed, 0.92) and approx(n.mean_abs_z_remainder, 0.80)
+    # "Within the splice window ... the enrichment is much smaller."
+    assert (w.mean_abs_z_observed - w.mean_abs_z_remainder) > \
+           (n.mean_abs_z_observed - n.mean_abs_z_remainder)
+    # The whole-gene frame is the full functional SNV set, not the analysis set.
+    assert int(w.n_observed) == 1781

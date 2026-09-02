@@ -234,22 +234,60 @@ def paragraph_cardinalities(docx_path: Path) -> dict[str, list[tuple[int, str, s
     return out
 
 
-def claim_cardinalities(path: Path = CLAIMS) -> dict[str, list[dict]]:
+def _blocks(docx_path: Path) -> list[tuple[str, str]]:
+    """(id, text) for every paragraph and table cell, in document order."""
+    import docx
+
+    d = docx.Document(str(docx_path))
+    out = [(f"P{i}", para.text) for i, para in enumerate(d.paragraphs)]
+    for ti, t in enumerate(d.tables):
+        for ri, row in enumerate(t.rows):
+            for ci, cell in enumerate(row.cells):
+                out.append((f"T{ti+1}r{ri+1}c{ci+1}", cell.text))
+    return out
+
+
+def resolve_anchors(docx_path: Path, path: Path = CLAIMS) -> dict[int, str]:
+    """Row index in analysis_claims.json -> the block id its anchor lands in.
+
+    Claims bind by a unique substring of the sentence that makes them, not by
+    paragraph number. Rewriting the abstract shifted every later paragraph by
+    two and left all six `para` values pointing at the wrong text with nothing
+    to notice. A row whose anchor hits zero blocks, or more than one, is
+    omitted here and reported by the tests rather than guessed at.
+    """
+    spec = json.loads(path.read_text()) if path.exists() else {}
+    blocks = _blocks(docx_path)
+    resolved: dict[int, str] = {}
+    for idx, c in enumerate(spec.get("claims", [])):
+        anchor = c.get("anchor")
+        if not anchor:
+            continue
+        total = sum(t.count(anchor) for _, t in blocks)
+        if total == 1:
+            resolved[idx] = next(uid for uid, t in blocks if anchor in t)
+    return resolved
+
+
+def claim_cardinalities(docx_path: Path, path: Path = CLAIMS) -> dict[str, list[dict]]:
     """paragraph id -> the cardinality assertions recorded for it."""
     if not path.exists():
         return {}
     spec = json.loads(path.read_text()) if path.exists() else {}
+    where = resolve_anchors(docx_path, path)
     out: dict[str, list[dict]] = {}
-    for c in spec.get("claims", []):
+    for idx, c in enumerate(spec.get("claims", [])):
+        if idx not in where:
+            continue
         if c.get("cardinality"):
-            out.setdefault(c["para"], []).append(
+            out.setdefault(where[idx], []).append(
                 {"count": int(c["cardinality"]["count"]),
                  "noun": c["cardinality"]["noun"],
                  "output": c.get("output")})
     return out
 
 
-def claim_scopes(path: Path = CLAIMS) -> dict[str, list[str]]:
+def claim_scopes(docx_path: Path, path: Path = CLAIMS) -> dict[str, list[str]]:
     """paragraph id -> the outputs config/analysis_claims.yaml binds it to.
 
     A number inside a paragraph that declares its own source should be checked
@@ -260,11 +298,16 @@ def claim_scopes(path: Path = CLAIMS) -> dict[str, list[str]]:
     if not path.exists():
         return {}
     spec = json.loads(path.read_text()) if path.exists() else {}
+    where = resolve_anchors(docx_path, path)
     scopes: dict[str, list[str]] = {}
-    for c in spec.get("claims", []):
+    for idx, c in enumerate(spec.get("claims", [])):
+        if idx not in where:
+            continue
         out = c.get("output")
         if out and c.get("status") == "verified":
-            scopes.setdefault(c["para"], []).append(out)
+            # a claim may name several outputs; all of them scope the block
+            outs = out if isinstance(out, list) else [out]
+            scopes.setdefault(where[idx], []).extend(outs)
     return scopes
 
 
@@ -317,13 +360,13 @@ def classify(docx_path: Path, results: Path = RESULTS,
              whitelist: Path = WHITELIST, claims: Path = CLAIMS) -> dict:
     pool = pipeline_values(results)
     wl_values, wl_patterns, _ = load_whitelist(whitelist)
-    scopes = claim_scopes(claims)
+    scopes = claim_scopes(docx_path, claims)
     scoped_cache: dict[str, np.ndarray] = {}
 
     # Cardinality: does the count a paragraph asserts match what the claims
     # manifest records for the output it cites? No value check can ask this.
     asserted = paragraph_cardinalities(docx_path)
-    recorded = claim_cardinalities(claims)
+    recorded = claim_cardinalities(docx_path, claims)
     cardinality_mismatch = []
     for para, entries in recorded.items():
         for e in entries:

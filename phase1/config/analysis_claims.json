@@ -1,11 +1,62 @@
 {
- "_note": "Sentences asserting an analysis, bound to the script that performs it and the output it produces. A numeric check cannot ask whether a described analysis exists; this can. Anchors are paragraph ids for reporting only - matching is by output, not by paragraph number.",
+ "_note": "Sentences asserting an analysis, bound to the script that performs it and the output it produces. A numeric check cannot ask whether a described analysis exists; this can. Binding is by `anchor`, a substring occurring exactly once in the document, never by `para`: rewriting the abstract on 2026-09-02 shifted every later paragraph by two and left all six `para` values pointing at the wrong text, silently. `para` is a reading aid only. An anchor hitting zero blocks (the sentence was reworded) or more than one (not distinctive enough) fails tests/test_analysis_claims.py.",
  "claims": [
-  {"para": "P26", "claim": "per-gene Spearman pooled by DerSimonian-Laird under LOGO", "script": "phase1/src/phase2_model.py", "output": "phase1/reports/phase1/phase2_leaderboard.csv", "status": "verified", "cardinality": {"count": 10, "noun": "predictors"}},
-  {"para": "P29", "claim": "evolutionary-axis ablation, two versions", "script": "phase1/src/phase2_model.py", "output": "phase1/reports/phase1/phase2_H2_ablation.csv", "status": "verified"},
-  {"para": "P30", "claim": "identical out-of-gene calibration of every object; ECE, Brier, clinical yield", "script": "phase1/src/phase3_calibration.py", "output": "phase1/reports/phase1/phase3_H3_headline.csv", "status": "verified"},
-  {"para": "P31", "claim": "sampling-frame reweighting to the full functional set", "script": "phase1/src/ipw_reweight.py", "output": "phase1/reports/phase1/ipw_weight_diagnostics.csv", "status": "verified"},
-  {"para": "P33", "claim": "frozen matrix pinned by content hash and rebuilt from tracked sources", "script": "scripts/reproduce_calibration.py", "output": "phase1/data/frozen/manifest_v1.json", "status": "verified"},
-  {"para": "P57", "claim": "leakage-proof external validation on held-out TP53", "script": "phase1/src/phase4_external_tp53.py", "output": "phase1/reports/phase1/phase4_tp53_external.csv", "status": "verified"}
+  {
+   "para": "P26",
+   "claim": "per-gene Spearman pooled by DerSimonian-Laird under LOGO",
+   "script": "phase1/src/phase2_model.py",
+   "output": "phase1/reports/phase1/phase2_leaderboard.csv",
+   "status": "verified",
+   "cardinality": {
+    "count": 10,
+    "noun": "predictors"
+   },
+   "anchor": "Per-gene Spearman ρ between out-of-fold"
+  },
+  {
+   "para": "P27",
+   "claim": "evolutionary-axis ablation, two versions",
+   "script": "phase1/src/phase2_model.py",
+   "output": "phase1/reports/phase1/phase2_H2_ablation.csv",
+   "status": "verified",
+   "anchor": "Elastic-net ablation of the evolutionary"
+  },
+  {
+   "para": "P28",
+   "claim": "identical out-of-gene calibration of every object; ECE, Brier, clinical yield",
+   "script": "phase1/src/phase3_calibration.py",
+   "output": "phase1/reports/phase1/phase3_H3_headline.csv",
+   "status": "verified",
+   "anchor": "was put through the identical out-of-gen"
+  },
+  {
+   "para": "P29",
+   "claim": "sampling-frame reweighting to the full functional set",
+   "script": "phase1/src/ipw_reweight.py",
+   "output": [
+    "phase1/reports/phase1/ipw_weight_diagnostics.csv",
+    "phase1/reports/phase1/ipw_frame_balance.csv",
+    "phase1/reports/phase1/ipw_frame_balance_wholegene.csv"
+   ],
+   "status": "verified",
+   "anchor": "Sampling frame. Because the analysis set",
+   "note": "Corrected 2026-09-02: the whole-gene enrichment was printed as 0.713 versus 0.578. No output held those values; ipw_frame_balance.csv is restricted to the proximal splice window by load_target_frame(), so the whole-gene comparison had never been computed. Measured it is 1.26 against 0.62, a larger enrichment than was claimed, and the window figures are now stated against the same comparator (not recruited) rather than against the frame."
+  },
+  {
+   "para": "P31",
+   "claim": "frozen matrix pinned by content hash and rebuilt from tracked sources",
+   "script": "scripts/reproduce_calibration.py",
+   "output": "phase1/data/frozen/manifest_v1.json",
+   "status": "verified",
+   "anchor": "content-hash-verified frozen matrix froz"
+  },
+  {
+   "para": "P57",
+   "claim": "leakage-proof external validation on held-out TP53",
+   "script": "phase1/src/phase4_external_tp53.py",
+   "output": "phase1/reports/phase1/phase4_tp53_external.csv",
+   "status": "verified",
+   "anchor": "we performed a leakage-proof external va"
+  }
  ]
 }
