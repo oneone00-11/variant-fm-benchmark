@@ -13,6 +13,7 @@ the wrong text, with nothing to notice.
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -22,7 +23,24 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "phase1"))
 
 MANIFEST = REPO / "phase1" / "config" / "analysis_claims.json"
-MANUSCRIPT = Path.home() / "Desktop" / "draft_reframed_BiB.docx"
+def _manuscript() -> Path | None:
+    """The .docx these claims bind to, if it is on this machine.
+
+    Resolved from $VARIANT_FM_MANUSCRIPT, else the newest draft_reframed_*.docx
+    on the Desktop. The filename is not hard-coded: it carries a working title
+    that is nobody's business but the author's, and the tests only need some
+    draft to check the anchors against.
+    """
+    env = os.environ.get("VARIANT_FM_MANUSCRIPT")
+    if env:
+        p = Path(env).expanduser()
+        return p if p.exists() else None
+    hits = sorted((Path.home() / "Desktop").glob("draft_reframed_*.docx"),
+                  key=lambda q: q.stat().st_mtime, reverse=True)
+    return hits[0] if hits else None
+
+
+MANUSCRIPT = _manuscript()
 VALID_STATUS = {"verified", "narrative", "gap"}
 
 
@@ -57,7 +75,7 @@ def test_every_anchor_hits_exactly_once():
     nothing; more than one means the anchor could bind to the wrong sentence.
     Both are invisible under paragraph numbers, which always resolve to *some*
     paragraph however far the text has moved."""
-    if not MANUSCRIPT.exists():
+    if MANUSCRIPT is None:
         pytest.skip("manuscript not available in this checkout")
     from src.check_manuscript_numbers import _blocks
 
@@ -71,7 +89,7 @@ def test_every_anchor_hits_exactly_once():
 def test_paragraph_numbers_are_not_load_bearing(tmp_path):
     """Regression for the abstract rewrite: with every `para` deliberately
     wrong, resolution must be unaffected, because nothing matches on it."""
-    if not MANUSCRIPT.exists():
+    if MANUSCRIPT is None:
         pytest.skip("manuscript not available in this checkout")
     import src.check_manuscript_numbers as cmn
 

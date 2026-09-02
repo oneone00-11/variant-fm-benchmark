@@ -1,7 +1,7 @@
 """Likelihood ratios by evidence tier, before and after calibration.
 
-Reviewer 2's third point: the analysis set's positive fraction is 0.49, so a
-calibrated probability from it is not a clinical probability. ACMG/AMP evidence
+The analysis set's positive fraction is 0.49, so a calibrated probability from
+it is not a clinical probability. ACMG/AMP evidence
 is expressed as a likelihood ratio, which is a property of the score's
 discrimination and does not depend on the prevalence of the set it was measured
 on. This stage reports LR+ and LR- for every object H3 evaluates, in the same

@@ -1,8 +1,7 @@
 """The numbers in the manuscript are the numbers in the pipeline output.
 
-Reviewer 2's complaint about this repository was that the analysis behind the
-paper could not be found in it. The analysis is here; what was missing was
-anything asserting that the reported values and the pipeline agree. Each value
+The analysis is in this repository; what was missing was anything asserting
+that the reported values and the pipeline agree. Each value
 below is quoted in the manuscript, and each is read from
 `phase1/reports/phase1/`, so a change in the pipeline that moves a headline
 number fails here rather than silently diverging from the text.
@@ -73,7 +72,7 @@ def test_h3_calibration_headline():
 
 
 def test_clinical_yield_numbers_and_direction():
-    """Results 3.3, the sentence a reviewer flagged: 75.1% at 96.8% versus
+    """Results 3.3: 75.1% at 96.8% versus
     75.2% at 96.3%. The fusion's actionable fraction is LOWER here."""
     d = _csv("phase3_calibration_summary.csv")
     d = d[(d.set == "y_assay/BRCA1_included") & (d.calib == "isotonic")].set_index("model")

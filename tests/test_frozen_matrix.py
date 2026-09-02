@@ -60,7 +60,7 @@ def test_splice_strata_sum_to_the_splice_set(frozen):
 
 def test_class_balance_is_what_the_manuscript_reports(frozen):
     """Methods 2.1: 1,675 of 1,781 splice variants labelled, positive fraction 0.49.
-    Reviewer 2 read the near-balance off this number, so it is pinned."""
+    The near-balance is read off this number, so it is pinned."""
     s = frozen[frozen["is_splice"]]
     lab = s["y_assay"].notna()
     assert int(lab.sum()) == 1675

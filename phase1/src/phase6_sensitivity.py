@@ -1,15 +1,14 @@
 """Cross-fold weight stability, and how few training genes the calibration needs.
 
-Two questions left open by review.
+Two questions the pipeline could not previously answer.
 
-AB-1, Reviewer 1 methodological point 3: are the fusion's weights stable across
-the leave-one-gene-out folds? The pipeline reported only the cross-fold mean
+Are the fusion's weights stable across the leave-one-gene-out folds? The pipeline reported only the cross-fold mean
 |coefficient|, which cannot answer it -- a feature whose weight swings between
 +0.4 and -0.4 has the same mean magnitude as one that sits at 0.4 in every fold.
 This reports the weights fold by fold and their dispersion.
 
-AB-2, the second half of Reviewer 1's main point 3: does the isotonic
-calibration's advantage depend on the number of training genes? The LOGO
+Does the isotonic calibration's advantage depend on the number of training
+genes? The LOGO
 protocol is repeated with the training set thinned to 5, 4 and 3 genes, drawn
 without the held-out gene, and the Brier score tracked as it shrinks.
 
