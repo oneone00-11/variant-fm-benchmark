@@ -92,7 +92,10 @@ def logo_oof(Xrn, y, genes, feats, model, collect_coefs=False):
             en.fit(Xtr.to_numpy(), y[tr].to_numpy())
             oof[te] = en.predict(_en_design(Xrn, te, feats, med).to_numpy())
             if collect_coefs:
-                coefs.append(pd.Series(en.coef_, index=Xtr.columns))
+                # keyed by held-out gene: the per-fold weights are what a
+                # stability claim needs, and the cross-fold mean hides exactly
+                # the dispersion the question is about
+                coefs.append(pd.Series(en.coef_, index=Xtr.columns, name=gtest))
         elif model == "gbt":
             gb = HistGradientBoostingRegressor(max_depth=3, max_iter=300,
                     learning_rate=0.05, l2_regularization=1.0,
@@ -100,7 +103,9 @@ def logo_oof(Xrn, y, genes, feats, model, collect_coefs=False):
             gb.fit(Xrn.loc[tr, feats].to_numpy(), y[tr].to_numpy())
             oof[te] = gb.predict(Xrn.loc[te, feats].to_numpy())
     if collect_coefs:
-        return oof, pd.concat(coefs, axis=1).abs().mean(axis=1).sort_values(ascending=False)
+        # DataFrame: feature x held-out gene. Callers wanting the old summary
+        # take .abs().mean(axis=1).sort_values(ascending=False) themselves.
+        return oof, pd.concat(coefs, axis=1)
     return oof
 
 
@@ -233,6 +238,8 @@ def run():
 
     # evo coefficients in the full elastic-net
     evo_all = cons + align
+    per_fold = coefs                      # feature x held-out gene
+    coefs = coefs.abs().mean(axis=1).sort_values(ascending=False)
     coef_evo = coefs[[c for c in coefs.index if c in evo_all]]
     coef_rank = {c: int(np.where(coefs.index == c)[0][0]) + 1 for c in coefs.index if c in evo_all}
 
