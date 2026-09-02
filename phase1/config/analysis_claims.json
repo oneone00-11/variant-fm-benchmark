@@ -1,0 +1,11 @@
+{
+ "_note": "Sentences asserting an analysis, bound to the script that performs it and the output it produces. A numeric check cannot ask whether a described analysis exists; this can. Anchors are paragraph ids for reporting only - matching is by output, not by paragraph number.",
+ "claims": [
+  {"para": "P26", "claim": "per-gene Spearman pooled by DerSimonian-Laird under LOGO", "script": "phase1/src/phase2_model.py", "output": "phase1/reports/phase1/phase2_leaderboard.csv", "status": "verified", "cardinality": {"count": 10, "noun": "predictors"}},
+  {"para": "P29", "claim": "evolutionary-axis ablation, two versions", "script": "phase1/src/phase2_model.py", "output": "phase1/reports/phase1/phase2_H2_ablation.csv", "status": "verified"},
+  {"para": "P30", "claim": "identical out-of-gene calibration of every object; ECE, Brier, clinical yield", "script": "phase1/src/phase3_calibration.py", "output": "phase1/reports/phase1/phase3_H3_headline.csv", "status": "verified"},
+  {"para": "P31", "claim": "sampling-frame reweighting to the full functional set", "script": "phase1/src/ipw_reweight.py", "output": "phase1/reports/phase1/ipw_weight_diagnostics.csv", "status": "verified"},
+  {"para": "P33", "claim": "frozen matrix pinned by content hash and rebuilt from tracked sources", "script": "scripts/reproduce_calibration.py", "output": "phase1/data/frozen/manifest_v1.json", "status": "verified"},
+  {"para": "P57", "claim": "leakage-proof external validation on held-out TP53", "script": "phase1/src/phase4_external_tp53.py", "output": "phase1/reports/phase1/phase4_tp53_external.csv", "status": "verified"}
+ ]
+}
