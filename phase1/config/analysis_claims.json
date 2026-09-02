@@ -30,7 +30,7 @@
    "anchor": "was put through the identical out-of-gen"
   },
   {
-   "para": "P29",
+   "para": "P30",
    "claim": "sampling-frame reweighting to the full functional set",
    "script": "phase1/src/ipw_reweight.py",
    "output": [
@@ -43,7 +43,7 @@
    "note": "Corrected 2026-09-02: the whole-gene enrichment was printed as 0.713 versus 0.578. No output held those values; ipw_frame_balance.csv is restricted to the proximal splice window by load_target_frame(), so the whole-gene comparison had never been computed. Measured it is 1.26 against 0.62, a larger enrichment than was claimed, and the window figures are now stated against the same comparator (not recruited) rather than against the frame."
   },
   {
-   "para": "P31",
+   "para": "P32",
    "claim": "frozen matrix pinned by content hash and rebuilt from tracked sources",
    "script": "scripts/reproduce_calibration.py",
    "output": "phase1/data/frozen/manifest_v1.json",
@@ -51,7 +51,7 @@
    "anchor": "content-hash-verified frozen matrix froz"
   },
   {
-   "para": "P57",
+   "para": "P65",
    "claim": "leakage-proof external validation on held-out TP53",
    "script": "phase1/src/phase4_external_tp53.py",
    "output": "phase1/reports/phase1/phase4_tp53_external.csv",
@@ -68,7 +68,7 @@
    "note": "The 10 in 'ECE (10 bins)' in the calibration paragraph is a method parameter, not an output, and is reported as a scoped mismatch for that reason."
   },
   {
-   "para": "P70",
+   "para": "P58",
    "claim": "no object reaches Strong on the functional standard",
    "anchor": "no object reaches Strong evidence on the",
    "script": "phase1/src/phase5_likelihood_ratios.py",
@@ -80,7 +80,7 @@
    }
   },
   {
-   "para": "P71",
+   "para": "P59",
    "claim": "the fusion's LR+ advantage does not resolve in any condition",
    "anchor": "The paired difference in LR+ between the",
    "script": "phase1/src/phase5_likelihood_ratios.py",
@@ -92,7 +92,7 @@
    "note": "The median LR+ change on calibrating and the count of band changes are summaries of the per-cell table, so phase5 writes them out; quoting them from a summary nothing stores is how the whole-gene |z| figures went wrong."
   },
   {
-   "para": "P72",
+   "para": "P60",
    "claim": "the label-standard gap is ascertainment, not circularity",
    "anchor": "but those are not the same variants: 1,6",
    "script": "phase1/src/phase7_label_contrast.py",
@@ -104,7 +104,7 @@
    "note": "Corrected 2026-09-03: the prose read 'the predictors, the variants and the operating point are identical; only the labels differ' and called the gap circularity. The variants were NOT identical -- 1,675 assay-labelled against 946 ClinVar-labelled, 907 shared -- so selection was uncontrolled. On the shared 907 the gap almost closes (five objects at Strong on the assay labels, six on ClinVar)."
   },
   {
-   "para": "P73",
+   "para": "P63",
    "claim": "clinical yield redefined by evidence tier",
    "anchor": "the fusion places 86.8% of variants at M",
    "script": "phase1/src/phase5b_evidence_yield.py",
@@ -113,7 +113,7 @@
    "note": "The 0.90/0.10 band it is compared against has no source; that is stated in Methods rather than repaired, and the evidence-based definition is reported beside it. The old definition reproduces the published 75.1% exactly."
   },
   {
-   "para": "P77",
+   "para": "P74",
    "claim": "ACMG application limits; bands are indicative, not ClinGen-grade",
    "anchor": "The bands used here follow the Tavtigian",
    "script": null,
@@ -122,7 +122,7 @@
    "note": "A statement about what the evidence bands do and do not license. The thresholds it names are literature constants, whitelisted with that reason."
   },
   {
-   "para": "P78",
+   "para": "P75",
    "claim": "elastic-net weights stable across the seven folds",
    "anchor": "Its elastic-net weights are stable acros",
    "script": "phase1/src/phase6_sensitivity.py",
@@ -130,7 +130,7 @@
    "status": "verified"
   },
   {
-   "para": "P78",
+   "para": "P75",
    "claim": "Brier degrades slightly as training genes are thinned 6 to 3",
    "anchor": "mean Brier moves from 0.0589 with six tr",
    "script": "phase1/src/phase6_sensitivity.py",
@@ -141,7 +141,7 @@
    "status": "verified"
   },
   {
-   "para": "P73",
+   "para": "P61",
    "claim": "the two label sets agree on the shared variants",
    "anchor": "they agree on 96.7% of calls (Cohen's κ",
    "script": "phase1/src/phase7_label_contrast.py",
@@ -152,7 +152,7 @@
    "status": "verified"
   },
   {
-   "para": "P73",
+   "para": "P61",
    "claim": "ClinVar-recorded variants are easier under the same functional labels",
    "anchor": "the ClinVar-recorded variants give LR+ 1",
    "script": "phase1/src/phase7_label_contrast.py",
@@ -160,7 +160,7 @@
    "status": "verified"
   },
   {
-   "para": "P73",
+   "para": "P61",
    "claim": "none of the ten predictors is trained on clinical assertions",
    "anchor": "none of these ten predictors is trained",
    "script": "phase1/src/phase7_label_contrast.py",
@@ -173,7 +173,7 @@
    "note": "The grouping is the companion survey's training-provenance table. The clinical-label group is empty for this panel, which is why circularity cannot explain the gap."
   },
   {
-   "para": "P74",
+   "para": "P62",
    "claim": "the effect is ascertainment, the same one the sampling frame finds",
    "anchor": "The honest statement is therefore about",
    "script": null,
