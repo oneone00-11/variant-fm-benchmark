@@ -93,11 +93,15 @@
   },
   {
    "para": "P72",
-   "claim": "ClinVar labels reach Strong where the functional standard does not",
-   "anchor": "seven to eight of the same twelve object",
-   "script": "phase1/src/phase5_likelihood_ratios.py",
-   "output": "phase1/reports/phase1/phase5_likelihood_ratios.csv",
-   "status": "verified"
+   "claim": "the label-standard gap is ascertainment, not circularity",
+   "anchor": "but those are not the same variants: 1,6",
+   "script": "phase1/src/phase7_label_contrast.py",
+   "output": [
+    "phase1/reports/phase1/phase7_base.csv",
+    "phase1/reports/phase1/phase7_label_contrast.csv"
+   ],
+   "status": "verified",
+   "note": "Corrected 2026-09-03: the prose read 'the predictors, the variants and the operating point are identical; only the labels differ' and called the gap circularity. The variants were NOT identical -- 1,675 assay-labelled against 946 ClinVar-labelled, 907 shared -- so selection was uncontrolled. On the shared 907 the gap almost closes (five objects at Strong on the assay labels, six on ClinVar)."
   },
   {
    "para": "P73",
@@ -135,6 +139,47 @@
     "phase1/reports/phase1/phase6_training_gene_by_held_out.csv"
    ],
    "status": "verified"
+  },
+  {
+   "para": "P73",
+   "claim": "the two label sets agree on the shared variants",
+   "anchor": "they agree on 96.7% of calls (Cohen's κ",
+   "script": "phase1/src/phase7_label_contrast.py",
+   "output": [
+    "phase1/reports/phase1/phase7_label_agreement.csv",
+    "phase1/reports/phase1/phase7_label_confusion.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P73",
+   "claim": "ClinVar-recorded variants are easier under the same functional labels",
+   "anchor": "the ClinVar-recorded variants give LR+ 1",
+   "script": "phase1/src/phase7_label_contrast.py",
+   "output": "phase1/reports/phase1/phase7_selection_test.csv",
+   "status": "verified"
+  },
+  {
+   "para": "P73",
+   "claim": "none of the ten predictors is trained on clinical assertions",
+   "anchor": "none of these ten predictors is trained",
+   "script": "phase1/src/phase7_label_contrast.py",
+   "output": "phase1/reports/phase1/phase7_delta_by_training_group.csv",
+   "status": "verified",
+   "cardinality": {
+    "count": 10,
+    "noun": "predictors"
+   },
+   "note": "The grouping is the companion survey's training-provenance table. The clinical-label group is empty for this panel, which is why circularity cannot explain the gap."
+  },
+  {
+   "para": "P74",
+   "claim": "the effect is ascertainment, the same one the sampling frame finds",
+   "anchor": "The honest statement is therefore about",
+   "script": null,
+   "output": null,
+   "status": "narrative",
+   "note": "An interpretation of the three measured checks above; it asserts no new analysis."
   }
  ]
 }

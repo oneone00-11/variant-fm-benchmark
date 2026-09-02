@@ -204,3 +204,50 @@ def test_thinning_the_training_genes_degrades_brier_only_slightly():
     # monotone in the direction claimed, and worse in every held-out gene
     assert g.loc[3, "mean"] > g.loc[6, "mean"]
     assert int(g.loc[3, "n_genes_worse_than_6"]) == 7
+
+
+# --- the label-standard contrast (3.5) ---------------------------------------
+
+def test_the_two_label_sets_were_never_the_same_variants():
+    """The premise that produced a wrong mechanism. The published contrast said
+    'the variants are identical'; they were 1,675 against 946."""
+    b = _csv("phase7_base.csv").iloc[0]
+    assert int(b.assay_labelled) == 1675 and int(b.clinvar_labelled) == 946
+    assert int(b.both) == 907
+    assert int(b.assay_only) == 768
+
+
+def test_the_label_sets_agree_where_they_overlap():
+    """Rules out label divergence as the explanation."""
+    a = _csv("phase7_label_agreement.csv").iloc[0]
+    assert int(a.n) == 907
+    assert approx(a.agreement, 0.967) and approx(a.kappa, 0.93)
+    assert approx(a.positive_rate_assay, 0.61) and approx(a.positive_rate_clinvar, 0.60)
+
+
+def test_the_gap_almost_closes_on_the_shared_variants():
+    c = _csv("phase7_label_contrast.csv")
+    assert (c.n_fun.max() == 907)
+    strong_fun = int((c.tier_fun == "Strong").sum())
+    strong_cv = int((c.tier_cv == "Strong").sum())
+    assert (strong_fun, strong_cv) == (5, 6), (strong_fun, strong_cv)
+
+
+def test_recorded_variants_are_easier_under_the_same_functional_labels():
+    """The decisive test for selection: no ClinVar label is involved on either
+    side, only whether the variant carries a record."""
+    s = _csv("phase7_selection_test.csv")
+    piv = s.pivot_table(index="object", columns="subset", values="lr_plus")
+    both = piv.dropna()
+    assert len(both) >= 10
+    # every object does better on the recorded subset, against the same labels
+    assert (both["ClinVar-recorded"] > both["assay-only"]).all(), both.to_dict()
+    sens = s.pivot_table(index="object", columns="subset", values="sensitivity")
+    assert approx(sens.loc["fusion_M1", "ClinVar-recorded"], 0.971)
+    assert approx(sens.loc["fusion_M1", "assay-only"], 0.681)
+
+
+def test_no_predictor_in_this_panel_carries_clinical_training_labels():
+    """Why circularity cannot be the mechanism here: the group is empty."""
+    g = _csv("phase7_delta_by_training_group.csv").set_index("group")
+    assert int(g.loc["clinical labels", "n_objects"]) == 0
