@@ -212,6 +212,41 @@ def headline(sub, scores, cal_store, label_col, tag, best_key, method):
     return pd.DataFrame(out)
 
 
+def summarise_calibration_effect():
+    """What isotonic calibration does to the likelihood ratios, as a table.
+
+    Reads the ratios already computed rather than refitting: this is pure
+    post-processing of phase5_likelihood_ratios.csv. It exists because the
+    Results paragraph quotes a median change and a count of band changes, and
+    a number quoted from a summary nothing stores has no source -- the failure
+    this pipeline has had before.
+    """
+    src = C.REPORT_DIR / "phase5_likelihood_ratios.csv"
+    if not src.exists():
+        sys.exit(f"[phase5] {src} not found; run the main stage first")
+    d = pd.read_csv(src)
+    rows = []
+    for method, g in d.groupby("cal_method"):
+        cal = f"calibrated_{method}"
+        lr = g.pivot_table(index=["condition", "object"], columns="calibration",
+                           values="lr_plus").dropna()
+        tier = g.pivot_table(index=["condition", "object"], columns="calibration",
+                            values="acmg_tier", aggfunc="first").dropna()
+        delta = (lr[cal] - lr["raw"]).abs()
+        rows.append({"cal_method": method,
+                     "cells_compared": int(len(lr)),
+                     "cells_identical": int((delta < 0.001).sum()),
+                     "median_abs_change_lr_plus": float(delta.median()),
+                     "max_abs_change_lr_plus": float(delta.max()),
+                     "cells_with_a_tier": int(len(tier)),
+                     "cells_changing_tier": int((tier["raw"] != tier[cal]).sum())})
+    out = pd.DataFrame(rows)
+    out.to_csv(C.REPORT_DIR / "phase5_calibration_effect.csv", index=False)
+    print("=== effect of calibration on the likelihood ratios ===")
+    print(out.round(3).to_string(index=False))
+    return out
+
+
 def run():
     p = C.OUTPUT_DIR / f"frozen_matrix_{C.FROZEN_VERSION}.parquet"
     if not p.exists():
@@ -275,4 +310,8 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    if len(sys.argv) > 1 and sys.argv[1] == "effect":
+        summarise_calibration_effect()
+    else:
+        run()
+        summarise_calibration_effect()

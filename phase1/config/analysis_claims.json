@@ -57,6 +57,84 @@
    "output": "phase1/reports/phase1/phase4_tp53_external.csv",
    "status": "verified",
    "anchor": "we performed a leakage-proof external va"
+  },
+  {
+   "para": "P29",
+   "claim": "LR+/LR- at 95% specificity, Tavtigian bands at a prior of 0.10",
+   "anchor": "Every object was summarised by LR+ and L",
+   "script": "phase1/src/phase5_likelihood_ratios.py",
+   "output": "phase1/reports/phase1/phase5_likelihood_ratios.csv",
+   "status": "verified",
+   "note": "The 10 in 'ECE (10 bins)' in the calibration paragraph is a method parameter, not an output, and is reported as a scoped mismatch for that reason."
+  },
+  {
+   "para": "P70",
+   "claim": "no object reaches Strong on the functional standard",
+   "anchor": "no object reaches Strong evidence on the",
+   "script": "phase1/src/phase5_likelihood_ratios.py",
+   "output": "phase1/reports/phase1/phase5_likelihood_ratios.csv",
+   "status": "verified",
+   "cardinality": {
+    "count": 12,
+    "noun": "objects"
+   }
+  },
+  {
+   "para": "P71",
+   "claim": "the fusion's LR+ advantage does not resolve in any condition",
+   "anchor": "The paired difference in LR+ between the",
+   "script": "phase1/src/phase5_likelihood_ratios.py",
+   "output": [
+    "phase1/reports/phase1/phase5_lr_headline.csv",
+    "phase1/reports/phase1/phase5_calibration_effect.csv"
+   ],
+   "status": "verified",
+   "note": "The median LR+ change on calibrating and the count of band changes are summaries of the per-cell table, so phase5 writes them out; quoting them from a summary nothing stores is how the whole-gene |z| figures went wrong."
+  },
+  {
+   "para": "P72",
+   "claim": "ClinVar labels reach Strong where the functional standard does not",
+   "anchor": "seven to eight of the same twelve object",
+   "script": "phase1/src/phase5_likelihood_ratios.py",
+   "output": "phase1/reports/phase1/phase5_likelihood_ratios.csv",
+   "status": "verified"
+  },
+  {
+   "para": "P73",
+   "claim": "clinical yield redefined by evidence tier",
+   "anchor": "the fusion places 86.8% of variants at M",
+   "script": "phase1/src/phase5b_evidence_yield.py",
+   "output": "phase1/reports/phase1/phase5b_evidence_yield.csv",
+   "status": "verified",
+   "note": "The 0.90/0.10 band it is compared against has no source; that is stated in Methods rather than repaired, and the evidence-based definition is reported beside it. The old definition reproduces the published 75.1% exactly."
+  },
+  {
+   "para": "P77",
+   "claim": "ACMG application limits; bands are indicative, not ClinGen-grade",
+   "anchor": "The bands used here follow the Tavtigian",
+   "script": null,
+   "output": null,
+   "status": "narrative",
+   "note": "A statement about what the evidence bands do and do not license. The thresholds it names are literature constants, whitelisted with that reason."
+  },
+  {
+   "para": "P78",
+   "claim": "elastic-net weights stable across the seven folds",
+   "anchor": "Its elastic-net weights are stable acros",
+   "script": "phase1/src/phase6_sensitivity.py",
+   "output": "phase1/reports/phase1/phase6_enet_weight_stability.csv",
+   "status": "verified"
+  },
+  {
+   "para": "P78",
+   "claim": "Brier degrades slightly as training genes are thinned 6 to 3",
+   "anchor": "mean Brier moves from 0.0589 with six tr",
+   "script": "phase1/src/phase6_sensitivity.py",
+   "output": [
+    "phase1/reports/phase1/phase6_training_gene_summary.csv",
+    "phase1/reports/phase1/phase6_training_gene_by_held_out.csv"
+   ],
+   "status": "verified"
   }
  ]
 }

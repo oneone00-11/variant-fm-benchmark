@@ -34,5 +34,14 @@
   "values": [
    "181"
   ]
+ },
+ "tavtigian_thresholds": {
+  "reason": "Likelihood-ratio thresholds of the Tavtigian point system at a prior of 0.10 (350 Very strong, 18.7 Strong, 4.33 Moderate, 2.08 Supporting). These are constants from the cited literature, not pipeline outputs; they are recorded in phase1/src/phase5_likelihood_ratios.py as ACMG_TIERS and are what the measured ratios are compared against.",
+  "values": [
+   "350",
+   "18.7",
+   "4.33",
+   "2.08"
+  ]
  }
 }

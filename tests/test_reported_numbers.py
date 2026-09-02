@@ -138,3 +138,70 @@ def test_sampling_frame_enrichment_is_larger_across_whole_genes():
            (n.mean_abs_z_observed - n.mean_abs_z_remainder)
     # The whole-gene frame is the full functional SNV set, not the analysis set.
     assert int(w.n_observed) == 1781
+
+
+# --- evidence strength (H4) --------------------------------------------------
+
+def _lr():
+    return _csv("phase5_likelihood_ratios.csv")
+
+
+def test_nothing_reaches_strong_on_the_functional_standard():
+    """The central claim of 3.5. If a future change lets an object cross 18.7
+    against the assay labels, the Results paragraph is wrong, not the test."""
+    d = _lr()
+    fun = d[(d.cal_method == "isotonic") & (d.condition.str.startswith("y_assay"))]
+    assert len(fun) > 0
+    assert not (fun.acmg_tier.isin(["Strong", "Very strong"]) &
+                (fun.calibration == "raw")).any()
+
+
+def test_clinvar_labels_reach_strong_where_the_assay_does_not():
+    """The contrast the paragraph turns on: same predictors, same variants,
+    same operating point, different labels."""
+    d = _lr()
+    raw = d[(d.cal_method == "isotonic") & (d.calibration == "raw")]
+    cv = raw[raw.condition.str.startswith("y_clinvar")]
+    n_strong = cv.groupby("condition").acmg_tier.apply(lambda s: (s == "Strong").sum())
+    assert n_strong.min() >= 7 and n_strong.max() <= 8, n_strong.to_dict()
+
+
+def test_the_fusion_lr_advantage_does_not_resolve():
+    """Pinned because it is the result that kept the framing honest: the Brier
+    advantage does not survive translation into evidence."""
+    h = _csv("phase5_lr_headline.csv")
+    iso = h[h.cal_method == "isotonic"]
+    assert len(iso) == 8
+    assert not iso.fusion_better.any(), iso[iso.fusion_better].to_dict("records")
+    row = iso[(iso.condition == "y_assay/BRCA1_included") & (iso.calibration == "raw")].iloc[0]
+    assert approx(row.lr_plus_fusion, 18.1) and approx(row.lr_plus_best_single, 17.1)
+    assert row.lo < 0 < row.hi or row.lo < 0
+
+
+def test_the_old_yield_definition_still_reproduces_the_published_number():
+    """75.1% is what the manuscript has always printed for the fusion. The
+    evidence-based definition is reported beside it, not instead of it, and this
+    pins the bridge between the two."""
+    y = _csv("phase5b_evidence_yield.csv")
+    r = y[(y.condition == "y_assay/BRCA1_included") & (y.object == "fusion_M1")].iloc[0]
+    assert approx(r["yield_confidence_0.90_0.10"], 0.751)
+    assert approx(r["yield_acmg_moderate_or_above"], 0.868)
+
+
+def test_elastic_net_weights_do_not_flip_sign_across_folds():
+    """The stability claim. A sign flip in any feature would contradict it."""
+    if not (REPORTS / "phase6_enet_weight_stability.csv").exists():
+        pytest.skip("phase6 not built in this checkout")
+    import pandas as pd
+    w = pd.read_csv(REPORTS / "phase6_enet_weight_stability.csv", index_col=0)
+    assert int(w.n_folds_sign_flip.sum()) == 0
+    for f in ("alphagenome", "pangolin", "spliceai"):
+        assert int(w.loc[f, "n_folds_nonzero"]) == 7
+
+
+def test_thinning_the_training_genes_degrades_brier_only_slightly():
+    g = _csv("phase6_training_gene_summary.csv").set_index("n_training_genes")
+    assert approx(g.loc[6, "mean"], 0.0589) and approx(g.loc[3, "mean"], 0.0608)
+    # monotone in the direction claimed, and worse in every held-out gene
+    assert g.loc[3, "mean"] > g.loc[6, "mean"]
+    assert int(g.loc[3, "n_genes_worse_than_6"]) == 7

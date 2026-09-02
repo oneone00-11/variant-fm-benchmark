@@ -134,6 +134,16 @@ def run():
     sens = training_gene_sensitivity(df, Xrn, ytr, genes, feats)
     sens.to_csv(C.REPORT_DIR / "phase6_training_gene_sensitivity.csv", index=False)
     agg = sens.groupby("n_training_genes")["brier"].agg(["count", "mean", "std", "min", "max"])
+    # the aggregate is what the manuscript quotes; storing only the per-subset
+    # rows would leave those means with no source, which is the failure this
+    # pipeline has already had once
+    paired = (sens.groupby(["held_out_gene", "n_training_genes"])["brier"].mean()
+                  .unstack())
+    agg = agg.assign(mean_paired_over_held_out_genes=paired.mean(),
+                     n_genes_worse_than_6=(paired.sub(paired[paired.columns.max()],
+                                                      axis=0) > 0).sum())
+    agg.to_csv(C.REPORT_DIR / "phase6_training_gene_summary.csv")
+    paired.to_csv(C.REPORT_DIR / "phase6_training_gene_by_held_out.csv")
     print("\n=== AB-2: Brier of the calibrated fusion by number of training genes ===")
     print(agg.round(4).to_string())
     print(f"\n[phase6] wrote phase6_enet_weights_per_fold.csv, "
