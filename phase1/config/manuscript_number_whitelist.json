@@ -43,5 +43,13 @@
    "4.33",
    "2.08"
   ]
+ },
+ "method_constants": {
+  "reason": "Configuration constants of the analysis, not values it produces: the gene-clustered bootstrap resample count (2,000, phase3_calibration.N_BOOT and phase5.N_BOOT) and the ECE bin count (10, phase3_calibration.ece). They are recorded in the source, are quoted in Methods as parameters, and no results/ file stores them. Listed individually rather than exempting the paragraphs, which also state measured values.",
+  "values": [
+   "2,000",
+   "2000",
+   "10"
+  ]
  }
 }

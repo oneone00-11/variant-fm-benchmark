@@ -287,6 +287,24 @@ def claim_cardinalities(docx_path: Path, path: Path = CLAIMS) -> dict[str, list[
     return out
 
 
+def claim_derivations(docx_path: Path, path: Path = CLAIMS) -> dict[str, list[dict]]:
+    """block id -> values the paragraph states that no output stores directly.
+
+    A summary of stored values -- a sum, a median, a count of cells -- has no
+    literal source, and widening the scope cannot give it one. Each such value
+    is declared individually, with the arithmetic that produces it, so it can be
+    read and checked. This is deliberately not a paragraph-level exemption: a
+    row here licenses exactly one number and says where it comes from.
+    """
+    spec = json.loads(path.read_text()) if path.exists() else {}
+    where = resolve_anchors(docx_path, path)
+    out: dict[str, list[dict]] = {}
+    for idx, c in enumerate(spec.get("claims", [])):
+        if c.get("derived") and idx in where:
+            out.setdefault(where[idx], []).extend(c["derived"])
+    return out
+
+
 def claim_scopes(docx_path: Path, path: Path = CLAIMS) -> dict[str, list[str]]:
     """paragraph id -> the outputs config/analysis_claims.yaml binds it to.
 
@@ -350,10 +368,20 @@ def scoped_values(outputs: list[str]) -> np.ndarray:
 
 
 def _hits(pool: np.ndarray, v: float, tol: float) -> int:
+    """Matches for a token, trying it as printed and as a percentage.
+
+    Both signs are tried. The token's magnitude is what reaches here, so a
+    pipeline value of -0.7303 would never match a printed -0.73 if only the
+    positive form were searched; the global fallback used to hide that, and
+    removing the fallback exposed it.
+    """
     if not pool.size:
         return 0
-    return (int(np.sum(np.abs(pool - v) <= tol))
-            + int(np.sum(np.abs(pool - v / 100.0) <= tol / 100)))
+    n = 0
+    for cand in (v, -v):
+        n += int(np.sum(np.abs(pool - cand) <= tol))
+        n += int(np.sum(np.abs(pool - cand / 100.0) <= tol / 100))
+    return n
 
 
 def classify(docx_path: Path, results: Path = RESULTS,
@@ -361,6 +389,7 @@ def classify(docx_path: Path, results: Path = RESULTS,
     pool = pipeline_values(results)
     wl_values, wl_patterns, _ = load_whitelist(whitelist)
     scopes = claim_scopes(docx_path, claims)
+    derivations = claim_derivations(docx_path, claims)
     scoped_cache: dict[str, np.ndarray] = {}
 
     # Cardinality: does the count a paragraph asserts match what the claims
@@ -393,24 +422,31 @@ def classify(docx_path: Path, results: Path = RESULTS,
             if key not in scoped_cache:
                 scoped_cache[key] = scoped_values(outputs)
             n_scoped = _hits(scoped_cache[key], v, tol)
+            if not n_scoped:
+                # a value the paragraph declares as derived, with its arithmetic
+                for d in derivations.get(t["uid"], []):
+                    if abs(abs(float(d["value"])) - v) <= tol:
+                        n_scoped = 1
+                        t["derived_from"] = d["how"]
+                        break
             t["scope"] = outputs
             t["n_scoped_matches"] = n_scoped
             if n_scoped:
                 t["n_pool_matches"] = n_scoped
                 matched.append(t)
                 continue
-            # Absent from the output its own paragraph declares. That alone is
-            # not a fault: a paragraph carries several sentences and may state
-            # atlas composition alongside an analysis result. It becomes a fault
-            # when the value has no specific source anywhere either -- absent
-            # from the declared output AND only ambiguously present in the pool
-            # is the signature of a number with no real provenance, which is
-            # exactly the complementarity range.
-            n_pool = _hits(pool, v, tol)
-            t["n_pool_matches"] = n_pool
-            if n_pool and n_pool < WEAK_MATCH_MIN:
-                matched.append(t)          # specific source, just not this one
-                continue
+            # Absent from the output its own paragraph declares. This is a
+            # fault, full stop. The rule used to fall back to the global pool
+            # and pass anything that matched exactly one value anywhere, on the
+            # reasoning that a specific source somewhere is good enough. It is
+            # not: 74.5 was absent from the yield table its paragraph declares,
+            # matched one unrelated pipeline value, and passed -- while being
+            # the wrong number for its own sentence. A paragraph that declares
+            # a source is asserting that its numbers come from that source.
+            # A number that belongs to a different output means the scope is
+            # too narrow; widen the declaration in config/analysis_claims.json
+            # rather than exempting the paragraph.
+            t["n_pool_matches"] = _hits(pool, v, tol)
             scoped_mismatch.append(t)
             continue
 
@@ -465,7 +501,11 @@ def main() -> None:
         print(f"    NO SOURCE {t['uid']:>10s}  {t['token']:>12s}   …{t['context']}…")
     if a.as_json:
         Path(a.as_json).write_text(json.dumps(r, indent=1, default=str))
-    sys.exit(1 if (r["no_source"] or r["cardinality_mismatch"]) else 0)
+    # A scoped mismatch is now fatal. It used to be printed and tolerated,
+    # which is how 74.5 -- absent from the yield table its own paragraph
+    # declares -- reached a published draft.
+    sys.exit(1 if (r["no_source"] or r["cardinality_mismatch"]
+                   or r["scoped_mismatch"]) else 0)
 
 
 if __name__ == "__main__":

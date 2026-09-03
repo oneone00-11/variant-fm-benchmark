@@ -36,7 +36,10 @@
    "output": [
     "phase1/reports/phase1/ipw_weight_diagnostics.csv",
     "phase1/reports/phase1/ipw_frame_balance.csv",
-    "phase1/reports/phase1/ipw_frame_balance_wholegene.csv"
+    "phase1/reports/phase1/ipw_frame_balance_wholegene.csv",
+    "phase1/reports/phase1/ipw_ranking.csv",
+    "phase1/reports/phase1/ipw_headline.csv",
+    "phase1/reports/phase1/ipw_calibration.csv"
    ],
    "status": "verified",
    "anchor": "Sampling frame. Because the analysis set",
@@ -54,7 +57,11 @@
    "para": "P65",
    "claim": "leakage-proof external validation on held-out TP53",
    "script": "phase1/src/phase4_external_tp53.py",
-   "output": "phase1/reports/phase1/phase4_tp53_external.csv",
+   "output": [
+    "phase1/reports/phase1/phase4_tp53_external.csv",
+    "phase1/reports/phase1/directionality_check.csv",
+    "data/external/tp53_splice_scored.parquet"
+   ],
    "status": "verified",
    "anchor": "we performed a leakage-proof external va"
   },
@@ -149,7 +156,13 @@
     "phase1/reports/phase1/phase7_label_agreement.csv",
     "phase1/reports/phase1/phase7_label_confusion.csv"
    ],
-   "status": "verified"
+   "status": "verified",
+   "derived": [
+    {
+     "value": 30,
+     "how": "off-diagonal of phase7_label_confusion.csv: 18 + 12"
+    }
+   ]
   },
   {
    "para": "P61",

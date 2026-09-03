@@ -100,3 +100,86 @@ def test_paragraph_numbers_are_not_load_bearing(tmp_path):
     shifted = tmp_path / "shifted.json"
     shifted.write_text(json.dumps(spec))
     assert before == cmn.resolve_anchors(MANUSCRIPT, shifted) and before
+
+
+# --- the scoped rule, after the global-fallback escape hatch was removed ------
+
+def _backup_with_the_defect():
+    """The draft as it stood before 74.5 was corrected, if it is on this machine."""
+    root = Path.home() / "Desktop"
+    hits = sorted(root.glob("**/draft_reframed_BiB_backup_*preMerge*.docx"))
+    return hits[-1] if hits else None
+
+
+def test_a_number_absent_from_its_own_declared_source_is_reported(tmp_path, monkeypatch):
+    """The regression this rule exists for.
+
+    74.5 was absent from the yield table its paragraph declares, matched exactly
+    one unrelated value in the global pool, and passed under the old rule while
+    being the wrong number for its own sentence. Synthetic so it runs anywhere.
+    """
+    import docx as docxlib
+    import src.check_manuscript_numbers as cmn
+
+    d = docxlib.Document()
+    d.add_paragraph("padding")
+    d.add_paragraph("The share moved from 17.7% to 74.5% under the new definition.")
+    doc = tmp_path / "m.docx"
+    d.save(doc)
+
+    results = tmp_path / "results"
+    results.mkdir()
+    # declared source holds 17.7 but not 74.5; a second file holds 74.5 once, so
+    # the old rule would have called it "a specific source, just not this one"
+    (results / "declared.csv").write_text("a\n0.177\n")
+    (results / "unrelated.csv").write_text("b\n74.5\n")
+    claims = tmp_path / "claims.json"
+    claims.write_text(json.dumps({"claims": [
+        {"para": "P1", "claim": "share under the new definition",
+         "anchor": "The share moved from", "script": None,
+         "output": "results/declared.csv", "status": "verified"}]}))
+
+    # scoped paths resolve against the repository root, so point it here
+    monkeypatch.setattr(cmn, "REPO", tmp_path)
+    r = cmn.classify(doc, results=results, whitelist=tmp_path / "none.json", claims=claims)
+    flagged = {t["token"] for t in r["scoped_mismatch"]}
+    assert "74.5" in flagged, r["scoped_mismatch"]
+    assert "17.7" not in flagged, "a value present in the declared source must pass"
+
+
+def test_the_rule_reports_it_on_the_actual_pre_fix_draft():
+    backup = _backup_with_the_defect()
+    if backup is None:
+        pytest.skip("the pre-fix draft is not on this machine")
+    import src.check_manuscript_numbers as cmn
+
+    r = cmn.classify(backup)
+    tokens = {t["token"] for t in r["scoped_mismatch"]}
+    assert "74.5" in tokens, sorted(tokens)
+
+
+def test_a_declared_derivation_licenses_exactly_one_value(tmp_path, monkeypatch):
+    """Route (b): a summary of stored values carries its arithmetic. It must
+    admit that value and nothing else, so it cannot become a paragraph pass."""
+    import docx as docxlib
+    import src.check_manuscript_numbers as cmn
+
+    d = docxlib.Document()
+    d.add_paragraph("padding")
+    d.add_paragraph("There were 30 disagreements and 41 agreements.")
+    doc = tmp_path / "m.docx"
+    d.save(doc)
+    results = tmp_path / "results"
+    results.mkdir()
+    (results / "declared.csv").write_text("a\n18\n12\n")
+    claims = tmp_path / "claims.json"
+    claims.write_text(json.dumps({"claims": [
+        {"para": "P1", "claim": "disagreements", "anchor": "There were 30 disagreements",
+         "script": None, "output": "results/declared.csv", "status": "verified",
+         "derived": [{"value": 30, "how": "18 + 12"}]}]}))
+
+    monkeypatch.setattr(cmn, "REPO", tmp_path)
+    r = cmn.classify(doc, results=results, whitelist=tmp_path / "none.json", claims=claims)
+    flagged = {t["token"] for t in r["scoped_mismatch"]}
+    assert "30" not in flagged          # licensed by its declared arithmetic
+    assert "41" in flagged              # not licensed, still reported
