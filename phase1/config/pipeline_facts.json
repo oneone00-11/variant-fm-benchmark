@@ -1,0 +1,5 @@
+{
+ "note": "Quantities the manuscript states that appear inside no reports/ file. The disclosed test count is one: it is measured, not looked up, and it went stale once already -- the manuscript said thirty-three while a bare clone ran forty-seven. tests/test_reported_numbers.py compares the manuscript against this file.",
+ "guardrail_tests_passing_from_bare_clone": 48,
+ "bare_clone_measured_for": "HEAD at the AL corrections; no configuration, no API keys"
+}

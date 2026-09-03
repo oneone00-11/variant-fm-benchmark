@@ -251,3 +251,46 @@ def test_no_predictor_in_this_panel_carries_clinical_training_labels():
     """Why circularity cannot be the mechanism here: the group is empty."""
     g = _csv("phase7_delta_by_training_group.csv").set_index("group")
     assert int(g.loc["clinical labels", "n_objects"]) == 0
+
+
+def test_the_disclosed_test_count_is_the_measured_one():
+    """The disclosure states a number that lives in no reports/ file, so it is
+    compared against the measurement recorded when it was taken. It went stale
+    once already: the manuscript said thirty-three while a bare clone ran
+    forty-seven, and nothing noticed because the checker had no source to
+    compare against."""
+    import json
+    import re
+
+    facts = REPO / "phase1" / "config" / "pipeline_facts.json"
+    if not facts.exists():
+        pytest.skip("pipeline facts not recorded in this checkout")
+    want = int(json.loads(facts.read_text())["guardrail_tests_passing_from_bare_clone"])
+
+    manuscript = _manuscript_path()
+    if manuscript is None:
+        pytest.skip("manuscript not available in this checkout")
+    from docx import Document
+
+    words = {"thirty-three": 33, "forty-four": 44, "forty-five": 45,
+             "forty-six": 46, "forty-seven": 47, "forty-eight": 48,
+             "forty-nine": 49, "fifty": 50, "fifty-one": 51, "fifty-two": 52}
+    text = " ".join(p.text for p in Document(str(manuscript)).paragraphs)
+    m = re.search(r"([A-Za-z-]+) automated tests", text)
+    assert m, "the disclosure no longer states a test count"
+    said = words.get(m.group(1).lower())
+    assert said is not None, f"unrecognised count word {m.group(1)!r}; add it here"
+    assert said == want, (f"the disclosure says {m.group(1)} ({said}) but a bare "
+                          f"clone runs {want}")
+
+
+def _manuscript_path():
+    import os
+
+    env = os.environ.get("VARIANT_FM_MANUSCRIPT")
+    if env:
+        p = Path(env).expanduser()
+        return p if p.exists() else None
+    hits = sorted((Path.home() / "Desktop").glob("draft_reframed_*.docx"),
+                  key=lambda q: q.stat().st_mtime, reverse=True)
+    return hits[0] if hits else None
