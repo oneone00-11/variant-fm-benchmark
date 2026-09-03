@@ -107,7 +107,7 @@ def test_paragraph_numbers_are_not_load_bearing(tmp_path):
 def _backup_with_the_defect():
     """The draft as it stood before 74.5 was corrected, if it is on this machine."""
     root = Path.home() / "Desktop"
-    hits = sorted(root.glob("**/draft_reframed_BiB_backup_*preMerge*.docx"))
+    hits = sorted(root.glob("**/draft_reframed_*_backup_*preMerge*.docx"))
     return hits[-1] if hits else None
 
 
