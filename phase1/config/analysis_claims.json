@@ -167,10 +167,20 @@
   {
    "para": "P61",
    "claim": "ClinVar-recorded variants are easier under the same functional labels",
-   "anchor": "the ClinVar-recorded variants give LR+ 1",
+   "anchor": "every object without exception reaches a hig",
    "script": "phase1/src/phase7_label_contrast.py",
    "output": "phase1/reports/phase1/phase7_selection_test.csv",
-   "status": "verified"
+   "status": "verified",
+   "derived": [
+    {
+     "value": 1.44,
+     "how": "smallest LR+ ratio (recorded / assay-only) over the eleven evaluable objects, fusion_M1: 20.333 / 14.141"
+    },
+    {
+     "value": 4.2,
+     "how": "largest such ratio, phastCons: 12.518 / 2.979"
+    }
+   ]
   },
   {
    "para": "P61",

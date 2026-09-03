@@ -18,10 +18,12 @@ answer different questions and have separate entry points.
 
 ### Study A — calibration and fusion (the current manuscript)
 
-*"Ranking is saturated but calibration is not."* Given that the top splice
-predictors are statistically tied on **ranking**, the question becomes whether
-combining them buys anything that ranking cannot show — namely **calibrated
-probabilities**. Elastic-net fusion, out-of-gene isotonic/Platt calibration,
+*"Ranking is saturated, calibration is not, and neither changes the evidence
+strength."* Given that the top splice predictors are statistically tied on
+**ranking**, the question becomes whether combining them buys anything ranking
+cannot show — namely **calibrated probabilities**, and then whether that gain
+survives translation into ACMG evidence. It does not: at a fixed specificity the
+evidence strength is a function of the ranking, and the ranking is saturated. Elastic-net fusion, out-of-gene isotonic/Platt calibration,
 ECE / Brier / clinical yield, all under **leave-one-gene-out (LOGO)**, plus
 external validation on the held-out gene **TP53**.
 
