@@ -77,7 +77,7 @@
   {
    "para": "P58",
    "claim": "no object reaches Strong on the functional standard",
-   "anchor": "no object reaches Strong evidence on the",
+   "anchor": "no object establishes Strong evidence on the",
    "script": "phase1/src/phase5_likelihood_ratios.py",
    "output": "phase1/reports/phase1/phase5_likelihood_ratios.csv",
    "status": "verified",
