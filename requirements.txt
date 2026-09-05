@@ -8,6 +8,8 @@ scikit-learn==1.6.1
 matplotlib==3.9.4
 requests==2.32.5
 tqdm==4.68.3
+pyarrow==21.0.0
+python-docx==1.2.0
 
 # -----------------------------------------------------------------------------
 # OPTIONAL — only needed to RE-SCORE models (not needed to reproduce results;
