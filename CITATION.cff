@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+title: >-
+  variant-fm-benchmark: calibration and fusion of splice and sequence-based
+  variant-effect predictors benchmarked against saturation genome editing
+  functional assays
+message: >-
+  If you use this software or the derived data, please cite both the software
+  (this file) and the accompanying paper listed under preferred-citation.
+type: software
+authors:
+  - family-names: Zhang
+    given-names: Ningyi
+    affiliation: Department of Biological Sciences, National University of Singapore
+    email: cliffzhang@u.nus.edu
+    orcid: "https://orcid.org/0009-0004-3020-4044"
+repository-code: "https://github.com/oneone00-11/variant-fm-benchmark"
+abstract: >-
+  A benchmark of splice and sequence-based variant-effect predictors against
+  saturation genome editing (SGE/MAVE) functional assays in seven
+  hereditary-cancer genes (BRCA1, BRCA2, BARD1, PALB2, RAD51C, VHL, BAP1),
+  with elastic-net fusion, leave-one-gene-out isotonic/Platt calibration,
+  ACMG evidence-strength translation, and external validation on the held-out
+  gene TP53.
+keywords:
+  - variant effect prediction
+  - saturation genome editing
+  - splice prediction
+  - calibration
+  - ACMG evidence strength
+  - benchmarking
+  - reproducibility
+license: MIT
+license-url: "https://opensource.org/licenses/MIT"
+preferred-citation:
+  type: article
+  title: "Ranking is saturated, calibration is not, and neither changes the evidence strength: an independent benchmark of splice-region variant effect predictors against a functional standard"
+  authors:
+    - family-names: Zhang
+      given-names: Ningyi
+  year: 2026
+  journal: "Submitted"
+  notes: >-
+    Update this block with the journal, volume and DOI once the paper is
+    accepted.

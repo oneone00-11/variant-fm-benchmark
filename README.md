@@ -233,6 +233,16 @@ requires a Google AlphaGenome API key, read **only** from the environment variab
 export ALPHAGENOME_API_KEY=...   # only for scripts/91_score_alphagenome.py
 ```
 
+## Author
+
+**Ningyi Zhang** — Department of Biological Sciences, National University of
+Singapore · cliffzhang@u.nus.edu ·
+[ORCID 0009-0004-3020-4044](https://orcid.org/0009-0004-3020-4044)
+
+Development was AI-assisted (Claude, Anthropic) under the author's direction;
+the author designed the study, verified all reported numbers, and takes full
+responsibility for the content.
+
 ## License
 
 Code: MIT (see [LICENSE](LICENSE)). Third-party data and model scores retain their
