@@ -1,0 +1,11 @@
+quantity,value,note
+delta_rho_full_set,0.011736626432293673,all 1781 splice variants; phase2 overall
+delta_rho_drop_no_offset,0.00946136334152281,dropping the 13 unplaceable variants
+drop_ci_lo,0.0004969373931710627,"gene-cluster bootstrap, 2000 resamples"
+drop_ci_hi,0.019990738020251534,"gene-cluster bootstrap, 2000 resamples"
+drop_ci_excludes_zero,1.0,1 if the interval excludes zero
+random_drops_mean,0.011723116496145264,"200 random 13-variant drops, point estimates"
+random_drops_sd,0.000387087624546642,sample sd (ddof=1)
+random_drops_min,0.010647687192774202,
+random_drops_max,0.013249037132404995,
+n_random_drops_above_drop,200.0,of 200; the manuscript claims all two hundred
