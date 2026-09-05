@@ -1,5 +1,17 @@
 {
  "note": "Quantities the manuscript states that appear inside no reports/ file. The disclosed test count is one: it is measured, not looked up, and it went stale once already -- the manuscript said thirty-three while a bare clone ran forty-seven. tests/test_reported_numbers.py compares the manuscript against this file.",
  "guardrail_tests_passing_from_bare_clone": 48,
- "bare_clone_measured_for": "HEAD at the AL corrections; no configuration, no API keys"
+ "bare_clone_measured_for": "HEAD at the AL corrections; no configuration, no API keys",
+ "bare_clone_breakdown": {
+  "measured_at": "2026-09-05",
+  "python": "3.9.6",
+  "install": "pip install -r requirements.txt (now including pyarrow and python-docx)",
+  "isolation": "HOME pointed at an empty directory, so neither the manuscript nor the pre-fix backup draft is visible",
+  "collected": 48,
+  "passed": 44,
+  "failed": 0,
+  "skipped": 4,
+  "skips_are": "the four tests that read a manuscript file: the two anchor-resolution tests, the pre-fix-draft regression, and the disclosed-count check",
+  "with_manuscript_visible": {"collected": 48, "passed": 48, "failed": 0, "skipped": 0}
+ }
 }

@@ -40,7 +40,7 @@ RESULTS = REPO / "phase1" / "reports" / "phase1"
 DATA_DIRS = (REPO / "phase1" / "data" / "frozen", REPO / "data" / "external")
 WHITELIST = REPO / "phase1" / "config" / "manuscript_number_whitelist.json"
 CLAIMS = REPO / "phase1" / "config" / "analysis_claims.json"
-FACTS = REPO / "phase1" / "manifests" / "pipeline_facts.json"
+FACTS = REPO / "phase1" / "config" / "pipeline_facts.json"
 
 # Tokens are read as printed, so the tolerance can follow the printed precision.
 TOKEN = re.compile(r"(?<![\w.])([-−+]?\d{1,3}(?:,\d{3})*(?:\.\d+)?)(?![\w])")
