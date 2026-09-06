@@ -122,6 +122,9 @@ scikit-learn 1.6.1 / matplotlib 3.9.4.
 
 Clean-clone reproduction is two commands per study — install, then run. Neither
 re-scores any model: both start from the frozen matrix that ships in the repo.
+(Note S9's "two-command frozen-matrix rebuild" is a different command pair —
+`make_raw` + `phase1_build_frozen_matrix`, for rebuilding the frozen matrix
+itself; see [docs/NOTE_S9.md](docs/NOTE_S9.md).)
 
 **Study A — fusion & calibration** (the current manuscript):
 ```bash
@@ -136,6 +139,15 @@ Checkout `frozen-matrix-v1` to pin the exact matrix the manuscript used:
 ```bash
 git checkout frozen-matrix-v1
 ```
+
+**Study A — reviewer robustness analyses** (Phase 8: exact sign-flip tests,
+leave-two-genes-out, Hartung–Knapp CIs, Murphy decomposition, stratified
+selection test, LR+ operating points):
+```bash
+pip install -r requirements.txt
+python scripts/reproduce_robustness.py
+```
+Same frozen matrix and hash check as above; writes `phase1/reports/phase1/phase8_*.csv`.
 
 **Study B — coverage & complementarity:**
 ```bash

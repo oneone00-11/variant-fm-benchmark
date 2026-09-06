@@ -19,7 +19,7 @@ from __future__ import annotations
 import sys
 import numpy as np
 import pandas as pd
-from scipy.stats import spearmanr, rankdata
+from scipy.stats import spearmanr, rankdata, t as tdist
 from sklearn.linear_model import ElasticNetCV
 from sklearn.ensemble import HistGradientBoostingRegressor
 from . import config as C
@@ -120,7 +120,16 @@ def per_gene_rho(score, y, genes, min_n=10):
             rows.append({"gene": g, "rho": spearmanr(score[m], y[m]).statistic, "n": int(m.sum())})
     return pd.DataFrame(rows, columns=["gene", "rho", "n"])
 
-def dl_pool(pg):
+def dl_pool(pg, method="dl"):
+    """DerSimonian-Laird random-effects pooling of per-gene Spearman rhos
+    (Fisher-z). method="dl" gives the historical normal-theory 95% CI;
+    method="hk" gives the Hartung-Knapp interval -- the same DL tau^2 and
+    weights, but the pooled variance is the HK quadratic form and the critical
+    value is t(k-1) instead of 1.96. At k=7 genes the normal CI is
+    anti-conservative; the HK interval is the calibrated one and is reported
+    alongside DL in phase8's leaderboard (phase8_leaderboard_hk.csv)."""
+    if method not in ("dl", "hk"):
+        raise ValueError(f"unknown pooling method {method!r}; expected 'dl' or 'hk'")
     if pg is None or "rho" not in pg.columns or len(pg) == 0:
         return {"rho": np.nan, "lo": np.nan, "hi": np.nan, "I2": np.nan, "k": 0}
     d = pg.dropna(subset=["rho"]); d = d[d["n"] > 3]
@@ -134,10 +143,17 @@ def dl_pool(pg):
     Cc = np.sum(w) - np.sum(w ** 2) / np.sum(w)
     tau2 = max(0.0, (Q - (k - 1)) / Cc) if Cc > 0 else 0.0
     ws = 1.0 / (v + tau2)
-    z_re = np.sum(ws * z) / np.sum(ws); se = np.sqrt(1.0 / np.sum(ws))
+    z_re = np.sum(ws * z) / np.sum(ws)
     I2 = max(0.0, (Q - (k - 1)) / Q) * 100 if Q > 0 else 0.0
-    return {"rho": np.tanh(z_re), "lo": np.tanh(z_re - 1.96 * se),
-            "hi": np.tanh(z_re + 1.96 * se), "I2": I2, "k": k}
+    if method == "hk":
+        q_hk = np.sum(ws * (z - z_re) ** 2) / (k - 1)
+        se = np.sqrt(q_hk / np.sum(ws))
+        crit = float(tdist.ppf(0.975, k - 1))
+    else:
+        se = np.sqrt(1.0 / np.sum(ws))
+        crit = 1.96
+    return {"rho": np.tanh(z_re), "lo": np.tanh(z_re - crit * se),
+            "hi": np.tanh(z_re + crit * se), "I2": I2, "k": k}
 
 def boot_delta(fusion_pg, single_pg):
     obs = dl_pool(fusion_pg)["rho"] - dl_pool(single_pg)["rho"]

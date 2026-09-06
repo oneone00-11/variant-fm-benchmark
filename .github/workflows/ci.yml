@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the pinned analysis stack
+        run: pip install -r requirements.txt
+
+      # Everything pytest needs is tracked in the repo (the frozen matrix and
+      # the report CSVs ship under phase1/), so a clean clone runs the suite
+      # as-is. Tests that bind numbers to the unpublished manuscript draft on
+      # the author's Desktop skip by design when the draft is absent; the rest
+      # collect and pass. Reference behaviour on a clean clone: 48 collected /
+      # 44 passed / 4 skipped for the pre-revision suite, more as guardrail
+      # tests are added.
+      - name: Run the guardrail suite
+        run: pytest

@@ -4,7 +4,10 @@ This file is the repository-side copy of **Supplementary Note S9** of the
 manuscript. It is kept consistent with the submitted supplement.
 
 The entire analysis is pinned to a **content-hash-verified frozen feature matrix**
-and is regenerable from tracked sources by a **two-command clean-clone rebuild**.
+and is regenerable from tracked sources by a **two-command frozen-matrix rebuild**
+(the `make_raw` + `phase1_build_frozen_matrix` pair below — distinct from the
+README's "install, then run" pair, which reproduces the *analysis* from the
+already-frozen matrix).
 
 ## The frozen analysis set
 
@@ -24,7 +27,7 @@ sorted by `variant_id` (see `phase1/src/phase1_build_frozen_matrix.freeze()`), n
 over the parquet bytes — parquet is not byte-reproducible across writer versions.
 The rebuild below reproduces the SHA-256 above.
 
-## Two-command clean-clone rebuild
+## Two-command frozen-matrix rebuild
 
 From `phase1/`:
 
