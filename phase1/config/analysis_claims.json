@@ -167,7 +167,7 @@
   {
    "para": "P61",
    "claim": "ClinVar-recorded variants are easier under the same functional labels",
-   "anchor": "every one of the ten objects reaches a hig",
+   "anchor": "every one of the eleven evaluable objects reaches a hig",
    "script": "phase1/src/phase7_label_contrast.py",
    "output": [
     "phase1/reports/phase1/phase7_selection_test.csv",

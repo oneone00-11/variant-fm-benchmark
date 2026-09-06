@@ -291,6 +291,8 @@ def _manuscript_path():
     if env:
         p = Path(env).expanduser()
         return p if p.exists() else None
-    hits = sorted((Path.home() / "Desktop").glob("draft_reframed_*.docx"),
+    desk = Path.home() / "Desktop"
+    hits = sorted([*desk.glob("calibration_draft*.docx"),
+                   *desk.glob("draft_reframed_*.docx")],
                   key=lambda q: q.stat().st_mtime, reverse=True)
     return hits[0] if hits else None

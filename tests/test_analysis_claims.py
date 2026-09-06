@@ -26,16 +26,18 @@ MANIFEST = REPO / "phase1" / "config" / "analysis_claims.json"
 def _manuscript() -> Path | None:
     """The .docx these claims bind to, if it is on this machine.
 
-    Resolved from $VARIANT_FM_MANUSCRIPT, else the newest draft_reframed_*.docx
-    on the Desktop. The filename is not hard-coded: it carries a working title
-    that is nobody's business but the author's, and the tests only need some
-    draft to check the anchors against.
+    Resolved from $VARIANT_FM_MANUSCRIPT, else the newest calibration_draft*.docx
+    (or legacy draft_reframed_*.docx) on the Desktop. The filename is not
+    hard-coded: it carries a working title that is nobody's business but the
+    author's, and the tests only need some draft to check the anchors against.
     """
     env = os.environ.get("VARIANT_FM_MANUSCRIPT")
     if env:
         p = Path(env).expanduser()
         return p if p.exists() else None
-    hits = sorted((Path.home() / "Desktop").glob("draft_reframed_*.docx"),
+    desk = Path.home() / "Desktop"
+    hits = sorted([*desk.glob("calibration_draft*.docx"),
+                   *desk.glob("draft_reframed_*.docx")],
                   key=lambda q: q.stat().st_mtime, reverse=True)
     return hits[0] if hits else None
 
