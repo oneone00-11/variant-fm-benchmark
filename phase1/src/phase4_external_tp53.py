@@ -198,11 +198,21 @@ def run():
     _, d_nab = _eval(prob_fusion[mask05], prob_best[mask05], (rfs[mask05] > 0).astype(float), best)
     print("\n=== LABEL-DEFINITION ROBUSTNESS (delta-Brier = best_single - fusion) ===")
     print(f"  {'label rule':24} {'n':>4} {'dmg':>4} {'dBrier':>8} {'variant 95% CI':>20} {'fusion_better':>13}")
+    # This table was printed and never stored, so the counts in it -- the
+    # mid-band subset size above all -- had no output file behind them and had
+    # to be carried in the number checker's whitelist instead. Writing it makes
+    # them ordinary pipeline values like every other number in the manuscript.
+    label_rows = []
     for name, dd, nn, nd in [("control-anchored RFS>0", d, len(y_main), int(y_main.sum())),
                              ("median split (top 50%)", d_med, len(y_med), int(y_med.sum())),
                              ("NA mid-band |RFS|>=0.5", d_nab, int(mask05.sum()), int((rfs[mask05] > 0).sum()))]:
         print(f"  {name:24} {nn:>4} {nd:>4} {dd['obs']:>8.4f} "
               f"[{dd['lo']:+.4f}, {dd['hi']:+.4f}] {str(dd['fusion_better']):>13}")
+        label_rows.append({"label_rule": name, "n": nn, "n_damaging": nd,
+                           "dBrier": dd["obs"], "ci_lo": dd["lo"], "ci_hi": dd["hi"],
+                           "fusion_better": bool(dd["fusion_better"])})
+    pd.DataFrame(label_rows).to_csv(
+        C.REPORT_DIR / "phase4_tp53_label_definitions.csv", index=False)
 
     # ---- SENSITIVITY: label (3) NA mid-band -- drop |RFS|<band (pLOF-like ambiguous),
     #      keep clear WT-like (RFS<=-band) vs LOF (RFS>=+band). Proves the delta-Brier

@@ -1,5 +1,5 @@
 {
- "_note": "Numeric tokens in the manuscript with no counterpart in phase1/reports/. Every entry needs a reason; the checker fails on any token that is neither matched nor listed here, so this file is the record of what a human signed off.",
+ "_note": "Numeric tokens in the manuscript with no counterpart in phase1/reports/. Every entry needs a reason; the checker fails on any token that is neither matched nor listed here, so this file is the record of what a human signed off. Nothing here is a measurement this pipeline computes: the one that was -- the TP53 mid-band subset size -- is now written to phase1/reports/phase1/phase4_tp53_label_definitions.csv instead of being exempted, which is what the entry for it said the proper fix would be.",
  "section_numbers": {
   "reason": "Numbered headings and cross-references, not measurements.",
   "pattern": "^(?:[1-9]|1[0-9])\\.[0-9]$"
@@ -27,12 +27,6 @@
    "1.13.1",
    "2.3.3",
    "1.6.1"
-  ]
- },
- "tp53_midband_count": {
-  "reason": "Table 4, the mid-band-excluded TP53 label definition: 181 of 192 variants have |RFS| >= 0.5. The count is computed at runtime in phase1/src/phase4_external_tp53.py (mask05) and written to no output file, so it has no literal source. It is verifiable from the shipped data/external/tp53_splice_scored.parquet, and the proper fix is for phase4 to emit it alongside the metrics rather than to keep this entry.",
-  "values": [
-   "181"
   ]
  },
  "tavtigian_thresholds": {
