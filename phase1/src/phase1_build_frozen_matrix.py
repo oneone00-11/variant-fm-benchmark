@@ -272,10 +272,28 @@ def freeze(df: pd.DataFrame) -> dict:
     out_path = C.OUTPUT_DIR / f"frozen_matrix_{C.FROZEN_VERSION}.parquet"
     df.to_parquet(out_path, index=False)
 
+    # Provenance records the freeze event, not the run that re-verifies it.
+    # These two fields were re-stamped on every run, so reproducing the analysis
+    # overwrote the build commit the manuscript cites (10d94bbe01) with the
+    # reader's own HEAD and left a clean checkout dirty for having checked the
+    # work. Rebuilding the same matrix is the same freeze, so they are carried
+    # through whenever the content hash is unchanged, and re-stamped only when
+    # the matrix genuinely differs. The integrity fields below are untouched.
+    manifest_path = C.OUTPUT_DIR / f"manifest_{C.FROZEN_VERSION}.json"
+    prior: dict = {}
+    if manifest_path.exists():
+        try:
+            prior = json.loads(manifest_path.read_text())
+        except (json.JSONDecodeError, OSError):
+            prior = {}
+    unchanged = prior.get("sha256") == sha
+
     manifest = {
         "version": C.FROZEN_VERSION,
-        "frozen_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "git_commit": _git_commit(),
+        "frozen_at_utc": (prior["frozen_at_utc"] if unchanged and "frozen_at_utc" in prior
+                          else datetime.now(timezone.utc).isoformat(timespec="seconds")),
+        "git_commit": (prior["git_commit"] if unchanged and "git_commit" in prior
+                       else _git_commit()),
         "source_path": str(C.RAW_MATRIX_PATH),
         "n_rows": int(df.shape[0]),
         "n_genes": int(df["gene"].nunique()),
@@ -283,7 +301,7 @@ def freeze(df: pd.DataFrame) -> dict:
         "sha256": sha,
         "output_path": str(out_path),
     }
-    (C.OUTPUT_DIR / f"manifest_{C.FROZEN_VERSION}.json").write_text(json.dumps(manifest, indent=2))
+    manifest_path.write_text(json.dumps(manifest, indent=2))
     return manifest
 
 

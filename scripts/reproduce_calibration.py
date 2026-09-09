@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
 """
-Study A -- one-command reproduction of the fusion + calibration analysis
-(elastic-net fusion, out-of-gene isotonic/Platt calibration, ECE/Brier/yield under
-leave-one-gene-out, and external validation on the held-out gene TP53).
+Study A -- one-command reproduction of every analysis the main manuscript
+reports: elastic-net fusion, out-of-gene isotonic/Platt calibration, ECE/Brier/
+yield under leave-one-gene-out, external validation on the held-out gene TP53,
+the likelihood ratios and their Tavtigian bands, the evidence yield, the
+weight-stability and training-gene-thinning checks, the ClinVar/assay label
+contrast and its selection test, the intronic-offset drop sensitivity, and the
+sampling-frame reweighting.
+
+The reviewer-requested Phase-8 robustness analyses have their own entry point,
+`scripts/reproduce_robustness.py`. Between them the two scripts regenerate every
+tracked file in `phase1/reports/phase1/`, which
+tests/test_reproduction_coverage.py enforces.
 
 Clean-clone reproduction is two commands:
 
@@ -18,15 +27,26 @@ invalidate every downstream number.
 
 Stages
 ------
-  0  make_raw                  regenerate the Phase-1 build input (deterministic)
-  1  phase1_build_frozen_matrix  rebuild + sha256-verify frozen-matrix-v1
-  2  phase1_directionality_check control-anchored orientation gate (all genes)
-  3  phase2_model              H1 fusion vs best single, H2 evolution-axis ablation
-  4  phase3_calibration        H3 calibration (ECE / Brier / clinical yield)
-  5  phase4_external_tp53      external validation on TP53 (fully held out)
+   1  make_raw                   regenerate the Phase-1 build input (deterministic)
+   2  phase1_build_frozen_matrix rebuild + sha256-verify frozen-matrix-v1
+   3  phase1_directionality_check control-anchored orientation gate (all genes)
+   4  phase2_model               H1 fusion vs best single, H2 evolution-axis ablation
+   5  phase3_calibration         H3 calibration (ECE / Brier / clinical yield)
+   6  phase4_external_tp53       external validation on TP53 (fully held out)
+   7  phase5_likelihood_ratios   H4 LR+/LR- at 95% specificity, Tavtigian bands
+   8  phase5b_evidence_yield     fraction reaching Moderate evidence or above
+   9  phase6_sensitivity         cross-fold weight stability, training-gene thinning
+  10  phase7_label_contrast      ClinVar/assay label divergence, selection test
+  11  phase2b_no_offset_drop     intronic-offset drop sensitivity
+  12  ipw_reweight               sampling-frame reweighting
+  13  ipw_reweight balance       sampling-frame balance diagnostics
 
 Outputs land in `phase1/reports/phase1/`. Everything is seeded
 (`RANDOM_SEED` in `phase1/src/config.py`); output is deterministic.
+
+Stages 7 to 13 carry the gene-clustered bootstraps and the leave-one-gene-out
+refits, and dominate the runtime; stages 1 to 6 finish in about two minutes, so
+the Delta-rho / Delta-Brier headline appears long before the run ends.
 
 Note on reproducibility scope: the analysis is fully reproducible on CPU, but the
 upstream Nucleotide Transformer and Pangolin *scores* are not (see the
@@ -41,19 +61,35 @@ from pathlib import Path
 REPO   = Path(__file__).resolve().parents[1]
 PHASE1 = REPO / "phase1"
 
+# Every stage the main manuscript reports, in order. Stages 7 to 13 were absent
+# from this list while the sections that rest on them -- the likelihood ratios,
+# the evidence yield, the weight-stability and training-gene sensitivity checks,
+# the label contrast and the sampling-frame reweighting -- were already in the
+# paper. Their modules were committed and their outputs are tracked, so the
+# numbers were never in doubt; what did not exist was a documented command that
+# regenerates them. tests/test_reproduction_coverage.py now fails if any tracked
+# output has no entry point, so this list cannot fall behind the pipeline again.
 STAGES = [
-    ("src.make_raw",                   "regenerate Phase-1 build input"),
-    ("src.phase1_build_frozen_matrix", "rebuild + verify frozen-matrix-v1"),
-    ("src.phase1_directionality_check","directionality gate"),
-    ("src.phase2_model",               "H1 fusion / H2 ablation"),
-    ("src.phase3_calibration",         "H3 calibration"),
-    ("src.phase4_external_tp53",       "TP53 external validation"),
+    ("src.make_raw",                   "regenerate Phase-1 build input", []),
+    ("src.phase1_build_frozen_matrix", "rebuild + verify frozen-matrix-v1", []),
+    ("src.phase1_directionality_check","directionality gate", []),
+    ("src.phase2_model",               "H1 fusion / H2 ablation", []),
+    ("src.phase3_calibration",         "H3 calibration", []),
+    ("src.phase4_external_tp53",       "TP53 external validation", []),
+    ("src.phase5_likelihood_ratios",   "H4 likelihood ratios / Tavtigian bands", []),
+    ("src.phase5b_evidence_yield",     "evidence yield at Moderate and above", []),
+    ("src.phase6_sensitivity",         "weight stability / training-gene thinning", []),
+    ("src.phase7_label_contrast",      "label divergence and the selection test", []),
+    ("src.phase2b_no_offset_drop",     "intronic-offset drop sensitivity", []),
+    ("src.ipw_reweight",               "sampling-frame reweighting", []),
+    ("src.ipw_reweight",               "sampling-frame balance diagnostics", ["balance"]),
 ]
 
 
-def run_stage(module: str, label: str, n: int, total: int) -> None:
+def run_stage(module: str, label: str, n: int, total: int,
+              args: list | None = None) -> None:
     print(f"\n{'='*74}\n[{n}/{total}] {module}  --  {label}\n{'='*74}", flush=True)
-    r = subprocess.run([sys.executable, "-m", module], cwd=PHASE1)
+    r = subprocess.run([sys.executable, "-m", module, *(args or [])], cwd=PHASE1)
     if r.returncode != 0:
         sys.exit(f"\nFAILED at stage {n}/{total} ({module}); exit code {r.returncode}")
 
@@ -128,8 +164,8 @@ def main() -> None:
     if not PHASE1.is_dir():
         sys.exit(f"phase1/ not found under {REPO}")
     total = len(STAGES)
-    for i, (mod, label) in enumerate(STAGES, 1):
-        run_stage(mod, label, i, total)
+    for i, (mod, label, args) in enumerate(STAGES, 1):
+        run_stage(mod, label, i, total, args)
         if mod == "src.phase1_build_frozen_matrix":
             verify_frozen()
     headline()

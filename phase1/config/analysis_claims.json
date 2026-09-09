@@ -70,7 +70,10 @@
    "claim": "LR+/LR- at 95% specificity, Tavtigian bands at a prior of 0.10",
    "anchor": "Every object was summarised by LR+ and L",
    "script": "phase1/src/phase5_likelihood_ratios.py",
-   "output": "phase1/reports/phase1/phase5_likelihood_ratios.csv",
+   "output": [
+    "phase1/reports/phase1/phase5_likelihood_ratios.csv",
+    "phase1/reports/phase1/phase8_lr_plus_operating_points.csv"
+   ],
    "status": "verified",
    "note": "The 10 in 'ECE (10 bins)' in the calibration paragraph is a method parameter, not an output, and is reported as a scoped mismatch for that reason."
   },
@@ -79,7 +82,10 @@
    "claim": "no object reaches Strong on the functional standard",
    "anchor": "no object establishes Strong evidence on the",
    "script": "phase1/src/phase5_likelihood_ratios.py",
-   "output": "phase1/reports/phase1/phase5_likelihood_ratios.csv",
+   "output": [
+    "phase1/reports/phase1/phase5_likelihood_ratios.csv",
+    "phase1/reports/phase1/phase8_lr_plus_operating_points.csv"
+   ],
    "status": "verified",
    "cardinality": {
     "count": 12,

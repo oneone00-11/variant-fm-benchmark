@@ -278,7 +278,8 @@ def test_the_disclosed_test_count_is_the_measured_one():
              "fifty-three": 53, "fifty-four": 54, "fifty-five": 55,
              "fifty-six": 56, "fifty-seven": 57, "fifty-eight": 58,
              "fifty-nine": 59, "sixty": 60, "sixty-one": 61, "sixty-two": 62,
-             "sixty-three": 63}
+             "sixty-three": 63, "sixty-four": 64, "sixty-five": 65,
+             "sixty-six": 66, "sixty-seven": 67, "sixty-eight": 68}
     text = " ".join(p.text for p in Document(str(manuscript)).paragraphs)
     m = re.search(r"([A-Za-z-]+) automated tests", text)
     assert m, "the disclosure no longer states a test count"

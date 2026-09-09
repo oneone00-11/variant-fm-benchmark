@@ -106,10 +106,23 @@ def test_paragraph_numbers_are_not_load_bearing(tmp_path):
 
 # --- the scoped rule, after the global-fallback escape hatch was removed ------
 
+PRE_FIX_FIXTURE = Path(__file__).parent / "fixtures" / "pre_fix_clinical_yield.docx"
+
+
 def _backup_with_the_defect():
-    """The draft as it stood before 74.5 was corrected, if it is on this machine."""
-    root = Path.home() / "Desktop"
-    hits = sorted(root.glob("**/draft_reframed_*_backup_*preMerge*.docx"))
+    """The clinical-yield paragraph as it stood before 74.5 was corrected.
+
+    Prefers the committed fixture, which carries that paragraph verbatim, so the
+    check runs for everyone. This used to glob the author's Desktop for the
+    pre-fix draft and skip when it was absent -- which meant the suite reported
+    63 passed on that one machine and 62 passed 1 skipped everywhere else, and
+    the disclosed count was true of nobody but the author. The full draft is
+    still used when it happens to be present, as a check on the fixture.
+    """
+    if PRE_FIX_FIXTURE.exists():
+        return PRE_FIX_FIXTURE
+    hits = sorted((Path.home() / "Desktop").glob(
+        "**/draft_reframed_*_backup_*preMerge*.docx"))
     return hits[-1] if hits else None
 
 
@@ -149,15 +162,22 @@ def test_a_number_absent_from_its_own_declared_source_is_reported(tmp_path, monk
     assert "17.7" not in flagged, "a value present in the declared source must pass"
 
 
-def test_the_rule_reports_it_on_the_actual_pre_fix_draft():
+def test_the_rule_reports_it_on_the_actual_pre_fix_text():
+    """The synthetic case above proves the rule; this proves it on the real text.
+
+    Runs against the committed fixture, so it does not depend on any file
+    outside the repository.
+    """
     backup = _backup_with_the_defect()
-    if backup is None:
-        pytest.skip("the pre-fix draft is not on this machine")
+    assert backup is not None, (
+        f"neither the fixture {PRE_FIX_FIXTURE.name} nor a pre-fix draft is "
+        "available; the fixture is tracked and should always be present")
     import src.check_manuscript_numbers as cmn
 
     r = cmn.classify(backup)
     tokens = {t["token"] for t in r["scoped_mismatch"]}
     assert "74.5" in tokens, sorted(tokens)
+    assert "17.7" not in tokens, "a value present in the declared source must pass"
 
 
 def test_a_declared_derivation_licenses_exactly_one_value(tmp_path, monkeypatch):

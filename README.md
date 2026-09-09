@@ -131,10 +131,14 @@ itself; see [docs/NOTE_S9.md](docs/NOTE_S9.md).)
 pip install -r requirements.txt
 python scripts/reproduce_calibration.py
 ```
-Runs, in order: directionality gate → frozen-matrix integrity check (sha256 against
-`phase1/data/frozen/manifest_v1.json`) → H1/H2 fusion → H3 calibration → TP53
-external validation. Writes `phase1/reports/phase1/` and prints the headline
-Δρ / ΔBrier table. Seeded (`RANDOM_SEED` in `phase1/src/config.py`); deterministic.
+Runs, in order: build input → frozen-matrix integrity check (sha256 against
+`phase1/data/frozen/manifest_v1.json`) → directionality gate → H1/H2 fusion →
+H3 calibration → TP53 external validation → H4 likelihood ratios and Tavtigian
+bands → evidence yield → weight stability and training-gene thinning → label
+contrast and selection test → intronic-offset drop sensitivity → sampling-frame
+reweighting (run and balance diagnostics). Thirteen stages. Writes
+`phase1/reports/phase1/` and prints the headline Δρ / ΔBrier table. Seeded
+(`RANDOM_SEED` in `phase1/src/config.py`); deterministic.
 Checkout `frozen-matrix-v1` to pin the exact matrix the manuscript used:
 ```bash
 git checkout frozen-matrix-v1
@@ -148,6 +152,13 @@ pip install -r requirements.txt
 python scripts/reproduce_robustness.py
 ```
 Same frozen matrix and hash check as above; writes `phase1/reports/phase1/phase8_*.csv`.
+
+**Between the two scripts, every tracked file in `phase1/reports/phase1/` is
+regenerated** — `reproduce_calibration.py` writes all of it except the
+`phase8_*` tables, which `reproduce_robustness.py` writes.
+`tests/test_reproduction_coverage.py` fails if any tracked result is produced by
+a module that neither script runs, so the entry points cannot fall behind the
+pipeline again.
 
 **Study B — coverage & complementarity:**
 ```bash

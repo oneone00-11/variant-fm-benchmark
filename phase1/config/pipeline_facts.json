@@ -1,17 +1,22 @@
 {
  "note": "Quantities the manuscript states that appear inside no reports/ file. The disclosed test count is one: it is measured, not looked up, and it went stale once already -- the manuscript said thirty-three while a bare clone ran forty-seven. tests/test_reported_numbers.py compares the manuscript against this file.",
- "guardrail_tests_passing_from_bare_clone": 59,
- "bare_clone_measured_for": "HEAD at 7d44959 (post-round-7 testpaths widened to tests + phase1/tests); no configuration, no API keys",
+ "guardrail_tests_passing_from_bare_clone": 63,
+ "bare_clone_measured_for": "HEAD at 5099eb3 plus this round's fixes: the twelve stages added to reproduce_calibration.py, the reproduction-coverage gate, and the committed fixture that replaced the pre-fix-draft skip; no configuration, no API keys",
  "bare_clone_breakdown": {
-  "measured_at": "2026-09-08",
-  "python": "3.12.14 (managed runtime)",
-  "install": "pip install -r requirements.txt (now including pyarrow and python-docx)",
-  "isolation": "HOME pointed at an empty directory, so neither the manuscript nor the pre-fix backup draft is visible",
-  "collected": 63,
-  "passed": 59,
+  "measured_at": "2026-09-09",
+  "python": "3.9.6 (system python3, matching the pinned floor)",
+  "install": "pip install -r requirements.txt",
+  "isolation": "HOME pointed at an empty directory, so no manuscript is visible",
+  "collected": 66,
+  "passed": 63,
   "failed": 0,
-  "skipped": 4,
-  "skips_are": "the four tests that read a manuscript file: the two anchor-resolution tests, the pre-fix-draft regression, and the disclosed-count check",
-  "with_manuscript_visible": {"collected": 63, "passed": 63, "failed": 0, "skipped": 0}
+  "skipped": 3,
+  "skips_are": "the three tests that read the manuscript: the two anchor-resolution tests and the disclosed-count check. The pre-fix-draft regression no longer skips: it runs against tests/fixtures/pre_fix_clinical_yield.docx, which is tracked, so it no longer depends on a backup on the author's machine",
+  "with_manuscript_visible": {
+   "collected": 66,
+   "passed": 66,
+   "failed": 0,
+   "skipped": 0
+  }
  }
 }
