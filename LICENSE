@@ -24,16 +24,65 @@ SOFTWARE.
 NOTE ON DATA LICENSING (code vs. data are licensed separately):
 
 This MIT license covers the CODE in this repository only. Third-party data and
-model scores carry their own licenses and must be attributed to their sources:
+model scores carry their own licenses and must be attributed to their sources.
 
-  - ClinVar (NCBI): public domain.
-  - gnomAD (Broad Institute): CC0 / ODC-ODbL per release terms.
-  - MaveDB functional score sets: per-dataset license (CC0 or CC BY) — see the
-    `source_urn` column and the URN table in README / docs/milestone2_goldstandard.md.
-  - AlphaMissense (Google DeepMind): CC BY-NC-SA 4.0 (non-commercial).
-  - AlphaGenome: Google AlphaGenome API terms.
-  - SpliceAI (Illumina), Pangolin, GPN-MSA (Song Lab), Nucleotide Transformer
-    (InstaDeep), CADD, phyloP/phastCons (UCSC): per each tool's own license.
+An earlier version of this note named AlphaMissense as the non-commercial column
+and left six tools as "per each tool's own license" without resolving them. That
+was incomplete: FIVE of the ten predictor columns are restricted to
+non-commercial use. Each is resolved individually below.
 
-Redistribution of derived score columns follows the most restrictive applicable
-upstream license; AlphaMissense-derived columns are non-commercial.
+
+FUNCTIONAL MEASUREMENTS (MaveDB deposits)
+
+  CC0 1.0
+    BRCA1   urn:mavedb:00000097-0-2
+    BRCA2   urn:mavedb:00001225-a-1
+    BARD1   urn:mavedb:00001250-a-2
+    PALB2   urn:mavedb:00001259-a-2
+
+  CC BY 4.0 (attribution to the originating publication required)
+    RAD51C  urn:mavedb:00000673-0-1
+    VHL     urn:mavedb:00000675-a-1
+    BAP1    urn:mavedb:00000662-0-1
+
+  The per-deposit table with transcripts and references is in README.md.
+
+
+PREDICTOR SCORE COLUMNS — five of ten are non-commercial
+
+  NON-COMMERCIAL:
+    AlphaGenome             non-commercial use only (API free tier)
+    SpliceAI                CC BY-NC 4.0 for the trained models; other use
+                            requires a commercial licence from Illumina
+    CADD                    non-commercial; commercial use requires a licence
+                            from the University of Washington
+    AlphaMissense           CC BY-NC-SA 4.0 — non-commercial AND share-alike
+    Nucleotide Transformer  CC BY-NC-SA 4.0 — non-commercial AND share-alike
+
+  ATTRIBUTION AT MOST:
+    GPN-MSA                 MIT
+    phyloP-100way           UCSC track data, free for public and commercial use
+    phastCons-100way        UCSC track data, free for public and commercial use
+    gnomAD allele freq.     CC0 1.0 (attribution requested, not required)
+
+  PANGOLIN — a separate case, stated rather than omitted:
+    The program is licensed GPL-3.0. Running a GPL-licensed program does not
+    place its output under the GPL, so the pangolin_score column is recorded as
+    unencumbered by that licence. This is an explicit determination, not an
+    oversight.
+
+  Per-column determinations, each with the URL it was read from, are published
+  as results/predictor_resources_v1.tsv (columns `licence`, `licence_source`) in
+  the companion atlas deposit, concept DOI 10.5281/zenodo.21828448.
+
+
+OTHER SOURCES
+
+  ClinVar (NCBI): public domain.
+  gnomAD (Broad Institute): CC0 / ODC-ODbL per release terms.
+
+
+Each restriction travels with its column and with any figure or table derived
+from it. Redistribution of derived score columns follows the most restrictive
+applicable upstream license, so a reuser with a commercial purpose must drop the
+five non-commercial columns named above.
