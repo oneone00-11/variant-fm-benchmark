@@ -31,6 +31,12 @@ keywords:
   - reproducibility
 license: MIT
 license-url: "https://opensource.org/licenses/MIT"
+version: "1.0.0"
+date-released: "2026-09-09"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22674887"
+    description: Concept DOI for all versions of the archived repository
 preferred-citation:
   type: article
   title: "Ranking is saturated, calibration is not, and neither changes the evidence strength: an independent benchmark of splice-region variant effect predictors against a functional standard"
