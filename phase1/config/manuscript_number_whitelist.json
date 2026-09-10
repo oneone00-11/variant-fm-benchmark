@@ -47,7 +47,7 @@
   ]
  },
  "companion_atlas_counts": {
-  "reason": "Properties of the companion atlas's frozen matrix (functional-standard-atlas, version DOI 10.5281/zenodo.22637468), not of this pipeline, so no phase1/reports/ file can carry them. 46,392 is that atlas's SNV count (it spans 64,178 variants: 46,392 SNVs and 17,786 indels) and 21,394 is its overlap with this manuscript's 21,410-SNV analysis set; the sixteen unshared are RAD51C SNVs absent from the RAD51C deposit used there. Both are stated in the companion manuscript, which whitelists this manuscript's 21,410 from the other side for the same reason. Sourcing them locally would mean shipping the companion's matrix into this repository.",
+  "reason": "Properties of the companion atlas's frozen matrix (functional-standard-atlas, concept DOI 10.5281/zenodo.21828448 -- the concept rather than a version DOI, because this entry outlives any one release: it named v2.4.3's version DOI and was already two releases stale), not of this pipeline, so no phase1/reports/ file can carry them. 46,392 is that atlas's SNV count (it spans 64,178 variants: 46,392 SNVs and 17,786 indels) and 21,394 is its overlap with this manuscript's 21,410-SNV analysis set; the sixteen unshared are RAD51C SNVs absent from the RAD51C deposit used there. Both are stated in the companion manuscript, which whitelists this manuscript's 21,410 from the other side for the same reason. Sourcing them locally would mean shipping the companion's matrix into this repository.",
   "values": [
    "21,394",
    "46,392"
