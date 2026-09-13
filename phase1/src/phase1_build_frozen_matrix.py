@@ -269,7 +269,7 @@ def freeze(df: pd.DataFrame) -> dict:
     canonical = df.to_csv(index=False).encode()
     sha = hashlib.sha256(canonical).hexdigest()
 
-    out_path = C.OUTPUT_DIR / f"frozen_matrix_{C.FROZEN_VERSION}.parquet"
+    out_path = C.OUTPUT_DIR / f"frozen_matrix_{C.RAW_BUILD_VERSION}.parquet"
     df.to_parquet(out_path, index=False)
 
     # Provenance records the freeze event, not the run that re-verifies it.
@@ -279,7 +279,7 @@ def freeze(df: pd.DataFrame) -> dict:
     # work. Rebuilding the same matrix is the same freeze, so they are carried
     # through whenever the content hash is unchanged, and re-stamped only when
     # the matrix genuinely differs. The integrity fields below are untouched.
-    manifest_path = C.OUTPUT_DIR / f"manifest_{C.FROZEN_VERSION}.json"
+    manifest_path = C.OUTPUT_DIR / f"manifest_{C.RAW_BUILD_VERSION}.json"
     prior: dict = {}
     if manifest_path.exists():
         try:
@@ -289,7 +289,7 @@ def freeze(df: pd.DataFrame) -> dict:
     unchanged = prior.get("sha256") == sha
 
     manifest = {
-        "version": C.FROZEN_VERSION,
+        "version": C.RAW_BUILD_VERSION,
         "frozen_at_utc": (prior["frozen_at_utc"] if unchanged and "frozen_at_utc" in prior
                           else datetime.now(timezone.utc).isoformat(timespec="seconds")),
         "git_commit": (prior["git_commit"] if unchanged and "git_commit" in prior

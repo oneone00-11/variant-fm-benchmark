@@ -329,7 +329,12 @@ def main() -> int:
     cur, hl = curated(v1d, v2d)
     every, st = every_manuscript_number(v1d, v2d, Path(a.manuscript).expanduser(), cmn)
     cells, cst = all_cells(v1d, v2d)
-    colrep = pd.read_csv(a.column_report, sep="\t").to_markdown(index=False) if Path(a.column_report).exists() else "(column report not found)"
+    if Path(a.column_report).exists():
+        cr = pd.read_csv(a.column_report, sep="\t")
+        colrep = "\n".join(["| " + " | ".join(cr.columns) + " |", "|" + "---|" * len(cr.columns)]
+                           + ["| " + " | ".join(fmt(v) if isinstance(v, float) else str(v) for v in r) + " |" for r in cr.itertuples(index=False)])
+    else:
+        colrep = "(column report not found)"
     tests = Path(a.tests).read_text() if a.tests and Path(a.tests).exists() else "(not run)"
     text = "\n".join([
         "# frozen-matrix-v1 → v2: what moves", "",

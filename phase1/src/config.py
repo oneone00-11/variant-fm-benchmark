@@ -33,6 +33,10 @@ OUTPUT_DIR      = Path("data/frozen")                       # frozen matrix + ma
 import os as _os
 FROZEN_VERSION  = _os.environ.get("FROZEN_VERSION", "v1")
 REPORT_DIR      = Path(_os.environ.get("PHASE1_REPORT_DIR", "reports/phase1"))   # diagnostic tables go here
+# The raw-matrix build (src.phase1_build_frozen_matrix) always produces v1: it is the
+# published freeze of the upstream scoring, and v2 is derived from it. Readers select
+# a version with FROZEN_VERSION; the builder does not.
+RAW_BUILD_VERSION = "v1"
 
 # ---------------------------------------------------------------------------
 # Column mapping -- map YOUR column names to the canonical names used downstream.

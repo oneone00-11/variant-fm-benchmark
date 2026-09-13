@@ -1,0 +1,5 @@
+label,brca1,n_labelled,n_pos,n_neg,pos_frac
+y_clinvar,included,946,555,391,0.5867
+y_clinvar,excluded,734,406,328,0.5531
+y_assay,included,1675,821,854,0.4901
+y_assay,excluded,1168,594,574,0.5086
