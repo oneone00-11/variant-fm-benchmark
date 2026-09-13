@@ -1,0 +1,15 @@
+{
+  "source": "functional-standard-atlas results/score_matrix_atlas_v2.parquet (Zenodo 10.5281/zenodo.22671905, release v2.4.4)",
+  "source_sha256": "3ed0dcf9ce4d4aa2316d63426e6d22a86e4305047553d70b5e45a76454919f58",
+  "atlas_commit": "8bdfbe7a9f5e8b3a76a3ef0d0723bb36f10fd6ed",
+  "n_rows": 21394,
+  "columns": {
+    "spliceai_ds_fullprec": "SpliceAI 1.3.1 max delta, full float precision (models/spliceai/score_fullprec.py)",
+    "pangolin_fullprec": "Pangolin git 5cf94b8 max(gain,|loss|), full float precision (models/pangolin/score_fullprec.py)",
+    "nucleotide_transformer": "NT-v2-500M-multi-species masked 6-mer LLR, 6,000-bp window, RunPod A6000 (models/nt/score.py)",
+    "spliceai_ds_cli_rounded": "the atlas's copy of the rounded CLI column (identical to frozen-matrix-v1 spliceai)",
+    "pangolin_score_cli_rounded": "the atlas's copy of the rounded CLI column (identical to frozen-matrix-v1 pangolin)"
+  },
+  "output_sha256": "95680f8f39442514efdc254ce300a31113da5e7ff7c0837e7c0f163d2474aa59",
+  "note": "the sixteen RAD51C SNVs absent from the atlas are scored separately (data/rescore/*_frozen_only16.tsv)"
+}

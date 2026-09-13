@@ -38,7 +38,7 @@ from pathlib import Path
 REPO   = Path(__file__).resolve().parents[1]
 PHASE1 = REPO / "phase1"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from reproduce_calibration import verify_frozen  # noqa: E402  (shared hash pin)
+from reproduce_calibration import verify_frozen, FROZEN_VERSION, REPORT_DIR  # noqa: E402  (shared hash pin)
 
 STAGES = [
     ("src.make_raw",                   "regenerate Phase-1 build input"),
@@ -57,7 +57,7 @@ def run_stage(module: str, label: str, n: int, total: int) -> None:
 def headline() -> None:
     """Print the robustness numbers the revision's response letter rests on."""
     import pandas as pd
-    rep = PHASE1 / "reports" / "phase1"
+    rep = PHASE1 / REPORT_DIR
     print(f"\n{'='*74}\nHEADLINE -- Study A robustness (Phase 8)\n{'='*74}")
     try:
         sf = pd.read_csv(rep / "phase8_sign_flip_exact.csv")
@@ -98,11 +98,16 @@ def headline() -> None:
 def main() -> None:
     if not PHASE1.is_dir():
         sys.exit(f"phase1/ not found under {REPO}")
-    total = len(STAGES)
-    for i, (mod, label) in enumerate(STAGES, 1):
+    stages = list(STAGES)
+    if FROZEN_VERSION != "v1":
+        stages.insert(2, ("src.phase1_build_frozen_matrix_v2", f"build + verify frozen-matrix-{FROZEN_VERSION}"))
+    total = len(stages)
+    for i, (mod, label) in enumerate(stages, 1):
         run_stage(mod, label, i, total)
         if mod == "src.phase1_build_frozen_matrix":
-            verify_frozen()
+            verify_frozen("v1")
+        elif mod == "src.phase1_build_frozen_matrix_v2":
+            verify_frozen(FROZEN_VERSION)
     headline()
 
 

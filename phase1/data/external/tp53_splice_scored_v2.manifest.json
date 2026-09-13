@@ -1,0 +1,14 @@
+{
+  "n_rows": 192,
+  "sha256": "e7b070a51574e783d926b8a58923a26d95df757255c3f3c8509d1d1d7a2eb654",
+  "inputs": {
+    "spliceai": "492238c055fd3e130a999a75257fcc70c65424708f66406ad5edac833f9fbaa5",
+    "pangolin": "fc4ef8ca379cf39816ea9d01628b243d01adf868de0de2c2317b96278a4b5f2a",
+    "nt": "2846417ae9b7f532fa3005c1f235fac2831b36c042d3c6058a1d328c52eeb980"
+  },
+  "scored": {
+    "spliceai": 192,
+    "pangolin": 192,
+    "nt": 192
+  }
+}

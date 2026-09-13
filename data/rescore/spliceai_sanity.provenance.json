@@ -1,0 +1,32 @@
+{
+  "model": "spliceai",
+  "set": "sanity",
+  "n_variants": 200,
+  "input_file": "/Users/cliffzhang/work/variant-fm-benchmark/phase1/data/frozen/frozen_matrix_v1.parquet",
+  "input_sha256": "64e31fb1dcedf6ba199ff72267b1f679409f59623062830f7969320e5f6b417a",
+  "atlas_repo": "/Users/cliffzhang/work/functional-standard-atlas",
+  "atlas_commit": "8bdfbe7a9f5e8b3a76a3ef0d0723bb36f10fd6ed",
+  "this_repo_commit": "5b793957960fa11362b08d228de04b160f978092",
+  "python": "3.12.14",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "started_utc": "2026-09-13T15:31:39.558476+00:00",
+  "tool": "SpliceAI",
+  "tool_version": "1.3.1",
+  "tensorflow": "2.19.1",
+  "parameters": {
+    "annotation": "grch38",
+    "distance": 50,
+    "mask": 0,
+    "score_definition": "max(DS_AG, DS_AL, DS_DG, DS_DL)"
+  },
+  "precision": "full float ({:.2f} formatting replaced by {:.17g} in score_fullprec.build_fullprec)",
+  "reference_fasta": "/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.fa",
+  "reference_fasta_sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811",
+  "scorer_module": "/Users/cliffzhang/work/functional-standard-atlas/models/spliceai/score_fullprec.py",
+  "scorer_module_sha256": "a5056203b0e941ed7b9b53b1914c769cc42bf2a5b681e994ec6f5e2e7280b970",
+  "runtime_seconds": 240.2,
+  "scored": 200,
+  "unscored": 0,
+  "finished_utc": "2026-09-13T15:35:39.743082+00:00",
+  "output_sha256": "d940df92082d10bbf47f2d8dd7a7d2b65ef6dd47fa29931e0cc32953e0558a2f"
+}

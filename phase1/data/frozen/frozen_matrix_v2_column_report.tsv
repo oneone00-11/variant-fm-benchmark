@@ -1,0 +1,4 @@
+column	n_scored_v1	n_scored_v2	spearman_v1_v2	distinct_v1	distinct_v2	splice_distinct_v1	splice_distinct_v2	splice_tie_ceiling_v1	splice_tie_ceiling_v2	max_abs_diff_after_rounding_to_2dp
+spliceai	21410	21410	0.95991	101	21344	98	1779	0.99818	1	0.01
+pangolin	21410	21410	0.936173	92	21373	92	1781	0.996607	1	2.86102e-08
+nt	21410	21410	0.999691	21377	21383	1780	1781	1	1	

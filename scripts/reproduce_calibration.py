@@ -54,6 +54,7 @@ upstream Nucleotide Transformer and Pangolin *scores* are not (see the
 """
 from __future__ import annotations
 import hashlib
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -94,7 +95,18 @@ def run_stage(module: str, label: str, n: int, total: int,
         sys.exit(f"\nFAILED at stage {n}/{total} ({module}); exit code {r.returncode}")
 
 
-def verify_frozen() -> None:
+# Published content hashes. v1 is the manuscript's analysis set; v2 replaces the SpliceAI,
+# Pangolin and Nucleotide Transformer columns with the pinned full-precision scorings
+# (phase1/src/phase1_build_frozen_matrix_v2.py) and is selected with FROZEN_VERSION=v2.
+PINS = {
+    "v1": ("2a0e249b44906f11ed91ce4746aba7389d8fff70d791a17710a3e26ec66d3199", 21410, 7, 1781),
+    "v2": ("8666d0258e3078d05ff2af131a962f6f18c647559308650b090341440ed54752", 21410, 7, 1781),
+}
+FROZEN_VERSION = os.environ.get("FROZEN_VERSION", "v1")
+REPORT_DIR = os.environ.get("PHASE1_REPORT_DIR", "reports/phase1")
+
+
+def verify_frozen(version: str = "v1") -> None:
     """Fail loudly if the rebuilt matrix is not the one the manuscript used.
 
     The pin below is the published content hash of frozen-matrix-v1 (git tag
@@ -108,21 +120,20 @@ def verify_frozen() -> None:
     """
     import pandas as pd
 
-    EXPECTED_SHA256 = "2a0e249b44906f11ed91ce4746aba7389d8fff70d791a17710a3e26ec66d3199"
-    EXPECTED_ROWS, EXPECTED_GENES, EXPECTED_SPLICE = 21410, 7, 1781
+    EXPECTED_SHA256, EXPECTED_ROWS, EXPECTED_GENES, EXPECTED_SPLICE = PINS[version]
 
-    built = PHASE1 / "data" / "frozen" / "frozen_matrix_v1.parquet"
+    built = PHASE1 / "data" / "frozen" / f"frozen_matrix_{version}.parquet"
     df = pd.read_parquet(built).sort_values("variant_id").reset_index(drop=True)
     got = hashlib.sha256(df.to_csv(index=False).encode()).hexdigest()
 
-    print("\n--- frozen-matrix-v1 integrity check ---")
+    print(f"\n--- frozen-matrix-{version} integrity check ---")
     print(f"  expected sha256 : {EXPECTED_SHA256}")
     print(f"  rebuilt  sha256 : {got}")
     if got != EXPECTED_SHA256:
         sys.exit(
             "\nFROZEN MATRIX MISMATCH -- the rebuilt matrix differs from the one the\n"
             "manuscript used. Refusing to continue: downstream numbers would not be\n"
-            "comparable to the published results. Check out tag `frozen-matrix-v1`\n"
+            "comparable to the published results. Check out tag `frozen-matrix-" + version + "`\n"
             "and re-run, or investigate the upstream matrix."
         )
     n_rows, n_genes = len(df), df["gene"].nunique()
@@ -136,8 +147,8 @@ def verify_frozen() -> None:
 def headline() -> None:
     """Print the two numbers the manuscript's claim rests on."""
     import pandas as pd
-    rep = PHASE1 / "reports" / "phase1"
-    print(f"\n{'='*74}\nHEADLINE -- Study A\n{'='*74}")
+    rep = PHASE1 / REPORT_DIR
+    print(f"\n{'='*74}\nHEADLINE -- Study A ({FROZEN_VERSION}, {REPORT_DIR})\n{'='*74}")
     try:
         h1 = pd.read_csv(rep / "phase2_H1_stratified.csv")
         row = h1[h1.stratum == "overall"].iloc[0]
@@ -152,22 +163,29 @@ def headline() -> None:
         print(f"  (H3 table unavailable: {e})")
     try:
         tp = pd.read_csv(rep / "phase4_tp53_external.csv").set_index("model")
-        f = tp.loc["fusion_8feat", "Brier"]
+        f = tp.loc[[i for i in tp.index if i.startswith("fusion_")][0], "Brier"]
         s = [i for i in tp.index if i.startswith("best_single")][0]
         print(f"TP53 external    Brier fusion = {f:.4f}  vs  {s} = {tp.loc[s,'Brier']:.4f}")
     except Exception as e:
         print(f"  (TP53 table unavailable: {e})")
-    print(f"\nFull result tables: phase1/reports/phase1/\n")
+    print(f"\nFull result tables: phase1/{REPORT_DIR}/\n")
 
 
 def main() -> None:
     if not PHASE1.is_dir():
         sys.exit(f"phase1/ not found under {REPO}")
-    total = len(STAGES)
-    for i, (mod, label, args) in enumerate(STAGES, 1):
+    stages = list(STAGES)
+    if FROZEN_VERSION != "v1":
+        i = [m for m, _, _ in stages].index("src.phase1_build_frozen_matrix") + 1
+        stages.insert(i, ("src.phase1_build_frozen_matrix_v2",
+                          f"build + verify frozen-matrix-{FROZEN_VERSION} (reports -> {REPORT_DIR})", []))
+    total = len(stages)
+    for i, (mod, label, args) in enumerate(stages, 1):
         run_stage(mod, label, i, total, args)
         if mod == "src.phase1_build_frozen_matrix":
-            verify_frozen()
+            verify_frozen("v1")
+        elif mod == "src.phase1_build_frozen_matrix_v2":
+            verify_frozen(FROZEN_VERSION)
     headline()
 
 

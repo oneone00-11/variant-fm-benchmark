@@ -24,9 +24,15 @@ from pathlib import Path
 # Regenerate this file from the tracked upstream TSV with:  python -m src.make_raw
 RAW_MATRIX_PATH = Path("data/raw/variant_scores.parquet")
 OUTPUT_DIR      = Path("data/frozen")                       # frozen matrix + manifest go here
-REPORT_DIR      = Path("reports/phase1")                    # diagnostic tables go here
 
-FROZEN_VERSION  = "v1"  # bump this whenever the upstream benchmark scoring changes
+# Which frozen matrix the pipeline reads, and where its reports go. Defaults are the
+# published v1 run, byte for byte. Set FROZEN_VERSION=v2 to run on frozen-matrix-v2
+# (full-precision SpliceAI/Pangolin and the pinned Nucleotide Transformer column; see
+# src/phase1_build_frozen_matrix_v2.py) and PHASE1_REPORT_DIR to keep its outputs apart
+# from the tracked v1 tables. v1 and v2 coexist under data/frozen/.
+import os as _os
+FROZEN_VERSION  = _os.environ.get("FROZEN_VERSION", "v1")
+REPORT_DIR      = Path(_os.environ.get("PHASE1_REPORT_DIR", "reports/phase1"))   # diagnostic tables go here
 
 # ---------------------------------------------------------------------------
 # Column mapping -- map YOUR column names to the canonical names used downstream.

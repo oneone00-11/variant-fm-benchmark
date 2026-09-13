@@ -33,10 +33,15 @@ from .phase3_calibration import ece, brier, yield_metrics, reliability
 
 RNG = np.random.default_rng(C.RANDOM_SEED)
 N_BOOT = 2000
-TP53_PATH = C.OUTPUT_DIR.parent / "external" / "tp53_splice_scored.parquet"
+# v1: the published run, TP53 scored with the eight predictors whose seven-gene scoring
+# could be reproduced at the time. v2: TP53 re-scored for NT and Pangolin with the
+# companion atlas's pinned scorers (scripts/phase4b_score_pinned.py), so all ten enter.
+TP53_PATH = C.OUTPUT_DIR.parent / "external" / (
+    "tp53_splice_scored.parquet" if C.FROZEN_VERSION == "v1"
+    else f"tp53_splice_scored_{C.FROZEN_VERSION}.parquet")
 
-# 8-feature set: full predictor/evo set minus the two irreproducible tools
-EXCLUDE = {"nt", "pangolin"}
+# 8-feature set: full predictor/evo set minus the two irreproducible tools (v1 only)
+EXCLUDE = {"nt", "pangolin"} if C.FROZEN_VERSION == "v1" else set()
 
 
 def features_8(df):
@@ -124,7 +129,7 @@ def run():
 
     feats = features_8(train)
     feats = [f for f in feats if f in tp53.columns]
-    print(f"[phase4] 8-feature set ({len(feats)}): {feats}")
+    print(f"[phase4] feature set ({len(feats)}): {feats}")
     print(f"[phase4] train (7 genes) splice n={len(train)} | TP53 splice n={len(tp53)}")
 
     # gate: confirm TP53 orientation (already flipped in the parquet)
@@ -161,7 +166,7 @@ def run():
 
     def _eval(prob_f, prob_s, y, best_name):
         res = pd.DataFrame([
-            {"model": "fusion_8feat", "ECE": round(ece(prob_f, y), 4),
+            {"model": f"fusion_{len(feats)}feat", "ECE": round(ece(prob_f, y), 4),
              "Brier": round(brier(prob_f, y), 4), **yield_metrics(prob_f, y)},
             {"model": f"best_single({best_name})", "ECE": round(ece(prob_s, y), 4),
              "Brier": round(brier(prob_s, y), 4), **yield_metrics(prob_s, y)},
@@ -225,7 +230,7 @@ def run():
         mask = np.abs(rfs) >= band
         yb = (rfs[mask] > 0).astype(float)
         res_b, d_b = _eval(prob_fusion[mask], prob_best[mask], yb, best)
-        fb = float(res_b.loc[res_b.model == "fusion_8feat", "Brier"].iloc[0])
+        fb = float(res_b.loc[res_b.model.str.startswith("fusion_"), "Brier"].iloc[0])
         sb = float(res_b.loc[res_b.model.str.startswith("best"), "Brier"].iloc[0])
         print(f"  {band:<11} {int(mask.sum()):>4} {int(yb.sum()):>4} {fb:>11.4f} {sb:>10.4f} "
               f"{d_b['obs']:>8.4f} [{d_b['lo']:+.4f}, {d_b['hi']:+.4f}] {str(d_b['fusion_better']):>13}")
