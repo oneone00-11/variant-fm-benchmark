@@ -20,10 +20,10 @@
   }
  },
  "guardrail_tests_passing_from_archive": 87,
- "archive_measured_for": "git archive of the manuscript commit of the prose-pass round (Methods 2.1, 2.2 and Limitations 4.1 rewritten; Methods 2.6 states the number check's principle without its coverage counts; TP53's post-orientation AUROC pinned to its cell), whose code commit adds 2 tests",
+ "archive_measured_for": "the v2.0.0-submission release archive, variant-fm-benchmark-v2.0.0.zip: git archive of the release commit, which is what the Zenodo deposit of version 2.0.0 contains; its tests are those of the prose-pass round, and no later commit added or removed one",
  "archive_breakdown": {
   "measured_at": "2026-09-14",
-  "how": "git archive --format=tar HEAD | tar -x; python -m pytest -q -rs from the extract root with the repository's pinned virtualenv (python 3.12.14; pip install -r requirements.txt plus pyarrow and python-docx, which the tests import); HOME pointed at an empty directory and VARIANT_FM_MANUSCRIPT / VARIANT_FM_SUPPLEMENT unset, so neither document is visible",
+  "how": "unzip of the release zip (git archive --format=zip --prefix=variant-fm-benchmark/ of the release tag); python -m pytest -q -rs from the extract root with the repository's pinned virtualenv (python 3.12.14; pip install -r requirements.txt plus pyarrow and python-docx, which the tests import); HOME pointed at an empty directory and VARIANT_FM_MANUSCRIPT / VARIANT_FM_SUPPLEMENT unset, so neither document is visible",
   "collected": 99,
   "passed": 87,
   "failed": 0,

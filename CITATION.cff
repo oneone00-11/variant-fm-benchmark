@@ -31,8 +31,8 @@ keywords:
   - reproducibility
 license: MIT
 license-url: "https://opensource.org/licenses/MIT"
-version: "1.0.0"
-date-released: "2026-09-09"
+version: "2.0.0"
+date-released: "2026-09-14"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.22674887"
