@@ -1,0 +1,3 @@
+cal_method,cells_compared,cells_identical,median_abs_change_lr_plus,max_abs_change_lr_plus,cells_with_a_tier,cells_changing_tier
+isotonic,44,2,0.930526871591173,8.912668350168348,48,3
+platt,44,6,0.17799774971238946,1.949928876244666,48,3

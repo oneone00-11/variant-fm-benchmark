@@ -19,6 +19,16 @@ Two questions this is built to answer honestly rather than favourably:
      If it does not, that is the result. The operating point is fixed in advance
      at 95% specificity, matching the companion atlas paper, and is not moved.
 
+Two operating-point conventions are carried side by side. The observed-value scan
+(`lr_at_specificity`) lands wherever a score value happens to fall relative to the
+1 - spec line, so its achieved specificity runs from 95.0% to 98% and a calibrated
+tie group of ten negatives can move a ratio across a tier boundary. The interpolated
+value (`lr_interp_at_specificity`) evaluates the empirical ROC at exactly the nominal
+specificity. Both are written to the tables; the interpolated value is the basis for
+comparing objects and for tier assignment (`acmg_tier`), and the observed value is kept
+beside it with its achieved specificity (`lr_plus`, `specificity_achieved`,
+`acmg_tier_observed`).
+
 Usage (PYTHONPATH=phase1):  python -m src.phase5_likelihood_ratios
 """
 from __future__ import annotations
@@ -102,6 +112,41 @@ def lr_at_specificity(y, s, spec=TARGET_SPEC):
     return np.nan, np.nan, np.nan, np.nan, np.nan
 
 
+def _roc_points(y, s):
+    """Empirical ROC at every distinct score value, thresholds in decreasing order
+    (so FPR and TPR are non-decreasing). Vectorised: O((n + u) log n)."""
+    neg = np.sort(s[y == 0]); pos = np.sort(s[y == 1])
+    u = np.unique(s)[::-1]
+    fpr = 1.0 - np.searchsorted(neg, u, side="left") / len(neg)
+    tpr = 1.0 - np.searchsorted(pos, u, side="left") / len(pos)
+    return u, fpr, tpr
+
+
+def lr_interp_at_specificity(y, s, spec=TARGET_SPEC):
+    """(LR+, sensitivity) at exactly `spec`, by linear interpolation of the ROC.
+
+    Between the two adjacent observed operating points that bracket
+    FPR = 1 - spec -- the most sensitive threshold with FPR <= 1 - spec (the value
+    `lr_at_specificity` chooses) and the next lower score value -- sensitivity is
+    interpolated linearly to FPR = 1 - spec and divided by exactly 1 - spec. Where
+    no observed threshold reaches the target (the top score value is a tie group of
+    negatives), the segment starts at the empty call set (FPR = TPR = 0). This
+    removes the dependence on where a score value happens to fall; the observed
+    scan is kept beside it so a tie group cannot drive the FPR towards 1 unseen.
+    """
+    if (y == 1).sum() < MIN_POS or (y == 0).sum() < MIN_NEG:
+        return np.nan, np.nan
+    target = 1.0 - spec
+    _, fpr, tpr = _roc_points(y, s)
+    k = int(np.searchsorted(fpr, target, side="right"))   # fpr[k-1] <= target < fpr[k]
+    fa, ta = (0.0, 0.0) if k == 0 else (fpr[k - 1], tpr[k - 1])
+    if k >= len(fpr):
+        return float(ta / target), float(ta)
+    fb, tb = fpr[k], tpr[k]
+    t_i = ta if fb == fa else ta + (tb - ta) * (target - fa) / (fb - fa)
+    return float(t_i / target), float(t_i)
+
+
 def lr_at_sensitivity(y, s, sens=TARGET_SENS):
     """LR- at a rule-out point. At 95% specificity LR- is close to 1 by
     construction, so it carries almost no rule-out information there; the
@@ -157,9 +202,12 @@ def evaluate(sub, scores, label_col, tag, best_key, method="isotonic"):
             m = keep & ~np.isnan(s)
             yy, ss, gg = y[m].astype(int), s[m], genes[m]
             lrp, lrm, thr, tpr, spec_obs = lr_at_specificity(yy, ss)
+            lri, tpr_i = lr_interp_at_specificity(yy, ss)
             lrm_ro, thr_ro = lr_at_sensitivity(yy, ss)
             lo, hi, n_ok = _ci(_boot_gene(
                 lambda ix: lr_at_specificity(yy[ix], ss[ix])[0], gg))
+            lo_i, hi_i, n_ok_i = _ci(_boot_gene(
+                lambda ix: lr_interp_at_specificity(yy[ix], ss[ix])[0], gg))
             rows.append({
                 "condition": tag, "calibration": stage, "object": key,
                 "n": int(m.sum()), "n_pos": int((yy == 1).sum()),
@@ -169,9 +217,14 @@ def evaluate(sub, scores, label_col, tag, best_key, method="isotonic"):
                 "specificity_achieved": spec_obs,
                 "lr_plus": lrp, "lr_plus_lo": lo, "lr_plus_hi": hi,
                 "n_boot_evaluable": n_ok,
+                "lr_plus_interp": lri, "sensitivity_interp": tpr_i,
+                "lr_plus_interp_lo": lo_i, "lr_plus_interp_hi": hi_i,
+                "n_boot_evaluable_interp": n_ok_i,
                 "lr_minus_at_spec95": lrm,
                 "lr_minus_at_sens95": lrm_ro, "threshold_at_sens95": thr_ro,
-                "acmg_tier": acmg_tier(lrp),
+                "acmg_tier_observed": acmg_tier(lrp),
+                "acmg_tier": acmg_tier(lri),
+                "tier_basis": "interpolated to the nominal specificity",
                 "benign_tier_at_sens95": benign_tier(lrm_ro),
             })
     return pd.DataFrame(rows), cal_store
@@ -196,19 +249,36 @@ def headline(sub, scores, cal_store, label_col, tag, best_key, method):
             b = lr_at_specificity(yy[ix], ss[ix])[0]
             return a - b
 
+        def d_i(ix):
+            a = lr_interp_at_specificity(yy[ix], ff[ix])[0]
+            b = lr_interp_at_specificity(yy[ix], ss[ix])[0]
+            return a - b
+
         obs = d(np.arange(len(yy)))
         lo, hi, n_ok = _ci(_boot_gene(d, gg))
+        obs_i = d_i(np.arange(len(yy)))
+        lo_i, hi_i, n_ok_i = _ci(_boot_gene(d_i, gg))
         lrf = lr_at_specificity(yy, ff)[0]
         lrs = lr_at_specificity(yy, ss)[0]
+        lrf_i = lr_interp_at_specificity(yy, ff)[0]
+        lrs_i = lr_interp_at_specificity(yy, ss)[0]
         out.append({"condition": tag, "calibration": stage,
                     "best_single": best_key, "n": int(m.sum()),
                     "lr_plus_fusion": lrf, "lr_plus_best_single": lrs,
                     "delta_lr_plus": obs, "lo": lo, "hi": hi,
                     "n_boot_evaluable": n_ok,
                     "fusion_better": bool(np.isfinite(lo) and lo > 0),
-                    "tier_fusion": acmg_tier(lrf),
-                    "tier_best_single": acmg_tier(lrs),
-                    "crosses_a_tier_boundary": acmg_tier(lrf) != acmg_tier(lrs)})
+                    "lr_plus_fusion_interp": lrf_i, "lr_plus_best_single_interp": lrs_i,
+                    "delta_lr_plus_interp": obs_i, "lo_interp": lo_i, "hi_interp": hi_i,
+                    "n_boot_evaluable_interp": n_ok_i,
+                    "fusion_better_interp": bool(np.isfinite(lo_i) and lo_i > 0),
+                    "tier_fusion_observed": acmg_tier(lrf),
+                    "tier_best_single_observed": acmg_tier(lrs),
+                    "crosses_a_tier_boundary_observed": acmg_tier(lrf) != acmg_tier(lrs),
+                    "tier_fusion": acmg_tier(lrf_i),
+                    "tier_best_single": acmg_tier(lrs_i),
+                    "crosses_a_tier_boundary": acmg_tier(lrf_i) != acmg_tier(lrs_i),
+                    "tier_basis": "interpolated to the nominal specificity"})
     return pd.DataFrame(out)
 
 
@@ -230,16 +300,27 @@ def summarise_calibration_effect():
         cal = f"calibrated_{method}"
         lr = g.pivot_table(index=["condition", "object"], columns="calibration",
                            values="lr_plus").dropna()
+        lri = g.pivot_table(index=["condition", "object"], columns="calibration",
+                            values="lr_plus_interp").dropna()
+        tier_o = g.pivot_table(index=["condition", "object"], columns="calibration",
+                               values="acmg_tier_observed", aggfunc="first").dropna()
         tier = g.pivot_table(index=["condition", "object"], columns="calibration",
-                            values="acmg_tier", aggfunc="first").dropna()
+                             values="acmg_tier", aggfunc="first").dropna()
         delta = (lr[cal] - lr["raw"]).abs()
+        delta_i = (lri[cal] - lri["raw"]).abs()
         rows.append({"cal_method": method,
                      "cells_compared": int(len(lr)),
                      "cells_identical": int((delta < 0.001).sum()),
                      "median_abs_change_lr_plus": float(delta.median()),
                      "max_abs_change_lr_plus": float(delta.max()),
-                     "cells_with_a_tier": int(len(tier)),
-                     "cells_changing_tier": int((tier["raw"] != tier[cal]).sum())})
+                     "cells_with_a_tier": int(len(tier_o)),
+                     "cells_changing_tier_observed": int((tier_o["raw"] != tier_o[cal]).sum()),
+                     "cells_compared_interp": int(len(lri)),
+                     "cells_identical_interp": int((delta_i < 0.001).sum()),
+                     "median_abs_change_lr_plus_interp": float(delta_i.median()),
+                     "max_abs_change_lr_plus_interp": float(delta_i.max()),
+                     "cells_changing_tier": int((tier["raw"] != tier[cal]).sum()),
+                     "tier_basis": "interpolated to the nominal specificity"})
     out = pd.DataFrame(rows)
     out.to_csv(C.REPORT_DIR / "phase5_calibration_effect.csv", index=False)
     print("=== effect of calibration on the likelihood ratios ===")
@@ -306,6 +387,8 @@ def run():
     print("\n=== AA-3: does the fusion's advantage survive as evidence? ===")
     print(iso[["condition", "calibration", "lr_plus_fusion", "lr_plus_best_single",
                "delta_lr_plus", "lo", "hi", "fusion_better",
+               "lr_plus_fusion_interp", "lr_plus_best_single_interp",
+               "delta_lr_plus_interp", "lo_interp", "hi_interp",
                "crosses_a_tier_boundary"]].round(3).to_string(index=False))
 
 

@@ -58,14 +58,34 @@ The ceiling is the largest Spearman ρ any target could reach against the column
 0.2–0.3% of the ceiling overall, and per gene between 0.1% (RAD51C, SpliceAI) and 0.9% (BAP1, Pangolin) —
 see `docs/column-provenance.md`.
 
-## Running the pipeline on v2
+## Running the pipeline
+
+`frozen-matrix-v2` is the default analysis set (`FROZEN_VERSION` defaults to `v2` in
+`phase1/src/config.py` and in the two runners):
 
 ```
-FROZEN_VERSION=v2 PHASE1_REPORT_DIR=reports/phase1_v2 python scripts/reproduce_calibration.py
-FROZEN_VERSION=v2 PHASE1_REPORT_DIR=reports/phase1_v2 python scripts/reproduce_robustness.py
+python scripts/reproduce_calibration.py      # rebuilds + verifies v1, builds + verifies v2, then the 12 analysis stages
+python scripts/reproduce_robustness.py       # the phase-8 analyses, the LR+ v1 -> v2 decomposition, per-gene deltas
 ```
 
-Both scripts rebuild and verify v1, then build v2 from it and verify v2's hash against the pin in
-`scripts/reproduce_calibration.py`, exactly as they do for v1; with the variables unset they behave
-as before and write to `reports/phase1/`. The TP53 stage reads `tp53_splice_scored_v2.parquet` and
-uses all ten predictors when `FROZEN_VERSION=v2` (eight, as published, otherwise).
+Both write `phase1/reports/phase1/`. The published v1 analysis is reproduced with
+
+```
+FROZEN_VERSION=v1 PHASE1_REPORT_DIR=reports/phase1_v1 python scripts/reproduce_calibration.py
+FROZEN_VERSION=v1 PHASE1_REPORT_DIR=reports/phase1_v1 python scripts/reproduce_robustness.py
+```
+
+and its tables are tracked under `phase1/reports/phase1_v1/` for the record; `scripts/v1_v2_delta.py`
+regenerates `docs/v1-v2-delta.md` from the two directories. The TP53 stage reads
+`tp53_splice_scored_v2.parquet` and uses all ten predictors under v2 (eight, as published, under v1).
+
+## Likelihood ratios on two bases
+
+Since v2 became the analysis set, phase 5 reports every LR+ twice: at the scanned observed-value
+threshold, with the specificity that threshold achieves (`lr_plus`, `specificity_achieved`), and
+interpolated to exactly the nominal specificity on the empirical ROC (`lr_plus_interp`,
+`sensitivity_interp`, with their own bootstrap intervals). Evidence bands (`acmg_tier`) are assigned
+on the interpolated basis; `acmg_tier_observed` keeps the scanned-threshold band. The same pair is
+written for the 90 / 95 / 97.5 / 99 % operating points (`phase8_lr_plus_operating_points.csv`), and
+`phase8_lr_placement_decomposition.csv` splits every v1 -> v2 change at the observed threshold into
+score change (interpolated Δ) and threshold placement (`docs/lr-stability-check.md`).

@@ -11,8 +11,8 @@ Three views, written to one report:
      same cell in the v2 run is read back;
   C. every numeric cell in every result table, v1 against v2, sorted by |delta|.
 
-    python scripts/v1_v2_delta.py --v2 phase1/reports/phase1_v2 \
-        --manuscript ~/Desktop/calibration_draft.docx --out docs/v1-v2-delta.md
+    python scripts/v1_v2_delta.py --manuscript ~/Desktop/calibration_draft.docx --out docs/v1-v2-delta.md
+    (v1 = phase1/reports/phase1_v1, the published run; v2 = phase1/reports/phase1, the current run)
 """
 from __future__ import annotations
 
@@ -27,7 +27,8 @@ import numpy as np
 import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
-V1 = REPO / "phase1" / "reports" / "phase1"
+V1 = REPO / "phase1" / "reports" / "phase1_v1"      # the published v1 run, kept for the record
+V2 = REPO / "phase1" / "reports" / "phase1"          # the current (v2) run
 
 
 def load_checker():
@@ -318,7 +319,7 @@ def all_cells(v1d: Path, v2d: Path, top: int = 150) -> tuple[str, dict]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--v1", default=str(V1))
-    ap.add_argument("--v2", required=True)
+    ap.add_argument("--v2", default=str(V2))
     ap.add_argument("--manuscript", required=True)
     ap.add_argument("--column-report", default=str(REPO / "phase1" / "data" / "frozen" / "frozen_matrix_v2_column_report.tsv"))
     ap.add_argument("--tests", default=None, help="path to a pytest output file to embed")

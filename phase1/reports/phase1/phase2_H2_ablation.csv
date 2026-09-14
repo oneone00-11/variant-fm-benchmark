@@ -1,5 +1,5 @@
 model,ablation,full_rho,ablated_rho,delta_full_minus_ablated,ci95,evo_contributes
-M1_enet,drop_conservation,0.773,0.7739,-0.0009,"[-0.0025, 0.0009]",ns
-M1_enet,drop_all_evo,0.773,0.7708,0.0022,"[-0.0014, 0.0066]",ns
-M2_gbt,drop_conservation,0.7589,0.7583,0.0005,"[-0.0056, 0.0042]",ns
-M2_gbt,drop_all_evo,0.7589,0.7543,0.0046,"[-0.0109, 0.0154]",ns
+M1_enet,drop_conservation,0.7738,0.7732,0.0007,"[-0.0010, 0.0021]",ns
+M1_enet,drop_all_evo,0.7738,0.7706,0.0032,"[0.0005, 0.0064]",YES
+M2_gbt,drop_conservation,0.7577,0.7595,-0.0018,"[-0.0108, 0.0040]",ns
+M2_gbt,drop_all_evo,0.7577,0.7573,0.0004,"[-0.0127, 0.0100]",ns

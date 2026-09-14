@@ -1,0 +1,11 @@
+analysis,condition,statistic,T_obs,k,n_assignments,p_exact,p_wild_rademacher,delta_rho_obs,delta_brier_obs
+delta_rho,BRCA1_included,DL-pooled Fisher-z delta,0.026828105852380796,7,128,0.125,0.131,0.011736626432293673,
+delta_rho,BRCA1_excluded,DL-pooled Fisher-z delta,0.020794142043469327,6,64,0.25,0.238,0.010432554930998705,
+delta_brier,isotonic/y_assay/BRCA1_included,n-weighted per-gene Brier delta,0.008541083510183903,7,128,0.046875,0.056,,0.008541083510183903
+delta_brier,isotonic/y_assay/BRCA1_excluded,n-weighted per-gene Brier delta,0.01156721084994472,6,64,0.0625,0.0595,,0.01156721084994472
+delta_brier,isotonic/y_clinvar/BRCA1_included,n-weighted per-gene Brier delta,0.011850020634334515,7,128,0.140625,0.1345,,0.011850020634334515
+delta_brier,isotonic/y_clinvar/BRCA1_excluded,n-weighted per-gene Brier delta,0.019220726190116524,6,64,0.09375,0.0955,,0.019220726190116524
+delta_brier,platt/y_assay/BRCA1_included,n-weighted per-gene Brier delta,0.00856163947235824,7,128,0.03125,0.03,,0.00856163947235824
+delta_brier,platt/y_assay/BRCA1_excluded,n-weighted per-gene Brier delta,0.010781484977331966,6,64,0.0625,0.0585,,0.010781484977331966
+delta_brier,platt/y_clinvar/BRCA1_included,n-weighted per-gene Brier delta,0.011970568132140294,7,128,0.109375,0.1125,,0.011970568132140294
+delta_brier,platt/y_clinvar/BRCA1_excluded,n-weighted per-gene Brier delta,0.016880792900128117,6,64,0.09375,0.1015,,0.016880792900128117

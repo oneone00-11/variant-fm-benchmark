@@ -95,14 +95,15 @@ def run_stage(module: str, label: str, n: int, total: int,
         sys.exit(f"\nFAILED at stage {n}/{total} ({module}); exit code {r.returncode}")
 
 
-# Published content hashes. v1 is the manuscript's analysis set; v2 replaces the SpliceAI,
-# Pangolin and Nucleotide Transformer columns with the pinned full-precision scorings
-# (phase1/src/phase1_build_frozen_matrix_v2.py) and is selected with FROZEN_VERSION=v2.
+# Published content hashes. v2 is the manuscript's analysis set: frozen-matrix-v1 with the
+# SpliceAI, Pangolin and Nucleotide Transformer columns replaced by the pinned full-precision
+# scorings (phase1/src/phase1_build_frozen_matrix_v2.py). v1 is rebuilt and verified first
+# because v2 is built from it; FROZEN_VERSION=v1 reruns the earlier release's analysis.
 PINS = {
     "v1": ("2a0e249b44906f11ed91ce4746aba7389d8fff70d791a17710a3e26ec66d3199", 21410, 7, 1781),
     "v2": ("8666d0258e3078d05ff2af131a962f6f18c647559308650b090341440ed54752", 21410, 7, 1781),
 }
-FROZEN_VERSION = os.environ.get("FROZEN_VERSION", "v1")
+FROZEN_VERSION = os.environ.get("FROZEN_VERSION", "v2")
 REPORT_DIR = os.environ.get("PHASE1_REPORT_DIR", "reports/phase1")
 
 

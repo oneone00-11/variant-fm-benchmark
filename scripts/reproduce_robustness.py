@@ -44,6 +44,8 @@ STAGES = [
     ("src.make_raw",                   "regenerate Phase-1 build input"),
     ("src.phase1_build_frozen_matrix", "rebuild + verify frozen-matrix-v1"),
     ("src.phase8_robustness",          "reviewer robustness analyses"),
+    ("src.phase8_lr_decomposition",    "LR+ v1 -> v2: score change versus threshold placement"),
+    ("src.phase8_per_gene_deltas",     "per-gene fusion-minus-best-single deltas (ranking, calibration)"),
 ]
 
 

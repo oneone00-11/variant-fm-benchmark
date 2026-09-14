@@ -54,7 +54,7 @@ from .phase2_model import (usable_features, rank_within_gene,
                            rank_target_within_gene, logo_oof,
                            per_gene_rho, dl_pool)
 from .phase3_calibration import logo_calibrate, brier, CAL_METHODS
-from .phase5_likelihood_ratios import lr_at_specificity, acmg_tier
+from .phase5_likelihood_ratios import lr_at_specificity, lr_interp_at_specificity, acmg_tier
 
 N_BOOT = 2000
 # (f) fixed operating points; 0.95 is the phase5 primary, kept for continuity
@@ -346,8 +346,10 @@ def stratified_selection_test(df, scores):
 # (f) LR+ at multiple fixed operating points
 # ---------------------------------------------------------------------------
 def lr_plus_operating_points(df, scores, label_col="y_assay"):
-    """LR+ / LR- at SPEC_POINTS for every object, same observed-value
-    threshold scan as phase5 (lr_at_specificity), only the target varies."""
+    """LR+ / LR- at SPEC_POINTS for every object: the observed-value threshold
+    scan of phase5 (lr_at_specificity) and, beside it, the value interpolated to
+    exactly the nominal specificity (lr_interp_at_specificity), which is the
+    tier basis. Only the target varies."""
     y = df[label_col].astype(float).to_numpy()
     rows = []
     for brca in ("included", "excluded"):
@@ -359,6 +361,7 @@ def lr_plus_operating_points(df, scores, label_col="y_assay"):
             yy, ss = y[m].astype(int), s[m]
             for spec in SPEC_POINTS:
                 lrp, lrm, thr, tpr, spec_obs = lr_at_specificity(yy, ss, spec=spec)
+                lri, tpr_i = lr_interp_at_specificity(yy, ss, spec=spec)
                 rows.append({"condition": f"{label_col}/BRCA1_{brca}",
                              "object": name, "target_spec": spec,
                              "threshold": thr, "sensitivity": tpr,
@@ -366,7 +369,10 @@ def lr_plus_operating_points(df, scores, label_col="y_assay"):
                              "n": int(m.sum()), "n_pos": int((yy == 1).sum()),
                              "n_neg": int((yy == 0).sum()),
                              "lr_plus": lrp, "lr_minus": lrm,
-                             "acmg_tier": acmg_tier(lrp)})
+                             "lr_plus_interp": lri, "sensitivity_interp": tpr_i,
+                             "acmg_tier_observed": acmg_tier(lrp),
+                             "acmg_tier": acmg_tier(lri),
+                             "tier_basis": "interpolated to the nominal specificity"})
     return pd.DataFrame(rows)
 
 

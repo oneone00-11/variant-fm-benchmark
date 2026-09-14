@@ -7,8 +7,10 @@ labels — to avoid circularity).
 
 - **Gene panel (7):** BRCA1, BRCA2, BARD1, PALB2, RAD51C, VHL, BAP1
 - **Analysis set:** 21,410 SNVs (GRCh38) that have **both** a functional score
-  **and** a ClinVar record. Content-hash-pinned as **`frozen-matrix-v1`**
-  (`phase1/data/frozen/`); the flat TSV view is `data/processed/score_matrix_final.tsv`
+  **and** a ClinVar record. Content-hash-pinned as **`frozen-matrix-v2`**
+  (`phase1/data/frozen/`; the published `frozen-matrix-v1` is kept beside it and
+  is what v2 is rebuilt from — see [docs/frozen-matrix-v2.md](docs/frozen-matrix-v2.md));
+  the flat TSV view is `data/processed/score_matrix_final.tsv`
 - **External held-out gene:** TP53 (192 splice SNVs), never used for fitting
 
 ## What this repository contains
@@ -33,16 +35,22 @@ external validation on the held-out gene **TP53**.
 - Results: `phase1/reports/phase1/`
 - Method detail: [`docs/NOTE_S9.md`](docs/NOTE_S9.md) (= Supplementary Note S9)
 
-Headline numbers (frozen-matrix-v1, splice subset N = 1,781, LOGO):
+Headline numbers (frozen-matrix-v2, splice subset N = 1,781, LOGO; the v1 values
+are in `phase1/reports/phase1_v1/` and every change is listed in
+[docs/v1-v2-delta.md](docs/v1-v2-delta.md)):
 
 | | fusion (elastic net) | best single | Δ (fusion − single) |
 |---|--:|--:|---|
-| pooled Spearman ρ | 0.773 | 0.761 (Pangolin) | **+0.012** `[0.002, 0.021]` |
-| Brier (isotonic, `y_assay`) | 0.0631 | 0.0717 (Pangolin) | **−0.0085** `[0.0032, 0.0165]` |
-| Brier — TP53, fully held out | 0.0785 | 0.1216 (SpliceAI) | **−0.0431** (directional replication) |
+| pooled Spearman ρ | 0.774 | 0.761 (Pangolin) | **+0.013** `[0.002, 0.024]` |
+| Brier (isotonic, `y_assay`) | 0.0630 | 0.0733 (Pangolin) | **−0.0103** `[0.0047, 0.0182]` |
+| LR+ at 95% specificity, interpolated (raw, `y_assay`) | 17.8 | 16.8 (Pangolin) | **+1.0** `[0.04, 1.61]`, same Moderate band |
+| Brier — TP53, fully held out (ten predictors) | 0.0768 | 0.1178 (Pangolin) | **−0.0410** (directional replication) |
 
 Ranking is effectively saturated (Δρ ≈ 0.01); calibration is not — and the
-calibration gap replicates on a gene the model has never seen.
+calibration gap replicates on a gene the model has never seen. Likelihood ratios
+are reported on two bases — at the scanned threshold with the specificity it
+achieves, and interpolated to exactly the nominal specificity — and evidence bands
+are assigned on the interpolated basis (`phase1/src/phase5_likelihood_ratios.py`).
 
 ### Study B — coverage and model complementarity
 
@@ -97,8 +105,9 @@ variant-fm-benchmark/
 ├── phase1/                    Study A (fusion + calibration + TP53)
 │   ├── src/                   config.py, phase1_* (build/freeze), phase2_model.py
 │   │                          (fusion), phase3_calibration.py, phase4_external_tp53.py
-│   ├── data/frozen/           frozen-matrix-v1 + manifest (sha256-pinned)
-│   └── reports/phase1/        Study A result CSVs + figures
+│   ├── data/frozen/           frozen-matrix-v2 (analysis set) + v1 it is built from, manifests (sha256-pinned)
+│   ├── reports/phase1/        Study A result CSVs (frozen-matrix-v2)
+│   └── reports/phase1_v1/     the published frozen-matrix-v1 result CSVs, kept for the delta
 ├── docs/                      milestone reports 1–8b (Methods/Results record)
 │   └── NOTE_S9.md             Supplementary Note S9 (Study A reproduction)
 ├── results/
@@ -131,17 +140,21 @@ itself; see [docs/NOTE_S9.md](docs/NOTE_S9.md).)
 pip install -r requirements.txt
 python scripts/reproduce_calibration.py
 ```
-Runs, in order: build input → frozen-matrix integrity check (sha256 against
-`phase1/data/frozen/manifest_v1.json`) → directionality gate → H1/H2 fusion →
+Runs, in order: build input → frozen-matrix-v1 rebuild and integrity check (sha256
+against `phase1/data/frozen/manifest_v1.json`) → frozen-matrix-v2 build from v1 and
+integrity check (`manifest_v2.json`) → directionality gate → H1/H2 fusion →
 H3 calibration → TP53 external validation → H4 likelihood ratios and Tavtigian
 bands → evidence yield → weight stability and training-gene thinning → label
 contrast and selection test → intronic-offset drop sensitivity → sampling-frame
-reweighting (run and balance diagnostics). Thirteen stages. Writes
+reweighting (run and balance diagnostics). Fourteen stages. Writes
 `phase1/reports/phase1/` and prints the headline Δρ / ΔBrier table. Seeded
-(`RANDOM_SEED` in `phase1/src/config.py`); deterministic.
-Checkout `frozen-matrix-v1` to pin the exact matrix the manuscript used:
+(`RANDOM_SEED` in `phase1/src/config.py`); deterministic. `FROZEN_VERSION=v1`
+in the environment reruns the published v1 analysis instead (set
+`PHASE1_REPORT_DIR` to keep its tables apart).
+Checkout `frozen-matrix-v2` to pin the exact matrix the manuscript used
+(`frozen-matrix-v1` for the earlier release):
 ```bash
-git checkout frozen-matrix-v1
+git checkout frozen-matrix-v2
 ```
 
 **Study A — reviewer robustness analyses** (Phase 8: exact sign-flip tests,
@@ -173,18 +186,21 @@ so output is deterministic. The script prints the headline splice ranking at the
 ### Reproducibility scope — what is and is not reproducible
 
 **The analyses above are fully reproducible on CPU from the committed matrix.**
-**The upstream model *scores* are not all reproducible**, and two are known not to be:
+**The upstream model *scores*** were not all reproducible in the published
+`frozen-matrix-v1`, and `frozen-matrix-v2` exists to repair that:
 
-| Model | Score reproducible? | Why |
+| Model | v1 column | v2 column |
 |---|---|---|
-| Nucleotide Transformer | **No** | The original scoring was a one-off cloud-GPU run; that script and its environment were not committed. `scripts/92_score_nt.py` is an *archival reconstruction* of the procedure, not the original code, and the exact context window of the original run is not confirmed. Re-running it needs a GPU and will not be byte-identical. |
-| Pangolin | **No** | Installed from an unpinned git revision; the exact revision was not recorded, so the scoring environment cannot be reconstructed byte-identically. |
-| All others | Yes | Deterministic given the pinned inputs in "Data acquisition". |
+| Nucleotide Transformer | one-off cloud-GPU run; script and context window not recorded (`scripts/92_score_nt.py` is an archival reconstruction) | the companion atlas's pinned scorer (`models/nt/score.py`, 6,000-bp window, masked 6-mer LLR); agrees with v1 at Spearman ρ = 0.9997 |
+| Pangolin | unpinned git checkout, printed to 2 d.p. | git `5cf94b8`, full float precision; rounds back to the v1 column value for value |
+| SpliceAI | 1.3.1 CLI, printed to 2 d.p. | same tool, full float precision; rounds back to the v1 column |
+| All others | deterministic given the pinned inputs in "Data acquisition" | unchanged |
 
-Both models are therefore **excluded from the TP53 external validation** (Study A
-uses an 8-feature fusion there; see `phase1/src/phase4_external_tp53.py`). This
-matches the manuscript's Methods §2.5 — the limitation is declared, not worked
-around.
+The TP53 external validation therefore uses all ten predictors under v2 (an
+8-feature fusion under v1; `phase1/src/phase4_external_tp53.py` follows
+`FROZEN_VERSION`). Provenance of every re-scored column is in
+[docs/column-provenance.md](docs/column-provenance.md) and the manifests beside
+the matrix.
 
 ## The final evaluation matrix — `data/processed/score_matrix_final.tsv`
 
@@ -274,8 +290,9 @@ non-commercial) — see the table above and the data-licensing note in `LICENSE`
 
 ## Status
 
-Both analyses are complete and reproducible on CPU from the committed frozen matrix.
-Model *scoring* is not uniformly reproducible: the Nucleotide Transformer and
-Pangolin scores cannot be regenerated byte-identically (see "Reproducibility scope"
-above) — this is a declared limitation, and both are excluded from the external
-validation. Pending future work: Evo2 / ESM (need GPU; columns reserved as NA).
+Both analyses are complete and reproducible on CPU from the committed frozen
+matrices. The three model columns that could not be regenerated byte-identically
+in `frozen-matrix-v1` were re-scored under pinned environments for
+`frozen-matrix-v2`, which is the analysis set the manuscript reports (see
+"Reproducibility scope" above). Pending future work: Evo2 / ESM (need GPU; columns
+reserved as NA).

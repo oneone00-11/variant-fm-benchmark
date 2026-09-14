@@ -1,0 +1,2004 @@
+{
+ "_generated_by": "scripts/build_expected_values.py",
+ "_generated_at_utc": "2026-09-14T03:38:48.182654+00:00",
+ "_git_commit": "a5e94f5c73ca665d8bcf6a913c5e9509de297498",
+ "_reports": "phase1/reports/phase1",
+ "values": {
+  "h1.overall.fusion_rho": {
+   "value": "0.774",
+   "file": "phase2_H1_stratified.csv",
+   "where": {
+    "stratum": "overall"
+   },
+   "col": "fusion_rho",
+   "kind": "num",
+   "dp": 3
+  },
+  "h1.overall.single_rho": {
+   "value": "0.761",
+   "file": "phase2_H1_stratified.csv",
+   "where": {
+    "stratum": "overall"
+   },
+   "col": "single_rho",
+   "kind": "num",
+   "dp": 3
+  },
+  "h1.overall.delta": {
+   "value": "0.013",
+   "file": "phase2_H1_stratified.csv",
+   "where": {
+    "stratum": "overall"
+   },
+   "col": "delta",
+   "kind": "num",
+   "dp": 3
+  },
+  "h1.overall.ci_lo": {
+   "value": "0.002",
+   "file": "phase2_H1_stratified.csv",
+   "where": {
+    "stratum": "overall"
+   },
+   "col": "ci95",
+   "kind": "ci_lo",
+   "dp": 3
+  },
+  "h1.overall.ci_hi": {
+   "value": "0.024",
+   "file": "phase2_H1_stratified.csv",
+   "where": {
+    "stratum": "overall"
+   },
+   "col": "ci95",
+   "kind": "ci_hi",
+   "dp": 3
+  },
+  "h1.core_like.delta": {
+   "value": "0.0337",
+   "file": "phase2_H1_stratified.csv",
+   "where": {
+    "stratum": "core_like"
+   },
+   "col": "delta",
+   "kind": "num",
+   "dp": 4
+  },
+  "h1.region.delta": {
+   "value": "0.0217",
+   "file": "phase2_H1_stratified.csv",
+   "where": {
+    "stratum": "region"
+   },
+   "col": "delta",
+   "kind": "num",
+   "dp": 4
+  },
+  "h3.dBrier.y_assay/BRCA1_included": {
+   "value": "0.0103",
+   "file": "phase3_H3_headline.csv",
+   "where": {
+    "set": "y_assay/BRCA1_included",
+    "calib": "isotonic"
+   },
+   "col": "dBrier",
+   "kind": "num",
+   "dp": 4
+  },
+  "h3.dBrier.y_assay/BRCA1_excluded": {
+   "value": "0.0117",
+   "file": "phase3_H3_headline.csv",
+   "where": {
+    "set": "y_assay/BRCA1_excluded",
+    "calib": "isotonic"
+   },
+   "col": "dBrier",
+   "kind": "num",
+   "dp": 4
+  },
+  "h3.dBrier.y_clinvar/BRCA1_included": {
+   "value": "0.0124",
+   "file": "phase3_H3_headline.csv",
+   "where": {
+    "set": "y_clinvar/BRCA1_included",
+    "calib": "isotonic"
+   },
+   "col": "dBrier",
+   "kind": "num",
+   "dp": 4
+  },
+  "h3.dBrier.y_clinvar/BRCA1_excluded": {
+   "value": "0.0196",
+   "file": "phase3_H3_headline.csv",
+   "where": {
+    "set": "y_clinvar/BRCA1_excluded",
+    "calib": "isotonic"
+   },
+   "col": "dBrier",
+   "kind": "num",
+   "dp": 4
+  },
+  "h3.yield.n_significant_isotonic": {
+   "value": 3,
+   "file": "phase3_H3_headline.csv",
+   "where": {
+    "calib": "isotonic"
+   },
+   "col": "dYield_ci",
+   "kind": "count_ci_lo_gt0",
+   "dp": null
+  },
+  "h3.yield.fusion.frac_pct": {
+   "value": "74.9",
+   "file": "phase3_calibration_summary.csv",
+   "where": {
+    "set": "y_assay/BRCA1_included",
+    "calib": "isotonic",
+    "model": "fusion_M1"
+   },
+   "col": "actionable_frac",
+   "kind": "pct",
+   "dp": 1
+  },
+  "h3.yield.fusion.acc_pct": {
+   "value": "96.7",
+   "file": "phase3_calibration_summary.csv",
+   "where": {
+    "set": "y_assay/BRCA1_included",
+    "calib": "isotonic",
+    "model": "fusion_M1"
+   },
+   "col": "actionable_acc",
+   "kind": "pct",
+   "dp": 1
+  },
+  "h3.yield.pangolin.frac_pct": {
+   "value": "73.6",
+   "file": "phase3_calibration_summary.csv",
+   "where": {
+    "set": "y_assay/BRCA1_included",
+    "calib": "isotonic",
+    "model": "single:pangolin"
+   },
+   "col": "actionable_frac",
+   "kind": "pct",
+   "dp": 1
+  },
+  "h3.yield.pangolin.acc_pct": {
+   "value": "96.3",
+   "file": "phase3_calibration_summary.csv",
+   "where": {
+    "set": "y_assay/BRCA1_included",
+    "calib": "isotonic",
+    "model": "single:pangolin"
+   },
+   "col": "actionable_acc",
+   "kind": "pct",
+   "dp": 1
+  },
+  "h3.yield.direction": {
+   "value": "fusion_higher",
+   "file": "phase3_calibration_summary.csv",
+   "where": {
+    "set": "y_assay/BRCA1_included",
+    "calib": "isotonic"
+   },
+   "col": "actionable_frac",
+   "kind": "yield_direction",
+   "dp": null,
+   "note": "sign of fusion minus Pangolin high-confidence fraction in the primary condition"
+  },
+  "tp53.fusion.brier": {
+   "value": "0.077",
+   "file": "phase4_tp53_external.csv",
+   "where": {
+    "model": "startswith:fusion"
+   },
+   "col": "Brier",
+   "kind": "num",
+   "dp": 3
+  },
+  "tp53.best.brier": {
+   "value": "0.118",
+   "file": "phase4_tp53_external.csv",
+   "where": {
+    "model": "startswith:best_single"
+   },
+   "col": "Brier",
+   "kind": "num",
+   "dp": 3
+  },
+  "tp53.fusion.row": {
+   "value": "fusion_10feat",
+   "file": "phase4_tp53_external.csv",
+   "where": {
+    "model": "startswith:fusion"
+   },
+   "col": "model",
+   "kind": "str",
+   "dp": null
+  },
+  "tp53.best.row": {
+   "value": "best_single(pangolin)",
+   "file": "phase4_tp53_external.csv",
+   "where": {
+    "model": "startswith:best_single"
+   },
+   "col": "model",
+   "kind": "str",
+   "dp": null
+  },
+  "ipw.decile.w_min": {
+   "value": "0.72",
+   "file": "ipw_weight_diagnostics.csv",
+   "where": {
+    "scheme": "decile"
+   },
+   "col": "w_min",
+   "kind": "num",
+   "dp": 2
+  },
+  "ipw.decile.w_max": {
+   "value": "1.24",
+   "file": "ipw_weight_diagnostics.csv",
+   "where": {
+    "scheme": "decile"
+   },
+   "col": "w_max",
+   "kind": "num",
+   "dp": 2
+  },
+  "ipw.decile.ESS_over_n": {
+   "value": "0.97",
+   "file": "ipw_weight_diagnostics.csv",
+   "where": {
+    "scheme": "decile"
+   },
+   "col": "ESS_over_n",
+   "kind": "num",
+   "dp": 2
+  },
+  "ipw.whole.observed": {
+   "value": "1.26",
+   "file": "ipw_frame_balance_wholegene.csv",
+   "where": {
+    "gene": "POOLED"
+   },
+   "col": "mean_abs_z_observed",
+   "kind": "num",
+   "dp": 2
+  },
+  "ipw.whole.remainder": {
+   "value": "0.62",
+   "file": "ipw_frame_balance_wholegene.csv",
+   "where": {
+    "gene": "POOLED"
+   },
+   "col": "mean_abs_z_remainder",
+   "kind": "num",
+   "dp": 2
+  },
+  "ipw.window.observed": {
+   "value": "0.92",
+   "file": "ipw_frame_balance.csv",
+   "where": {
+    "gene": "POOLED"
+   },
+   "col": "mean_abs_z_observed",
+   "kind": "num",
+   "dp": 2
+  },
+  "ipw.window.remainder": {
+   "value": "0.80",
+   "file": "ipw_frame_balance.csv",
+   "where": {
+    "gene": "POOLED"
+   },
+   "col": "mean_abs_z_remainder",
+   "kind": "num",
+   "dp": 2
+  },
+  "h4.raw.fusion.lr_plus": {
+   "value": "18.1",
+   "file": "phase5_lr_headline.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "calibration": "raw",
+    "cal_method": "isotonic"
+   },
+   "col": "lr_plus_fusion",
+   "kind": "num",
+   "dp": 1
+  },
+  "h4.raw.best.lr_plus": {
+   "value": "17.0",
+   "file": "phase5_lr_headline.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "calibration": "raw",
+    "cal_method": "isotonic"
+   },
+   "col": "lr_plus_best_single",
+   "kind": "num",
+   "dp": 1
+  },
+  "h4.raw.fusion.lr_plus_interp": {
+   "value": "17.8",
+   "file": "phase5_lr_headline.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "calibration": "raw",
+    "cal_method": "isotonic"
+   },
+   "col": "lr_plus_fusion_interp",
+   "kind": "num",
+   "dp": 1
+  },
+  "h4.raw.best.lr_plus_interp": {
+   "value": "16.8",
+   "file": "phase5_lr_headline.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "calibration": "raw",
+    "cal_method": "isotonic"
+   },
+   "col": "lr_plus_best_single_interp",
+   "kind": "num",
+   "dp": 1
+  },
+  "h4.clinvar_strong_raw_observed.y_clinvar/BRCA1_included": {
+   "value": 7,
+   "file": "phase5_likelihood_ratios.csv",
+   "where": {
+    "condition": "y_clinvar/BRCA1_included",
+    "calibration": "raw",
+    "cal_method": "isotonic"
+   },
+   "col": "acmg_tier_observed",
+   "kind": "count_eq:Strong",
+   "dp": null
+  },
+  "h4.clinvar_strong_raw_interp.y_clinvar/BRCA1_included": {
+   "value": 6,
+   "file": "phase5_likelihood_ratios.csv",
+   "where": {
+    "condition": "y_clinvar/BRCA1_included",
+    "calibration": "raw",
+    "cal_method": "isotonic"
+   },
+   "col": "acmg_tier",
+   "kind": "count_eq:Strong",
+   "dp": null
+  },
+  "h4.clinvar_strong_raw_observed.y_clinvar/BRCA1_excluded": {
+   "value": 8,
+   "file": "phase5_likelihood_ratios.csv",
+   "where": {
+    "condition": "y_clinvar/BRCA1_excluded",
+    "calibration": "raw",
+    "cal_method": "isotonic"
+   },
+   "col": "acmg_tier_observed",
+   "kind": "count_eq:Strong",
+   "dp": null
+  },
+  "h4.clinvar_strong_raw_interp.y_clinvar/BRCA1_excluded": {
+   "value": 6,
+   "file": "phase5_likelihood_ratios.csv",
+   "where": {
+    "condition": "y_clinvar/BRCA1_excluded",
+    "calibration": "raw",
+    "cal_method": "isotonic"
+   },
+   "col": "acmg_tier",
+   "kind": "count_eq:Strong",
+   "dp": null
+  },
+  "h4.assay_strong_interp_any_stage": {
+   "value": 0,
+   "file": "phase5_likelihood_ratios.csv",
+   "where": {
+    "condition": "startswith:y_assay",
+    "cal_method": "isotonic"
+   },
+   "col": "acmg_tier",
+   "kind": "count_eq:Strong",
+   "dp": null
+  },
+  "h4.assay_strong_observed_any_stage": {
+   "value": 2,
+   "file": "phase5_likelihood_ratios.csv",
+   "where": {
+    "condition": "startswith:y_assay",
+    "cal_method": "isotonic"
+   },
+   "col": "acmg_tier_observed",
+   "kind": "count_eq:Strong",
+   "dp": null
+  },
+  "h4.interp_resolves": {
+   "value": [
+    "y_assay/BRCA1_included|calibrated_isotonic",
+    "y_assay/BRCA1_included|raw"
+   ],
+   "file": "phase5_lr_headline.csv",
+   "where": {
+    "cal_method": "isotonic"
+   },
+   "col": "fusion_better_interp",
+   "kind": "rows_true",
+   "dp": null,
+   "note": "condition|calibration rows whose interpolated paired-difference interval excludes zero"
+  },
+  "h4.observed_resolves": {
+   "value": [],
+   "file": "phase5_lr_headline.csv",
+   "where": {
+    "cal_method": "isotonic"
+   },
+   "col": "fusion_better",
+   "kind": "rows_true",
+   "dp": null
+  },
+  "h4.interp_tier_crossings": {
+   "value": 0,
+   "file": "phase5_lr_headline.csv",
+   "where": {
+    "cal_method": "isotonic"
+   },
+   "col": "crosses_a_tier_boundary",
+   "kind": "count_true",
+   "dp": null
+  },
+  "h4.observed_tier_crossings": {
+   "value": 1,
+   "file": "phase5_lr_headline.csv",
+   "where": {
+    "cal_method": "isotonic"
+   },
+   "col": "crosses_a_tier_boundary_observed",
+   "kind": "count_true",
+   "dp": null
+  },
+  "h4.cal_effect.median_abs_change_interp": {
+   "value": "0.46",
+   "file": "phase5_calibration_effect.csv",
+   "where": {
+    "cal_method": "isotonic"
+   },
+   "col": "median_abs_change_lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "h4.cal_effect.cells_changing_tier": {
+   "value": 3,
+   "file": "phase5_calibration_effect.csv",
+   "where": {
+    "cal_method": "isotonic"
+   },
+   "col": "cells_changing_tier",
+   "kind": "int",
+   "dp": null
+  },
+  "h4.cal_effect.cells_with_a_tier": {
+   "value": 48,
+   "file": "phase5_calibration_effect.csv",
+   "where": {
+    "cal_method": "isotonic"
+   },
+   "col": "cells_with_a_tier",
+   "kind": "int",
+   "dp": null
+  },
+  "h5b.fusion.yield_conf": {
+   "value": "0.749",
+   "file": "phase5b_evidence_yield.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "fusion_M1"
+   },
+   "col": "yield_confidence_0.90_0.10",
+   "kind": "num",
+   "dp": 3
+  },
+  "h5b.fusion.yield_moderate": {
+   "value": "0.870",
+   "file": "phase5b_evidence_yield.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "fusion_M1"
+   },
+   "col": "yield_acmg_moderate_or_above",
+   "kind": "num",
+   "dp": 3
+  },
+  "thin.mean6": {
+   "value": "0.0596",
+   "file": "phase6_training_gene_summary.csv",
+   "where": {
+    "n_training_genes": 6
+   },
+   "col": "mean",
+   "kind": "num",
+   "dp": 4
+  },
+  "thin.mean3": {
+   "value": "0.0609",
+   "file": "phase6_training_gene_summary.csv",
+   "where": {
+    "n_training_genes": 3
+   },
+   "col": "mean",
+   "kind": "num",
+   "dp": 4
+  },
+  "thin.n_genes_worse": {
+   "value": 6,
+   "file": "phase6_training_gene_summary.csv",
+   "where": {
+    "n_training_genes": 3
+   },
+   "col": "n_genes_worse_than_6",
+   "kind": "int",
+   "dp": null
+  },
+  "weights.alphagenome.mean": {
+   "value": "0.224",
+   "file": "phase6_enet_weight_stability.csv",
+   "where": {
+    "_index": "alphagenome"
+   },
+   "col": "mean",
+   "kind": "num",
+   "dp": 3
+  },
+  "weights.alphagenome.sd": {
+   "value": "0.019",
+   "file": "phase6_enet_weight_stability.csv",
+   "where": {
+    "_index": "alphagenome"
+   },
+   "col": "sd",
+   "kind": "num",
+   "dp": 3
+  },
+  "weights.pangolin.mean": {
+   "value": "0.218",
+   "file": "phase6_enet_weight_stability.csv",
+   "where": {
+    "_index": "pangolin"
+   },
+   "col": "mean",
+   "kind": "num",
+   "dp": 3
+  },
+  "weights.pangolin.sd": {
+   "value": "0.029",
+   "file": "phase6_enet_weight_stability.csv",
+   "where": {
+    "_index": "pangolin"
+   },
+   "col": "sd",
+   "kind": "num",
+   "dp": 3
+  },
+  "weights.spliceai.mean": {
+   "value": "0.186",
+   "file": "phase6_enet_weight_stability.csv",
+   "where": {
+    "_index": "spliceai"
+   },
+   "col": "mean",
+   "kind": "num",
+   "dp": 3
+  },
+  "weights.spliceai.sd": {
+   "value": "0.021",
+   "file": "phase6_enet_weight_stability.csv",
+   "where": {
+    "_index": "spliceai"
+   },
+   "col": "sd",
+   "kind": "num",
+   "dp": 3
+  },
+  "labels.assay_labelled": {
+   "value": 1675,
+   "file": "phase7_base.csv",
+   "where": {},
+   "col": "assay_labelled",
+   "kind": "int",
+   "dp": null
+  },
+  "labels.clinvar_labelled": {
+   "value": 946,
+   "file": "phase7_base.csv",
+   "where": {},
+   "col": "clinvar_labelled",
+   "kind": "int",
+   "dp": null
+  },
+  "labels.both": {
+   "value": 907,
+   "file": "phase7_base.csv",
+   "where": {},
+   "col": "both",
+   "kind": "int",
+   "dp": null
+  },
+  "labels.assay_only": {
+   "value": 768,
+   "file": "phase7_base.csv",
+   "where": {},
+   "col": "assay_only",
+   "kind": "int",
+   "dp": null
+  },
+  "labels.agreement": {
+   "value": "0.967",
+   "file": "phase7_label_agreement.csv",
+   "where": {},
+   "col": "agreement",
+   "kind": "num",
+   "dp": 3
+  },
+  "labels.kappa": {
+   "value": "0.93",
+   "file": "phase7_label_agreement.csv",
+   "where": {},
+   "col": "kappa",
+   "kind": "num",
+   "dp": 2
+  },
+  "labels.pos_assay": {
+   "value": "0.61",
+   "file": "phase7_label_agreement.csv",
+   "where": {},
+   "col": "positive_rate_assay",
+   "kind": "num",
+   "dp": 2
+  },
+  "labels.pos_clinvar": {
+   "value": "0.60",
+   "file": "phase7_label_agreement.csv",
+   "where": {},
+   "col": "positive_rate_clinvar",
+   "kind": "num",
+   "dp": 2
+  },
+  "labels.strong_fun": {
+   "value": 5,
+   "file": "phase7_label_contrast.csv",
+   "where": {},
+   "col": "tier_fun",
+   "kind": "count_eq:Strong",
+   "dp": null
+  },
+  "labels.strong_cv": {
+   "value": 6,
+   "file": "phase7_label_contrast.csv",
+   "where": {},
+   "col": "tier_cv",
+   "kind": "count_eq:Strong",
+   "dp": null
+  },
+  "sel.fusion.recorded.sens": {
+   "value": "0.971",
+   "file": "phase7_selection_test.csv",
+   "where": {
+    "object": "fusion_M1",
+    "subset": "ClinVar-recorded"
+   },
+   "col": "sensitivity",
+   "kind": "num",
+   "dp": 3
+  },
+  "sel.fusion.assay_only.sens": {
+   "value": "0.681",
+   "file": "phase7_selection_test.csv",
+   "where": {
+    "object": "fusion_M1",
+    "subset": "assay-only"
+   },
+   "col": "sensitivity",
+   "kind": "num",
+   "dp": 3
+  },
+  "sf.rho.incl.p": {
+   "value": "0.1250",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_rho",
+    "condition": "BRCA1_included"
+   },
+   "col": "p_exact",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.rho.incl.num": {
+   "value": {
+    "numerator": 16,
+    "denominator": 128
+   },
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_rho",
+    "condition": "BRCA1_included"
+   },
+   "col": "p_exact",
+   "kind": "frac",
+   "dp": null
+  },
+  "sf.rho.excl.p": {
+   "value": "0.2500",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_rho",
+    "condition": "BRCA1_excluded"
+   },
+   "col": "p_exact",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.primary.num": {
+   "value": {
+    "numerator": 4,
+    "denominator": 128
+   },
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_assay/BRCA1_included"
+   },
+   "col": "p_exact",
+   "kind": "frac",
+   "dp": null
+  },
+  "sf.brier.primary.p": {
+   "value": "0.0312",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_assay/BRCA1_included"
+   },
+   "col": "p_exact",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.primary.T_obs": {
+   "value": "0.0103",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_assay/BRCA1_included"
+   },
+   "col": "T_obs",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.isotonic/y_assay/BRCA1_included.p": {
+   "value": "0.0312",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_assay/BRCA1_included"
+   },
+   "col": "p_exact",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.isotonic/y_assay/BRCA1_included.obs": {
+   "value": "0.0103",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_assay/BRCA1_included"
+   },
+   "col": "delta_brier_obs",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.isotonic/y_assay/BRCA1_excluded.p": {
+   "value": "0.0625",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_assay/BRCA1_excluded"
+   },
+   "col": "p_exact",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.isotonic/y_assay/BRCA1_excluded.obs": {
+   "value": "0.0117",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_assay/BRCA1_excluded"
+   },
+   "col": "delta_brier_obs",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.isotonic/y_clinvar/BRCA1_included.p": {
+   "value": "0.1094",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_clinvar/BRCA1_included"
+   },
+   "col": "p_exact",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.isotonic/y_clinvar/BRCA1_included.obs": {
+   "value": "0.0124",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_clinvar/BRCA1_included"
+   },
+   "col": "delta_brier_obs",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.isotonic/y_clinvar/BRCA1_excluded.p": {
+   "value": "0.0938",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_clinvar/BRCA1_excluded"
+   },
+   "col": "p_exact",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.isotonic/y_clinvar/BRCA1_excluded.obs": {
+   "value": "0.0196",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_clinvar/BRCA1_excluded"
+   },
+   "col": "delta_brier_obs",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.platt/y_assay/BRCA1_included.p": {
+   "value": "0.0312",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "platt/y_assay/BRCA1_included"
+   },
+   "col": "p_exact",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.platt/y_assay/BRCA1_included.obs": {
+   "value": "0.0085",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "platt/y_assay/BRCA1_included"
+   },
+   "col": "delta_brier_obs",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.platt/y_assay/BRCA1_excluded.p": {
+   "value": "0.0625",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "platt/y_assay/BRCA1_excluded"
+   },
+   "col": "p_exact",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.platt/y_assay/BRCA1_excluded.obs": {
+   "value": "0.0107",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "platt/y_assay/BRCA1_excluded"
+   },
+   "col": "delta_brier_obs",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.platt/y_clinvar/BRCA1_included.p": {
+   "value": "0.1094",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "platt/y_clinvar/BRCA1_included"
+   },
+   "col": "p_exact",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.platt/y_clinvar/BRCA1_included.obs": {
+   "value": "0.0119",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "platt/y_clinvar/BRCA1_included"
+   },
+   "col": "delta_brier_obs",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.platt/y_clinvar/BRCA1_excluded.p": {
+   "value": "0.0938",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "platt/y_clinvar/BRCA1_excluded"
+   },
+   "col": "p_exact",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.platt/y_clinvar/BRCA1_excluded.obs": {
+   "value": "0.0167",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "platt/y_clinvar/BRCA1_excluded"
+   },
+   "col": "delta_brier_obs",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.brier.primary.wild": {
+   "value": "0.0370",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_brier",
+    "condition": "isotonic/y_assay/BRCA1_included"
+   },
+   "col": "p_wild_rademacher",
+   "kind": "num",
+   "dp": 4
+  },
+  "sf.rho.incl.wild": {
+   "value": "0.1310",
+   "file": "phase8_sign_flip_exact.csv",
+   "where": {
+    "analysis": "delta_rho",
+    "condition": "BRCA1_included"
+   },
+   "col": "p_wild_rademacher",
+   "kind": "num",
+   "dp": 4
+  },
+  "l2go.min.dropped": {
+   "value": "BARD1+RAD51C",
+   "file": "phase8_leave_two_genes_out.csv",
+   "where": {
+    "_argmin": "delta_rho"
+   },
+   "col": "dropped",
+   "kind": "str",
+   "dp": null
+  },
+  "l2go.max.dropped": {
+   "value": "BAP1+BRCA2",
+   "file": "phase8_leave_two_genes_out.csv",
+   "where": {
+    "_argmax": "delta_rho"
+   },
+   "col": "dropped",
+   "kind": "str",
+   "dp": null
+  },
+  "l2go.min": {
+   "value": "0.0062",
+   "file": "phase8_leave_two_genes_out.csv",
+   "where": {},
+   "col": "delta_rho",
+   "kind": "agg:min",
+   "dp": 4
+  },
+  "l2go.median": {
+   "value": "0.0130",
+   "file": "phase8_leave_two_genes_out.csv",
+   "where": {},
+   "col": "delta_rho",
+   "kind": "agg:median",
+   "dp": 4
+  },
+  "l2go.max": {
+   "value": "0.0207",
+   "file": "phase8_leave_two_genes_out.csv",
+   "where": {},
+   "col": "delta_rho",
+   "kind": "agg:max",
+   "dp": 4
+  },
+  "hk.M1_enet.pooled_rho": {
+   "value": "0.774",
+   "file": "phase8_leaderboard_hk.csv",
+   "where": {
+    "model": "M1_enet"
+   },
+   "col": "pooled_rho",
+   "kind": "num",
+   "dp": 3
+  },
+  "hk.M1_enet.dl_lo": {
+   "value": "0.741",
+   "file": "phase8_leaderboard_hk.csv",
+   "where": {
+    "model": "M1_enet"
+   },
+   "col": "dl_lo",
+   "kind": "num",
+   "dp": 3
+  },
+  "hk.M1_enet.dl_hi": {
+   "value": "0.803",
+   "file": "phase8_leaderboard_hk.csv",
+   "where": {
+    "model": "M1_enet"
+   },
+   "col": "dl_hi",
+   "kind": "num",
+   "dp": 3
+  },
+  "hk.M1_enet.hk_lo": {
+   "value": "0.730",
+   "file": "phase8_leaderboard_hk.csv",
+   "where": {
+    "model": "M1_enet"
+   },
+   "col": "hk_lo",
+   "kind": "num",
+   "dp": 3
+  },
+  "hk.M1_enet.hk_hi": {
+   "value": "0.811",
+   "file": "phase8_leaderboard_hk.csv",
+   "where": {
+    "model": "M1_enet"
+   },
+   "col": "hk_hi",
+   "kind": "num",
+   "dp": 3
+  },
+  "hk.nt.dl_lo": {
+   "value": "0.371",
+   "file": "phase8_leaderboard_hk.csv",
+   "where": {
+    "model": "single:nt"
+   },
+   "col": "dl_lo",
+   "kind": "num",
+   "dp": 3
+  },
+  "hk.nt.dl_hi": {
+   "value": "0.597",
+   "file": "phase8_leaderboard_hk.csv",
+   "where": {
+    "model": "single:nt"
+   },
+   "col": "dl_hi",
+   "kind": "num",
+   "dp": 3
+  },
+  "hk.nt.hk_lo": {
+   "value": "0.364",
+   "file": "phase8_leaderboard_hk.csv",
+   "where": {
+    "model": "single:nt"
+   },
+   "col": "hk_lo",
+   "kind": "num",
+   "dp": 3
+  },
+  "hk.nt.hk_hi": {
+   "value": "0.602",
+   "file": "phase8_leaderboard_hk.csv",
+   "where": {
+    "model": "single:nt"
+   },
+   "col": "hk_hi",
+   "kind": "num",
+   "dp": 3
+  },
+  "hk.gpn_msa.hk_lo": {
+   "value": "0.641",
+   "file": "phase8_leaderboard_hk.csv",
+   "where": {
+    "model": "single:gpn_msa"
+   },
+   "col": "hk_lo",
+   "kind": "num",
+   "dp": 3
+  },
+  "hk.gpn_msa.hk_hi": {
+   "value": "0.689",
+   "file": "phase8_leaderboard_hk.csv",
+   "where": {
+    "model": "single:gpn_msa"
+   },
+   "col": "hk_hi",
+   "kind": "num",
+   "dp": 3
+  },
+  "murphy.brier_fusion": {
+   "value": "0.0630",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "brier_fusion",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.brier_single": {
+   "value": "0.0733",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "brier_single",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.rel_fusion": {
+   "value": "0.0037",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "rel_fusion",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.rel_single": {
+   "value": "0.0044",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "rel_single",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.res_fusion": {
+   "value": "0.1899",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "res_fusion",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.res_single": {
+   "value": "0.1807",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "res_single",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.unc": {
+   "value": "0.2499",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "unc",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.d_brier": {
+   "value": "0.0103",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "d_brier",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.d_brier_lo": {
+   "value": "0.0046",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "d_brier_lo",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.d_brier_hi": {
+   "value": "0.0182",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "d_brier_hi",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.d_rel": {
+   "value": "0.0007",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "d_rel",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.d_rel_lo": {
+   "value": "-0.0011",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "d_rel_lo",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.d_rel_hi": {
+   "value": "0.0141",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "d_rel_hi",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.d_res": {
+   "value": "0.0091",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "d_res",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.d_res_lo": {
+   "value": "0.0002",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "d_res_lo",
+   "kind": "num",
+   "dp": 4
+  },
+  "murphy.d_res_hi": {
+   "value": "0.0121",
+   "file": "phase8_murphy_decomposition.csv",
+   "where": {
+    "condition": "isotonic/y_assay/BRCA1_included",
+    "binning": "width10"
+   },
+   "col": "d_res_hi",
+   "kind": "num",
+   "dp": 4
+  },
+  "sel8.overall.fusion_M1.ClinVar-recorded": {
+   "value": "20.3",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "overall",
+    "object": "fusion_M1",
+    "subset": "ClinVar-recorded"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.overall.fusion_M1.assay-only": {
+   "value": "14.1",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "overall",
+    "object": "fusion_M1",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.overall.cadd.ClinVar-recorded": {
+   "value": "18.7",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "overall",
+    "object": "cadd",
+    "subset": "ClinVar-recorded"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.overall.cadd.assay-only": {
+   "value": "6.6",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "overall",
+    "object": "cadd",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.minus_BRCA1.fusion_M1.ClinVar-recorded": {
+   "value": "20.2",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "minus_BRCA1",
+    "object": "fusion_M1",
+    "subset": "ClinVar-recorded"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.minus_BRCA1.fusion_M1.assay-only": {
+   "value": "13.7",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "minus_BRCA1",
+    "object": "fusion_M1",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.minus_BRCA1.cadd.ClinVar-recorded": {
+   "value": "19.1",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "minus_BRCA1",
+    "object": "cadd",
+    "subset": "ClinVar-recorded"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.minus_BRCA1.cadd.assay-only": {
+   "value": "9.9",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "minus_BRCA1",
+    "object": "cadd",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.offset_core_like.fusion_M1.ClinVar-recorded": {
+   "value": "1.8",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "offset_core_like",
+    "object": "fusion_M1",
+    "subset": "ClinVar-recorded"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.offset_core_like.fusion_M1.assay-only": {
+   "value": "4.4",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "offset_core_like",
+    "object": "fusion_M1",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.offset_core_like.cadd.ClinVar-recorded": {
+   "value": "3.9",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "offset_core_like",
+    "object": "cadd",
+    "subset": "ClinVar-recorded"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.offset_core_like.cadd.assay-only": {
+   "value": "5.0",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "offset_core_like",
+    "object": "cadd",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.offset_region.fusion_M1.ClinVar-recorded": {
+   "value": "16.7",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "offset_region",
+    "object": "fusion_M1",
+    "subset": "ClinVar-recorded"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.offset_region.fusion_M1.assay-only": {
+   "value": "13.2",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "offset_region",
+    "object": "fusion_M1",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.offset_region.cadd.ClinVar-recorded": {
+   "value": "13.8",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "offset_region",
+    "object": "cadd",
+    "subset": "ClinVar-recorded"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.offset_region.cadd.assay-only": {
+   "value": "1.9",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "offset_region",
+    "object": "cadd",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.assay_only_VUS.fusion_M1.assay-only": {
+   "value": "12.1",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "assay_only_VUS",
+    "object": "fusion_M1",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.assay_only_VUS.cadd.assay-only": {
+   "value": "4.4",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "assay_only_VUS",
+    "object": "cadd",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.assay_only_Conflicting/Other.fusion_M1.assay-only": {
+   "value": "17.3",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "assay_only_Conflicting/Other",
+    "object": "fusion_M1",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "sel8.assay_only_Conflicting/Other.cadd.assay-only": {
+   "value": "9.3",
+   "file": "phase8_selection_test_stratified.csv",
+   "where": {
+    "stratum": "assay_only_Conflicting/Other",
+    "object": "cadd",
+    "subset": "assay-only"
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 1
+  },
+  "pergene.rho_favours_n": {
+   "value": 6,
+   "file": "phase8_per_gene_deltas.csv",
+   "where": {},
+   "col": "rho_favours_fusion",
+   "kind": "count_true",
+   "dp": null
+  },
+  "pergene.brier_favours_n": {
+   "value": 6,
+   "file": "phase8_per_gene_deltas.csv",
+   "where": {},
+   "col": "brier_favours_fusion",
+   "kind": "count_true",
+   "dp": null
+  },
+  "pergene.rho_dissent": {
+   "value": "BAP1",
+   "file": "phase8_per_gene_deltas.csv",
+   "where": {
+    "rho_favours_fusion": false
+   },
+   "col": "gene",
+   "kind": "str",
+   "dp": null
+  },
+  "pergene.brier_dissent": {
+   "value": "BARD1",
+   "file": "phase8_per_gene_deltas.csv",
+   "where": {
+    "brier_favours_fusion": false
+   },
+   "col": "gene",
+   "kind": "str",
+   "dp": null
+  },
+  "pergene.best_single": {
+   "value": "pangolin",
+   "file": "phase8_per_gene_deltas.csv",
+   "where": {
+    "gene": "BAP1"
+   },
+   "col": "best_single",
+   "kind": "str",
+   "dp": null
+  },
+  "tp53.rules.fusion_better_n": {
+   "value": 2,
+   "file": "phase4_tp53_label_definitions.csv",
+   "where": {},
+   "col": "fusion_better",
+   "kind": "count_true",
+   "dp": null
+  },
+  "tp53.rules.control.dBrier": {
+   "value": "0.041",
+   "file": "phase4_tp53_label_definitions.csv",
+   "where": {
+    "label_rule": "control-anchored RFS>0"
+   },
+   "col": "dBrier",
+   "kind": "num",
+   "dp": 3
+  },
+  "tp53.rules.control.ci_lo": {
+   "value": "0.025",
+   "file": "phase4_tp53_label_definitions.csv",
+   "where": {
+    "label_rule": "control-anchored RFS>0"
+   },
+   "col": "ci_lo",
+   "kind": "num",
+   "dp": 3
+  },
+  "tp53.rules.control.ci_hi": {
+   "value": "0.059",
+   "file": "phase4_tp53_label_definitions.csv",
+   "where": {
+    "label_rule": "control-anchored RFS>0"
+   },
+   "col": "ci_hi",
+   "kind": "num",
+   "dp": 3
+  },
+  "tp53.rules.median.dBrier": {
+   "value": "0.005",
+   "file": "phase4_tp53_label_definitions.csv",
+   "where": {
+    "label_rule": "median split (top 50%)"
+   },
+   "col": "dBrier",
+   "kind": "num",
+   "dp": 3
+  },
+  "tp53.rules.median.ci_lo": {
+   "value": "-0.014",
+   "file": "phase4_tp53_label_definitions.csv",
+   "where": {
+    "label_rule": "median split (top 50%)"
+   },
+   "col": "ci_lo",
+   "kind": "num",
+   "dp": 3
+  },
+  "tp53.rules.median.ci_hi": {
+   "value": "0.024",
+   "file": "phase4_tp53_label_definitions.csv",
+   "where": {
+    "label_rule": "median split (top 50%)"
+   },
+   "col": "ci_hi",
+   "kind": "num",
+   "dp": 3
+  },
+  "tp53.rules.midband.dBrier": {
+   "value": "0.041",
+   "file": "phase4_tp53_label_definitions.csv",
+   "where": {
+    "label_rule": "NA mid-band |RFS|>=0.5"
+   },
+   "col": "dBrier",
+   "kind": "num",
+   "dp": 3
+  },
+  "tp53.rules.midband.ci_lo": {
+   "value": "0.024",
+   "file": "phase4_tp53_label_definitions.csv",
+   "where": {
+    "label_rule": "NA mid-band |RFS|>=0.5"
+   },
+   "col": "ci_lo",
+   "kind": "num",
+   "dp": 3
+  },
+  "tp53.rules.midband.ci_hi": {
+   "value": "0.061",
+   "file": "phase4_tp53_label_definitions.csv",
+   "where": {
+    "label_rule": "NA mid-band |RFS|>=0.5"
+   },
+   "col": "ci_hi",
+   "kind": "num",
+   "dp": 3
+  },
+  "op.fusion.included.0.9": {
+   "value": "9.40",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "fusion_M1",
+    "target_spec": 0.9
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.included.0.9.interp": {
+   "value": "9.35",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "fusion_M1",
+    "target_spec": 0.9
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.included.0.95": {
+   "value": "18.08",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "fusion_M1",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.included.0.95.interp": {
+   "value": "17.78",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "fusion_M1",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.included.0.975": {
+   "value": "31.85",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "fusion_M1",
+    "target_spec": 0.975
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.included.0.975.interp": {
+   "value": "31.33",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "fusion_M1",
+    "target_spec": 0.975
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.included.0.99": {
+   "value": "68.13",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "fusion_M1",
+    "target_spec": 0.99
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.included.0.99.interp": {
+   "value": "63.82",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "fusion_M1",
+    "target_spec": 0.99
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.excluded.0.9": {
+   "value": "9.31",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_excluded",
+    "object": "fusion_M1",
+    "target_spec": 0.9
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.excluded.0.9.interp": {
+   "value": "9.24",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_excluded",
+    "object": "fusion_M1",
+    "target_spec": 0.9
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.excluded.0.95": {
+   "value": "18.02",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_excluded",
+    "object": "fusion_M1",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.excluded.0.95.interp": {
+   "value": "17.58",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_excluded",
+    "object": "fusion_M1",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.excluded.0.975": {
+   "value": "32.44",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_excluded",
+    "object": "fusion_M1",
+    "target_spec": 0.975
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.excluded.0.975.interp": {
+   "value": "31.65",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_excluded",
+    "object": "fusion_M1",
+    "target_spec": 0.975
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.excluded.0.99": {
+   "value": "73.05",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_excluded",
+    "object": "fusion_M1",
+    "target_spec": 0.99
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.fusion.excluded.0.99.interp": {
+   "value": "63.64",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_excluded",
+    "object": "fusion_M1",
+    "target_spec": 0.99
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.pangolin.included.0.95": {
+   "value": "17.04",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "pangolin",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.pangolin.included.0.95.interp": {
+   "value": "16.76",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "pangolin",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.spliceai.included.0.95": {
+   "value": "16.89",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "spliceai",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.spliceai.included.0.95.interp": {
+   "value": "16.61",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "spliceai",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.cadd.included.0.99": {
+   "value": "57.87",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "cadd",
+    "target_spec": 0.99
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.cadd.included.0.99.interp": {
+   "value": "33.12",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "cadd",
+    "target_spec": 0.99
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.nt.included.0.95": {
+   "value": "6.46",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "nt",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.nt.included.0.95.interp": {
+   "value": "6.36",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "nt",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.mean_M0b.included.0.95": {
+   "value": "16.59",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "mean_M0b",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus",
+   "kind": "num",
+   "dp": 2
+  },
+  "op.mean_M0b.included.0.95.interp": {
+   "value": "16.32",
+   "file": "phase8_lr_plus_operating_points.csv",
+   "where": {
+    "condition": "y_assay/BRCA1_included",
+    "object": "mean_M0b",
+    "target_spec": 0.95
+   },
+   "col": "lr_plus_interp",
+   "kind": "num",
+   "dp": 2
+  }
+ }
+}

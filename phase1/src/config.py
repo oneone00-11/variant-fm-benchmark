@@ -25,13 +25,14 @@ from pathlib import Path
 RAW_MATRIX_PATH = Path("data/raw/variant_scores.parquet")
 OUTPUT_DIR      = Path("data/frozen")                       # frozen matrix + manifest go here
 
-# Which frozen matrix the pipeline reads, and where its reports go. Defaults are the
-# published v1 run, byte for byte. Set FROZEN_VERSION=v2 to run on frozen-matrix-v2
-# (full-precision SpliceAI/Pangolin and the pinned Nucleotide Transformer column; see
-# src/phase1_build_frozen_matrix_v2.py) and PHASE1_REPORT_DIR to keep its outputs apart
-# from the tracked v1 tables. v1 and v2 coexist under data/frozen/.
+# Which frozen matrix the pipeline reads, and where its reports go. The default is
+# frozen-matrix-v2 -- v1 with full-precision SpliceAI/Pangolin and the pinned
+# Nucleotide Transformer column (src/phase1_build_frozen_matrix_v2.py) -- and its
+# reports land in reports/phase1/, which is what the manuscript quotes. The original
+# v1 run is reproduced with FROZEN_VERSION=v1 PHASE1_REPORT_DIR=reports/phase1_v1;
+# its tables are tracked there for the record. v1 and v2 coexist under data/frozen/.
 import os as _os
-FROZEN_VERSION  = _os.environ.get("FROZEN_VERSION", "v1")
+FROZEN_VERSION  = _os.environ.get("FROZEN_VERSION", "v2")
 REPORT_DIR      = Path(_os.environ.get("PHASE1_REPORT_DIR", "reports/phase1"))   # diagnostic tables go here
 # The raw-matrix build (src.phase1_build_frozen_matrix) always produces v1: it is the
 # published freeze of the upstream scoring, and v2 is derived from it. Readers select
