@@ -84,6 +84,7 @@ STAGES = [
     ("src.phase2b_no_offset_drop",     "intronic-offset drop sensitivity", []),
     ("src.ipw_reweight",               "sampling-frame reweighting", []),
     ("src.ipw_reweight",               "sampling-frame balance diagnostics", ["balance"]),
+    ("src.phase9_figures",             "main figures 1-3 from the tracked tables", []),
 ]
 
 

@@ -146,8 +146,9 @@ integrity check (`manifest_v2.json`) → directionality gate → H1/H2 fusion �
 H3 calibration → TP53 external validation → H4 likelihood ratios and Tavtigian
 bands → evidence yield → weight stability and training-gene thinning → label
 contrast and selection test → intronic-offset drop sensitivity → sampling-frame
-reweighting (run and balance diagnostics). Fourteen stages. Writes
-`phase1/reports/phase1/` and prints the headline Δρ / ΔBrier table. Seeded
+reweighting (run and balance diagnostics) → main Figures 1–3. Fifteen stages. Writes
+`phase1/reports/phase1/` (tables, and the figures under `figures/`) and prints the
+headline Δρ / ΔBrier table. Seeded
 (`RANDOM_SEED` in `phase1/src/config.py`); deterministic. `FROZEN_VERSION=v1`
 in the environment reruns the published v1 analysis instead (set
 `PHASE1_REPORT_DIR` to keep its tables apart).

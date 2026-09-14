@@ -313,16 +313,11 @@ def test_the_disclosed_test_count_is_the_measured_one():
         pytest.skip("manuscript not available in this checkout")
     from docx import Document
 
-    words = {"thirty-three": 33, "forty-four": 44, "forty-five": 45,
-             "forty-six": 46, "forty-seven": 47, "forty-eight": 48,
-             "forty-nine": 49, "fifty": 50, "fifty-one": 51, "fifty-two": 52,
-             "fifty-three": 53, "fifty-four": 54, "fifty-five": 55,
-             "fifty-six": 56, "fifty-seven": 57, "fifty-eight": 58,
-             "fifty-nine": 59, "sixty": 60, "sixty-one": 61, "sixty-two": 62,
-             "sixty-three": 63, "sixty-four": 64, "sixty-five": 65,
-             "sixty-six": 66, "sixty-seven": 67, "sixty-eight": 68,
-             "sixty-nine": 69, "seventy": 70, "seventy-one": 71, "seventy-two": 72,
-             "seventy-three": 73, "seventy-four": 74, "seventy-five": 75}
+    units = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    tens = {20: "twenty", 30: "thirty", 40: "forty", 50: "fifty", 60: "sixty",
+            70: "seventy", 80: "eighty", 90: "ninety"}
+    words = {(t if not u else f"{t}-{u}"): n + i
+             for n, t in tens.items() for i, u in enumerate(units)}
     text = " ".join(p.text for p in Document(str(manuscript)).paragraphs)
     m = re.search(r"([A-Za-z-]+) automated tests", text)
     assert m, "the disclosure no longer states a test count"
@@ -359,3 +354,142 @@ def test_tp53_label_definitions_split_as_reported():
         assert approx(d.loc[rule, "ci_lo"], E(f"tp53.rules.{tag}.ci_lo"))
         assert approx(d.loc[rule, "ci_hi"], E(f"tp53.rules.{tag}.ci_hi"))
         assert bool(d.loc[rule, "fusion_better"]) == (float(d.loc[rule, "ci_lo"]) > 0)
+
+
+def test_pooled_table_reproduces_the_leaderboard_and_its_per_gene_points():
+    """Figure 1 draws phase2_per_gene_rho.csv and phase2_pooled_rho.csv; Table 1
+    prints phase2_leaderboard.csv. All three must describe the same estimates."""
+    import sys
+    import pandas as pd
+    sys.path.insert(0, str(REPO / "phase1"))
+    from src.phase2_model import dl_pool
+
+    pool = _csv("phase2_pooled_rho.csv").set_index("model")
+    lb = _csv("phase2_leaderboard.csv").set_index("model")
+    pg = _csv("phase2_per_gene_rho.csv")
+    assert set(pool.index) == set(lb.index)
+    for m, r in lb.iterrows():
+        p = pool.loc[m]
+        if pd.isna(r.pooled_rho):
+            assert pd.isna(p.rho)
+            continue
+        assert round(float(p.rho), 4) == float(r.pooled_rho)
+        assert f"[{p.lo:.3f},{p.hi:.3f}]" == r.ci95
+        assert round(float(p.I2), 1) == float(r.I2) and int(p.k) == int(r.k)
+        g = pg[pg.object == m][["gene", "rho", "n"]]
+        assert len(g) == int(r.k)
+        d = dl_pool(g)
+        assert abs(d["rho"] - p.rho) < 1e-12 and abs(d["I2"] - p.I2) < 1e-9
+
+
+def test_reliability_bins_cover_the_labelled_primary_set_for_both_curves():
+    """Figure 2 plots both curves; each must bin every assay-labelled variant once."""
+    cb = _csv("class_balance.csv")
+    n = int(cb[(cb.label == "y_assay") & (cb.brca1 == "included")].n_labelled.iloc[0])
+    for name in ("phase3_reliability_fusion.csv", "phase3_reliability_best_single.csv"):
+        d = _csv(name)
+        assert int(d.n.sum()) == n, name
+        assert d.mean_pred.between(0, 1).all() and d.frac_pos.between(0, 1).all(), name
+
+
+def test_table_1_rounds_the_unrounded_pooled_values_once():
+    """Table 1 printed the fusion's I^2 as 60 for a true 59.49: the leaderboard stores
+    I^2 to one decimal (59.5) and the table rounded that again. The number check could
+    not see it -- 60 lies within half a unit of 59.5 -- so the table is checked here
+    against the unrounded estimates, rounded half-up once."""
+    from decimal import Decimal, ROUND_HALF_UP
+    import pandas as pd
+
+    manuscript = _manuscript_path()
+    if manuscript is None:
+        pytest.skip("manuscript not available in this checkout")
+    from docx import Document
+
+    def once(x, nd):
+        return str(Decimal(repr(float(x))).quantize(Decimal(1).scaleb(-nd), rounding=ROUND_HALF_UP))
+
+    names = {"Fusion — elastic net (M1)": "M1_enet", "Pangolin": "single:pangolin",
+             "Fusion — gradient-boosted trees (M2)": "M2_gbt", "SpliceAI": "single:spliceai",
+             "Fusion — equal-weight mean (M0b)": "M0b_mean", "AlphaGenome": "single:alphagenome",
+             "CADD": "single:cadd", "GPN-MSA": "single:gpn_msa", "phyloP": "single:phylop",
+             "phastCons": "single:phastcons", "Nucleotide Transformer": "single:nt",
+             "gnomAD AF": "single:gnomad_af", "AlphaMissense": "single:alphamissense"}
+    pool = _csv("phase2_pooled_rho.csv").set_index("model")
+    tables = [t for t in Document(str(manuscript)).tables
+              if t.rows[0].cells[0].text.strip().startswith("Predictor")
+              and "Pooled" in t.rows[0].cells[2].text]
+    assert len(tables) == 1, "Table 1 not found"
+    seen, bad = set(), []
+    for row in tables[0].rows[1:]:
+        c = [x.text.strip() for x in row.cells]
+        m = names[c[0]]
+        seen.add(m)
+        p = pool.loc[m]
+        if pd.isna(p.rho):
+            if c[2] != "—":
+                bad.append(f"{c[0]}: {c[2]!r} for a non-evaluable row")
+            continue
+        want = (once(p.rho, 3), f"{once(p.lo, 3)} – {once(p.hi, 3)}", once(p.I2, 0))
+        if tuple(c[2:5]) != want:
+            bad.append(f"{c[0]}: printed {tuple(c[2:5])}, should be {want}")
+    assert seen == set(names.values())
+    assert not bad, "Table 1 cells that do not round the pooled estimates once:\n  " + "\n  ".join(bad)
+
+
+def _round_once(x, nd):
+    from decimal import Decimal, ROUND_HALF_UP
+    return str(Decimal(repr(float(x))).quantize(Decimal(1).scaleb(-nd), rounding=ROUND_HALF_UP))
+
+
+def test_precise_calibration_summary_is_what_the_published_summary_rounds():
+    """phase3_calibration_summary_precise.csv exists so Table 3 can be checked; it must
+    describe the same calibrated probabilities as the four-decimal table."""
+    s = _csv("phase3_calibration_summary.csv")
+    p = _csv("phase3_calibration_summary_precise.csv")
+    m = s.merge(p, on=["set", "calib", "model"], suffixes=("", "_p"))
+    assert len(m) == len(s) == len(p)
+    for col in ("ECE", "Brier", "actionable_frac", "actionable_acc"):
+        assert (m[col].isna() == m[f"{col}_p"].isna()).all(), col
+        both = m[col].notna()
+        assert ((m.loc[both, col] - m.loc[both, f"{col}_p"]).abs() <= 5e-5 + 1e-12).all(), col
+    assert (m.n_actionable == m.n_actionable_p).all()
+
+
+def test_table_3_rounds_the_precise_calibration_values_once():
+    """Table 3 printed four cells from the four-decimal summary rounded again: Pangolin's
+    ECE (0.032495 -> 0.0325 -> 0.033), SpliceAI's high-confidence share (1180/1675 =
+    70.448% -> 0.7045 -> 70.5), and Nucleotide Transformer's ECE and share. Checked here
+    against the unrounded values, rounded half-up once."""
+    import pandas as pd
+
+    manuscript = _manuscript_path()
+    if manuscript is None:
+        pytest.skip("manuscript not available in this checkout")
+    from docx import Document
+
+    names = {"Fusion — elastic net (M1)": "fusion_M1", "Pangolin": "single:pangolin",
+             "SpliceAI": "single:spliceai", "Fusion — equal-weight mean (M0b)": "mean_M0b",
+             "AlphaGenome": "single:alphagenome", "CADD": "single:cadd", "GPN-MSA": "single:gpn_msa",
+             "phyloP": "single:phylop", "phastCons": "single:phastcons",
+             "Nucleotide Transformer": "single:nt", "gnomAD AF": "single:gnomad_af",
+             "AlphaMissense": "single:alphamissense"}
+    pr = _csv("phase3_calibration_summary_precise.csv")
+    pr = pr[(pr.set == "y_assay/BRCA1_included") & (pr.calib == "isotonic")].set_index("model")
+    tables = [t for t in Document(str(manuscript)).tables if t.rows[0].cells[2].text.strip() == "ECE"]
+    assert len(tables) == 1, "Table 3 not found"
+    seen, bad = set(), []
+    for row in tables[0].rows[1:]:
+        c = [x.text.strip() for x in row.cells]
+        m = names[c[0]]
+        seen.add(m)
+        p = pr.loc[m]
+        if pd.isna(p.ECE):
+            if c[2] != "—":
+                bad.append(f"{c[0]}: {c[2]!r} for a non-evaluable row")
+            continue
+        want = (_round_once(p.ECE, 3), _round_once(p.Brier, 3),
+                _round_once(100 * p.actionable_frac, 1), _round_once(100 * p.actionable_acc, 1))
+        if tuple(c[2:6]) != want:
+            bad.append(f"{c[0]}: printed {tuple(c[2:6])}, should be {want}")
+    assert seen == set(names.values())
+    assert not bad, "Table 3 cells that do not round the precise values once:\n  " + "\n  ".join(bad)

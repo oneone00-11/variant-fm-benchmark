@@ -261,6 +261,17 @@ def run():
 
     C.REPORT_DIR.mkdir(parents=True, exist_ok=True)
     board_df.to_csv(C.REPORT_DIR / "phase2_leaderboard.csv", index=False)
+    # per-gene rho behind the pooled estimates: the seven points Figure 1 plots as
+    # faint dots, and the input the pooling in phase8/phase9 re-derives from.
+    pg_rows = [{"object": name, "gene": r.gene, "n": int(r.n), "rho": float(r.rho)}
+               for name, pg in ([("single:" + f, single_pg[f]) for f in feats]
+                                + [(m, fus_pg[m]) for m in fus_pg])
+               for r in pg.itertuples()]
+    pd.DataFrame(pg_rows).to_csv(C.REPORT_DIR / "phase2_per_gene_rho.csv", index=False)
+    # the same pooled estimates unrounded: the leaderboard stores rho to 4 dp and I^2 to
+    # 1 dp, and rounding an already-rounded I^2 to an integer misprints it (59.49 -> 59.5 -> 60)
+    pd.DataFrame([{"model": n, "rho": d["rho"], "lo": d["lo"], "hi": d["hi"], "I2": d["I2"], "k": d["k"]}
+                  for n, d in board]).to_csv(C.REPORT_DIR / "phase2_pooled_rho.csv", index=False)
     strat_df.to_csv(C.REPORT_DIR / "phase2_H1_stratified.csv", index=False)
     h2_df.to_csv(C.REPORT_DIR / "phase2_H2_ablation.csv", index=False)
 

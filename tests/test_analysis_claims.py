@@ -206,3 +206,30 @@ def test_a_declared_derivation_licenses_exactly_one_value(tmp_path, monkeypatch)
     flagged = {t["token"] for t in r["scoped_mismatch"]}
     assert "30" not in flagged          # licensed by its declared arithmetic
     assert "41" in flagged              # not licensed, still reported
+
+
+def test_the_section_number_exemption_covers_headings_not_measurements(tmp_path, monkeypatch):
+    """The whitelist exempts section numbers by pattern (a digit or two, a point, a
+    digit), and a pattern cannot tell the cross-reference "2.4" from the measurement
+    "8.8". The v1 -> v2 replacement pass skipped a stale Table 3 value, 8.8%, as a
+    section number. The exemption now holds only for numbers that open a heading."""
+    import docx as docxlib
+    import src.check_manuscript_numbers as cmn
+
+    d = docxlib.Document()
+    d.add_heading("2.4 Metrics and inference", level=2)
+    d.add_paragraph("As set out in 2.4, the high-confidence share was 8.8% of variants.")
+    doc = tmp_path / "m.docx"
+    d.save(doc)
+    results = tmp_path / "results"
+    results.mkdir()
+    (results / "t.csv").write_text("a\n0.5\n")
+    wl = tmp_path / "wl.json"
+    wl.write_text(json.dumps({"section_numbers": {"reason": "headings",
+                                                  "pattern": r"^(?:[1-9]|1[0-9])\.[0-9]$"}}))
+    monkeypatch.setattr(cmn, "REPO", tmp_path)
+    r = cmn.classify(doc, results=results, whitelist=wl, claims=tmp_path / "none.json")
+    exempt = {t["token"] for t in r["whitelisted"]}
+    unsourced = {t["token"] for t in r["no_source"]}
+    assert "2.4" in exempt, "a cross-reference to a real heading stays exempt"
+    assert "8.8" in unsourced and "8.8" not in exempt, "a measurement shaped like a section number is not"

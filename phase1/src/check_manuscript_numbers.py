@@ -185,6 +185,26 @@ def load_whitelist(path: Path = WHITELIST) -> tuple[set[str], list[re.Pattern], 
     return values, patterns, spec
 
 
+def heading_numbers(docx_path: Path) -> set[str]:
+    """Section numbers the document actually has ("2.4", "3", ...).
+
+    The whitelist exempts section numbers by pattern -- a digit or two, a point, a
+    digit -- and a pattern cannot tell the cross-reference "(2.4)" from the
+    measurement "8.8". It let a stale Table 3 value, 8.8%, through the v1 -> v2
+    replacement pass as a section number. The pattern is therefore honoured only for
+    numbers that open a heading paragraph.
+    """
+    import docx
+
+    out: set[str] = set()
+    for p in docx.Document(str(docx_path)).paragraphs:
+        if p.style is not None and p.style.name.lower().startswith("heading"):
+            m = re.match(r"\s*(\d{1,2}(?:\.\d)?)\.?\s", p.text)
+            if m:
+                out.add(m.group(1))
+    return out
+
+
 # A token printed to few decimals sits in a dense part of the pool, so a match
 # carries no information: "0.12" is within half a last-digit of hundreds of
 # unrelated pipeline values. Such matches are reported separately as `weak`,
@@ -387,7 +407,9 @@ def _hits(pool: np.ndarray, v: float, tol: float) -> int:
 def classify(docx_path: Path, results: Path = RESULTS,
              whitelist: Path = WHITELIST, claims: Path = CLAIMS) -> dict:
     pool = pipeline_values(results)
-    wl_values, wl_patterns, _ = load_whitelist(whitelist)
+    wl_values, wl_patterns, wl_spec = load_whitelist(whitelist)
+    sect_src = (wl_spec.get("section_numbers") or {}).get("pattern")
+    headings = heading_numbers(docx_path)
     scopes = claim_scopes(docx_path, claims)
     derivations = claim_derivations(docx_path, claims)
     scoped_cache: dict[str, np.ndarray] = {}
@@ -414,7 +436,10 @@ def classify(docx_path: Path, results: Path = RESULTS,
         tol = _tolerance(t["token"])
         v = abs(t["value"])
         bare = t["token"].lstrip("+-−")
-        white = bare in wl_values or any(p.match(bare) for p in wl_patterns)
+        white = (bare in wl_values
+                 or any(p.match(bare) for p in wl_patterns if p.pattern != sect_src)
+                 or (sect_src is not None and re.match(sect_src, bare) is not None
+                     and bare in headings))
 
         outputs = scopes.get(t["uid"])
         if outputs and not white:

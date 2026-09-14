@@ -80,6 +80,52 @@ def test_full_precision_re_rounds_to_the_v1_cli_values(pair):
         assert np.nanmax(np.abs(b[ok] - a[ok])) <= 0.005 + 2e-6, canon
 
 
+# Methods 2.5 states how many of the values re-round to the print the original tools
+# produced. It is one count, it is measured here, and it has one exception -- which the
+# sentence names, because a reader who runs the test above finds a tolerance rather than
+# an equality and is entitled to know why.
+# Methods 2.5 states how many of the values re-round to the print the original tools
+# produced. That count is measured here, with its one exception named, because a reader
+# who runs the tolerance test above finds an inequality and is entitled to know why.
+# "Re-rounds" means equal as numbers at two decimals: v1 stores a bare -0.0 for two
+# PALB2 SpliceAI rows whose v2 values are a hair above zero, so the printed strings
+# differ ("-0.00" against "0.00") while the rounded values do not. Those two are pinned
+# separately below rather than folded into the count.
+RE_ROUND_EXCEPTIONS = {"spliceai": {"17-58696697-C-T"}, "pangolin": set()}
+SIGNED_ZERO_ROWS = {"16-23607918-G-A", "16-23607943-G-A"}
+
+
+def test_re_rounded_agreement_counts_are_what_methods_2_5_states(pair):
+    v1, v2 = pair
+    assert len(v1) == 21410
+    # the comparison covers every row, the sixteen locally scored RAD51C SNVs included
+    only16 = set(pd.read_csv(REPO / "data" / "rescore" / "spliceai_frozen_only16.tsv",
+                             sep="\t")["variant_id"])
+    assert len(only16) == 16 and only16 <= set(v1["variant_id"])
+    for canon, expected in RE_ROUND_EXCEPTIONS.items():
+        a, b = v1[canon].to_numpy(dtype=float), v2[canon].to_numpy(dtype=float)
+        assert not (np.isnan(a).any() or np.isnan(b).any()), f"{canon}: a row would be skipped"
+        same = np.array([float(f"{x:.2f}") == float(f"{y:.2f}") for x, y in zip(a, b)])
+        bad = set(v1["variant_id"].to_numpy()[~same])
+        assert bad == expected, f"{canon}: exceptions are {sorted(bad)}, expected {sorted(expected)}"
+        assert int(same.sum()) == 21410 - len(expected)
+
+    # the one exception is a rounding-boundary case, not a changed score
+    vid = v1["variant_id"].to_numpy()
+    i = int(np.where(vid == "17-58696697-C-T")[0][0])
+    v2_val = float(v2["spliceai"].to_numpy(dtype=float)[i])
+    assert f"{float(v1['spliceai'].to_numpy(dtype=float)[i]):.2f}" == "0.22"
+    assert f"{v2_val:.2f}" == "0.21"
+    assert abs(v2_val - 0.215) <= 1e-6, "the sentence calls this within 1e-6 of the boundary"
+
+    # and the two signed-zero rows print the same magnitude
+    for z in SIGNED_ZERO_ROWS:
+        j = int(np.where(vid == z)[0][0])
+        x = float(v1["spliceai"].to_numpy(dtype=float)[j])
+        y = float(v2["spliceai"].to_numpy(dtype=float)[j])
+        assert x == 0.0 and 0.0 < y < 0.005 and f"{abs(x):.2f}" == f"{y:.2f}" == "0.00"
+
+
 def test_manifest_hash_matches_the_matrix_and_the_reproduce_pin(pair):
     _, v2 = pair
     m = json.loads(MANIFEST.read_text())

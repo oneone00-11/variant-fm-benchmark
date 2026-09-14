@@ -64,7 +64,7 @@ see `docs/column-provenance.md`.
 `phase1/src/config.py` and in the two runners):
 
 ```
-python scripts/reproduce_calibration.py      # rebuilds + verifies v1, builds + verifies v2, then the 12 analysis stages
+python scripts/reproduce_calibration.py      # rebuilds + verifies v1, builds + verifies v2, then the 12 analysis stages and the figures
 python scripts/reproduce_robustness.py       # the phase-8 analyses, the LR+ v1 -> v2 decomposition, per-gene deltas
 ```
 
