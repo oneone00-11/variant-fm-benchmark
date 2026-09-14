@@ -33,7 +33,7 @@ import src.check_manuscript_numbers as cmn  # noqa: E402
 OUTPUT_PREFIXES = ("phase1/reports/", "phase1/data/", "data/", "results/")
 GENERATED = ("docs/v1-v2-delta.md", "docs/manuscript-replacements", "docs/manuscript-number-diff",
              "docs/weak-token-spotcheck", "docs/manuscript-binding.md", "docs/numbers-only-in-code.md",
-             "docs/supplement-verify.md", "tests/fixtures/")
+             "docs/supplement-verify.md", "docs/prose-density.md", "tests/fixtures/")
 SOURCE_SUFFIXES = (".py", ".json", ".md", ".yml", ".yaml", ".txt", ".cfg", ".toml", ".sh")
 MEASURED = ("bound", "pool", "whitelisted", "no_source", "scoped_mismatch")
 

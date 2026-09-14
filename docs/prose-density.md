@@ -13,7 +13,7 @@ Read-only statistics. Sentences split on terminal punctuation; words are whitesp
 | 2.1 Analysis set and functional standard | 24 | 23 | 4% |
 | 2.2 Predictors and features | 7 | 21 | 14% |
 | 2.3 Fusion models and cross-validation | 3 | 37 | 33% |
-| 2.4 Metrics and inference | 39 | 28 | 21% |
+| 2.4 Metrics and inference | 40 | 28 | 22% |
 | 2.5 Reproducibility | 12 | 37 | 42% |
 | 2.6 Use of large language models | 13 | 30 | 15% |
 | 3.1 Ranking performance among top splice tools is saturated (H1) | 23 | 13 | 22% |
@@ -28,9 +28,9 @@ Read-only statistics. Sentences split on terminal punctuation; words are whitesp
 | Ethics approval | 1 | 34 | 0% |
 | Funding | 1 | 9 | 0% |
 | Conflict of interest | 1 | 2 | 0% |
-| **all** | 306 | 24 | 18% |
+| **all** | 307 | 24 | 19% |
 
-## 1. Sentences longer than 40 words (56)
+## 1. Sentences longer than 40 words (57)
 
 | words | section | sentence |
 |---|---|---|
@@ -49,6 +49,7 @@ Read-only statistics. Sentences split on terminal punctuation; words are whitesp
 | 66 | 3.3 Calibration gain, evidence strength, and the ascertainment gap (H3, H4) | At the scanned thresholds the paired difference spans zero in every condition (with BRCA1, raw: 1.04, −0.36 to 1.77), and one cell places the two in different bands — the primary condition after isotonic calibration, where Pangolin's threshold lands at 96.0% specificity and its 19.9 crosses Strong while the fusion, at 95.1%, does not; the same cell interpolates to 15.9 against 17.6, and the difference is placement. |
 | 63 | 4. Discussion | The operating point also bounds the conclusion — at 95% specificity LR+ is capped near 20, so the finding that nothing establishes Strong is a statement about these predictors at this point, not a proof that Strong is unattainable at another — and indeed, at 97.5% and 99% specificity the fusion and most evaluable single tools do cross the Strong threshold (3.3; Supplementary Table S19). |
 | 59 | 1. Introduction | Germline variants in DNA-repair and tumour-suppressor genes such as BRCA1, BRCA2, PALB2, RAD51C, VHL and BAP1 confer high lifetime cancer risk, yet a growing fraction are classified as variants of uncertain significance — those current evidence cannot call pathogenic or benign, leaving management unguided; multiplexed assays of variant effect can resolve a substantial fraction of them in diagnostic cohorts [1]. |
+| 59 | 2.4 Metrics and inference | The companion atlas [12] fixes the same operating point and prior but summarises each predictor as the scanned per-gene median rather than the pooled interpolated ratio used here; on the atlas's data, interpolating its well-resolved splice and coding predictors to the exact operating point changes no evidence band, and on both bases no predictor attains Strong (companion Note S15). |
 | 59 | 4. Discussion | Its elastic-net weights are stable across the seven leave-one-gene-out folds: AlphaGenome, Pangolin and SpliceAI carry the weight in every fold (mean 0.224, 0.218 and 0.186, SD 0.019, 0.029 and 0.021), with no sign change in any feature, so the small Δρ is not the symptom of an unstable model — it is what three nearly interchangeable inputs produce when averaged. |
 | 57 | 2.4 Metrics and inference | Differences (best single tool − fusion) used the gene-clustered bootstrap, with the best single tool selected by the same pooled Spearman used for H1 (Pangolin) so the comparators are identical; robustness was assessed with two calibrators (isotonic, Platt) and three interval schemes — gene-clustered bootstrap (primary), BCa (sensitivity), and an anti-conservative variant-level bootstrap reported only as a lower bound. |
 | 57 | 2.4 Metrics and inference | Clinical yield is therefore reported a second way as well, as the fraction of variants a score places at Moderate evidence or above, obtained by converting each calibrated probability into the likelihood ratio it implies — dividing the posterior odds by the prior odds of the training genes it was calibrated on — and applying the same Tavtigian bands. |
@@ -91,7 +92,7 @@ Read-only statistics. Sentences split on terminal punctuation; words are whitesp
 | 42 | 2.5 Reproducibility | Two of them had been irreproducible when the seven-gene matrix was first frozen: the Nucleotide Transformer scoring code had been lost, with only cached outputs surviving and the input context-window length unrecoverable, and Pangolin had been installed from an unpinned git revision. |
 | 41 | 3.4 External validation on a held-out gene (TP53) | The ten-predictor elastic-net fusion and its out-of-gene isotonic calibrator were fit and frozen on the seven genes, then applied without refitting to TP53's 192 intron-side splice SNVs (\|offset\| ≤ 8; NM_000546.6), scored for all ten predictors under the pinned environments of 2.5. |
 
-## 2. Sentences with two or more qualifying constructions (95)
+## 2. Sentences with two or more qualifying constructions (96)
 
 | qualifiers | dash | ; | ( | concessive | words | section | sentence |
 |---|---|---|---|---|---|---|---|
@@ -132,6 +133,7 @@ Read-only statistics. Sentences split on terminal punctuation; words are whitesp
 | 3 | 2 | 0 | 1 | 0 | 83 | 3.3 Calibration gain, evidence strength, and the ascertainment gap (H3, H4) | Scored against the same functional labels, every one of the eleven evaluable objects reaches a higher LR+ on the variants whose ClinVar record carries a pathogenic/benign classification than on those recorded but unclassified — the assay-only arm of VUS, conflicting and other records — by ratios from 1.44 to 4.20, and the fusion's sensitivity at 95% specificity falls from 0.971 to 0.681, CADD's from 0.908 to 0.327 (operating points are re-derived within each subset, so the subset sensitivities need not average to the pooled 0.889). |
 | 3 | 2 | 0 | 0 | 1 | 69 | 2.6 Use of large language models | They re-verify both content hashes and the analysis set's shape and class balance, confirm that seeded reruns agree bit for bit, and check every result the manuscript reports — in the text, the tables and the captions — against the pipeline output that produced it: each is compared with the output itself rather than with a transcribed copy, and the tests fail if any reported result has no output behind it. |
 | 3 | 1 | 0 | 2 | 0 | 67 | 3.3 Calibration gain, evidence strength, and the ascertainment gap (H3, H4) | One qualification comes from the sampling-frame pipeline (2.4): at 1,000 gene resamples the lower bound of the ClinVar +BRCA1 interval is 0.0011 in the unweighted baseline and only 0.0001 to 0.0006 under the three binning schemes, so that condition's significance is marginal (Supplementary Table S10d) — the same last-digit sensitivity behind the modest difference between the 1,768-variant reweighting baseline and the 1,781-variant headline in 2.4. |
+| 3 | 0 | 1 | 1 | 1 | 59 | 2.4 Metrics and inference | The companion atlas [12] fixes the same operating point and prior but summarises each predictor as the scanned per-gene median rather than the pooled interpolated ratio used here; on the atlas's data, interpolating its well-resolved splice and coding predictors to the exact operating point changes no evidence band, and on both bases no predictor attains Strong (companion Note S15). |
 | 3 | 0 | 1 | 2 | 0 | 53 | 3.3 Calibration gain, evidence strength, and the ascertainment gap (H3, H4) | At 95% specificity the fusion attains LR+ 17.8 (95% CI 16.3–18.6) at a sensitivity of 0.889, the best single tool 16.8 (15.6–18.5), and ten of the twelve objects fall in the Moderate band; gnomAD allele frequency is below supporting, and AlphaMissense is not evaluable because it scores essentially no splice variant. |
 | 3 | 0 | 1 | 2 | 0 | 50 | Data availability | Code, the content-hash-pinned frozen analysis set (git tag frozen-matrix-v2; the published frozen-matrix-v1 it was derived from is retained beside it), the per-gene official-label mapping, and a two-command frozen-matrix rebuild are archived at [TODO: Zenodo version DOI of the frozen-matrix-v2 release] [30] and are also available at github.com/oneone00-11/variant-fm-benchmark (Supplementary Note S9). |
 | 3 | 2 | 0 | 1 | 0 | 44 | 2.4 Metrics and inference | Elastic-net ablation of the evolutionary features under the same LOGO protocol, in two versions — dropping conservation only (phyloP, phastCons) and dropping conservation plus the alignment-conditioned GPN-MSA — with the change in pooled ρ and its bootstrap CI, plus the elastic-net coefficients of the evolutionary features. |
