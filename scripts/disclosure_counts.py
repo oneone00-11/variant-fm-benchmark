@@ -1,14 +1,11 @@
-"""The counts Methods 2.6 quotes, written from the record they were measured into.
+"""The test counts Methods 2.6 quotes, written from the record they were measured into.
 
-Methods 2.6 states two kinds of count that no report table holds: how many tests pass
-from an archive extract of the release, with both documents present and in a clone,
-and how many measured numbers the number check binds. Both are measured and recorded in
-phase1/config/pipeline_facts.json: the test counts from the runs, the binding counts by
-`python -m src.check_manuscript_numbers <docx> --record-facts`. The test count went stale
-once while the sentence was maintained by hand. This renders every such count from the
-record and, with --apply, writes it into the manuscript in place, so no count in the
-sentence is typed. tests/test_reported_numbers.py compares the sentence with the record,
-and the binding counts with a fresh measurement.
+Methods 2.6 states how many tests pass from an archive extract of the release, with both
+documents present and in a clone. No report table holds those counts: they are measured
+and recorded in phase1/config/pipeline_facts.json. The count went stale once while the
+sentence was maintained by hand. This renders each count from the record and, with
+--apply, writes it into the manuscript in place, so no count in the sentence is typed.
+tests/test_reported_numbers.py compares the sentence with the record.
 
     python scripts/disclosure_counts.py <manuscript.docx>           # list differences; exit 1 if any
     python scripts/disclosure_counts.py <manuscript.docx> --apply   # write the recorded counts
@@ -28,7 +25,6 @@ UNITS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
          "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
 TENS = {2: "twenty", 3: "thirty", 4: "forty", 5: "fifty", 6: "sixty", 7: "seventy", 8: "eighty", 9: "ninety"}
 WORD = r"\b([A-Za-z]+(?:-[a-z]+)?)"
-NUM = r"(\d[\d,]*)"
 
 
 def words(n: int) -> str:
@@ -44,7 +40,6 @@ def expected(facts: dict) -> list[tuple[str, str]]:
     """(pattern whose one group is the count, the text that group should read)."""
     a = facts["archive_breakdown"]
     docs = a["with_manuscript_visible"]
-    b = facts["manuscript_binding"]
     return [
         (WORD + r" automated tests pass from an extract", words(a["passed"]).capitalize()),
         (WORD + r" are collected: [a-z-]+ read the manuscript", words(a["collected"]).capitalize()),
@@ -52,10 +47,6 @@ def expected(facts: dict) -> list[tuple[str, str]]:
         (r"are collected: " + WORD + r" read the manuscript", words(a["skipped"] - docs["skipped"])),
         (r"With both documents present " + WORD + r" pass", words(docs["passed"])),
         (r"in a clone of the same commit all " + WORD, words(a["in_a_clone_with_manuscript_visible"]["passed"])),
-        (r"All " + NUM + r" measured numbers are bound", f"{b['measured']:,}"),
-        (r"are bound: " + NUM + r" to a single cell", f"{b['single_cell']:,}"),
-        (r"to a single cell and " + NUM + r" to one of several", f"{b['several_cells']:,}"),
-        (r"The other " + NUM + r" numeric tokens", f"{b['non_measurement']:,}"),
     ]
 
 

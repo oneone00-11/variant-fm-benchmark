@@ -42,7 +42,8 @@ RESOLVED = [
     ("0.997", "TP53 control AUROC after orientation; printed 0.998 until the rounding round",
      "a config comment; the value check matched 0.998 to BRCA2's 0.9975",
      "phase4_external_tp53.py writes it to phase4_tp53_orientation.csv (0.996925) on every run and the text prints "
-     "0.997; a cell now binds only if it rounds to the print, so 0.9975 no longer does"),
+     "0.997; a cell now binds only if it rounds to the print, so 0.9975 no longer does, and the "
+     "paragraph's claim pins the number to the orientation cell"),
     ("21,409", "SpliceAI values that re-round to the v1 print (Methods 2.5)",
      "an assertion in tests/test_frozen_matrix_v2.py, and the whitelist",
      "phase1_build_frozen_matrix_v2.py writes it to frozen_matrix_v2_column_report.tsv (n_rerounded_to_v1_print)"),

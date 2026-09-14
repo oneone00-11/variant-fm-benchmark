@@ -384,3 +384,42 @@ def test_a_cell_binds_only_if_it_rounds_to_the_printed_number(tmp_path, monkeypa
     table.write_text("gene,control_auroc\nBRCA2,0.9975\nTP53,0.996925\n")
     r = cmn.classify(doc, results=results, whitelist=tmp_path / "none.json", claims=claims, kinds=kinds)
     assert [t["cells"] for t in r["bound"]] == [["gate.csv[TP53].control_auroc = 0.996925"]]
+
+
+def test_a_pin_binds_a_number_to_the_one_cell_it_is(tmp_path, monkeypatch):
+    """A paragraph's scope can hold several cells that round to the same print: TP53's
+    post-orientation AUROC, 0.997, shares its paragraph with per-variant SpliceAI scores that
+    also print as 0.997. A pin names the cell; the number binds to it or fails, and a pin that
+    no token takes is reported."""
+    import docx as docxlib
+    import src.check_manuscript_numbers as cmn
+
+    d = docxlib.Document()
+    d.add_paragraph("padding")
+    d.add_paragraph("Orientation was set by the control gate (AUROC 0.997).")
+    doc = tmp_path / "m.docx"
+    d.save(doc)
+    results = tmp_path / "results"
+    results.mkdir()
+    (results / "scores.csv").write_text("variant,spliceai\nv1,0.9971\nv2,0.9968\n")
+    (results / "gate.csv").write_text("gene,control_auroc\nTP53,0.996925\n")
+    claims = tmp_path / "claims.json"
+    kinds = _kinds_file(tmp_path, [])
+    monkeypatch.setattr(cmn, "REPO", tmp_path)
+
+    def run(pin):
+        claim = {"para": "P1", "claim": "orientation gate", "anchor": "Orientation was set by the control gate",
+                 "script": None, "output": ["results/scores.csv", "results/gate.csv"], "status": "verified"}
+        if pin:
+            claim["pin"] = pin
+        claims.write_text(json.dumps({"claims": [claim]}))
+        return cmn.classify(doc, results=results, whitelist=tmp_path / "none.json", claims=claims, kinds=kinds)
+
+    assert [t["n_cells"] for t in run(None)["bound"]] == [3]
+    r = run({"0.997": "gate.csv[TP53].control_auroc"})
+    assert [(t["n_cells"], t["cells"]) for t in r["bound"]] == [(1, ["gate.csv[TP53].control_auroc = 0.996925"])]
+    assert r["coverage"]["single_cell"] == 1 and not r["pin_problems"]
+    r = run({"0.997": "gate.csv[BRCA2].control_auroc"})
+    assert [t["token"] for t in r["scoped_mismatch"]] == ["0.997"], "a pin to a cell that holds no such value must fail"
+    r = run({"0.997": "gate.csv[TP53].control_auroc", "0.5": "gate.csv[TP53].control_auroc"})
+    assert [q["token"] for q in r["pin_problems"]] == ["0.5"]

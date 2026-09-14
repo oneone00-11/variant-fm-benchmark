@@ -525,12 +525,13 @@ def test_tp53_orientation_gate_is_persisted_and_passes():
     assert approx(g.loc[run, "control_auroc"], E("tp53.orientation.auroc"))
 
 
-def test_the_disclosed_binding_coverage_is_the_measured_one():
-    """Methods 2.6 states how many measured numbers the number check binds, to one cell or
-    to several, and how many tokens it sets aside as not measurements. The counts are
-    recorded in pipeline_facts.json; this re-measures the manuscript and compares both the
-    record and the sentence with the measurement. The sentence also says derived values
-    are computed, so a derivation the check only declares (and takes on trust) fails here."""
+def test_every_measured_number_in_the_manuscript_is_bound():
+    """Methods 2.6 says the tests fail if a reported result has no output behind it. This runs
+    the number check on the manuscript and requires what the check requires: every measured
+    number bound to a cell of an output its paragraph, table or caption declares, or to a
+    derivation computed from one; no derivation taken on trust; no parameter rule whose code
+    has moved; no pin left untaken; no cardinality mismatch. The coverage counts themselves
+    are no longer printed in the manuscript."""
     import sys
 
     manuscript = _manuscript_path()
@@ -538,19 +539,12 @@ def test_the_disclosed_binding_coverage_is_the_measured_one():
         pytest.skip("manuscript not available in this checkout")
     sys.path.insert(0, str(REPO / "phase1"))
     import src.check_manuscript_numbers as cmn
-    from docx import Document
 
     r = cmn.classify(manuscript)
-    cov = dict(r["coverage"], non_measurement=len(r["non_measurement"]))
-    facts = json.loads((REPO / "phase1" / "config" / "pipeline_facts.json").read_text())["manuscript_binding"]
-    keys = ("measured", "bound", "single_cell", "several_cells", "non_measurement")
-    assert {k: cov[k] for k in keys} == {k: facts[k] for k in keys}, "re-record with --record-facts"
-    assert cov["bound"] == cov["measured"], "the sentence says every measured number is bound"
+    unbound = [(t["uid"], t["token"]) for k in ("pool", "whitelisted", "no_source", "scoped_mismatch") for t in r[k]]
+    assert not unbound, f"measured numbers with no bound output: {unbound}"
+    assert r["coverage"]["bound"] == r["coverage"]["measured"]
     declared = [(t["uid"], t["token"]) for t in r["bound"] if "(declared, not computed)" in t["cells"][0]]
     assert not declared, f"derivations bound on trust rather than computed: {declared}"
-    text = " ".join(p.text for p in Document(str(manuscript)).paragraphs)
-    m = re.search(r"All ([\d,]+) measured numbers are bound: ([\d,]+) to a single cell and ([\d,]+) to one of several", text)
-    n = re.search(r"The other ([\d,]+) numeric tokens", text)
-    assert m and n, "the binding sentence is no longer in the form this test reads"
-    said = tuple(int(g.replace(",", "")) for g in (*m.groups(), n.group(1)))
-    assert said == (cov["measured"], cov["single_cell"], cov["several_cells"], cov["non_measurement"])
+    assert not (r["rule_problems"] or r["pin_problems"] or r["cardinality_mismatch"]), \
+        (r["rule_problems"], r["pin_problems"], r["cardinality_mismatch"])

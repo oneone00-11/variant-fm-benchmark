@@ -334,6 +334,22 @@ def claim_derivations(docx_path: Path, path: Path = CLAIMS) -> dict[str, list[di
     return out
 
 
+def claim_pins(docx_path: Path, path: Path = CLAIMS) -> dict[str, dict[str, str]]:
+    """block id -> {printed token: the one cell it must bind to}.
+
+    A paragraph's scope can hold several cells that round to the same printed number:
+    TP53's post-orientation control AUROC, 0.997, shares its paragraph's scope with the
+    per-variant SpliceAI scores, twelve of which also print as 0.997. A pin names the cell
+    the number is, so the token binds to that cell or is reported as a mismatch."""
+    spec = json.loads(path.read_text()) if path.exists() else {}
+    where = resolve_anchors(docx_path, path)
+    out: dict[str, dict[str, str]] = {}
+    for idx, c in enumerate(spec.get("claims", [])):
+        if c.get("pin") and c.get("status") == "verified" and idx in where:
+            out.setdefault(where[idx], {}).update(c["pin"])
+    return out
+
+
 def claim_scopes(docx_path: Path, path: Path = CLAIMS) -> dict[str, list[str]]:
     """paragraph id -> the outputs config/analysis_claims.yaml binds it to.
 
@@ -667,7 +683,8 @@ def classify(docx_path: Path, results: Path = RESULTS,
                           date, or a parameter or constant named by a rule in
                           config/manuscript_token_kinds.json
       BOUND               its paragraph (or table) declares outputs, and a named cell of
-                          one of them rounds to the printed number, or a derivation does
+                          one of them rounds to the printed number, or a derivation does;
+                          a pin in the claim narrows the candidates to one named cell
       POOL                no declared outputs; the value occurs somewhere in the pipeline
       whitelisted         listed in config/manuscript_number_whitelist.json
       SCOPED MISMATCH     declared outputs, and none of their cells holds it  (fails)
@@ -679,6 +696,7 @@ def classify(docx_path: Path, results: Path = RESULTS,
     headings = heading_numbers(docx_path)
     scopes = claim_scopes(docx_path, claims)
     derivations = claim_derivations(docx_path, claims)
+    pins = claim_pins(docx_path, claims)
     cell_cache: dict[str, list[tuple[str, float]]] = {}
 
     # Cardinality: does the count a paragraph asserts match what the claims
@@ -734,6 +752,10 @@ def classify(docx_path: Path, results: Path = RESULTS,
                 if key not in cell_cache:
                     cell_cache[key] = cell_index(outputs)
                 hits = _bind(cell_cache[key], t["token"], _printed_as_percent(t, texts))
+                pin = pins.get(t["uid"], {}).get(t["token"])
+                if pin is not None:
+                    t["pin"] = pin
+                    hits = [h for h in hits if h.split(" = ")[0] == pin]
                 if hits:
                     t["cells"], t["n_cells"] = hits[:6], len(hits)
             if t.get("cells"):
@@ -761,6 +783,10 @@ def classify(docx_path: Path, results: Path = RESULTS,
             whitelisted.append(t)
         else:
             no_source.append(t)
+    # a pin no scoped token took names a cell for a number the block no longer prints
+    applied = {(t["uid"], t["token"]) for t in tokens if t.get("pin")}
+    pin_problems = [{"uid": uid, "token": tok, "cell": cell} for uid, pinned in pins.items()
+                    for tok, cell in pinned.items() if (uid, tok) not in applied]
     measured = len(bound) + len(pool_only) + len(whitelisted) + len(no_source) + len(scoped_mismatch)
     single = sum(1 for t in bound if t["n_cells"] == 1)
     by_kind: dict[str, int] = {}
@@ -770,7 +796,7 @@ def classify(docx_path: Path, results: Path = RESULTS,
             "no_source": no_source, "scoped_mismatch": scoped_mismatch,
             "cardinality_mismatch": cardinality_mismatch, "stale_counts": [],
             "bound": bound, "pool": pool_only, "non_measurement": non_measurement,
-            "non_measurement_by_kind": by_kind, "rule_problems": rule_problems,
+            "non_measurement_by_kind": by_kind, "rule_problems": rule_problems, "pin_problems": pin_problems,
             "coverage": {"tokens": len(tokens), "measured": measured, "bound": len(bound),
                          "single_cell": single, "several_cells": len(bound) - single},
             "n_pool": int(pool.size), "n_scoped_paragraphs": len(scopes)}
@@ -802,7 +828,7 @@ def binding_report(r: dict, docx_name: str) -> str:
               "| block | token | cells holding the value (first six) | context |", "|---|---|---|---|"]
     for t in sorted(r["bound"], key=lambda t: t["n_cells"] > 1):
         more = f" (+{t['n_cells'] - len(t['cells'])} more)" if t["n_cells"] > len(t["cells"]) else ""
-        lines.append(f"| {t['uid']} | {t['token']} | {'; '.join(t['cells'])}{more} | …{_md(t['context'])}… |")
+        lines.append(f"| {t['uid']} | {t['token']} | {'; '.join(t['cells'])}{more}{' (pinned)' if t.get('pin') else ''} | …{_md(t['context'])}… |")
     lines += ["", "## Not measurements", "", "| block | token | kind | rule | context |", "|---|---|---|---|---|"]
     lines += [f"| {t['uid']} | {t['token']} | {t['kind']} | {t['rule']} | …{_md(t['context'])}… |" for t in r["non_measurement"]]
     return "\n".join(lines) + "\n"
@@ -814,8 +840,6 @@ def main() -> None:
     ap.add_argument("--verbose", action="store_true")
     ap.add_argument("--json", dest="as_json")
     ap.add_argument("--binding-report", dest="binding_report")
-    ap.add_argument("--record-facts", action="store_true",
-                    help="record this run's coverage in config/pipeline_facts.json, which Methods 2.6 quotes")
     a = ap.parse_args()
     r = classify(Path(a.docx))
     cov = r["coverage"]
@@ -832,6 +856,7 @@ def main() -> None:
     print(f"  not measurements           : {len(r['non_measurement'])}  ({kinds})")
     print(f"  CARDINALITY MISMATCH       : {len(r['cardinality_mismatch'])}")
     print(f"  RULE SOURCE MISSING        : {len(r['rule_problems'])}")
+    print(f"  PIN NOT APPLIED            : {len(r['pin_problems'])}")
     print(f"{cov['bound']} of {cov['measured']} measured tokens are bound to a named cell of a declared output: "
           f"{cov['single_cell']} to a single cell, {cov['several_cells']} to one of several cells that round to the "
           f"printed number; {cov['measured'] - cov['bound']} unbound.")
@@ -840,9 +865,11 @@ def main() -> None:
               f"{c['output']} carries {c['recorded']} {c['noun']}")
     for q in r["rule_problems"]:
         print(f"    RULE SOURCE MISSING  {q['rule']}: {q['source']} no longer matches {q['defined_by']!r}")
+    for q in r["pin_problems"]:
+        print(f"    PIN NOT APPLIED  {q['uid']} {q['token']}: no scoped token of that block takes {q['cell']}")
     for t in r["scoped_mismatch"]:
-        print(f"    SCOPED MISMATCH {t['uid']:>8s}  {t['token']:>10s}  "
-              f"absent from {', '.join(t['scope'])}\n        …{t['context']}…")
+        src = f"the pinned cell {t['pin']}" if t.get("pin") else ", ".join(t["scope"])
+        print(f"    SCOPED MISMATCH {t['uid']:>8s}  {t['token']:>10s}  absent from {src}\n        …{t['context']}…")
     for label, key in (("pool only", "pool"), ("whitelisted", "whitelisted"), ("NO SOURCE", "no_source")):
         for t in r[key]:
             print(f"    unbound: {label:11s} {t['uid']:>8s}  {t['token']:>10s}   …{t['context'][:90]}…")
@@ -853,21 +880,8 @@ def main() -> None:
         Path(a.as_json).write_text(json.dumps(r, indent=1, default=str))
     if a.binding_report:
         Path(a.binding_report).write_text(binding_report(r, Path(a.docx).name))
-    if a.record_facts:
-        import datetime
-        facts = json.loads(FACTS.read_text())
-        facts["manuscript_binding"] = {
-            "note": ("Coverage of the number check on the manuscript, as Methods 2.6 states it. Written by "
-                     "`python -m src.check_manuscript_numbers <docx> --record-facts`; "
-                     "tests/test_reported_numbers.py re-measures the manuscript and compares this record "
-                     "and the sentence with the measurement."),
-            "measured_at": datetime.date.today().isoformat(), "manuscript": Path(a.docx).name,
-            "tokens": cov["tokens"], "measured": cov["measured"], "bound": cov["bound"],
-            "single_cell": cov["single_cell"], "several_cells": cov["several_cells"],
-            "non_measurement": len(r["non_measurement"])}
-        FACTS.write_text(json.dumps(facts, indent=1, ensure_ascii=False) + "\n")
     sys.exit(1 if (r["no_source"] or r["cardinality_mismatch"]
-                   or r["scoped_mismatch"] or r["rule_problems"]) else 0)
+                   or r["scoped_mismatch"] or r["rule_problems"] or r["pin_problems"]) else 0)
 
 
 if __name__ == "__main__":
