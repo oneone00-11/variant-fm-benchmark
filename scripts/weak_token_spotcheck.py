@@ -85,7 +85,7 @@ SPEC = {
     ("P75", "95"): ("constant", "phase5_likelihood_ratios.TARGET_SPEC, in %", lambda: 100 * P5.TARGET_SPEC),
     ("P86", "0"): ("not a quantity", "digit inside MaveDB accession 00000673-0-1", None),
     ("P86", "0.10"): ("constant", "phase5_likelihood_ratios.PRIOR, the Tavtigian prior", lambda: P5.PRIOR),
-    ("T1r8c4", "0"): ("measurement", "phase2_pooled_rho.csv · GPN-MSA · I2", lambda: cell("phase2_pooled_rho.csv", {"model": "single:gpn_msa"}, "I2")),
+    ("T1r8c4", "0"): ("measurement", "phase2_leaderboard.csv · GPN-MSA · I2", lambda: cell("phase2_leaderboard.csv", {"model": "single:gpn_msa"}, "I2")),
     ("T2r1c5", "−0.001"): ("measurement", "phase2_H2_ablation.csv · elastic net, drop conservation · ci95 lower bound",
                            lambda: ci_part(cell(*H2, "ci95"), 0)),
     ("T4r2c2", "0.005"): ("measurement", "phase4_tp53_label_definitions.csv · median split · dBrier", lambda: cell(*TP, "dBrier")),
@@ -128,25 +128,38 @@ def main():
     def once(x, nd):
         return str(Decimal(repr(float(x))).quantize(Decimal(1).scaleb(-nd), rounding=ROUND_HALF_UP))
 
-    pool = csv("phase2_pooled_rho.csv").set_index("model")
-    pr = csv("phase3_calibration_summary_precise.csv")
+    lb = csv("phase2_leaderboard.csv").set_index("model")
+    pool = lb.rename(columns={"pooled_rho": "rho"})
+    pr = csv("phase3_calibration_summary.csv")
     pr = pr[(pr.set == "y_assay/BRCA1_included") & (pr.calib == "isotonic")].set_index("model")
     v1 = pd.read_csv(REPO / "phase1" / "reports" / "phase1_v1" / "phase3_calibration_summary.csv")
     v1 = v1[(v1.set == "y_assay/BRCA1_included") & (v1.calib == "isotonic")].set_index("model")
+    tp = csv("phase4_tp53_external.csv").set_index("model")
+    best_tp = [i for i in tp.index if i.startswith("best_single")][0]
+    gate = csv("phase4_tp53_orientation.csv").set_index("orientation")
+    gate_run = float(gate.loc[[i for i in gate.index if i.startswith("as run")][0], "control_auroc"])
+    # the values as the tables stored them (four decimals; one for I^2) before they went unrounded
+    stored = {"I2": 59.5, "pangolin_ece": 0.0325, "spliceai_frac": 0.7045, "nt_ece": 0.0475,
+              "nt_frac": 0.0866, "tp53_share": 0.7865}
     # (where, cell, printed before the fix, unrounded value, decimals, cause)
     found = [
         ("Table 1", "Fusion (M1) · I²", "60", pool.loc["M1_enet", "I2"], 0,
-         "second rounding: the v1→v2 pass read the one-decimal 59.5 and kept 60"),
+         f"second rounding: the leaderboard stored I² to one decimal ({stored['I2']}) and the v1→v2 pass kept 60"),
         ("Table 3", "Pangolin · ECE", "0.033", pr.loc["single:pangolin", "ECE"], 3,
-         "second rounding of the stored 0.0325, which did not move between v1 and v2, so the pass left the cell"),
+         f"second rounding of the stored {stored['pangolin_ece']}, which did not move between v1 and v2, so the pass left the cell"),
         ("Figure 2 caption", "Pangolin · ECE", "0.033", pr.loc["single:pangolin", "ECE"], 3, "the same value"),
         ("Table 3", "SpliceAI · high-confidence %", "70.5", 100 * pr.loc["single:spliceai", "actionable_frac"], 1,
-         "second rounding: the pass wrote 70.5 in from the stored 0.7045"),
+         f"second rounding: the pass wrote 70.5 in from the stored {stored['spliceai_frac']}"),
         ("Table 3", "Nucleotide Transformer · ECE", "0.048", pr.loc["single:nt", "ECE"], 3,
-         "second rounding: the pass wrote 0.048 in from the stored 0.0475"),
+         f"second rounding: the pass wrote 0.048 in from the stored {stored['nt_ece']}"),
         ("Table 3", "Nucleotide Transformer · high-confidence %", "8.8", 100 * pr.loc["single:nt", "actionable_frac"], 1,
          f"stale v1 value (v1 stored {v1.loc['single:nt', 'actionable_frac']}): the pass classed 8.8 as a section "
          "number and never replaced it"),
+        ("3.4", "Pangolin on TP53 · high-confidence %", "78.7", 100 * tp.loc[best_tp, "actionable_frac"], 1,
+         f"second rounding: stored {stored['tp53_share']}; found when phase 4 went unrounded (P8)"),
+        ("3.4", "TP53 post-orientation control AUROC", "0.998", gate_run, 3,
+         "never persisted: the gate was printed once in July and quoted from a comment; the number check matched 0.998 "
+         "to BRCA2's row of directionality_check.csv. The supplement said 0.997. Now written to phase4_tp53_orientation.csv"),
     ]
     out_rows = []
     for where, what, printed, unrounded, nd, cause in found:
@@ -193,7 +206,7 @@ def main():
         + ", ".join(f"{k} {v}" for k, v in sorted(kinds.items())) + ". "
         "No sampled token needed a fix, so no claims anchor was added for the sample.",
         "",
-        "## Found outside the sample: six misprinted cells, two causes",
+        "## Found outside the sample: eight misprints, three causes",
         "",
         "Redrawing Figure 1 from the tables, and tracing the cells behind it, found misprints the sample could not "
         "reach. The forward check had accepted every one, because each lies within tolerance of some pipeline value. "
@@ -203,13 +216,21 @@ def main():
         "|---|---|---|---|---|---|",
         *out_rows,
         "",
-        "**Second rounding.** These tables store four decimals (I² one) and the manuscript prints three (one). Rounding "
-        "the stored value again misprints the cell whenever it lands on a tie. Phase 2 now also writes "
-        "`phase2_pooled_rho.csv` and phase 3 `phase3_calibration_summary_precise.csv`, the same estimates unrounded, "
-        "beside the published tables, which are unchanged. Table cells cannot carry claims anchors, which bind a unique "
-        "substring of a paragraph, so the guards are tests: `test_table_1_rounds_the_unrounded_pooled_values_once` and "
-        "`test_table_3_rounds_the_precise_calibration_values_once` in `tests/test_reported_numbers.py` compare every "
-        "cell of the two tables with the unrounded values rounded once.",
+        "**Second rounding.** These tables stored four decimals (I² one) and the manuscript prints three (one). Rounding "
+        "the stored value again misprints the cell whenever it lands on a tie. The tables the manuscript prints from "
+        "now store their point estimates unrounded (`phase2_leaderboard.csv`, `phase3_calibration_summary.csv`, "
+        "`phase4_tp53_external.csv` and the others listed in `tests/test_reported_numbers.py::FULL_PRECISION`); the "
+        "supplement prints them at a precision a reader can round back to the main text "
+        "(`build_supp_tables.col_digits`), and `tests/test_cross_document_rounding.py` checks that boundary. Table "
+        "cells cannot carry claims anchors, which bind a unique substring of a paragraph, so the guards are tests: "
+        "`test_table_1_rounds_the_unrounded_pooled_values_once` and `test_table_3_rounds_the_calibration_summary_once` "
+        "in `tests/test_reported_numbers.py` compare every cell of the two tables with the unrounded values rounded once.",
+        "",
+        "**A number with no persisted source.** The TP53 orientation gate on the full SGE was computed once in July, "
+        "printed, and quoted from a comment; the number check accepted 0.998 because BRCA2's control AUROC (0.9975) "
+        "lies within tolerance of it. `phase4_external_tp53.py` now writes the gate to `phase4_tp53_orientation.csv` "
+        "on every run (0.9969 as run, 0.0031 under the default orientation), and 3.4 and Supplementary Table S6's "
+        "note both quote 0.997 from it.",
         "",
         f"**A measurement exempted as a section number.** The whitelist exempts section numbers by pattern (a digit or "
         f"two, a point, a digit), and a pattern cannot tell a cross-reference from a measurement. The v1→v2 pass "

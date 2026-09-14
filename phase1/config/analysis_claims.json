@@ -60,11 +60,12 @@
    "output": [
     "phase1/reports/phase1/phase4_tp53_external.csv",
     "phase1/reports/phase1/directionality_check.csv",
-    "phase1/data/external/tp53_splice_scored_v2.parquet"
+    "phase1/data/external/tp53_splice_scored_v2.parquet",
+    "phase1/reports/phase1/phase4_tp53_orientation.csv"
    ],
    "status": "verified",
    "anchor": "we performed a leakage-proof external va",
-   "note": "Since frozen-matrix-v2 the external validation uses all ten predictors; data/external/tp53_splice_scored_v2.parquet is written by phase1_build_frozen_matrix_v2."
+   "note": "Since frozen-matrix-v2 the external validation uses all ten predictors; data/external/tp53_splice_scored_v2.parquet is written by phase1_build_frozen_matrix_v2. The full-SGE orientation gate (3.4's post-orientation control AUROC) is written to phase4_tp53_orientation.csv on every run; it used to be quoted from a comment."
   },
   {
    "para": "P29",

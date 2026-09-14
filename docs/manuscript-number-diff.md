@@ -1,6 +1,6 @@
 # Numeric tokens: `calibration_draft_backup_20260914_preV2.docx` → `calibration_draft.docx`
 
-Tokens: 506 before, 556 after. Changed in place: 145; new: 113; removed: 63. Paragraphs are aligned by text, so a split or inserted paragraph does not renumber the rest; the block column is the paragraph id (P<n>) or table cell (T<table>r<row>c<col>) in the NEW file, or in the old file for a removed number. Rewritten sentences show their numbers as removed and new.
+Tokens: 506 before, 556 after. Changed in place: 144; new: 113; removed: 63. Paragraphs are aligned by text, so a split or inserted paragraph does not renumber the rest; the block column is the paragraph id (P<n>) or table cell (T<table>r<row>c<col>) in the NEW file, or in the old file for a removed number. Rewritten sentences show their numbers as removed and new.
 
 | block | old | new |
 |---|---|---|
@@ -236,7 +236,6 @@ Tokens: 506 before, 556 after. Changed in place: 145; new: 113; removed: 63. Par
 | P65 | 17.6 | 17.3 |
 | P67 | 86.8 | 87.0 |
 | P67 | 75.1 | 74.9 |
-| P69 | 0.997 | 0.998 |
 | P68 | 0.079 | (removed) |
 | P71 | (new) | 0.077 |
 | P71 | (new) | 0.118 |
@@ -248,7 +247,7 @@ Tokens: 506 before, 556 after. Changed in place: 145; new: 113; removed: 63. Par
 | P71 | 95 | 0.968 |
 | P71 | 0.016 | 0.940 |
 | P71 | 0.071 | 64.6 |
-| P71 | 0.120 | 78.7 |
+| P71 | 0.120 | 78.6 |
 | P71 | 0.154 | 0.005 |
 | P71 | 0.978 | −0.014 |
 | P71 | 0.912 | 0.024 |
