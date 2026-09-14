@@ -4,7 +4,7 @@
   {
    "name": "splice window",
    "kind": "parameter",
-   "pattern": "\\|offset\\| ≤ (8)\\b|\\|offset\\| ≤ (2)\\b|window ends at (8) bp|splice-region \\((3)–(8)|region band (3)–(8)",
+   "pattern": "\\|offset\\| ≤ (8)\\b|\\|offset\\| ≤ (2)\\b|splice-region \\((3)–(8)|region band (3)–(8)|splice-region band \\((3)–(8) bp",
    "reason": "The proximal splice window and its core/region split are definitions of the analysis set.",
    "source": "phase1/src/config.py",
    "defined_by": "SPLICE_CORE_MAX\\s*=\\s*2\\b[\\s\\S]*?SPLICE_REGION_MAX\\s*=\\s*8\\b"

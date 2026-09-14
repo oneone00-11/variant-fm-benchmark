@@ -2,7 +2,7 @@
  "_note": "Sentences asserting an analysis, bound to the script that performs it and the output it produces. A numeric check cannot ask whether a described analysis exists; this can. Binding is by `anchor`, a substring occurring exactly once in the document, never by `para`: rewriting the abstract on 2026-09-02 shifted every later paragraph by two and left all six `para` values pointing at the wrong text, silently. `para` is a reading aid only. An anchor hitting zero blocks (the sentence was reworded) or more than one (not distinctive enough) fails tests/test_analysis_claims.py.",
  "claims": [
   {
-   "para": "P26",
+   "para": "P32",
    "claim": "per-gene Spearman pooled by DerSimonian-Laird under LOGO",
    "script": "phase1/src/phase2_model.py",
    "output": "phase1/reports/phase1/phase2_leaderboard.csv",
@@ -14,7 +14,7 @@
    "anchor": "Per-gene Spearman ρ between out-of-fold"
   },
   {
-   "para": "P27",
+   "para": "P33",
    "claim": "evolutionary-axis ablation, two versions",
    "script": "phase1/src/phase2_model.py",
    "output": "phase1/reports/phase1/phase2_H2_ablation.csv",
@@ -22,7 +22,7 @@
    "anchor": "Elastic-net ablation of the evolutionary"
   },
   {
-   "para": "P28",
+   "para": "P34",
    "claim": "identical out-of-gene calibration of every object; ECE, Brier, clinical yield",
    "script": "phase1/src/phase3_calibration.py",
    "output": "phase1/reports/phase1/phase3_H3_headline.csv",
@@ -30,7 +30,7 @@
    "anchor": "was put through the identical out-of-gen"
   },
   {
-   "para": "P30",
+   "para": "P36",
    "claim": "sampling-frame reweighting to the full functional set",
    "script": "phase1/src/ipw_reweight.py",
    "output": [
@@ -46,7 +46,7 @@
    "note": "Corrected 2026-09-02: the whole-gene enrichment was printed as 0.713 versus 0.578. No output held those values; ipw_frame_balance.csv is restricted to the proximal splice window by load_target_frame(), so the whole-gene comparison had never been computed. Measured it is 1.26 against 0.62, a larger enrichment than was claimed, and the window figures are now stated against the same comparator (not recruited) rather than against the frame."
   },
   {
-   "para": "P32",
+   "para": "P38",
    "claim": "frozen matrix (v2) pinned by content hash and rebuilt from tracked sources; v1 rebuilt and verified first",
    "script": "scripts/reproduce_calibration.py",
    "output": "phase1/data/frozen/manifest_v2.json",
@@ -54,7 +54,7 @@
    "anchor": "content-hash-verified frozen matrix froz"
   },
   {
-   "para": "P69",
+   "para": "P75",
    "claim": "leakage-proof external validation on held-out TP53",
    "script": "phase1/src/phase4_external_tp53.py",
    "output": [
@@ -65,10 +65,13 @@
    ],
    "status": "verified",
    "anchor": "we performed a leakage-proof external va",
-   "note": "Since frozen-matrix-v2 the external validation uses all ten predictors; data/external/tp53_splice_scored_v2.parquet is written by phase1_build_frozen_matrix_v2. The full-SGE orientation gate (3.4's post-orientation control AUROC) is written to phase4_tp53_orientation.csv on every run; it used to be quoted from a comment."
+   "note": "Since frozen-matrix-v2 the external validation uses all ten predictors; data/external/tp53_splice_scored_v2.parquet is written by phase1_build_frozen_matrix_v2. The full-SGE orientation gate (3.4's post-orientation control AUROC) is written to phase4_tp53_orientation.csv on every run; it used to be quoted from a comment.",
+   "pin": {
+    "0.997": "phase4_tp53_orientation.csv[TP53/urn:mavedb:00001213-a-1 (full SGE; data/external/tp53_mavedb_scores.tsv)/as run (TP53 in FLIP_GENES)].control_auroc"
+   }
   },
   {
-   "para": "P29",
+   "para": "P35",
    "claim": "LR+/LR- at 95% specificity on two bases (scanned threshold with achieved specificity; interpolated to exactly the nominal specificity), Tavtigian bands at a prior of 0.10 on the interpolated basis",
    "anchor": "Every object was summarised by LR+ and L",
    "script": "phase1/src/phase5_likelihood_ratios.py",
@@ -80,7 +83,7 @@
    "note": "The 10 in 'ECE (10 bins)' in the calibration paragraph is a method parameter, not an output, and is reported as a scoped mismatch for that reason."
   },
   {
-   "para": "P58",
+   "para": "P68",
    "claim": "no object reaches Strong on the functional standard",
    "anchor": "Translated into likelihood ratios, no object establishes Strong",
    "script": "phase1/src/phase5_likelihood_ratios.py",
@@ -96,7 +99,7 @@
    }
   },
   {
-   "para": "P63",
+   "para": "P69",
    "claim": "the fusion's LR+ advantage: about one unit at the interpolated point, no band change; spans zero at the scanned thresholds",
    "anchor": "the paired difference in LR+ between the fusion and the same best single tool",
    "script": "phase1/src/phase5_likelihood_ratios.py",
@@ -109,7 +112,7 @@
    "note": "The median LR+ change on calibrating and the count of band changes are summaries of the per-cell table, so phase5 writes them out; quoting them from a summary nothing stores is how the whole-gene |z| figures went wrong."
   },
   {
-   "para": "P64",
+   "para": "P70",
    "claim": "the label-standard gap is ascertainment, not circularity",
    "anchor": "but those are not the same variants: 1,6",
    "script": "phase1/src/phase7_label_contrast.py",
@@ -121,7 +124,7 @@
    "note": "Corrected 2026-09-03: the prose read 'the predictors, the variants and the operating point are identical; only the labels differ' and called the gap circularity. The variants were NOT identical -- 1,675 assay-labelled against 946 ClinVar-labelled, 907 shared -- so selection was uncontrolled. On the shared 907 the gap almost closes (five objects at Strong on the assay labels, six on ClinVar)."
   },
   {
-   "para": "P67",
+   "para": "P73",
    "claim": "clinical yield redefined by evidence tier",
    "anchor": "of variants at Moderate or above on the functional standard, against",
    "script": "phase1/src/phase5b_evidence_yield.py",
@@ -130,7 +133,7 @@
    "note": "The 0.90/0.10 band it is compared against has no source; that is stated in Methods rather than repaired, and the evidence-based definition is reported beside it. The old definition reproduces the Table 3 high-confidence fraction exactly (75.1% on frozen-matrix-v1, 74.9% on v2)."
   },
   {
-   "para": "P78",
+   "para": "P84",
    "claim": "ACMG application limits; bands are indicative, not ClinGen-grade",
    "anchor": "The bands used here follow the Tavtigian",
    "script": null,
@@ -139,7 +142,7 @@
    "note": "A statement about what the evidence bands do and do not license. The thresholds it names are literature constants, whitelisted with that reason."
   },
   {
-   "para": "P79",
+   "para": "P85",
    "claim": "elastic-net weights stable across the seven folds",
    "anchor": "Its elastic-net weights are stable acros",
    "script": "phase1/src/phase6_sensitivity.py",
@@ -147,7 +150,7 @@
    "status": "verified"
   },
   {
-   "para": "P79",
+   "para": "P85",
    "claim": "Brier degrades slightly as training genes are thinned 6 to 3",
    "anchor": "mean Brier moves from 0.0596 with six tr",
    "script": "phase1/src/phase6_sensitivity.py",
@@ -158,7 +161,7 @@
    "status": "verified"
   },
   {
-   "para": "P65",
+   "para": "P71",
    "claim": "the two label sets agree on the shared variants",
    "anchor": "they agree on 96.7% of calls (Cohen's κ",
    "script": "phase1/src/phase7_label_contrast.py",
@@ -177,7 +180,7 @@
    ]
   },
   {
-   "para": "P65",
+   "para": "P71",
    "claim": "ClinVar-recorded variants are easier under the same functional labels",
    "anchor": "every one of the eleven evaluable objects reaches a hig",
    "script": "phase1/src/phase7_label_contrast.py",
@@ -213,7 +216,7 @@
    ]
   },
   {
-   "para": "P65",
+   "para": "P71",
    "claim": "none of the ten predictors is trained on clinical assertions",
    "anchor": "none of these ten predictors is trained",
    "script": "phase1/src/phase7_label_contrast.py",
@@ -226,7 +229,7 @@
    "note": "The grouping is the companion survey's training-provenance table. The clinical-label group is empty for this panel, which is why circularity cannot explain the gap."
   },
   {
-   "para": "P66",
+   "para": "P72",
    "claim": "the effect is ascertainment, the same one the sampling frame finds",
    "anchor": "The honest statement is therefore about",
    "script": null,
@@ -235,7 +238,7 @@
    "note": "An interpretation of the three measured checks above; it asserts no new analysis."
   },
   {
-   "para": "P42",
+   "para": "P48",
    "claim": "per-gene ranking deltas: six of seven genes favour the fusion, BAP1 the exception",
    "anchor": "six of which favour the fusion and one, BAP1",
    "script": "phase1/src/phase8_per_gene_deltas.py",
@@ -251,7 +254,7 @@
    "note": "The paragraph also states the H1 headline and strata, the sign-flip p, the leave-two-genes-out range and the no-offset drop, so every output those come from is in scope."
   },
   {
-   "para": "P53",
+   "para": "P59",
    "claim": "per-gene calibration deltas: six of seven genes favour the fusion, BARD1 the exception",
    "anchor": "six of the seven genes favour the fusion here as well",
    "script": "phase1/src/phase8_per_gene_deltas.py",
@@ -327,6 +330,37 @@
   },
   {
    "para": "P19",
+   "claim": "SNVs shared with the companion atlas's matrix, and why the counts coincide",
+   "anchor": "Of these 21,410 SNVs, 21,394 are shared with the companion atlas",
+   "script": "phase1/src/phase1_build_frozen_matrix_v2.py",
+   "output": [
+    "phase1/data/frozen/frozen_matrix_v2.parquet",
+    "phase1/data/frozen/manifest_v2.json"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P20",
+   "claim": "functional scores oriented per gene and verified against synonymous/nonsense controls",
+   "anchor": "Functional scores were oriented per gene so that larger values indicate greater damage",
+   "script": "phase1/src/phase1_directionality_check.py",
+   "output": [
+    "phase1/reports/phase1/directionality_check.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P21",
+   "claim": "composition of the primary splice subset and the core-like/region contrast",
+   "anchor": "The primary subset is the intron-side splice region, 1,781 variants in all",
+   "script": "phase1/src/phase1_build_frozen_matrix_v2.py",
+   "output": [
+    "phase1/data/frozen/frozen_matrix_v2.parquet"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P24",
    "claim": "functional labels: coverage and positive fraction",
    "anchor": "Functional class labels were taken from ",
    "script": "phase1/src/phase1_build_frozen_matrix.py",
@@ -355,7 +389,7 @@
    ]
   },
   {
-   "para": "P33",
+   "para": "P39",
    "claim": "pinned re-scoring reproduces the frozen columns",
    "anchor": "For the TP53 validation all ten predicto",
    "script": "phase1/src/phase1_build_frozen_matrix_v2.py",
@@ -367,7 +401,7 @@
    "status": "verified"
   },
   {
-   "para": "P36",
+   "para": "P42",
    "claim": "checks that do not require reading the code",
    "anchor": "The correctness of the analysis code res",
    "script": "phase1/src/phase1_directionality_check.py",
@@ -378,15 +412,7 @@
    "status": "verified"
   },
   {
-   "para": "P37",
-   "claim": "the number check binds every measured number to a declared output; the coverage Methods 2.6 states, as recorded",
-   "anchor": "a further script accounts for every number in the text, tables and captions",
-   "script": "phase1/src/check_manuscript_numbers.py",
-   "output": "phase1/config/pipeline_facts.json",
-   "status": "verified"
-  },
-  {
-   "para": "P41",
+   "para": "P47",
    "claim": "leaderboard of single tools",
    "anchor": "On the independent functional standard t",
    "script": "phase1/src/phase2_model.py",
@@ -397,7 +423,7 @@
    "status": "verified"
   },
   {
-   "para": "P44",
+   "para": "P50",
    "claim": "Figure 1 caption",
    "anchor": "Figure 1. Ranking among top splice-aware",
    "script": "phase1/src/phase9_figures.py",
@@ -407,7 +433,7 @@
    "status": "verified"
   },
   {
-   "para": "P45",
+   "para": "P51",
    "claim": "Table 1",
    "anchor": "Table 1. Leaderboard on the independent ",
    "script": "phase1/src/phase2_model.py",
@@ -418,7 +444,7 @@
    "table": true
   },
   {
-   "para": "P46",
+   "para": "P52",
    "claim": "Table 1 note: Hartung-Knapp interval, AlphaMissense coverage",
    "anchor": "Ranked by pooled ρ. Fusion objects: M1 e",
    "script": "phase1/src/phase8_robustness.py",
@@ -429,7 +455,7 @@
    "status": "verified"
   },
   {
-   "para": "P48",
+   "para": "P54",
    "claim": "evolutionary-axis ablation",
    "anchor": "Removing the evolutionary axis from the ",
    "script": "phase1/src/phase2_model.py",
@@ -440,7 +466,7 @@
    "status": "verified"
   },
   {
-   "para": "P49",
+   "para": "P55",
    "claim": "Table 2",
    "anchor": "Table 2. Evolution-axis ablation (H2). C",
    "script": "phase1/src/phase2_model.py",
@@ -451,7 +477,7 @@
    "table": true
   },
   {
-   "para": "P50",
+   "para": "P56",
    "claim": "Table 2 note: coefficients and their ranks",
    "anchor": "Δρ = full − ablated; a positive value wo",
    "script": "phase1/src/phase6_sensitivity.py",
@@ -488,7 +514,7 @@
    ]
   },
   {
-   "para": "P54",
+   "para": "P60",
    "claim": "Murphy decomposition",
    "anchor": "What the gain is made of is answered by ",
    "script": "phase1/src/phase8_robustness.py",
@@ -499,7 +525,7 @@
    "status": "verified"
   },
   {
-   "para": "P55",
+   "para": "P61",
    "claim": "ECE contrast",
    "anchor": "The pure-calibration metric (ECE) is mor",
    "script": "phase1/src/phase3_calibration.py",
@@ -510,7 +536,7 @@
    "status": "verified"
   },
   {
-   "para": "P57",
+   "para": "P63",
    "claim": "Figure 2 caption",
    "anchor": "Figure 2. The fusion is calibrated on th",
    "script": "phase1/src/phase9_figures.py",
@@ -522,7 +548,7 @@
    "status": "verified"
   },
   {
-   "para": "P59",
+   "para": "P65",
    "claim": "Figure 3 caption",
    "anchor": "Figure 3. The fusion produces more accur",
    "script": "phase1/src/phase9_figures.py",
@@ -532,7 +558,7 @@
    "status": "verified"
   },
   {
-   "para": "P60",
+   "para": "P66",
    "claim": "Table 3",
    "anchor": "Table 3. Calibration on the independent ",
    "script": "phase1/src/phase3_calibration.py",
@@ -543,7 +569,7 @@
    "table": true
   },
   {
-   "para": "P71",
+   "para": "P77",
    "claim": "TP53 result",
    "anchor": "The fusion's calibrated Brier score on h",
    "script": "phase1/src/phase4_external_tp53.py",
@@ -554,7 +580,7 @@
    "status": "verified"
   },
   {
-   "para": "P72",
+   "para": "P78",
    "claim": "TP53 sample size",
    "anchor": "We read this as a directional replicatio",
    "script": "phase1/src/phase4_external_tp53.py",
@@ -564,7 +590,7 @@
    "status": "verified"
   },
   {
-   "para": "P73",
+   "para": "P79",
    "claim": "Table 4",
    "anchor": "Table 4. External validation on held-out",
    "script": "phase1/src/phase4_external_tp53.py",
@@ -575,7 +601,7 @@
    "table": true
   },
   {
-   "para": "P75",
+   "para": "P81",
    "claim": "discussion: evolutionary axis",
    "anchor": "The three findings combine into one clai",
    "script": "phase1/src/phase2_model.py",
@@ -585,7 +611,7 @@
    "status": "verified"
   },
   {
-   "para": "P77",
+   "para": "P83",
    "claim": "discussion: sensitivities by ClinVar classification",
    "anchor": "One consequence deserves stating directl",
    "script": "phase1/src/phase7_label_contrast.py",
@@ -595,7 +621,7 @@
    "status": "verified"
   },
   {
-   "para": "P78",
+   "para": "P84",
    "claim": "limits: positive fraction",
    "anchor": "Applying any of this inside ACMG/AMP car",
    "script": "phase1/src/phase1_build_frozen_matrix.py",
@@ -605,7 +631,7 @@
    "status": "verified"
   },
   {
-   "para": "P81",
+   "para": "P87",
    "claim": "limitations: label abstention",
    "anchor": "The functional standard covers seven DNA",
    "script": "phase1/src/phase1_build_frozen_matrix.py",
@@ -630,6 +656,18 @@
      "how": "splice variants without an assay label: 100 − 100 × Σ n_labelled_splice / Σ n_splice (methodB_coverage.csv)"
     }
    ]
+  },
+  {
+   "para": "P87",
+   "claim": "the ranking difference does not survive the low cluster count: the exact sign-flip test, the no-offset drop and every reweighting scheme leave its interval spanning zero",
+   "anchor": "and the ranking difference does not",
+   "script": null,
+   "output": [
+    "phase1/reports/phase1/phase8_sign_flip_exact.csv",
+    "phase1/reports/phase1/phase2_no_offset_drop.csv",
+    "phase1/reports/phase1/ipw_ranking.csv"
+   ],
+   "status": "verified"
   }
  ]
 }
