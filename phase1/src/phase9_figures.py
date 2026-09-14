@@ -139,7 +139,7 @@ def figure2(rep):
     best = pd.read_csv(rep / "phase3_reliability_best_single.csv")
     fig, ax = plt.subplots(figsize=(1165 / DPI, 1135 / DPI))
     ax.plot([0, 1], [0, 1], ls="--", color="#AAAAAA", lw=1.6, label="perfect calibration", zorder=1)
-    area = lambda n: 18 + 260 * (n / max(fus.n.max(), best.n.max()))
+    area = lambda n: 12 + 140 * (n / max(fus.n.max(), best.n.max()))
     ax.scatter(best.mean_pred, best.frac_pos, s=area(best.n), color=ORANGE, marker="o",
                label="Pangolin (calibrated)", zorder=2)
     ax.scatter(fus.mean_pred, fus.frac_pos, s=area(fus.n), color=BLUE, marker="D",
