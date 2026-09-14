@@ -106,10 +106,10 @@ def figure1(rep):
         y = len(FIG1_ROWS) - 1 - i
         row = pool.loc[obj]
         lo, hi = row.lo, row.hi
-        ax.scatter(dots[obj], np.full(dots[obj].shape, y), s=22, color=colour,
+        ax.scatter(dots[obj], np.full(dots[obj].shape, y), s=14, color=colour,
                    alpha=0.30, linewidths=0, zorder=2)
         ax.errorbar(row.rho, y, xerr=[[row.rho - lo], [hi - row.rho]],
-                    fmt=marker, color=colour, markersize=9 if marker == "D" else 8,
+                    fmt=marker, color=colour, markersize=7 if marker == "D" else 6,
                     elinewidth=2.4, capsize=4, capthick=2.0, zorder=3)
         head = obj == "M1_enet"
         ax.text(label_x, y, f"{_half_up(row.rho, 3)}  (I²={_half_up(row.I2)}%)", va="center", ha="left",
@@ -139,7 +139,7 @@ def figure2(rep):
     best = pd.read_csv(rep / "phase3_reliability_best_single.csv")
     fig, ax = plt.subplots(figsize=(1165 / DPI, 1135 / DPI))
     ax.plot([0, 1], [0, 1], ls="--", color="#AAAAAA", lw=1.6, label="perfect calibration", zorder=1)
-    area = lambda n: 12 + 140 * (n / max(fus.n.max(), best.n.max()))
+    area = lambda n: 8 + 90 * (n / max(fus.n.max(), best.n.max()))
     ax.scatter(best.mean_pred, best.frac_pos, s=area(best.n), color=ORANGE, marker="o",
                label="Pangolin (calibrated)", zorder=2)
     ax.scatter(fus.mean_pred, fus.frac_pos, s=area(fus.n), color=BLUE, marker="D",
@@ -186,7 +186,7 @@ def figure3(rep):
             excl = flag in str(h.loc[cond, "fusion_better_on"]).split(",")
             ax.errorbar(v, y, xerr=[[v - lo], [hi - v]], fmt="D", color=colour,
                         markerfacecolor=colour if excl else "white",
-                        markeredgecolor=colour, markeredgewidth=1.6, markersize=9,
+                        markeredgecolor=colour, markeredgewidth=1.4, markersize=7,
                         elinewidth=2.4, capsize=0, alpha=1.0 if excl else 0.55, zorder=3)
             ax.text(hi + 0.04 * span, y, f"{v:+.4f}".replace("-", "−"), va="center", ha="left",
                     fontsize=9, fontweight="bold" if excl else "normal", color="#222222")
