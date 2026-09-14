@@ -58,5 +58,12 @@
   "values": [
    "0.9997"
   ]
+ },
+ "frozen_matrix_v2_rerounding": {
+  "reason": "Measured on the frozen matrices under phase1/data/frozen/, not on any reports/ output: how many SpliceAI values re-round from the full-precision v2 score to the v1 print (21,409 of 21,410), and the full-precision score of the one exception (0.2149994, variant 17-58696697-C-T). Both are pinned by tests/test_frozen_matrix_v2.py::test_re_rounded_agreement_counts_are_what_methods_2_5_states, which fails if either changes.",
+  "values": [
+   "21,409",
+   "0.2149994"
+  ]
  }
 }

@@ -19,31 +19,33 @@
    "skipped": 0
   }
  },
- "guardrail_tests_passing_from_archive": 72,
- "archive_measured_for": "git archive of the frozen-matrix-v2 release state (commit B of 2026-09-14, HEAD 6fb29b1 before its facts amendment; re-measured after)",
+ "guardrail_tests_passing_from_archive": 80,
+ "archive_measured_for": "git archive of commit 9b6d362 (code, figures and tests of the v2 review round); re-measured on the manuscript-support commit that follows it, which adds no tests",
  "archive_breakdown": {
   "measured_at": "2026-09-14",
   "how": "git archive --format=tar HEAD | tar -x; python -m pytest -q -rs from the extract root with the repository's pinned virtualenv (python 3.12.14; pip install -r requirements.txt plus pyarrow and python-docx, which the tests import); HOME pointed at an empty directory and VARIANT_FM_MANUSCRIPT unset, so no manuscript is visible",
-  "collected": 76,
-  "passed": 72,
+  "collected": 86,
+  "passed": 80,
   "failed": 0,
-  "skipped": 4,
+  "skipped": 6,
   "skips_are": [
    "tests/test_analysis_claims.py::test_every_anchor_hits_exactly_once -- manuscript not available",
    "tests/test_analysis_claims.py::test_paragraph_numbers_are_not_load_bearing -- manuscript not available",
    "tests/test_reported_numbers.py::test_the_disclosed_test_count_is_the_measured_one -- manuscript not available",
-   "tests/test_reproduction_coverage.py::test_every_tracked_result_has_a_documented_entry_point -- 'no tracked report files': the check enumerates tracked outputs with `git ls-files`, and an archive extract carries no git index; in a clone of the same commit the test runs and passes (76 passed, 0 skipped)"
+   "tests/test_reported_numbers.py::test_table_1_rounds_the_unrounded_pooled_values_once -- manuscript not available",
+   "tests/test_reported_numbers.py::test_table_3_rounds_the_precise_calibration_values_once -- manuscript not available",
+   "tests/test_reproduction_coverage.py::test_every_tracked_result_has_a_documented_entry_point -- 'no tracked report files': it enumerates tracked outputs with `git ls-files`, and an archive extract carries no git index; in a clone of the same commit it runs and passes"
   ],
   "with_manuscript_visible": {
-   "collected": 76,
-   "passed": 75,
+   "collected": 86,
+   "passed": 85,
    "failed": 0,
    "skipped": 1,
    "skip_is": "the git-index coverage check above; it is the only test that cannot run from an archive"
   },
   "in_a_clone_with_manuscript_visible": {
-   "collected": 76,
-   "passed": 76,
+   "collected": 86,
+   "passed": 86,
    "failed": 0,
    "skipped": 0
   }

@@ -235,13 +235,19 @@ def section_of(docx: Path):
 def resolve(docx: Path, v1d: Path, v2d: Path, cmn, decisions: dict):
     idx, vals, f1 = cells(v1d)
     _, _, f2 = cells(v2d)
-    wl_values, wl_patterns, _ = cmn.load_whitelist()
+    wl_values, wl_patterns, wl_spec = cmn.load_whitelist()
+    # the section-number pattern cannot tell "2.4" from the measurement "8.8"; this pass
+    # once skipped a stale Table 3 cell that way, so it holds only for real headings
+    sect_src = (wl_spec.get("section_numbers") or {}).get("pattern")
+    headings = cmn.heading_numbers(docx)
     claim_scopes = cmn.claim_scopes(docx) if hasattr(cmn, "claim_scopes") else {}
     sections = section_of(docx)
     rows = []
     for t in cmn.manuscript_tokens(docx):
         tok, val, uid = t["token"], t["value"], t["uid"]
-        if tok.replace("−", "-") in wl_values or any(p.match(tok) for p in wl_patterns):
+        if (tok.replace("−", "-") in wl_values
+                or any(p.match(tok) for p in wl_patterns if p.pattern != sect_src)
+                or (sect_src and re.match(sect_src, tok) and tok in headings)):
             rows.append({**t, "status": "whitelisted", "new": tok}); continue
         allowed = set(sections.get(uid if uid.startswith("P") else uid.split("r")[0], []))
         allowed |= set(Path(o).name for o in claim_scopes.get(uid, []))

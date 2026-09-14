@@ -1,0 +1,1144 @@
+{
+ "_note": "The WEAK class of the forward number check (a token whose value lies within tolerance of at least 25 pipeline values, so the check cannot say which one it is) as it stood on calibration_draft.docx sha256 893076f1ca2bccff..., the manuscript version the v2 review examined. Frozen so the seeded spot-check sample in docs/weak-token-spotcheck.md can be redrawn after the text moves on.",
+ "manuscript_sha256_prefix": "893076f1ca2bccff",
+ "counts": {
+  "matched": 378,
+  "weak": 161,
+  "whitelisted": 4,
+  "no_source": 0,
+  "scoped_mismatch": 0,
+  "cardinality_mismatch": 0,
+  "stale_counts": 0,
+  "n_pool": 6251,
+  "n_scoped_paragraphs": 15
+ },
+ "weak": [
+  {
+   "uid": "P3",
+   "token": "11",
+   "value": 11.0,
+   "context": "Repository: github.com/oneone00-11/variant-fm-benchmark · Frozen anal",
+   "n_pool_matches": 96
+  },
+  {
+   "uid": "P8",
+   "token": "0.76",
+   "value": 0.76,
+   "context": "is saturated: the best single tool reaches Spearman ρ 0.76 and an elastic-net fusion adds onl",
+   "n_pool_matches": 49
+  },
+  {
+   "uid": "P8",
+   "token": "+0.013",
+   "value": 0.013,
+   "context": "es Spearman ρ 0.76 and an elastic-net fusion adds only +0.013, not a robust advantage — saturati",
+   "n_pool_matches": 194
+  },
+  {
+   "uid": "P8",
+   "token": "8",
+   "value": 8.0,
+   "context": "hin this standard's proximal splice window (|offset| ≤ 8) among current tools, while the co",
+   "n_pool_matches": 136
+  },
+  {
+   "uid": "P8",
+   "token": "+0.003",
+   "value": 0.003,
+   "context": "urement ceiling; the evolutionary axis adds at most Δρ +0.003. Calibration differs in resolution",
+   "n_pool_matches": 29
+  },
+  {
+   "uid": "P8",
+   "token": "0.90",
+   "value": 0.9,
+   "context": "es more high-confidence calls (calibrated confidence ≥ 0.90 or ≤ 0.10) in every condition, wit",
+   "n_pool_matches": 35
+  },
+  {
+   "uid": "P8",
+   "token": "0.10",
+   "value": 0.1,
+   "context": "gh-confidence calls (calibrated confidence ≥ 0.90 or ≤ 0.10) in every condition, with interval",
+   "n_pool_matches": 75
+  },
+  {
+   "uid": "P9",
+   "token": "95",
+   "value": 95.0,
+   "context": "ical one. As likelihood ratios interpolated to exactly 95% specificity, nothing establishes",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P9",
+   "token": "1.0",
+   "value": 1.0,
+   "context": "al standard and the fusion's advantage narrows to ΔLR+ 1.0 (95% CI 0.04–1.61), within the Mod",
+   "n_pool_matches": 442
+  },
+  {
+   "uid": "P9",
+   "token": "0.04",
+   "value": 0.04,
+   "context": "and the fusion's advantage narrows to ΔLR+ 1.0 (95% CI 0.04–1.61), within the Moderate band; a",
+   "n_pool_matches": 144
+  },
+  {
+   "uid": "P12",
+   "token": "1",
+   "value": 1.0,
+   "context": "1. Introduction",
+   "n_pool_matches": 2117
+  },
+  {
+   "uid": "P15",
+   "token": "2",
+   "value": 2.0,
+   "context": "2. Methods",
+   "n_pool_matches": 316
+  },
+  {
+   "uid": "P16",
+   "token": "80",
+   "value": 80.0,
+   "context": "lities, are numerically trustworthy — whether a stated 80% means an ~80% empirical rate. In",
+   "n_pool_matches": 31
+  },
+  {
+   "uid": "P17",
+   "token": "2.1",
+   "value": 2.1,
+   "context": "2.1 Analysis set and functional standa",
+   "n_pool_matches": 33
+  },
+  {
+   "uid": "P18",
+   "token": "15",
+   "value": 15.0,
+   "context": "nVar records were taken from the GRCh38 VCF release of 15 June 2026 ; records of every revi",
+   "n_pool_matches": 110
+  },
+  {
+   "uid": "P18",
+   "token": "2",
+   "value": 2.0,
+   "context": "the intron-side splice region: splice-core (|offset| ≤ 2; n = 583, including six audited UT",
+   "n_pool_matches": 316
+  },
+  {
+   "uid": "P18",
+   "token": "3",
+   "value": 3.0,
+   "context": "the region classifier had missed) plus splice-region (3–8; n = 1,191) plus seven exon-side",
+   "n_pool_matches": 211
+  },
+  {
+   "uid": "P18",
+   "token": "8",
+   "value": 8.0,
+   "context": "he region classifier had missed) plus splice-region (3–8; n = 1,191) plus seven exon-side v",
+   "n_pool_matches": 136
+  },
+  {
+   "uid": "P18",
+   "token": "10",
+   "value": 10.0,
+   "context": "and the region band 3–8, where the atlas stratifies 3–10, 11–50 and >50 bp. Of the nine UTR",
+   "n_pool_matches": 97
+  },
+  {
+   "uid": "P18",
+   "token": "11",
+   "value": 11.0,
+   "context": "the region band 3–8, where the atlas stratifies 3–10, 11–50 and >50 bp. Of the nine UTR-int",
+   "n_pool_matches": 96
+  },
+  {
+   "uid": "P18",
+   "token": "−1",
+   "value": -1.0,
+   "context": "nts identified in the shared audit, the six at offsets −1/−2 are corrected into the splice c",
+   "n_pool_matches": 2117
+  },
+  {
+   "uid": "P18",
+   "token": "−2",
+   "value": -2.0,
+   "context": "identified in the shared audit, the six at offsets −1/−2 are corrected into the splice core",
+   "n_pool_matches": 316
+  },
+  {
+   "uid": "P18",
+   "token": "−3",
+   "value": -3.0,
+   "context": "−1/−2 are corrected into the splice core; the three at −3 carry no usable intron offset in t",
+   "n_pool_matches": 211
+  },
+  {
+   "uid": "P19",
+   "token": "1",
+   "value": 1.0,
+   "context": "f BRCA1 — and collapsed to a common binary (damaging = 1, normal = 0, indeterminate = NA).",
+   "n_pool_matches": 2117
+  },
+  {
+   "uid": "P19",
+   "token": "0",
+   "value": 0.0,
+   "context": "d collapsed to a common binary (damaging = 1, normal = 0, indeterminate = NA). This covered",
+   "n_pool_matches": 5922
+  },
+  {
+   "uid": "P19",
+   "token": "94",
+   "value": 94.0,
+   "context": "te = NA). This covered 1,675 of 1,781 splice variants (94%) at a near-balanced positive frac",
+   "n_pool_matches": 40
+  },
+  {
+   "uid": "P20",
+   "token": "2.2",
+   "value": 2.2,
+   "context": "2.2 Predictors and features",
+   "n_pool_matches": 33
+  },
+  {
+   "uid": "P22",
+   "token": "2.3",
+   "value": 2.3,
+   "context": "2.3 Fusion models and cross-validation",
+   "n_pool_matches": 27
+  },
+  {
+   "uid": "P24",
+   "token": "2.4",
+   "value": 2.4,
+   "context": "2.4 Metrics and inference",
+   "n_pool_matches": 34
+  },
+  {
+   "uid": "P26",
+   "token": "2.2",
+   "value": 2.2,
+   "context": "hich is why everything is rank-normalised within gene (2.2, 2.3). They are also far from norm",
+   "n_pool_matches": 33
+  },
+  {
+   "uid": "P26",
+   "token": "2.3",
+   "value": 2.3,
+   "context": "is why everything is rank-normalised within gene (2.2, 2.3). They are also far from normal. R",
+   "n_pool_matches": 27
+  },
+  {
+   "uid": "P26",
+   "token": "95",
+   "value": 95.0,
+   "context": "used a gene-clustered bootstrap (2,000 resamples) for 95% CIs; results are also stratified",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P28",
+   "token": "10",
+   "value": 10.0,
+   "context": "n to its variant count. Quality was quantified by ECE (10 bins), Brier score (a proper score",
+   "n_pool_matches": 97
+  },
+  {
+   "uid": "P28",
+   "token": "0.90",
+   "value": 0.9,
+   "context": "yield (the fraction reaching a calibrated confidence ≥ 0.90 or ≤ 0.10, and the empirical accur",
+   "n_pool_matches": 35
+  },
+  {
+   "uid": "P28",
+   "token": "0.10",
+   "value": 0.1,
+   "context": "fraction reaching a calibrated confidence ≥ 0.90 or ≤ 0.10, and the empirical accuracy of tha",
+   "n_pool_matches": 75
+  },
+  {
+   "uid": "P29",
+   "token": "95",
+   "value": 95.0,
+   "context": "was summarised by LR+ and LR− at an operating point of 95% specificity, fixed in advance to",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P29",
+   "token": "0.10",
+   "value": 0.1,
+   "context": "y the Tavtigian point system at an explicit prior of 0.10. LR− is reported at the same thres",
+   "n_pool_matches": 75
+  },
+  {
+   "uid": "P29",
+   "token": "19.9",
+   "value": 19.9,
+   "context": "standard (AlphaGenome 24.3 at 97.2% realised, Pangolin 19.9 at 96.0%) partly reflect that oper",
+   "n_pool_matches": 38
+  },
+  {
+   "uid": "P29",
+   "token": "0.05",
+   "value": 0.05,
+   "context": "arget false-positive rate, so that LR+ = sensitivity / 0.05 exactly. The interpolated value ca",
+   "n_pool_matches": 195
+  },
+  {
+   "uid": "P31",
+   "token": "2.5",
+   "value": 2.5,
+   "context": "2.5 Reproducibility",
+   "n_pool_matches": 29
+  },
+  {
+   "uid": "P33",
+   "token": "14",
+   "value": 14.0,
+   "context": "en-gene splice variants with the pinned client v0.6.1 (14/14) (Supplementary Table S7), GPN-",
+   "n_pool_matches": 78
+  },
+  {
+   "uid": "P34",
+   "token": "2.6",
+   "value": 2.6,
+   "context": "2.6 Use of large language models",
+   "n_pool_matches": 28
+  },
+  {
+   "uid": "P36",
+   "token": "3",
+   "value": 3.0,
+   "context": "3. Results",
+   "n_pool_matches": 211
+  },
+  {
+   "uid": "P38",
+   "token": "1",
+   "value": 1.0,
+   "context": "splice-aware predictors form a tight, high band (Table 1): pooled per-gene Spearman ρ was 0",
+   "n_pool_matches": 2117
+  },
+  {
+   "uid": "P38",
+   "token": "0",
+   "value": 0.0,
+   "context": "mAD AF (0.186). AlphaMissense could not be evaluated (≈0 coverage).",
+   "n_pool_matches": 5922
+  },
+  {
+   "uid": "P39",
+   "token": "95",
+   "value": 95.0,
+   "context": "eeding the best single tool (Pangolin) by Δρ = +0.013 (95% CI [+0.002, +0.024]) — a positive",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P39",
+   "token": "2.1",
+   "value": 2.1,
+   "context": "six audited UTR-intron and seven exon-side variants of 2.1), eleven of them in BRCA1, account",
+   "n_pool_matches": 33
+  },
+  {
+   "uid": "P41",
+   "token": "1",
+   "value": 1.0,
+   "context": "Figure 1. Ranking among top splice-aware to",
+   "n_pool_matches": 2117
+  },
+  {
+   "uid": "P41",
+   "token": "95",
+   "value": 95.0,
+   "context": "DerSimonian–Laird random-effects pooled estimates with 95% CIs (whiskers), faint dots the se",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P42",
+   "token": "1",
+   "value": 1.0,
+   "context": "Table 1. Leaderboard on the independent fu",
+   "n_pool_matches": 2117
+  },
+  {
+   "uid": "P42",
+   "token": "95",
+   "value": 95.0,
+   "context": "-gene Spearman ρ with DerSimonian–Laird random-effects 95% CI and heterogeneity I².",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P43",
+   "token": "0",
+   "value": 0.0,
+   "context": "ed trees, M0b equal-weight mean. AlphaMissense scores ≈0 splice variants. The fusion–Pangol",
+   "n_pool_matches": 5922
+  },
+  {
+   "uid": "P45",
+   "token": "+0.001",
+   "value": 0.001,
+   "context": "barely moved ranking: dropping conservation gave Δρ = +0.001 (95% CI [−0.001, +0.002]) and drop",
+   "n_pool_matches": 40
+  },
+  {
+   "uid": "P45",
+   "token": "95",
+   "value": 95.0,
+   "context": "moved ranking: dropping conservation gave Δρ = +0.001 (95% CI [−0.001, +0.002]) and dropping",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P45",
+   "token": "−0.001",
+   "value": -0.001,
+   "context": "nking: dropping conservation gave Δρ = +0.001 (95% CI [−0.001, +0.002]) and dropping conservatio",
+   "n_pool_matches": 40
+  },
+  {
+   "uid": "P45",
+   "token": "+0.002",
+   "value": 0.002,
+   "context": "ropping conservation gave Δρ = +0.001 (95% CI [−0.001, +0.002]) and dropping conservation plus t",
+   "n_pool_matches": 25
+  },
+  {
+   "uid": "P45",
+   "token": "+0.003",
+   "value": 0.003,
+   "context": "vation plus the alignment-conditioned signal gave Δρ = +0.003 ([+0.001, +0.006]) — an interval t",
+   "n_pool_matches": 29
+  },
+  {
+   "uid": "P45",
+   "token": "+0.006",
+   "value": 0.006,
+   "context": "lignment-conditioned signal gave Δρ = +0.003 ([+0.001, +0.006]) — an interval that excludes zero",
+   "n_pool_matches": 32
+  },
+  {
+   "uid": "P45",
+   "token": "2",
+   "value": 2.0,
+   "context": "dient-boosted check spans zero in both versions (Table 2; Supplementary Table S5a). Yet tho",
+   "n_pool_matches": 316
+  },
+  {
+   "uid": "P45",
+   "token": "20",
+   "value": 20.0,
+   "context": "trivial weight (GPN-MSA the 4th-largest coefficient of 20, phastCons 5th, phyloP 7th). Meani",
+   "n_pool_matches": 173
+  },
+  {
+   "uid": "P46",
+   "token": "2",
+   "value": 2.0,
+   "context": "Table 2. Evolution-axis ablation (H2). Cha",
+   "n_pool_matches": 316
+  },
+  {
+   "uid": "P47",
+   "token": "+0.001",
+   "value": 0.001,
+   "context": "tic net's drop-all-evolution row, whose lower bound is +0.001. Elastic-net |coefficients| in the",
+   "n_pool_matches": 40
+  },
+  {
+   "uid": "P47",
+   "token": "4",
+   "value": 4.0,
+   "context": "|coefficients| in the full model: GPN-MSA 0.109 (rank 4 of 20), phastCons 0.050 (5), phylo",
+   "n_pool_matches": 172
+  },
+  {
+   "uid": "P47",
+   "token": "20",
+   "value": 20.0,
+   "context": "fficients| in the full model: GPN-MSA 0.109 (rank 4 of 20), phastCons 0.050 (5), phyloP 0.01",
+   "n_pool_matches": 173
+  },
+  {
+   "uid": "P47",
+   "token": "5",
+   "value": 5.0,
+   "context": "model: GPN-MSA 0.109 (rank 4 of 20), phastCons 0.050 (5), phyloP 0.018 (7).",
+   "n_pool_matches": 216
+  },
+  {
+   "uid": "P47",
+   "token": "0.018",
+   "value": 0.018,
+   "context": "-MSA 0.109 (rank 4 of 20), phastCons 0.050 (5), phyloP 0.018 (7).",
+   "n_pool_matches": 31
+  },
+  {
+   "uid": "P47",
+   "token": "7",
+   "value": 7.0,
+   "context": "109 (rank 4 of 20), phastCons 0.050 (5), phyloP 0.018 (7).",
+   "n_pool_matches": 140
+  },
+  {
+   "uid": "P50",
+   "token": "95",
+   "value": 95.0,
+   "context": "tion, the functional standard with BRCA1 (Δ = +0.0103, 95% CI [+0.0047, +0.0182]); six of th",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P50",
+   "token": "0.05",
+   "value": 0.05,
+   "context": "n ΔBrier gives a two-sided p = 0.0312 — significant at 0.05 but not at 0.01, the finest resolu",
+   "n_pool_matches": 195
+  },
+  {
+   "uid": "P50",
+   "token": "2.4",
+   "value": 2.4,
+   "context": "qualification comes from the sampling-frame pipeline (2.4): at 1,000 gene resamples the lowe",
+   "n_pool_matches": 34
+  },
+  {
+   "uid": "P50",
+   "token": "+1.3",
+   "value": 1.3,
+   "context": "olin's 73.6% at 96.3% (1,254 against 1,232 variants; Δ +1.3 percentage points, 95% CI [−5.9, +",
+   "n_pool_matches": 210
+  },
+  {
+   "uid": "P50",
+   "token": "+6.1",
+   "value": 6.1,
+   "context": ",232 variants; Δ +1.3 percentage points, 95% CI [−5.9, +6.1]). Accuracy did not differ signifi",
+   "n_pool_matches": 29
+  },
+  {
+   "uid": "P52",
+   "token": "0.025",
+   "value": 0.025,
+   "context": "hat ECE by sacrificing sharpness — GPN-MSA reaches ECE 0.025 with Brier 0.118 and 47% high-conf",
+   "n_pool_matches": 25
+  },
+  {
+   "uid": "P52",
+   "token": "47",
+   "value": 47.0,
+   "context": "pness — GPN-MSA reaches ECE 0.025 with Brier 0.118 and 47% high-confidence calls — which is",
+   "n_pool_matches": 30
+  },
+  {
+   "uid": "P54",
+   "token": "2",
+   "value": 2.0,
+   "context": "Figure 2. The fusion is calibrated on the i",
+   "n_pool_matches": 316
+  },
+  {
+   "uid": "P54",
+   "token": "0.025",
+   "value": 0.025,
+   "context": "area; in the primary condition the fusion attains ECE 0.025 and Brier 0.0630 (Pangolin 0.033 a",
+   "n_pool_matches": 25
+  },
+  {
+   "uid": "P54",
+   "token": "3",
+   "value": 3.0,
+   "context": "025 and Brier 0.0630 (Pangolin 0.033 and 0.0733; Table 3). The two extreme bins hold 1,254",
+   "n_pool_matches": 211
+  },
+  {
+   "uid": "P54",
+   "token": "0.026",
+   "value": 0.026,
+   "context": ",254 of 1,675 variants and track the diagonal closely (0.026 predicted against 0.027 observed;",
+   "n_pool_matches": 25
+  },
+  {
+   "uid": "P56",
+   "token": "3",
+   "value": 3.0,
+   "context": "Figure 3. The fusion produces more accurate",
+   "n_pool_matches": 211
+  },
+  {
+   "uid": "P56",
+   "token": "95",
+   "value": 95.0,
+   "context": "n (fusion − best; right) with gene-clustered bootstrap 95% CIs (2,000 resamples of the seven",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P57",
+   "token": "3",
+   "value": 3.0,
+   "context": "Table 3. Calibration on the independent fu",
+   "n_pool_matches": 211
+  },
+  {
+   "uid": "P58",
+   "token": "0.90",
+   "value": 0.9,
+   "context": "High-confidence calls = calibrated confidence ≥ 0.90 or ≤ 0.10 (a reporting convention,",
+   "n_pool_matches": 35
+  },
+  {
+   "uid": "P58",
+   "token": "0.10",
+   "value": 0.1,
+   "context": "h-confidence calls = calibrated confidence ≥ 0.90 or ≤ 0.10 (a reporting convention, not an AC",
+   "n_pool_matches": 75
+  },
+  {
+   "uid": "P58",
+   "token": "3",
+   "value": 3.0,
+   "context": "onditions (without BRCA1; ClinVar ±BRCA1) is in Figure 3.",
+   "n_pool_matches": 211
+  },
+  {
+   "uid": "P59",
+   "token": "95",
+   "value": 95.0,
+   "context": "ndard at this operating point. Interpolated to exactly 95% specificity, none of the twelve o",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P59",
+   "token": "19.9",
+   "value": 19.9,
+   "context": "thresholds two point estimates cross it — Pangolin at 19.9 (achieved specificity 96.0%; prima",
+   "n_pool_matches": 38
+  },
+  {
+   "uid": "P59",
+   "token": "2.4",
+   "value": 2.4,
+   "context": "sensitivity above 0.93 and Very strong is unreachable (2.4). At 95% specificity the fusion at",
+   "n_pool_matches": 34
+  },
+  {
+   "uid": "P60",
+   "token": "95",
+   "value": 95.0,
+   "context": "rely survives the translation. Interpolated to exactly 95% specificity, the paired differenc",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P60",
+   "token": "19.9",
+   "value": 19.9,
+   "context": "angolin's threshold lands at 96.0% specificity and its 19.9 crosses Strong while the fusion, a",
+   "n_pool_matches": 38
+  },
+  {
+   "uid": "P62",
+   "token": "95",
+   "value": 95.0,
+   "context": "ios from 1.44 to 4.20, and the fusion's sensitivity at 95% specificity falls from 0.971 to 0",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P62",
+   "token": "1.8",
+   "value": 1.8,
+   "context": "tives (n = 11) for a stable ratio — LR+ degenerates to 1.8 against 4.4, against the pooled di",
+   "n_pool_matches": 42
+  },
+  {
+   "uid": "P63",
+   "token": "2.4",
+   "value": 2.4,
+   "context": "ct the sampling-frame check finds on the ranking axis (2.4), reappearing on the evidence axis",
+   "n_pool_matches": 34
+  },
+  {
+   "uid": "P63",
+   "token": "93",
+   "value": 93.0,
+   "context": "Strong at this operating point means calling more than 93% of true positives at 95% specific",
+   "n_pool_matches": 63
+  },
+  {
+   "uid": "P63",
+   "token": "95",
+   "value": 95.0,
+   "context": "point means calling more than 93% of true positives at 95% specificity, which several object",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P64",
+   "token": "0.90",
+   "value": 0.9,
+   "context": "ve on the functional standard, against 74.9% under the 0.90/0.10 confidence band. The ordering",
+   "n_pool_matches": 35
+  },
+  {
+   "uid": "P64",
+   "token": "0.10",
+   "value": 0.1,
+   "context": "the functional standard, against 74.9% under the 0.90/0.10 confidence band. The ordering amon",
+   "n_pool_matches": 75
+  },
+  {
+   "uid": "P66",
+   "token": "2.5",
+   "value": 2.5,
+   "context": "or all ten predictors under the pinned environments of 2.5. Orientation was set by the same c",
+   "n_pool_matches": 29
+  },
+  {
+   "uid": "P67",
+   "token": "−1",
+   "value": -1.0,
+   "context": "t continuous relative fitness scores (RFS; anchored at −1 for synonymous and +1 for nonsense",
+   "n_pool_matches": 2117
+  },
+  {
+   "uid": "P67",
+   "token": "+1",
+   "value": 1.0,
+   "context": "fitness scores (RFS; anchored at −1 for synonymous and +1 for nonsense variants) but no per-",
+   "n_pool_matches": 2117
+  },
+  {
+   "uid": "P67",
+   "token": "0",
+   "value": 0.0,
+   "context": "belled at the assay's control-anchored midpoint (RFS > 0). This differs from the seven trai",
+   "n_pool_matches": 5922
+  },
+  {
+   "uid": "P68",
+   "token": "95",
+   "value": 95.0,
+   "context": "olin): 0.077 versus 0.118 (ΔBrier 0.041; variant-level 95% CI 0.025–0.059), with lower calib",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P68",
+   "token": "0.025",
+   "value": 0.025,
+   "context": "0.077 versus 0.118 (ΔBrier 0.041; variant-level 95% CI 0.025–0.059), with lower calibration err",
+   "n_pool_matches": 25
+  },
+  {
+   "uid": "P68",
+   "token": "0.005",
+   "value": 0.005,
+   "context": "ifference is small and its interval spans zero (ΔBrier 0.005, 95% CI −0.014 to 0.024) (Table 4;",
+   "n_pool_matches": 26
+  },
+  {
+   "uid": "P68",
+   "token": "−0.014",
+   "value": -0.014,
+   "context": "mall and its interval spans zero (ΔBrier 0.005, 95% CI −0.014 to 0.024) (Table 4; Supplementary",
+   "n_pool_matches": 35
+  },
+  {
+   "uid": "P68",
+   "token": "4",
+   "value": 4.0,
+   "context": "ans zero (ΔBrier 0.005, 95% CI −0.014 to 0.024) (Table 4; Supplementary Tables S8a, S8b).",
+   "n_pool_matches": 172
+  },
+  {
+   "uid": "P70",
+   "token": "4",
+   "value": 4.0,
+   "context": "Table 4. External validation on held-out T",
+   "n_pool_matches": 172
+  },
+  {
+   "uid": "P71",
+   "token": "4",
+   "value": 4.0,
+   "context": "4. Discussion",
+   "n_pool_matches": 172
+  },
+  {
+   "uid": "P72",
+   "token": "8",
+   "value": 8.0,
+   "context": "r the proximal window this standard covers (|offset| ≤ 8) and current tools, while the comp",
+   "n_pool_matches": 136
+  },
+  {
+   "uid": "P72",
+   "token": "+0.003",
+   "value": 0.003,
+   "context": "icit evolutionary axis adds almost nothing to them (Δρ +0.003), which localises rather than cont",
+   "n_pool_matches": 29
+  },
+  {
+   "uid": "P73",
+   "token": "95",
+   "value": 95.0,
+   "context": "t does not by itself raise their evidence strength: at 95% specificity the fusion's likeliho",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P74",
+   "token": "95",
+   "value": 95.0,
+   "context": "oth sides, with no ClinVar label involved anywhere. At 95% specificity the fusion recovers 9",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P75",
+   "token": "0.10",
+   "value": 0.1,
+   "context": "d here follow the Tavtigian point system at a prior of 0.10, and they are indicative rather th",
+   "n_pool_matches": 75
+  },
+  {
+   "uid": "P75",
+   "token": "95",
+   "value": 95.0,
+   "context": "y. The operating point also bounds the conclusion — at 95% specificity LR+ is capped near 20",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P75",
+   "token": "20",
+   "value": 20.0,
+   "context": "the conclusion — at 95% specificity LR+ is capped near 20, so the finding that nothing estab",
+   "n_pool_matches": 173
+  },
+  {
+   "uid": "P75",
+   "token": "99",
+   "value": 99.0,
+   "context": "is unattainable at another — and indeed, at 97.5% and 99% specificity the fusion and most e",
+   "n_pool_matches": 78
+  },
+  {
+   "uid": "P78",
+   "token": "8",
+   "value": 8.0,
+   "context": "genes and the proximal splice window only (|offset| ≤ 8; the deep-intronic tier is empty),",
+   "n_pool_matches": 136
+  },
+  {
+   "uid": "P78",
+   "token": "11",
+   "value": 11.0,
+   "context": "g is not established; the window ends at 8 bp, and the 11–50 bp band in which the companion",
+   "n_pool_matches": 96
+  },
+  {
+   "uid": "P78",
+   "token": "6",
+   "value": 6.0,
+   "context": "nd reporting results without BRCA1. Labels abstain on ~6% of splice variants, excluded from",
+   "n_pool_matches": 260
+  },
+  {
+   "uid": "P79",
+   "token": "0.90",
+   "value": 0.9,
+   "context": "score-to-probability mapping, the yield figures at the 0.90/0.10 cut-points and the Brier diff",
+   "n_pool_matches": 35
+  },
+  {
+   "uid": "P79",
+   "token": "0.10",
+   "value": 0.1,
+   "context": "-to-probability mapping, the yield figures at the 0.90/0.10 cut-points and the Brier differenc",
+   "n_pool_matches": 75
+  },
+  {
+   "uid": "P82",
+   "token": "5",
+   "value": 5.0,
+   "context": "5. Conclusion",
+   "n_pool_matches": 216
+  },
+  {
+   "uid": "P86",
+   "token": "11",
+   "value": 11.0,
+   "context": "lease] and are also available at github.com/oneone00-11/variant-fm-benchmark (Supplementar",
+   "n_pool_matches": 96
+  },
+  {
+   "uid": "P86",
+   "token": "1",
+   "value": 1.0,
+   "context": "le via MaveDB under accessions (BRCA1), 00001225-a-1 (BRCA2), 00001250-a-2 (BARD1), 000",
+   "n_pool_matches": 2117
+  },
+  {
+   "uid": "P86",
+   "token": "2",
+   "value": 2.0,
+   "context": "accessions (BRCA1), 00001225-a-1 (BRCA2), 00001250-a-2 (BARD1), 00001259-a-2 (PALB2), 000",
+   "n_pool_matches": 316
+  },
+  {
+   "uid": "P86",
+   "token": "0",
+   "value": 0.0,
+   "context": ", 00001250-a-2 (BARD1), 00001259-a-2 (PALB2), 00000673-0-1 (RAD51C), 00000675-a-1 (VHL) and",
+   "n_pool_matches": 5922
+  },
+  {
+   "uid": "P86",
+   "token": "95",
+   "value": 95.0,
+   "context": "iant-annotation code. The evidence-strength framework (95% specificity operating point, Tavt",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "P86",
+   "token": "0.10",
+   "value": 0.1,
+   "context": "work (95% specificity operating point, Tavtigian prior 0.10) was coordinated across both manus",
+   "n_pool_matches": 75
+  },
+  {
+   "uid": "T1r0c3",
+   "token": "95",
+   "value": 95.0,
+   "context": "95% CI",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "T1r2c4",
+   "token": "47",
+   "value": 47.0,
+   "context": "47",
+   "n_pool_matches": 30
+  },
+  {
+   "uid": "T1r3c4",
+   "token": "0",
+   "value": 0.0,
+   "context": "0",
+   "n_pool_matches": 5922
+  },
+  {
+   "uid": "T1r8c4",
+   "token": "0",
+   "value": 0.0,
+   "context": "0",
+   "n_pool_matches": 5922
+  },
+  {
+   "uid": "T1r9c4",
+   "token": "15",
+   "value": 15.0,
+   "context": "15",
+   "n_pool_matches": 110
+  },
+  {
+   "uid": "T1r10c4",
+   "token": "57",
+   "value": 57.0,
+   "context": "57",
+   "n_pool_matches": 34
+  },
+  {
+   "uid": "T1r11c4",
+   "token": "89",
+   "value": 89.0,
+   "context": "89",
+   "n_pool_matches": 33
+  },
+  {
+   "uid": "T1r12c4",
+   "token": "44",
+   "value": 44.0,
+   "context": "44",
+   "n_pool_matches": 26
+  },
+  {
+   "uid": "T2r0c5",
+   "token": "95",
+   "value": 95.0,
+   "context": "95% CI",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "T2r1c4",
+   "token": "0.001",
+   "value": 0.001,
+   "context": "0.001",
+   "n_pool_matches": 40
+  },
+  {
+   "uid": "T2r1c5",
+   "token": "−0.001",
+   "value": -0.001,
+   "context": "−0.001 to +0.002",
+   "n_pool_matches": 40
+  },
+  {
+   "uid": "T2r1c5",
+   "token": "+0.002",
+   "value": 0.002,
+   "context": "−0.001 to +0.002",
+   "n_pool_matches": 25
+  },
+  {
+   "uid": "T2r2c4",
+   "token": "+0.003",
+   "value": 0.003,
+   "context": "+0.003",
+   "n_pool_matches": 29
+  },
+  {
+   "uid": "T2r2c5",
+   "token": "+0.001",
+   "value": 0.001,
+   "context": "+0.001 to +0.006",
+   "n_pool_matches": 40
+  },
+  {
+   "uid": "T2r2c5",
+   "token": "+0.006",
+   "value": 0.006,
+   "context": "+0.001 to +0.006",
+   "n_pool_matches": 32
+  },
+  {
+   "uid": "T2r3c4",
+   "token": "−0.002",
+   "value": -0.002,
+   "context": "−0.002",
+   "n_pool_matches": 25
+  },
+  {
+   "uid": "T2r3c5",
+   "token": "+0.004",
+   "value": 0.004,
+   "context": "−0.011 to +0.004",
+   "n_pool_matches": 28
+  },
+  {
+   "uid": "T2r4c4",
+   "token": "+0.000",
+   "value": 0.0,
+   "context": "+0.000",
+   "n_pool_matches": 148
+  },
+  {
+   "uid": "T2r4c5",
+   "token": "−0.013",
+   "value": -0.013,
+   "context": "−0.013 to +0.010",
+   "n_pool_matches": 194
+  },
+  {
+   "uid": "T2r4c5",
+   "token": "+0.010",
+   "value": 0.01,
+   "context": "−0.013 to +0.010",
+   "n_pool_matches": 34
+  },
+  {
+   "uid": "T3r1c2",
+   "token": "0.025",
+   "value": 0.025,
+   "context": "0.025",
+   "n_pool_matches": 25
+  },
+  {
+   "uid": "T3r3c2",
+   "token": "0.015",
+   "value": 0.015,
+   "context": "0.015",
+   "n_pool_matches": 29
+  },
+  {
+   "uid": "T3r5c2",
+   "token": "0.026",
+   "value": 0.026,
+   "context": "0.026",
+   "n_pool_matches": 25
+  },
+  {
+   "uid": "T3r7c2",
+   "token": "0.025",
+   "value": 0.025,
+   "context": "0.025",
+   "n_pool_matches": 25
+  },
+  {
+   "uid": "T3r9c2",
+   "token": "0.054",
+   "value": 0.054,
+   "context": "0.054",
+   "n_pool_matches": 40
+  },
+  {
+   "uid": "T3r11c2",
+   "token": "0.060",
+   "value": 0.06,
+   "context": "0.060",
+   "n_pool_matches": 26
+  },
+  {
+   "uid": "T3r11c4",
+   "token": "1.8",
+   "value": 1.8,
+   "context": "1.8",
+   "n_pool_matches": 42
+  },
+  {
+   "uid": "T4r0c3",
+   "token": "95",
+   "value": 95.0,
+   "context": "variant-level 95% CI",
+   "n_pool_matches": 100
+  },
+  {
+   "uid": "T4r1c0",
+   "token": "0",
+   "value": 0.0,
+   "context": "Control-anchored (RFS > 0) — main",
+   "n_pool_matches": 5922
+  },
+  {
+   "uid": "T4r1c3",
+   "token": "0.025",
+   "value": 0.025,
+   "context": "0.025 – 0.059",
+   "n_pool_matches": 25
+  },
+  {
+   "uid": "T4r2c2",
+   "token": "0.005",
+   "value": 0.005,
+   "context": "0.005",
+   "n_pool_matches": 26
+  },
+  {
+   "uid": "T4r2c3",
+   "token": "−0.014",
+   "value": -0.014,
+   "context": "−0.014 – 0.024",
+   "n_pool_matches": 35
+  },
+  {
+   "uid": "T4r3c0",
+   "token": "0.5",
+   "value": 0.5,
+   "context": "Mid-band excluded (|RFS| ≥ 0.5)",
+   "n_pool_matches": 201
+  },
+  {
+   "uid": "T4r3c3",
+   "token": "0.061",
+   "value": 0.061,
+   "context": "0.024 – 0.061",
+   "n_pool_matches": 25
+  }
+ ]
+}
