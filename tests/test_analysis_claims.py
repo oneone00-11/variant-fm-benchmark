@@ -229,7 +229,158 @@ def test_the_section_number_exemption_covers_headings_not_measurements(tmp_path,
                                                   "pattern": r"^(?:[1-9]|1[0-9])\.[0-9]$"}}))
     monkeypatch.setattr(cmn, "REPO", tmp_path)
     r = cmn.classify(doc, results=results, whitelist=wl, claims=tmp_path / "none.json")
-    exempt = {t["token"] for t in r["whitelisted"]}
+    # the cross-reference is set aside -- by the kind rules as a section reference, or
+    # by the whitelist pattern when no kinds file applies
+    exempt = {t["token"] for t in r["whitelisted"] + r.get("non_measurement", [])}
     unsourced = {t["token"] for t in r["no_source"]}
     assert "2.4" in exempt, "a cross-reference to a real heading stays exempt"
     assert "8.8" in unsourced and "8.8" not in exempt, "a measurement shaped like a section number is not"
+
+
+
+# --- binding to named cells, and the rules that set non-measurements aside -----
+
+def _kinds_file(tmp_path, rules):
+    k = tmp_path / "kinds.json"
+    k.write_text(json.dumps({"rules": rules}))
+    return k
+
+
+LABEL_RULE = {"name": "figure and table labels", "kind": "figure or table label",
+              "pattern": r"\b(?:Figures?|Tables?)\s+(\d+)", "reason": "labels"}
+
+
+def test_a_caption_claim_binds_its_table_to_named_cells(tmp_path, monkeypatch):
+    """A claim anchored on a table caption with "table": true scopes the table below it.
+    A scoped number is BOUND only when a named cell of a declared output holds it, and
+    the binding records that cell; an unscoped number is only a pool match."""
+    import docx as docxlib
+    import src.check_manuscript_numbers as cmn
+
+    d = docxlib.Document()
+    d.add_paragraph("padding")
+    d.add_paragraph("Table 9. Brier by object.")
+    t = d.add_table(rows=2, cols=2)
+    t.cell(0, 0).text, t.cell(0, 1).text = "Object", "Brier"
+    t.cell(1, 0).text, t.cell(1, 1).text = "fusion", "0.063"
+    d.add_paragraph("After the table the fusion's Brier was 0.063 and 0.071.")
+    doc = tmp_path / "m.docx"
+    d.save(doc)
+    results = tmp_path / "results"
+    results.mkdir()
+    (results / "summary.csv").write_text("model,Brier\nfusion,0.0630194\nsingle,0.0733\n")
+    claims = tmp_path / "claims.json"
+    claims.write_text(json.dumps({"claims": [
+        {"para": "P1", "claim": "Table 9", "anchor": "Table 9. Brier by object", "script": None,
+         "output": "results/summary.csv", "status": "verified", "table": True}]}))
+    monkeypatch.setattr(cmn, "REPO", tmp_path)
+    r = cmn.classify(doc, results=results, whitelist=tmp_path / "none.json", claims=claims,
+                     kinds=_kinds_file(tmp_path, [LABEL_RULE]))
+    cell = [x for x in r["bound"] if x["uid"] == "T1r1c1"]
+    assert cell and cell[0]["cells"] == ["summary.csv[fusion].Brier = 0.0630194"]
+    assert [(x["uid"], x["token"]) for x in r["pool"]] == [("P2", "0.063")]
+    assert [x["token"] for x in r["no_source"]] == ["0.071"]
+    assert [x["token"] for x in r["non_measurement"]] == ["9"]
+    assert r["coverage"] == {"tokens": 4, "measured": 3, "bound": 1, "single_cell": 1, "several_cells": 0}
+
+
+def test_a_parameter_rule_whose_code_no_longer_defines_the_value_fails(tmp_path, monkeypatch):
+    """A parameter is set aside only while the code still sets it: the rule names a file
+    and a pattern that must match there."""
+    import docx as docxlib
+    import src.check_manuscript_numbers as cmn
+
+    d = docxlib.Document()
+    d.add_paragraph("padding")
+    d.add_paragraph("Intervals use 2,000 resamples.")
+    doc = tmp_path / "m.docx"
+    d.save(doc)
+    results = tmp_path / "results"
+    results.mkdir()
+    (results / "t.csv").write_text("a\n0.5\n")
+    (tmp_path / "code.py").write_text("N_BOOT = 1000\n")
+    rule = {"name": "bootstrap resamples", "kind": "parameter", "pattern": r"\b(2,000) resamples",
+            "reason": "resample count", "source": "code.py", "defined_by": r"(?m)^N_BOOT = 2000\b"}
+    monkeypatch.setattr(cmn, "REPO", tmp_path)
+    r = cmn.classify(doc, results=results, whitelist=tmp_path / "none.json", claims=tmp_path / "none.json",
+                     kinds=_kinds_file(tmp_path, [rule]))
+    assert [q["rule"] for q in r["rule_problems"]] == ["bootstrap resamples"]
+    assert [t["token"] for t in r["non_measurement"]] == ["2,000"]
+
+
+def test_every_parameter_rule_names_a_live_definition():
+    """The manuscript's parameters and constants are set aside because code sets them;
+    every such rule must still resolve in the repository."""
+    import re
+    import src.check_manuscript_numbers as cmn
+
+    rules = json.loads(cmn.KINDS.read_text())["rules"]
+    assert rules
+    for r in rules:
+        re.compile(r["pattern"])
+        if r["kind"] in ("parameter", "literature constant", "derived constant"):
+            assert r.get("source") and r.get("defined_by"), f"{r['name']}: a {r['kind']} rule must name its source"
+            assert re.search(r["defined_by"], (REPO / r["source"]).read_text()), \
+                f"{r['name']}: {r['source']} no longer defines the value"
+
+
+def test_a_computed_derivation_binds_only_the_value_it_computes(tmp_path, monkeypatch):
+    """A derivation with `agg` is evaluated against the output it names; the token binds
+    only if the computed value is the printed one. A count that drifts is caught."""
+    import docx as docxlib
+    import src.check_manuscript_numbers as cmn
+
+    d = docxlib.Document()
+    d.add_paragraph("padding")
+    d.add_paragraph("The interval excluded zero in 2 comparisons; by weight phyloP ranks 3.")
+    doc = tmp_path / "m.docx"
+    d.save(doc)
+    results = tmp_path / "results"
+    results.mkdir()
+    table = results / "t.csv"
+    table.write_text("tool,excl,w\nfusion,True,0.9\nphylop,False,0.1\ncadd,True,0.5\n")
+    claims = tmp_path / "claims.json"
+    claims.write_text(json.dumps({"claims": [
+        {"para": "P1", "claim": "counts and ranks", "anchor": "The interval excluded zero in", "script": None,
+         "output": "results/t.csv", "status": "verified",
+         "derived": [{"value": 2, "agg": "count", "from": "results/t.csv", "where": {"excl": "True"}, "how": "count"},
+                     {"value": 3, "agg": "rank", "from": "results/t.csv", "column": "w", "key": "phylop", "how": "rank"}]}]}))
+    monkeypatch.setattr(cmn, "REPO", tmp_path)
+    kinds = tmp_path / "kinds.json"
+    kinds.write_text(json.dumps({"rules": []}))
+    r = cmn.classify(doc, results=results, whitelist=tmp_path / "none.json", claims=claims, kinds=kinds)
+    got = {t["token"]: t["cells"][0] for t in r["bound"]}
+    assert got["2"] == "derived: count = 2" and got["3"] == "derived: rank = 3"
+
+    table.write_text("tool,excl,w\nfusion,True,0.9\nphylop,False,0.1\ncadd,False,0.5\n")
+    r = cmn.classify(doc, results=results, whitelist=tmp_path / "none.json", claims=claims, kinds=kinds)
+    assert "2" in {t["token"] for t in r["scoped_mismatch"]}, "the count is now 1; the printed 2 must fail"
+
+
+def test_a_cell_binds_only_if_it_rounds_to_the_printed_number(tmp_path, monkeypatch):
+    """A window of half a unit either side of 0.997 admits BRCA2's control AUROC 0.9975, which
+    prints as 0.998 -- the same coincidence, from the other side, that once let a printed 0.998
+    pass for TP53's 0.9969. A cell binds only if it rounds to the printed number."""
+    import docx as docxlib
+    import src.check_manuscript_numbers as cmn
+
+    d = docxlib.Document()
+    d.add_paragraph("padding")
+    d.add_paragraph("Post-orientation control AUROC 0.997 in TP53.")
+    doc = tmp_path / "m.docx"
+    d.save(doc)
+    results = tmp_path / "results"
+    results.mkdir()
+    table = results / "gate.csv"
+    claims = tmp_path / "claims.json"
+    claims.write_text(json.dumps({"claims": [
+        {"para": "P1", "claim": "orientation gate", "anchor": "Post-orientation control AUROC", "script": None,
+         "output": "results/gate.csv", "status": "verified"}]}))
+    monkeypatch.setattr(cmn, "REPO", tmp_path)
+    kinds = _kinds_file(tmp_path, [])
+    table.write_text("gene,control_auroc\nBRCA2,0.9975\n")
+    r = cmn.classify(doc, results=results, whitelist=tmp_path / "none.json", claims=claims, kinds=kinds)
+    assert [t["token"] for t in r["scoped_mismatch"]] == ["0.997"], "0.9975 prints as 0.998; it must not bind 0.997"
+    table.write_text("gene,control_auroc\nBRCA2,0.9975\nTP53,0.996925\n")
+    r = cmn.classify(doc, results=results, whitelist=tmp_path / "none.json", claims=claims, kinds=kinds)
+    assert [t["cells"] for t in r["bound"]] == [["gate.csv[TP53].control_auroc = 0.996925"]]

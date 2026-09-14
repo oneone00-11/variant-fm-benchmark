@@ -1,34 +1,38 @@
-"""Does every number in the manuscript come from pipeline output?
+"""Is every number in the manuscript bound to the output it comes from?
 
-Ported from the companion atlas repository, with three changes: outputs live in
-`phase1/reports/phase1/` rather than `results/`, configuration is JSON because
-PyYAML is not in this project's pinned environment, and the declared-count check
-is dropped because this repository publishes no such count.
+Ported from the companion atlas repository (outputs live in `phase1/reports/phase1/`;
+configuration is JSON because PyYAML is not pinned here). It began as a value check:
+every numeric token matched against every value the pipeline emits, at half a unit in
+the last printed digit. A value check can be satisfied by coincidence. The TP53
+orientation AUROC was printed as 0.998, a value no output held, and it matched another
+gene's 0.9975.
 
-The manuscript states that "every value reported in the text, tables and figures
-is read programmatically from pipeline output rather than transcribed". Nothing
-enforced that, and one sentence -- the between-model correlation range in the
-complementarity paragraph -- carried a figure with no source anywhere in
-`results/`. A value check asks whether a number is *right*; it never asks
-whether the number has a *source*, so a figure with no origin passes.
+Every numeric token in the .docx (body paragraphs, table cells and captions) is now one of
 
-This is that missing step. Every decimal and integer token in the .docx (body
-paragraphs, table cells and figure captions alike) is matched against every
-numeric value appearing anywhere in `results/`, at a tolerance of half the last
-printed digit, trying the value as printed and as a percentage. Tokens that
-match nothing are NOT skipped: they are reported as `no-source` and the run
-fails unless they are listed in config/manuscript_number_whitelist.yaml with a
-reason.
+  not a measurement  set aside by a named rule in config/manuscript_token_kinds.json:
+                     headings and cross-references, labels, identifiers, dates, and the
+                     parameters and constants, each rule naming the code that sets the value
+  BOUND              its block declares outputs in config/analysis_claims.json, and a named
+                     cell of one of them rounds to the printed number, or a derivation the
+                     check computes from them does
+  POOL               its block declares nothing; the value occurs somewhere in the pipeline
+  whitelisted        listed in config/manuscript_number_whitelist.json
+  SCOPED MISMATCH    declared outputs, none of which holds it           (fails the run)
+  NO SOURCE          nothing declared, and nothing in the pipeline holds it  (fails the run)
 
-    python -m atlas.check_manuscript_numbers path/to/manuscript.docx
-    python -m atlas.check_manuscript_numbers path/to/manuscript.docx --verbose
+and the run states how many measured tokens are bound, to a single cell or to one of
+several cells that round to the same printed number.
+
+    python -m src.check_manuscript_numbers path/to/manuscript.docx [--binding-report docs/manuscript-binding.md]
 """
 from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import sys
+from decimal import ROUND_HALF_UP, Decimal, InvalidOperation
 from pathlib import Path
 
 import numpy as np
@@ -41,6 +45,7 @@ DATA_DIRS = (REPO / "phase1" / "data" / "frozen", REPO / "data" / "external")
 WHITELIST = REPO / "phase1" / "config" / "manuscript_number_whitelist.json"
 CLAIMS = REPO / "phase1" / "config" / "analysis_claims.json"
 FACTS = REPO / "phase1" / "config" / "pipeline_facts.json"
+KINDS = REPO / "phase1" / "config" / "manuscript_token_kinds.json"
 
 # Tokens are read as printed, so the tolerance can follow the printed precision.
 TOKEN = re.compile(r"(?<![\w.])([-−+]?\d{1,3}(?:,\d{3})*(?:\.\d+)?)(?![\w])")
@@ -135,24 +140,27 @@ def manuscript_tokens(docx_path: Path) -> list[dict]:
     import docx
 
     d = docx.Document(str(docx_path))
-    units: list[tuple[str, str]] = []
+    units: list[tuple[str, str, str]] = []
     in_refs = False
     for i, p in enumerate(d.paragraphs):
         if REF_HEADING.match(p.text.strip()):
             in_refs = True
         if in_refs or not p.text.strip():
             continue
-        units.append((f"P{i}", p.text))
+        units.append((f"P{i}", p.text, p.style.name if p.style is not None else ""))
     for ti, tb in enumerate(d.tables):
         for ri, row in enumerate(tb.rows):
             for ci, cell in enumerate(row.cells):
                 if cell.text.strip():
-                    units.append((f"T{ti + 1}r{ri}c{ci}", cell.text))
+                    units.append((f"T{ti + 1}r{ri}c{ci}", cell.text, "table header" if ri == 0 else "table"))
 
     out: list[dict] = []
     seen: set[tuple[str, str]] = set()
-    for uid, raw in units:
-        text = CITATION.sub(" ", IDENTIFIER.sub(" ", raw))
+    for uid, raw, style in units:
+        # blank identifiers and citations with spaces of the same length, so a token's
+        # offsets are offsets into the printed text the kind rules match against
+        blank = lambda m: " " * len(m.group(0))
+        text = CITATION.sub(blank, IDENTIFIER.sub(blank, raw))
         for m in TOKEN.finditer(text):
             tok = m.group(1)
             try:
@@ -166,7 +174,8 @@ def manuscript_tokens(docx_path: Path) -> list[dict]:
                 continue
             seen.add(key)
             lo = max(0, m.start() - 55)
-            out.append({"uid": uid, "token": tok, "value": val,
+            out.append({"uid": uid, "token": tok, "value": val, "start": m.start(1), "end": m.end(1),
+                        "style": style,
                         "context": re.sub(r"\s+", " ", text[lo:m.end() + 35]).strip()})
     return out
 
@@ -346,7 +355,32 @@ def claim_scopes(docx_path: Path, path: Path = CLAIMS) -> dict[str, list[str]]:
             # a claim may name several outputs; all of them scope the block
             outs = out if isinstance(out, list) else [out]
             scopes.setdefault(where[idx], []).extend(outs)
+            # a table caption's claim may also scope the table that follows it
+            if c.get("table") and where[idx].startswith("P"):
+                for cell_uid in _table_after(docx_path, int(where[idx][1:])):
+                    scopes.setdefault(cell_uid, []).extend(outs)
     return scopes
+
+
+def _table_after(docx_path: Path, para_index: int) -> list[str]:
+    """Token ids of every cell of the first table after body paragraph `para_index`."""
+    import docx
+    from docx.oxml.ns import qn
+    from docx.table import Table
+
+    d = docx.Document(str(docx_path))
+    pi = ti = 0
+    seen = False
+    for child in d.element.body.iterchildren():
+        if child.tag == qn("w:p"):
+            seen = seen or pi == para_index
+            pi += 1
+        elif child.tag == qn("w:tbl"):
+            if seen:
+                tb = Table(child, d)
+                return [f"T{ti + 1}r{ri}c{ci}" for ri, row in enumerate(tb.rows) for ci in range(len(row.cells))]
+            ti += 1
+    return []
 
 
 def scoped_values(outputs: list[str]) -> np.ndarray:
@@ -404,15 +438,248 @@ def _hits(pool: np.ndarray, v: float, tol: float) -> int:
     return n
 
 
+def token_kinds(docx_path: Path, tokens: list[dict], path: Path = KINDS,
+                headings: set[str] | None = None) -> tuple[dict[int, tuple[str, str]], list[dict]]:
+    """Which tokens are not measurements, and the rule that says so.
+
+    Returns {token index: (kind, rule name)} and the rules whose declared source no
+    longer defines the value (a parameter rule names the line of code that sets it)."""
+    import docx
+
+    spec = json.loads(path.read_text()) if path.exists() else {}
+    d = docx.Document(str(docx_path))
+    texts = {f"P{i}": p.text for i, p in enumerate(d.paragraphs)}
+    for ti, tb in enumerate(d.tables):
+        for ri, row in enumerate(tb.rows):
+            for ci, cell in enumerate(row.cells):
+                texts[f"T{ti + 1}r{ri}c{ci}"] = cell.text
+    heads = heading_numbers(docx_path) if headings is None else headings
+    rules = [(r, re.compile(r["pattern"])) for r in spec.get("rules", [])]
+    problems = []
+    for r, _ in rules:
+        if r.get("source"):
+            src = REPO / r["source"]
+            if not src.exists() or not re.search(r["defined_by"], src.read_text(errors="ignore")):
+                problems.append({"rule": r["name"], "source": r["source"], "defined_by": r["defined_by"]})
+    out: dict[int, tuple[str, str]] = {}
+    for i, t in enumerate(tokens):
+        text = texts.get(t["uid"], "")
+        if t.get("style", "").lower().startswith("heading"):
+            out[i] = ("heading number", "numbered heading")
+            continue
+        bare = t["token"].lstrip("+-−")
+        if re.fullmatch(r"\d{1,2}\.\d", bare) and bare in heads:
+            before = text[max(0, t["start"] - 9):t["start"]]
+            after = text[t["end"]:t["end"] + 1]
+            if re.search(r"(?:\(|\bin |\bof |, |; |\bsee )$", before) or after in (")", ";"):
+                out[i] = ("section reference", f"cross-reference to section {bare}")
+                continue
+        for r, rx in rules:
+            spans = []
+            for m in rx.finditer(text):
+                groups = [m.span(g) for g in range(1, rx.groups + 1) if m.group(g) is not None]
+                spans.extend(groups or [m.span(0)])
+            if any(lo <= t["start"] and t["end"] <= hi for lo, hi in spans):
+                out[i] = (r["kind"], r["name"])
+                break
+    return out, problems
+
+
+_NUM = re.compile(r"[-+−]?\d*\.?\d+(?:[eE][-+]?\d+)?")
+
+
+def cell_index(outputs: list[str]) -> list[tuple[str, float]]:
+    """(cell id, value) for every number in the declared outputs.
+
+    CSV/TSV: every cell, and each number inside a text cell (an interval string gives
+    two), plus the row count. JSON: every numeric leaf by path. Parquet: row and
+    column counts, category counts of text and boolean columns, and every numeric cell
+    of a table small enough to enumerate."""
+    import pandas as pd
+
+    cells: list[tuple[str, float]] = []
+    for rel in outputs:
+        p = REPO / rel
+        if not p.exists():
+            continue
+        name, suf = p.name, p.suffix.lower()
+        if suf in (".csv", ".tsv"):
+            df = pd.read_csv(p, sep="\t" if suf == ".tsv" else ",", dtype=str, keep_default_na=False)
+            cells.append((f"{name}: row count", float(len(df))))
+            # a row is named by up to three of its text-valued columns (condition,
+            # calibration, object ...); numeric-text columns such as intervals are not names
+            textcols = [c for c in df.columns
+                        if df[c].map(lambda x: bool(re.search(r"[A-DF-Za-df-z_]", str(x)))).mean() > 0.5][:3]
+            for i in range(len(df)):
+                key = "/".join(str(df.iloc[i][c]) for c in textcols) or str(i)
+                for c in df.columns:
+                    val = str(df.iloc[i][c]).replace("−", "-")
+                    # a number is read out of a text cell only when the cell is numeric
+                    # text (an interval such as "[0.0016, 0.0239]"); digits inside a label
+                    # like y_assay/BRCA1_included or fusion_M1 are not values
+                    if re.search(r"[A-DF-Za-df-z_]", val):
+                        continue
+                    nums = _NUM.findall(val)
+                    for k, n in enumerate(nums):
+                        try:
+                            x = float(n.replace("−", "-"))
+                        except ValueError:
+                            continue
+                        if abs(x) <= MAX_ABS:
+                            tag = "" if len(nums) == 1 else f"#{k + 1}"
+                            cells.append((f"{name}[{key}].{c}{tag}", x))
+        elif suf == ".json":
+            def walk(o, path):
+                if isinstance(o, bool):
+                    return
+                if isinstance(o, (int, float)):
+                    cells.append((f"{name}:{path}", float(o)))
+                elif isinstance(o, dict):
+                    for k, v in o.items():
+                        walk(v, f"{path}.{k}" if path else k)
+                elif isinstance(o, list):
+                    for k, v in enumerate(o):
+                        walk(v, f"{path}[{k}]")
+            walk(json.loads(p.read_text()), "")
+        elif suf == ".parquet":
+            df = pd.read_parquet(p)
+            cells.append((f"{name}: row count", float(len(df))))
+            cells.append((f"{name}: column count", float(df.shape[1])))
+            for c in df.columns:
+                dt = str(df[c].dtype)
+                if dt in ("object", "bool", "category", "string"):
+                    vc = df[c].value_counts(dropna=True)
+                    if len(vc) <= 40:
+                        for cat, n in vc.items():
+                            cells.append((f"{name}: count of {c} = {cat}", float(n)))
+                elif len(df) <= 5000:
+                    for i, x in enumerate(df[c].to_numpy()):
+                        try:
+                            xf = float(x)
+                        except (TypeError, ValueError):
+                            continue
+                        if np.isfinite(xf):
+                            cells.append((f"{name}[{i}].{c}", xf))
+    return cells
+
+
+def _rounds_to(x: float, tok: str, as_percent: bool = False) -> bool:
+    """Does x print as the token? x (times 100 for a percentage) is rounded to the token's
+    decimals, half-up on its shortest decimal form or as Python formats the float; at a
+    decimal tie the two differ and either print is correct. A symmetric window of half a
+    unit is not this test: it let BRCA2's control AUROC 0.9975, which prints as 0.998, bind
+    a printed 0.997 -- the coincidence that once let 0.998 pass for TP53's 0.9969."""
+    if not math.isfinite(x):
+        return False
+    bare = tok.replace(",", "").lstrip("+-−")
+    dp = len(bare.split(".")[1]) if "." in bare else 0
+    xd, xf = abs(Decimal(repr(float(x)))), abs(float(x))
+    if as_percent:
+        xd, xf = xd * 100, xf * 100
+    try:
+        return (xd.quantize(Decimal(1).scaleb(-dp), ROUND_HALF_UP) == Decimal(bare)
+                or Decimal(f"{xf:.{dp}f}") == Decimal(bare))
+    except InvalidOperation:
+        return False
+
+
+def _bind(index: list[tuple[str, float]], tok: str, as_percent: bool = True) -> list[str]:
+    """Cells whose value rounds to the token as printed, or -- for a token printed as a
+    percentage -- to the token over 100; each named with the value it holds."""
+    v, tol = abs(_norm(tok)), _tolerance(tok)
+    out = []
+    for cid, x in index:
+        # the window is a fast pre-filter; _rounds_to decides
+        if abs(abs(x) - v) <= tol and _rounds_to(x, tok):
+            out.append(f"{cid} = {x:.6g}")
+        elif as_percent and abs(abs(x) - v / 100.0) <= tol / 100.0 and _rounds_to(x, tok, True):
+            out.append(f"{cid} = {x:.6g} (as %)")
+    return out
+
+
+def _printed_as_percent(t: dict, texts: dict[str, str]) -> bool:
+    """A token is read as a percentage only if it is printed as one: followed by %,
+    near "percentage point(s)", or in a table column whose header carries %."""
+    text = texts.get(t["uid"], "")
+    after = text[t["end"]:t["end"] + 25]
+    before = text[max(0, t["start"] - 45):t["start"]]
+    if re.match(r"\s?%", after) or "percentage point" in after or "percentage point" in before:
+        return True
+    m = re.match(r"(T\d+)r\d+c(\d+)$", t["uid"])
+    return bool(m and "%" in texts.get(f"{m.group(1)}r0c{m.group(2)}", ""))
+
+
+def _load_table(rel: str):
+    import pandas as pd
+    p = REPO / rel
+    if p.suffix.lower() == ".parquet":
+        return pd.read_parquet(p)
+    return pd.read_csv(p, sep="\t" if p.suffix.lower() == ".tsv" else ",")
+
+
+def _eval_spec(spec: dict) -> float:
+    """One number computed from a declared output after its `where` filters: count (rows);
+    sum / min / max / mean / median (of `column`); rank (1-based, descending by `column`, of
+    the row whose `key_column` is `key`); off_diagonal (the cells of a confusion table whose
+    row label differs from their column label); min_ratio / max_ratio (the smallest or
+    largest ratio of two columns after pivoting)."""
+    df = _load_table(spec["from"])
+    for col, want in (spec.get("where") or {}).items():
+        df = df[df[col].astype(str).str.lower() == str(want).lower()]
+    agg = spec["agg"]
+    if agg == "count":
+        return float(len(df))
+    if agg == "rank":
+        keycol = spec.get("key_column", df.columns[0])
+        order = df.sort_values(spec["column"], ascending=False)[keycol].astype(str).tolist()
+        return float(order.index(spec["key"]) + 1)
+    if agg == "off_diagonal":
+        rows = df.set_index(df.columns[0])
+        return float(sum(rows.at[r, c] for r in rows.index for c in rows.columns if str(r) != str(c)))
+    if agg in ("min_ratio", "max_ratio"):
+        # one row per `index`, one column per value of `columns`, holding `values`
+        pv = df.pivot_table(index=spec["index"], columns=spec["columns"], values=spec["values"], aggfunc="first")
+        ratio = (pv[spec["numerator"]] / pv[spec["denominator"]]).replace([np.inf, -np.inf], np.nan).dropna()
+        return float(ratio.min() if agg == "min_ratio" else ratio.max())
+    col = df[spec["column"]].astype(float)
+    if agg in ("sum", "min", "max", "mean", "median"):
+        return float(getattr(col, agg)())
+    raise ValueError(f"unknown aggregate {agg!r}")
+
+
+def _derived_value(dv: dict) -> tuple[float, str]:
+    """A derivation the check evaluates against the outputs it names. An entry without
+    `agg` is only declared -- its value is taken on trust -- and is reported as such."""
+    agg = dv.get("agg")
+    if agg is None:
+        return float(dv["value"]), f"{dv['how']} (declared, not computed)"
+    if agg in ("ratio_percent", "complement_percent"):
+        r = 100.0 * _eval_spec(dv["numerator"]) / _eval_spec(dv["denominator"])
+        return (r if agg == "ratio_percent" else 100.0 - r), dv.get("how", agg)
+    return _eval_spec(dv), dv.get("how", agg)
+
+
 def classify(docx_path: Path, results: Path = RESULTS,
-             whitelist: Path = WHITELIST, claims: Path = CLAIMS) -> dict:
+             whitelist: Path = WHITELIST, claims: Path = CLAIMS, kinds: Path = KINDS) -> dict:
+    """Every numeric token is one of:
+
+      not a measurement   a heading or cross-reference number, a label, an identifier, a
+                          date, or a parameter or constant named by a rule in
+                          config/manuscript_token_kinds.json
+      BOUND               its paragraph (or table) declares outputs, and a named cell of
+                          one of them rounds to the printed number, or a derivation does
+      POOL                no declared outputs; the value occurs somewhere in the pipeline
+      whitelisted         listed in config/manuscript_number_whitelist.json
+      SCOPED MISMATCH     declared outputs, and none of their cells holds it  (fails)
+      NO SOURCE           undeclared, and nothing in the pipeline holds it    (fails)
+    """
     pool = pipeline_values(results)
     wl_values, wl_patterns, wl_spec = load_whitelist(whitelist)
     sect_src = (wl_spec.get("section_numbers") or {}).get("pattern")
     headings = heading_numbers(docx_path)
     scopes = claim_scopes(docx_path, claims)
     derivations = claim_derivations(docx_path, claims)
-    scoped_cache: dict[str, np.ndarray] = {}
+    cell_cache: dict[str, list[tuple[str, float]]] = {}
 
     # Cardinality: does the count a paragraph asserts match what the claims
     # manifest records for the output it cites? No value check can ask this.
@@ -429,10 +696,18 @@ def classify(docx_path: Path, results: Path = RESULTS,
                         {"uid": para, "phrase": phrase, "asserted": n,
                          "recorded": e["count"], "noun": noun, "output": e["output"]})
 
-    stale_counts = []
-
+    tokens = manuscript_tokens(docx_path)
+    kind_of, rule_problems = token_kinds(docx_path, tokens, kinds, headings)
+    import docx as _docx
+    _d = _docx.Document(str(docx_path))
+    texts = {f"P{i}": p.text for i, p in enumerate(_d.paragraphs)}
+    for ti, tb in enumerate(_d.tables):
+        for ri, row in enumerate(tb.rows):
+            for ci, cell in enumerate(row.cells):
+                texts[f"T{ti + 1}r{ri}c{ci}"] = cell.text
     matched, weak, no_source, whitelisted, scoped_mismatch = [], [], [], [], []
-    for t in manuscript_tokens(docx_path):
+    bound, pool_only, non_measurement = [], [], []
+    for i, t in enumerate(tokens):
         tol = _tolerance(t["token"])
         v = abs(t["value"])
         bare = t["token"].lstrip("+-−")
@@ -440,54 +715,97 @@ def classify(docx_path: Path, results: Path = RESULTS,
                  or any(p.match(bare) for p in wl_patterns if p.pattern != sect_src)
                  or (sect_src is not None and re.match(sect_src, bare) is not None
                      and bare in headings))
-
+        if i in kind_of:
+            t["kind"], t["rule"] = kind_of[i]
+            non_measurement.append(t)
+            continue
         outputs = scopes.get(t["uid"])
-        if outputs and not white:
-            key = "|".join(sorted(outputs))
-            if key not in scoped_cache:
-                scoped_cache[key] = scoped_values(outputs)
-            n_scoped = _hits(scoped_cache[key], v, tol)
-            if not n_scoped:
-                # a value the paragraph declares as derived, with its arithmetic
-                for d in derivations.get(t["uid"], []):
-                    if abs(abs(float(d["value"])) - v) <= tol:
-                        n_scoped = 1
-                        t["derived_from"] = d["how"]
-                        break
+        if outputs:
             t["scope"] = outputs
-            t["n_scoped_matches"] = n_scoped
-            if n_scoped:
-                t["n_pool_matches"] = n_scoped
+            # a declared derivation names the value's origin exactly, so it is tried first
+            for dv in derivations.get(t["uid"], []):
+                val, how = _derived_value(dv)
+                if _rounds_to(val, t["token"]):
+                    t["derived_from"] = how
+                    t["cells"], t["n_cells"] = [f"derived: {how} = {val:.6g}"], 1
+                    break
+            if not t.get("cells"):
+                key = "|".join(sorted(outputs))
+                if key not in cell_cache:
+                    cell_cache[key] = cell_index(outputs)
+                hits = _bind(cell_cache[key], t["token"], _printed_as_percent(t, texts))
+                if hits:
+                    t["cells"], t["n_cells"] = hits[:6], len(hits)
+            if t.get("cells"):
+                t["n_scoped_matches"] = t["n_pool_matches"] = t["n_cells"]
+                bound.append(t)
                 matched.append(t)
                 continue
-            # Absent from the output its own paragraph declares. This is a
-            # fault, full stop. The rule used to fall back to the global pool
-            # and pass anything that matched exactly one value anywhere, on the
-            # reasoning that a specific source somewhere is good enough. It is
-            # not: 74.5 was absent from the yield table its paragraph declares,
-            # matched one unrelated pipeline value, and passed -- while being
-            # the wrong number for its own sentence. A paragraph that declares
-            # a source is asserting that its numbers come from that source.
-            # A number that belongs to a different output means the scope is
-            # too narrow; widen the declaration in config/analysis_claims.json
-            # rather than exempting the paragraph.
+            if white:
+                whitelisted.append(t)
+                continue
+            # Absent from the output its own paragraph declares. This is a fault: a
+            # paragraph that declares a source asserts that its numbers come from it.
+            # A number that belongs to a different output means the scope is too
+            # narrow; widen the declaration in config/analysis_claims.json.
+            t["n_scoped_matches"] = 0
             t["n_pool_matches"] = _hits(pool, v, tol)
             scoped_mismatch.append(t)
             continue
-
         n_hits = _hits(pool, v, tol)
         t["n_pool_matches"] = n_hits
         if n_hits:
             (weak if n_hits >= WEAK_MATCH_MIN else matched).append(t)
+            pool_only.append(t)
         elif white:
             whitelisted.append(t)
         else:
             no_source.append(t)
+    measured = len(bound) + len(pool_only) + len(whitelisted) + len(no_source) + len(scoped_mismatch)
+    single = sum(1 for t in bound if t["n_cells"] == 1)
+    by_kind: dict[str, int] = {}
+    for t in non_measurement:
+        by_kind[t["kind"]] = by_kind.get(t["kind"], 0) + 1
     return {"matched": matched, "weak": weak, "whitelisted": whitelisted,
             "no_source": no_source, "scoped_mismatch": scoped_mismatch,
-            "cardinality_mismatch": cardinality_mismatch,
-            "stale_counts": stale_counts,
+            "cardinality_mismatch": cardinality_mismatch, "stale_counts": [],
+            "bound": bound, "pool": pool_only, "non_measurement": non_measurement,
+            "non_measurement_by_kind": by_kind, "rule_problems": rule_problems,
+            "coverage": {"tokens": len(tokens), "measured": measured, "bound": len(bound),
+                         "single_cell": single, "several_cells": len(bound) - single},
             "n_pool": int(pool.size), "n_scoped_paragraphs": len(scopes)}
+
+
+def binding_report(r: dict, docx_name: str) -> str:
+    """Markdown record of every token's classification, for docs/."""
+    cov = r["coverage"]
+    _md = lambda x: x.replace("|", "\\|")   # a | in the context would split the table row
+    lines = [f"# Number binding: `{docx_name}`", "",
+             f"{cov['measured']} of the {cov['tokens']} numeric tokens are measurements. {cov['bound']} of them are "
+             "bound to a named cell of an output their paragraph or table declares (or to a derivation the check "
+             f"computes from such outputs): {cov['single_cell']} to a single cell, and {cov['several_cells']} to a cell "
+             "that the declared outputs share with at least one other cell rounding to the same printed number, so the "
+             f"check confirms the value but cannot say which of those cells the text means. {cov['measured'] - cov['bound']} "
+             f"are unbound. The other {len(r['non_measurement'])} tokens are not measurements and are listed with the "
+             "rule that sets each aside. Written by `python -m src.check_manuscript_numbers <docx> --binding-report "
+             "<path>`; a token is one distinct number per paragraph or table cell.", "",
+             "## Measured numbers not bound to a cell", ""]
+    unbound = ([("pool only", t) for t in r["pool"]] + [("whitelisted", t) for t in r["whitelisted"]]
+               + [("NO SOURCE", t) for t in r["no_source"]] + [("SCOPED MISMATCH", t) for t in r["scoped_mismatch"]])
+    if unbound:
+        lines += ["| block | token | status | context |", "|---|---|---|---|"]
+        lines += [f"| {t['uid']} | {t['token']} | {st} | …{_md(t['context'])}… |" for st, t in unbound]
+    else:
+        lines.append("None.")
+    lines += ["", "## Bound numbers", "",
+              "Single-cell bindings first, then those with several candidate cells.", "",
+              "| block | token | cells holding the value (first six) | context |", "|---|---|---|---|"]
+    for t in sorted(r["bound"], key=lambda t: t["n_cells"] > 1):
+        more = f" (+{t['n_cells'] - len(t['cells'])} more)" if t["n_cells"] > len(t["cells"]) else ""
+        lines.append(f"| {t['uid']} | {t['token']} | {'; '.join(t['cells'])}{more} | …{_md(t['context'])}… |")
+    lines += ["", "## Not measurements", "", "| block | token | kind | rule | context |", "|---|---|---|---|---|"]
+    lines += [f"| {t['uid']} | {t['token']} | {t['kind']} | {t['rule']} | …{_md(t['context'])}… |" for t in r["non_measurement"]]
+    return "\n".join(lines) + "\n"
 
 
 def main() -> None:
@@ -495,42 +813,61 @@ def main() -> None:
     ap.add_argument("docx")
     ap.add_argument("--verbose", action="store_true")
     ap.add_argument("--json", dest="as_json")
+    ap.add_argument("--binding-report", dest="binding_report")
+    ap.add_argument("--record-facts", action="store_true",
+                    help="record this run's coverage in config/pipeline_facts.json, which Methods 2.6 quotes")
     a = ap.parse_args()
     r = classify(Path(a.docx))
-    keys = ("matched", "weak", "whitelisted", "no_source", "scoped_mismatch")
-    total = sum(len(r[k]) for k in keys)
-    print(f"[numbers] {Path(a.docx).name}: {total} tokens against "
-          f"{r['n_pool']:,} pipeline values, "
-          f"{r['n_scoped_paragraphs']} paragraphs scoped to a declared output")
-    print(f"  matched, specific          : {len(r['matched'])}")
-    print(f"  matched, WEAK (ambiguous)  : {len(r['weak'])}")
-    print(f"  whitelisted (see config/)  : {len(r['whitelisted'])}")
-    print(f"  NO SOURCE                  : {len(r['no_source'])}")
-    print(f"  SCOPED MISMATCH            : {len(r['scoped_mismatch'])}")
+    cov = r["coverage"]
+    print(f"[numbers] {Path(a.docx).name}: {cov['tokens']} numeric tokens against "
+          f"{r['n_pool']:,} pipeline values, {r['n_scoped_paragraphs']} blocks scoped to declared outputs")
+    print(f"  measured                   : {cov['measured']}")
+    print(f"    bound to a named cell    : {cov['bound']}  (one cell {cov['single_cell']}, "
+          f"several candidate cells {cov['several_cells']})")
+    print(f"    pool match only          : {len(r['pool'])}")
+    print(f"    whitelisted              : {len(r['whitelisted'])}")
+    print(f"    NO SOURCE                : {len(r['no_source'])}")
+    print(f"    SCOPED MISMATCH          : {len(r['scoped_mismatch'])}")
+    kinds = ", ".join(f"{k} {n}" for k, n in sorted(r["non_measurement_by_kind"].items()))
+    print(f"  not measurements           : {len(r['non_measurement'])}  ({kinds})")
     print(f"  CARDINALITY MISMATCH       : {len(r['cardinality_mismatch'])}")
-
+    print(f"  RULE SOURCE MISSING        : {len(r['rule_problems'])}")
+    print(f"{cov['bound']} of {cov['measured']} measured tokens are bound to a named cell of a declared output: "
+          f"{cov['single_cell']} to a single cell, {cov['several_cells']} to one of several cells that round to the "
+          f"printed number; {cov['measured'] - cov['bound']} unbound.")
     for c in r["cardinality_mismatch"]:
         print(f"    CARDINALITY {c['uid']}: text says \"{c['phrase']}\" but "
               f"{c['output']} carries {c['recorded']} {c['noun']}")
+    for q in r["rule_problems"]:
+        print(f"    RULE SOURCE MISSING  {q['rule']}: {q['source']} no longer matches {q['defined_by']!r}")
     for t in r["scoped_mismatch"]:
         print(f"    SCOPED MISMATCH {t['uid']:>8s}  {t['token']:>10s}  "
-              f"absent from {', '.join(t['scope'])}\n"
-              f"        …{t['context']}…")
+              f"absent from {', '.join(t['scope'])}\n        …{t['context']}…")
+    for label, key in (("pool only", "pool"), ("whitelisted", "whitelisted"), ("NO SOURCE", "no_source")):
+        for t in r[key]:
+            print(f"    unbound: {label:11s} {t['uid']:>8s}  {t['token']:>10s}   …{t['context'][:90]}…")
     if a.verbose:
-        for t in r["whitelisted"]:
-            print(f"    whitelist {t['uid']:>10s}  {t['token']}")
-        for t in r["weak"]:
-            print(f"    weak      {t['uid']:>10s}  {t['token']:>10s}  "
-                  f"({t['n_pool_matches']} pool values in tolerance)   …{t['context'][:88]}…")
-    for t in r["no_source"]:
-        print(f"    NO SOURCE {t['uid']:>10s}  {t['token']:>12s}   …{t['context']}…")
+        for t in r["non_measurement"]:
+            print(f"    not measured  {t['uid']:>8s}  {t['token']:>10s}  {t['kind']} ({t['rule']})")
     if a.as_json:
         Path(a.as_json).write_text(json.dumps(r, indent=1, default=str))
-    # A scoped mismatch is now fatal. It used to be printed and tolerated,
-    # which is how 74.5 -- absent from the yield table its own paragraph
-    # declares -- reached a published draft.
+    if a.binding_report:
+        Path(a.binding_report).write_text(binding_report(r, Path(a.docx).name))
+    if a.record_facts:
+        import datetime
+        facts = json.loads(FACTS.read_text())
+        facts["manuscript_binding"] = {
+            "note": ("Coverage of the number check on the manuscript, as Methods 2.6 states it. Written by "
+                     "`python -m src.check_manuscript_numbers <docx> --record-facts`; "
+                     "tests/test_reported_numbers.py re-measures the manuscript and compares this record "
+                     "and the sentence with the measurement."),
+            "measured_at": datetime.date.today().isoformat(), "manuscript": Path(a.docx).name,
+            "tokens": cov["tokens"], "measured": cov["measured"], "bound": cov["bound"],
+            "single_cell": cov["single_cell"], "several_cells": cov["several_cells"],
+            "non_measurement": len(r["non_measurement"])}
+        FACTS.write_text(json.dumps(facts, indent=1, ensure_ascii=False) + "\n")
     sys.exit(1 if (r["no_source"] or r["cardinality_mismatch"]
-                   or r["scoped_mismatch"]) else 0)
+                   or r["scoped_mismatch"] or r["rule_problems"]) else 0)
 
 
 if __name__ == "__main__":

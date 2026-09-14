@@ -10,7 +10,7 @@ is audited separately, rounded and full-precision, overall and per gene.
     python scripts/column_provenance_audit.py --atlas-repo ../functional-standard-atlas \
         --out docs/column-provenance.md
 
-Writes nothing except the report.
+Writes the report and the agreement table (--tsv); reads the atlas without changing it.
 """
 from __future__ import annotations
 
@@ -97,6 +97,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--atlas-repo", required=True)
     ap.add_argument("--out", default="docs/column-provenance.md")
+    ap.add_argument("--tsv", default="data/rescore/column_provenance_shared.tsv",
+                    help="the shared-variant agreement table as data, so a quoted value has a file behind it")
     a = ap.parse_args()
     atlas = Path(a.atlas_repo).resolve()
     sys.path.insert(0, str(atlas / "src"))
@@ -131,6 +133,11 @@ def main() -> int:
             row["rounded_fullprec_reround_frac"] = float(np.mean(np.isclose(np.round(y[okr], 2), r[okr], atol=1e-9)))
         rows.append(row)
     tab = pd.DataFrame(rows)
+    # Methods 2.5 quotes the AlphaGenome agreement (rho between client 0.6.1 here and 0.7.0
+    # in the atlas) from this table; until it was written out it lived only in the report.
+    tsv = REPO / a.tsv
+    tsv.parent.mkdir(parents=True, exist_ok=True)
+    tab.to_csv(tsv, sep="\t", index=False)
 
     # splice subset audit, rounded (frozen) vs full precision (atlas)
     sp = fz[fz["is_splice"]].copy()

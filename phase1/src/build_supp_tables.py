@@ -533,9 +533,10 @@ def compare(table, header, rows, key):
             if is_number(h[j]) and is_number(w[j]) and abs(float(h[j].replace("−", "-")) - float(w[j].replace("−", "-"))) < 1e-9:
                 continue
             bad.append(f"r{i}c{j}: doc {h[j]!r} vs {w[j]!r}")
-    if len(header) > len(have[0]):
-        bad.append(f"{len(header) - len(have[0])} new column(s) not in the document")
-    return bad
+    # columns the generator adds are reported, not counted: they cannot disagree with a
+    # cell the document does not have
+    new_cols = len(header) - len(have[0])
+    return bad, (f"{new_cols} new column(s) not in the document" if new_cols > 0 else None)
 
 
 def insert_table_after(doc, after_table, title, caption, header, rows, template_table):
@@ -608,9 +609,9 @@ def main():
             header, rows = build(rep)
             tag = key + ("" if len(builders) == 1 else f" ({'abc'[k]})")
             if a.verify:
-                bad = compare(table, header, rows, tag)
+                bad, note = compare(table, header, rows, tag)
                 total_bad += len(bad)
-                print(f"[verify] {tag}: {len(rows)} rows, {len(bad)} mismatch(es)")
+                print(f"[verify] {tag}: {len(rows)} rows, {len(bad)} mismatch(es)" + (f"; {note}" if note else ""))
                 for b in bad[:8]:
                     print("    " + b)
             else:

@@ -523,3 +523,34 @@ def test_tp53_orientation_gate_is_persisted_and_passes():
     assert abs(g.loc[run, "control_auroc"] + g.loc[dft, "control_auroc"] - 1) < 1e-12
     assert g.loc[run, "control_auroc"] > 0.99
     assert approx(g.loc[run, "control_auroc"], E("tp53.orientation.auroc"))
+
+
+def test_the_disclosed_binding_coverage_is_the_measured_one():
+    """Methods 2.6 states how many measured numbers the number check binds, to one cell or
+    to several, and how many tokens it sets aside as not measurements. The counts are
+    recorded in pipeline_facts.json; this re-measures the manuscript and compares both the
+    record and the sentence with the measurement. The sentence also says derived values
+    are computed, so a derivation the check only declares (and takes on trust) fails here."""
+    import sys
+
+    manuscript = _manuscript_path()
+    if manuscript is None:
+        pytest.skip("manuscript not available in this checkout")
+    sys.path.insert(0, str(REPO / "phase1"))
+    import src.check_manuscript_numbers as cmn
+    from docx import Document
+
+    r = cmn.classify(manuscript)
+    cov = dict(r["coverage"], non_measurement=len(r["non_measurement"]))
+    facts = json.loads((REPO / "phase1" / "config" / "pipeline_facts.json").read_text())["manuscript_binding"]
+    keys = ("measured", "bound", "single_cell", "several_cells", "non_measurement")
+    assert {k: cov[k] for k in keys} == {k: facts[k] for k in keys}, "re-record with --record-facts"
+    assert cov["bound"] == cov["measured"], "the sentence says every measured number is bound"
+    declared = [(t["uid"], t["token"]) for t in r["bound"] if "(declared, not computed)" in t["cells"][0]]
+    assert not declared, f"derivations bound on trust rather than computed: {declared}"
+    text = " ".join(p.text for p in Document(str(manuscript)).paragraphs)
+    m = re.search(r"All ([\d,]+) measured numbers are bound: ([\d,]+) to a single cell and ([\d,]+) to one of several", text)
+    n = re.search(r"The other ([\d,]+) numeric tokens", text)
+    assert m and n, "the binding sentence is no longer in the form this test reads"
+    said = tuple(int(g.replace(",", "")) for g in (*m.groups(), n.group(1)))
+    assert said == (cov["measured"], cov["single_cell"], cov["several_cells"], cov["non_measurement"])

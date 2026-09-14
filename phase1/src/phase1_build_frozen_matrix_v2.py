@@ -96,6 +96,51 @@ def replacement_frame() -> pd.DataFrame:
     return rep.set_index("variant_id")
 
 
+def column_report_row(canon, old, new, sp, variant_ids) -> dict:
+    """One row of the before/after audit for a replaced column.
+
+    For the two columns v2 re-scores at full precision (SpliceAI, Pangolin) it also
+    records how many values re-round to the v1 print -- equal as numbers at two
+    decimals -- and names every exception with both values. Methods 2.5 quotes those
+    counts; they used to exist only as assertions in tests/test_frozen_matrix_v2.py.
+    """
+    ok = ~(np.isnan(old) | np.isnan(new))
+    row = {
+        "column": canon, "n_scored_v1": int((~np.isnan(old)).sum()), "n_scored_v2": int((~np.isnan(new)).sum()),
+        "spearman_v1_v2": float(stats.spearmanr(old[ok], new[ok]).statistic),
+        "distinct_v1": int(pd.Series(old[ok]).nunique()), "distinct_v2": int(pd.Series(new[ok]).nunique()),
+        "splice_distinct_v1": int(pd.Series(old[sp & ok]).nunique()), "splice_distinct_v2": int(pd.Series(new[sp & ok]).nunique()),
+        "splice_tie_ceiling_v1": max_spearman_given_ties(old[sp & ok]),
+        "splice_tie_ceiling_v2": max_spearman_given_ties(new[sp & ok]),
+        "max_abs_diff_after_rounding_to_2dp": (float(np.nanmax(np.abs(np.round(new[ok], 2) - old[ok])))
+                                               if canon != "nt" else float("nan")),
+        "n_compared": int(ok.sum()),
+    }
+    if canon == "nt":
+        row.update({"n_rerounded_to_v1_print": float("nan"), "rerounding_exceptions": "",
+                    "exception_v2_value": "", "exception_v1_print": ""})
+        return row
+    o, n, ids = old[ok], new[ok], np.asarray(variant_ids)[ok]
+    same = np.array([float(f"{x:.2f}") == float(f"{y:.2f}") for x, y in zip(o, n)])
+    bad = np.where(~same)[0]
+    # strings, so the report's float format cannot truncate them
+    row.update({"n_rerounded_to_v1_print": int(same.sum()),
+                "rerounding_exceptions": ";".join(ids[bad]),
+                "exception_v2_value": ";".join(f"{n[j]:.7g}" for j in bad),
+                "exception_v1_print": ";".join(f"{o[j]:.2f}" for j in bad)})
+    return row
+
+
+def report_only() -> None:
+    """Rewrite the column report from the built matrices without rebuilding them."""
+    v1, v2 = pd.read_parquet(V1), pd.read_parquet(OUT)
+    assert (v1["variant_id"].to_numpy() == v2["variant_id"].to_numpy()).all()
+    sp, ids = v2["is_splice"].to_numpy(), v2["variant_id"].to_numpy()
+    rows = [column_report_row(c, v1[c].to_numpy(dtype=float), v2[c].to_numpy(dtype=float), sp, ids) for c in REPLACED]
+    pd.DataFrame(rows).to_csv(REPORT, sep="\t", index=False, float_format="%.6g")
+    print(f"[v2] column report rewritten: {REPORT}")
+
+
 def build() -> dict:
     v1 = pd.read_parquet(V1)
     got = canonical_sha256(v1)
@@ -111,18 +156,8 @@ def build() -> dict:
     for canon, col in REPLACED.items():
         new = rep.loc[v2["variant_id"], col].to_numpy(dtype=float)
         old = v2[canon].to_numpy(dtype=float)
-        ok = ~(np.isnan(old) | np.isnan(new))
         sp = v2["is_splice"].to_numpy()
-        report_rows.append({
-            "column": canon, "n_scored_v1": int((~np.isnan(old)).sum()), "n_scored_v2": int((~np.isnan(new)).sum()),
-            "spearman_v1_v2": float(stats.spearmanr(old[ok], new[ok]).statistic),
-            "distinct_v1": int(pd.Series(old[ok]).nunique()), "distinct_v2": int(pd.Series(new[ok]).nunique()),
-            "splice_distinct_v1": int(pd.Series(old[sp & ok]).nunique()), "splice_distinct_v2": int(pd.Series(new[sp & ok]).nunique()),
-            "splice_tie_ceiling_v1": max_spearman_given_ties(old[sp & ok]),
-            "splice_tie_ceiling_v2": max_spearman_given_ties(new[sp & ok]),
-            "max_abs_diff_after_rounding_to_2dp": (float(np.nanmax(np.abs(np.round(new[ok], 2) - old[ok])))
-                                                   if canon != "nt" else float("nan")),
-        })
+        report_rows.append(column_report_row(canon, old, new, sp, v2["variant_id"].to_numpy()))
         v2[canon] = new
         v2[f"{canon}_isna"] = np.isnan(new).astype("int8")
 
@@ -196,5 +231,7 @@ def main() -> None:
     print("TP53 v2:", json.dumps(t))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--report-only" in sys.argv:
+    report_only()
+elif __name__ == "__main__":
     main()

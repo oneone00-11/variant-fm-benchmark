@@ -1,0 +1,172 @@
+{
+ "_note": "Numbers in the manuscript that are not measurements, and why. The number check sets these aside from its binding count and lists each with the rule that set it aside. A rule matches by pattern on the printed paragraph or cell, so the same value printed as a result elsewhere is still checked. Heading numbers and cross-references to a heading are recognised without a rule. A rule with a `source` names the file that sets the value and a `defined_by` pattern that must still match there; if the code stops defining the value, the check fails.",
+ "rules": [
+  {
+   "name": "splice window",
+   "kind": "parameter",
+   "pattern": "\\|offset\\| ≤ (8)\\b|\\|offset\\| ≤ (2)\\b|window ends at (8) bp|splice-region \\((3)–(8)|region band (3)–(8)",
+   "reason": "The proximal splice window and its core/region split are definitions of the analysis set.",
+   "source": "phase1/src/config.py",
+   "defined_by": "SPLICE_CORE_MAX\\s*=\\s*2\\b[\\s\\S]*?SPLICE_REGION_MAX\\s*=\\s*8\\b"
+  },
+  {
+   "name": "bootstrap resamples",
+   "kind": "parameter",
+   "pattern": "\\b(2,000) resamples",
+   "reason": "Resample count of the gene-clustered and variant-level bootstraps.",
+   "source": "phase1/src/phase3_calibration.py",
+   "defined_by": "(?m)^N_BOOT = 2000\\b"
+  },
+  {
+   "name": "sampling-frame resamples",
+   "kind": "parameter",
+   "pattern": "\\b(1,000) gene resamples",
+   "reason": "Resample count of the sampling-frame reweighting bootstrap.",
+   "source": "phase1/src/ipw_reweight.py",
+   "defined_by": "(?m)^N_BOOT = 1000\\b"
+  },
+  {
+   "name": "interval level",
+   "kind": "parameter",
+   "pattern": "\\b(95)% CIs?\\b",
+   "reason": "Every interval is a 95% percentile interval.",
+   "source": "phase1/src/phase2_model.py",
+   "defined_by": "nanpercentile\\(deltas, \\[2\\.5, 97\\.5\\]\\)"
+  },
+  {
+   "name": "ECE bins",
+   "kind": "parameter",
+   "pattern": "ECE \\((10) bins\\)",
+   "reason": "Bin count of the expected calibration error.",
+   "source": "phase1/src/phase3_calibration.py",
+   "defined_by": "def ece\\(prob, label, n_bins=10\\)"
+  },
+  {
+   "name": "confidence band",
+   "kind": "parameter",
+   "pattern": "≥ (0\\.90) or ≤ (0\\.10)|(0\\.90)/(0\\.10)",
+   "reason": "The calibrated-confidence cut-offs that define a high-confidence call.",
+   "source": "phase1/src/phase3_calibration.py",
+   "defined_by": "HI, LO = 0\\.90, 0\\.10"
+  },
+  {
+   "name": "operating point",
+   "kind": "parameter",
+   "pattern": "\\b(95)%[ -]specificity|operating point of (95)% specificity",
+   "reason": "The specificity at which every likelihood ratio is reported, fixed in advance.",
+   "source": "phase1/src/phase5_likelihood_ratios.py",
+   "defined_by": "(?m)^TARGET_SPEC = 0\\.95\\b"
+  },
+  {
+   "name": "operating-point grid",
+   "kind": "parameter",
+   "pattern": "\\b(90)%, (95)%, (97\\.5)% and (99)% specificity|at (90)%, (97\\.5)% and (99)% specificity|at (97\\.5)% and (99)% specificity|at (97\\.5)% specificity",
+   "reason": "The four specificities of the operating-point sensitivity analysis.",
+   "source": "phase1/src/phase8_robustness.py",
+   "defined_by": "SPEC_POINTS = \\(0\\.90, 0\\.95, 0\\.975, 0\\.99\\)"
+  },
+  {
+   "name": "evidence prior",
+   "kind": "parameter",
+   "pattern": "prior (?:of )?(0\\.10)",
+   "reason": "The prior probability at which Tavtigian bands are applied.",
+   "source": "phase1/src/phase5_likelihood_ratios.py",
+   "defined_by": "(?m)^PRIOR = 0\\.10\\b"
+  },
+  {
+   "name": "TP53 label rules",
+   "kind": "parameter",
+   "pattern": "RFS > (0)\\b|\\|RFS\\| ≥ (0\\.5)\\b|top (50)%",
+   "reason": "The three TP53 label definitions: control-anchored midpoint, median split, mid-band exclusion.",
+   "source": "phase1/src/phase4_external_tp53.py",
+   "defined_by": "rfs > 0\\)[\\s\\S]*?np\\.median\\(rfs\\)[\\s\\S]*?np\\.abs\\(rfs\\) >= 0\\.5"
+  },
+  {
+   "name": "reproduction tolerances",
+   "kind": "parameter",
+   "pattern": "within (1) × (10)⁻⁶|≤ (0\\.005) \\+ (2) × (10)⁻⁶",
+   "reason": "Tolerances asserted by the frozen-matrix-v2 reproduction tests.",
+   "source": "tests/test_frozen_matrix_v2.py",
+   "defined_by": "0\\.005 \\+ 2e-6[\\s\\S]*?1e-6"
+  },
+  {
+   "name": "Tavtigian thresholds",
+   "kind": "literature constant",
+   "pattern": "Strong \\((18\\.7)\\)|the (18\\.7) threshold|LR\\+ ≥ (350)\\)",
+   "reason": "Likelihood-ratio thresholds of the Tavtigian point system at a prior of 0.10.",
+   "source": "phase1/src/phase5_likelihood_ratios.py",
+   "defined_by": "\\(350\\.0, \\\"Very strong\\\"\\), \\(18\\.7, \\\"Strong\\\"\\)",
+   "reference": "[7] Tavtigian et al. 2018"
+  },
+  {
+   "name": "operating-point bounds",
+   "kind": "derived constant",
+   "pattern": "sensitivity / (0\\.05)|cannot exceed (20)\\b|capped near (20)\\b|sensitivity above (0\\.93)\\b|more than (93)% of true positives",
+   "reason": "Arithmetic of the operating point: 1 − 0.95 = 0.05; LR+ ≤ 1/0.05 = 20; Strong needs sensitivity ≥ 18.7 × 0.05 = 0.935.",
+   "source": "phase1/src/phase5_likelihood_ratios.py",
+   "defined_by": "(?m)^TARGET_SPEC = 0\\.95\\b"
+  },
+  {
+   "name": "significance levels",
+   "kind": "convention",
+   "pattern": "significant at (0\\.05) but not at (0\\.01)",
+   "reason": "Conventional significance levels named in the text, not estimates."
+  },
+  {
+   "name": "TP53 assay scale",
+   "kind": "cited",
+   "pattern": "anchored at (−1) for synonymous and (\\+1) for nonsense",
+   "reason": "The published anchoring of the TP53 relative fitness score.",
+   "reference": "[31] Funk et al. 2025"
+  },
+  {
+   "name": "companion atlas",
+   "kind": "cited",
+   "pattern": "atlas's (46,392)-SNV matrix|stratifies (3)–(10), (11)–(50) and >(50) bp|the (11)–(50) bp band",
+   "reason": "Properties of the companion atlas's matrix and strata, reported in that study.",
+   "reference": "[12] companion atlas"
+  },
+  {
+   "name": "label encoding",
+   "kind": "encoding",
+   "pattern": "damaging = (1), normal = (0)",
+   "reason": "The binary label coding."
+  },
+  {
+   "name": "audited offsets",
+   "kind": "genomic position",
+   "pattern": "offsets (−1)/(−2)|at (−3) carry",
+   "reason": "Intron offsets naming audited variants."
+  },
+  {
+   "name": "illustration",
+   "kind": "illustration",
+   "pattern": "stated (80)% means|false-positive rate towards (1)\\b",
+   "reason": "Numbers used to explain a definition, not results."
+  },
+  {
+   "name": "dates",
+   "kind": "date",
+   "pattern": "\\b(\\d{1,2}) (?:January|February|March|April|May|June|July|August|September|October|November|December) \\d{4}",
+   "reason": "Calendar dates."
+  },
+  {
+   "name": "repository name",
+   "kind": "identifier",
+   "pattern": "github\\.com/\\S+",
+   "reason": "Digits inside the repository name."
+  },
+  {
+   "name": "MaveDB accessions",
+   "kind": "identifier",
+   "pattern": "\\b\\d{8}-[a-z0-9]-\\d\\b",
+   "reason": "Digits inside MaveDB accessions."
+  },
+  {
+   "name": "figure and table labels",
+   "kind": "figure or table label",
+   "pattern": "\\b(?:Supplementary\\s+)?(?:Figures?|Tables?)\\s+(\\d+)(?:\\s*(?:,|and|–)\\s*(\\d+))?",
+   "reason": "Figure and table numbers."
+  }
+ ]
+}
