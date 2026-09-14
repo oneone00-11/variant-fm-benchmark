@@ -170,7 +170,9 @@
    "derived": [
     {
      "value": 30,
-     "how": "off-diagonal of phase7_label_confusion.csv: 18 + 12"
+     "agg": "off_diagonal",
+     "from": "phase1/reports/phase1/phase7_label_confusion.csv",
+     "how": "disagreements: the off-diagonal cells of phase7_label_confusion.csv"
     }
    ]
   },
@@ -188,11 +190,25 @@
    "derived": [
     {
      "value": 1.44,
-     "how": "smallest LR+ ratio (recorded / assay-only) over the eleven evaluable objects, fusion_M1: 20.333 / 14.141"
+     "agg": "min_ratio",
+     "from": "phase1/reports/phase1/phase7_selection_test.csv",
+     "index": "object",
+     "columns": "subset",
+     "values": "lr_plus",
+     "numerator": "ClinVar-recorded",
+     "denominator": "assay-only",
+     "how": "smallest LR+ ratio, ClinVar-recorded over assay-only, across the evaluable objects (phase7_selection_test.csv)"
     },
     {
      "value": 4.2,
-     "how": "largest such ratio, phastCons: 12.518 / 2.979"
+     "agg": "max_ratio",
+     "from": "phase1/reports/phase1/phase7_selection_test.csv",
+     "index": "object",
+     "columns": "subset",
+     "values": "lr_plus",
+     "numerator": "ClinVar-recorded",
+     "denominator": "assay-only",
+     "how": "largest LR+ ratio, ClinVar-recorded over assay-only, across the evaluable objects (phase7_selection_test.csv)"
     }
    ]
   },
@@ -250,7 +266,370 @@
     "phase1/reports/phase1/phase2_H1_stratified.csv"
    ],
    "status": "verified",
-   "note": "The paragraph also states the H3 headline, the per-tool interval count, the sign-flip p, the sampling-frame qualification (1,768 in-frame variants; 1,781 headline) and the primary-condition yield figures, so every output those come from is in scope."
+   "note": "The paragraph also states the H3 headline, the per-tool interval count, the sign-flip p, the sampling-frame qualification (1,768 in-frame variants; 1,781 headline) and the primary-condition yield figures, so every output those come from is in scope.",
+   "derived": [
+    {
+     "value": 72,
+     "agg": "count",
+     "from": "phase1/reports/phase1/phase3_pertool_brier_ci.csv",
+     "where": {
+      "fusion_lower": "True"
+     },
+     "how": "fusion-versus-single-tool comparisons whose interval excludes zero: rows with fusion_lower = True (phase3_pertool_brier_ci.csv)"
+    }
+   ]
+  },
+  {
+   "para": "P7",
+   "claim": "abstract methods: analysis-set size",
+   "anchor": "Methods. Ten predictors and three fusion",
+   "script": "phase1/src/phase1_build_frozen_matrix_v2.py",
+   "output": [
+    "phase1/data/frozen/frozen_matrix_v2.parquet"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P8",
+   "claim": "abstract results: ranking, ablation, yield",
+   "anchor": "Results. Ranking is saturated. The best ",
+   "script": "phase1/src/phase2_model.py",
+   "output": [
+    "phase1/reports/phase1/phase2_leaderboard.csv",
+    "phase1/reports/phase1/phase2_H1_stratified.csv",
+    "phase1/reports/phase1/phase2_H2_ablation.csv",
+    "phase1/reports/phase1/phase3_calibration_summary.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P9",
+   "claim": "abstract conclusion: likelihood ratios",
+   "anchor": "Conclusion. Fusion buys a better proper ",
+   "script": "phase1/src/phase5_likelihood_ratios.py",
+   "output": [
+    "phase1/reports/phase1/phase5_lr_headline.csv",
+    "phase1/reports/phase1/phase8_lr_plus_operating_points.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P18",
+   "claim": "analysis set, strata and orientation gate",
+   "anchor": "The analysis reuses a frozen matrix of 2",
+   "script": "phase1/src/phase1_build_frozen_matrix_v2.py",
+   "output": [
+    "phase1/data/frozen/frozen_matrix_v2.parquet",
+    "phase1/data/frozen/manifest_v2.json",
+    "phase1/reports/phase1/directionality_check.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P19",
+   "claim": "functional labels: coverage and positive fraction",
+   "anchor": "Functional class labels were taken from ",
+   "script": "phase1/src/phase1_build_frozen_matrix.py",
+   "output": [
+    "phase1/reports/phase1/class_balance.csv",
+    "phase1/reports/phase1/methodB_coverage.csv",
+    "phase1/data/frozen/frozen_matrix_v2.parquet"
+   ],
+   "status": "verified",
+   "derived": [
+    {
+     "value": 94,
+     "agg": "ratio_percent",
+     "numerator": {
+      "from": "phase1/reports/phase1/methodB_coverage.csv",
+      "agg": "sum",
+      "column": "n_labelled_splice"
+     },
+     "denominator": {
+      "from": "phase1/reports/phase1/methodB_coverage.csv",
+      "agg": "sum",
+      "column": "n_splice"
+     },
+     "how": "assay-labelled share of the splice set: 100 × Σ n_labelled_splice / Σ n_splice (methodB_coverage.csv)"
+    }
+   ]
+  },
+  {
+   "para": "P33",
+   "claim": "pinned re-scoring reproduces the frozen columns",
+   "anchor": "For the TP53 validation all ten predicto",
+   "script": "phase1/src/phase1_build_frozen_matrix_v2.py",
+   "output": [
+    "phase1/data/frozen/frozen_matrix_v2_column_report.tsv",
+    "data/external/ag_drift_check_result.tsv",
+    "data/rescore/column_provenance_shared.tsv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P36",
+   "claim": "checks that do not require reading the code",
+   "anchor": "The correctness of the analysis code res",
+   "script": "phase1/src/phase1_directionality_check.py",
+   "output": [
+    "phase1/reports/phase1/directionality_check.csv",
+    "phase1/data/frozen/frozen_matrix_v2_column_report.tsv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P37",
+   "claim": "the number check binds every measured number to a declared output; the coverage Methods 2.6 states, as recorded",
+   "anchor": "a further script accounts for every number in the text, tables and captions",
+   "script": "phase1/src/check_manuscript_numbers.py",
+   "output": "phase1/config/pipeline_facts.json",
+   "status": "verified"
+  },
+  {
+   "para": "P41",
+   "claim": "leaderboard of single tools",
+   "anchor": "On the independent functional standard t",
+   "script": "phase1/src/phase2_model.py",
+   "output": [
+    "phase1/reports/phase1/phase2_leaderboard.csv",
+    "phase1/reports/phase1/coverage_by_region.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P44",
+   "claim": "Figure 1 caption",
+   "anchor": "Figure 1. Ranking among top splice-aware",
+   "script": "phase1/src/phase9_figures.py",
+   "output": [
+    "phase1/data/frozen/frozen_matrix_v2.parquet"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P45",
+   "claim": "Table 1",
+   "anchor": "Table 1. Leaderboard on the independent ",
+   "script": "phase1/src/phase2_model.py",
+   "output": [
+    "phase1/reports/phase1/phase2_leaderboard.csv"
+   ],
+   "status": "verified",
+   "table": true
+  },
+  {
+   "para": "P46",
+   "claim": "Table 1 note: Hartung-Knapp interval, AlphaMissense coverage",
+   "anchor": "Ranked by pooled ρ. Fusion objects: M1 e",
+   "script": "phase1/src/phase8_robustness.py",
+   "output": [
+    "phase1/reports/phase1/phase8_leaderboard_hk.csv",
+    "phase1/reports/phase1/coverage_by_region.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P48",
+   "claim": "evolutionary-axis ablation",
+   "anchor": "Removing the evolutionary axis from the ",
+   "script": "phase1/src/phase2_model.py",
+   "output": [
+    "phase1/reports/phase1/phase2_H2_ablation.csv",
+    "phase1/reports/phase1/phase6_enet_weight_stability.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P49",
+   "claim": "Table 2",
+   "anchor": "Table 2. Evolution-axis ablation (H2). C",
+   "script": "phase1/src/phase2_model.py",
+   "output": [
+    "phase1/reports/phase1/phase2_H2_ablation.csv"
+   ],
+   "status": "verified",
+   "table": true
+  },
+  {
+   "para": "P50",
+   "claim": "Table 2 note: coefficients and their ranks",
+   "anchor": "Δρ = full − ablated; a positive value wo",
+   "script": "phase1/src/phase6_sensitivity.py",
+   "output": [
+    "phase1/reports/phase1/phase2_H2_ablation.csv",
+    "phase1/reports/phase1/phase6_enet_weight_stability.csv"
+   ],
+   "status": "verified",
+   "derived": [
+    {
+     "value": 4,
+     "agg": "rank",
+     "from": "phase1/reports/phase1/phase6_enet_weight_stability.csv",
+     "column": "mean_abs",
+     "key": "gpn_msa",
+     "how": "rank of gpn_msa by mean |coefficient| (phase6_enet_weight_stability.csv)"
+    },
+    {
+     "value": 5,
+     "agg": "rank",
+     "from": "phase1/reports/phase1/phase6_enet_weight_stability.csv",
+     "column": "mean_abs",
+     "key": "phastcons",
+     "how": "rank of phastcons by mean |coefficient| (phase6_enet_weight_stability.csv)"
+    },
+    {
+     "value": 7,
+     "agg": "rank",
+     "from": "phase1/reports/phase1/phase6_enet_weight_stability.csv",
+     "column": "mean_abs",
+     "key": "phylop",
+     "how": "rank of phylop by mean |coefficient| (phase6_enet_weight_stability.csv)"
+    }
+   ]
+  },
+  {
+   "para": "P54",
+   "claim": "Murphy decomposition",
+   "anchor": "What the gain is made of is answered by ",
+   "script": "phase1/src/phase8_robustness.py",
+   "output": [
+    "phase1/reports/phase1/phase8_murphy_decomposition.csv",
+    "phase1/reports/phase1/phase3_H3_headline.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P55",
+   "claim": "ECE contrast",
+   "anchor": "The pure-calibration metric (ECE) is mor",
+   "script": "phase1/src/phase3_calibration.py",
+   "output": [
+    "phase1/reports/phase1/phase3_H3_headline.csv",
+    "phase1/reports/phase1/phase3_calibration_summary.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P57",
+   "claim": "Figure 2 caption",
+   "anchor": "Figure 2. The fusion is calibrated on th",
+   "script": "phase1/src/phase9_figures.py",
+   "output": [
+    "phase1/reports/phase1/phase3_calibration_summary.csv",
+    "phase1/reports/phase1/phase3_reliability_fusion.csv",
+    "phase1/reports/phase1/class_balance.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P59",
+   "claim": "Figure 3 caption",
+   "anchor": "Figure 3. The fusion produces more accur",
+   "script": "phase1/src/phase9_figures.py",
+   "output": [
+    "phase1/reports/phase1/class_balance.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P60",
+   "claim": "Table 3",
+   "anchor": "Table 3. Calibration on the independent ",
+   "script": "phase1/src/phase3_calibration.py",
+   "output": [
+    "phase1/reports/phase1/phase3_calibration_summary.csv"
+   ],
+   "status": "verified",
+   "table": true
+  },
+  {
+   "para": "P71",
+   "claim": "TP53 result",
+   "anchor": "The fusion's calibrated Brier score on h",
+   "script": "phase1/src/phase4_external_tp53.py",
+   "output": [
+    "phase1/reports/phase1/phase4_tp53_external.csv",
+    "phase1/reports/phase1/phase4_tp53_label_definitions.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P72",
+   "claim": "TP53 sample size",
+   "anchor": "We read this as a directional replicatio",
+   "script": "phase1/src/phase4_external_tp53.py",
+   "output": [
+    "phase1/reports/phase1/phase4_tp53_label_definitions.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P73",
+   "claim": "Table 4",
+   "anchor": "Table 4. External validation on held-out",
+   "script": "phase1/src/phase4_external_tp53.py",
+   "output": [
+    "phase1/reports/phase1/phase4_tp53_label_definitions.csv"
+   ],
+   "status": "verified",
+   "table": true
+  },
+  {
+   "para": "P75",
+   "claim": "discussion: evolutionary axis",
+   "anchor": "The three findings combine into one clai",
+   "script": "phase1/src/phase2_model.py",
+   "output": [
+    "phase1/reports/phase1/phase2_H2_ablation.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P77",
+   "claim": "discussion: sensitivities by ClinVar classification",
+   "anchor": "One consequence deserves stating directl",
+   "script": "phase1/src/phase7_label_contrast.py",
+   "output": [
+    "phase1/reports/phase1/phase7_selection_test.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P78",
+   "claim": "limits: positive fraction",
+   "anchor": "Applying any of this inside ACMG/AMP car",
+   "script": "phase1/src/phase1_build_frozen_matrix.py",
+   "output": [
+    "phase1/reports/phase1/class_balance.csv"
+   ],
+   "status": "verified"
+  },
+  {
+   "para": "P81",
+   "claim": "limitations: label abstention",
+   "anchor": "The functional standard covers seven DNA",
+   "script": "phase1/src/phase1_build_frozen_matrix.py",
+   "output": [
+    "phase1/reports/phase1/class_balance.csv"
+   ],
+   "status": "verified",
+   "derived": [
+    {
+     "value": 6,
+     "agg": "complement_percent",
+     "numerator": {
+      "from": "phase1/reports/phase1/methodB_coverage.csv",
+      "agg": "sum",
+      "column": "n_labelled_splice"
+     },
+     "denominator": {
+      "from": "phase1/reports/phase1/methodB_coverage.csv",
+      "agg": "sum",
+      "column": "n_splice"
+     },
+     "how": "splice variants without an assay label: 100 − 100 × Σ n_labelled_splice / Σ n_splice (methodB_coverage.csv)"
+    }
+   ]
   }
  ]
 }

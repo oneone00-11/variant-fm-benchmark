@@ -19,37 +19,52 @@
    "skipped": 0
   }
  },
- "guardrail_tests_passing_from_archive": 81,
- "archive_measured_for": "git archive of the code commit of the rounding-consistency round (tables stored unrounded, supplement printed at a precision that rounds back, cross-document tests); re-measured on the manuscript-support commit that follows it, which adds no tests",
+ "guardrail_tests_passing_from_archive": 86,
+ "archive_measured_for": "git archive of the manuscript-support commit of the binding round (every measured number bound to a named cell of a declared output; coverage recorded under manuscript_binding), whose code commit adds 6 tests",
  "archive_breakdown": {
   "measured_at": "2026-09-14",
   "how": "git archive --format=tar HEAD | tar -x; python -m pytest -q -rs from the extract root with the repository's pinned virtualenv (python 3.12.14; pip install -r requirements.txt plus pyarrow and python-docx, which the tests import); HOME pointed at an empty directory and VARIANT_FM_MANUSCRIPT / VARIANT_FM_SUPPLEMENT unset, so neither document is visible",
-  "collected": 91,
-  "passed": 81,
+  "collected": 97,
+  "passed": 86,
   "failed": 0,
-  "skipped": 10,
+  "skipped": 11,
   "skips_are": [
    "tests/test_analysis_claims.py::test_every_anchor_hits_exactly_once -- manuscript not available",
    "tests/test_analysis_claims.py::test_paragraph_numbers_are_not_load_bearing -- manuscript not available",
+   "tests/test_cross_document_rounding.py::test_table_1_is_the_supplement_leaderboard_rounded_once -- manuscript or supplement not available in this checkout",
+   "tests/test_cross_document_rounding.py::test_table_3_is_the_supplement_calibration_table_rounded_once -- manuscript or supplement not available in this checkout",
+   "tests/test_cross_document_rounding.py::test_figure_2_caption_quotes_the_supplement_rounded_once -- manuscript or supplement not available in this checkout",
+   "tests/test_cross_document_rounding.py::test_section_3_4_quotes_the_supplement_tp53_table_rounded_once -- manuscript or supplement not available in this checkout",
    "tests/test_reported_numbers.py::test_the_disclosed_test_count_is_the_measured_one -- manuscript not available",
    "tests/test_reported_numbers.py::test_table_1_rounds_the_unrounded_pooled_values_once -- manuscript not available",
    "tests/test_reported_numbers.py::test_table_3_rounds_the_calibration_summary_once -- manuscript not available",
-   "tests/test_cross_document_rounding.py (4 tests: Table 1, Table 3, the Figure 2 caption and the 3.4 sentence against the supplement) -- manuscript or supplement not available",
+   "tests/test_reported_numbers.py::test_the_disclosed_binding_coverage_is_the_measured_one -- manuscript not available in this checkout",
    "tests/test_reproduction_coverage.py::test_every_tracked_result_has_a_documented_entry_point -- 'no tracked report files': it enumerates tracked outputs with `git ls-files`, and an archive extract carries no git index; in a clone of the same commit it runs and passes"
   ],
   "with_manuscript_visible": {
-   "collected": 91,
-   "passed": 90,
+   "collected": 97,
+   "passed": 96,
    "failed": 0,
    "skipped": 1,
    "skip_is": "the git-index coverage check above; it is the only test that cannot run from an archive (VARIANT_FM_MANUSCRIPT and VARIANT_FM_SUPPLEMENT both set)"
   },
   "in_a_clone_with_manuscript_visible": {
-   "collected": 91,
-   "passed": 91,
+   "collected": 97,
+   "passed": 97,
    "failed": 0,
    "skipped": 0
   }
  },
- "bare_clone_note": "The bare-clone measurement below is the frozen-matrix-v1 release's (2026-09-09) and is kept for the record; the manuscript now discloses the archive measurement."
+ "bare_clone_note": "The bare-clone measurement below is the frozen-matrix-v1 release's (2026-09-09) and is kept for the record; the manuscript now discloses the archive measurement.",
+ "manuscript_binding": {
+  "note": "Coverage of the number check on the manuscript, as Methods 2.6 states it. Written by `python -m src.check_manuscript_numbers <docx> --record-facts`; tests/test_reported_numbers.py re-measures the manuscript and compares this record and the sentence with the measurement.",
+  "measured_at": "2026-09-14",
+  "manuscript": "calibration_draft.docx",
+  "tokens": 561,
+  "measured": 413,
+  "bound": 413,
+  "single_cell": 183,
+  "several_cells": 230,
+  "non_measurement": 148
+ }
 }

@@ -1,5 +1,5 @@
 {
- "_note": "Numeric tokens in the manuscript with no counterpart in phase1/reports/. Every entry needs a reason; the checker fails on any token that is neither matched nor listed here, so this file is the record of what a human signed off. Nothing here is a measurement this pipeline computes: the one that was -- the TP53 mid-band subset size -- is now written to phase1/reports/phase1/phase4_tp53_label_definitions.csv instead of being exempted, which is what the entry for it said the proper fix would be.",
+ "_note": "Since the binding round (2026-09-14) no manuscript token is whitelisted. The number check binds each measured number to a cell of an output its paragraph or table declares, or to a derivation it computes, and sets non-measurements aside by the rules in manuscript_token_kinds.json; a parameter or constant rule names the code that sets the value. A token that did fall here would be a measured number left unbound, which tests/test_reported_numbers.py::test_the_disclosed_binding_coverage_is_the_measured_one rejects. The groups below are kept because scripts/manuscript_replacements.py, the record of the v1 -> v2 replacement pass, reads them. Their values are now bound (0.9997, 21,409 and 0.2149994 in phase1/data/frozen/frozen_matrix_v2_column_report.tsv) or set aside by a rule (46,392 as cited; section numbers, parameters and literature constants by theirs). Earlier: every entry needed a reason, and the checker failed on any token neither matched nor listed here, so this file was the record of what a human signed off. The TP53 mid-band subset size, once listed, is written to phase1/reports/phase1/phase4_tp53_label_definitions.csv instead.",
  "section_numbers": {
   "reason": "Numbered headings and cross-references, not measurements.",
   "pattern": "^(?:[1-9]|1[0-9])\\.[0-9]$"
@@ -54,13 +54,13 @@
   ]
  },
  "frozen_matrix_v2_column_report": {
-  "reason": "Rank correlation between the frozen-matrix-v1 and v2 Nucleotide Transformer columns (2.5), computed by phase1_build_frozen_matrix_v2 and written to phase1/data/frozen/frozen_matrix_v2_column_report.tsv, which sits with the matrix rather than under reports/.",
+  "reason": "Rank correlation between the frozen-matrix-v1 and v2 Nucleotide Transformer columns (2.5), computed by phase1_build_frozen_matrix_v2 and written to phase1/data/frozen/frozen_matrix_v2_column_report.tsv, which sits with the matrix rather than under reports/. Since 2026-09-14 the value is also written to phase1/data/frozen/frozen_matrix_v2_column_report.tsv, which Methods 2.5 declares, and the check binds it there.",
   "values": [
    "0.9997"
   ]
  },
  "frozen_matrix_v2_rerounding": {
-  "reason": "Measured on the frozen matrices under phase1/data/frozen/, not on any reports/ output: how many SpliceAI values re-round from the full-precision v2 score to the v1 print (21,409 of 21,410), and the full-precision score of the one exception (0.2149994, variant 17-58696697-C-T). Both are pinned by tests/test_frozen_matrix_v2.py::test_re_rounded_agreement_counts_are_what_methods_2_5_states, which fails if either changes.",
+  "reason": "Measured on the frozen matrices under phase1/data/frozen/, not on any reports/ output: how many SpliceAI values re-round from the full-precision v2 score to the v1 print (21,409 of 21,410), and the full-precision score of the one exception (0.2149994, variant 17-58696697-C-T). Both are pinned by tests/test_frozen_matrix_v2.py::test_re_rounded_agreement_counts_are_what_methods_2_5_states, which fails if either changes. Since 2026-09-14 the value is also written to phase1/data/frozen/frozen_matrix_v2_column_report.tsv, which Methods 2.5 declares, and the check binds it there.",
   "values": [
    "21,409",
    "0.2149994"
