@@ -52,5 +52,11 @@
    "21,394",
    "46,392"
   ]
+ },
+ "frozen_matrix_v2_column_report": {
+  "reason": "Rank correlation between the frozen-matrix-v1 and v2 Nucleotide Transformer columns (2.5), computed by phase1_build_frozen_matrix_v2 and written to phase1/data/frozen/frozen_matrix_v2_column_report.tsv, which sits with the matrix rather than under reports/.",
+  "values": [
+   "0.9997"
+  ]
  }
 }

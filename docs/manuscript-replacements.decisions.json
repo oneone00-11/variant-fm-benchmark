@@ -1,0 +1,77 @@
+{
+ "_note": "Recorded decisions for tokens the reverse number check cannot resolve on its own (several output cells print the same v1 value). Key = block|token. Value = the v1 cell the manuscript number came from, {file, col, keys} naming it by row keys, 'keep' (the token is a value that does not change), or 'manual' (the sentence is rewritten by hand because its logic changes with v2).",
+ "decisions": {
+  "P8|+0.012": "phase2_H1_stratified.csv[0].delta",
+  "P29|0.49": "class_balance.csv[2].pos_frac",
+  "P30|0.62": {
+   "file": "ipw_frame_balance_wholegene.csv",
+   "col": "mean_abs_z_remainder",
+   "keys": "POOLED"
+  },
+  "P30|0.92": {
+   "file": "ipw_frame_balance.csv",
+   "col": "mean_abs_z_observed",
+   "keys": "POOLED"
+  },
+  "P30|+0.0095": {
+   "file": "ipw_ranking.csv",
+   "col": "rho",
+   "keys": "unweighted DELTA"
+  },
+  "P39|+0.012": "phase2_H1_stratified.csv[0].delta",
+  "P39|+0.0095": "phase2_no_offset_drop.csv[1].value",
+  "P45|+0.001": "phase2_H2_ablation.csv[0].ci95#2",
+  "P47|0.017": "phase6_enet_weight_stability.csv[6].mean",
+  "P50|+0.0085": "phase3_H3_headline.csv[0].dBrier",
+  "P50|+0.0165": "phase3_H3_headline.csv[0].dBrier_ci_geneclust#2",
+  "P50|+0.0116": "phase3_H3_headline.csv[1].dBrier",
+  "P50|+0.0119": "phase3_H3_headline.csv[2].dBrier",
+  "P50|+0.0004": "phase3_H3_headline.csv[2].dBrier_ci_geneclust#1",
+  "P50|+0.0250": "phase3_H3_headline.csv[2].dBrier_ci_geneclust#2",
+  "P50|+0.0361": "phase3_H3_headline.csv[3].dBrier_ci_geneclust#2",
+  "P50|0.01": "keep",
+  "P50|−0.0003": "manual",
+  "P50|−0.0010": "manual",
+  "P50|96.8": "phase3_calibration_summary.csv[0].actionable_acc",
+  "P51|+0.0165": "phase3_H3_headline.csv[0].dBrier_ci_geneclust#2",
+  "P51|0.0047": "phase8_murphy_decomposition.csv[0].rel_fusion",
+  "P51|+0.0001": "phase8_murphy_decomposition.csv[0].d_rel",
+  "P51|+0.0067": "phase8_murphy_decomposition.csv[0].d_rel_hi",
+  "P51|+0.0006": "phase8_murphy_decomposition.csv[0].d_res_lo",
+  "P51|+0.0128": "phase8_murphy_decomposition.csv[0].d_res_hi",
+  "P51|0.0086": "manual",
+  "P51|0.009": "manual",
+  "P51|0.0085": "phase3_H3_headline.csv[0].dBrier",
+  "P52|+0.0002": "phase3_H3_headline.csv[2].dECE_ci#1",
+  "P52|0.025": "phase3_calibration_summary.csv[5].ECE",
+  "P54|0.026": "phase3_calibration_summary.csv[0].ECE",
+  "P54|0.033": "phase3_calibration_summary.csv[3].ECE",
+  "P54|1,258": "phase3_calibration_summary.csv[0].n_actionable",
+  "P54|0.974": "phase3_reliability_fusion.csv[9].mean_pred",
+  "P54|0.962": "phase3_reliability_fusion.csv[9].frac_pos",
+  "P59|24.3": "manual",
+  "P60|1.62": "manual",
+  "P61|+0.47": "manual",
+  "P62|0.93": "keep",
+  "P62|0.61": "keep",
+  "P62|0.60": "keep",
+  "P62|20.2": {
+   "file": "phase8_selection_test_stratified.csv",
+   "col": "lr_plus",
+   "keys": "(?=.*minus_BRCA1)(?=.*fusion_M1)(?=.*ClinVar-recorded)"
+  },
+  "P68|0.016": "phase4_tp53_label_definitions.csv[0].ci_lo",
+  "P75|0.49": "class_balance.csv[2].pos_frac",
+  "P76|0.029": "phase6_enet_weight_stability.csv[1].sd",
+  "P76|0.022": "phase6_enet_weight_stability.csv[2].sd",
+  "T1r2c4|54": "phase8_leaderboard_hk.csv[1].I2",
+  "T4r3c3|0.016": "phase4_tp53_label_definitions.csv[2].ci_lo",
+  "P30|+0.0098": {
+   "file": "ipw_ranking.csv",
+   "col": "rho",
+   "keys": "^decile DELTA|decile DELTA fusion"
+  },
+  "P45|+0.002": "phase2_H2_ablation.csv[1].delta_full_minus_ablated",
+  "P45|+0.007": "phase2_H2_ablation.csv[1].ci95#2"
+ }
+}

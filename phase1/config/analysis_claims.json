@@ -47,9 +47,9 @@
   },
   {
    "para": "P32",
-   "claim": "frozen matrix pinned by content hash and rebuilt from tracked sources",
+   "claim": "frozen matrix (v2) pinned by content hash and rebuilt from tracked sources; v1 rebuilt and verified first",
    "script": "scripts/reproduce_calibration.py",
-   "output": "phase1/data/frozen/manifest_v1.json",
+   "output": "phase1/data/frozen/manifest_v2.json",
    "status": "verified",
    "anchor": "content-hash-verified frozen matrix froz"
   },
@@ -60,14 +60,15 @@
    "output": [
     "phase1/reports/phase1/phase4_tp53_external.csv",
     "phase1/reports/phase1/directionality_check.csv",
-    "data/external/tp53_splice_scored.parquet"
+    "phase1/data/external/tp53_splice_scored_v2.parquet"
    ],
    "status": "verified",
-   "anchor": "we performed a leakage-proof external va"
+   "anchor": "we performed a leakage-proof external va",
+   "note": "Since frozen-matrix-v2 the external validation uses all ten predictors; data/external/tp53_splice_scored_v2.parquet is written by phase1_build_frozen_matrix_v2."
   },
   {
    "para": "P29",
-   "claim": "LR+/LR- at 95% specificity, Tavtigian bands at a prior of 0.10",
+   "claim": "LR+/LR- at 95% specificity on two bases (scanned threshold with achieved specificity; interpolated to exactly the nominal specificity), Tavtigian bands at a prior of 0.10 on the interpolated basis",
    "anchor": "Every object was summarised by LR+ and L",
    "script": "phase1/src/phase5_likelihood_ratios.py",
    "output": [
@@ -84,7 +85,8 @@
    "script": "phase1/src/phase5_likelihood_ratios.py",
    "output": [
     "phase1/reports/phase1/phase5_likelihood_ratios.csv",
-    "phase1/reports/phase1/phase8_lr_plus_operating_points.csv"
+    "phase1/reports/phase1/phase8_lr_plus_operating_points.csv",
+    "phase1/reports/phase1/phase8_lr_placement_decomposition.csv"
    ],
    "status": "verified",
    "cardinality": {
@@ -94,12 +96,13 @@
   },
   {
    "para": "P59",
-   "claim": "the fusion's LR+ advantage does not resolve in any condition",
-   "anchor": "The paired difference in LR+ between the",
+   "claim": "the fusion's LR+ advantage: about one unit at the interpolated point, no band change; spans zero at the scanned thresholds",
+   "anchor": "the paired difference in LR+ between the fusion and the same best single tool",
    "script": "phase1/src/phase5_likelihood_ratios.py",
    "output": [
     "phase1/reports/phase1/phase5_lr_headline.csv",
-    "phase1/reports/phase1/phase5_calibration_effect.csv"
+    "phase1/reports/phase1/phase5_calibration_effect.csv",
+    "phase1/reports/phase1/phase8_lr_placement_decomposition.csv"
    ],
    "status": "verified",
    "note": "The median LR+ change on calibrating and the count of band changes are summaries of the per-cell table, so phase5 writes them out; quoting them from a summary nothing stores is how the whole-gene |z| figures went wrong."
@@ -119,11 +122,11 @@
   {
    "para": "P63",
    "claim": "clinical yield redefined by evidence tier",
-   "anchor": "the fusion places 86.8% of variants at M",
+   "anchor": "of variants at Moderate or above on the functional standard, against",
    "script": "phase1/src/phase5b_evidence_yield.py",
    "output": "phase1/reports/phase1/phase5b_evidence_yield.csv",
    "status": "verified",
-   "note": "The 0.90/0.10 band it is compared against has no source; that is stated in Methods rather than repaired, and the evidence-based definition is reported beside it. The old definition reproduces the published 75.1% exactly."
+   "note": "The 0.90/0.10 band it is compared against has no source; that is stated in Methods rather than repaired, and the evidence-based definition is reported beside it. The old definition reproduces the Table 3 high-confidence fraction exactly (75.1% on frozen-matrix-v1, 74.9% on v2)."
   },
   {
    "para": "P74",
@@ -145,7 +148,7 @@
   {
    "para": "P75",
    "claim": "Brier degrades slightly as training genes are thinned 6 to 3",
-   "anchor": "mean Brier moves from 0.0589 with six tr",
+   "anchor": "mean Brier moves from 0.0596 with six tr",
    "script": "phase1/src/phase6_sensitivity.py",
    "output": [
     "phase1/reports/phase1/phase6_training_gene_summary.csv",
@@ -177,7 +180,8 @@
    "script": "phase1/src/phase7_label_contrast.py",
    "output": [
     "phase1/reports/phase1/phase7_selection_test.csv",
-    "phase1/reports/phase1/phase5_likelihood_ratios.csv"
+    "phase1/reports/phase1/phase5_likelihood_ratios.csv",
+    "phase1/reports/phase1/phase8_selection_test_stratified.csv"
    ],
    "status": "verified",
    "derived": [
@@ -212,6 +216,40 @@
    "output": null,
    "status": "narrative",
    "note": "An interpretation of the three measured checks above; it asserts no new analysis."
+  },
+  {
+   "para": "P39",
+   "claim": "per-gene ranking deltas: six of seven genes favour the fusion, BAP1 the exception",
+   "anchor": "six of which favour the fusion and one, BAP1",
+   "script": "phase1/src/phase8_per_gene_deltas.py",
+   "output": [
+    "phase1/reports/phase1/phase8_per_gene_deltas.csv",
+    "phase1/reports/phase1/phase2_H1_stratified.csv",
+    "phase1/reports/phase1/phase2_leaderboard.csv",
+    "phase1/reports/phase1/phase8_sign_flip_exact.csv",
+    "phase1/reports/phase1/phase8_leave_two_genes_out.csv",
+    "phase1/reports/phase1/phase2_no_offset_drop.csv"
+   ],
+   "status": "verified",
+   "note": "The paragraph also states the H1 headline and strata, the sign-flip p, the leave-two-genes-out range and the no-offset drop, so every output those come from is in scope."
+  },
+  {
+   "para": "P50",
+   "claim": "per-gene calibration deltas: six of seven genes favour the fusion, BARD1 the exception",
+   "anchor": "six of the seven genes favour the fusion here as well",
+   "script": "phase1/src/phase8_per_gene_deltas.py",
+   "output": [
+    "phase1/reports/phase1/phase8_per_gene_deltas.csv",
+    "phase1/reports/phase1/phase3_H3_headline.csv",
+    "phase1/reports/phase1/phase3_calibration_summary.csv",
+    "phase1/reports/phase1/phase3_pertool_brier_ci.csv",
+    "phase1/reports/phase1/phase8_sign_flip_exact.csv",
+    "phase1/reports/phase1/ipw_headline.csv",
+    "phase1/reports/phase1/ipw_weight_diagnostics.csv",
+    "phase1/reports/phase1/phase2_H1_stratified.csv"
+   ],
+   "status": "verified",
+   "note": "The paragraph also states the H3 headline, the per-tool interval count, the sign-flip p, the sampling-frame qualification (1,768 in-frame variants; 1,781 headline) and the primary-condition yield figures, so every output those come from is in scope."
   }
  ]
 }

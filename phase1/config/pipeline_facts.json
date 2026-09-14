@@ -1,5 +1,5 @@
 {
- "note": "Quantities the manuscript states that appear inside no reports/ file. The disclosed test count is one: it is measured, not looked up, and it went stale once already -- the manuscript said thirty-three while a bare clone ran forty-seven. tests/test_reported_numbers.py compares the manuscript against this file.",
+ "note": "Quantities the manuscript states that appear inside no reports/ file. The disclosed test count is one: it is measured, not looked up, and it went stale once already -- the manuscript said thirty-three while a bare clone ran forty-seven. Since the frozen-matrix-v2 revision it is measured from a `git archive` extract of the release commit, which is what the Zenodo deposit contains, rather than from a clone. tests/test_reported_numbers.py compares the manuscript against this file.",
  "guardrail_tests_passing_from_bare_clone": 63,
  "bare_clone_measured_for": "HEAD at 5099eb3 plus this round's fixes: the twelve stages added to reproduce_calibration.py, the reproduction-coverage gate, and the committed fixture that replaced the pre-fix-draft skip; no configuration, no API keys",
  "bare_clone_breakdown": {
@@ -18,5 +18,35 @@
    "failed": 0,
    "skipped": 0
   }
- }
+ },
+ "guardrail_tests_passing_from_archive": 72,
+ "archive_measured_for": "git archive of the frozen-matrix-v2 release state (commit B of 2026-09-14, HEAD 6fb29b1 before its facts amendment; re-measured after)",
+ "archive_breakdown": {
+  "measured_at": "2026-09-14",
+  "how": "git archive --format=tar HEAD | tar -x; python -m pytest -q -rs from the extract root with the repository's pinned virtualenv (python 3.12.14; pip install -r requirements.txt plus pyarrow and python-docx, which the tests import); HOME pointed at an empty directory and VARIANT_FM_MANUSCRIPT unset, so no manuscript is visible",
+  "collected": 76,
+  "passed": 72,
+  "failed": 0,
+  "skipped": 4,
+  "skips_are": [
+   "tests/test_analysis_claims.py::test_every_anchor_hits_exactly_once -- manuscript not available",
+   "tests/test_analysis_claims.py::test_paragraph_numbers_are_not_load_bearing -- manuscript not available",
+   "tests/test_reported_numbers.py::test_the_disclosed_test_count_is_the_measured_one -- manuscript not available",
+   "tests/test_reproduction_coverage.py::test_every_tracked_result_has_a_documented_entry_point -- 'no tracked report files': the check enumerates tracked outputs with `git ls-files`, and an archive extract carries no git index; in a clone of the same commit the test runs and passes (76 passed, 0 skipped)"
+  ],
+  "with_manuscript_visible": {
+   "collected": 76,
+   "passed": 75,
+   "failed": 0,
+   "skipped": 1,
+   "skip_is": "the git-index coverage check above; it is the only test that cannot run from an archive"
+  },
+  "in_a_clone_with_manuscript_visible": {
+   "collected": 76,
+   "passed": 76,
+   "failed": 0,
+   "skipped": 0
+  }
+ },
+ "bare_clone_note": "The bare-clone measurement below is the frozen-matrix-v1 release's (2026-09-09) and is kept for the record; the manuscript now discloses the archive measurement."
 }
