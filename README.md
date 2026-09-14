@@ -47,7 +47,10 @@ are in `phase1/reports/phase1_v1/` and every change is listed in
 | Brier — TP53, fully held out (ten predictors) | 0.0768 | 0.1178 (Pangolin) | **−0.0410** (directional replication) |
 
 Ranking is effectively saturated (Δρ ≈ 0.01); calibration is not — and the
-calibration gap replicates on a gene the model has never seen. Likelihood ratios
+calibration gap replicates on a gene the model has never seen. Tracked tables store
+point estimates unrounded and format interval strings once; the manuscript rounds a
+stored value once, and the supplement prints it at a precision that rounds back to
+the main text (`tests/test_cross_document_rounding.py`). Likelihood ratios
 are reported on two bases — at the scanned threshold with the specificity it
 achieves, and interpolated to exactly the nominal specificity — and evidence bands
 are assigned on the interpolated basis (`phase1/src/phase5_likelihood_ratios.py`).

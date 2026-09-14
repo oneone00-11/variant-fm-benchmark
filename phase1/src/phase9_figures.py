@@ -7,7 +7,7 @@ could be updated while the images stayed at the old numbers. This module closes
 that gap. Every value plotted is read from a CSV under REPORT_DIR; no statistic is
 recomputed here, so a figure cannot disagree with the table it illustrates.
 
-    Figure 1  phase2_per_gene_rho.csv + phase2_pooled_rho.csv
+    Figure 1  phase2_per_gene_rho.csv + phase2_leaderboard.csv
               pooled per-gene Spearman rho with 95% CI for the elastic-net fusion
               and the three top single tools, the seven per-gene values as faint
               dots, the best single tool as a dashed line, I^2 beside each row.
@@ -16,8 +16,9 @@ recomputed here, so a figure cannot disagree with the table it illustrates.
               damaging) in the primary condition, marker area by bin occupancy.
     Figure 3  phase3_H3_headline.csv (isotonic rows)
               dBrier (best single - fusion) and dYield (fusion - best) with
-              gene-clustered bootstrap intervals across the four conditions;
-              a marker is filled when its interval excludes zero.
+              gene-clustered bootstrap intervals across the four conditions; a
+              marker is filled when the headline's own test (fusion_better_on)
+              says the interval excludes zero.
 
 Output (REPORT_DIR/figures/, three formats each):
     fig1_forest_ranking, fig2_reliability, fig3_calibration_advantage
@@ -86,9 +87,8 @@ def _save(fig, stem):
 # ---------------------------------------------------------------------------
 def figure1(rep):
     pg = pd.read_csv(rep / "phase2_per_gene_rho.csv")
-    # unrounded pooled estimates: phase2_leaderboard.csv stores I^2 to one decimal, and
-    # rounding that to an integer double-rounds (59.4887 -> 59.5 -> 60)
-    pool = pd.read_csv(rep / "phase2_pooled_rho.csv").set_index("model")
+    # the leaderboard stores rho, lo, hi and I^2 at full precision; each is rounded once here
+    pool = pd.read_csv(rep / "phase2_leaderboard.csv").set_index("model").rename(columns={"pooled_rho": "rho"})
     singles = pool[pool.index.str.startswith("single:")].rho.dropna().sort_values(ascending=False)
     top = [o for o, _, _ in FIG1_ROWS[1:]]
     if list(singles.index[:3]) != top:
@@ -167,25 +167,28 @@ def figure2(rep):
 def figure3(rep):
     h = pd.read_csv(rep / "phase3_H3_headline.csv")
     h = h[h.calib == "isotonic"].set_index("set")
-    # (column, interval column, colour, x label, axis starts at zero, label decimals)
-    panels = [("dBrier", "dBrier_ci_geneclust", BLUE, "ΔBrier  (best single − fusion)", True, 4),
-              ("dYield", "dYield_ci", GOLD, "ΔHigh-confidence fraction  (fusion − best)", False, 3)]
+    # (column, interval column, headline flag, colour, x label, axis starts at zero)
+    # Both point estimates are the headline's own observed statistics, printed at the
+    # four decimals they are stored and quoted at; a marker is filled when the
+    # headline's test (fusion_better_on) says the interval excludes zero.
+    panels = [("dBrier", "dBrier_ci_geneclust", "Brier", BLUE, "ΔBrier  (best single − fusion)", True),
+              ("dYield", "dYield_ci", "yield", GOLD, "ΔHigh-confidence fraction  (fusion − best)", False)]
     fig, axes = plt.subplots(1, 2, figsize=(2431 / DPI, 995 / DPI), layout="constrained")
-    for ax, (col, cicol, colour, xlabel, from_zero, nd) in zip(axes, panels):
+    for ax, (col, cicol, flag, colour, xlabel, from_zero) in zip(axes, panels):
         ci = {cond: _ci(h.loc[cond][cicol]) for cond, _ in COND}
         lo_all = 0.0 if from_zero else min(lo for lo, _ in ci.values())
         hi_all = max(hi for _, hi in ci.values())
         span = hi_all - lo_all
         for i, (cond, _) in enumerate(COND):
             y = len(COND) - 1 - i
-            v = float(h.loc[cond][col])
+            v = float(h.loc[cond, col])
             lo, hi = ci[cond]
-            excl = lo > 0 or hi < 0
+            excl = flag in str(h.loc[cond, "fusion_better_on"]).split(",")
             ax.errorbar(v, y, xerr=[[v - lo], [hi - v]], fmt="D", color=colour,
                         markerfacecolor=colour if excl else "white",
                         markeredgecolor=colour, markeredgewidth=1.6, markersize=9,
                         elinewidth=2.4, capsize=0, alpha=1.0 if excl else 0.55, zorder=3)
-            ax.text(hi + 0.04 * span, y, f"{v:+.{nd}f}".replace("-", "−"), va="center", ha="left",
+            ax.text(hi + 0.04 * span, y, f"{v:+.4f}".replace("-", "−"), va="center", ha="left",
                     fontsize=9, fontweight="bold" if excl else "normal", color="#222222")
         if not from_zero:
             ax.axvline(0, color=GREY, lw=1.0, zorder=1)
@@ -207,7 +210,7 @@ def figure3(rep):
 
 def run():
     rep = C.REPORT_DIR
-    need = ["phase2_per_gene_rho.csv", "phase2_pooled_rho.csv", "phase3_reliability_fusion.csv",
+    need = ["phase2_per_gene_rho.csv", "phase2_leaderboard.csv", "phase3_reliability_fusion.csv",
             "phase3_reliability_best_single.csv", "phase3_H3_headline.csv"]
     missing = [n for n in need if not (rep / n).exists()]
     if missing:

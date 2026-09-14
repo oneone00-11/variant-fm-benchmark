@@ -174,9 +174,9 @@ def h1_on(mask, oof_fusion, single_score, y, genes, label):
     spg = per_gene_rho(single_score[mask], y[mask], genes[mask])
     b = boot_delta(fpg, spg)
     return {"stratum": label, "n": int(mask.sum()),
-            "fusion_rho": round(dl_pool(fpg)["rho"], 4),
-            "single_rho": round(dl_pool(spg)["rho"], 4),
-            "delta": round(b["delta"], 4) if np.isfinite(b["delta"]) else np.nan,
+            "fusion_rho": dl_pool(fpg)["rho"],
+            "single_rho": dl_pool(spg)["rho"],
+            "delta": b["delta"] if np.isfinite(b["delta"]) else np.nan,
             "ci95": f"[{b['lo']:.4f}, {b['hi']:.4f}]" if np.isfinite(b["lo"]) else "n/a",
             "H1": "SUPPORTED" if b["excludes_zero"] and b["delta"] > 0 else "ns"}
 
@@ -217,9 +217,13 @@ def run():
     # ---- leaderboard ----
     board = [("single:" + f, dl_pool(single_pg[f])) for f in feats]
     board += [(m, dl_pool(fus_pg[m])) for m in fus_pg]
-    board_df = pd.DataFrame([{"model": n, "pooled_rho": round(d["rho"], 4),
+    # Point estimates and interval ends are stored at full precision: Table 1 prints
+    # rho to three decimals and I^2 as an integer, and rounding a four-decimal rho or a
+    # one-decimal I^2 a second time misprinted the fusion's I^2 (59.49 -> 59.5 -> 60).
+    # ci95 keeps the three-decimal string Table 1 prints, formatted once from lo/hi.
+    board_df = pd.DataFrame([{"model": n, "pooled_rho": d["rho"],
         "ci95": f"[{d['lo']:.3f},{d['hi']:.3f}]" if np.isfinite(d['lo']) else "n/a",
-        "I2": round(d["I2"], 1), "k": d["k"]} for n, d in board]
+        "I2": d["I2"], "k": d["k"], "lo": d["lo"], "hi": d["hi"]} for n, d in board]
         ).sort_values("pooled_rho", ascending=False, na_position="last").reset_index(drop=True)
 
     # ---- stratified H1 (M1 primary vs best single) ----
@@ -245,9 +249,9 @@ def run():
         for name in ("drop_conservation", "drop_all_evo"):
             b = boot_delta(pg_by["full"], pg_by[name])
             h2.append({"model": "M1_enet" if model == "enet" else "M2_gbt",
-                       "ablation": name, "full_rho": round(full_pool, 4),
-                       "ablated_rho": round(dl_pool(pg_by[name])["rho"], 4),
-                       "delta_full_minus_ablated": round(b["delta"], 4),
+                       "ablation": name, "full_rho": full_pool,
+                       "ablated_rho": dl_pool(pg_by[name])["rho"],
+                       "delta_full_minus_ablated": b["delta"],
                        "ci95": f"[{b['lo']:.4f}, {b['hi']:.4f}]" if np.isfinite(b['lo']) else "n/a",
                        "evo_contributes": "YES" if b["excludes_zero"] and b["delta"] > 0 else "ns"})
     h2_df = pd.DataFrame(h2)
@@ -268,10 +272,6 @@ def run():
                                 + [(m, fus_pg[m]) for m in fus_pg])
                for r in pg.itertuples()]
     pd.DataFrame(pg_rows).to_csv(C.REPORT_DIR / "phase2_per_gene_rho.csv", index=False)
-    # the same pooled estimates unrounded: the leaderboard stores rho to 4 dp and I^2 to
-    # 1 dp, and rounding an already-rounded I^2 to an integer misprints it (59.49 -> 59.5 -> 60)
-    pd.DataFrame([{"model": n, "rho": d["rho"], "lo": d["lo"], "hi": d["hi"], "I2": d["I2"], "k": d["k"]}
-                  for n, d in board]).to_csv(C.REPORT_DIR / "phase2_pooled_rho.csv", index=False)
     strat_df.to_csv(C.REPORT_DIR / "phase2_H1_stratified.csv", index=False)
     h2_df.to_csv(C.REPORT_DIR / "phase2_H2_ablation.csv", index=False)
 

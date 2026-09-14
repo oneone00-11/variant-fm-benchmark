@@ -61,6 +61,7 @@ add("h3.yield.direction", "phase3_calibration_summary.csv", PRIMARY, "actionable
 add("tp53.fusion.brier", "phase4_tp53_external.csv", {"model": "startswith:fusion"}, "Brier", dp=3)
 add("tp53.best.brier", "phase4_tp53_external.csv", {"model": "startswith:best_single"}, "Brier", dp=3)
 add("tp53.fusion.row", "phase4_tp53_external.csv", {"model": "startswith:fusion"}, "model", "str")
+add("tp53.orientation.auroc", "phase4_tp53_orientation.csv", {"orientation": "startswith:as run"}, "control_auroc", dp=3)
 add("tp53.best.row", "phase4_tp53_external.csv", {"model": "startswith:best_single"}, "model", "str")
 # ---- sampling frame (Methods 2.4)
 for c in ("w_min", "w_max", "ESS_over_n"):

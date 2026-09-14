@@ -1,0 +1,3 @@
+gene,source,orientation,n_nonsense,n_synonymous,median_path_nonsense,median_path_synonymous,control_auroc
+TP53,urn:mavedb:00001213-a-1 (full SGE; data/external/tp53_mavedb_scores.tsv),default (func_pathogenicity = -score),2948,377,-1.007130099,1.0,0.0030745116952013585
+TP53,urn:mavedb:00001213-a-1 (full SGE; data/external/tp53_mavedb_scores.tsv),as run (TP53 in FLIP_GENES),2948,377,1.007130099,-1.0,0.9969254883047987

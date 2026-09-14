@@ -69,15 +69,27 @@ def reliability(prob, label, n_bins=10):
                          "n": int(mb.sum())})
     return pd.DataFrame(rows)
 
-def yield_metrics(prob, label):
+def yield_metrics_exact(prob, label):
+    """High-confidence share and its accuracy, unrounded."""
     m = ~np.isnan(prob) & ~np.isnan(label)
     p, y = prob[m], label[m]
     path, ben = p >= HI, p <= LO
     act = path | ben
     correct = np.sum((path & (y == 1)) | (ben & (y == 0)))
-    return {"actionable_frac": round(float(act.mean()), 4) if len(p) else np.nan,
-            "actionable_acc": round(float(correct / act.sum()), 4) if act.sum() else np.nan,
+    return {"actionable_frac": float(act.mean()) if len(p) else np.nan,
+            "actionable_acc": float(correct / act.sum()) if act.sum() else np.nan,
             "n_actionable": int(act.sum())}
+
+
+def yield_metrics(prob, label):
+    """The same, rounded to four decimals. This is the statistic the dYield bootstrap
+    resamples (evaluate() below), so its rounding is part of the published intervals in
+    phase3_H3_headline.csv and must stay; every table that merely REPORTS a yield uses
+    yield_metrics_exact, so that a value printed at fewer decimals is rounded once."""
+    r = yield_metrics_exact(prob, label)
+    return {"actionable_frac": round(r["actionable_frac"], 4) if np.isfinite(r["actionable_frac"]) else np.nan,
+            "actionable_acc": round(r["actionable_acc"], 4) if np.isfinite(r["actionable_acc"]) else np.nan,
+            "n_actionable": r["n_actionable"]}
 
 
 # ---------------------------------------------------------------------------
@@ -177,26 +189,13 @@ def evaluate(df, scores: dict, label_col: str, tag: str, best_key: str, method="
     label = df[label_col].astype(float).to_numpy()
 
     cal = {name: logo_calibrate(s, label, genes, method=method) for name, s in scores.items()}
-    summary, precise = [], []
-    for name, p in cal.items():
-        summary.append({"set": tag, "calib": method, "model": name,
-                        "ECE": round(ece(p, label), 4), "Brier": round(brier(p, label), 4),
-                        **yield_metrics(p, label)})
-        # the same quantities unrounded. Table 3 prints ECE and Brier to three decimals
-        # and the yields to one, and rounding the four-decimal values above a second time
-        # misprints a cell whenever they land on a tie (Pangolin's ECE 0.032495 -> 0.0325
-        # -> 0.033). Nothing else reads this file; the four-decimal table stays canonical.
-        m = ~np.isnan(p) & ~np.isnan(label)
-        pp, yy = p[m], label[m]
-        act = (pp >= HI) | (pp <= LO)
-        corr = ((pp >= HI) & (yy == 1)) | ((pp <= LO) & (yy == 0))
-        precise.append({"set": tag, "calib": method, "model": name,
-                        "ECE": ece(p, label), "Brier": brier(p, label),
-                        "actionable_frac": float(act.mean()) if m.sum() else np.nan,
-                        "actionable_acc": float(corr.sum() / act.sum()) if act.sum() else np.nan,
-                        "n_actionable": int(act.sum()), "n_labelled": int(m.sum())})
+    # Stored at full precision. Table 3 prints ECE and Brier to three decimals and the
+    # yields to one; storing four decimals here and rounding again misprinted a cell
+    # whenever the stored value landed on a tie (Pangolin's ECE 0.032495 -> 0.0325 -> 0.033).
+    summary = [{"set": tag, "calib": method, "model": name,
+                "ECE": ece(p, label), "Brier": brier(p, label), **yield_metrics_exact(p, label)}
+               for name, p in cal.items()]
     summ_df = pd.DataFrame(summary)
-    precise_df = pd.DataFrame(precise)
 
     fus, best = cal["fusion_M1"], cal[best_key]
     d_ece = boot_diff(fus, best, label, genes, ece, lower_is_better=True)
@@ -209,13 +208,17 @@ def evaluate(df, scores: dict, label_col: str, tag: str, best_key: str, method="
     d_bri_bca = boot_diff_bca(fus, best, label, genes, brier, lower_is_better=True)
     supported = [name for name, d in
                  [("Brier", d_bri), ("ECE", d_ece), ("yield", d_yld)] if d["fusion_better"]]
+    # Point estimates at full precision (twelve decimals strips float noise from a
+    # difference and loses nothing at these magnitudes); the interval strings are
+    # formatted once from the bootstrap. dYield is the observed value of the statistic
+    # the bootstrap resamples, which is built on four-decimal yields (yield_metrics).
     head = {"set": tag, "calib": method,
-            "dECE": round(d_ece["obs"], 4), "dECE_ci": f"[{d_ece['lo']:.4f},{d_ece['hi']:.4f}]",
-            "dBrier": round(d_bri["obs"], 4),
+            "dECE": round(d_ece["obs"], 12), "dECE_ci": f"[{d_ece['lo']:.4f},{d_ece['hi']:.4f}]",
+            "dBrier": round(d_bri["obs"], 12),
             "dBrier_ci_geneclust": f"[{d_bri['lo']:.4f},{d_bri['hi']:.4f}]",
             "dBrier_ci_BCa": f"[{d_bri_bca['lo']:.4f},{d_bri_bca['hi']:.4f}]",
             "dBrier_ci_variant(sens)": f"[{d_bri_var['lo']:.4f},{d_bri_var['hi']:.4f}]",
-            "dYield": round(d_yld["obs"], 4), "dYield_ci": f"[{d_yld['lo']:.4f},{d_yld['hi']:.4f}]",
+            "dYield": round(d_yld["obs"], 12), "dYield_ci": f"[{d_yld['lo']:.4f},{d_yld['hi']:.4f}]",
             "fusion_better_on": ",".join(supported) if supported else "none"}
 
     # (three) -- per-tool Brier delta CI: does fusion beat EVERY single tool?
@@ -225,11 +228,11 @@ def evaluate(df, scores: dict, label_col: str, tag: str, best_key: str, method="
             continue
         d = boot_diff(fus, p, label, genes, brier, lower_is_better=True)
         per_tool.append({"set": tag, "calib": method, "tool": name.replace("single:", ""),
-                         "dBrier_vs_fusion": round(d["obs"], 4),
+                         "dBrier_vs_fusion": round(d["obs"], 12),
                          "ci95": f"[{d['lo']:.4f},{d['hi']:.4f}]",
                          "fusion_lower": d["fusion_better"]})
     per_tool_df = pd.DataFrame(per_tool)
-    return summ_df, head, cal, per_tool_df, precise_df
+    return summ_df, head, cal, per_tool_df
 
 
 # ---------------------------------------------------------------------------
@@ -268,7 +271,7 @@ def run():
         scores[k] = (s - lo) / (hi - lo) if hi > lo else s
 
     C.REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    all_summary, all_head, all_pertool, all_precise = [], [], [], []
+    all_summary, all_head, all_pertool = [], [], []
     for method in CAL_METHODS:                       # (one) isotonic AND platt
         for label_col in ["y_assay", "y_clinvar"]:
             if label_col not in df.columns or df[label_col].notna().sum() < 50:
@@ -278,9 +281,8 @@ def run():
                 idx = df.index if brca == "included" else df[df["gene"] != "BRCA1"].index
                 sc = {k: v[idx.to_numpy()] for k, v in scores.items()}
                 tag = f"{label_col}/BRCA1_{brca}"
-                summ, head, cal, ptool, prec = evaluate(sub, sc, label_col, tag, best_key, method=method)
+                summ, head, cal, ptool = evaluate(sub, sc, label_col, tag, best_key, method=method)
                 all_summary.append(summ); all_head.append(head); all_pertool.append(ptool)
-                all_precise.append(prec)
                 if method == "isotonic" and label_col == "y_assay" and brca == "included":
                     lab = sub[label_col].astype(float).to_numpy()
                     reliability(cal["fusion_M1"], lab
@@ -295,8 +297,6 @@ def run():
     summ_df.to_csv(C.REPORT_DIR / "phase3_calibration_summary.csv", index=False)
     head_df.to_csv(C.REPORT_DIR / "phase3_H3_headline.csv", index=False)
     pertool_df.to_csv(C.REPORT_DIR / "phase3_pertool_brier_ci.csv", index=False)
-    pd.concat(all_precise, ignore_index=True).to_csv(
-        C.REPORT_DIR / "phase3_calibration_summary_precise.csv", index=False)
 
     print(f"[phase3] best single (pooled per-gene Spearman) = {best} | "
           f"labelled splice (y_assay) = {int(df['y_assay'].notna().sum())}/{len(df)}\n")

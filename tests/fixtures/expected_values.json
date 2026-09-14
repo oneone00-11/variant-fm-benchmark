@@ -1,7 +1,7 @@
 {
  "_generated_by": "scripts/build_expected_values.py",
- "_generated_at_utc": "2026-09-14T03:38:48.182654+00:00",
- "_git_commit": "a5e94f5c73ca665d8bcf6a913c5e9509de297498",
+ "_generated_at_utc": "2026-09-14T08:31:29.822229+00:00",
+ "_git_commit": "c14c19ef90d75b3ca74a65af21caa8da1a1218ba",
  "_reports": "phase1/reports/phase1",
  "values": {
   "h1.overall.fusion_rho": {
@@ -217,6 +217,16 @@
    "col": "model",
    "kind": "str",
    "dp": null
+  },
+  "tp53.orientation.auroc": {
+   "value": "0.997",
+   "file": "phase4_tp53_orientation.csv",
+   "where": {
+    "orientation": "startswith:as run"
+   },
+   "col": "control_auroc",
+   "kind": "num",
+   "dp": 3
   },
   "tp53.best.row": {
    "value": "best_single(pangolin)",

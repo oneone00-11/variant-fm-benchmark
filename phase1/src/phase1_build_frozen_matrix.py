@@ -223,7 +223,7 @@ def coverage_by_region(df: pd.DataFrame) -> pd.DataFrame:
         for f in feats:
             rows.append({"region": region, "predictor": f,
                          "n": len(g), "n_scored": int(g[f].notna().sum()),
-                         "coverage": round(g[f].notna().mean(), 4)})
+                         "coverage": float(g[f].notna().mean())})
     return pd.DataFrame(rows).pivot(index="predictor", columns="region",
                                     values="coverage").fillna(0.0)
 
@@ -240,7 +240,7 @@ def class_balance(df: pd.DataFrame) -> pd.DataFrame:
                 "n_labelled": int(lab.shape[0]),
                 "n_pos": int((lab == 1).sum()),
                 "n_neg": int((lab == 0).sum()),
-                "pos_frac": round(float((lab == 1).mean()), 4) if len(lab) else np.nan,
+                "pos_frac": float((lab == 1).mean()) if len(lab) else np.nan,
             })
     return pd.DataFrame(out)
 

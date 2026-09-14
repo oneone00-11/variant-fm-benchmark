@@ -70,6 +70,48 @@ def _half_up(x, nd):
     return str(Decimal(str(x)).quantize(Decimal(1).scaleb(-nd), rounding=ROUND_HALF_UP))
 
 
+def col_digits(values, main_nd, at_least=None, main_scale=1.0):
+    """Decimals to print a column at so that a reader who rounds the printed value
+    (half-up) to any precision the main text uses gets the main text's cell.
+
+    main_nd is one precision or several (Brier is quoted to three decimals in Table 3
+    and four in the Figure 2 caption); the main text prints value * main_scale (a
+    fraction as a percentage has main_scale 100). Starts one decimal above the finest
+    main precision and adds digits until no printed value is a tie the unrounded value
+    is not: 0.032495 printed at five decimals is 0.03250, which rounds to 0.033, but the
+    value itself rounds to 0.032, so that column needs six. The arithmetic is decimal,
+    as a reader's is: in binary floats 0.7865 * 100 is 78.649..., which hides exactly
+    the tie this exists to catch.
+    """
+    from decimal import Decimal
+    mains = [main_nd] if isinstance(main_nd, int) else list(main_nd)
+    vals = [Decimal(repr(float(v))) for v in values if pd.notna(v)]
+    scale = Decimal(repr(float(main_scale)))
+    shift = len(str(int(main_scale))) - 1          # 100 -> two decimals of the fraction
+    nd = max(max(mains) + shift + 1, at_least or 0)
+    while True:
+        ok = all(_half_up(Decimal(_half_up(v, nd)) * scale, m) == _half_up(v * scale, m)
+                 for v in vals for m in mains)
+        if ok:
+            return nd
+        nd += 1
+        assert nd <= 10, "no printable precision reproduces the main-text rounding"
+
+
+def fmt_col(values, main_nd, at_least=None, main_scale=1.0, blank=""):
+    """Format a column at col_digits' precision; NaN prints as `blank`."""
+    nd = col_digits(values, main_nd, at_least, main_scale)
+    return [blank if pd.isna(v) else _half_up(float(v), nd) for v in values]
+
+
+def is_number(s):
+    try:
+        float(str(s).replace("−", "-"))
+        return True
+    except ValueError:
+        return False
+
+
 def raw(df):
     """The CSV's own text for every cell (what the earlier tables were pasted from)."""
     return df.fillna("").astype(str)
@@ -86,39 +128,66 @@ def t_s2(rep):
 
 
 def t_s3a(rep):
-    d = raw(pd.read_csv(rep / "phase3_H3_headline.csv", dtype=str))
+    d = pd.read_csv(rep / "phase3_H3_headline.csv")
+    # the main text prints these differences to four decimals; the interval strings are
+    # already formatted once by phase 3 and are copied
+    dece, dbri, dyld = (fmt_col(d[c], 4, at_least=5) for c in ("dECE", "dBrier", "dYield"))
     return (["Condition", "Calib", "ΔECE", "ΔECE 95% CI", "ΔBrier", "ΔBrier CI (gene-clust)",
              "ΔBrier CI (BCa)", "ΔBrier CI (variant)", "ΔYield", "ΔYield 95% CI", "Fusion better on"],
-            [[COND[r["set"]], r["calib"], r["dECE"], r["dECE_ci"], r["dBrier"], r["dBrier_ci_geneclust"],
-              r["dBrier_ci_BCa"], r["dBrier_ci_variant(sens)"], r["dYield"], r["dYield_ci"],
-              r["fusion_better_on"]] for _, r in d.iterrows()])
+            [[COND[r["set"]], r["calib"], a, r["dECE_ci"], b, r["dBrier_ci_geneclust"],
+              r["dBrier_ci_BCa"], r["dBrier_ci_variant(sens)"], c, r["dYield_ci"], r["fusion_better_on"]]
+             for (_, r), a, b, c in zip(d.iterrows(), dece, dbri, dyld)])
+
+
+def _summary_rows(d):
+    """Table 3 prints ECE and Brier to three decimals and the two yields as percentages
+    to one decimal; the fractions stay fractions here, printed at the precision
+    col_digits finds for a reader who multiplies by 100 and rounds."""
+    ece, bri = fmt_col(d["ECE"], 3), fmt_col(d["Brier"], (3, 4))   # Brier: Table 3 and the Figure 2 caption
+    frac = fmt_col(d["actionable_frac"], 1, main_scale=100.0)
+    acc = fmt_col(d["actionable_acc"], 1, main_scale=100.0)
+    n = ["" if pd.isna(v) else str(int(v)) for v in d["n_actionable"]]
+    return list(zip(ece, bri, frac, acc, n))
 
 
 def t_s3b(rep):
-    d = raw(pd.read_csv(rep / "phase3_calibration_summary.csv", dtype=str))
+    d = pd.read_csv(rep / "phase3_calibration_summary.csv")
     return (["Condition", "Calib", "Object", "ECE", "Brier", "High-conf. frac", "High-conf. acc", "n high-conf."],
-            [[COND[r["set"]], r["calib"], r["model"], r["ECE"], r["Brier"], r["actionable_frac"],
-              r["actionable_acc"], r["n_actionable"]] for _, r in d.iterrows()])
+            [[COND[r["set"]], r["calib"], r["model"], *vals]
+             for (_, r), vals in zip(d.iterrows(), _summary_rows(d))])
 
 
 def t_s4(rep):
-    d = raw(pd.read_csv(rep / "phase3_pertool_brier_ci.csv", dtype=str))
+    d = pd.read_csv(rep / "phase3_pertool_brier_ci.csv")
+    dbri = fmt_col(d["dBrier_vs_fusion"], 4, at_least=5)
     return (["Condition", "Calib", "Single tool", "ΔBrier vs fusion", "gene-clust 95% CI", "Fusion lower"],
-            [[COND[r["set"]], r["calib"], r["tool"], r["dBrier_vs_fusion"], r["ci95"], r["fusion_lower"]]
-             for _, r in d.iterrows()])
+            [[COND[r["set"]], r["calib"], r["tool"], v, "" if pd.isna(r["ci95"]) else r["ci95"],
+              "" if pd.isna(r["fusion_lower"]) else str(r["fusion_lower"])]
+             for (_, r), v in zip(d.iterrows(), dbri)])
 
 
 def t_s5a(rep):
-    d = raw(pd.read_csv(rep / "phase2_H2_ablation.csv", dtype=str))
+    d = pd.read_csv(rep / "phase2_H2_ablation.csv")
+    full, abl = fmt_col(d["full_rho"], 3, at_least=4), fmt_col(d["ablated_rho"], 3, at_least=4)
+    delta = fmt_col(d["delta_full_minus_ablated"], (3, 4), at_least=4)
     return (["Model", "Ablation", "Full ρ", "Ablated ρ", "Δρ (full−ablated)", "95% CI", "Evo contributes"],
-            [[r["model"], r["ablation"], r["full_rho"], r["ablated_rho"], r["delta_full_minus_ablated"],
-              r["ci95"], r["evo_contributes"]] for _, r in d.iterrows()])
+            [[r["model"], r["ablation"], a, b, c, r["ci95"], r["evo_contributes"]]
+             for (_, r), a, b, c in zip(d.iterrows(), full, abl, delta)])
 
 
 def t_s5b(rep):
-    d = raw(pd.read_csv(rep / "phase2_leaderboard.csv", dtype=str))
+    d = pd.read_csv(rep / "phase2_leaderboard.csv")
+    # Table 1 prints rho and the interval to three decimals and I^2 as an integer
+    # Table 1 prints rho and the interval to three decimals, the abstract rho to two
+    nd_rho = col_digits(pd.concat([d["pooled_rho"], d.get("lo", d["pooled_rho"]), d.get("hi", d["pooled_rho"])]), (2, 3), at_least=4)
+    rho = ["" if pd.isna(v) else _half_up(v, nd_rho) for v in d["pooled_rho"]]
+    if "lo" in d.columns:
+        ci = ["" if pd.isna(lo) else f"[{_half_up(lo, nd_rho)}, {_half_up(hi, nd_rho)}]" for lo, hi in zip(d["lo"], d["hi"])]
+    else:
+        ci = ["" if (pd.isna(v) or v == "n/a") else v for v in d["ci95"]]
+    i2 = fmt_col(d["I2"], 0, at_least=1)
     return (["Model / tool", "Pooled ρ", "95% CI", "I² (%)", "k"],
-            [[r["model"], r["pooled_rho"], r["ci95"], r["I2"], r["k"]] for _, r in d.iterrows()])
+            [[r["model"], a, b, c, str(int(r["k"]))] for (_, r), a, b, c in zip(d.iterrows(), rho, ci, i2)])
 
 
 def t_s6(rep):
@@ -141,9 +210,8 @@ def t_s8a(rep):
     rows = []
     for fn, lab in (("phase4_tp53_external.csv", f"Control-anchored RFS>0 (n={n_main})"),
                     ("phase4_tp53_external_naband.csv", f"NA mid-band |RFS|≥0.5 (n={n_band})")):
-        d = raw(pd.read_csv(rep / fn, dtype=str))
-        rows += [[lab, r["model"], r["ECE"], r["Brier"], r["actionable_frac"], r["actionable_acc"],
-                  r["n_actionable"]] for _, r in d.iterrows()]
+        d = pd.read_csv(rep / fn)
+        rows += [[lab, r["model"], *vals] for (_, r), vals in zip(d.iterrows(), _summary_rows(d))]
     return (["Label", "Object", "ECE", "Brier", "High-conf. frac", "High-conf. acc", "n high-conf."], rows)
 
 
@@ -317,7 +385,8 @@ def t_s19(rep):
         for o in OBJ_ORDER:
             sub = d[(d.condition == cond) & (d.object == o)].set_index("target_spec")
             obs = [ne(sub.lr_plus.get(t, np.nan), 2) for t in SPECS]
-            itp = [ne(sub.lr_plus_interp.get(t, np.nan), 2) for t in SPECS]
+            itp = ([ne(sub.lr_plus_interp.get(t, np.nan), 2) for t in SPECS]
+                   if "lr_plus_interp" in sub.columns else [""] * len(SPECS))   # v1 predates the interpolated basis
             rows.append([_pretty(o), COND[cond], *obs, *itp])
     return (["Object", "Condition", "LR+ @90% spec", "LR+ @95% spec", "LR+ @97.5% spec", "LR+ @99% spec",
              "interp. @90%", "interp. @95%", "interp. @97.5%", "interp. @99%"], rows)
@@ -457,8 +526,13 @@ def compare(table, header, rows, key):
         for j in range(ncol):
             if i == 0:
                 continue  # headers may be renamed deliberately
-            if h[j] != w[j]:
-                bad.append(f"r{i}c{j}: doc {h[j]!r} vs {w[j]!r}")
+            if h[j] == w[j]:
+                continue
+            # the same value printed at another precision (the v1 tables were pasted as the
+            # CSV's own strings, the v2 tables are formatted): equal as numbers is equal
+            if is_number(h[j]) and is_number(w[j]) and abs(float(h[j].replace("−", "-")) - float(w[j].replace("−", "-"))) < 1e-9:
+                continue
+            bad.append(f"r{i}c{j}: doc {h[j]!r} vs {w[j]!r}")
     if len(header) > len(have[0]):
         bad.append(f"{len(header) - len(have[0])} new column(s) not in the document")
     return bad

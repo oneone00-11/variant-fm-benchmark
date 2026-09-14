@@ -24,12 +24,14 @@ Run:  python -m src.phase4_external_tp53
 """
 from __future__ import annotations
 import sys
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 from sklearn.isotonic import IsotonicRegression
 from . import config as C
 from .phase2_model import usable_features, rank_within_gene, rank_target_within_gene, logo_oof
-from .phase3_calibration import ece, brier, yield_metrics, reliability
+from .phase3_calibration import ece, brier, yield_metrics, yield_metrics_exact, reliability
 
 RNG = np.random.default_rng(C.RANDOM_SEED)
 N_BOOT = 2000
@@ -71,6 +73,51 @@ def directionality_ok(df, tag):
         sys.exit(f"[phase4] ABORT: TP53 appears mis-oriented (AUROC {auroc:.3f} < 0.5). "
                  f"Add TP53 to FLIP_GENES / fix the parquet before comparing.")
     return True
+
+
+# ---------------------------------------------------------------------------
+# orientation gate on the full TP53 SGE -- persisted
+# ---------------------------------------------------------------------------
+FULL_SGE = C.REPO_ROOT / "data" / "external" / "tp53_mavedb_scores.tsv" if hasattr(C, "REPO_ROOT") \
+    else Path(__file__).resolve().parents[2] / "data" / "external" / "tp53_mavedb_scores.tsv"
+
+
+def orientation_gate_full_sge():
+    """The control-anchored gate that set TP53's orientation, written out.
+
+    The splice-only table carries no nonsense/synonymous controls, so orientation was
+    decided on the full SGE (Funk et al.; MaveDB urn:mavedb:00001213-a-1, exons 5-8):
+    nonsense (protein HGVS ending in Ter) against synonymous (p.=) on the assay score,
+    before and after the FLIP_GENES orientation, by the same method as
+    phase1_directionality_check. Until frozen-matrix-v2 this was printed once and
+    quoted from a comment; the manuscript and its supplement then disagreed on the
+    third decimal. It is measured here on every run and read from this file.
+    """
+    from sklearn.metrics import roc_auc_score
+    d = pd.read_csv(FULL_SGE, sep="\t")
+    prot = d["HGVS(protein)"].astype(str)
+    score = d["score"].astype(float)
+    nonsense = prot.str.contains("Ter", regex=False)
+    synonymous = prot.str.endswith("=") | prot.str.endswith("(=)")
+    m = (nonsense | synonymous) & score.notna()
+    y = nonsense[m].astype(int).to_numpy()
+    # phase-1 orientation: func_pathogenicity = -func_score, sign flipped for FLIP_GENES
+    default = -score[m].to_numpy()
+    oriented = -default if "TP53" in C.FLIP_GENES else default
+    rows = [{"gene": "TP53", "source": "urn:mavedb:00001213-a-1 (full SGE; data/external/tp53_mavedb_scores.tsv)",
+             "orientation": tag, "n_nonsense": int(y.sum()), "n_synonymous": int((1 - y).sum()),
+             "median_path_nonsense": float(np.median(s[y == 1])),
+             "median_path_synonymous": float(np.median(s[y == 0])),
+             "control_auroc": float(roc_auc_score(y, s))}
+            for tag, s in (("default (func_pathogenicity = -score)", default),
+                           ("as run (TP53 in FLIP_GENES)", oriented))]
+    res = pd.DataFrame(rows)
+    a = res.control_auroc.iloc[-1]
+    print(f"[phase4] TP53 orientation gate on the full SGE: control AUROC {res.control_auroc.iloc[0]:.4f} "
+          f"default -> {a:.4f} as run ({int(y.sum())} nonsense vs {int((1 - y).sum())} synonymous)")
+    if a < 0.5:
+        sys.exit("[phase4] ABORT: TP53 mis-oriented on the full SGE")
+    return res
 
 
 # ---------------------------------------------------------------------------
@@ -165,11 +212,13 @@ def run():
     rfs = tp53["func_pathogenicity"].to_numpy()   # = +func_score = RFS (syn -1 .. nonsense +1)
 
     def _eval(prob_f, prob_s, y, best_name):
+        # unrounded: 3.4 prints these to three decimals (yields to one), and a value stored
+        # at four decimals and rounded again misprints on a tie (ECE 0.1225, share 0.7865)
         res = pd.DataFrame([
-            {"model": f"fusion_{len(feats)}feat", "ECE": round(ece(prob_f, y), 4),
-             "Brier": round(brier(prob_f, y), 4), **yield_metrics(prob_f, y)},
-            {"model": f"best_single({best_name})", "ECE": round(ece(prob_s, y), 4),
-             "Brier": round(brier(prob_s, y), 4), **yield_metrics(prob_s, y)},
+            {"model": f"fusion_{len(feats)}feat", "ECE": ece(prob_f, y),
+             "Brier": brier(prob_f, y), **yield_metrics_exact(prob_f, y)},
+            {"model": f"best_single({best_name})", "ECE": ece(prob_s, y),
+             "Brier": brier(prob_s, y), **yield_metrics_exact(prob_s, y)},
         ])
         return res, boot_brier_diff_variant(prob_f, prob_s, y)
 
@@ -180,6 +229,7 @@ def run():
                 "NOT replicated — fusion not better on TP53 (report honestly)")
 
     C.REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    orientation_gate_full_sge().to_csv(C.REPORT_DIR / "phase4_tp53_orientation.csv", index=False)
 
     # ---- MAIN analysis: label (1) control-anchored RFS>0, all 192 (approved 2026-07-10) ----
     # RFS anchored synonymous=-1 / nonsense=+1 (Funk et al. 2025); RFS>0 => damaging. No

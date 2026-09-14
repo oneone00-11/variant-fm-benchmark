@@ -356,30 +356,28 @@ def test_tp53_label_definitions_split_as_reported():
         assert bool(d.loc[rule, "fusion_better"]) == (float(d.loc[rule, "ci_lo"]) > 0)
 
 
-def test_pooled_table_reproduces_the_leaderboard_and_its_per_gene_points():
-    """Figure 1 draws phase2_per_gene_rho.csv and phase2_pooled_rho.csv; Table 1
-    prints phase2_leaderboard.csv. All three must describe the same estimates."""
+def test_leaderboard_is_the_pooling_of_its_per_gene_points():
+    """Figure 1 draws phase2_per_gene_rho.csv against phase2_leaderboard.csv and Table 1
+    prints the leaderboard: pooling the per-gene points must give the leaderboard's
+    unrounded rho, interval and I^2 exactly, and the interval string must be those
+    ends formatted once."""
     import sys
     import pandas as pd
     sys.path.insert(0, str(REPO / "phase1"))
     from src.phase2_model import dl_pool
 
-    pool = _csv("phase2_pooled_rho.csv").set_index("model")
     lb = _csv("phase2_leaderboard.csv").set_index("model")
     pg = _csv("phase2_per_gene_rho.csv")
-    assert set(pool.index) == set(lb.index)
     for m, r in lb.iterrows():
-        p = pool.loc[m]
-        if pd.isna(r.pooled_rho):
-            assert pd.isna(p.rho)
-            continue
-        assert round(float(p.rho), 4) == float(r.pooled_rho)
-        assert f"[{p.lo:.3f},{p.hi:.3f}]" == r.ci95
-        assert round(float(p.I2), 1) == float(r.I2) and int(p.k) == int(r.k)
         g = pg[pg.object == m][["gene", "rho", "n"]]
+        if pd.isna(r.pooled_rho):
+            assert pd.isna(r.ci95) or r.ci95 == "n/a"   # pandas reads "n/a" as missing
+            continue
         assert len(g) == int(r.k)
         d = dl_pool(g)
-        assert abs(d["rho"] - p.rho) < 1e-12 and abs(d["I2"] - p.I2) < 1e-9
+        for col, key in (("pooled_rho", "rho"), ("lo", "lo"), ("hi", "hi"), ("I2", "I2")):
+            assert abs(d[key] - float(r[col])) < 1e-12, (m, col)
+        assert f"[{r.lo:.3f},{r.hi:.3f}]" == r.ci95
 
 
 def test_reliability_bins_cover_the_labelled_primary_set_for_both_curves():
@@ -393,10 +391,11 @@ def test_reliability_bins_cover_the_labelled_primary_set_for_both_curves():
 
 
 def test_table_1_rounds_the_unrounded_pooled_values_once():
-    """Table 1 printed the fusion's I^2 as 60 for a true 59.49: the leaderboard stores
-    I^2 to one decimal (59.5) and the table rounded that again. The number check could
-    not see it -- 60 lies within half a unit of 59.5 -- so the table is checked here
-    against the unrounded estimates, rounded half-up once."""
+    """Table 1 printed the fusion's I^2 as 60 for a true 59.49: the leaderboard then
+    stored I^2 to one decimal (59.5) and the table rounded that again. The number check
+    could not see it -- 60 lies within half a unit of 59.5. The leaderboard now stores
+    its estimates unrounded and every Table 1 cell is checked against them, rounded
+    half-up once."""
     from decimal import Decimal, ROUND_HALF_UP
     import pandas as pd
 
@@ -414,7 +413,7 @@ def test_table_1_rounds_the_unrounded_pooled_values_once():
              "CADD": "single:cadd", "GPN-MSA": "single:gpn_msa", "phyloP": "single:phylop",
              "phastCons": "single:phastcons", "Nucleotide Transformer": "single:nt",
              "gnomAD AF": "single:gnomad_af", "AlphaMissense": "single:alphamissense"}
-    pool = _csv("phase2_pooled_rho.csv").set_index("model")
+    pool = _csv("phase2_leaderboard.csv").set_index("model").rename(columns={"pooled_rho": "rho"})
     tables = [t for t in Document(str(manuscript)).tables
               if t.rows[0].cells[0].text.strip().startswith("Predictor")
               and "Pooled" in t.rows[0].cells[2].text]
@@ -441,25 +440,12 @@ def _round_once(x, nd):
     return str(Decimal(repr(float(x))).quantize(Decimal(1).scaleb(-nd), rounding=ROUND_HALF_UP))
 
 
-def test_precise_calibration_summary_is_what_the_published_summary_rounds():
-    """phase3_calibration_summary_precise.csv exists so Table 3 can be checked; it must
-    describe the same calibrated probabilities as the four-decimal table."""
-    s = _csv("phase3_calibration_summary.csv")
-    p = _csv("phase3_calibration_summary_precise.csv")
-    m = s.merge(p, on=["set", "calib", "model"], suffixes=("", "_p"))
-    assert len(m) == len(s) == len(p)
-    for col in ("ECE", "Brier", "actionable_frac", "actionable_acc"):
-        assert (m[col].isna() == m[f"{col}_p"].isna()).all(), col
-        both = m[col].notna()
-        assert ((m.loc[both, col] - m.loc[both, f"{col}_p"]).abs() <= 5e-5 + 1e-12).all(), col
-    assert (m.n_actionable == m.n_actionable_p).all()
-
-
-def test_table_3_rounds_the_precise_calibration_values_once():
-    """Table 3 printed four cells from the four-decimal summary rounded again: Pangolin's
+def test_table_3_rounds_the_calibration_summary_once():
+    """Table 3 printed four cells from a four-decimal summary rounded again: Pangolin's
     ECE (0.032495 -> 0.0325 -> 0.033), SpliceAI's high-confidence share (1180/1675 =
-    70.448% -> 0.7045 -> 70.5), and Nucleotide Transformer's ECE and share. Checked here
-    against the unrounded values, rounded half-up once."""
+    70.448% -> 0.7045 -> 70.5), and Nucleotide Transformer's ECE and share. The summary
+    now stores its values unrounded; every cell is checked against it, rounded half-up
+    once."""
     import pandas as pd
 
     manuscript = _manuscript_path()
@@ -473,7 +459,7 @@ def test_table_3_rounds_the_precise_calibration_values_once():
              "phyloP": "single:phylop", "phastCons": "single:phastcons",
              "Nucleotide Transformer": "single:nt", "gnomAD AF": "single:gnomad_af",
              "AlphaMissense": "single:alphamissense"}
-    pr = _csv("phase3_calibration_summary_precise.csv")
+    pr = _csv("phase3_calibration_summary.csv")
     pr = pr[(pr.set == "y_assay/BRCA1_included") & (pr.calib == "isotonic")].set_index("model")
     tables = [t for t in Document(str(manuscript)).tables if t.rows[0].cells[2].text.strip() == "ECE"]
     assert len(tables) == 1, "Table 3 not found"
@@ -492,4 +478,48 @@ def test_table_3_rounds_the_precise_calibration_values_once():
         if tuple(c[2:6]) != want:
             bad.append(f"{c[0]}: printed {tuple(c[2:6])}, should be {want}")
     assert seen == set(names.values())
-    assert not bad, "Table 3 cells that do not round the precise values once:\n  " + "\n  ".join(bad)
+    assert not bad, "Table 3 cells that do not round the summary once:\n  " + "\n  ".join(bad)
+
+
+# Every column the manuscript prints at fewer decimals than the pipeline computes.
+# Storing a rounded copy and rounding it again for the text misprinted six cells in
+# the v2 revision (Table 1's I^2, three Table 3 cells, the Figure 2 caption, a 3.4
+# share); these columns are now written unrounded, and this keeps them so. Interval
+# strings and the bootstrap statistic behind dYield are formatted or rounded once by
+# design and are not listed.
+FULL_PRECISION = {
+    "phase2_leaderboard.csv": ["pooled_rho", "I2", "lo", "hi"],
+    "phase2_H1_stratified.csv": ["fusion_rho", "single_rho", "delta"],
+    "phase2_H2_ablation.csv": ["full_rho", "ablated_rho", "delta_full_minus_ablated"],
+    "phase3_calibration_summary.csv": ["ECE", "Brier", "actionable_frac", "actionable_acc"],
+    "phase3_H3_headline.csv": ["dECE", "dBrier"],
+    "phase3_pertool_brier_ci.csv": ["dBrier_vs_fusion"],
+    "phase4_tp53_external.csv": ["ECE", "Brier", "actionable_frac", "actionable_acc"],
+    "phase4_tp53_external_naband.csv": ["ECE", "Brier", "actionable_frac", "actionable_acc"],
+    "class_balance.csv": ["pos_frac"],
+    "coverage_by_region.csv": None,     # every region column
+}
+
+
+def test_reporting_tables_store_point_estimates_unrounded():
+    import pandas as pd
+
+    for name, cols in FULL_PRECISION.items():
+        raw = pd.read_csv(REPORTS / name, dtype=str)
+        for c in (cols or [x for x in raw.columns if x != "predictor"]):
+            vals = [v for v in raw[c].dropna() if v not in ("", "n/a")]
+            decimals = [len(v.split(".")[1]) if "." in v else 0 for v in vals]
+            assert max(decimals) > 6, f"{name}:{c} is stored rounded ({max(decimals)} decimals)"
+
+
+def test_tp53_orientation_gate_is_persisted_and_passes():
+    """3.4 quotes the post-orientation control AUROC on the full TP53 SGE. It used to be
+    printed once and copied; the manuscript and its supplement then disagreed on the
+    third decimal (0.998 against 0.997). It is now written on every run."""
+    g = _csv("phase4_tp53_orientation.csv").set_index("orientation")
+    run = [i for i in g.index if i.startswith("as run")][0]
+    dft = [i for i in g.index if i.startswith("default")][0]
+    assert g.loc[run, "n_nonsense"] > 1000 and g.loc[run, "n_synonymous"] > 100
+    assert abs(g.loc[run, "control_auroc"] + g.loc[dft, "control_auroc"] - 1) < 1e-12
+    assert g.loc[run, "control_auroc"] > 0.99
+    assert approx(g.loc[run, "control_auroc"], E("tp53.orientation.auroc"))
