@@ -147,10 +147,18 @@ other_tools:
   source: "Methods, 'Splicing prediction analysis'; Table S3; Figure S5"
   note: >-
     Ten other splicing prediction tools were compared with SpliceAI by ROC/AUC on
-    the BRCA1 saturation genome editing dataset of Findlay et al. (SpliceAI
-    AUC = 0.959). No numeric score threshold or evidence strength is recommended
-    for any tool other than SpliceAI, so no other tool enters the E2 fixed-threshold
+    the BRCA1 saturation genome editing dataset of Findlay et al. (414 variants,
+    312 functional and the rest loss-of-function, intermediates excluded). SpliceAI
+    led at AUC = 0.959 for variants at conserved positions in the donor and acceptor
+    regions. No numeric score threshold and no evidence strength is recommended for
+    any tool other than SpliceAI, so no other tool enters the E2 fixed-threshold
     analysis.
+    Note for this project: that comparison dataset is BRCA1 saturation genome
+    editing, which is one of the seven assays the analysis set here is built on. The
+    SpliceAI thresholds themselves were calibrated on a different set (2,736
+    variants across eight genes with in vitro splicing assay data), so the cut
+    points are not circular with respect to this analysis set, but the
+    tool-ranking claim is.
 
 # ---------------------------------------------------------------------------
 # Region definitions used by the source (recorded for reference; the strata of
