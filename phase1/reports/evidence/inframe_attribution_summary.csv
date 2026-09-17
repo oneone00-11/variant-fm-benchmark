@@ -1,0 +1,7 @@
+tool,stratum,in_frame,out_of_frame,undetermined,n,in_frame_share,resolved_in_frame_share
+pangolin,pm12,9,25,1,35,0.2571,0.2647
+pangolin,s11_50,44,84,13,141,0.3121,0.3438
+pangolin,s3_10,131,185,32,348,0.3764,0.4146
+spliceai,pm12,9,26,1,36,0.25,0.2571
+spliceai,s11_50,48,107,31,186,0.2581,0.3097
+spliceai,s3_10,155,169,63,387,0.4005,0.4784

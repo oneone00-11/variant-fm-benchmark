@@ -1,0 +1,1134 @@
+tool,variant_id,gene,stratum,event,dominant_score,event_position,dp,exon_length,shift,frame,reason
+spliceai,urn:mavedb:00000097-0-2#110,BRCA1,s11_50,donor_gain,0.47746989130973816,43047628,0,61.0,15.0,in_frame,cryptic site 15 bp from the nearest natural donor
+spliceai,urn:mavedb:00000097-0-2#116,BRCA1,s11_50,donor_gain,0.2538546919822693,43047632,2,61.0,11.0,out_of_frame,cryptic site 11 bp from the nearest natural donor
+spliceai,urn:mavedb:00000097-0-2#126,BRCA1,s3_10,donor_gain,0.8359279036521912,43047638,5,61.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor
+spliceai,urn:mavedb:00000097-0-2#129,BRCA1,s3_10,donor_gain,0.26013094186782837,43047638,4,61.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor
+spliceai,urn:mavedb:00000097-0-2#132,BRCA1,s3_10,donor_gain,0.623060941696167,43047638,3,61.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor
+spliceai,urn:mavedb:00000097-0-2#141,BRCA1,s3_10,acceptor_loss,0.29633235931396484,43047703,65,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000097-0-2#143,BRCA1,s3_10,acceptor_loss,0.6642811298370361,43047703,64,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000097-0-2#146,BRCA1,s3_10,donor_loss,0.41645002365112305,43047643,3,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000097-0-2#318,BRCA1,s11_50,acceptor_gain,0.9983131885528564,43047712,-2,61.0,9.0,in_frame,cryptic site 9 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000097-0-2#327,BRCA1,s11_50,acceptor_loss,0.3551959991455078,43047703,-14,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000097-0-2#358,BRCA1,s3_10,donor_gain,0.28025028109550476,43048965,-149,74.0,156.0,in_frame,cryptic site 156 bp from the nearest natural donor
+spliceai,urn:mavedb:00000097-0-2#359,BRCA1,s3_10,donor_gain,0.23095566034317017,43048965,-149,74.0,156.0,in_frame,cryptic site 156 bp from the nearest natural donor
+spliceai,urn:mavedb:00000097-0-2#360,BRCA1,s3_10,donor_gain,0.33589455485343933,43048965,-149,74.0,156.0,in_frame,cryptic site 156 bp from the nearest natural donor
+spliceai,urn:mavedb:00000097-0-2#369,BRCA1,s3_10,donor_gain,0.5549852848052979,43048965,-152,74.0,156.0,in_frame,cryptic site 156 bp from the nearest natural donor
+spliceai,urn:mavedb:00000097-0-2#371,BRCA1,s3_10,donor_gain,0.21469879150390625,43048965,-153,74.0,156.0,in_frame,cryptic site 156 bp from the nearest natural donor
+spliceai,urn:mavedb:00000097-0-2#849,BRCA1,s11_50,acceptor_gain,0.2560529112815857,43049206,-1,74.0,12.0,in_frame,cryptic site 12 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000097-0-2#924,BRCA1,s3_10,acceptor_loss,0.36360329389572144,43047703,-5,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000097-0-2#935,BRCA1,s3_10,acceptor_gain,0.8629785180091858,43047709,-2,61.0,6.0,in_frame,cryptic site 6 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000097-0-2#1138,BRCA1,s3_10,donor_gain,0.27386486530303955,43056965,-84,84.0,87.0,in_frame,cryptic site 87 bp from the nearest natural donor
+spliceai,urn:mavedb:00000097-0-2#1496,BRCA1,s3_10,acceptor_loss,0.22020971775054932,43063373,45,41.0,,out_of_frame,skipping an exon of 41 bp
+spliceai,urn:mavedb:00000097-0-2#1497,BRCA1,s3_10,donor_loss,0.28985631465911865,43063333,5,41.0,,out_of_frame,skipping an exon of 41 bp
+spliceai,urn:mavedb:00000097-0-2#1498,BRCA1,s3_10,acceptor_loss,0.21842634677886963,43063373,45,41.0,,out_of_frame,skipping an exon of 41 bp
+spliceai,urn:mavedb:00000097-0-2#1506,BRCA1,pm12,donor_loss,0.5349547266960144,43063333,2,41.0,,out_of_frame,skipping an exon of 41 bp
+spliceai,urn:mavedb:00000097-0-2#1594,BRCA1,s3_10,acceptor_loss,0.7712886929512024,43063373,-3,41.0,,out_of_frame,skipping an exon of 41 bp
+spliceai,urn:mavedb:00000097-0-2#1596,BRCA1,s3_10,acceptor_gain,0.20383614301681519,43063541,165,41.0,168.0,in_frame,cryptic site 168 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000097-0-2#1612,BRCA1,s3_10,acceptor_loss,0.5961210131645203,43063373,-9,41.0,,out_of_frame,skipping an exon of 41 bp
+spliceai,urn:mavedb:00000097-0-2#1663,BRCA1,s11_50,acceptor_loss,0.29005610942840576,43063373,-26,41.0,,out_of_frame,skipping an exon of 41 bp
+spliceai,urn:mavedb:00000097-0-2#1737,BRCA1,s11_50,donor_loss,0.26134586334228516,43063333,-66,41.0,,out_of_frame,skipping an exon of 41 bp
+spliceai,urn:mavedb:00000097-0-2#1738,BRCA1,s11_50,acceptor_loss,0.2863297462463379,43063373,-26,41.0,,out_of_frame,skipping an exon of 41 bp
+spliceai,urn:mavedb:00000097-0-2#1742,BRCA1,s11_50,acceptor_gain,0.39127814769744873,43063541,140,41.0,168.0,in_frame,cryptic site 168 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000097-0-2#1750,BRCA1,s11_50,acceptor_gain,0.2787854075431824,43063541,138,41.0,168.0,in_frame,cryptic site 168 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000097-0-2#2047,BRCA1,s3_10,acceptor_loss,0.25160783529281616,43063951,-3,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#2053,BRCA1,s3_10,acceptor_loss,0.2051159143447876,43063951,-5,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#2058,BRCA1,s3_10,acceptor_loss,0.23555892705917358,43063951,-6,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#2061,BRCA1,s3_10,acceptor_loss,0.256091833114624,43063951,-7,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#2296,BRCA1,pm12,donor_loss,0.7370265126228333,43067608,-89,88.0,,out_of_frame,skipping an exon of 88 bp
+spliceai,urn:mavedb:00000097-0-2#2302,BRCA1,s3_10,donor_loss,0.21713262796401978,43067608,-91,88.0,,out_of_frame,skipping an exon of 88 bp
+spliceai,urn:mavedb:00000097-0-2#2320,BRCA1,s3_10,donor_loss,0.2712855339050293,43067608,-97,88.0,,out_of_frame,skipping an exon of 88 bp
+spliceai,urn:mavedb:00000097-0-2#2321,BRCA1,s3_10,donor_loss,0.518823504447937,43067608,-97,88.0,,out_of_frame,skipping an exon of 88 bp
+spliceai,urn:mavedb:00000097-0-2#2446,BRCA1,s3_10,donor_gain,0.23371297121047974,43067608,5,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000097-0-2#2450,BRCA1,s3_10,donor_gain,0.22679615020751953,43067608,4,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000097-0-2#2595,BRCA1,s3_10,donor_loss,0.2697736620903015,43104868,8,89.0,,out_of_frame,skipping an exon of 89 bp
+spliceai,urn:mavedb:00000097-0-2#2600,BRCA1,s3_10,donor_gain,0.2935981750488281,43104868,7,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000097-0-2#2875,BRCA1,s3_10,donor_loss,0.21650153398513794,43104868,-97,89.0,,out_of_frame,skipping an exon of 89 bp
+spliceai,urn:mavedb:00000097-0-2#2876,BRCA1,s3_10,acceptor_loss,0.2871933877468109,43104956,-10,89.0,,out_of_frame,skipping an exon of 89 bp
+spliceai,urn:mavedb:00000097-0-2#2878,BRCA1,s3_10,acceptor_loss,0.3937772214412689,43104956,-10,89.0,,out_of_frame,skipping an exon of 89 bp
+spliceai,urn:mavedb:00000097-0-2#2895,BRCA1,s3_10,donor_loss,0.5051621198654175,43106478,27,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000097-0-2#2897,BRCA1,s3_10,donor_loss,0.22145280241966248,43106456,4,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#2899,BRCA1,s3_10,donor_gain,0.3052063584327698,43106456,4,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000097-0-2#3135,BRCA1,s3_10,acceptor_loss,0.49236732721328735,43106533,-3,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#3139,BRCA1,s3_10,donor_loss,0.3235079050064087,43106456,-82,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#3141,BRCA1,s3_10,donor_loss,0.2590956389904022,43106456,-82,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#3142,BRCA1,s3_10,donor_loss,0.39626947045326233,43106456,-83,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#3144,BRCA1,s3_10,donor_loss,0.3470156788825989,43106456,-83,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#3160,BRCA1,s11_50,donor_loss,0.20095700025558472,43106456,-89,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#3162,BRCA1,s11_50,donor_loss,0.2243698537349701,43106456,-89,78.0,,in_frame,skipping an exon of 78 bp
+spliceai,urn:mavedb:00000097-0-2#3213,BRCA1,s3_10,donor_loss,0.330729603767395,43115726,6,54.0,,in_frame,skipping an exon of 54 bp
+spliceai,urn:mavedb:00000097-0-2#3215,BRCA1,s3_10,donor_loss,0.2469053864479065,43115726,6,54.0,,in_frame,skipping an exon of 54 bp
+spliceai,urn:mavedb:00000097-0-2#3219,BRCA1,s3_10,acceptor_loss,0.3241463899612427,43115779,57,54.0,,in_frame,skipping an exon of 54 bp
+spliceai,urn:mavedb:00000097-0-2#3220,BRCA1,s3_10,acceptor_loss,0.30944734811782837,43115779,57,54.0,,in_frame,skipping an exon of 54 bp
+spliceai,urn:mavedb:00000097-0-2#3368,BRCA1,s3_10,acceptor_loss,0.30920565128326416,43115779,-3,54.0,,in_frame,skipping an exon of 54 bp
+spliceai,urn:mavedb:00000097-0-2#3433,BRCA1,s3_10,donor_loss,0.3711659908294678,43124017,4,99.0,,in_frame,skipping an exon of 99 bp
+spliceai,urn:mavedb:00000097-0-2#3879,BRCA1,pm12,acceptor_loss,0.9087868332862854,43124115,-1,99.0,,in_frame,skipping an exon of 99 bp
+spliceai,urn:mavedb:00000097-0-2#3880,BRCA1,pm12,acceptor_loss,0.8968136310577393,43124115,-1,99.0,,in_frame,skipping an exon of 99 bp
+spliceai,urn:mavedb:00000097-0-2#3882,BRCA1,pm12,acceptor_loss,0.908863365650177,43124115,-2,99.0,,in_frame,skipping an exon of 99 bp
+spliceai,urn:mavedb:00000097-0-2#3883,BRCA1,pm12,acceptor_gain,0.9921020865440369,43124116,-1,99.0,1.0,out_of_frame,cryptic site 1 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000097-0-2#3884,BRCA1,pm12,acceptor_loss,0.9086454510688782,43124115,-2,99.0,,in_frame,skipping an exon of 99 bp
+spliceai,urn:mavedb:00000097-0-2#3886,BRCA1,s3_10,acceptor_gain,0.9550768136978149,43124117,-1,99.0,2.0,out_of_frame,cryptic site 2 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#1,BRCA2,s3_10,acceptor_loss,0.27751266956329346,32356428,10,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#3,BRCA2,s3_10,acceptor_loss,0.2556661367416382,32356428,10,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#7,BRCA2,s3_10,acceptor_loss,0.2989366054534912,32356428,8,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#9,BRCA2,s3_10,acceptor_loss,0.22998851537704468,32356428,8,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#10,BRCA2,s3_10,acceptor_loss,0.34113407135009766,32356428,7,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#12,BRCA2,s3_10,acceptor_loss,0.2635173201560974,32356428,7,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#15,BRCA2,s3_10,acceptor_loss,0.3519386053085327,32356428,6,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#22,BRCA2,s3_10,acceptor_loss,0.5537148118019104,32356428,3,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#25,BRCA2,pm12,acceptor_loss,0.9470710158348083,32356428,2,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#572,BRCA2,pm12,acceptor_loss,0.7472190856933594,32356428,-183,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#574,BRCA2,s3_10,acceptor_loss,0.37199342250823975,32356428,-184,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#575,BRCA2,s3_10,acceptor_loss,0.23821592330932617,32356428,-184,182.0,,out_of_frame,skipping an exon of 182 bp
+spliceai,urn:mavedb:00001225-a-1#607,BRCA2,s3_10,acceptor_gain,0.9439656734466553,32357737,2,188.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#613,BRCA2,s3_10,acceptor_gain,0.2831766903400421,32357739,2,188.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#619,BRCA2,s3_10,acceptor_gain,0.4499036967754364,32357786,47,188.0,44.0,out_of_frame,cryptic site 44 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#621,BRCA2,s3_10,acceptor_gain,0.5290496349334717,32357786,47,188.0,44.0,out_of_frame,cryptic site 44 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#1190,BRCA2,s3_10,donor_gain,0.3125258684158325,32357829,-103,188.0,100.0,out_of_frame,cryptic site 100 bp from the nearest natural donor
+spliceai,urn:mavedb:00001225-a-1#1193,BRCA2,s3_10,donor_gain,0.23970091342926025,32357829,-104,188.0,100.0,out_of_frame,cryptic site 100 bp from the nearest natural donor
+spliceai,urn:mavedb:00001225-a-1#1197,BRCA2,s3_10,donor_loss,0.2749803066253662,32357829,-105,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001225-a-1#1199,BRCA2,s3_10,donor_loss,0.20076198875904083,32357829,-106,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001225-a-1#1209,BRCA2,s3_10,donor_gain,0.20640075206756592,32357829,-109,188.0,100.0,out_of_frame,cryptic site 100 bp from the nearest natural donor
+spliceai,urn:mavedb:00001225-a-1#1230,BRCA2,s3_10,donor_loss,0.2056049108505249,32362693,175,171.0,,in_frame,skipping an exon of 171 bp
+spliceai,urn:mavedb:00001225-a-1#1234,BRCA2,s3_10,donor_loss,0.2038809061050415,32362693,173,171.0,,in_frame,skipping an exon of 171 bp
+spliceai,urn:mavedb:00001225-a-1#1763,BRCA2,s3_10,donor_loss,0.2441462278366089,32362693,-6,171.0,,in_frame,skipping an exon of 171 bp
+spliceai,urn:mavedb:00001225-a-1#1764,BRCA2,s3_10,donor_loss,0.5665317177772522,32362693,-6,171.0,,in_frame,skipping an exon of 171 bp
+spliceai,urn:mavedb:00001225-a-1#1786,BRCA2,s3_10,acceptor_gain,0.976447343826294,32363173,1,355.0,6.0,in_frame,cryptic site 6 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#2868,BRCA2,s3_10,donor_loss,0.7090326547622681,32363533,-3,355.0,,out_of_frame,skipping an exon of 355 bp
+spliceai,urn:mavedb:00001225-a-1#2870,BRCA2,s3_10,donor_loss,0.6573960185050964,32363533,-3,355.0,,out_of_frame,skipping an exon of 355 bp
+spliceai,urn:mavedb:00001225-a-1#3387,BRCA2,s3_10,donor_loss,0.8096215724945068,32370557,-3,156.0,,in_frame,skipping an exon of 156 bp
+spliceai,urn:mavedb:00001225-a-1#3401,BRCA2,s3_10,donor_gain,0.2039932757616043,32370564,0,156.0,7.0,out_of_frame,cryptic site 7 bp from the nearest natural donor
+spliceai,urn:mavedb:00001225-a-1#3432,BRCA2,s3_10,acceptor_loss,0.2790919542312622,32370956,3,145.0,,out_of_frame,skipping an exon of 145 bp
+spliceai,urn:mavedb:00001225-a-1#3874,BRCA2,s3_10,donor_gain,0.38465169072151184,32371117,14,145.0,17.0,out_of_frame,cryptic site 17 bp from the nearest natural donor
+spliceai,urn:mavedb:00001225-a-1#3920,BRCA2,s3_10,acceptor_loss,0.5207744240760803,32376670,3,122.0,,out_of_frame,skipping an exon of 122 bp
+spliceai,urn:mavedb:00001225-a-1#4296,BRCA2,pm12,donor_loss,0.9931058287620544,32376791,-2,122.0,,out_of_frame,skipping an exon of 122 bp
+spliceai,urn:mavedb:00001225-a-1#4299,BRCA2,s3_10,donor_loss,0.2230924814939499,32376837,43,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001225-a-1#4310,BRCA2,s3_10,donor_loss,0.22479870915412903,32376837,40,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001225-a-1#4311,BRCA2,s3_10,donor_gain,0.2575021982192993,32376799,1,122.0,8.0,out_of_frame,cryptic site 8 bp from the nearest natural donor
+spliceai,urn:mavedb:00001225-a-1#4315,BRCA2,s3_10,donor_gain,0.7638255953788757,32376799,0,122.0,8.0,out_of_frame,cryptic site 8 bp from the nearest natural donor
+spliceai,urn:mavedb:00001225-a-1#4321,BRCA2,s3_10,donor_gain,0.39113280177116394,32376837,36,122.0,46.0,out_of_frame,cryptic site 46 bp from the nearest natural donor
+spliceai,urn:mavedb:00001225-a-1#4324,BRCA2,s3_10,acceptor_gain,0.9623333811759949,32379308,1,199.0,9.0,in_frame,cryptic site 9 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#4344,BRCA2,s3_10,acceptor_gain,0.2394445836544037,32379361,47,199.0,44.0,out_of_frame,cryptic site 44 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#4945,BRCA2,pm12,donor_gain,0.6601606607437134,32379519,2,199.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural donor
+spliceai,urn:mavedb:00001225-a-1#4951,BRCA2,s3_10,donor_gain,0.3105027377605438,32379519,0,199.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural donor
+spliceai,urn:mavedb:00001225-a-1#4974,BRCA2,s3_10,acceptor_loss,0.22797620296478271,32379750,9,164.0,,out_of_frame,skipping an exon of 164 bp
+spliceai,urn:mavedb:00001225-a-1#4977,BRCA2,s3_10,acceptor_loss,0.2183815836906433,32379750,8,164.0,,out_of_frame,skipping an exon of 164 bp
+spliceai,urn:mavedb:00001225-a-1#4978,BRCA2,s3_10,acceptor_loss,0.2399011254310608,32379750,8,164.0,,out_of_frame,skipping an exon of 164 bp
+spliceai,urn:mavedb:00001225-a-1#4990,BRCA2,s3_10,acceptor_loss,0.29352498054504395,32379750,4,164.0,,out_of_frame,skipping an exon of 164 bp
+spliceai,urn:mavedb:00001225-a-1#4991,BRCA2,s3_10,acceptor_loss,0.3582766056060791,32379750,4,164.0,,out_of_frame,skipping an exon of 164 bp
+spliceai,urn:mavedb:00001225-a-1#4992,BRCA2,s3_10,acceptor_loss,0.7065954208374023,32379750,3,164.0,,out_of_frame,skipping an exon of 164 bp
+spliceai,urn:mavedb:00001225-a-1#4994,BRCA2,s3_10,acceptor_loss,0.2720569372177124,32379750,3,164.0,,out_of_frame,skipping an exon of 164 bp
+spliceai,urn:mavedb:00001225-a-1#5000,BRCA2,pm12,acceptor_loss,0.8996288180351257,32379750,1,164.0,,out_of_frame,skipping an exon of 164 bp
+spliceai,urn:mavedb:00001225-a-1#5484,BRCA2,pm12,donor_loss,0.9328929781913757,32379913,-1,164.0,,out_of_frame,skipping an exon of 164 bp
+spliceai,urn:mavedb:00001225-a-1#5486,BRCA2,pm12,donor_loss,0.9329208731651306,32379913,-1,164.0,,out_of_frame,skipping an exon of 164 bp
+spliceai,urn:mavedb:00001225-a-1#5493,BRCA2,s3_10,acceptor_gain,0.2314605712890625,32379801,-116,164.0,51.0,in_frame,cryptic site 51 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5497,BRCA2,s3_10,acceptor_gain,0.2683514356613159,32379801,-117,164.0,51.0,in_frame,cryptic site 51 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5514,BRCA2,s3_10,acceptor_gain,0.2942824065685272,32380031,34,139.0,24.0,in_frame,cryptic site 24 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5516,BRCA2,s3_10,acceptor_gain,0.3151697814464569,32380031,34,139.0,24.0,in_frame,cryptic site 24 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5517,BRCA2,s3_10,acceptor_gain,0.30334481596946716,32380031,33,139.0,24.0,in_frame,cryptic site 24 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5520,BRCA2,s3_10,acceptor_gain,0.3465207517147064,32380031,32,139.0,24.0,in_frame,cryptic site 24 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5522,BRCA2,s3_10,acceptor_gain,0.30768200755119324,32380031,32,139.0,24.0,in_frame,cryptic site 24 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5523,BRCA2,s3_10,acceptor_gain,0.3360421359539032,32380031,31,139.0,24.0,in_frame,cryptic site 24 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5525,BRCA2,s3_10,acceptor_gain,0.31584545969963074,32380031,31,139.0,24.0,in_frame,cryptic site 24 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5526,BRCA2,s3_10,acceptor_gain,0.27660664916038513,32380031,30,139.0,24.0,in_frame,cryptic site 24 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5527,BRCA2,s3_10,acceptor_gain,0.20253893733024597,32380031,30,139.0,24.0,in_frame,cryptic site 24 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5531,BRCA2,s3_10,acceptor_gain,0.2897481620311737,32380031,29,139.0,24.0,in_frame,cryptic site 24 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5535,BRCA2,s3_10,acceptor_gain,0.4527503550052643,32380031,27,139.0,24.0,in_frame,cryptic site 24 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001225-a-1#5536,BRCA2,s3_10,acceptor_loss,0.23889344930648804,32380031,27,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001225-a-1#5958,BRCA2,s3_10,donor_loss,0.44228875637054443,32380145,-3,139.0,,out_of_frame,skipping an exon of 139 bp
+spliceai,urn:mavedb:00001225-a-1#5960,BRCA2,s3_10,acceptor_loss,0.32454973459243774,32380031,-117,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001225-a-1#6733,BRCA2,pm12,donor_loss,0.7395161986351013,32394933,-2,245.0,,out_of_frame,skipping an exon of 245 bp
+spliceai,urn:mavedb:00001225-a-1#6735,BRCA2,s3_10,donor_loss,0.22472703456878662,32394933,-3,245.0,,out_of_frame,skipping an exon of 245 bp
+spliceai,urn:mavedb:00001225-a-1#6757,BRCA2,s3_10,donor_gain,0.33111053705215454,32394938,-5,245.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor
+spliceai,urn:mavedb:00001225-a-1#6764,BRCA2,s3_10,acceptor_loss,0.7992504835128784,32396898,9,147.0,,in_frame,skipping an exon of 147 bp
+spliceai,urn:mavedb:00001225-a-1#6784,BRCA2,pm12,acceptor_loss,0.991188108921051,32396898,2,147.0,,in_frame,skipping an exon of 147 bp
+spliceai,urn:mavedb:00001225-a-1#6785,BRCA2,pm12,acceptor_loss,0.9889345169067383,32396898,2,147.0,,in_frame,skipping an exon of 147 bp
+spliceai,urn:mavedb:00001225-a-1#6786,BRCA2,pm12,acceptor_loss,0.948030948638916,32396898,1,147.0,,in_frame,skipping an exon of 147 bp
+spliceai,urn:mavedb:00001225-a-1#6787,BRCA2,pm12,acceptor_loss,0.8069994449615479,32396898,1,147.0,,in_frame,skipping an exon of 147 bp
+spliceai,urn:mavedb:00001250-a-2#1073,BARD1,s3_10,acceptor_loss,0.5006026029586792,214729008,-3,3363.0,,in_frame,skipping an exon of 3363 bp
+spliceai,urn:mavedb:00001250-a-2#1090,BARD1,s3_10,acceptor_gain,0.8773626089096069,214729016,-1,3363.0,8.0,out_of_frame,cryptic site 8 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#1123,BARD1,s11_50,donor_gain,0.21655315160751343,214730317,-47,98.0,94.0,out_of_frame,cryptic site 94 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#1147,BARD1,s11_50,acceptor_gain,0.2548520863056183,214730371,-1,98.0,137.0,out_of_frame,cryptic site 137 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#1148,BARD1,s11_50,donor_gain,0.20151680707931519,214730317,-55,98.0,94.0,out_of_frame,cryptic site 94 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#1210,BARD1,s11_50,donor_loss,0.24062515795230865,214730317,-76,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#1228,BARD1,s11_50,donor_gain,0.3541604280471802,214730400,1,98.0,11.0,out_of_frame,cryptic site 11 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#1245,BARD1,s3_10,donor_loss,0.22940410673618317,214730317,-87,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#1249,BARD1,s3_10,donor_loss,0.4597312808036804,214730317,-89,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#1254,BARD1,s3_10,donor_loss,0.43681710958480835,214730317,-90,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#1256,BARD1,s3_10,donor_loss,0.9277797937393188,214730411,3,98.0,,out_of_frame,skipping an exon of 98 bp
+spliceai,urn:mavedb:00001250-a-2#1536,BARD1,s3_10,acceptor_loss,0.4862852096557617,214730508,-3,98.0,,out_of_frame,skipping an exon of 98 bp
+spliceai,urn:mavedb:00001250-a-2#2041,BARD1,s3_10,acceptor_loss,0.5288655161857605,214745159,-3,93.0,,in_frame,skipping an exon of 93 bp
+spliceai,urn:mavedb:00001250-a-2#2046,BARD1,s3_10,acceptor_gain,0.2675142288208008,214745129,-35,93.0,30.0,in_frame,cryptic site 30 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#2049,BARD1,s3_10,acceptor_gain,0.27973973751068115,214745129,-36,93.0,30.0,in_frame,cryptic site 30 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#2050,BARD1,s3_10,acceptor_loss,0.31278562545776367,214745159,-6,93.0,,in_frame,skipping an exon of 93 bp
+spliceai,urn:mavedb:00001250-a-2#2054,BARD1,s3_10,acceptor_gain,0.22782933712005615,214745129,-38,93.0,30.0,in_frame,cryptic site 30 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#2056,BARD1,s3_10,acceptor_gain,0.22631767392158508,214745129,-38,93.0,30.0,in_frame,cryptic site 30 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#2060,BARD1,s3_10,acceptor_loss,0.25497347116470337,214745159,-10,93.0,,in_frame,skipping an exon of 93 bp
+spliceai,urn:mavedb:00001250-a-2#2066,BARD1,s11_50,acceptor_gain,0.22268515825271606,214745129,-42,93.0,30.0,in_frame,cryptic site 30 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#2068,BARD1,s11_50,acceptor_gain,0.21919459104537964,214745129,-42,93.0,30.0,in_frame,cryptic site 30 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#2089,BARD1,s11_50,acceptor_gain,0.7986325621604919,214745176,-2,93.0,17.0,out_of_frame,cryptic site 17 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#2091,BARD1,s11_50,acceptor_gain,0.4174101650714874,214745178,-1,93.0,19.0,out_of_frame,cryptic site 19 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#2099,BARD1,s11_50,acceptor_gain,0.20766189694404602,214745129,-53,93.0,30.0,in_frame,cryptic site 30 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#2103,BARD1,s11_50,acceptor_gain,0.20163768529891968,214745129,-54,93.0,30.0,in_frame,cryptic site 30 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#2273,BARD1,s3_10,donor_loss,0.35596054792404175,214745722,5,133.0,,out_of_frame,skipping an exon of 133 bp
+spliceai,urn:mavedb:00001250-a-2#2274,BARD1,s3_10,donor_loss,0.38409698009490967,214745722,5,133.0,,out_of_frame,skipping an exon of 133 bp
+spliceai,urn:mavedb:00001250-a-2#2275,BARD1,s3_10,donor_loss,0.3239216208457947,214745722,5,133.0,,out_of_frame,skipping an exon of 133 bp
+spliceai,urn:mavedb:00001250-a-2#2276,BARD1,s3_10,donor_loss,0.4391137361526489,214745722,4,133.0,,out_of_frame,skipping an exon of 133 bp
+spliceai,urn:mavedb:00001250-a-2#2277,BARD1,s3_10,donor_loss,0.3562982678413391,214745722,4,133.0,,out_of_frame,skipping an exon of 133 bp
+spliceai,urn:mavedb:00001250-a-2#2280,BARD1,s3_10,donor_loss,0.5386447906494141,214745722,3,133.0,,out_of_frame,skipping an exon of 133 bp
+spliceai,urn:mavedb:00001250-a-2#2670,BARD1,s3_10,acceptor_gain,0.9421850442886353,214745857,-1,133.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#2957,BARD1,s3_10,donor_gain,0.5085291266441345,214752443,6,109.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#2963,BARD1,s3_10,donor_loss,0.4647058844566345,214752447,8,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#2965,BARD1,s3_10,donor_loss,0.4365857243537903,214752447,8,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#2966,BARD1,s3_10,donor_loss,0.5057107210159302,214752447,7,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#2967,BARD1,s3_10,donor_loss,0.4392164349555969,214752447,7,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#2968,BARD1,s3_10,donor_loss,0.5478385090827942,214752447,7,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#2977,BARD1,s3_10,donor_loss,0.7658854722976685,214752447,4,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#2979,BARD1,s3_10,donor_loss,0.293459415435791,214752447,3,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3295,BARD1,s3_10,acceptor_loss,0.5881946086883545,214752555,-3,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3302,BARD1,s3_10,donor_loss,0.4367336630821228,214752447,-114,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3304,BARD1,s3_10,acceptor_loss,0.36843645572662354,214752555,-6,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3305,BARD1,s3_10,donor_loss,0.7400541305541992,214752447,-115,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3306,BARD1,s3_10,donor_loss,0.3871144652366638,214752447,-115,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3307,BARD1,s3_10,donor_loss,0.750684380531311,214752447,-115,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3308,BARD1,s3_10,donor_loss,0.4072694778442383,214752447,-116,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3310,BARD1,s3_10,donor_loss,0.4104182720184326,214752447,-116,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3313,BARD1,s3_10,donor_loss,0.4728921055793762,214752447,-117,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3317,BARD1,s11_50,donor_loss,0.5811114311218262,214752447,-119,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3318,BARD1,s11_50,donor_loss,0.39306432008743286,214752447,-119,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3319,BARD1,s11_50,donor_loss,0.5802901387214661,214752447,-119,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3320,BARD1,s11_50,donor_loss,0.5699329376220703,214752447,-120,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3321,BARD1,s11_50,donor_loss,0.3842635154724121,214752447,-120,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3322,BARD1,s11_50,donor_loss,0.6346065402030945,214752447,-120,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3332,BARD1,s11_50,donor_loss,0.49641603231430054,214752447,-125,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3334,BARD1,s11_50,acceptor_loss,0.7982500791549683,214752555,-17,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3338,BARD1,s11_50,acceptor_loss,0.41020649671554565,214752555,-19,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3345,BARD1,s11_50,acceptor_gain,0.40112435817718506,214752575,-1,109.0,20.0,out_of_frame,cryptic site 20 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#3369,BARD1,s11_50,donor_loss,0.27364373207092285,214752447,-137,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3373,BARD1,s11_50,donor_loss,0.219862163066864,214752447,-138,109.0,,out_of_frame,skipping an exon of 109 bp
+spliceai,urn:mavedb:00001250-a-2#3495,BARD1,s11_50,donor_gain,0.7682822346687317,214767468,0,173.0,14.0,out_of_frame,cryptic site 14 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#3518,BARD1,s3_10,donor_loss,0.43138551712036133,214767482,6,173.0,,out_of_frame,skipping an exon of 173 bp
+spliceai,urn:mavedb:00001250-a-2#3520,BARD1,s3_10,donor_loss,0.4695175290107727,214767482,6,173.0,,out_of_frame,skipping an exon of 173 bp
+spliceai,urn:mavedb:00001250-a-2#3525,BARD1,s3_10,donor_gain,0.23871415853500366,214767478,0,173.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#4016,BARD1,s3_10,acceptor_gain,0.3540891706943512,214767647,-10,173.0,7.0,out_of_frame,cryptic site 7 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#4250,BARD1,s11_50,acceptor_loss,0.2095637321472168,214769312,99,81.0,,in_frame,skipping an exon of 81 bp
+spliceai,urn:mavedb:00001250-a-2#4264,BARD1,s11_50,donor_gain,0.362311452627182,214769221,4,81.0,11.0,out_of_frame,cryptic site 11 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#4267,BARD1,s11_50,donor_gain,0.9622274041175842,214769221,3,81.0,11.0,out_of_frame,cryptic site 11 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#4273,BARD1,s11_50,donor_gain,0.26298385858535767,214769229,9,81.0,3.0,in_frame,cryptic site 3 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#4279,BARD1,s3_10,donor_gain,0.8759651780128479,214769221,-1,81.0,11.0,out_of_frame,cryptic site 11 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#4281,BARD1,s3_10,donor_gain,0.3529238700866699,214769229,6,81.0,3.0,in_frame,cryptic site 3 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#4282,BARD1,s3_10,donor_gain,0.7456780672073364,214769226,3,81.0,6.0,in_frame,cryptic site 6 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#4286,BARD1,s3_10,donor_loss,0.25519686937332153,214769229,4,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#4287,BARD1,s3_10,donor_loss,0.2040252387523651,214769229,4,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#4289,BARD1,s3_10,donor_gain,0.4684790074825287,214769226,0,81.0,6.0,in_frame,cryptic site 6 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#4292,BARD1,s3_10,donor_loss,0.28996652364730835,214769229,2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#4293,BARD1,s3_10,donor_loss,0.2885967195034027,214769229,2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#4294,BARD1,s3_10,donor_loss,0.28969690203666687,214769229,2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#4295,BARD1,s3_10,donor_loss,0.2898625135421753,214769229,1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#4296,BARD1,s3_10,donor_loss,0.28989848494529724,214769229,1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#4297,BARD1,s3_10,donor_loss,0.2897126376628876,214769229,1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#4298,BARD1,s3_10,donor_loss,0.4540089964866638,214769232,3,81.0,,in_frame,skipping an exon of 81 bp
+spliceai,urn:mavedb:00001250-a-2#4299,BARD1,s3_10,donor_loss,0.36053788661956787,214769232,3,81.0,,in_frame,skipping an exon of 81 bp
+spliceai,urn:mavedb:00001250-a-2#4300,BARD1,s3_10,donor_loss,0.5095764994621277,214769232,3,81.0,,in_frame,skipping an exon of 81 bp
+spliceai,urn:mavedb:00001250-a-2#4520,BARD1,s3_10,acceptor_loss,0.506128191947937,214769312,-3,81.0,,in_frame,skipping an exon of 81 bp
+spliceai,urn:mavedb:00001250-a-2#4522,BARD1,s3_10,acceptor_loss,0.24020642042160034,214769312,-3,81.0,,in_frame,skipping an exon of 81 bp
+spliceai,urn:mavedb:00001250-a-2#4587,BARD1,s11_50,acceptor_loss,0.30200356245040894,214769312,-25,81.0,,in_frame,skipping an exon of 81 bp
+spliceai,urn:mavedb:00001250-a-2#4793,BARD1,s3_10,donor_loss,0.3763284683227539,214780560,5,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#4794,BARD1,s3_10,donor_loss,0.6189216375350952,214780560,5,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#4795,BARD1,s3_10,donor_loss,0.602933943271637,214780560,5,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#4800,BARD1,s3_10,donor_loss,0.5833978056907654,214780560,3,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7361,BARD1,s3_10,acceptor_loss,0.2828289270401001,214781509,-6,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7367,BARD1,s3_10,acceptor_loss,0.2516458034515381,214781509,-8,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7369,BARD1,s3_10,acceptor_loss,0.20277023315429688,214781509,-8,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7381,BARD1,s11_50,acceptor_loss,0.2083008885383606,214781509,-12,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7387,BARD1,s11_50,acceptor_loss,0.20300710201263428,214781509,-14,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7393,BARD1,s11_50,acceptor_loss,0.22961246967315674,214781509,-16,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7399,BARD1,s11_50,acceptor_loss,0.20656192302703857,214781509,-18,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7428,BARD1,s11_50,acceptor_loss,0.35214394330978394,214781509,-28,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7430,BARD1,s11_50,acceptor_loss,0.2904297113418579,214781509,-29,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7433,BARD1,s11_50,acceptor_loss,0.22646796703338623,214781509,-30,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7435,BARD1,s11_50,acceptor_loss,0.21477490663528442,214781509,-30,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7438,BARD1,s11_50,acceptor_loss,0.2728308439254761,214781509,-31,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7442,BARD1,s11_50,acceptor_loss,0.24487966299057007,214781509,-33,950.0,,out_of_frame,skipping an exon of 950 bp
+spliceai,urn:mavedb:00001250-a-2#7991,BARD1,s3_10,donor_gain,0.27975621819496155,214797057,5,57.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#8000,BARD1,s3_10,donor_loss,0.30246227979660034,214797061,6,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8006,BARD1,s3_10,donor_loss,0.31130504608154297,214797061,4,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8007,BARD1,s3_10,donor_loss,0.40053749084472656,214797061,4,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8159,BARD1,s3_10,donor_loss,0.274975061416626,214797061,-59,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8162,BARD1,s3_10,donor_loss,0.36694395542144775,214797061,-60,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8163,BARD1,s3_10,acceptor_gain,0.7422154545783997,214797120,-1,57.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001250-a-2#8173,BARD1,s3_10,donor_loss,0.3029053807258606,214797061,-63,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8176,BARD1,s3_10,donor_loss,0.2714118957519531,214797061,-64,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8177,BARD1,s3_10,donor_loss,0.26751136779785156,214797061,-65,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8179,BARD1,s3_10,donor_loss,0.2742001414299011,214797061,-65,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8183,BARD1,s11_50,donor_loss,0.3204834461212158,214797061,-67,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8185,BARD1,s11_50,donor_loss,0.406843364238739,214797061,-67,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8188,BARD1,s11_50,donor_loss,0.2607213258743286,214797061,-68,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8191,BARD1,s11_50,donor_loss,0.24546122550964355,214797061,-69,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8215,BARD1,s11_50,donor_loss,0.4841254949569702,214797061,-77,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8216,BARD1,s11_50,donor_loss,0.4325258135795593,214797061,-78,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8227,BARD1,s11_50,donor_loss,0.322883665561676,214797061,-81,57.0,,in_frame,skipping an exon of 57 bp
+spliceai,urn:mavedb:00001250-a-2#8278,BARD1,s11_50,donor_gain,0.2664760649204254,214809390,-1,272.0,22.0,out_of_frame,cryptic site 22 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#8321,BARD1,s3_10,donor_loss,0.2018289864063263,214809416,10,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#8325,BARD1,s3_10,donor_loss,0.2620793282985687,214809416,9,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001250-a-2#8327,BARD1,s3_10,donor_gain,0.3547528386116028,214809416,8,272.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural donor
+spliceai,urn:mavedb:00001250-a-2#8328,BARD1,s3_10,donor_gain,0.2529181241989136,214809142,-266,272.0,270.0,in_frame,cryptic site 270 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#669,PALB2,s3_10,acceptor_loss,0.522222638130188,23603669,-3,505.0,,out_of_frame,skipping an exon of 505 bp
+spliceai,urn:mavedb:00001259-a-2#671,PALB2,s3_10,acceptor_gain,0.9433897733688354,23603672,-1,505.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#721,PALB2,s3_10,acceptor_gain,0.4161760210990906,23608012,155,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00001259-a-2#734,PALB2,pm12,donor_gain,0.8516159653663635,23607864,2,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00001259-a-2#1172,PALB2,s3_10,acceptor_gain,0.3303831219673157,23608012,-5,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00001259-a-2#1176,PALB2,s3_10,acceptor_loss,0.3541056513786316,23608012,-6,149.0,,out_of_frame,skipping an exon of 149 bp
+spliceai,urn:mavedb:00001259-a-2#1182,PALB2,s3_10,acceptor_gain,0.22643136978149414,23608012,-8,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00001259-a-2#1185,PALB2,s3_10,acceptor_loss,0.3132893443107605,23608012,-9,149.0,,out_of_frame,skipping an exon of 149 bp
+spliceai,urn:mavedb:00001259-a-2#1188,PALB2,s3_10,acceptor_loss,0.32689329981803894,23608012,-10,149.0,,out_of_frame,skipping an exon of 149 bp
+spliceai,urn:mavedb:00001259-a-2#1189,PALB2,s3_10,acceptor_loss,0.33714962005615234,23608012,-10,149.0,,out_of_frame,skipping an exon of 149 bp
+spliceai,urn:mavedb:00001259-a-2#1192,PALB2,s11_50,acceptor_loss,0.3117328882217407,23608012,-11,149.0,,out_of_frame,skipping an exon of 149 bp
+spliceai,urn:mavedb:00001259-a-2#1194,PALB2,s11_50,acceptor_loss,0.26043936610221863,23608012,-12,149.0,,out_of_frame,skipping an exon of 149 bp
+spliceai,urn:mavedb:00001259-a-2#1493,PALB2,s3_10,donor_loss,0.25538498163223267,23614004,-95,88.0,,out_of_frame,skipping an exon of 88 bp
+spliceai,urn:mavedb:00001259-a-2#1979,PALB2,s3_10,acceptor_loss,0.41683775186538696,23623130,165,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#1983,PALB2,s3_10,acceptor_loss,0.3542935848236084,23623130,164,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2458,PALB2,s3_10,acceptor_loss,0.42278385162353516,23623130,-3,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2463,PALB2,s3_10,donor_loss,0.2748611569404602,23622969,-166,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2474,PALB2,s3_10,donor_loss,0.22198587656021118,23622969,-170,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2476,PALB2,s3_10,donor_loss,0.22865504026412964,23622969,-170,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2479,PALB2,s3_10,donor_loss,0.2224782109260559,23622969,-171,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2491,PALB2,s11_50,donor_loss,0.2170628309249878,23622969,-175,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2546,PALB2,s3_10,acceptor_loss,0.41085952520370483,23624094,88,86.0,,out_of_frame,skipping an exon of 86 bp
+spliceai,urn:mavedb:00001259-a-2#2547,PALB2,s3_10,acceptor_loss,0.42583805322647095,23624094,88,86.0,,out_of_frame,skipping an exon of 86 bp
+spliceai,urn:mavedb:00001259-a-2#2831,PALB2,s3_10,acceptor_loss,0.24961447715759277,23624094,-10,86.0,,out_of_frame,skipping an exon of 86 bp
+spliceai,urn:mavedb:00001259-a-2#2870,PALB2,s3_10,donor_loss,0.34513700008392334,23626236,6,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2872,PALB2,s3_10,acceptor_loss,0.27519673109054565,23626397,167,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2873,PALB2,s3_10,donor_loss,0.5783520340919495,23626236,5,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2876,PALB2,s3_10,acceptor_loss,0.42135316133499146,23626397,165,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2877,PALB2,s3_10,acceptor_loss,0.4024987816810608,23626397,165,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2878,PALB2,s3_10,acceptor_loss,0.4185587763786316,23626397,165,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2879,PALB2,s3_10,donor_loss,0.6120286583900452,23626236,3,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#2881,PALB2,s3_10,donor_loss,0.6701405048370361,23626236,3,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#3359,PALB2,s3_10,acceptor_gain,0.3137253522872925,23626397,-5,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00001259-a-2#3363,PALB2,s3_10,acceptor_gain,0.21776217222213745,23626439,36,162.0,42.0,in_frame,cryptic site 42 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#3365,PALB2,s3_10,acceptor_gain,0.2582637071609497,23626397,-7,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00001259-a-2#3369,PALB2,s3_10,acceptor_gain,0.2590436339378357,23626439,34,162.0,42.0,in_frame,cryptic site 42 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#3373,PALB2,s3_10,acceptor_loss,0.2859731912612915,23626397,-9,162.0,,in_frame,skipping an exon of 162 bp
+spliceai,urn:mavedb:00001259-a-2#3426,PALB2,s3_10,donor_loss,0.263563871383667,23629204,4,72.0,,in_frame,skipping an exon of 72 bp
+spliceai,urn:mavedb:00001259-a-2#3650,PALB2,s3_10,acceptor_loss,0.2459319829940796,23629275,-6,72.0,,in_frame,skipping an exon of 72 bp
+spliceai,urn:mavedb:00001259-a-2#3655,PALB2,s3_10,acceptor_loss,0.36217308044433594,23629275,-7,72.0,,in_frame,skipping an exon of 72 bp
+spliceai,urn:mavedb:00001259-a-2#3659,PALB2,s3_10,acceptor_loss,0.22178691625595093,23629275,-9,72.0,,in_frame,skipping an exon of 72 bp
+spliceai,urn:mavedb:00001259-a-2#3665,PALB2,s11_50,acceptor_loss,0.23924380540847778,23629275,-11,72.0,,in_frame,skipping an exon of 72 bp
+spliceai,urn:mavedb:00001259-a-2#3705,PALB2,s11_50,acceptor_loss,0.31207913160324097,23629275,-24,72.0,,in_frame,skipping an exon of 72 bp
+spliceai,urn:mavedb:00001259-a-2#3761,PALB2,s3_10,donor_loss,0.7351119518280029,23629640,3,830.0,,out_of_frame,skipping an exon of 830 bp
+spliceai,urn:mavedb:00001259-a-2#3762,PALB2,s3_10,donor_loss,0.4650741219520569,23629640,3,830.0,,out_of_frame,skipping an exon of 830 bp
+spliceai,urn:mavedb:00001259-a-2#3763,PALB2,s3_10,donor_loss,0.8589727878570557,23629640,3,830.0,,out_of_frame,skipping an exon of 830 bp
+spliceai,urn:mavedb:00001259-a-2#5227,PALB2,s3_10,acceptor_gain,0.2533084452152252,23630330,-142,830.0,139.0,out_of_frame,cryptic site 139 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#5352,PALB2,s11_50,donor_gain,0.5598223805427551,23634852,1,1473.0,10.0,out_of_frame,cryptic site 10 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#5372,PALB2,s3_10,donor_loss,0.23505395650863647,23634862,4,1473.0,,in_frame,skipping an exon of 1473 bp
+spliceai,urn:mavedb:00001259-a-2#5373,PALB2,s3_10,donor_loss,0.3883638381958008,23634862,4,1473.0,,in_frame,skipping an exon of 1473 bp
+spliceai,urn:mavedb:00001259-a-2#5374,PALB2,s3_10,donor_loss,0.21323251724243164,23634862,4,1473.0,,in_frame,skipping an exon of 1473 bp
+spliceai,urn:mavedb:00001259-a-2#5375,PALB2,s3_10,donor_loss,0.8446157574653625,23634862,3,1473.0,,in_frame,skipping an exon of 1473 bp
+spliceai,urn:mavedb:00001259-a-2#5377,PALB2,s3_10,donor_loss,0.8878597617149353,23634862,3,1473.0,,in_frame,skipping an exon of 1473 bp
+spliceai,urn:mavedb:00001259-a-2#9639,PALB2,pm12,donor_loss,0.31447792053222656,23638070,2,60.0,,in_frame,skipping an exon of 60 bp
+spliceai,urn:mavedb:00001259-a-2#9827,PALB2,s3_10,acceptor_gain,0.2759016752243042,23638155,21,60.0,26.0,out_of_frame,cryptic site 26 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#9830,PALB2,s3_10,acceptor_gain,0.42283201217651367,23638155,20,60.0,26.0,out_of_frame,cryptic site 26 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#9832,PALB2,s3_10,acceptor_gain,0.23860043287277222,23638155,20,60.0,26.0,out_of_frame,cryptic site 26 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#9839,PALB2,s3_10,acceptor_gain,0.2658725082874298,23638155,17,60.0,26.0,out_of_frame,cryptic site 26 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#9852,PALB2,s11_50,acceptor_gain,0.20664256811141968,23638155,13,60.0,26.0,out_of_frame,cryptic site 26 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#9857,PALB2,s11_50,acceptor_gain,0.23516064882278442,23638155,11,60.0,26.0,out_of_frame,cryptic site 26 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#9859,PALB2,s11_50,acceptor_gain,0.3052825927734375,23638155,11,60.0,26.0,out_of_frame,cryptic site 26 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#9865,PALB2,s11_50,acceptor_gain,0.3912430703639984,23638155,9,60.0,26.0,out_of_frame,cryptic site 26 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#9874,PALB2,s11_50,acceptor_gain,0.692744255065918,23638155,6,60.0,26.0,out_of_frame,cryptic site 26 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00001259-a-2#9932,PALB2,s11_50,donor_gain,0.8893500566482544,23641096,2,201.0,14.0,out_of_frame,cryptic site 14 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#9933,PALB2,s11_50,donor_gain,0.2646002471446991,23641101,7,201.0,9.0,in_frame,cryptic site 9 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#9934,PALB2,s11_50,donor_gain,0.3607513904571533,23641101,7,201.0,9.0,in_frame,cryptic site 9 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#9936,PALB2,s11_50,donor_gain,0.4906121790409088,23641101,6,201.0,9.0,in_frame,cryptic site 9 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#9937,PALB2,s11_50,donor_gain,0.25952205061912537,23641101,6,201.0,9.0,in_frame,cryptic site 9 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#9943,PALB2,s11_50,donor_gain,0.5228701829910278,23641101,4,201.0,9.0,in_frame,cryptic site 9 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#9946,PALB2,s11_50,donor_gain,0.7125195860862732,23641101,3,201.0,9.0,in_frame,cryptic site 9 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#9953,PALB2,s3_10,donor_gain,0.31118836998939514,23641103,2,201.0,7.0,out_of_frame,cryptic site 7 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#9956,PALB2,s3_10,donor_loss,0.22033846378326416,23641127,25,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001259-a-2#9957,PALB2,s3_10,donor_loss,0.2911282777786255,23641127,25,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001259-a-2#9958,PALB2,s3_10,donor_gain,0.8422689437866211,23641101,-1,201.0,9.0,in_frame,cryptic site 9 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#9960,PALB2,s3_10,donor_gain,0.3694680333137512,23641101,-2,201.0,9.0,in_frame,cryptic site 9 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#9961,PALB2,s3_10,donor_gain,0.3441826403141022,23641101,-2,201.0,9.0,in_frame,cryptic site 9 bp from the nearest natural donor
+spliceai,urn:mavedb:00001259-a-2#9969,PALB2,s3_10,donor_loss,0.3368184566497803,23641110,4,201.0,,in_frame,skipping an exon of 201 bp
+spliceai,urn:mavedb:00001259-a-2#9970,PALB2,s3_10,donor_loss,0.20317751169204712,23641127,21,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00001259-a-2#9973,PALB2,s3_10,donor_loss,0.4035568833351135,23641127,20,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#473,RAD51C,s3_10,donor_loss,0.34181439876556396,58692788,-4,187.0,,out_of_frame,skipping an exon of 187 bp
+spliceai,urn:mavedb:00000673-0-1#474,RAD51C,s3_10,donor_loss,0.5042514204978943,58692788,-4,187.0,,out_of_frame,skipping an exon of 187 bp
+spliceai,urn:mavedb:00000673-0-1#475,RAD51C,s3_10,donor_loss,0.3593003451824188,58692788,-4,187.0,,out_of_frame,skipping an exon of 187 bp
+spliceai,urn:mavedb:00000673-0-1#477,RAD51C,s3_10,donor_loss,0.23091447353363037,58692685,-108,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#517,RAD51C,s11_50,donor_gain,0.3208850920200348,58692804,-2,187.0,16.0,out_of_frame,cryptic site 16 bp from the nearest natural donor
+spliceai,urn:mavedb:00000673-0-1#528,RAD51C,s11_50,donor_gain,0.4355400800704956,58692809,-1,187.0,21.0,in_frame,cryptic site 21 bp from the nearest natural donor
+spliceai,urn:mavedb:00000673-0-1#1121,RAD51C,s11_50,acceptor_loss,0.7182790637016296,58720746,16,67.0,,out_of_frame,skipping an exon of 67 bp
+spliceai,urn:mavedb:00000673-0-1#1150,RAD51C,s3_10,acceptor_loss,0.2770136594772339,58720746,6,67.0,,out_of_frame,skipping an exon of 67 bp
+spliceai,urn:mavedb:00000673-0-1#1152,RAD51C,s3_10,acceptor_loss,0.24920016527175903,58720746,6,67.0,,out_of_frame,skipping an exon of 67 bp
+spliceai,urn:mavedb:00000673-0-1#1155,RAD51C,s3_10,acceptor_loss,0.35929977893829346,58720746,5,67.0,,out_of_frame,skipping an exon of 67 bp
+spliceai,urn:mavedb:00000673-0-1#1161,RAD51C,s3_10,acceptor_loss,0.7847042083740234,58720746,3,67.0,,out_of_frame,skipping an exon of 67 bp
+spliceai,urn:mavedb:00000673-0-1#1374,RAD51C,s3_10,acceptor_loss,0.21593642234802246,58720746,-69,67.0,,out_of_frame,skipping an exon of 67 bp
+spliceai,urn:mavedb:00000673-0-1#1393,RAD51C,s3_10,donor_gain,0.9755735993385315,58720816,-5,67.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural donor
+spliceai,urn:mavedb:00000673-0-1#1416,RAD51C,s11_50,donor_gain,0.6435129046440125,58720828,-1,67.0,16.0,out_of_frame,cryptic site 16 bp from the nearest natural donor
+spliceai,urn:mavedb:00000673-0-1#1772,RAD51C,s3_10,acceptor_loss,0.20879876613616943,58694934,13,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#1774,RAD51C,s3_10,acceptor_loss,0.2156948745250702,58694934,13,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#1786,RAD51C,s3_10,acceptor_loss,0.2025049924850464,58694931,6,259.0,,out_of_frame,skipping an exon of 259 bp
+spliceai,urn:mavedb:00000673-0-1#1787,RAD51C,s3_10,acceptor_loss,0.31715911626815796,58694931,5,259.0,,out_of_frame,skipping an exon of 259 bp
+spliceai,urn:mavedb:00000673-0-1#1788,RAD51C,s3_10,acceptor_loss,0.25155335664749146,58694931,5,259.0,,out_of_frame,skipping an exon of 259 bp
+spliceai,urn:mavedb:00000673-0-1#1789,RAD51C,s3_10,acceptor_loss,0.3592824935913086,58694931,5,259.0,,out_of_frame,skipping an exon of 259 bp
+spliceai,urn:mavedb:00000673-0-1#1792,RAD51C,s3_10,acceptor_loss,0.21027350425720215,58694934,7,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#2585,RAD51C,s3_10,donor_gain,0.30566737055778503,58695216,23,259.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000673-0-1#2586,RAD51C,s3_10,donor_loss,0.3750495910644531,58695189,-4,259.0,,out_of_frame,skipping an exon of 259 bp
+spliceai,urn:mavedb:00000673-0-1#2598,RAD51C,s3_10,donor_gain,0.27462783455848694,58695216,19,259.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000673-0-1#4148,RAD51C,s3_10,donor_gain,0.42631080746650696,58696863,-3,167.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural donor
+spliceai,urn:mavedb:00000673-0-1#4167,RAD51C,s11_50,donor_gain,0.35817021131515503,58696867,-5,167.0,8.0,out_of_frame,cryptic site 8 bp from the nearest natural donor
+spliceai,urn:mavedb:00000673-0-1#4893,RAD51C,s3_10,acceptor_loss,0.8355700373649597,58703196,8,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000673-0-1#5382,RAD51C,s11_50,donor_gain,0.4171139895915985,58703351,0,134.0,22.0,out_of_frame,cryptic site 22 bp from the nearest natural donor
+spliceai,urn:mavedb:00000673-0-1#5999,RAD51C,s3_10,acceptor_gain,0.8365939259529114,58709855,1,132.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000673-0-1#6005,RAD51C,s3_10,acceptor_loss,0.29067903757095337,58709859,3,132.0,,in_frame,skipping an exon of 132 bp
+spliceai,urn:mavedb:00000673-0-1#6416,RAD51C,s3_10,donor_loss,0.3561455011367798,58709990,-4,132.0,,in_frame,skipping an exon of 132 bp
+spliceai,urn:mavedb:00000673-0-1#7058,RAD51C,s11_50,donor_loss,0.41198837757110596,58724100,79,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7071,RAD51C,s11_50,donor_loss,0.26585161685943604,58724100,74,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7073,RAD51C,s11_50,donor_loss,0.35312217473983765,58724100,74,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7074,RAD51C,s11_50,donor_loss,0.2037838101387024,58724100,73,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7077,RAD51C,s11_50,donor_loss,0.2710832357406616,58724100,72,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7080,RAD51C,s11_50,donor_loss,0.3187180757522583,58724100,71,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7082,RAD51C,s11_50,donor_loss,0.2607554793357849,58724100,71,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7083,RAD51C,s3_10,donor_loss,0.2720524072647095,58724100,70,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7088,RAD51C,s3_10,donor_loss,0.2508643865585327,58724100,69,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7095,RAD51C,s3_10,donor_loss,0.24481743574142456,58724100,66,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7097,RAD51C,s3_10,donor_loss,0.32673513889312744,58724100,66,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7099,RAD51C,s3_10,donor_loss,0.39143019914627075,58724100,65,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7104,RAD51C,s3_10,donor_loss,0.5544528365135193,58724100,63,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7304,RAD51C,s3_10,donor_loss,0.20844191312789917,58724100,-4,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7305,RAD51C,s3_10,donor_loss,0.44460636377334595,58724100,-4,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7347,RAD51C,s11_50,donor_gain,0.39081352949142456,58724117,-1,61.0,17.0,out_of_frame,cryptic site 17 bp from the nearest natural donor
+spliceai,urn:mavedb:00000673-0-1#7673,RAD51C,s11_50,donor_loss,0.20926034450531006,58732544,72,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7682,RAD51C,s3_10,acceptor_loss,0.23888564109802246,58732481,6,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#7684,RAD51C,s3_10,acceptor_loss,0.37192630767822266,58732481,6,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#7685,RAD51C,s3_10,acceptor_loss,0.35425662994384766,58732481,5,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#7691,RAD51C,s3_10,acceptor_gain,0.22652286291122437,58732481,3,61.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000673-0-1#7692,RAD51C,s3_10,acceptor_loss,0.6826305985450745,58732481,3,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#7693,RAD51C,s3_10,acceptor_gain,0.20083600282669067,58732481,3,61.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000673-0-1#7694,RAD51C,s3_10,acceptor_loss,0.7441058158874512,58732481,2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#7696,RAD51C,s3_10,acceptor_loss,0.7440983057022095,58732481,2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#7697,RAD51C,s3_10,acceptor_loss,0.7441083788871765,58732481,1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#7698,RAD51C,s3_10,acceptor_loss,0.7441062331199646,58732481,1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#7699,RAD51C,s3_10,acceptor_loss,0.7441081404685974,58732481,1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#7900,RAD51C,s3_10,donor_gain,0.2880007326602936,58732548,0,61.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural donor
+spliceai,urn:mavedb:00000673-0-1#7911,RAD51C,s3_10,acceptor_loss,0.409041166305542,58732484,-68,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7913,RAD51C,s3_10,acceptor_loss,0.5112254619598389,58732484,-68,61.0,,out_of_frame,skipping an exon of 61 bp
+spliceai,urn:mavedb:00000673-0-1#7926,RAD51C,s11_50,acceptor_loss,0.3705160617828369,58732481,-76,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000673-0-1#8325,RAD51C,s11_50,acceptor_loss,0.23577535152435303,58734118,21,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8331,RAD51C,s11_50,acceptor_loss,0.3025684356689453,58734118,19,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8337,RAD51C,s11_50,acceptor_loss,0.42737406492233276,58734118,17,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8343,RAD51C,s11_50,acceptor_loss,0.5239478349685669,58734118,15,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8356,RAD51C,s3_10,acceptor_loss,0.29817628860473633,58734118,10,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8358,RAD51C,s3_10,acceptor_loss,0.24659669399261475,58734118,10,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8362,RAD51C,s3_10,acceptor_loss,0.34380078315734863,58734118,8,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8368,RAD51C,s3_10,acceptor_loss,0.5762056112289429,58734118,6,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8369,RAD51C,s3_10,acceptor_loss,0.38196229934692383,58734118,6,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8370,RAD51C,s3_10,acceptor_loss,0.6426559686660767,58734118,6,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8371,RAD51C,s3_10,acceptor_loss,0.6462333798408508,58734118,5,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8372,RAD51C,s3_10,acceptor_loss,0.37970757484436035,58734118,5,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8373,RAD51C,s3_10,acceptor_loss,0.6854310035705566,58734118,5,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8377,RAD51C,s3_10,acceptor_loss,0.6503448486328125,58734118,3,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8378,RAD51C,s3_10,acceptor_loss,0.802905261516571,58734118,3,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000673-0-1#8379,RAD51C,s3_10,acceptor_loss,0.3131340742111206,58734118,3,1494.0,,in_frame,skipping an exon of 1494 bp
+spliceai,urn:mavedb:00000675-a-1#650,VHL,s3_10,donor_loss,0.2845379114151001,10142187,-3,410.0,,out_of_frame,skipping an exon of 410 bp
+spliceai,urn:mavedb:00000675-a-1#651,VHL,s3_10,donor_loss,0.4339863657951355,10142187,-3,410.0,,out_of_frame,skipping an exon of 410 bp
+spliceai,urn:mavedb:00000675-a-1#1091,VHL,s3_10,acceptor_loss,0.29135406017303467,10146514,8,123.0,,in_frame,skipping an exon of 123 bp
+spliceai,urn:mavedb:00000675-a-1#1093,VHL,s3_10,acceptor_loss,0.28095948696136475,10146514,8,123.0,,in_frame,skipping an exon of 123 bp
+spliceai,urn:mavedb:00000675-a-1#1094,VHL,s3_10,acceptor_loss,0.5281116366386414,10146514,7,123.0,,in_frame,skipping an exon of 123 bp
+spliceai,urn:mavedb:00000675-a-1#1095,VHL,s3_10,acceptor_loss,0.4371587932109833,10146514,7,123.0,,in_frame,skipping an exon of 123 bp
+spliceai,urn:mavedb:00000675-a-1#1104,VHL,s3_10,acceptor_loss,0.3940469026565552,10146514,4,123.0,,in_frame,skipping an exon of 123 bp
+spliceai,urn:mavedb:00000675-a-1#1494,VHL,s3_10,acceptor_loss,0.2554546594619751,10146514,-130,123.0,,in_frame,skipping an exon of 123 bp
+spliceai,urn:mavedb:00000675-a-1#1526,VHL,s11_50,acceptor_gain,0.34769219160079956,10149772,2,3881.0,15.0,in_frame,cryptic site 15 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#326,BAP1,pm12,donor_loss,0.5589526295661926,52409842,2,167.0,,out_of_frame,skipping an exon of 167 bp
+spliceai,urn:mavedb:00000662-0-1#332,BAP1,s3_10,donor_gain,0.37473064661026,52409983,145,167.0,141.0,in_frame,cryptic site 141 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#333,BAP1,s3_10,donor_gain,0.24198737740516663,52409983,145,167.0,141.0,in_frame,cryptic site 141 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#342,BAP1,s3_10,donor_gain,0.21937189996242523,52409837,2,167.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#555,BAP1,s3_10,donor_loss,0.3046038746833801,52409714,3,30.0,,in_frame,skipping an exon of 30 bp
+spliceai,urn:mavedb:00000662-0-1#610,BAP1,s11_50,acceptor_gain,0.21028609573841095,52409690,-2,30.0,53.0,out_of_frame,cryptic site 53 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#629,BAP1,s11_50,acceptor_gain,0.7808318138122559,52409630,-1,55.0,22.0,out_of_frame,cryptic site 22 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#631,BAP1,s11_50,acceptor_gain,0.8617413640022278,52409628,-2,55.0,20.0,out_of_frame,cryptic site 20 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#681,BAP1,s3_10,acceptor_gain,0.9363114833831787,52409613,-1,55.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#919,BAP1,s11_50,acceptor_gain,0.6636389493942261,52408629,-2,133.0,23.0,out_of_frame,cryptic site 23 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#1399,BAP1,s3_10,donor_loss,0.4530961215496063,52408546,75,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#1402,BAP1,s3_10,donor_loss,0.2678624391555786,52408546,76,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#1410,BAP1,s3_10,donor_loss,0.2518130838871002,52408546,78,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#1449,BAP1,s11_50,donor_gain,0.48405948281288147,52408460,5,133.0,14.0,out_of_frame,cryptic site 14 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#1500,BAP1,s11_50,acceptor_gain,0.31530946493148804,52408091,-1,120.0,14.0,out_of_frame,cryptic site 14 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#1915,BAP1,s3_10,donor_gain,0.7253921031951904,52407870,-83,120.0,88.0,out_of_frame,cryptic site 88 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#1917,BAP1,s3_10,donor_gain,0.6789047718048096,52407870,-83,120.0,88.0,out_of_frame,cryptic site 88 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#1978,BAP1,s11_50,donor_gain,0.21944788098335266,52407870,-62,120.0,88.0,out_of_frame,cryptic site 88 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#2048,BAP1,s3_10,acceptor_gain,0.23557454347610474,52407511,44,62.0,51.0,in_frame,cryptic site 51 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#2059,BAP1,s3_10,acceptor_gain,0.635399341583252,52407511,48,62.0,51.0,in_frame,cryptic site 51 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#2267,BAP1,s3_10,acceptor_loss,0.38149988651275635,52407460,66,62.0,,out_of_frame,skipping an exon of 62 bp
+spliceai,urn:mavedb:00000662-0-1#2269,BAP1,s3_10,donor_gain,0.2027096450328827,52407397,4,62.0,2.0,out_of_frame,cryptic site 2 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#2913,BAP1,s11_50,acceptor_gain,0.20612283051013947,52406947,16,79.0,40.0,out_of_frame,cryptic site 40 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#2930,BAP1,s11_50,acceptor_gain,0.2112283557653427,52406947,22,79.0,40.0,out_of_frame,cryptic site 40 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#2937,BAP1,s11_50,acceptor_gain,0.3887571692466736,52406947,24,79.0,40.0,out_of_frame,cryptic site 40 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3304,BAP1,s11_50,acceptor_gain,0.21753636002540588,52406395,-2,124.0,19.0,out_of_frame,cryptic site 19 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3330,BAP1,s11_50,acceptor_loss,0.2876031696796417,52406476,87,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#3351,BAP1,s3_10,acceptor_loss,0.3648953437805176,52406476,94,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#3743,BAP1,pm12,donor_gain,0.6057328581809998,52406249,-2,124.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#3752,BAP1,s3_10,donor_gain,0.20978185534477234,52406289,41,124.0,36.0,in_frame,cryptic site 36 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#3818,BAP1,s11_50,acceptor_gain,0.22795984148979187,52405988,52,148.0,76.0,out_of_frame,cryptic site 76 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3821,BAP1,s11_50,acceptor_gain,0.3774530589580536,52405988,53,148.0,76.0,out_of_frame,cryptic site 76 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3824,BAP1,s11_50,acceptor_gain,0.8444979786872864,52405931,-3,148.0,19.0,out_of_frame,cryptic site 19 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3825,BAP1,s11_50,acceptor_gain,0.8642136454582214,52405931,-3,148.0,19.0,out_of_frame,cryptic site 19 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3826,BAP1,s11_50,acceptor_gain,0.26435673236846924,52405988,55,148.0,76.0,out_of_frame,cryptic site 76 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3841,BAP1,s11_50,acceptor_gain,0.719307541847229,52405926,-2,148.0,14.0,out_of_frame,cryptic site 14 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3844,BAP1,s11_50,acceptor_gain,0.8472942113876343,52405925,-2,148.0,13.0,out_of_frame,cryptic site 13 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3856,BAP1,s11_50,acceptor_gain,0.2148110568523407,52405988,65,148.0,76.0,out_of_frame,cryptic site 76 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3857,BAP1,s11_50,acceptor_gain,0.23645269870758057,52405988,65,148.0,76.0,out_of_frame,cryptic site 76 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3864,BAP1,s3_10,acceptor_gain,0.30278900265693665,52405988,67,148.0,76.0,out_of_frame,cryptic site 76 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3868,BAP1,s3_10,acceptor_gain,0.3369334042072296,52405988,69,148.0,76.0,out_of_frame,cryptic site 76 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3869,BAP1,s3_10,acceptor_gain,0.39485278725624084,52405988,69,148.0,76.0,out_of_frame,cryptic site 76 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3873,BAP1,s3_10,acceptor_gain,0.22386139631271362,52405988,70,148.0,76.0,out_of_frame,cryptic site 76 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#3880,BAP1,s3_10,acceptor_gain,0.27845901250839233,52405988,73,148.0,76.0,out_of_frame,cryptic site 76 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#4356,BAP1,s3_10,donor_gain,0.25919076800346375,52405759,2,148.0,6.0,in_frame,cryptic site 6 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#4399,BAP1,s11_50,acceptor_gain,0.3583958148956299,52405294,-23,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000662-0-1#4401,BAP1,s11_50,acceptor_gain,0.21153849363327026,52405294,-23,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000662-0-1#4405,BAP1,s11_50,acceptor_loss,0.34337109327316284,52405294,-21,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4411,BAP1,s11_50,acceptor_loss,0.25643107295036316,52405294,-19,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4412,BAP1,s11_50,acceptor_loss,0.26160547137260437,52405294,-19,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4417,BAP1,s11_50,acceptor_loss,0.2979578673839569,52405294,-17,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4418,BAP1,s11_50,acceptor_loss,0.21952790021896362,52405294,-17,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4419,BAP1,s11_50,acceptor_loss,0.347263902425766,52405294,-17,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4420,BAP1,s11_50,acceptor_loss,0.2982005774974823,52405294,-16,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4421,BAP1,s11_50,acceptor_loss,0.21435341238975525,52405294,-16,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4422,BAP1,s11_50,acceptor_loss,0.24022004008293152,52405294,-16,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4426,BAP1,s11_50,acceptor_loss,0.3217446804046631,52405294,-14,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4427,BAP1,s11_50,acceptor_loss,0.2702022194862366,52405294,-14,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4428,BAP1,s11_50,acceptor_loss,0.3711623549461365,52405294,-14,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4431,BAP1,s11_50,acceptor_loss,0.3141079246997833,52405294,-13,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4434,BAP1,s11_50,acceptor_gain,0.29272735118865967,52405294,-12,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000662-0-1#4435,BAP1,s11_50,acceptor_loss,0.2231135070323944,52405294,-11,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4436,BAP1,s11_50,acceptor_loss,0.28783226013183594,52405294,-11,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4437,BAP1,s11_50,acceptor_gain,0.20894747972488403,52405294,-11,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000662-0-1#4440,BAP1,s3_10,acceptor_gain,0.23796463012695312,52405294,-10,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000662-0-1#4442,BAP1,s3_10,acceptor_loss,0.21474790573120117,52405294,-9,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4444,BAP1,s3_10,acceptor_loss,0.507982611656189,52405294,-8,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4446,BAP1,s3_10,acceptor_loss,0.27231600880622864,52405294,-8,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4449,BAP1,s3_10,acceptor_gain,0.2663213610649109,52405294,-7,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000662-0-1#4452,BAP1,s3_10,acceptor_loss,0.3383937478065491,52405294,-6,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#4455,BAP1,s3_10,acceptor_gain,0.38397568464279175,52405294,-5,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000662-0-1#4456,BAP1,s3_10,acceptor_gain,0.22532248497009277,52405294,-4,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000662-0-1#4458,BAP1,s3_10,acceptor_gain,0.23325049877166748,52405294,-4,,,undetermined,gain predicted at the natural site itself
+spliceai,urn:mavedb:00000662-0-1#5032,BAP1,s3_10,donor_loss,0.34542426466941833,52405110,4,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#5033,BAP1,s3_10,donor_loss,0.4040526747703552,52405110,4,185.0,,out_of_frame,skipping an exon of 185 bp
+spliceai,urn:mavedb:00000662-0-1#5108,BAP1,s11_50,acceptor_gain,0.21005821228027344,52404607,-1,134.0,21.0,in_frame,cryptic site 21 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#5128,BAP1,s11_50,acceptor_gain,0.7816258668899536,52404599,-2,134.0,13.0,out_of_frame,cryptic site 13 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#5131,BAP1,s11_50,acceptor_gain,0.759316623210907,52404598,-2,134.0,12.0,in_frame,cryptic site 12 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#5149,BAP1,s3_10,acceptor_gain,0.9866510629653931,52404592,-2,134.0,6.0,in_frame,cryptic site 6 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#5160,BAP1,s3_10,acceptor_loss,0.26551303267478943,52404583,-8,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#5161,BAP1,s3_10,acceptor_loss,0.2711942791938782,52404583,-7,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#5162,BAP1,s3_10,acceptor_loss,0.32884591817855835,52404583,-7,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#5165,BAP1,s3_10,acceptor_gain,0.3278259038925171,52404579,-10,134.0,7.0,out_of_frame,cryptic site 7 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#5167,BAP1,pm12,acceptor_loss,0.9977487921714783,52404586,-2,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5168,BAP1,pm12,acceptor_loss,0.9970807433128357,52404586,-2,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5169,BAP1,pm12,acceptor_loss,0.9977618455886841,52404586,-2,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5171,BAP1,pm12,acceptor_loss,0.9960172772407532,52404586,-1,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5172,BAP1,pm12,acceptor_loss,0.9979116916656494,52404586,-1,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5575,BAP1,pm12,donor_loss,0.9962978959083557,52404453,1,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5576,BAP1,pm12,donor_loss,0.9964908361434937,52404453,1,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5577,BAP1,pm12,donor_loss,0.9962157607078552,52404453,1,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5578,BAP1,pm12,donor_loss,0.9963192343711853,52404453,2,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5579,BAP1,pm12,donor_loss,0.9797365069389343,52404453,2,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5580,BAP1,pm12,donor_loss,0.9962111115455627,52404453,2,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5584,BAP1,s3_10,donor_gain,0.4302749037742615,52404426,-23,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5585,BAP1,s3_10,donor_gain,0.4524522125720978,52404426,-23,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5586,BAP1,s3_10,donor_gain,0.407998263835907,52404426,-23,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5587,BAP1,s3_10,donor_gain,0.5120354890823364,52404426,-22,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5588,BAP1,s3_10,donor_loss,0.5863814949989319,52404453,5,134.0,,out_of_frame,skipping an exon of 134 bp
+spliceai,urn:mavedb:00000662-0-1#5589,BAP1,s3_10,donor_gain,0.4991223216056824,52404426,-22,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5606,BAP1,s11_50,donor_gain,0.44305741786956787,52404443,1,134.0,10.0,out_of_frame,cryptic site 10 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5618,BAP1,s11_50,donor_gain,0.46899500489234924,52404439,1,134.0,14.0,out_of_frame,cryptic site 14 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5662,BAP1,s11_50,donor_gain,0.9108980298042297,52404426,3,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5664,BAP1,s11_50,donor_gain,0.248490571975708,52404426,3,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5666,BAP1,s11_50,donor_gain,0.26844874024391174,52404423,1,134.0,30.0,in_frame,cryptic site 30 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5668,BAP1,s11_50,donor_gain,0.39561915397644043,52404419,-2,134.0,34.0,out_of_frame,cryptic site 34 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5669,BAP1,s11_50,donor_gain,0.3197488784790039,52404419,-2,134.0,34.0,out_of_frame,cryptic site 34 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5670,BAP1,s11_50,donor_gain,0.8559063673019409,52404426,5,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5671,BAP1,s11_50,donor_gain,0.21463707089424133,52404426,6,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5673,BAP1,s11_50,donor_gain,0.2527458667755127,52404426,6,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5675,BAP1,s11_50,donor_gain,0.26654982566833496,52404426,7,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5676,BAP1,s11_50,donor_gain,0.25803783535957336,52404426,7,134.0,27.0,in_frame,cryptic site 27 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5683,BAP1,s11_50,donor_gain,0.49664872884750366,52404419,3,134.0,34.0,out_of_frame,cryptic site 34 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5686,BAP1,s11_50,donor_gain,0.2255675345659256,52404419,4,134.0,34.0,out_of_frame,cryptic site 34 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5691,BAP1,s11_50,donor_gain,0.8010347485542297,52404419,5,134.0,34.0,out_of_frame,cryptic site 34 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#5748,BAP1,s11_50,acceptor_gain,0.6420425176620483,52403911,-1,479.0,17.0,out_of_frame,cryptic site 17 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#5767,BAP1,s11_50,acceptor_gain,0.9094054698944092,52403903,-2,479.0,9.0,in_frame,cryptic site 9 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#7226,BAP1,s3_10,acceptor_loss,0.2540886700153351,52403557,144,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7233,BAP1,s3_10,acceptor_loss,0.3449234366416931,52403557,146,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7291,BAP1,s11_50,acceptor_gain,0.6949062347412109,52403312,-2,161.0,14.0,out_of_frame,cryptic site 14 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#7330,BAP1,s3_10,acceptor_gain,0.5419095754623413,52403296,-5,161.0,2.0,out_of_frame,cryptic site 2 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#7332,BAP1,s3_10,acceptor_gain,0.20454129576683044,52403296,-5,161.0,2.0,out_of_frame,cryptic site 2 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#7826,BAP1,pm12,donor_loss,0.9097161293029785,52403138,2,161.0,,out_of_frame,skipping an exon of 161 bp
+spliceai,urn:mavedb:00000662-0-1#7827,BAP1,pm12,donor_loss,0.9926369190216064,52403138,2,161.0,,out_of_frame,skipping an exon of 161 bp
+spliceai,urn:mavedb:00000662-0-1#7829,BAP1,s3_10,donor_gain,0.6873248219490051,52403183,48,161.0,45.0,in_frame,cryptic site 45 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#7830,BAP1,s3_10,donor_gain,0.6264811158180237,52403183,48,161.0,45.0,in_frame,cryptic site 45 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#7831,BAP1,s3_10,donor_gain,0.7044126987457275,52403183,49,161.0,45.0,in_frame,cryptic site 45 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#7832,BAP1,s3_10,donor_gain,0.7341247797012329,52403183,49,161.0,45.0,in_frame,cryptic site 45 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#7833,BAP1,s3_10,donor_gain,0.7724047899246216,52403183,49,161.0,45.0,in_frame,cryptic site 45 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#7834,BAP1,s3_10,donor_gain,0.7229430675506592,52403183,50,161.0,45.0,in_frame,cryptic site 45 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#7835,BAP1,s3_10,donor_gain,0.7496998906135559,52403183,50,161.0,45.0,in_frame,cryptic site 45 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#7836,BAP1,s3_10,donor_gain,0.7185662388801575,52403183,50,161.0,45.0,in_frame,cryptic site 45 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#7884,BAP1,s11_50,acceptor_loss,0.2153422236442566,52402940,39,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7885,BAP1,s11_50,acceptor_loss,0.2674357295036316,52402940,40,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7893,BAP1,s11_50,acceptor_loss,0.21960103511810303,52402940,42,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7896,BAP1,s11_50,acceptor_loss,0.459112286567688,52402940,43,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7897,BAP1,s11_50,acceptor_loss,0.23225677013397217,52402940,44,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7898,BAP1,s11_50,acceptor_loss,0.35417652130126953,52402940,44,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7899,BAP1,s11_50,acceptor_loss,0.36565208435058594,52402940,44,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7915,BAP1,s11_50,acceptor_loss,0.23236989974975586,52402940,50,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7917,BAP1,s11_50,acceptor_loss,0.37314295768737793,52402940,50,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7929,BAP1,s11_50,acceptor_loss,0.4734753370285034,52402940,54,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7932,BAP1,s11_50,acceptor_loss,0.35747069120407104,52402940,55,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7937,BAP1,s11_50,acceptor_loss,0.2290228009223938,52402940,57,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7938,BAP1,s11_50,acceptor_loss,0.6006213426589966,52402940,57,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7939,BAP1,s11_50,acceptor_loss,0.20226627588272095,52402871,-11,93.0,,in_frame,skipping an exon of 93 bp
+spliceai,urn:mavedb:00000662-0-1#7941,BAP1,s11_50,acceptor_loss,0.5812247395515442,52402940,58,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7944,BAP1,s3_10,acceptor_loss,0.4270767867565155,52402940,59,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#7957,BAP1,s3_10,acceptor_gain,0.9632989764213562,52402874,-2,93.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#7959,BAP1,s3_10,acceptor_loss,0.532296895980835,52402940,64,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8266,BAP1,s3_10,acceptor_loss,0.21004065871238708,52402692,-81,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8268,BAP1,s3_10,donor_gain,0.3422508239746094,52402803,30,93.0,24.0,in_frame,cryptic site 24 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#8277,BAP1,s3_10,donor_gain,0.8330535888671875,52402775,5,93.0,4.0,out_of_frame,cryptic site 4 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#8326,BAP1,s11_50,acceptor_loss,0.35733839869499207,52402692,-7,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8335,BAP1,s11_50,acceptor_loss,0.41334623098373413,52402692,-4,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8338,BAP1,s11_50,acceptor_loss,0.41676804423332214,52402692,-3,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8339,BAP1,s11_50,acceptor_loss,0.48480653762817383,52402692,-3,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8341,BAP1,s11_50,acceptor_loss,0.4957352876663208,52402692,-2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8342,BAP1,s11_50,acceptor_loss,0.4957104027271271,52402692,-2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8343,BAP1,s11_50,acceptor_loss,0.49576860666275024,52402692,-2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8344,BAP1,s11_50,acceptor_loss,0.49576377868652344,52402692,-1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8345,BAP1,s11_50,acceptor_loss,0.49576786160469055,52402692,-1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8346,BAP1,s11_50,acceptor_loss,0.49576902389526367,52402692,-1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+spliceai,urn:mavedb:00000662-0-1#8631,BAP1,s3_10,donor_gain,0.4186398983001709,52402600,2,73.0,2.0,out_of_frame,cryptic site 2 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#8640,BAP1,s3_10,donor_gain,0.22363287210464478,52402597,2,73.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#8643,BAP1,s3_10,donor_gain,0.7096226215362549,52402596,2,73.0,6.0,in_frame,cryptic site 6 bp from the nearest natural donor
+spliceai,urn:mavedb:00000662-0-1#8704,BAP1,s11_50,acceptor_gain,0.3924430310726166,52402440,-3,1414.0,19.0,out_of_frame,cryptic site 19 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#8706,BAP1,s11_50,acceptor_gain,0.45416054129600525,52402440,-3,1414.0,19.0,out_of_frame,cryptic site 19 bp from the nearest natural acceptor
+spliceai,urn:mavedb:00000662-0-1#8755,BAP1,s3_10,acceptor_gain,0.9959568381309509,52402424,-2,1414.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor
+pangolin,urn:mavedb:00000097-0-2#110,BRCA1,s11_50,gain,0.20999999344348907,43047628,0,61.0,75.0,in_frame,"cryptic site, both readings agree (acceptor 75 bp -> in_frame, donor 15 bp -> in_frame)"
+pangolin,urn:mavedb:00000097-0-2#126,BRCA1,s3_10,gain,0.6200000047683716,43047638,5,61.0,65.0,out_of_frame,"cryptic site, both readings agree (acceptor 65 bp -> out_of_frame, donor 5 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000097-0-2#141,BRCA1,s3_10,loss,0.41999998688697815,43047643,5,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000097-0-2#143,BRCA1,s3_10,loss,0.6100000143051147,43047643,4,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000097-0-2#146,BRCA1,s3_10,loss,0.5,43047643,3,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000097-0-2#318,BRCA1,s11_50,gain,0.8899999856948853,43047712,-2,61.0,9.0,in_frame,"cryptic site, both readings agree (acceptor 9 bp -> in_frame, donor 69 bp -> in_frame)"
+pangolin,urn:mavedb:00000097-0-2#320,BRCA1,s11_50,loss,0.25999999046325684,43047703,-12,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000097-0-2#327,BRCA1,s11_50,loss,0.3499999940395355,43047703,-14,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000097-0-2#369,BRCA1,s3_10,loss,0.4099999964237213,43049121,4,74.0,,out_of_frame,skipping an exon of 74 bp
+pangolin,urn:mavedb:00000097-0-2#924,BRCA1,s3_10,loss,0.4399999976158142,43047703,-5,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000097-0-2#935,BRCA1,s3_10,gain,0.5799999833106995,43047709,-2,61.0,6.0,in_frame,"cryptic site, both readings agree (acceptor 6 bp -> in_frame, donor 66 bp -> in_frame)"
+pangolin,urn:mavedb:00000097-0-2#1138,BRCA1,s3_10,loss,0.33000001311302185,43057052,3,84.0,,in_frame,skipping an exon of 84 bp
+pangolin,urn:mavedb:00000097-0-2#1496,BRCA1,s3_10,loss,0.3100000023841858,43063333,5,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1497,BRCA1,s3_10,loss,0.33000001311302185,43063333,5,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1498,BRCA1,s3_10,loss,0.27000001072883606,43063333,5,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1504,BRCA1,s3_10,loss,0.23999999463558197,43063333,3,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1506,BRCA1,pm12,loss,0.4099999964237213,43063333,2,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1594,BRCA1,s3_10,loss,0.6399999856948853,43063373,-3,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1596,BRCA1,s3_10,loss,0.20000000298023224,43063333,-43,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1612,BRCA1,s3_10,loss,0.5099999904632568,43063333,-49,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1663,BRCA1,s11_50,loss,0.4099999964237213,43063373,-26,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1737,BRCA1,s11_50,loss,0.4000000059604645,43063373,-26,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1738,BRCA1,s11_50,loss,0.4300000071525574,43063373,-26,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1742,BRCA1,s11_50,loss,0.4099999964237213,43063373,-28,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#1743,BRCA1,s11_50,loss,0.23000000417232513,43063373,-28,41.0,,out_of_frame,skipping an exon of 41 bp
+pangolin,urn:mavedb:00000097-0-2#2047,BRCA1,s3_10,loss,0.2800000011920929,43063951,-3,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#2058,BRCA1,s3_10,loss,0.2800000011920929,43063951,-6,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#2061,BRCA1,s3_10,loss,0.41999998688697815,43063951,-7,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#2064,BRCA1,s3_10,loss,0.2199999988079071,43063951,-8,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#2296,BRCA1,pm12,loss,0.8299999833106995,43067695,-2,88.0,,out_of_frame,skipping an exon of 88 bp
+pangolin,urn:mavedb:00000097-0-2#2321,BRCA1,s3_10,loss,0.28999999165534973,43067695,-10,88.0,,out_of_frame,skipping an exon of 88 bp
+pangolin,urn:mavedb:00000097-0-2#2595,BRCA1,s3_10,loss,0.25,43104868,8,89.0,,out_of_frame,skipping an exon of 89 bp
+pangolin,urn:mavedb:00000097-0-2#2855,BRCA1,s3_10,loss,0.25,43104956,-3,89.0,,out_of_frame,skipping an exon of 89 bp
+pangolin,urn:mavedb:00000097-0-2#2873,BRCA1,s3_10,loss,0.27000001072883606,43104956,-9,89.0,,out_of_frame,skipping an exon of 89 bp
+pangolin,urn:mavedb:00000097-0-2#2875,BRCA1,s3_10,loss,0.30000001192092896,43104956,-9,89.0,,out_of_frame,skipping an exon of 89 bp
+pangolin,urn:mavedb:00000097-0-2#2876,BRCA1,s3_10,loss,0.3499999940395355,43104956,-10,89.0,,out_of_frame,skipping an exon of 89 bp
+pangolin,urn:mavedb:00000097-0-2#2878,BRCA1,s3_10,loss,0.3400000035762787,43104956,-10,89.0,,out_of_frame,skipping an exon of 89 bp
+pangolin,urn:mavedb:00000097-0-2#2895,BRCA1,s3_10,loss,0.49000000953674316,43106478,27,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000097-0-2#2897,BRCA1,s3_10,loss,0.28999999165534973,43106456,4,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#2899,BRCA1,s3_10,loss,0.36000001430511475,43106478,26,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000097-0-2#3135,BRCA1,s3_10,loss,0.5099999904632568,43106533,-3,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#3139,BRCA1,s3_10,loss,0.4099999964237213,43106533,-5,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#3141,BRCA1,s3_10,loss,0.3199999928474426,43106533,-5,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#3142,BRCA1,s3_10,loss,0.47999998927116394,43106533,-6,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#3144,BRCA1,s3_10,loss,0.47999998927116394,43106533,-6,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#3160,BRCA1,s11_50,loss,0.2800000011920929,43106533,-12,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#3162,BRCA1,s11_50,loss,0.36000001430511475,43106533,-12,78.0,,in_frame,skipping an exon of 78 bp
+pangolin,urn:mavedb:00000097-0-2#3219,BRCA1,s3_10,loss,0.25,43115726,4,54.0,,in_frame,skipping an exon of 54 bp
+pangolin,urn:mavedb:00000097-0-2#3220,BRCA1,s3_10,loss,0.23000000417232513,43115726,4,54.0,,in_frame,skipping an exon of 54 bp
+pangolin,urn:mavedb:00000097-0-2#3368,BRCA1,s3_10,loss,0.6000000238418579,43115779,-3,54.0,,in_frame,skipping an exon of 54 bp
+pangolin,urn:mavedb:00000097-0-2#3433,BRCA1,s3_10,loss,0.44999998807907104,43124017,4,99.0,,in_frame,skipping an exon of 99 bp
+pangolin,urn:mavedb:00000097-0-2#3879,BRCA1,pm12,loss,0.8500000238418579,43124115,-1,99.0,,in_frame,skipping an exon of 99 bp
+pangolin,urn:mavedb:00000097-0-2#3880,BRCA1,pm12,loss,0.8500000238418579,43124115,-1,99.0,,in_frame,skipping an exon of 99 bp
+pangolin,urn:mavedb:00000097-0-2#3882,BRCA1,pm12,loss,0.8500000238418579,43124115,-2,99.0,,in_frame,skipping an exon of 99 bp
+pangolin,urn:mavedb:00000097-0-2#3883,BRCA1,pm12,gain,0.8600000143051147,43124116,-1,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 1 bp -> out_of_frame, donor 99 bp -> in_frame)"
+pangolin,urn:mavedb:00000097-0-2#3884,BRCA1,pm12,loss,0.8500000238418579,43124115,-2,99.0,,in_frame,skipping an exon of 99 bp
+pangolin,urn:mavedb:00000097-0-2#3886,BRCA1,s3_10,gain,0.8600000143051147,43124117,-1,99.0,2.0,out_of_frame,"cryptic site, both readings agree (acceptor 2 bp -> out_of_frame, donor 100 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001225-a-1#1,BRCA2,s3_10,loss,0.23000000417232513,32356428,10,182.0,,out_of_frame,skipping an exon of 182 bp
+pangolin,urn:mavedb:00001225-a-1#7,BRCA2,s3_10,loss,0.25,32356428,8,182.0,,out_of_frame,skipping an exon of 182 bp
+pangolin,urn:mavedb:00001225-a-1#10,BRCA2,s3_10,loss,0.23000000417232513,32356428,7,182.0,,out_of_frame,skipping an exon of 182 bp
+pangolin,urn:mavedb:00001225-a-1#15,BRCA2,s3_10,loss,0.23999999463558197,32356428,6,182.0,,out_of_frame,skipping an exon of 182 bp
+pangolin,urn:mavedb:00001225-a-1#22,BRCA2,s3_10,loss,0.3799999952316284,32356428,3,182.0,,out_of_frame,skipping an exon of 182 bp
+pangolin,urn:mavedb:00001225-a-1#25,BRCA2,pm12,loss,0.8600000143051147,32356428,2,182.0,,out_of_frame,skipping an exon of 182 bp
+pangolin,urn:mavedb:00001225-a-1#572,BRCA2,pm12,loss,0.7099999785423279,32356609,-2,182.0,,out_of_frame,skipping an exon of 182 bp
+pangolin,urn:mavedb:00001225-a-1#574,BRCA2,s3_10,loss,0.25999999046325684,32356609,-3,182.0,,out_of_frame,skipping an exon of 182 bp
+pangolin,urn:mavedb:00001225-a-1#607,BRCA2,s3_10,gain,0.8600000143051147,32357737,2,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 5 bp -> out_of_frame, donor 192 bp -> in_frame)"
+pangolin,urn:mavedb:00001225-a-1#621,BRCA2,s3_10,loss,0.6600000262260437,32357742,3,188.0,,out_of_frame,skipping an exon of 188 bp
+pangolin,urn:mavedb:00001225-a-1#1190,BRCA2,s3_10,loss,0.47999998927116394,32357929,-3,188.0,,out_of_frame,skipping an exon of 188 bp
+pangolin,urn:mavedb:00001225-a-1#1216,BRCA2,s3_10,loss,0.28999999165534973,32362523,9,171.0,,in_frame,skipping an exon of 171 bp
+pangolin,urn:mavedb:00001225-a-1#1217,BRCA2,s3_10,loss,0.23999999463558197,32362523,9,171.0,,in_frame,skipping an exon of 171 bp
+pangolin,urn:mavedb:00001225-a-1#1219,BRCA2,s3_10,loss,0.25999999046325684,32362523,8,171.0,,in_frame,skipping an exon of 171 bp
+pangolin,urn:mavedb:00001225-a-1#1221,BRCA2,s3_10,loss,0.2199999988079071,32362523,8,171.0,,in_frame,skipping an exon of 171 bp
+pangolin,urn:mavedb:00001225-a-1#1230,BRCA2,s3_10,loss,0.4300000071525574,32362523,5,171.0,,in_frame,skipping an exon of 171 bp
+pangolin,urn:mavedb:00001225-a-1#1234,BRCA2,s3_10,loss,0.3799999952316284,32362523,3,171.0,,in_frame,skipping an exon of 171 bp
+pangolin,urn:mavedb:00001225-a-1#1754,BRCA2,s3_10,loss,0.3700000047683716,32362693,-3,171.0,,in_frame,skipping an exon of 171 bp
+pangolin,urn:mavedb:00001225-a-1#1763,BRCA2,s3_10,loss,0.5199999809265137,32362693,-6,171.0,,in_frame,skipping an exon of 171 bp
+pangolin,urn:mavedb:00001225-a-1#1764,BRCA2,s3_10,loss,0.5899999737739563,32362693,-6,171.0,,in_frame,skipping an exon of 171 bp
+pangolin,urn:mavedb:00001225-a-1#1786,BRCA2,s3_10,gain,0.8700000047683716,32363173,1,355.0,6.0,in_frame,"cryptic site, both readings agree (acceptor 6 bp -> in_frame, donor 360 bp -> in_frame)"
+pangolin,urn:mavedb:00001225-a-1#2868,BRCA2,s3_10,loss,0.6899999976158142,32363533,-3,355.0,,out_of_frame,skipping an exon of 355 bp
+pangolin,urn:mavedb:00001225-a-1#2869,BRCA2,s3_10,loss,0.23999999463558197,32363533,-3,355.0,,out_of_frame,skipping an exon of 355 bp
+pangolin,urn:mavedb:00001225-a-1#2870,BRCA2,s3_10,loss,0.6499999761581421,32363533,-3,355.0,,out_of_frame,skipping an exon of 355 bp
+pangolin,urn:mavedb:00001225-a-1#2872,BRCA2,s3_10,loss,0.27000001072883606,32363533,-4,355.0,,out_of_frame,skipping an exon of 355 bp
+pangolin,urn:mavedb:00001225-a-1#3387,BRCA2,s3_10,loss,0.6800000071525574,32370557,-3,156.0,,in_frame,skipping an exon of 156 bp
+pangolin,urn:mavedb:00001225-a-1#3393,BRCA2,s3_10,loss,0.20000000298023224,32370557,-5,156.0,,in_frame,skipping an exon of 156 bp
+pangolin,urn:mavedb:00001225-a-1#3432,BRCA2,s3_10,loss,0.23000000417232513,32370956,3,145.0,,out_of_frame,skipping an exon of 145 bp
+pangolin,urn:mavedb:00001225-a-1#3874,BRCA2,s3_10,loss,0.27000001072883606,32371100,-3,145.0,,out_of_frame,skipping an exon of 145 bp
+pangolin,urn:mavedb:00001225-a-1#3920,BRCA2,s3_10,loss,0.5699999928474426,32376670,3,122.0,,out_of_frame,skipping an exon of 122 bp
+pangolin,urn:mavedb:00001225-a-1#4296,BRCA2,pm12,loss,0.8500000238418579,32376791,-2,122.0,,out_of_frame,skipping an exon of 122 bp
+pangolin,urn:mavedb:00001225-a-1#4315,BRCA2,s3_10,gain,0.28999999165534973,32376799,0,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 129 bp -> in_frame, donor 8 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001225-a-1#4321,BRCA2,s3_10,gain,0.20000000298023224,32376837,36,122.0,167.0,out_of_frame,"cryptic site, both readings agree (acceptor 167 bp -> out_of_frame, donor 46 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001225-a-1#4324,BRCA2,s3_10,gain,0.8299999833106995,32379308,1,199.0,9.0,in_frame,"cryptic site, both readings agree (acceptor 9 bp -> in_frame, donor 207 bp -> in_frame)"
+pangolin,urn:mavedb:00001225-a-1#4344,BRCA2,s3_10,loss,0.46000000834465027,32379317,3,199.0,,out_of_frame,skipping an exon of 199 bp
+pangolin,urn:mavedb:00001225-a-1#4945,BRCA2,pm12,gain,0.4699999988079071,32379519,2,199.0,202.0,out_of_frame,"cryptic site, both readings agree (acceptor 202 bp -> out_of_frame, donor 4 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001225-a-1#4974,BRCA2,s3_10,loss,0.3400000035762787,32379750,9,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#4977,BRCA2,s3_10,loss,0.28999999165534973,32379750,8,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#4978,BRCA2,s3_10,loss,0.28999999165534973,32379750,8,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#4980,BRCA2,s3_10,loss,0.2800000011920929,32379750,7,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#4989,BRCA2,s3_10,loss,0.20000000298023224,32379750,4,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#4990,BRCA2,s3_10,loss,0.28999999165534973,32379750,4,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#4991,BRCA2,s3_10,loss,0.36000001430511475,32379750,4,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#4992,BRCA2,s3_10,loss,0.6100000143051147,32379750,3,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#4994,BRCA2,s3_10,loss,0.3199999928474426,32379750,3,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#5000,BRCA2,pm12,loss,0.7099999785423279,32379750,1,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#5484,BRCA2,pm12,loss,0.7799999713897705,32379913,-1,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#5486,BRCA2,pm12,loss,0.7900000214576721,32379913,-1,164.0,,out_of_frame,skipping an exon of 164 bp
+pangolin,urn:mavedb:00001225-a-1#5514,BRCA2,s3_10,gain,0.20999999344348907,32380031,34,139.0,24.0,in_frame,"cryptic site, both readings agree (acceptor 24 bp -> in_frame, donor 114 bp -> in_frame)"
+pangolin,urn:mavedb:00001225-a-1#5520,BRCA2,s3_10,gain,0.25999999046325684,32380031,32,139.0,24.0,in_frame,"cryptic site, both readings agree (acceptor 24 bp -> in_frame, donor 114 bp -> in_frame)"
+pangolin,urn:mavedb:00001225-a-1#5523,BRCA2,s3_10,gain,0.25999999046325684,32380031,31,139.0,24.0,in_frame,"cryptic site, both readings agree (acceptor 24 bp -> in_frame, donor 114 bp -> in_frame)"
+pangolin,urn:mavedb:00001225-a-1#5531,BRCA2,s3_10,gain,0.2199999988079071,32380031,29,139.0,24.0,in_frame,"cryptic site, both readings agree (acceptor 24 bp -> in_frame, donor 114 bp -> in_frame)"
+pangolin,urn:mavedb:00001225-a-1#5535,BRCA2,s3_10,gain,0.4699999988079071,32380031,27,139.0,24.0,in_frame,"cryptic site, both readings agree (acceptor 24 bp -> in_frame, donor 114 bp -> in_frame)"
+pangolin,urn:mavedb:00001225-a-1#5958,BRCA2,s3_10,loss,0.36000001430511475,32380145,-3,139.0,,out_of_frame,skipping an exon of 139 bp
+pangolin,urn:mavedb:00001225-a-1#5960,BRCA2,s3_10,loss,0.3499999940395355,32380145,-3,139.0,,out_of_frame,skipping an exon of 139 bp
+pangolin,urn:mavedb:00001225-a-1#6733,BRCA2,pm12,loss,0.7400000095367432,32394933,-2,245.0,,out_of_frame,skipping an exon of 245 bp
+pangolin,urn:mavedb:00001225-a-1#6735,BRCA2,s3_10,loss,0.5699999928474426,32394933,-3,245.0,,out_of_frame,skipping an exon of 245 bp
+pangolin,urn:mavedb:00001225-a-1#6737,BRCA2,s3_10,loss,0.5199999809265137,32394933,-3,245.0,,out_of_frame,skipping an exon of 245 bp
+pangolin,urn:mavedb:00001225-a-1#6764,BRCA2,s3_10,loss,0.7799999713897705,32396898,9,147.0,,in_frame,skipping an exon of 147 bp
+pangolin,urn:mavedb:00001225-a-1#6780,BRCA2,s3_10,loss,0.3499999940395355,32396898,3,147.0,,in_frame,skipping an exon of 147 bp
+pangolin,urn:mavedb:00001225-a-1#6784,BRCA2,pm12,loss,0.8700000047683716,32396898,2,147.0,,in_frame,skipping an exon of 147 bp
+pangolin,urn:mavedb:00001225-a-1#6785,BRCA2,pm12,loss,0.8700000047683716,32396898,2,147.0,,in_frame,skipping an exon of 147 bp
+pangolin,urn:mavedb:00001225-a-1#6786,BRCA2,pm12,loss,0.8700000047683716,32396898,1,147.0,,in_frame,skipping an exon of 147 bp
+pangolin,urn:mavedb:00001225-a-1#6787,BRCA2,pm12,loss,0.8700000047683716,32396898,1,147.0,,in_frame,skipping an exon of 147 bp
+pangolin,urn:mavedb:00001250-a-2#1073,BARD1,s3_10,loss,0.3799999952316284,214729008,-3,3363.0,,in_frame,skipping an exon of 3363 bp
+pangolin,urn:mavedb:00001250-a-2#1090,BARD1,s3_10,gain,0.8700000047683716,214729016,-1,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 8 bp -> out_of_frame, donor 1395 bp -> in_frame)"
+pangolin,urn:mavedb:00001250-a-2#1117,BARD1,s11_50,gain,0.23000000417232513,214730317,-44,98.0,191.0,out_of_frame,"cryptic site, both readings agree (acceptor 191 bp -> out_of_frame, donor 94 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001250-a-2#1123,BARD1,s11_50,gain,0.25,214730317,-47,98.0,191.0,out_of_frame,"cryptic site, both readings agree (acceptor 191 bp -> out_of_frame, donor 94 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001250-a-2#1181,BARD1,s11_50,loss,0.2199999988079071,214730411,28,98.0,,out_of_frame,skipping an exon of 98 bp
+pangolin,urn:mavedb:00001250-a-2#1216,BARD1,s11_50,loss,0.23000000417232513,214730411,16,98.0,,out_of_frame,skipping an exon of 98 bp
+pangolin,urn:mavedb:00001250-a-2#1220,BARD1,s11_50,loss,0.20000000298023224,214730411,15,98.0,,out_of_frame,skipping an exon of 98 bp
+pangolin,urn:mavedb:00001250-a-2#1225,BARD1,s11_50,loss,0.25,214730411,13,98.0,,out_of_frame,skipping an exon of 98 bp
+pangolin,urn:mavedb:00001250-a-2#1247,BARD1,s3_10,loss,0.2800000011920929,214730411,6,98.0,,out_of_frame,skipping an exon of 98 bp
+pangolin,urn:mavedb:00001250-a-2#1256,BARD1,s3_10,loss,0.7900000214576721,214730411,3,98.0,,out_of_frame,skipping an exon of 98 bp
+pangolin,urn:mavedb:00001250-a-2#1536,BARD1,s3_10,loss,0.5899999737739563,214730508,-3,98.0,,out_of_frame,skipping an exon of 98 bp
+pangolin,urn:mavedb:00001250-a-2#1580,BARD1,s11_50,loss,0.20000000298023224,214730508,-18,98.0,,out_of_frame,skipping an exon of 98 bp
+pangolin,urn:mavedb:00001250-a-2#2041,BARD1,s3_10,loss,0.6700000166893005,214745159,-3,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00001250-a-2#2046,BARD1,s3_10,loss,0.28999999165534973,214745159,-5,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00001250-a-2#2049,BARD1,s3_10,loss,0.3400000035762787,214745159,-6,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00001250-a-2#2050,BARD1,s3_10,loss,0.5799999833106995,214745159,-6,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00001250-a-2#2054,BARD1,s3_10,loss,0.2199999988079071,214745159,-8,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00001250-a-2#2060,BARD1,s3_10,loss,0.3400000035762787,214745159,-10,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00001250-a-2#2089,BARD1,s11_50,gain,0.5400000214576721,214745176,-2,93.0,17.0,out_of_frame,"cryptic site, both readings agree (acceptor 17 bp -> out_of_frame, donor 109 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001250-a-2#2091,BARD1,s11_50,loss,0.4300000071525574,214745159,-20,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00001250-a-2#2099,BARD1,s11_50,loss,0.25999999046325684,214745159,-23,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00001250-a-2#2274,BARD1,s3_10,loss,0.2199999988079071,214745722,5,133.0,,out_of_frame,skipping an exon of 133 bp
+pangolin,urn:mavedb:00001250-a-2#2275,BARD1,s3_10,loss,0.20999999344348907,214745722,5,133.0,,out_of_frame,skipping an exon of 133 bp
+pangolin,urn:mavedb:00001250-a-2#2276,BARD1,s3_10,loss,0.23999999463558197,214745722,4,133.0,,out_of_frame,skipping an exon of 133 bp
+pangolin,urn:mavedb:00001250-a-2#2277,BARD1,s3_10,loss,0.20000000298023224,214745722,4,133.0,,out_of_frame,skipping an exon of 133 bp
+pangolin,urn:mavedb:00001250-a-2#2280,BARD1,s3_10,loss,0.25,214745722,3,133.0,,out_of_frame,skipping an exon of 133 bp
+pangolin,urn:mavedb:00001250-a-2#2670,BARD1,s3_10,gain,0.8100000023841858,214745857,-1,133.0,3.0,in_frame,"cryptic site, both readings agree (acceptor 3 bp -> in_frame, donor 135 bp -> in_frame)"
+pangolin,urn:mavedb:00001250-a-2#2957,BARD1,s3_10,gain,0.2800000011920929,214752443,6,109.0,112.0,out_of_frame,"cryptic site, both readings agree (acceptor 112 bp -> out_of_frame, donor 4 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001250-a-2#2977,BARD1,s3_10,loss,0.3400000035762787,214752447,4,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3295,BARD1,s3_10,loss,0.49000000953674316,214752555,-3,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3302,BARD1,s3_10,loss,0.41999998688697815,214752555,-6,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3304,BARD1,s3_10,loss,0.36000001430511475,214752555,-6,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3305,BARD1,s3_10,loss,0.5199999809265137,214752555,-7,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3307,BARD1,s3_10,loss,0.47999998927116394,214752555,-7,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3308,BARD1,s3_10,loss,0.23000000417232513,214752555,-8,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3310,BARD1,s3_10,loss,0.28999999165534973,214752555,-8,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3312,BARD1,s3_10,loss,0.2199999988079071,214752555,-9,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3313,BARD1,s3_10,loss,0.36000001430511475,214752555,-9,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3317,BARD1,s11_50,loss,0.3700000047683716,214752555,-11,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3318,BARD1,s11_50,loss,0.25,214752555,-11,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3319,BARD1,s11_50,loss,0.4000000059604645,214752555,-11,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3320,BARD1,s11_50,loss,0.33000001311302185,214752555,-12,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3322,BARD1,s11_50,loss,0.33000001311302185,214752555,-12,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3332,BARD1,s11_50,loss,0.3400000035762787,214752555,-17,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3334,BARD1,s11_50,loss,0.5799999833106995,214752555,-17,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3338,BARD1,s11_50,loss,0.27000001072883606,214752555,-19,109.0,,out_of_frame,skipping an exon of 109 bp
+pangolin,urn:mavedb:00001250-a-2#3345,BARD1,s11_50,gain,0.25,214752575,-1,109.0,20.0,out_of_frame,"cryptic site, both readings agree (acceptor 20 bp -> out_of_frame, donor 128 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001250-a-2#3495,BARD1,s11_50,gain,0.2199999988079071,214767468,0,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 186 bp -> in_frame, donor 14 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001250-a-2#3518,BARD1,s3_10,loss,0.4099999964237213,214767482,6,173.0,,out_of_frame,skipping an exon of 173 bp
+pangolin,urn:mavedb:00001250-a-2#3519,BARD1,s3_10,loss,0.2800000011920929,214767482,6,173.0,,out_of_frame,skipping an exon of 173 bp
+pangolin,urn:mavedb:00001250-a-2#3520,BARD1,s3_10,loss,0.4300000071525574,214767482,6,173.0,,out_of_frame,skipping an exon of 173 bp
+pangolin,urn:mavedb:00001250-a-2#3524,BARD1,s3_10,loss,0.3199999928474426,214767482,4,173.0,,out_of_frame,skipping an exon of 173 bp
+pangolin,urn:mavedb:00001250-a-2#3525,BARD1,s3_10,loss,0.46000000834465027,214767482,4,173.0,,out_of_frame,skipping an exon of 173 bp
+pangolin,urn:mavedb:00001250-a-2#3526,BARD1,s3_10,loss,0.20000000298023224,214767482,4,173.0,,out_of_frame,skipping an exon of 173 bp
+pangolin,urn:mavedb:00001250-a-2#4016,BARD1,s3_10,loss,0.7599999904632568,214767654,-3,173.0,,out_of_frame,skipping an exon of 173 bp
+pangolin,urn:mavedb:00001250-a-2#4267,BARD1,s11_50,gain,0.8100000023841858,214769221,3,81.0,91.0,out_of_frame,"cryptic site, both readings agree (acceptor 91 bp -> out_of_frame, donor 11 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001250-a-2#4279,BARD1,s3_10,gain,0.699999988079071,214769221,-1,81.0,91.0,out_of_frame,"cryptic site, both readings agree (acceptor 91 bp -> out_of_frame, donor 11 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001250-a-2#4289,BARD1,s3_10,loss,0.20000000298023224,214769232,6,81.0,,in_frame,skipping an exon of 81 bp
+pangolin,urn:mavedb:00001250-a-2#4298,BARD1,s3_10,loss,0.5199999809265137,214769232,3,81.0,,in_frame,skipping an exon of 81 bp
+pangolin,urn:mavedb:00001250-a-2#4299,BARD1,s3_10,loss,0.5299999713897705,214769232,3,81.0,,in_frame,skipping an exon of 81 bp
+pangolin,urn:mavedb:00001250-a-2#4300,BARD1,s3_10,loss,0.5799999833106995,214769232,3,81.0,,in_frame,skipping an exon of 81 bp
+pangolin,urn:mavedb:00001250-a-2#4520,BARD1,s3_10,loss,0.5299999713897705,214769312,-3,81.0,,in_frame,skipping an exon of 81 bp
+pangolin,urn:mavedb:00001250-a-2#4793,BARD1,s3_10,loss,0.27000001072883606,214780560,5,950.0,,out_of_frame,skipping an exon of 950 bp
+pangolin,urn:mavedb:00001250-a-2#4794,BARD1,s3_10,loss,0.44999998807907104,214780560,5,950.0,,out_of_frame,skipping an exon of 950 bp
+pangolin,urn:mavedb:00001250-a-2#4795,BARD1,s3_10,loss,0.4000000059604645,214780560,5,950.0,,out_of_frame,skipping an exon of 950 bp
+pangolin,urn:mavedb:00001250-a-2#4800,BARD1,s3_10,loss,0.4300000071525574,214780560,3,950.0,,out_of_frame,skipping an exon of 950 bp
+pangolin,urn:mavedb:00001250-a-2#8000,BARD1,s3_10,loss,0.20000000298023224,214797061,6,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8006,BARD1,s3_10,loss,0.23999999463558197,214797061,4,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8007,BARD1,s3_10,loss,0.33000001311302185,214797061,4,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8162,BARD1,s3_10,loss,0.3199999928474426,214797117,-4,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8163,BARD1,s3_10,gain,0.6000000238418579,214797120,-1,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 3 bp -> in_frame, donor 59 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001250-a-2#8177,BARD1,s3_10,loss,0.23000000417232513,214797117,-9,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8179,BARD1,s3_10,loss,0.20999999344348907,214797117,-9,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8183,BARD1,s11_50,loss,0.27000001072883606,214797117,-11,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8185,BARD1,s11_50,loss,0.27000001072883606,214797117,-11,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8188,BARD1,s11_50,loss,0.23000000417232513,214797117,-12,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8215,BARD1,s11_50,loss,0.5099999904632568,214797117,-21,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8216,BARD1,s11_50,loss,0.41999998688697815,214797117,-22,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8227,BARD1,s11_50,loss,0.38999998569488525,214797117,-25,57.0,,in_frame,skipping an exon of 57 bp
+pangolin,urn:mavedb:00001250-a-2#8274,BARD1,s11_50,loss,0.20999999344348907,214809412,22,272.0,,out_of_frame,skipping an exon of 272 bp
+pangolin,urn:mavedb:00001250-a-2#8276,BARD1,s11_50,loss,0.27000001072883606,214809412,21,272.0,,out_of_frame,skipping an exon of 272 bp
+pangolin,urn:mavedb:00001250-a-2#8278,BARD1,s11_50,loss,0.3400000035762787,214809412,21,272.0,,out_of_frame,skipping an exon of 272 bp
+pangolin,urn:mavedb:00001250-a-2#8327,BARD1,s3_10,gain,0.23000000417232513,214809416,8,57.0,12299.0,out_of_frame,"cryptic site, both readings agree (acceptor 12299 bp -> out_of_frame, donor 4 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001250-a-2#8328,BARD1,s3_10,loss,0.5099999904632568,214809412,4,272.0,,out_of_frame,skipping an exon of 272 bp
+pangolin,urn:mavedb:00001250-a-2#8329,BARD1,s3_10,loss,0.30000001192092896,214809412,4,272.0,,out_of_frame,skipping an exon of 272 bp
+pangolin,urn:mavedb:00001259-a-2#669,PALB2,s3_10,loss,0.5199999809265137,23603669,-3,505.0,,out_of_frame,skipping an exon of 505 bp
+pangolin,urn:mavedb:00001259-a-2#671,PALB2,s3_10,gain,0.7400000095367432,23603672,-1,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 3 bp -> in_frame, donor 4192 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001259-a-2#720,PALB2,s3_10,loss,0.20999999344348907,23607864,7,149.0,,out_of_frame,skipping an exon of 149 bp
+pangolin,urn:mavedb:00001259-a-2#1176,PALB2,s3_10,loss,0.3799999952316284,23608012,-6,149.0,,out_of_frame,skipping an exon of 149 bp
+pangolin,urn:mavedb:00001259-a-2#1185,PALB2,s3_10,loss,0.3499999940395355,23608012,-9,149.0,,out_of_frame,skipping an exon of 149 bp
+pangolin,urn:mavedb:00001259-a-2#1188,PALB2,s3_10,loss,0.3199999928474426,23608012,-10,149.0,,out_of_frame,skipping an exon of 149 bp
+pangolin,urn:mavedb:00001259-a-2#1189,PALB2,s3_10,loss,0.3100000023841858,23608012,-10,149.0,,out_of_frame,skipping an exon of 149 bp
+pangolin,urn:mavedb:00001259-a-2#1192,PALB2,s11_50,loss,0.3400000035762787,23608012,-11,149.0,,out_of_frame,skipping an exon of 149 bp
+pangolin,urn:mavedb:00001259-a-2#1194,PALB2,s11_50,loss,0.20999999344348907,23608012,-12,149.0,,out_of_frame,skipping an exon of 149 bp
+pangolin,urn:mavedb:00001259-a-2#2458,PALB2,s3_10,loss,0.3499999940395355,23623130,-3,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#2513,PALB2,s11_50,loss,0.2199999988079071,23623130,-22,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#2546,PALB2,s3_10,loss,0.5099999904632568,23624009,3,86.0,,out_of_frame,skipping an exon of 86 bp
+pangolin,urn:mavedb:00001259-a-2#2547,PALB2,s3_10,loss,0.6000000238418579,23624009,3,86.0,,out_of_frame,skipping an exon of 86 bp
+pangolin,urn:mavedb:00001259-a-2#2830,PALB2,s3_10,loss,0.3199999928474426,23624094,-9,86.0,,out_of_frame,skipping an exon of 86 bp
+pangolin,urn:mavedb:00001259-a-2#2831,PALB2,s3_10,loss,0.3700000047683716,23624094,-10,86.0,,out_of_frame,skipping an exon of 86 bp
+pangolin,urn:mavedb:00001259-a-2#2833,PALB2,s3_10,loss,0.2800000011920929,23624094,-10,86.0,,out_of_frame,skipping an exon of 86 bp
+pangolin,urn:mavedb:00001259-a-2#2870,PALB2,s3_10,loss,0.27000001072883606,23626236,6,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#2872,PALB2,s3_10,loss,0.20000000298023224,23626236,6,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#2873,PALB2,s3_10,loss,0.6399999856948853,23626236,5,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#2876,PALB2,s3_10,loss,0.4099999964237213,23626236,4,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#2877,PALB2,s3_10,loss,0.3700000047683716,23626236,4,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#2878,PALB2,s3_10,loss,0.4099999964237213,23626236,4,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#2879,PALB2,s3_10,loss,0.6299999952316284,23626236,3,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#2881,PALB2,s3_10,loss,0.6700000166893005,23626236,3,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#3363,PALB2,s3_10,loss,0.28999999165534973,23626397,-6,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#3369,PALB2,s3_10,loss,0.33000001311302185,23626397,-8,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#3373,PALB2,s3_10,loss,0.30000001192092896,23626397,-9,162.0,,in_frame,skipping an exon of 162 bp
+pangolin,urn:mavedb:00001259-a-2#3426,PALB2,s3_10,loss,0.36000001430511475,23629204,4,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3427,PALB2,s3_10,loss,0.3499999940395355,23629204,4,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3641,PALB2,s3_10,loss,0.25,23629275,-3,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3644,PALB2,s3_10,loss,0.2199999988079071,23629275,-4,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3650,PALB2,s3_10,loss,0.49000000953674316,23629275,-6,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3652,PALB2,s3_10,loss,0.36000001430511475,23629275,-6,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3655,PALB2,s3_10,loss,0.6000000238418579,23629275,-7,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3659,PALB2,s3_10,loss,0.4000000059604645,23629275,-9,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3661,PALB2,s3_10,loss,0.30000001192092896,23629275,-9,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3665,PALB2,s11_50,loss,0.3499999940395355,23629275,-11,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3671,PALB2,s11_50,loss,0.20000000298023224,23629275,-13,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3678,PALB2,s11_50,loss,0.25,23629275,-15,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3701,PALB2,s11_50,loss,0.23999999463558197,23629275,-23,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3704,PALB2,s11_50,loss,0.23999999463558197,23629275,-24,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3705,PALB2,s11_50,loss,0.4000000059604645,23629275,-24,72.0,,in_frame,skipping an exon of 72 bp
+pangolin,urn:mavedb:00001259-a-2#3761,PALB2,s3_10,loss,0.6200000047683716,23629640,3,830.0,,out_of_frame,skipping an exon of 830 bp
+pangolin,urn:mavedb:00001259-a-2#3762,PALB2,s3_10,loss,0.5400000214576721,23629640,3,830.0,,out_of_frame,skipping an exon of 830 bp
+pangolin,urn:mavedb:00001259-a-2#3763,PALB2,s3_10,loss,0.6399999856948853,23629640,3,830.0,,out_of_frame,skipping an exon of 830 bp
+pangolin,urn:mavedb:00001259-a-2#5372,PALB2,s3_10,loss,0.2199999988079071,23634862,4,1473.0,,in_frame,skipping an exon of 1473 bp
+pangolin,urn:mavedb:00001259-a-2#5373,PALB2,s3_10,loss,0.33000001311302185,23634862,4,1473.0,,in_frame,skipping an exon of 1473 bp
+pangolin,urn:mavedb:00001259-a-2#5374,PALB2,s3_10,loss,0.23000000417232513,23634862,4,1473.0,,in_frame,skipping an exon of 1473 bp
+pangolin,urn:mavedb:00001259-a-2#5375,PALB2,s3_10,loss,0.5799999833106995,23634862,3,1473.0,,in_frame,skipping an exon of 1473 bp
+pangolin,urn:mavedb:00001259-a-2#5377,PALB2,s3_10,loss,0.5899999737739563,23634862,3,1473.0,,in_frame,skipping an exon of 1473 bp
+pangolin,urn:mavedb:00001259-a-2#9264,PALB2,s3_10,loss,0.23999999463558197,23637850,4,103.0,,out_of_frame,skipping an exon of 103 bp
+pangolin,urn:mavedb:00001259-a-2#9574,PALB2,s3_10,loss,0.25999999046325684,23637952,-3,103.0,,out_of_frame,skipping an exon of 103 bp
+pangolin,urn:mavedb:00001259-a-2#9629,PALB2,s3_10,loss,0.27000001072883606,23638070,5,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9630,PALB2,s3_10,loss,0.33000001311302185,23638070,5,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9631,PALB2,s3_10,loss,0.25999999046325684,23638070,5,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9635,PALB2,s3_10,loss,0.27000001072883606,23638070,3,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9637,PALB2,s3_10,loss,0.3700000047683716,23638070,3,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9639,PALB2,pm12,loss,0.6000000238418579,23638070,2,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9827,PALB2,s3_10,loss,0.4399999976158142,23638129,-5,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9828,PALB2,s3_10,loss,0.23000000417232513,23638129,-5,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9829,PALB2,s3_10,loss,0.3799999952316284,23638129,-5,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9830,PALB2,s3_10,loss,0.5199999809265137,23638129,-6,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9832,PALB2,s3_10,loss,0.3799999952316284,23638129,-6,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9839,PALB2,s3_10,loss,0.20000000298023224,23638129,-9,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9841,PALB2,s3_10,loss,0.25,23638129,-9,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9845,PALB2,s11_50,loss,0.20000000298023224,23638129,-11,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9847,PALB2,s11_50,loss,0.3199999928474426,23638129,-11,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9850,PALB2,s11_50,loss,0.23000000417232513,23638129,-12,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9853,PALB2,s11_50,loss,0.23999999463558197,23638129,-13,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9857,PALB2,s11_50,loss,0.23000000417232513,23638129,-15,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9859,PALB2,s11_50,loss,0.2199999988079071,23638129,-15,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9863,PALB2,s11_50,loss,0.23999999463558197,23638129,-17,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9865,PALB2,s11_50,loss,0.6000000238418579,23638129,-17,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9871,PALB2,s11_50,loss,0.2800000011920929,23638129,-19,60.0,,in_frame,skipping an exon of 60 bp
+pangolin,urn:mavedb:00001259-a-2#9874,PALB2,s11_50,gain,0.3400000035762787,23638155,6,60.0,26.0,out_of_frame,"cryptic site, both readings agree (acceptor 26 bp -> out_of_frame, donor 85 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001259-a-2#9932,PALB2,s11_50,gain,0.6000000238418579,23641096,2,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 2967 bp -> in_frame, donor 14 bp -> out_of_frame)"
+pangolin,urn:mavedb:00001259-a-2#9943,PALB2,s11_50,gain,0.28999999165534973,23641101,4,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 2972 bp -> out_of_frame, donor 9 bp -> in_frame)"
+pangolin,urn:mavedb:00001259-a-2#9946,PALB2,s11_50,gain,0.46000000834465027,23641101,3,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 2972 bp -> out_of_frame, donor 9 bp -> in_frame)"
+pangolin,urn:mavedb:00001259-a-2#9958,PALB2,s3_10,gain,0.6399999856948853,23641101,-1,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 2972 bp -> out_of_frame, donor 9 bp -> in_frame)"
+pangolin,urn:mavedb:00001259-a-2#9960,PALB2,s3_10,gain,0.23999999463558197,23641101,-2,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 2972 bp -> out_of_frame, donor 9 bp -> in_frame)"
+pangolin,urn:mavedb:00001259-a-2#9961,PALB2,s3_10,gain,0.20999999344348907,23641101,-2,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 2972 bp -> out_of_frame, donor 9 bp -> in_frame)"
+pangolin,urn:mavedb:00001259-a-2#9968,PALB2,s3_10,loss,0.23000000417232513,23641110,4,201.0,,in_frame,skipping an exon of 201 bp
+pangolin,urn:mavedb:00001259-a-2#9969,PALB2,s3_10,loss,0.3799999952316284,23641110,4,201.0,,in_frame,skipping an exon of 201 bp
+pangolin,urn:mavedb:00001259-a-2#9973,PALB2,s3_10,loss,0.3400000035762787,23641127,20,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000673-0-1#474,RAD51C,s3_10,loss,0.3799999952316284,58692788,-4,187.0,,out_of_frame,skipping an exon of 187 bp
+pangolin,urn:mavedb:00000673-0-1#475,RAD51C,s3_10,loss,0.25,58692788,-4,187.0,,out_of_frame,skipping an exon of 187 bp
+pangolin,urn:mavedb:00000673-0-1#528,RAD51C,s11_50,gain,0.3199999928474426,58692809,-1,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 2122 bp -> out_of_frame, donor 21 bp -> in_frame)"
+pangolin,urn:mavedb:00000673-0-1#1121,RAD51C,s11_50,loss,0.7799999713897705,58720746,16,67.0,,out_of_frame,skipping an exon of 67 bp
+pangolin,urn:mavedb:00000673-0-1#1150,RAD51C,s3_10,loss,0.33000001311302185,58720746,6,67.0,,out_of_frame,skipping an exon of 67 bp
+pangolin,urn:mavedb:00000673-0-1#1152,RAD51C,s3_10,loss,0.23999999463558197,58720746,6,67.0,,out_of_frame,skipping an exon of 67 bp
+pangolin,urn:mavedb:00000673-0-1#1155,RAD51C,s3_10,loss,0.3100000023841858,58720746,5,67.0,,out_of_frame,skipping an exon of 67 bp
+pangolin,urn:mavedb:00000673-0-1#1161,RAD51C,s3_10,loss,0.800000011920929,58720746,3,67.0,,out_of_frame,skipping an exon of 67 bp
+pangolin,urn:mavedb:00000673-0-1#1374,RAD51C,s3_10,loss,0.3100000023841858,58720812,-3,67.0,,out_of_frame,skipping an exon of 67 bp
+pangolin,urn:mavedb:00000673-0-1#1393,RAD51C,s3_10,gain,0.7900000214576721,58720816,-5,67.0,70.0,out_of_frame,"cryptic site, both readings agree (acceptor 70 bp -> out_of_frame, donor 4 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000673-0-1#1416,RAD51C,s11_50,gain,0.5699999928474426,58720828,-1,67.0,82.0,out_of_frame,"cryptic site, both readings agree (acceptor 82 bp -> out_of_frame, donor 16 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000673-0-1#1784,RAD51C,s3_10,loss,0.23000000417232513,58694931,6,259.0,,out_of_frame,skipping an exon of 259 bp
+pangolin,urn:mavedb:00000673-0-1#1786,RAD51C,s3_10,loss,0.28999999165534973,58694931,6,259.0,,out_of_frame,skipping an exon of 259 bp
+pangolin,urn:mavedb:00000673-0-1#1787,RAD51C,s3_10,loss,0.3799999952316284,58694931,5,259.0,,out_of_frame,skipping an exon of 259 bp
+pangolin,urn:mavedb:00000673-0-1#1788,RAD51C,s3_10,loss,0.3199999928474426,58694931,5,259.0,,out_of_frame,skipping an exon of 259 bp
+pangolin,urn:mavedb:00000673-0-1#1789,RAD51C,s3_10,loss,0.44999998807907104,58694931,5,259.0,,out_of_frame,skipping an exon of 259 bp
+pangolin,urn:mavedb:00000673-0-1#2585,RAD51C,s3_10,loss,0.23999999463558197,58695189,-4,259.0,,out_of_frame,skipping an exon of 259 bp
+pangolin,urn:mavedb:00000673-0-1#2586,RAD51C,s3_10,loss,0.44999998807907104,58695189,-4,259.0,,out_of_frame,skipping an exon of 259 bp
+pangolin,urn:mavedb:00000673-0-1#4846,RAD51C,s11_50,loss,0.2800000011920929,58703196,24,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000673-0-1#4893,RAD51C,s3_10,loss,0.7699999809265137,58703196,8,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000673-0-1#5382,RAD51C,s11_50,gain,0.5199999809265137,58703351,0,134.0,155.0,out_of_frame,"cryptic site, both readings agree (acceptor 155 bp -> out_of_frame, donor 22 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000673-0-1#5999,RAD51C,s3_10,gain,0.8500000238418579,58709855,1,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 4 bp -> out_of_frame, donor 135 bp -> in_frame)"
+pangolin,urn:mavedb:00000673-0-1#6416,RAD51C,s3_10,loss,0.4099999964237213,58709990,-4,132.0,,in_frame,skipping an exon of 132 bp
+pangolin,urn:mavedb:00000673-0-1#6417,RAD51C,s3_10,loss,0.30000001192092896,58709990,-4,132.0,,in_frame,skipping an exon of 132 bp
+pangolin,urn:mavedb:00000673-0-1#6422,RAD51C,s3_10,loss,0.4099999964237213,58709990,-6,132.0,,in_frame,skipping an exon of 132 bp
+pangolin,urn:mavedb:00000673-0-1#7058,RAD51C,s11_50,loss,0.27000001072883606,58724040,19,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7071,RAD51C,s11_50,loss,0.3199999928474426,58724040,14,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7073,RAD51C,s11_50,loss,0.33000001311302185,58724040,14,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7074,RAD51C,s11_50,loss,0.20999999344348907,58724040,13,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7077,RAD51C,s11_50,loss,0.33000001311302185,58724040,12,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7080,RAD51C,s11_50,loss,0.3400000035762787,58724040,11,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7082,RAD51C,s11_50,loss,0.2800000011920929,58724040,11,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7083,RAD51C,s3_10,loss,0.23000000417232513,58724040,10,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7088,RAD51C,s3_10,loss,0.23000000417232513,58724040,9,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7095,RAD51C,s3_10,loss,0.20000000298023224,58724040,6,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7097,RAD51C,s3_10,loss,0.3799999952316284,58724040,6,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7098,RAD51C,s3_10,loss,0.20000000298023224,58724040,5,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7099,RAD51C,s3_10,loss,0.3499999940395355,58724040,5,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7104,RAD51C,s3_10,loss,0.46000000834465027,58724040,3,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7304,RAD51C,s3_10,loss,0.20000000298023224,58724100,-4,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7305,RAD51C,s3_10,loss,0.3799999952316284,58724100,-4,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7312,RAD51C,s3_10,loss,0.25999999046325684,58724100,-7,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7347,RAD51C,s11_50,gain,0.25999999046325684,58724117,-1,61.0,77.0,out_of_frame,"cryptic site, both readings agree (acceptor 77 bp -> out_of_frame, donor 17 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000673-0-1#7673,RAD51C,s11_50,loss,0.23999999463558197,58732484,12,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7682,RAD51C,s3_10,loss,0.20999999344348907,58732484,9,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7684,RAD51C,s3_10,loss,0.30000001192092896,58732481,6,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000673-0-1#7685,RAD51C,s3_10,loss,0.25,58732484,8,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7692,RAD51C,s3_10,loss,0.6200000047683716,58732481,3,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000673-0-1#7694,RAD51C,s3_10,loss,0.6299999952316284,58732481,2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000673-0-1#7696,RAD51C,s3_10,loss,0.6299999952316284,58732481,2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000673-0-1#7697,RAD51C,s3_10,loss,0.6299999952316284,58732481,1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000673-0-1#7698,RAD51C,s3_10,loss,0.6299999952316284,58732481,1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000673-0-1#7699,RAD51C,s3_10,loss,0.6299999952316284,58732481,1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000673-0-1#7900,RAD51C,s3_10,loss,0.3700000047683716,58732544,-4,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7911,RAD51C,s3_10,loss,0.30000001192092896,58732544,-8,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7913,RAD51C,s3_10,loss,0.36000001430511475,58732544,-8,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#7926,RAD51C,s11_50,loss,0.23000000417232513,58732544,-13,61.0,,out_of_frame,skipping an exon of 61 bp
+pangolin,urn:mavedb:00000673-0-1#8311,RAD51C,s11_50,loss,0.2199999988079071,58734118,23,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8325,RAD51C,s11_50,loss,0.38999998569488525,58734118,21,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8331,RAD51C,s11_50,loss,0.44999998807907104,58734118,19,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8335,RAD51C,s11_50,loss,0.20000000298023224,58734118,17,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8337,RAD51C,s11_50,loss,0.4699999988079071,58734118,17,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8341,RAD51C,s11_50,loss,0.2199999988079071,58734118,15,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8343,RAD51C,s11_50,loss,0.5299999713897705,58734118,15,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8347,RAD51C,s11_50,loss,0.27000001072883606,58734118,13,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8350,RAD51C,s11_50,loss,0.3499999940395355,58734118,12,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8352,RAD51C,s11_50,loss,0.23999999463558197,58734118,12,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8353,RAD51C,s11_50,loss,0.23999999463558197,58734118,11,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8355,RAD51C,s11_50,loss,0.20999999344348907,58734118,11,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8356,RAD51C,s3_10,loss,0.3700000047683716,58734118,10,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8357,RAD51C,s3_10,loss,0.3400000035762787,58734118,10,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8358,RAD51C,s3_10,loss,0.4000000059604645,58734118,10,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8362,RAD51C,s3_10,loss,0.4099999964237213,58734118,8,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8363,RAD51C,s3_10,loss,0.33000001311302185,58734118,8,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8368,RAD51C,s3_10,loss,0.550000011920929,58734118,6,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8369,RAD51C,s3_10,loss,0.47999998927116394,58734118,6,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8370,RAD51C,s3_10,loss,0.550000011920929,58734118,6,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8371,RAD51C,s3_10,loss,0.6000000238418579,58734118,5,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8372,RAD51C,s3_10,loss,0.5,58734118,5,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8373,RAD51C,s3_10,loss,0.6399999856948853,58734118,5,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8375,RAD51C,s3_10,loss,0.2199999988079071,58734118,4,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8377,RAD51C,s3_10,loss,0.550000011920929,58734118,3,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8378,RAD51C,s3_10,loss,0.7400000095367432,58734118,3,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000673-0-1#8379,RAD51C,s3_10,loss,0.3700000047683716,58734118,3,1494.0,,in_frame,skipping an exon of 1494 bp
+pangolin,urn:mavedb:00000675-a-1#650,VHL,s3_10,loss,0.5799999833106995,10142187,-3,410.0,,out_of_frame,skipping an exon of 410 bp
+pangolin,urn:mavedb:00000675-a-1#651,VHL,s3_10,loss,0.6600000262260437,10142187,-3,410.0,,out_of_frame,skipping an exon of 410 bp
+pangolin,urn:mavedb:00000675-a-1#652,VHL,s3_10,loss,0.3199999928474426,10142187,-3,410.0,,out_of_frame,skipping an exon of 410 bp
+pangolin,urn:mavedb:00000675-a-1#1091,VHL,s3_10,loss,0.2199999988079071,10146514,8,123.0,,in_frame,skipping an exon of 123 bp
+pangolin,urn:mavedb:00000675-a-1#1093,VHL,s3_10,loss,0.25999999046325684,10146514,8,123.0,,in_frame,skipping an exon of 123 bp
+pangolin,urn:mavedb:00000675-a-1#1094,VHL,s3_10,loss,0.2199999988079071,10146514,7,123.0,,in_frame,skipping an exon of 123 bp
+pangolin,urn:mavedb:00000675-a-1#1095,VHL,s3_10,loss,0.28999999165534973,10146514,7,123.0,,in_frame,skipping an exon of 123 bp
+pangolin,urn:mavedb:00000662-0-1#326,BAP1,pm12,loss,0.6499999761581421,52409842,2,167.0,,out_of_frame,skipping an exon of 167 bp
+pangolin,urn:mavedb:00000662-0-1#331,BAP1,s3_10,loss,0.20999999344348907,52409842,4,167.0,,out_of_frame,skipping an exon of 167 bp
+pangolin,urn:mavedb:00000662-0-1#332,BAP1,s3_10,loss,0.4300000071525574,52409842,4,167.0,,out_of_frame,skipping an exon of 167 bp
+pangolin,urn:mavedb:00000662-0-1#333,BAP1,s3_10,loss,0.3100000023841858,52409842,4,167.0,,out_of_frame,skipping an exon of 167 bp
+pangolin,urn:mavedb:00000662-0-1#334,BAP1,s3_10,loss,0.2800000011920929,52409842,5,167.0,,out_of_frame,skipping an exon of 167 bp
+pangolin,urn:mavedb:00000662-0-1#335,BAP1,s3_10,loss,0.27000001072883606,52409842,5,167.0,,out_of_frame,skipping an exon of 167 bp
+pangolin,urn:mavedb:00000662-0-1#336,BAP1,s3_10,loss,0.25,52409842,5,167.0,,out_of_frame,skipping an exon of 167 bp
+pangolin,urn:mavedb:00000662-0-1#464,BAP1,s3_10,loss,0.4699999988079071,52409743,-3,30.0,,in_frame,skipping an exon of 30 bp
+pangolin,urn:mavedb:00000662-0-1#555,BAP1,s3_10,loss,0.5699999928474426,52409714,3,30.0,,in_frame,skipping an exon of 30 bp
+pangolin,urn:mavedb:00000662-0-1#556,BAP1,s3_10,loss,0.2199999988079071,52409714,4,30.0,,in_frame,skipping an exon of 30 bp
+pangolin,urn:mavedb:00000662-0-1#558,BAP1,s3_10,loss,0.23999999463558197,52409714,4,30.0,,in_frame,skipping an exon of 30 bp
+pangolin,urn:mavedb:00000662-0-1#559,BAP1,s3_10,loss,0.30000001192092896,52409714,5,30.0,,in_frame,skipping an exon of 30 bp
+pangolin,urn:mavedb:00000662-0-1#560,BAP1,s3_10,loss,0.46000000834465027,52409714,5,30.0,,in_frame,skipping an exon of 30 bp
+pangolin,urn:mavedb:00000662-0-1#561,BAP1,s3_10,loss,0.3100000023841858,52409714,5,30.0,,in_frame,skipping an exon of 30 bp
+pangolin,urn:mavedb:00000662-0-1#629,BAP1,s11_50,gain,0.3199999928474426,52409630,-1,55.0,22.0,out_of_frame,"cryptic site, both readings agree (acceptor 22 bp -> out_of_frame, donor 76 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#631,BAP1,s11_50,gain,0.5,52409628,-2,55.0,20.0,out_of_frame,"cryptic site, both readings agree (acceptor 20 bp -> out_of_frame, donor 74 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#681,BAP1,s3_10,gain,0.8399999737739563,52409613,-1,55.0,5.0,out_of_frame,"cryptic site, both readings agree (acceptor 5 bp -> out_of_frame, donor 59 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#688,BAP1,s3_10,loss,0.41999998688697815,52409608,-3,55.0,,out_of_frame,skipping an exon of 55 bp
+pangolin,urn:mavedb:00000662-0-1#859,BAP1,s3_10,loss,0.20999999344348907,52409554,6,55.0,,out_of_frame,skipping an exon of 55 bp
+pangolin,urn:mavedb:00000662-0-1#919,BAP1,s11_50,gain,0.3700000047683716,52408629,-2,133.0,23.0,out_of_frame,"cryptic site, both readings agree (acceptor 23 bp -> out_of_frame, donor 155 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#1449,BAP1,s11_50,gain,0.30000001192092896,52408460,5,133.0,146.0,out_of_frame,"cryptic site, both readings agree (acceptor 146 bp -> out_of_frame, donor 14 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#1480,BAP1,s11_50,loss,0.2199999988079071,52408077,-21,120.0,,in_frame,skipping an exon of 120 bp
+pangolin,urn:mavedb:00000662-0-1#1507,BAP1,s11_50,loss,0.25,52408077,-12,120.0,,in_frame,skipping an exon of 120 bp
+pangolin,urn:mavedb:00000662-0-1#1509,BAP1,s11_50,loss,0.2199999988079071,52408077,-12,120.0,,in_frame,skipping an exon of 120 bp
+pangolin,urn:mavedb:00000662-0-1#1915,BAP1,s3_10,loss,0.46000000834465027,52407958,5,120.0,,in_frame,skipping an exon of 120 bp
+pangolin,urn:mavedb:00000662-0-1#1917,BAP1,s3_10,loss,0.3700000047683716,52407958,5,120.0,,in_frame,skipping an exon of 120 bp
+pangolin,urn:mavedb:00000662-0-1#2059,BAP1,s3_10,loss,0.4000000059604645,52407460,-3,62.0,,out_of_frame,skipping an exon of 62 bp
+pangolin,urn:mavedb:00000662-0-1#2267,BAP1,s3_10,loss,0.47999998927116394,52407399,5,62.0,,out_of_frame,skipping an exon of 62 bp
+pangolin,urn:mavedb:00000662-0-1#2271,BAP1,s3_10,loss,0.20999999344348907,52407399,6,62.0,,out_of_frame,skipping an exon of 62 bp
+pangolin,urn:mavedb:00000662-0-1#3743,BAP1,pm12,gain,0.25999999046325684,52406249,-2,124.0,127.0,out_of_frame,"cryptic site, both readings agree (acceptor 127 bp -> out_of_frame, donor 4 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#3818,BAP1,s11_50,loss,0.2199999988079071,52405912,-24,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#3821,BAP1,s11_50,loss,0.3400000035762787,52405912,-23,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#3824,BAP1,s11_50,gain,0.47999998927116394,52405931,-3,148.0,19.0,out_of_frame,"cryptic site, both readings agree (acceptor 19 bp -> out_of_frame, donor 166 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#3825,BAP1,s11_50,gain,0.49000000953674316,52405931,-3,148.0,19.0,out_of_frame,"cryptic site, both readings agree (acceptor 19 bp -> out_of_frame, donor 166 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#3827,BAP1,s11_50,loss,0.25999999046325684,52405912,-21,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#3841,BAP1,s11_50,loss,0.23000000417232513,52405912,-16,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#3844,BAP1,s11_50,loss,0.3799999952316284,52405912,-15,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#3856,BAP1,s11_50,loss,0.3700000047683716,52405912,-11,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#3857,BAP1,s11_50,loss,0.25999999046325684,52405912,-11,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#3864,BAP1,s3_10,loss,0.3700000047683716,52405912,-9,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#3868,BAP1,s3_10,loss,0.3100000023841858,52405912,-7,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#3869,BAP1,s3_10,loss,0.2800000011920929,52405912,-7,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#3873,BAP1,s3_10,loss,0.30000001192092896,52405912,-6,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#3880,BAP1,s3_10,loss,0.3199999928474426,52405912,-3,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#4340,BAP1,s3_10,loss,0.46000000834465027,52405765,3,148.0,,out_of_frame,skipping an exon of 148 bp
+pangolin,urn:mavedb:00000662-0-1#4405,BAP1,s11_50,loss,0.3700000047683716,52405294,-21,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4406,BAP1,s11_50,loss,0.20999999344348907,52405294,-21,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4411,BAP1,s11_50,loss,0.3100000023841858,52405294,-19,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4412,BAP1,s11_50,loss,0.3700000047683716,52405294,-19,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4417,BAP1,s11_50,loss,0.3100000023841858,52405294,-17,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4419,BAP1,s11_50,loss,0.3400000035762787,52405294,-17,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4420,BAP1,s11_50,loss,0.38999998569488525,52405294,-16,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4421,BAP1,s11_50,loss,0.27000001072883606,52405294,-16,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4422,BAP1,s11_50,loss,0.3199999928474426,52405294,-16,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4423,BAP1,s11_50,loss,0.20999999344348907,52405294,-15,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4426,BAP1,s11_50,loss,0.3499999940395355,52405294,-14,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4427,BAP1,s11_50,loss,0.30000001192092896,52405294,-14,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4428,BAP1,s11_50,loss,0.4099999964237213,52405294,-14,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4431,BAP1,s11_50,loss,0.3799999952316284,52405294,-13,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4435,BAP1,s11_50,loss,0.25,52405294,-11,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4436,BAP1,s11_50,loss,0.3199999928474426,52405294,-11,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4441,BAP1,s3_10,loss,0.20000000298023224,52405294,-9,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4442,BAP1,s3_10,loss,0.23999999463558197,52405294,-9,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4444,BAP1,s3_10,loss,0.5799999833106995,52405294,-8,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4446,BAP1,s3_10,loss,0.33000001311302185,52405294,-8,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4452,BAP1,s3_10,loss,0.38999998569488525,52405294,-6,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4453,BAP1,s3_10,loss,0.20999999344348907,52405294,-5,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#4454,BAP1,s3_10,loss,0.20999999344348907,52405294,-5,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#5032,BAP1,s3_10,loss,0.3100000023841858,52405110,4,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#5033,BAP1,s3_10,loss,0.3400000035762787,52405110,4,185.0,,out_of_frame,skipping an exon of 185 bp
+pangolin,urn:mavedb:00000662-0-1#5128,BAP1,s11_50,gain,0.4099999964237213,52404599,-2,134.0,13.0,out_of_frame,"cryptic site, both readings agree (acceptor 13 bp -> out_of_frame, donor 146 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#5131,BAP1,s11_50,gain,0.3799999952316284,52404598,-2,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 12 bp -> in_frame, donor 145 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#5149,BAP1,s3_10,gain,0.8600000143051147,52404592,-2,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 6 bp -> in_frame, donor 139 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#5165,BAP1,s3_10,gain,0.49000000953674316,52404583,-6,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 3 bp -> in_frame, donor 130 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#5167,BAP1,pm12,loss,0.8799999952316284,52404586,-2,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5168,BAP1,pm12,loss,0.8899999856948853,52404586,-2,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5169,BAP1,pm12,loss,0.8999999761581421,52404586,-2,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5171,BAP1,pm12,loss,0.8899999856948853,52404586,-1,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5172,BAP1,pm12,loss,0.8999999761581421,52404586,-1,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5575,BAP1,pm12,loss,0.8700000047683716,52404453,1,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5576,BAP1,pm12,loss,0.8700000047683716,52404453,1,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5577,BAP1,pm12,loss,0.8700000047683716,52404453,1,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5578,BAP1,pm12,loss,0.8700000047683716,52404453,2,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5579,BAP1,pm12,loss,0.8299999833106995,52404453,2,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5580,BAP1,pm12,loss,0.8700000047683716,52404453,2,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5587,BAP1,s3_10,loss,0.5199999809265137,52404453,5,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5588,BAP1,s3_10,loss,0.5899999737739563,52404453,5,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5589,BAP1,s3_10,loss,0.4699999988079071,52404453,5,134.0,,out_of_frame,skipping an exon of 134 bp
+pangolin,urn:mavedb:00000662-0-1#5618,BAP1,s11_50,gain,0.25999999046325684,52404439,1,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 147 bp -> in_frame, donor 14 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#5662,BAP1,s11_50,gain,0.8199999928474426,52404426,3,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 160 bp -> out_of_frame, donor 27 bp -> in_frame)"
+pangolin,urn:mavedb:00000662-0-1#5670,BAP1,s11_50,gain,0.550000011920929,52404426,5,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 160 bp -> out_of_frame, donor 27 bp -> in_frame)"
+pangolin,urn:mavedb:00000662-0-1#5691,BAP1,s11_50,gain,0.550000011920929,52404419,5,134.0,167.0,out_of_frame,"cryptic site, both readings agree (acceptor 167 bp -> out_of_frame, donor 34 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#5733,BAP1,s11_50,loss,0.2800000011920929,52403894,-23,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#5748,BAP1,s11_50,gain,0.6000000238418579,52403911,-1,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 17 bp -> out_of_frame, donor 495 bp -> in_frame)"
+pangolin,urn:mavedb:00000662-0-1#5761,BAP1,s11_50,loss,0.33000001311302185,52403894,-13,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#5763,BAP1,s11_50,loss,0.36000001430511475,52403894,-13,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#5765,BAP1,s11_50,loss,0.25,52403894,-12,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#5767,BAP1,s11_50,loss,0.6399999856948853,52403894,-11,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#5770,BAP1,s3_10,loss,0.3199999928474426,52403894,-10,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#5779,BAP1,s3_10,loss,0.33000001311302185,52403894,-7,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#5784,BAP1,s3_10,loss,0.2199999988079071,52403894,-6,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#5786,BAP1,s3_10,loss,0.20999999344348907,52403894,-5,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#5788,BAP1,s3_10,loss,0.3499999940395355,52403894,-4,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#5790,BAP1,s3_10,loss,0.3199999928474426,52403894,-4,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#5793,BAP1,s3_10,loss,0.30000001192092896,52403894,-3,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#7226,BAP1,s3_10,loss,0.3400000035762787,52403416,3,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#7233,BAP1,s3_10,loss,0.5400000214576721,52403416,5,479.0,,out_of_frame,skipping an exon of 479 bp
+pangolin,urn:mavedb:00000662-0-1#7291,BAP1,s11_50,loss,0.49000000953674316,52403298,-16,161.0,,out_of_frame,skipping an exon of 161 bp
+pangolin,urn:mavedb:00000662-0-1#7306,BAP1,s11_50,loss,0.2199999988079071,52403298,-11,161.0,,out_of_frame,skipping an exon of 161 bp
+pangolin,urn:mavedb:00000662-0-1#7308,BAP1,s11_50,loss,0.27000001072883606,52403298,-11,161.0,,out_of_frame,skipping an exon of 161 bp
+pangolin,urn:mavedb:00000662-0-1#7312,BAP1,s3_10,loss,0.2800000011920929,52403298,-9,161.0,,out_of_frame,skipping an exon of 161 bp
+pangolin,urn:mavedb:00000662-0-1#7314,BAP1,s3_10,loss,0.2800000011920929,52403298,-9,161.0,,out_of_frame,skipping an exon of 161 bp
+pangolin,urn:mavedb:00000662-0-1#7320,BAP1,s3_10,loss,0.20000000298023224,52403298,-7,161.0,,out_of_frame,skipping an exon of 161 bp
+pangolin,urn:mavedb:00000662-0-1#7323,BAP1,s3_10,loss,0.20000000298023224,52403298,-6,161.0,,out_of_frame,skipping an exon of 161 bp
+pangolin,urn:mavedb:00000662-0-1#7330,BAP1,s3_10,loss,0.3100000023841858,52403298,-3,161.0,,out_of_frame,skipping an exon of 161 bp
+pangolin,urn:mavedb:00000662-0-1#7826,BAP1,pm12,loss,0.8600000143051147,52403138,2,161.0,,out_of_frame,skipping an exon of 161 bp
+pangolin,urn:mavedb:00000662-0-1#7827,BAP1,pm12,loss,0.8899999856948853,52403138,2,161.0,,out_of_frame,skipping an exon of 161 bp
+pangolin,urn:mavedb:00000662-0-1#7829,BAP1,s3_10,gain,0.6200000047683716,52403183,48,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 115 bp -> out_of_frame, donor 45 bp -> in_frame)"
+pangolin,urn:mavedb:00000662-0-1#7830,BAP1,s3_10,gain,0.5699999928474426,52403183,48,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 115 bp -> out_of_frame, donor 45 bp -> in_frame)"
+pangolin,urn:mavedb:00000662-0-1#7831,BAP1,s3_10,gain,0.6000000238418579,52403183,49,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 115 bp -> out_of_frame, donor 45 bp -> in_frame)"
+pangolin,urn:mavedb:00000662-0-1#7832,BAP1,s3_10,gain,0.6499999761581421,52403183,49,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 115 bp -> out_of_frame, donor 45 bp -> in_frame)"
+pangolin,urn:mavedb:00000662-0-1#7833,BAP1,s3_10,gain,0.6700000166893005,52403183,49,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 115 bp -> out_of_frame, donor 45 bp -> in_frame)"
+pangolin,urn:mavedb:00000662-0-1#7834,BAP1,s3_10,gain,0.6399999856948853,52403183,50,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 115 bp -> out_of_frame, donor 45 bp -> in_frame)"
+pangolin,urn:mavedb:00000662-0-1#7835,BAP1,s3_10,gain,0.6800000071525574,52403183,50,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 115 bp -> out_of_frame, donor 45 bp -> in_frame)"
+pangolin,urn:mavedb:00000662-0-1#7836,BAP1,s3_10,gain,0.6399999856948853,52403183,50,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 115 bp -> out_of_frame, donor 45 bp -> in_frame)"
+pangolin,urn:mavedb:00000662-0-1#7885,BAP1,s11_50,loss,0.20000000298023224,52402940,40,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000662-0-1#7893,BAP1,s11_50,loss,0.2199999988079071,52402940,42,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000662-0-1#7899,BAP1,s11_50,loss,0.2199999988079071,52402940,44,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
+pangolin,urn:mavedb:00000662-0-1#7939,BAP1,s11_50,loss,0.5899999737739563,52402871,-11,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00000662-0-1#7945,BAP1,s3_10,loss,0.3499999940395355,52402871,-9,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00000662-0-1#7948,BAP1,s3_10,loss,0.33000001311302185,52402871,-8,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00000662-0-1#7952,BAP1,s3_10,loss,0.20999999344348907,52402871,-7,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00000662-0-1#7953,BAP1,s3_10,loss,0.3400000035762787,52402871,-7,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00000662-0-1#7955,BAP1,s3_10,loss,0.3100000023841858,52402871,-6,93.0,,in_frame,skipping an exon of 93 bp
+pangolin,urn:mavedb:00000662-0-1#7957,BAP1,s3_10,gain,0.6899999976158142,52402874,-2,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 3 bp -> in_frame, donor 95 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#8277,BAP1,s3_10,gain,0.2199999988079071,52402775,5,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 96 bp -> in_frame, donor 4 bp -> out_of_frame)"
+pangolin,urn:mavedb:00000662-0-1#8628,BAP1,s3_10,loss,0.20999999344348907,52402602,3,73.0,,out_of_frame,skipping an exon of 73 bp
+pangolin,urn:mavedb:00000662-0-1#8630,BAP1,s3_10,loss,0.30000001192092896,52402602,4,73.0,,out_of_frame,skipping an exon of 73 bp
+pangolin,urn:mavedb:00000662-0-1#8631,BAP1,s3_10,loss,0.4099999964237213,52402602,4,73.0,,out_of_frame,skipping an exon of 73 bp
+pangolin,urn:mavedb:00000662-0-1#8632,BAP1,s3_10,loss,0.3799999952316284,52402602,5,73.0,,out_of_frame,skipping an exon of 73 bp
+pangolin,urn:mavedb:00000662-0-1#8633,BAP1,s3_10,loss,0.47999998927116394,52402602,5,73.0,,out_of_frame,skipping an exon of 73 bp
+pangolin,urn:mavedb:00000662-0-1#8634,BAP1,s3_10,loss,0.33000001311302185,52402602,5,73.0,,out_of_frame,skipping an exon of 73 bp
+pangolin,urn:mavedb:00000662-0-1#8755,BAP1,s3_10,gain,0.7900000214576721,52402424,-2,,,undetermined,"Pangolin does not type the gained site and the two readings disagree (acceptor 3 bp -> in_frame, donor 178 bp -> out_of_frame)"

@@ -1,8 +1,8 @@
 {
   "product": "evidence analysis_set_v1",
-  "built_utc": "2026-09-17T06:07:14+00:00",
+  "built_utc": "2026-09-17T13:00:42+00:00",
   "n_rows": 8853,
-  "sha256": "0292bd348352fc025d344567302ac29a2f5b7d1312c9834f0657b9914f69d9f9",
+  "sha256": "484ec25f9208c8ad1bc5145c9fcc694c493e5dc3e884057d736c7772c3b160d3",
   "selection": {
     "variant_type": "SNV",
     "region": "intron-side splice, 1 <= |intron_offset| <= 50",
@@ -107,12 +107,19 @@
     "key",
     "func_pathogenicity",
     "alphagenome_v061",
+    "spliceai_walker",
+    "spliceai_walker_ds_ag",
+    "spliceai_walker_ds_al",
+    "spliceai_walker_ds_dg",
+    "spliceai_walker_ds_dl",
     "y_assay",
     "y_assay_source",
     "variation_id",
     "clnsig_raw",
     "clnsig_class",
     "clnrevstat",
-    "clinvar_arm"
+    "clinvar_arm",
+    "clinvar_arm_strict",
+    "clinvar_has_assertion"
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "product": "Pangolin gain/loss scores with their positions",
+  "distance": 50,
+  "reference_fasta": "/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.fa",
+  "gtf_db": "/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+  "n_variants": 524,
+  "n_scored": 524,
+  "output_sha256": "3e2ead99f0a994abd52c530c0cb96d9b8974f92b8a261740c9d24ed77bf1f677",
+  "scored_utc": "2026-09-17T13:15:20+00:00",
+  "runtime_minutes": 15.1
+}

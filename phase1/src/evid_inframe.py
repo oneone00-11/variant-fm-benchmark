@@ -109,6 +109,12 @@ def write_subset() -> None:
 def _transcript_maps(genes: list[str]) -> dict:
     sys.path.insert(0, str(ATLAS_REPO / "src"))
     from atlas import mapping as M
+    # atlas.mapping resolves its reference cache RELATIVE to the working directory
+    # ("data/raw/reference"). These stages run from phase1/, so every cached
+    # Mutalyzer model and Ensembl lookup would be missed and re-fetched -- slowly,
+    # and with a second copy of the cache appearing under phase1/. Point it at the
+    # atlas's own cache.
+    M.REF_CACHE = ATLAS_REPO / "data/raw/reference"
     mane = M.load_mane_records(genes)
     maps = {}
     for g in genes:

@@ -60,3 +60,7 @@ phase1/data/evidence/refs/
 
 # Transient scoring checkpoints (removed automatically when a scorer finishes).
 *.partial.parquet
+
+# atlas.mapping resolves its reference cache relative to the working directory;
+# these stages now point it at the atlas cache instead of re-fetching into phase1/.
+phase1/data/raw/reference/
