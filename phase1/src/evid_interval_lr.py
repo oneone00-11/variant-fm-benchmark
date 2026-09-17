@@ -97,6 +97,22 @@ def _rng_for(*key) -> np.random.Generator:
 # ---------------------------------------------------------------------------
 # local likelihood ratio
 # ---------------------------------------------------------------------------
+# The window is [s-eps, s+eps] closed. Rebuilding those endpoints by subtracting a
+# stored half-width does not round-trip exactly in binary floating point, and since
+# the interval is closed that silently drops the whole tie group sitting on the
+# boundary -- measured at 102 grid points across the delivered curves, the worst
+# holding 88 observations instead of 100. The endpoints are therefore widened by a
+# relative tolerance rather than trusted to reconstruct.
+_BOUND_TOL = 1e-12
+
+
+def _window_bounds(grid: np.ndarray, eps: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """Closed window endpoints, widened by a relative tolerance (see _BOUND_TOL)."""
+    lo, hi = grid - eps, grid + eps
+    return (lo - _BOUND_TOL * np.maximum(np.abs(lo), 1.0),
+            hi + _BOUND_TOL * np.maximum(np.abs(hi), 1.0))
+
+
 def _eps_for_grid(scores_sorted: np.ndarray, grid: np.ndarray,
                   min_window: int) -> np.ndarray:
     """Smallest eps putting >= min_window observations inside [s-eps, s+eps].
@@ -128,60 +144,91 @@ def _eps_for_grid(scores_sorted: np.ndarray, grid: np.ndarray,
 
 
 def _local_lr(pos_sorted: np.ndarray, neg_sorted: np.ndarray,
-              grid: np.ndarray, eps: np.ndarray) -> np.ndarray:
-    """Vectorised density ratio over a fixed grid and fixed window widths."""
+              lo: np.ndarray, hi: np.ndarray, *, counts: bool = False):
+    """Vectorised density ratio over fixed window endpoints.
+
+    A window holding no damaging variant has a local likelihood ratio of ZERO, and
+    that is what is returned. An earlier version floored the numerator at
+    1/(npos+1) -- the same defect that was removed from band_lr: it invents a
+    positive ratio out of a window with no observation of the class in the
+    numerator. On the benign side that floor was load-bearing and wrong. It sat
+    ABOVE the Strong and Very strong benign cuts, so those tiers could never be
+    reached, and "no BP4 evidence in this territory" was an artefact of the
+    flooring rather than a property of the data. What a zero-count window does need
+    is an upper bound; that is supplied by _rule_of_three_upper, not by moving the
+    estimate.
+    """
     npos, nneg = len(pos_sorted), len(neg_sorted)
     if npos == 0 or nneg == 0:
-        return np.full(len(grid), np.nan)
-    lo, hi = grid - eps, grid + eps
+        nan = np.full(len(lo), np.nan)
+        return (nan, np.zeros(len(lo), int), np.zeros(len(lo), int)) if counts else nan
     cp = (np.searchsorted(pos_sorted, hi, side="right")
           - np.searchsorted(pos_sorted, lo, side="left"))
     cn = (np.searchsorted(neg_sorted, hi, side="right")
           - np.searchsorted(neg_sorted, lo, side="left"))
-    fp = cp / npos
     fn = np.maximum(cn / nneg, 1.0 / (nneg + 1))
-    fp = np.where(cp == 0, 1.0 / (npos + 1), fp)
-    return fp / fn
+    lr = (cp / npos) / fn
+    return (lr, cp, cn) if counts else lr
+
+
+def _rule_of_three_upper(cp: np.ndarray, cn: np.ndarray,
+                         npos: int, nneg: int) -> np.ndarray:
+    """One-sided 95% upper bound on the local ratio where a window holds no
+    damaging variant.
+
+    The bootstrap cannot bound such a window: resampling the same variants can never
+    put a damaging variant into a score range that contains none, so every resample
+    returns the same zero and the interval collapses onto it -- which would declare
+    Very strong benign evidence from no observation at all. The rule of three
+    (Hanley and Lippman-Hand 1983) is the standard one-sided 95% upper bound on a
+    rate observed as zero in n trials, 3/n; dividing by the window's normal fraction
+    gives the matching bound on the ratio. Applied only where cp == 0; everywhere
+    else the bootstrap bound stands.
+    """
+    fn = np.maximum(cn / nneg, 1.0 / (nneg + 1))
+    return np.where(cp == 0, (3.0 / npos) / fn, -np.inf)
 
 
 def local_lr_curve(y: np.ndarray, s: np.ndarray, min_window: int = MIN_WINDOW):
-    """(grid, eps, lr) on the observed score values of a labelled subset."""
+    """(grid, eps, lo, hi, lr, cp, cn) on the observed score values."""
     m = np.isfinite(s) & np.isfinite(y)
     y, s = y[m], s[m]
     grid = np.unique(s)
     all_sorted = np.sort(s)
     eps = _eps_for_grid(all_sorted, grid, min_window)
-    return grid, eps, _local_lr(np.sort(s[y == 1]), np.sort(s[y == 0]), grid, eps)
+    lo, hi = _window_bounds(grid, eps)
+    lr, cp, cn = _local_lr(np.sort(s[y == 1]), np.sort(s[y == 0]), lo, hi, counts=True)
+    return grid, eps, lo, hi, lr, cp, cn
 
 
 def bootstrap_bounds(y: np.ndarray, s: np.ndarray, genes: np.ndarray,
-                     grid: np.ndarray, eps: np.ndarray, *, cluster: bool,
+                     wlo: np.ndarray, whi: np.ndarray, *, cluster: bool,
                      n_boot: int, cell: tuple = ()) -> tuple[np.ndarray, np.ndarray]:
     """One-sided 5th/95th percentile bands of the local likelihood ratio.
 
-    The grid and the window widths are held at their full-data values, so every
+    The grid and the window endpoints are held at their full-data values, so every
     resample is evaluated at the same places; only the sample changes.
     """
     m = np.isfinite(s) & np.isfinite(y)
     y, s, genes = y[m], s[m], genes[m]
     rng = _rng_for("cluster" if cluster else "variant", n_boot, *cell)
-    draws = np.empty((n_boot, len(grid)))
+    draws = np.empty((n_boot, len(wlo)))
     if cluster:
         ug = pd.unique(genes)
         if len(ug) < 2:
-            return (np.full(len(grid), np.nan),) * 2
+            return (np.full(len(wlo), np.nan),) * 2
         idx_by_gene = {g: np.where(genes == g)[0] for g in ug}
         for b in range(n_boot):
             idx = np.concatenate([idx_by_gene[g]
                                   for g in rng.choice(ug, len(ug), replace=True)])
             yb, sb = y[idx], s[idx]
-            draws[b] = _local_lr(np.sort(sb[yb == 1]), np.sort(sb[yb == 0]), grid, eps)
+            draws[b] = _local_lr(np.sort(sb[yb == 1]), np.sort(sb[yb == 0]), wlo, whi)
     else:
         n = len(y)
         for b in range(n_boot):
             idx = rng.integers(0, n, n)
             yb, sb = y[idx], s[idx]
-            draws[b] = _local_lr(np.sort(sb[yb == 1]), np.sort(sb[yb == 0]), grid, eps)
+            draws[b] = _local_lr(np.sort(sb[yb == 1]), np.sort(sb[yb == 0]), wlo, whi)
     with np.errstate(invalid="ignore"):
         lo = np.nanpercentile(draws, 5, axis=0)
         hi = np.nanpercentile(draws, 95, axis=0)
@@ -215,15 +262,22 @@ def benign_threshold(grid: np.ndarray, upper: np.ndarray, cut: float) -> float:
 
 def thresholds_for(y, s, genes, path_cuts, ben_cuts, *, n_boot, cluster=True,
                    min_window=MIN_WINDOW, cell=()):
-    grid, eps, lr = local_lr_curve(y, s, min_window)
+    grid, eps, wlo, whi, lr, cp, cn = local_lr_curve(y, s, min_window)
     if len(grid) < 2 or not np.isfinite(lr).any():
         return None
-    lo, hi = bootstrap_bounds(y, s, genes, grid, eps, cluster=cluster,
-                              n_boot=n_boot, cell=cell)
-    out = {"grid": grid, "eps": eps, "lr": lr, "lo": lo, "hi": hi, "path": {}, "ben": {}}
-    for t in TIERS:
-        out["path"][t] = pathogenic_threshold(grid, lo, path_cuts[t])
-        out["ben"][t] = benign_threshold(grid, hi, ben_cuts[t])
+    boot_lo, boot_hi = bootstrap_bounds(y, s, genes, wlo, whi, cluster=cluster,
+                                        n_boot=n_boot, cell=cell)
+    ok = np.isfinite(s) & np.isfinite(y)
+    npos, nneg = int((y[ok] == 1).sum()), int((y[ok] == 0).sum())
+    # where a window holds no damaging variant the bootstrap carries no information;
+    # the rule-of-three bound takes over there, on the benign side only
+    rot = _rule_of_three_upper(cp, cn, npos, nneg)
+    hi_eff = np.maximum(boot_hi, rot)
+    out = {"grid": grid, "eps": eps, "lr": lr, "lo": boot_lo, "hi": hi_eff,
+           "hi_boot": boot_hi, "cp": cp, "cn": cn, "path": {}, "ben": {}}
+    for tier in TIERS:
+        out["path"][tier] = pathogenic_threshold(grid, boot_lo, path_cuts[tier])
+        out["ben"][tier] = benign_threshold(grid, hi_eff, ben_cuts[tier])
     return out
 
 
@@ -315,8 +369,11 @@ def run_tool_stratum(df, tool, stratum, path_cuts, ben_cuts, walker, n_boot_vari
         })
 
     curve = pd.DataFrame({"tool": tool, "stratum": stratum, "score": full["grid"],
-                          "eps": full["eps"], "local_lr": full["lr"],
-                          "lr_lo_gene_boot": full["lo"], "lr_hi_gene_boot": full["hi"]})
+                          "eps": full["eps"], "n_damaging_in_window": full["cp"],
+                          "n_normal_in_window": full["cn"], "local_lr": full["lr"],
+                          "lr_lo_gene_boot": full["lo"],
+                          "lr_hi_gene_boot": full["hi"],
+                          "lr_hi_bootstrap_only": full["hi_boot"]})
     if var is not None:
         curve["lr_lo_variant_boot"] = var["lo"]
         curve["lr_hi_variant_boot"] = var["hi"]
@@ -328,7 +385,15 @@ def run_tool_stratum(df, tool, stratum, path_cuts, ben_cuts, walker, n_boot_vari
             j = int(np.argmin(np.abs(full["grid"] - v)))
             for r in rows:
                 r[f"walker_{name}_local_lr"] = float(full["lr"][j])
+                # Both tails, and the STRINGENT one named. For PP3 that is the 5th
+                # percentile; for BP4 it is the 95th. Reporting the 5th on both
+                # sides -- which an earlier version did -- makes Walker's 0.1 cut
+                # point look like Supporting benign evidence when the bound that
+                # actually applies is nowhere near it.
                 r[f"walker_{name}_local_lr_lo"] = float(full["lo"][j])
+                r[f"walker_{name}_local_lr_hi"] = float(full["hi"][j])
+                r[f"walker_{name}_stringent_bound"] = float(
+                    full["lo"][j] if name == "pp3" else full["hi"][j])
                 r[f"walker_{name}_nearest_grid_score"] = float(full["grid"][j])
     return rows, curve, pd.DataFrame(logo_detail)
 
