@@ -27,6 +27,7 @@ Run (PYTHONPATH=phase1):  python -m src.evid_walker_thresholds
 """
 from __future__ import annotations
 
+import hashlib
 from pathlib import Path
 
 import numpy as np
@@ -46,7 +47,16 @@ STRATUM_ORDER = ["pm12", "s3_10", "s11_50", "all_1_50"]
 ARM_ORDER = ["all", "classified", "recorded_unclassified", "unrecorded"]
 PRIORS = [0.05, 0.10, 0.20]
 
-RNG = np.random.default_rng(C.RANDOM_SEED)
+def _rng_for(*key) -> np.random.Generator:
+    """A generator seeded from the cell's identity, not from call order.
+
+    A single module-level generator makes every row depend on how many rows ran
+    before it, so one cell cannot be reproduced without re-running the whole table
+    in the same order. Deriving the seed from the cell key makes each row
+    independently reproducible and leaves the table unchanged if a row is added.
+    """
+    h = hashlib.sha256(("|".join(str(k) for k in key)).encode()).digest()
+    return np.random.default_rng([C.RANDOM_SEED, int.from_bytes(h[:8], "big")])
 
 
 def load_config() -> dict:
@@ -108,13 +118,14 @@ def _band_stats(y: np.ndarray, s: np.ndarray, pp3: float, bp4: float) -> dict:
 
 
 def _boot_ci(sub: pd.DataFrame, score: str, pp3: float, bp4: float,
-             keys: tuple[str, ...]) -> dict:
+             keys: tuple[str, ...], cell: tuple = ()) -> dict:
     """Gene-clustered bootstrap, 2,000 resamples of the genes, as phase5 does.
 
     Where a stratum sits inside one gene there is no cluster structure to resample
     and the interval is reported as not evaluable rather than as a variant-level
     interval that would understate the uncertainty.
     """
+    rng = _rng_for(score, *cell)
     genes = sub["gene"].to_numpy()
     ug = pd.unique(genes)
     out = {f"{k}_lo": np.nan for k in keys} | {f"{k}_hi": np.nan for k in keys}
@@ -127,7 +138,7 @@ def _boot_ci(sub: pd.DataFrame, score: str, pp3: float, bp4: float,
     s_all = sub[score].to_numpy(dtype=float)
     draws = {k: [] for k in keys}
     for _ in range(N_BOOT):
-        idx = np.concatenate([idx_by_gene[g] for g in RNG.choice(ug, len(ug), replace=True)])
+        idx = np.concatenate([idx_by_gene[g] for g in rng.choice(ug, len(ug), replace=True)])
         st = _band_stats(y_all[idx], s_all[idx], pp3, bp4)
         for k in keys:
             draws[k].append(st.get(k, np.nan))
@@ -173,7 +184,8 @@ def evaluate(df: pd.DataFrame, score: str, cfg: dict) -> pd.DataFrame:
                         "reason": f"fewer than {MIN_POS} labelled variants on one side",
                     })
                     continue
-                ci = (_boot_ci(sub, score, pp3, bp4, keys) if scope == "pooled"
+                ci = (_boot_ci(sub, score, pp3, bp4, keys, (stratum, arm))
+                      if scope == "pooled"
                       else {"ci_basis": "per-gene point estimate; no interval"})
                 row = base | st | ci | {"status": "ok", "reason": ""}
                 row["tier_pp3"] = tier_pathogenic(st["lr_pp3"], path_bands)

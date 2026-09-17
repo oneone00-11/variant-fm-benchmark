@@ -55,6 +55,7 @@ Run (PYTHONPATH=phase1):  python -m src.evid_interval_lr [--quick]
 from __future__ import annotations
 
 import argparse
+import hashlib
 from pathlib import Path
 
 import numpy as np
@@ -72,7 +73,11 @@ N_BOOT_GENE = 2000        # project convention for gene-clustered intervals
 N_BOOT_VARIANT = 10000    # Pejaver's iteration count
 TIERS = ["supporting", "moderate", "strong", "very_strong"]
 
-RNG = np.random.default_rng(C.RANDOM_SEED)
+def _rng_for(*key) -> np.random.Generator:
+    """Seeded from the cell's identity rather than from call order, so a single
+    tool x stratum x fold is reproducible without re-running the whole table."""
+    h = hashlib.sha256(("|".join(str(k) for k in key)).encode()).digest()
+    return np.random.default_rng([C.RANDOM_SEED, int.from_bytes(h[:8], "big")])
 
 
 # ---------------------------------------------------------------------------
@@ -137,7 +142,7 @@ def local_lr_curve(y: np.ndarray, s: np.ndarray, min_window: int = MIN_WINDOW):
 
 def bootstrap_bounds(y: np.ndarray, s: np.ndarray, genes: np.ndarray,
                      grid: np.ndarray, eps: np.ndarray, *, cluster: bool,
-                     n_boot: int) -> tuple[np.ndarray, np.ndarray]:
+                     n_boot: int, cell: tuple = ()) -> tuple[np.ndarray, np.ndarray]:
     """One-sided 5th/95th percentile bands of the local likelihood ratio.
 
     The grid and the window widths are held at their full-data values, so every
@@ -145,6 +150,7 @@ def bootstrap_bounds(y: np.ndarray, s: np.ndarray, genes: np.ndarray,
     """
     m = np.isfinite(s) & np.isfinite(y)
     y, s, genes = y[m], s[m], genes[m]
+    rng = _rng_for("cluster" if cluster else "variant", n_boot, *cell)
     draws = np.empty((n_boot, len(grid)))
     if cluster:
         ug = pd.unique(genes)
@@ -153,13 +159,13 @@ def bootstrap_bounds(y: np.ndarray, s: np.ndarray, genes: np.ndarray,
         idx_by_gene = {g: np.where(genes == g)[0] for g in ug}
         for b in range(n_boot):
             idx = np.concatenate([idx_by_gene[g]
-                                  for g in RNG.choice(ug, len(ug), replace=True)])
+                                  for g in rng.choice(ug, len(ug), replace=True)])
             yb, sb = y[idx], s[idx]
             draws[b] = _local_lr(np.sort(sb[yb == 1]), np.sort(sb[yb == 0]), grid, eps)
     else:
         n = len(y)
         for b in range(n_boot):
-            idx = RNG.integers(0, n, n)
+            idx = rng.integers(0, n, n)
             yb, sb = y[idx], s[idx]
             draws[b] = _local_lr(np.sort(sb[yb == 1]), np.sort(sb[yb == 0]), grid, eps)
     with np.errstate(invalid="ignore"):
@@ -194,11 +200,12 @@ def benign_threshold(grid: np.ndarray, upper: np.ndarray, cut: float) -> float:
 
 
 def thresholds_for(y, s, genes, path_cuts, ben_cuts, *, n_boot, cluster=True,
-                   min_window=MIN_WINDOW):
+                   min_window=MIN_WINDOW, cell=()):
     grid, eps, lr = local_lr_curve(y, s, min_window)
     if len(grid) < 2 or not np.isfinite(lr).any():
         return None
-    lo, hi = bootstrap_bounds(y, s, genes, grid, eps, cluster=cluster, n_boot=n_boot)
+    lo, hi = bootstrap_bounds(y, s, genes, grid, eps, cluster=cluster,
+                              n_boot=n_boot, cell=cell)
     out = {"grid": grid, "eps": eps, "lr": lr, "lo": lo, "hi": hi, "path": {}, "ben": {}}
     for t in TIERS:
         out["path"][t] = pathogenic_threshold(grid, lo, path_cuts[t])
@@ -223,12 +230,14 @@ def run_tool_stratum(df, tool, stratum, path_cuts, ben_cuts, walker, n_boot_vari
                 for t in TIERS], None, None
 
     full = thresholds_for(y, s, genes, path_cuts, ben_cuts,
-                          n_boot=N_BOOT_GENE, cluster=True)
+                          n_boot=N_BOOT_GENE, cluster=True,
+                          cell=(tool, stratum, "full"))
     if full is None:
         return [base | {"tier": t, "status": "not evaluable",
                         "reason": "score takes too few distinct values"} for t in TIERS], None, None
     var = thresholds_for(y, s, genes, path_cuts, ben_cuts,
-                         n_boot=n_boot_variant, cluster=False)
+                         n_boot=n_boot_variant, cluster=False,
+                         cell=(tool, stratum, "full"))
 
     # LOGO: the threshold is chosen on six genes and reported on the seventh
     logo = {t: [] for t in TIERS}
@@ -238,7 +247,8 @@ def run_tool_stratum(df, tool, stratum, path_cuts, ben_cuts, walker, n_boot_vari
         if (y[tr] == 1).sum() < K.MIN_POS or (y[tr] == 0).sum() < K.MIN_NEG:
             continue
         fit = thresholds_for(y[tr], s[tr], genes[tr], path_cuts, ben_cuts,
-                             n_boot=N_BOOT_GENE, cluster=True)
+                             n_boot=N_BOOT_GENE, cluster=True,
+                             cell=(tool, stratum, "logo", g))
         if fit is None:
             continue
         for t in TIERS:

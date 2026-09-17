@@ -201,3 +201,31 @@ def test_local_lr_monotonicity_is_recorded_not_assumed():
     # whole PP3 side depends on
     rising = [r for r in report if r[4] > 0]
     assert len(rising) / len(report) > 0.7, [r for r in report if r[4] <= 0]
+
+
+@pytest.mark.skipif(not (WALKER.exists() and SET.exists()), reason="E2 not run")
+def test_the_bootstrap_interval_reproduces_cell_by_cell():
+    """Each bootstrap interval is seeded from its own cell key, so one row can be
+    recomputed without re-running the table in the same order. This recomputes two
+    rows and requires them to land on the stored bounds exactly."""
+    import sys
+    sys.path.insert(0, str(PHASE1))
+    from src import evid_walker_thresholds as E2
+
+    df = pd.read_parquet(SET)
+    col = "spliceai_walker" if "spliceai_walker" in df.columns else "spliceai"
+    d = pd.read_csv(WALKER)
+    d = d[(d.score_column == col) & (d.scope == "pooled") & (d.status == "ok")
+          & d.lr_pp3_lo.notna()]
+    if not len(d):
+        pytest.skip("no pooled rows with an interval")
+    keys = ("lr_pp3", "lr_bp4", "sens_pp3", "spec_pp3", "lr_minus_at_pp3")
+    for r in d.head(2).itertuples():
+        sub = df if r.stratum == "all_1_50" else df[df.stratum == r.stratum]
+        if r.clinvar_arm != "all":
+            sub = sub[sub.clinvar_arm == r.clinvar_arm]
+        sub = sub.dropna(subset=["y_assay", col])
+        ci = E2._boot_ci(sub, col, 0.2, 0.1, keys, (r.stratum, r.clinvar_arm))
+        assert np.isclose(ci["lr_pp3_lo"], r.lr_pp3_lo, rtol=1e-12), (
+            r.stratum, r.clinvar_arm, ci["lr_pp3_lo"], r.lr_pp3_lo)
+        assert np.isclose(ci["lr_pp3_hi"], r.lr_pp3_hi, rtol=1e-12)
