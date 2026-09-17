@@ -177,6 +177,19 @@ regenerated** — `reproduce_calibration.py` writes all of it except the
 a module that neither script runs, so the entry points cannot fall behind the
 pipeline again.
 
+**evidence-strength reframe (branch `evidence/rework`, analysis only):**
+```bash
+python scripts/reproduce_evidence.py
+```
+Rebuilds the wider analysis set (intron-side SNVs at 1 <= |offset| <= 50, three
+strata, three ClinVar arms) and runs the evidence-strength stages on it: the
+ClinGen SVI fixed cut points, the Pejaver-style score-to-evidence intervals, the
+territory and ClinVar-arm metrics, the in-frame attribution, and the two external
+genes. Writes `phase1/reports/evidence/`. It leaves `phase1/reports/phase1/`
+untouched, so the published tables stay beside it as the control. Three inputs are
+downloads or model re-scores rather than analysis steps and are pinned by sha256
+instead of rebuilt; the script names the command for each when it is missing.
+
 **Study B — coverage & complementarity:**
 ```bash
 pip install -r requirements.txt

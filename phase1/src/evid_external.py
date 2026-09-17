@@ -205,6 +205,51 @@ def prepare_ddx3x() -> None:
 # ---------------------------------------------------------------------------
 # apply the thresholds
 # ---------------------------------------------------------------------------
+# Per-scorer outputs for DDX3X, written by the atlas's own model scripts, and the
+# panel column each carries. Anything absent is simply not in the external table;
+# the applied-threshold report then covers fewer tools and says so.
+DDX3X_SCORE_FILES = {
+    "ddx3x_spliceai_walker.parquet": ["spliceai_walker"],
+    "ddx3x_spliceai_d50.parquet": ["spliceai"],
+    "ddx3x_cadd.parquet": ["cadd"],
+    "ddx3x_phyloP100way.parquet": ["phylop100way"],
+    "ddx3x_phastCons100way.parquet": ["phastcons100way"],
+    "ddx3x_gpn_msa.parquet": ["gpn_msa"],
+    "ddx3x_pangolin.parquet": ["pangolin_score"],
+    "ddx3x_nt.parquet": ["nucleotide_transformer"],
+}
+DDX3X_RENAME = {"phylop100way": "phylop", "phastcons100way": "phastcons",
+                "pangolin_score": "pangolin", "nucleotide_transformer": "nt"}
+
+
+def merge_ddx3x_scores() -> None:
+    """Collect whatever has been scored into one table the apply step reads."""
+    base = pd.read_parquet(EXT_DIR / "ddx3x_splice.parquet")[["variant_id"]]
+    present, missing = [], []
+    for fname, cols in DDX3X_SCORE_FILES.items():
+        path = EXT_DIR / fname
+        if not path.exists():
+            missing.append(fname)
+            continue
+        d = pd.read_parquet(path)
+        take = [c for c in cols if c in d.columns]
+        if not take:
+            missing.append(f"{fname} (no expected column)")
+            continue
+        base = base.merge(d[["variant_id"] + take], on="variant_id", how="left")
+        present += take
+    base = base.rename(columns=DDX3X_RENAME)
+    out = EXT_DIR / "ddx3x_scored.parquet"
+    base.to_parquet(out, index=False)
+    cov = {c: int(base[c].notna().sum()) for c in base.columns if c != "variant_id"}
+    print(f"[E7] merged {len(cov)} scored columns for {len(base):,} DDX3X variants")
+    for c, n in cov.items():
+        print(f"     {c:20s} {n:>5}/{len(base)}")
+    if missing:
+        print("     not scored: " + ", ".join(missing))
+    print(f"     wrote {out}")
+
+
 def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
     if gene.upper() == "TP53":
         df = pd.read_parquet("data/external/tp53_splice_scored_v2.parquet")
@@ -212,8 +257,18 @@ def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
         df["intron_offset_abs"] = df["intron_offset"].abs()
         df["stratum"] = df["intron_offset_abs"].map(
             lambda o: stratum_of(int(o)) if np.isfinite(o) else "pm12")
-        df["y_official"] = df["y_assay"].astype(float)
-        return df, ["y_official"]
+        # The deposit carries no per-variant classification, so the published study
+        # constructed one. Its three definitions are reproduced here from
+        # phase4_external_tp53.py rather than re-invented: relative fitness score is
+        # anchored at -1 for synonymous and +1 for nonsense, so the control-anchored
+        # midpoint is RFS > 0; the median split and the mid-band exclusion are the
+        # two sensitivity definitions that study reports beside it.
+        rfs = df["func_pathogenicity"].to_numpy(dtype=float)
+        df["y_control_anchored"] = (rfs > 0).astype(float)
+        df["y_median_split"] = (rfs > np.median(rfs)).astype(float)
+        mid = np.abs(rfs) >= 0.5
+        df["y_mid_band_excluded"] = np.where(mid, (rfs > 0).astype(float), np.nan)
+        return df, ["y_control_anchored", "y_median_split", "y_mid_band_excluded"]
     if gene.upper() == "DDX3X":
         df = pd.read_parquet(EXT_DIR / "ddx3x_splice.parquet")
         scored = EXT_DIR / "ddx3x_scored.parquet"
@@ -299,14 +354,17 @@ def apply_thresholds(gene: str) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--prepare", choices=["ddx3x"])
+    ap.add_argument("--merge-scores", choices=["ddx3x"])
     ap.add_argument("--apply")
     args = ap.parse_args()
     if args.prepare == "ddx3x":
         prepare_ddx3x()
+    elif args.merge_scores == "ddx3x":
+        merge_ddx3x_scores()
     elif args.apply:
         apply_thresholds(args.apply)
     else:
-        ap.error("pass --prepare ddx3x or --apply <gene>")
+        ap.error("pass --prepare ddx3x, --merge-scores ddx3x or --apply <gene>")
 
 
 if __name__ == "__main__":
