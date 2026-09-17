@@ -106,15 +106,27 @@ def test_e2_band_lr_reproduces_from_the_set_itself():
     d = d[(d.score_column == col) & (d.scope == "pooled") & (d.status == "ok")]
     assert len(d) > 5
     for r in d.itertuples():
-        sub = df if r.stratum == "all_1_50" else df[df.stratum == r.stratum]
+        if r.stratum == "all_1_50":
+            sub = df
+        elif r.stratum == "s3_50":
+            sub = df[df.stratum != "pm12"]
+        else:
+            sub = df[df.stratum == r.stratum]
         if r.clinvar_arm != "all":
             sub = sub[sub.clinvar_arm == r.clinvar_arm]
         sub = sub.dropna(subset=["y_assay", col])
         y, s = sub["y_assay"].to_numpy(float), sub[col].to_numpy(float)
         pos, neg = s[y == 1], s[y == 0]
+        n_band = int((s >= 0.2).sum())
+        where = (r.stratum, r.clinvar_arm)
+        if n_band < 10:
+            # a band under ten occupants gets no ratio: too few to estimate from
+            assert not np.isfinite(r.lr_pp3), where
+            continue
         hi_p, hi_n = (pos >= 0.2).mean(), (neg >= 0.2).mean()
-        expected = hi_p / max(hi_n, 1.0 / (len(neg) + 1))
-        assert np.isclose(expected, r.lr_pp3, rtol=1e-9), (r.stratum, r.clinvar_arm)
+        expected = 0.0 if hi_p == 0 else hi_p / max(hi_n, 1.0 / (len(neg) + 1))
+        assert np.isclose(expected, r.lr_pp3, rtol=1e-9), where
+        assert int(r.n_in_pp3_band) == n_band, where
 
 
 CUTPOINT = REPORTS / "walker_cutpoint_local_vs_band.csv"
@@ -169,3 +181,17 @@ def test_local_lr_monotonicity_is_recorded_not_assumed():
     assert len(rows) >= 4
     rising = [r for r in rows if float(r[4]) > 0]
     assert len(rising) / len(rows) > 0.7, [r for r in rows if float(r[4]) <= 0]
+
+
+@pytest.mark.skipif(not WALKER.exists(), reason="E2 not run")
+def test_a_pool_containing_canonical_sites_is_flagged_out_of_scope():
+    """The recommendation routes the +/-1,2 dinucleotides to PVS1, so a pool that
+    contains them is not a place to read a PP3/BP4 result off. On this set pm12
+    supplies about half the positives of the full pool, which moves sensitivity and
+    the BP4 band, so the flag has to be right rather than decorative."""
+    d = pd.read_csv(WALKER)
+    scope = d.drop_duplicates("stratum").set_index("stratum")["walker_in_scope"]
+    assert scope["pm12"] == False          # noqa: E712 -- out of scope
+    assert scope["all_1_50"] == False      # noqa: E712 -- contains pm12
+    assert scope["s3_50"] == True          # noqa: E712 -- the in-scope pool
+    assert scope["s3_10"] == True and scope["s11_50"] == True  # noqa: E712
