@@ -1,0 +1,9 @@
+feature,n,spearman_vs_pathogenicity,oriented_larger_is_damaging
+spliceai,8853,0.37589897733999017,True
+pangolin,8853,0.3805563361849519,True
+alphagenome,8853,0.3902570428906518,True
+cadd,8853,0.3293986814038843,True
+phylop,8853,0.2987830899672977,True
+phastcons,8853,0.3129233392854991,True
+gpn_msa,8853,0.321441878930375,True
+nt,8853,0.17921483373835484,True

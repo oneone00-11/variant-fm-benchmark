@@ -1,0 +1,185 @@
+"""Score SpliceAI under Walker et al. 2023's own settings, for the evidence-strength analysis set.
+
+phase1/config/walker2023.yaml records why this column exists: the PP3/BP4 cut
+points of 0.2 and 0.1 were calibrated on the maximum RAW delta score at a maximum
+distance of 10,000 nt (+/-4,999), and the atlas column this project otherwise uses
+was produced at -D 50. Version (1.3.1), statistic (max of the four deltas) and
+masking (raw, -M 0) already agree; only the distance does not, so only the
+distance changes here.
+
+The scoring function is taken verbatim from the installed package with the four
+``{:.2f}`` output fields rewritten to ``{:.17g}``, exactly as the atlas does in
+``models/spliceai/score_fullprec.py``; ``--validate`` re-rounds the patched output
+and requires it to reproduce the stock function field for field.
+
+The four delta components are kept alongside the maximum, because E6 needs to know
+which event type a call came from and the atlas persisted only the maximum.
+
+Runs in the atlas's pinned SpliceAI environment, not this repo's .venv:
+
+    <atlas>/models/spliceai/.venv/bin/python phase1/src/evid_score_spliceai_walker.py \
+        --variants phase1/data/evidence/analysis_set_variants.parquet --validate
+    ... --run
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import inspect
+import json
+import re
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+ATLAS = Path("/Users/cliffzhang/work/functional-standard-atlas")
+REF_FASTA = ATLAS / "data" / "refs" / "grch38_subset.fa"
+ANNOTATION = "grch38"
+
+# Walker et al. 2023, Methods ("Splicing prediction analysis"); see
+# phase1/config/walker2023.yaml -> score_definition.
+DISTANCE = 4999
+MASK = 0
+
+FIELDS = ["ds_ag", "ds_al", "ds_dg", "ds_dl"]
+
+
+def build_fullprec():
+    """`get_delta_scores` with only the output precision changed."""
+    from spliceai import utils as U
+
+    src = inspect.getsource(U.get_delta_scores)
+    patched, n = re.subn(r"\{:\.2f\}", "{:.17g}", src)
+    if n != 4:
+        raise RuntimeError(f"expected 4 '{{:.2f}}' fields to patch, found {n}")
+    patched = patched.replace("def get_delta_scores(", "def get_delta_scores_fullprec(", 1)
+    ns = dict(vars(U))
+    exec(compile(patched, "<spliceai-fullprec>", "exec"), ns)
+    return ns["get_delta_scores_fullprec"]
+
+
+class Rec:
+    """Minimal stand-in for the pysam VCF record get_delta_scores expects."""
+
+    def __init__(self, chrom, pos, ref, alt):
+        self.chrom, self.pos, self.ref, self.alts = chrom, pos, ref, [alt]
+
+
+def aggregate(fields: list[str]) -> tuple[float, float, float, float, float]:
+    """(max, ds_ag, ds_al, ds_dg, ds_dl) over the annotated genes at this variant.
+
+    The maximum is the atlas's and Walker's definition. The four components are
+    reported at the gene whose maximum is the largest, so the component vector and
+    the maximum always describe the same predicted event.
+    """
+    best = np.nan
+    comp = (np.nan,) * 4
+    for f in fields:
+        parts = f.split("|")
+        if len(parts) < 6 or parts[2] == ".":
+            continue
+        vals = [float(x) for x in parts[2:6]]
+        m = max(vals)
+        if np.isnan(best) or m > best:
+            best, comp = m, tuple(vals)
+    return (best,) + comp
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--variants", required=True,
+                    help="parquet with variant_id, chrom, pos, ref, alt")
+    ap.add_argument("--out", default="phase1/data/evidence/spliceai_walker.parquet")
+    ap.add_argument("--validate", action="store_true")
+    ap.add_argument("--run", action="store_true")
+    ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--report-every", type=int, default=250)
+    args = ap.parse_args()
+
+    from spliceai.utils import Annotator, get_delta_scores
+    import spliceai
+
+    variants = pd.read_parquet(args.variants)
+    variants["chrom_s"] = variants["chrom"].astype(str)
+    variants = variants.sort_values(["chrom_s", "pos"]).reset_index(drop=True)
+
+    ann = Annotator(str(REF_FASTA), ANNOTATION)
+    fullprec = build_fullprec()
+
+    if args.validate:
+        sample = variants.sample(n=min(120, len(variants)), random_state=20260917)
+        checked = mismatched = 0
+        for r in sample.itertuples():
+            rec = Rec(r.chrom_s, int(r.pos), r.ref, r.alt)
+            stock = get_delta_scores(rec, ann, DISTANCE, MASK)
+            fine = fullprec(rec, ann, DISTANCE, MASK)
+            if len(stock) != len(fine):
+                mismatched += 1
+                continue
+            for a, b in zip(stock, fine):
+                pa, pb = a.split("|"), b.split("|")
+                if pa[2] == "." or pb[2] == ".":
+                    continue
+                checked += 1
+                if [f"{float(x):.2f}" for x in pb[2:6]] != pa[2:6]:
+                    mismatched += 1
+                    print("MISMATCH", pa[2:6], pb[2:6])
+        print(f"validated {checked} score fields on {len(sample)} variants at "
+              f"distance {DISTANCE}, mask {MASK}; {mismatched} mismatches")
+        return 1 if mismatched else 0
+
+    if not args.run:
+        ap.error("pass --validate or --run")
+
+    if args.limit:
+        variants = variants.head(args.limit)
+    rows, t0 = [], time.time()
+    for i, r in enumerate(variants.itertuples(), 1):
+        rec = Rec(r.chrom_s, int(r.pos), r.ref, r.alt)
+        try:
+            rows.append(aggregate(fullprec(rec, ann, DISTANCE, MASK)))
+        except Exception:
+            rows.append((np.nan,) * 5)
+        if i % args.report_every == 0:
+            el = time.time() - t0
+            print(f"{i:>6}/{len(variants)}  {el/60:6.1f} min elapsed, "
+                  f"{(len(variants)-i)*el/i/60:6.1f} min remaining", flush=True)
+
+    out = variants[["variant_id", "gene", "chrom", "pos", "ref", "alt"]].copy()
+    arr = np.asarray(rows, dtype=float)
+    out["spliceai_walker"] = arr[:, 0]
+    for j, f in enumerate(FIELDS):
+        out[f"spliceai_walker_{f}"] = arr[:, j + 1]
+
+    out_path = Path(args.out)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out.to_parquet(out_path, index=False)
+
+    sha = hashlib.sha256(out_path.read_bytes()).hexdigest()
+    prov = {
+        "column": "spliceai_walker",
+        "tool": "SpliceAI",
+        "package_version": getattr(spliceai, "__version__", "1.3.1"),
+        "distance": DISTANCE,
+        "mask": MASK,
+        "statistic": "max over ds_ag, ds_al, ds_dg, ds_dl; full float precision",
+        "reference_fasta": str(REF_FASTA),
+        "annotation": ANNOTATION,
+        "n_variants": int(len(out)),
+        "n_scored": int(out["spliceai_walker"].notna().sum()),
+        "basis": "Walker et al. 2023 Methods; phase1/config/walker2023.yaml",
+        "output_sha256": sha,
+        "scored_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "runtime_minutes": round((time.time() - t0) / 60, 1),
+    }
+    Path(str(out_path) + ".provenance.json").write_text(json.dumps(prov, indent=2) + "\n")
+    print(json.dumps(prov, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

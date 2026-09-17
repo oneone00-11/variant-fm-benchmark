@@ -1,0 +1,8 @@
+gene,label_file,n,n_labelled,coverage
+BRCA1,brca1_findlay2018.tsv,1034,970,0.9381
+BRCA2,brca2_huang2025.tsv,689,663,0.9623
+BARD1,bard1_woo2025.tsv,2050,2013,0.982
+PALB2,palb2_mavedb.csv,1185,1016,0.8574
+RAD51C,rad51c_mavedb.csv,1248,1240,0.9936
+VHL,vhl_buckley2024.tsv,187,169,0.9037
+BAP1,bap1_waters2024.tsv,2460,2382,0.9683

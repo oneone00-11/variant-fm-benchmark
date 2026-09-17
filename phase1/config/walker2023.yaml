@@ -1,0 +1,222 @@
+# Walker et al. 2023 -- ClinGen SVI Splicing Subgroup recommendations.
+# Transcribed verbatim for use by src/evid_walker_thresholds.py. Every entry
+# carries the place in the source it was taken from.
+#
+# Source of record (published):
+#   Walker LC, Hoya M de la, Wiggins GAR, et al. "Using the ACMG/AMP framework to
+#   capture evidence related to predicted and observed impact on splicing:
+#   Recommendations from the ClinGen SVI Splicing Subgroup."
+#   Am J Hum Genet 2023;110(7):1046-1067. doi:10.1016/j.ajhg.2023.06.002
+#   PMID 37352859, PMC10357475.
+#
+# How this file was built, and what that limits:
+#   The publisher blocks full-text retrieval of the AJHG version from this machine
+#   (cell.com and sciencedirect.com return HTTP 403; the Europe PMC and NCBI
+#   full-text XML endpoints refuse the record: "The publisher of this article does
+#   not allow downloading of the full text in XML form"). Two sources were used
+#   instead and cross-checked against each other:
+#     A. the author preprint, full text retrieved as JATS XML from Europe PMC
+#        (PMC9980257, medRxiv, CC-BY): every quoted sentence and every cell of the
+#        threshold table below is verbatim from it;
+#     B. the published PMC record (PMC10357475), read through a page-rendering
+#        fetch, which supplied the PUBLISHED table number and caption and confirmed
+#        the same sentences and the same table cells.
+#   Table numbering differs between the two: the threshold table is Table 2 in the
+#   preprint and Table 1 in the published version. The published numbering is used
+#   in `source` fields below and the preprint number is given beside it.
+#   NOT VERIFIED: printed page numbers for individual tables/sentences. The article
+#   spans pp. 1046-1067; no per-item page number could be confirmed without the
+#   publisher PDF. Section headings are given instead.
+
+provenance:
+  published:
+    citation: "Walker LC et al. Am J Hum Genet 2023;110(7):1046-1067"
+    doi: "10.1016/j.ajhg.2023.06.002"
+    pmid: "37352859"
+    pmcid: "PMC10357475"
+    retrieved: "2026-09-17"
+    access: "page-rendering fetch of the PMC record; publisher blocks XML/PDF here"
+  preprint:
+    citation: "medRxiv preprint of the same work"
+    pmcid: "PMC9980257"
+    retrieved: "2026-09-17"
+    access: "Europe PMC REST fullTextXML (JATS), CC-BY"
+    local_copy: "verbatim text cached outside the repo during transcription"
+  page_numbers: "not verified -- see header"
+
+# ---------------------------------------------------------------------------
+# The score the thresholds are defined on.
+# ---------------------------------------------------------------------------
+score_definition:
+  tool: "SpliceAI"
+  version: "1.3.1"
+  statistic: "maximum raw delta score over the four output probabilities
+              (acceptor loss, acceptor gain, donor loss, donor gain)"
+  masked: false          # "maximum RAW delta score" -- SpliceAI -M 0
+  distance: 4999         # "maximum distance of 10,000 nucleotides (+/-4,999 nucleotides)"
+  source: "Methods, 'Splicing prediction analysis' (published; preprint identical)"
+  quote: >-
+    The deep learning-based splice variant software SpliceAI (Version 1.3.1) was
+    used to predict the effect on splicing for each variant. We used the maximum
+    raw delta score, defined as the maximum probability of altered splicing across
+    four output probabilities (loss of acceptor or donor sites, gain of acceptor or
+    donor sites), and the maximum distance of 10,000 nucleotides (+/-4,999
+    nucleotides from the variant of interest).
+
+# ---------------------------------------------------------------------------
+# The thresholds. Published Table 1 (= preprint Table 2).
+# Caption (published): "Likelihood ratio analysis of the maximum SpliceAI delta
+# score for variants located outside of donor/acceptor +/-1,2 dinucleotide
+# positions using optimal cut offs".
+# ---------------------------------------------------------------------------
+thresholds:
+  source: "Table 1 (published) / Table 2 (preprint); Results, 'Model for
+           establishing thresholds for splicing prediction tools'"
+  scope: "variants located OUTSIDE the donor/acceptor +/-1,2 dinucleotides"
+  pp3:
+    operator: ">="
+    value: 0.2
+    acmg_code: "PP3"
+    evidence_strength: "Moderate"
+    direction: "spliceogenicity"
+    reported_lr: 15.99
+    reported_lr_ci: [13.23, 19.32]
+    reported_n_splice_no: 109
+    reported_n_splice_yes: 381
+    reported_sensitivity_all_noncanonical: 0.78
+    quote: >-
+      Based on this analysis, the optimal threshold for assigning PP3 to
+      [variants outside the donor/acceptor +/-1,2 dinucleotides] was determined to
+      be >=0.2, which equated to a moderate level of evidence for spliceogenicity.
+    note: >-
+      This resolves the ambiguity the brief flagged. The threshold's own strength
+      is MODERATE, in the table and in the sentence. The "supporting" figure that
+      circulates second-hand is a different quantity: a sensitivity analysis of a
+      NARROW BAND just above the cut point (score 0.20-0.22, LR = 2.52), reported
+      one paragraph later. Do not carry "supporting" for the >=0.2 threshold.
+  bp4:
+    operator: "<="
+    value: 0.1
+    acmg_code: "BP4"
+    evidence_strength: "Moderate"
+    direction: "non-spliceogenicity"
+    reported_lr: 0.17
+    reported_lr_ci: [0.14, 0.21]
+    reported_n_splice_no: 1962
+    reported_n_splice_yes: 72
+    reported_specificity_all_noncanonical: 0.87
+    reported_specificity_standard_splice_region: 0.73
+    quote: >-
+      The optimal threshold for assigning BP4 was determined to be <=0.1 for
+      moderate level of evidence for non-spliceogenicity with 87% specificity for
+      all [variants outside the +/-1,2 dinucleotides] and 73% specificity for
+      variants within the standard splice region.
+  grey_zone:
+    interval: "> 0.1 and < 0.2"
+    evidence_strength: "Uninformative"
+    action: "apply neither PP3 nor BP4"
+    reported_lr: 1.00
+    reported_lr_ci: [0.71, 1.39]
+    reported_n_splice_no: 175
+    reported_n_splice_yes: 38
+    quote: >-
+      This approach intentionally designated a middle category to represent a
+      range of uninformative spliceogenicity scores and for which bioinformatic
+      codes should not be applied (i.e. both PP3 and BP4 are not met).
+
+# ---------------------------------------------------------------------------
+# Canonical +/-1,2 dinucleotides.
+# ---------------------------------------------------------------------------
+canonical_pm12:
+  pp3_bp4_applicable: false
+  route: "PVS1 decision tree"
+  source: "Figure 2 legend; Results/Discussion on PVS1 decision trees"
+  quote: >-
+    Note: truth datasets exclude splice site variants, which are captured by the
+    PVS1 decision tree process.
+  consequence_for_this_analysis: >-
+    The pm12 stratum is reported descriptively only. Applying the PP3/BP4 cut
+    points there is outside the recommendation's own scope, so any LR quoted for
+    pm12 is an out-of-scope extrapolation and is labelled as such.
+
+# ---------------------------------------------------------------------------
+# Other tools.
+# ---------------------------------------------------------------------------
+other_tools:
+  thresholds_recommended: false
+  source: "Methods, 'Splicing prediction analysis'; Table S3; Figure S5"
+  note: >-
+    Ten other splicing prediction tools were compared with SpliceAI by ROC/AUC on
+    the BRCA1 saturation genome editing dataset of Findlay et al. (SpliceAI
+    AUC = 0.959). No numeric score threshold or evidence strength is recommended
+    for any tool other than SpliceAI, so no other tool enters the E2 fixed-threshold
+    analysis.
+
+# ---------------------------------------------------------------------------
+# Region definitions used by the source (recorded for reference; the strata of
+# this analysis are defined by intronic offset and do not reuse them).
+# ---------------------------------------------------------------------------
+region_definitions:
+  standard_splice_region:
+    donor: "last 3 bases of the exon and 6 nucleotides of intronic sequence adjacent to the exon"
+    acceptor: "first base of the exon and 20 nucleotides upstream from the exon boundary"
+    source: "Methods, 'Designation of donor and acceptor motif ranges for bioinformatic code application'"
+  minimal_splice_region:
+    donor: "last 3 bases of the exon and 6 nucleotides of intronic sequence adjacent to the exon"
+    acceptor: "first base of the exon and 3 nucleotides upstream from the exon boundary"
+    source: "Methods, same section"
+  stratum_note: >-
+    Strength was unchanged when restricted to variants within the standard splice
+    site motifs, and was at least Supporting for variants outside it
+    (published Table S11 / preprint Table S10).
+
+# ---------------------------------------------------------------------------
+# Evidence bands. Walker designates strengths from Tavtigian LR ranges at a global
+# prior of 0.10 (their Table S5). This analysis uses the same system and prior,
+# and the same numeric band edges already used by both companion manuscripts.
+# ---------------------------------------------------------------------------
+evidence_bands:
+  prior: 0.10
+  prior_sensitivity: [0.05, 0.20]
+  pathogenic_lr_thresholds:
+    very_strong: 350.0
+    strong: 18.7
+    moderate: 4.33
+    supporting: 2.08
+  benign_lr_thresholds:   # reciprocals, as the point system implies
+    very_strong: 0.002857142857142857
+    strong: 0.05347593582887701
+    moderate: 0.23094688221709006
+    supporting: 0.4807692307692308
+  source: "Walker Methods, 'Calibration of code weights based on odds of
+           spliceogenicity' (Tavtigian et al. LR ranges, prior 0.10; their Table S5)"
+  note: >-
+    Walker's LRs are likelihood ratios for SPLICEOGENICITY (a splice event
+    observed in an RNA assay), used as a surrogate for pathogenicity. The
+    likelihood ratios computed in E2/E3 are against the SGE/MAVE functional
+    standard (damaging vs normal gene function), which is a different endpoint.
+    The bands are shared; the endpoint is not.
+
+# ---------------------------------------------------------------------------
+# Does our SpliceAI column match the score the thresholds were calibrated on?
+# ---------------------------------------------------------------------------
+column_check:
+  atlas_column: "spliceai_ds (results/score_matrix_atlas_v2.parquet)"
+  atlas_definition:
+    tool_version: "SpliceAI 1.3.1"
+    statistic: "max over the four delta scores, full float precision"
+    masked: false        # models/spliceai/score_fullprec.py: MASK = 0
+    distance: 50         # models/spliceai/score_fullprec.py: DISTANCE = 50
+  verdict: "MISMATCH on distance only"
+  detail: >-
+    Version, statistic and masking agree with Walker. The scoring distance does
+    not: the atlas column was produced at -D 50, Walker at -D 4999. A variant whose
+    nearest predicted splice-site change lies more than 50 nt away scores 0 in the
+    atlas column and can score above the PP3 cut point under Walker's setting.
+  action: >-
+    A separate column `spliceai_walker` is scored for the analysis set at
+    distance 4999, mask 0, max over the four deltas, full precision, with the same
+    pinned SpliceAI 1.3.1 environment and the same GRCh38 reference. It is the
+    column E2 applies the 0.2/0.1 cut points to. `spliceai` (distance 50) stays as
+    the panel's ranking column and as a sensitivity comparison.
+  provenance_file: "docs/column-provenance.md (evidence section)"

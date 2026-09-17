@@ -12,6 +12,8 @@ pyarrow==21.0.0
 python-docx==1.2.0
 # Test runner for the pytest guardrail suite (tests/ + phase1/tests/, see pytest.ini).
 pytest==8.4.2
+# Reads phase1/config/walker2023.yaml (the transcribed ClinGen SVI recommendation).
+PyYAML==6.0.3
 
 # -----------------------------------------------------------------------------
 # OPTIONAL — only needed to RE-SCORE models (not needed to reproduce results;

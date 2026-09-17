@@ -1,0 +1,118 @@
+{
+  "product": "evidence analysis_set_v1",
+  "built_utc": "2026-09-17T06:07:14+00:00",
+  "n_rows": 8853,
+  "sha256": "0292bd348352fc025d344567302ac29a2f5b7d1312c9834f0657b9914f69d9f9",
+  "selection": {
+    "variant_type": "SNV",
+    "region": "intron-side splice, 1 <= |intron_offset| <= 50",
+    "strata": {
+      "splice_1_2": "pm12",
+      "splice_3_10": "s3_10",
+      "splice_11_50": "s11_50"
+    },
+    "requires_clinvar_record": false,
+    "requires_complete_predictor_row": false
+  },
+  "sources": {
+    "atlas_matrix": {
+      "path": "/Users/cliffzhang/work/functional-standard-atlas/results/score_matrix_atlas_v2.parquet",
+      "sha256": "3ed0dcf9ce4d4aa2316d63426e6d22a86e4305047553d70b5e45a76454919f58",
+      "atlas_git_head": "c2b8af77452a3ec630cb54ee8553a6e97569a386"
+    },
+    "clinvar_vcf": {
+      "path": "data/evidence/clinvar/clinvar_20260615.vcf.gz",
+      "sha256": "10d86b892aae1f035e1950844e13fb039dad50be1087a0d1445c60d29191a342",
+      "file_date": "2026-06-15",
+      "release": "GRCh38 weekly, 15 June 2026",
+      "review_status_filter": "none -- records of every review status kept"
+    },
+    "assay_labels": {
+      "BRCA1": {
+        "file": "brca1_findlay2018.tsv",
+        "sha256": "e2c37073a255a4691a0dac54155401251bd855c1fd0884542a7e91978bd082fb"
+      },
+      "BRCA2": {
+        "file": "brca2_huang2025.tsv",
+        "sha256": "0ad4225ace8230e1c5e5410f6aa46fb8978f0380ae98b3de66e3a80335116a7b"
+      },
+      "BARD1": {
+        "file": "bard1_woo2025.tsv",
+        "sha256": "aa3b5b57d8e4191271f72001863f5f1c32143ebac897c5513ef9ce4833d01b99"
+      },
+      "PALB2": {
+        "file": "palb2_mavedb.csv",
+        "sha256": "b8fb5a7d380b386bce886c505099f96dd12793e40abfc31a348a3204e88a3323"
+      },
+      "RAD51C": {
+        "file": "rad51c_mavedb.csv",
+        "sha256": "c1494e560531d60ac3c10858624aa0159b9f328997bd7af4346aca6ffa1c74da"
+      },
+      "VHL": {
+        "file": "vhl_buckley2024.tsv",
+        "sha256": "7dec7190e1fd454d1eb75757121830baeb4af063a92e43ef5e3727f9284488a1"
+      },
+      "BAP1": {
+        "file": "bap1_waters2024.tsv",
+        "sha256": "76e4c51977e8b9bda82e4576be2b1a40822ba36237b70fae3e8305530648a3c7"
+      }
+    },
+    "frozen_matrix_v2": {
+      "path": "data/frozen/frozen_matrix_v2.parquet",
+      "sha256": "03d320dc71a20d06a126ff7648fa8513ca8d7b8cb905caea46152068978024cd"
+    }
+  },
+  "checks": {
+    "hgvs_agreement_with_frozen_v2_on_shared": 1.0,
+    "n_shared_with_frozen_v2": 3242,
+    "old_splice_set_total": 1781,
+    "old_splice_set_in_new": 1774,
+    "old_splice_set_explained": 7
+  },
+  "columns": [
+    "variant_id",
+    "gene",
+    "urn",
+    "chrom",
+    "pos",
+    "ref",
+    "alt",
+    "transcript",
+    "hgvs_c",
+    "functional_pathogenicity",
+    "alphagenome",
+    "cadd",
+    "alphamissense",
+    "evo2",
+    "gpn_msa",
+    "nt",
+    "phylop",
+    "phastcons",
+    "gnomad_af_global",
+    "gnomad_af_popmax",
+    "spliceai",
+    "pangolin",
+    "spliceai_ds_cli_rounded",
+    "pangolin_score_cli_rounded",
+    "revel",
+    "bayesdel_addaf",
+    "clinpred",
+    "metarnn",
+    "primateai",
+    "vest4",
+    "esm1b",
+    "consequence",
+    "intron_offset_abs",
+    "stratum",
+    "key",
+    "func_pathogenicity",
+    "alphagenome_v061",
+    "y_assay",
+    "y_assay_source",
+    "variation_id",
+    "clnsig_raw",
+    "clnsig_class",
+    "clnrevstat",
+    "clinvar_arm"
+  ]
+}

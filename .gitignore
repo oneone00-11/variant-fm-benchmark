@@ -50,3 +50,7 @@ Thumbs.db
 
 # --- Local working notes / envs (not part of the research record) ------------
 ag-env/
+
+# evidence-strength rework: the ClinVar VCF release is a 192 MB third-party download, fetched
+# by scripts/01-style download and pinned by sha256 in the analysis-set manifest.
+phase1/data/evidence/clinvar/
