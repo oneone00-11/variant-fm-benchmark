@@ -6,6 +6,13 @@ each transcript record is `gene|<pos>:<increase>|<pos>:<decrease>|Warnings`, wit
 the positions relative to the variant -- so this runs the same pinned CLI the atlas
 runs, with a parser that keeps all four numbers instead of two.
 
+One difference from the stored column, checked rather than assumed: the atlas keeps
+Pangolin's aggregate at full float precision, while this parser reads the CLI's
+printed CSV, which formats to two decimals. The two agree to within 0.005 on a
+spot-check, which is exactly that rounding. E6 uses the event TYPE and its POSITION,
+not the magnitude, so the rounding does not enter any reported number; the subset
+itself is selected on the full-precision column.
+
 Only the seven frozen genes are in scope. Pangolin needs a gffutils database of the
 annotation, and the one the atlas built covers chromosomes 2, 3, 13, 16 and 17;
 DDX3X is on chrX and would need a new database, which is a separate job.

@@ -1,0 +1,17 @@
+{
+  "column": "spliceai_walker",
+  "tool": "SpliceAI",
+  "package_version": "1.3.1",
+  "distance": 4999,
+  "mask": 0,
+  "statistic": "max over ds_ag, ds_al, ds_dg, ds_dl; full float precision",
+  "reference_fasta": "/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.fa",
+  "annotation": "grch38",
+  "n_variants": 192,
+  "n_scored": 192,
+  "basis": "Walker et al. 2023 Methods; phase1/config/walker2023.yaml",
+  "output_sha256": "e8687b0af0241a00f50d737da5c9df23e34c2f6f4626f3c79626232c75b7627e",
+  "scored_utc": "2026-09-17T10:08:49+00:00",
+  "runtime_minutes_this_run": 3.5,
+  "resumed": false
+}
