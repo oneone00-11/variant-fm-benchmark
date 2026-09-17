@@ -24,10 +24,14 @@ accounts for nonsense-mediated decay, for partial usage of the new site, or for 
 variant that changes more than one site. Cells that cannot be resolved are reported
 as `undetermined` rather than assigned.
 
-Pangolin is NOT covered. The atlas persisted only its maximum score, its per-event
-components and positions were never written, and its scorer is materially slower
-than SpliceAI's; a re-score of the needed subset is a separate job. This is recorded
-rather than worked around.
+Pangolin is covered too, on the seven frozen genes. The atlas persisted only its
+maximum score, so its gain/loss values and their positions are re-scored for the
+same kind of subset (`src/evid_score_pangolin_events.py`). Its output is coarser
+than SpliceAI's: one gain and one loss per transcript record rather than four typed
+events, so a predicted loss cannot be read as donor-side or acceptor-side from the
+score alone and is matched against both boundary sets. On the external gene Pangolin
+is not covered at all -- its gffutils database covers the frozen genes' chromosomes
+only.
 
 Run (PYTHONPATH=phase1):  python -m src.evid_inframe --subset   # write the variant list
                           python -m src.evid_inframe --attribute
@@ -53,6 +57,8 @@ evidence-strength_DIR = Path("data/evidence")
 REPORT_DIR = Path("reports/evidence")
 SUBSET = evidence-strength_DIR / "inframe_subset.parquet"
 EVENTS = evidence-strength_DIR / "inframe_events.parquet"
+PANG_SUBSET = evidence-strength_DIR / "inframe_subset_pangolin.parquet"
+PANG_EVENTS = evidence-strength_DIR / "inframe_events_pangolin.parquet"
 OUT = REPORT_DIR / "inframe_attribution.csv"
 CONFIG_PATH = Path("config/walker2023.yaml")
 
@@ -70,21 +76,31 @@ GENE_TRANSCRIPT = {
 
 
 def write_subset() -> None:
-    """The variants E6 is about: called by the tool, called normal by the assay."""
+    """The variants E6 is about: called by the tool, called normal by the assay.
+
+    The cut point is Walker's, which is calibrated for SpliceAI only. It is applied
+    to Pangolin as well so the two tools' false-positive sets are defined the same
+    way; that is a comparison device, not a claim that 0.2 is Pangolin's threshold.
+    """
     cfg = yaml.safe_load(CONFIG_PATH.read_text())
     pp3 = cfg["thresholds"]["pp3"]["value"]
     df = K.load_set()
-    col = "spliceai_walker" if "spliceai_walker" in df.columns else "spliceai"
-    sub = df[(df[col] >= pp3) & (df["y_assay"] == 0)].copy()
-    sub["score_column"] = col
-    sub[["variant_id", "gene", "chrom", "pos", "ref", "alt", "stratum",
-         "hgvs_c", col, "score_column"]].to_parquet(SUBSET, index=False)
-    print(f"[E6] {len(sub):,} variants scored >= {pp3} on `{col}` and labelled normal")
-    print(sub.groupby("stratum", observed=True).size().to_string())
-    print(f"     wrote {SUBSET}")
-    print("\n[E6] next, in the SpliceAI environment:")
+    for tool, out_path in (("spliceai", SUBSET), ("pangolin", PANG_SUBSET)):
+        col = "spliceai_walker" if (tool == "spliceai"
+                                    and "spliceai_walker" in df.columns) else tool
+        sub = df[(df[col] >= pp3) & (df["y_assay"] == 0)].copy()
+        sub["score_column"] = col
+        sub[["variant_id", "gene", "chrom", "pos", "ref", "alt", "stratum",
+             "hgvs_c", col, "score_column"]].to_parquet(out_path, index=False)
+        print(f"[E6] {tool}: {len(sub):,} variants scored >= {pp3} on `{col}` "
+              "and labelled normal")
+        print(sub.groupby("stratum", observed=True).size().to_string())
+        print(f"     wrote {out_path}")
+    print("\n[E6] next, in the model environments:")
     print("  <atlas>/models/spliceai/.venv/bin/python phase1/src/evid_score_spliceai_events.py \\")
     print(f"      --variants {SUBSET} --distance 4999 --out {EVENTS} --run")
+    print("  <atlas>/models/pangolin/.venv/bin/python phase1/src/evid_score_pangolin_events.py \\")
+    print(f"      --variants {PANG_SUBSET} --out {PANG_EVENTS} --run")
 
 
 # ---------------------------------------------------------------------------
@@ -165,30 +181,83 @@ def classify(row, tmap) -> dict:
                              f"{'acceptor' if kind.startswith('acceptor') else 'donor'}"}
 
 
-def attribute() -> None:
-    if not EVENTS.exists():
-        raise SystemExit(f"[E6] {EVENTS} not found -- run the event scorer first "
-                         "(see --subset output)")
-    ev = pd.read_parquet(EVENTS)
+def classify_pangolin(row, tmap) -> dict:
+    gain, loss = row["pangolin_gain"], row["pangolin_loss"]
+    if not (np.isfinite(gain) or np.isfinite(loss)):
+        return {"event": "none", "frame": "undetermined",
+                "reason": "no Pangolin record at this variant"}
+    g = gain if np.isfinite(gain) else -np.inf
+    l = -loss if np.isfinite(loss) else -np.inf
+    is_gain = g >= l
+    dp = row["pangolin_gain_pos"] if is_gain else row["pangolin_loss_pos"]
+    if not np.isfinite(dp):
+        return {"event": "gain" if is_gain else "loss", "frame": "undetermined",
+                "reason": "no position for the dominant event"}
+    g_event = int(row["pos"]) + int(dp)
+    acc, don = _boundaries(tmap)
+    base = {"event": "gain" if is_gain else "loss",
+            "dominant_score": float(g if is_gain else l),
+            "event_position": g_event, "dp": int(dp)}
+    sites = acc + don          # Pangolin does not say which kind it is
+    if not sites:
+        return base | {"frame": "undetermined", "reason": "no internal boundaries"}
+    if not is_gain:
+        hit = [(gg, ln) for gg, ln in sites if abs(gg - g_event) <= BOUNDARY_TOL]
+        if not hit:
+            return base | {"frame": "undetermined",
+                           "reason": "predicted loss does not sit on an internal "
+                                     "exon boundary of this transcript"}
+        gg, ln = hit[0]
+        return base | {"exon_length": ln,
+                       "frame": "in_frame" if ln % 3 == 0 else "out_of_frame",
+                       "reason": f"skipping an exon of {ln} bp"}
+    gg, ln = min(sites, key=lambda tt: abs(tt[0] - g_event))
+    shift = abs(g_event - gg)
+    if shift == 0:
+        return base | {"frame": "undetermined",
+                       "reason": "gain predicted at a natural site itself"}
+    return base | {"exon_length": ln, "shift": int(shift),
+                   "frame": "in_frame" if shift % 3 == 0 else "out_of_frame",
+                   "reason": f"cryptic site {shift} bp from the nearest natural site"}
+
+
+def _attribute_one(events_path: Path, subset_path: Path, tool: str,
+                   classifier) -> pd.DataFrame | None:
+    if not events_path.exists():
+        print(f"[E6] {tool}: {events_path} not found -- skipped")
+        return None
+    ev = pd.read_parquet(events_path)
     genes = sorted(set(ev["gene"]) & set(GENE_TRANSCRIPT))
     maps = _transcript_maps(genes)
-    sub = pd.read_parquet(SUBSET)[["variant_id", "stratum"]]
+    sub = pd.read_parquet(subset_path)[["variant_id", "stratum"]]
     ev = ev.merge(sub, on="variant_id", how="left")
-
     rows = []
     for r in ev.to_dict("records"):
         if r["gene"] not in maps:
             rows.append(r | {"frame": "undetermined",
                              "reason": "no transcript model for this gene"})
             continue
-        rows.append(r | classify(r, maps[r["gene"]]))
+        rows.append(r | classifier(r, maps[r["gene"]]))
     out = pd.DataFrame(rows)
+    out["tool"] = tool
+    return out
+
+
+def attribute() -> None:
+    parts = [p for p in (
+        _attribute_one(EVENTS, SUBSET, "spliceai", classify),
+        _attribute_one(PANG_EVENTS, PANG_SUBSET, "pangolin", classify_pangolin),
+    ) if p is not None]
+    if not parts:
+        raise SystemExit("[E6] no event table found -- run the event scorers first "
+                         "(see --subset output)")
+    out = pd.concat(parts, ignore_index=True)
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    keep = ["variant_id", "gene", "stratum", "event", "dominant_score",
+    keep = ["tool", "variant_id", "gene", "stratum", "event", "dominant_score",
             "event_position", "dp", "exon_length", "shift", "frame", "reason"]
     out[[c for c in keep if c in out.columns]].to_csv(OUT, index=False)
 
-    summary = (out.groupby(["stratum", "frame"], observed=True).size()
+    summary = (out.groupby(["tool", "stratum", "frame"], observed=True).size()
                   .unstack(fill_value=0))
     for c in ("in_frame", "out_of_frame", "undetermined"):
         if c not in summary:
@@ -202,13 +271,14 @@ def attribute() -> None:
     print(f"[E6] wrote {OUT} ({len(out)} variants) and the per-stratum summary\n")
     print(summary.to_string())
     print("\n--- dominant event type ---")
-    print(out.groupby(["stratum", "event"], observed=True).size()
+    print(out.groupby(["tool", "stratum", "event"], observed=True).size()
              .unstack(fill_value=0).to_string())
     und = out[out.frame == "undetermined"]
     if len(und):
         print(f"\n--- why {len(und)} are undetermined ---")
         print(und["reason"].value_counts().to_string())
-    print("\n[E6] Pangolin is not covered; see the module docstring for why.")
+    tools = sorted(out["tool"].unique())
+    print(f"\n[E6] tools covered: {', '.join(tools)}")
 
 
 def main() -> None:
