@@ -52,6 +52,8 @@ import numpy as np
 import pandas as pd
 import yaml
 
+from scipy.stats import spearmanr
+
 from . import config as C
 from . import evid_common as K
 
@@ -120,9 +122,11 @@ def prepare_ddx3x() -> None:
                 continue
             pro = (r.get("hgvs_pro") or "").strip()
             if _PRO_SYN.search(pro):
-                controls.append({"class": "synonymous", "score": float(score)})
+                controls.append({"scoreset": urn, "class": "synonymous",
+                                 "score": float(score)})
             elif _PRO_NON.search(pro):
-                controls.append({"class": "nonsense", "score": float(score)})
+                controls.append({"scoreset": urn, "class": "nonsense",
+                                 "score": float(score)})
             m = _SPLICE.search((r.get("hgvs_splice") or "").strip())
             if not m:
                 continue
@@ -154,9 +158,28 @@ def prepare_ddx3x() -> None:
     auroc = float(roc_auc_score(y, -ctl["score"].to_numpy()))
     df["func_pathogenicity"] = -df["assay_score"]
 
-    midpoint = (med_syn + med_non) / 2.0
-    df["y_control_anchored"] = (df["assay_score"] < midpoint).astype(float)
-    df["y_fdr"] = ((df["fdr"] < FDR_CUT) & (df["assay_score"] < med_syn)).astype(float)
+    # The seventeen score sets are separate experiments on separate exon tiles and
+    # they are NOT on a common scale: the per-set nonsense median runs from -0.0009
+    # to -0.2700. A single pooled midpoint therefore sits outside several sets'
+    # whole score range, and those sets contribute no damaging calls at all -- one
+    # of them labels a canonical donor variant with a trend FDR of 1e-26 as normal.
+    # The control anchoring is done per score set; the pooled values are kept only
+    # for the record.
+    per_set = (ctl.pivot_table(index="scoreset", columns="class", values="score",
+                               aggfunc="median")
+                  .rename(columns={"synonymous": "med_syn", "nonsense": "med_non"}))
+    per_set["midpoint"] = (per_set["med_syn"] + per_set["med_non"]) / 2.0
+    midpoint = (med_syn + med_non) / 2.0          # pooled, reported not used
+
+    mid = df["scoreset"].map(per_set["midpoint"])
+    syn = df["scoreset"].map(per_set["med_syn"])
+    missing = mid.isna()
+    if missing.any():                              # a set with no controls falls back
+        mid = mid.fillna(midpoint)
+        syn = syn.fillna(med_syn)
+    df["control_midpoint_used"] = mid
+    df["y_control_anchored"] = (df["assay_score"] < mid).astype(float)
+    df["y_fdr"] = ((df["fdr"] < FDR_CUT) & (df["assay_score"] < syn)).astype(float)
 
     EXT_DIR.mkdir(parents=True, exist_ok=True)
     out = EXT_DIR / "ddx3x_splice.parquet"
@@ -172,8 +195,14 @@ def prepare_ddx3x() -> None:
         "strata": df["stratum"].value_counts().to_dict(),
         "controls": {"n_synonymous": int((ctl["class"] == "synonymous").sum()),
                      "n_nonsense": int((ctl["class"] == "nonsense").sum()),
-                     "median_synonymous": med_syn, "median_nonsense": med_non,
-                     "midpoint": midpoint, "control_auroc": auroc,
+                     "median_synonymous_pooled": med_syn,
+                     "median_nonsense_pooled": med_non,
+                     "midpoint_pooled_not_used": midpoint,
+                     "anchoring": "per score set; the seventeen tiles are separate "
+                                  "experiments and are not on a common scale",
+                     "per_scoreset": per_set.round(6).to_dict(orient="index"),
+                     "n_scoresets_without_controls": int(missing.sum()),
+                     "control_auroc": auroc,
                      "gate": "OK" if auroc >= 0.80 else
                              ("WEAK_SEPARATION" if auroc >= 0.65 else "FLIP_NEEDED")},
         "labels": {
@@ -195,7 +224,9 @@ def prepare_ddx3x() -> None:
           f"{sum(failures.values())} failures")
     print(f"     strata {manifest['strata']}")
     print(f"     control gate AUROC {auroc:.4f} ({manifest['controls']['gate']}); "
-          f"syn median {med_syn:.4f}, nonsense median {med_non:.4f}")
+          f"pooled syn median {med_syn:.4f}, nonsense median {med_non:.4f}")
+    print(f"     anchored per score set; per-set midpoints "
+          f"{per_set['midpoint'].min():.4f} to {per_set['midpoint'].max():.4f}")
     print(f"     damaging: control-anchored {manifest['labels']['n_damaging_control_anchored']}, "
           f"FDR {manifest['labels']['n_damaging_fdr']}")
     print(f"     wrote {out}")
@@ -289,6 +320,79 @@ def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
     raise SystemExit(f"[E7] no external gene '{gene}'")
 
 
+# Definition mismatches that no statistical check can be relied on to find, because
+# the two columns can overlap in range and still be different variables. Recorded
+# per external gene and per column, with the source of the claim.
+DECLARED_MISMATCH = {
+    ("TP53", "alphagenome"): (
+        "the published study scored TP53 with AlphaGenome client v0.6.1; the atlas "
+        "column E3 fits on is the v0.7.0 merged-quantile definition. The two agree "
+        "at rho = 0.672 on shared variants and are not interchangeable "
+        "(companion Note S11). The atlas column is also bounded at 2.2, so a "
+        "threshold near that ceiling sits at a different quantile here."),
+}
+
+
+def column_basis_check(df: pd.DataFrame, tools: list[str],
+                       gene_name: str = "") -> pd.DataFrame:
+    """Is each external column the same variable as the analysis-set column of that
+    name? A threshold fitted on one is meaningless on the other.
+
+    TP53's columns come from the published study's frozen matrix, not from the
+    atlas, and two of them are genuinely different variables: its `gpn_msa` is on
+    the raw anti-correlated convention (config.REVERSED_FEATURES) while the atlas
+    column is already oriented, and its `alphagenome` is the v0.6.1 definition,
+    which is bounded differently from the v0.7.0 column E3 fits on. Carrying an
+    E3 threshold onto either publishes a tier that describes a different variable.
+    """
+    base = K.load_set()
+    rows = []
+    for tool in tools:
+        if tool not in base.columns:
+            rows.append({"tool": tool, "comparable": False,
+                         "reason": "no column of this name in the analysis set"})
+            continue
+        e = df[tool].dropna().to_numpy(dtype=float)
+        a = base[tool].dropna().to_numpy(dtype=float)
+        lab = df.get("func_pathogenicity")
+        rho = np.nan
+        if lab is not None:
+            m = df[tool].notna() & lab.notna()
+            if m.sum() > 30:
+                rho = float(spearmanr(df.loc[m, tool], lab[m]).statistic)
+        oriented = (not np.isfinite(rho)) or rho > 0
+        # a range that sits largely outside the fitted column's range means a
+        # threshold from that column lands somewhere else on this one
+        overlap = (min(e.max(), a.max()) - max(e.min(), a.min())) / \
+                  max(a.max() - a.min(), 1e-12)
+        # Where the fitted column's 90th percentile -- roughly where a PP3 threshold
+        # sits -- lands in this gene's distribution. This is REPORTED, not used to
+        # disqualify: a threshold landing at a different quantile on a new gene is
+        # the phenomenon E7 exists to measure, not a reason to refuse the test. Only
+        # a different VARIABLE disqualifies, and that shows up as a wrong
+        # orientation or as a declared definition change.
+        q90 = float(np.quantile(a, 0.90))
+        q90_here = float((e <= q90).mean())
+        declared = DECLARED_MISMATCH.get((gene_name, tool))
+        ok = bool(oriented and overlap > 0.5 and not declared)
+        reason = ""
+        if declared:
+            reason = f"declared definition mismatch: {declared}"
+        elif not oriented:
+            reason = "anti-correlated on this gene: different orientation convention"
+        elif overlap <= 0.5:
+            reason = "range barely overlaps the fitted column"
+        rows.append({
+            "tool": tool, "comparable": ok,
+            "external_min": float(e.min()), "external_max": float(e.max()),
+            "analysis_set_min": float(a.min()), "analysis_set_max": float(a.max()),
+            "spearman_vs_pathogenicity": rho, "range_overlap": float(overlap),
+            "fitted_q90": q90, "fitted_q90_percentile_here": q90_here,
+            "reason": reason,
+        })
+    return pd.DataFrame(rows)
+
+
 def apply_thresholds(gene: str) -> None:
     cfg = yaml.safe_load(CONFIG_PATH.read_text())
     pp3 = cfg["thresholds"]["pp3"]["value"]
@@ -301,6 +405,14 @@ def apply_thresholds(gene: str) -> None:
 
     rows = []
     tools = [t for t in K.PANEL + K.OPTIONAL if t in df.columns]
+    basis = column_basis_check(df, tools, gene.upper())
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    basis.to_csv(REPORT_DIR / f"external_{gene.lower()}_column_basis.csv", index=False)
+    comparable = set(basis.loc[basis["comparable"], "tool"])
+    if set(tools) - comparable:
+        print(f"[E7] {gene.upper()}: E3 thresholds NOT carried onto "
+              f"{sorted(set(tools) - comparable)} -- not the same variable as the "
+              "column they were fitted on; see the column-basis table")
     for label in label_cols:
         for stratum in K.STRATA:
             sub = (df if stratum == "all_1_50"
@@ -332,10 +444,11 @@ def apply_thresholds(gene: str) -> None:
                     row["walker_lr_bp4"] = K.band_lr(y, v, bp4, "lower")
                     row["walker_tier_pp3"] = K.tier_of(row["walker_lr_pp3"],
                                                       path_bands, "pathogenic")
-                    row["walker_tier_bp4"] = K.tier_of(row["walker_lr_bp4"],
-                                                       ben_bands, "benign")
+                    row["walker_tier_bp4"] = K.tier_of(
+                        K.band_lr_benign_bound(y, v, bp4), ben_bands, "benign")
+                row["column_basis_comparable"] = tool in comparable
                 # --- E3's LOGO thresholds, applied unchanged
-                if ev is not None:
+                if ev is not None and tool in comparable:
                     e = ev[(ev.tool == tool) & (ev.stratum == stratum)
                            & (ev.status == "ok")]
                     if not len(e):

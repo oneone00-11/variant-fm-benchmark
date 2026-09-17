@@ -37,9 +37,98 @@
   "controls": {
     "n_synonymous": 1758,
     "n_nonsense": 443,
-    "median_synonymous": 0.00019093735,
-    "median_nonsense": -0.20967568632799,
-    "midpoint": -0.104742374488995,
+    "median_synonymous_pooled": 0.00019093735,
+    "median_nonsense_pooled": -0.20967568632799,
+    "midpoint_pooled_not_used": -0.104742374488995,
+    "anchoring": "per score set; the seventeen tiles are separate experiments and are not on a common scale",
+    "per_scoreset": {
+      "urn:mavedb:00000658-a-1": {
+        "med_non": -0.147422,
+        "med_syn": 0.000176,
+        "midpoint": -0.073623
+      },
+      "urn:mavedb:00000658-b-1": {
+        "med_non": -0.157956,
+        "med_syn": -0.003012,
+        "midpoint": -0.080484
+      },
+      "urn:mavedb:00000658-c-1": {
+        "med_non": -0.184261,
+        "med_syn": 0.00272,
+        "midpoint": -0.090771
+      },
+      "urn:mavedb:00000658-d-1": {
+        "med_non": -0.207555,
+        "med_syn": -0.000353,
+        "midpoint": -0.103954
+      },
+      "urn:mavedb:00000658-e-1": {
+        "med_non": -0.235164,
+        "med_syn": -0.000227,
+        "midpoint": -0.117696
+      },
+      "urn:mavedb:00000658-f-1": {
+        "med_non": -0.244998,
+        "med_syn": 0.000232,
+        "midpoint": -0.122383
+      },
+      "urn:mavedb:00000658-g-1": {
+        "med_non": -0.242205,
+        "med_syn": -0.000445,
+        "midpoint": -0.121325
+      },
+      "urn:mavedb:00000658-h-1": {
+        "med_non": -0.22068,
+        "med_syn": -0.001376,
+        "midpoint": -0.111028
+      },
+      "urn:mavedb:00000658-i-1": {
+        "med_non": -0.269978,
+        "med_syn": 0.000759,
+        "midpoint": -0.134609
+      },
+      "urn:mavedb:00000658-j-1": {
+        "med_non": -0.188064,
+        "med_syn": 0.002526,
+        "midpoint": -0.092769
+      },
+      "urn:mavedb:00000658-k-1": {
+        "med_non": -0.260055,
+        "med_syn": 0.000673,
+        "midpoint": -0.129691
+      },
+      "urn:mavedb:00000658-l-1": {
+        "med_non": -0.195245,
+        "med_syn": 0.000657,
+        "midpoint": -0.097294
+      },
+      "urn:mavedb:00000658-m-1": {
+        "med_non": -0.252905,
+        "med_syn": 0.000726,
+        "midpoint": -0.126089
+      },
+      "urn:mavedb:00000658-n-1": {
+        "med_non": -0.227877,
+        "med_syn": -0.003226,
+        "midpoint": -0.115552
+      },
+      "urn:mavedb:00000658-o-1": {
+        "med_non": -0.176093,
+        "med_syn": -0.000375,
+        "midpoint": -0.088234
+      },
+      "urn:mavedb:00000658-p-1": {
+        "med_non": -0.197914,
+        "med_syn": 0.00182,
+        "midpoint": -0.098047
+      },
+      "urn:mavedb:00000658-q-1": {
+        "med_non": -0.000909,
+        "med_syn": 0.000733,
+        "midpoint": -8.8e-05
+      }
+    },
+    "n_scoresets_without_controls": 0,
     "control_auroc": 0.9664301471249137,
     "gate": "OK"
   },
@@ -47,7 +136,7 @@
     "control_anchored": "assay_score < midpoint of control medians",
     "fdr": "trend BH-FDR < 0.01 and assay_score < synonymous median",
     "note": "the deposit publishes no functional classification; both definitions are constructed here and neither is the assay authors' own call",
-    "n_damaging_control_anchored": 152,
+    "n_damaging_control_anchored": 197,
     "n_damaging_fdr": 211
   },
   "transcript_map_provenance": {
@@ -63,6 +152,6 @@
     ],
     "exon_anchor_adjustments": []
   },
-  "sha256": "612e860c5f7299b3f408dced305a8495f3f7a72da1ebdc0b3e9d28130ee7d888",
-  "built_utc": "2026-09-17T06:25:42+00:00"
+  "sha256": "7b525dba05247455e4ac38cdfd8f6ce1e8560b852d86abc79d4fc8f01770b0a9",
+  "built_utc": "2026-09-17T12:11:58+00:00"
 }

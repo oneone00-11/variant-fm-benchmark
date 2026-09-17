@@ -156,6 +156,27 @@ def clinvar_arm(cls: str | float) -> str:
     return "classified" if cls in ("P/LP", "B/LB") else "recorded_unclassified"
 
 
+def clinvar_arm_strict(cls: str | float, clnsig_raw: str | float) -> str:
+    """The same three arms, except that a record carrying NO clinical assertion at
+    all is separated out.
+
+    classify_clnsig maps an empty CLNSIG to "Other", which clinvar_arm then files
+    under recorded_unclassified -- so an allele-only ClinVar entry, which nobody has
+    ever assessed, sits in the same arm as a variant ClinVar looked at and could not
+    call. On this set 588 rows are such records and 576 of them are BRCA1, which is
+    85% of BRCA1's middle arm; separating them moves that arm's likelihood ratio by
+    a full evidence tier. The three arms the brief specifies stay as they are and
+    this runs beside them.
+    """
+    if not isinstance(cls, str) or cls == "":
+        return "unrecorded"
+    if cls in ("P/LP", "B/LB"):
+        return "classified"
+    if not isinstance(clnsig_raw, str) or clnsig_raw.strip() == "":
+        return "recorded_no_assertion"
+    return "recorded_unclassified"
+
+
 # ---------------------------------------------------------------------------
 # build
 # ---------------------------------------------------------------------------
@@ -172,8 +193,9 @@ def attach_labels(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     The join key is the same one phase1_method_b_labels uses. It is valid on the
     atlas matrix because the atlas's MANE-Select c. strings agree with the frozen
-    matrix's hgvs_nt on every one of the 21,394 variants the two share -- checked
-    in the manifest, not assumed.
+    matrix's hgvs_nt wherever the two products overlap. The manifest records the
+    agreement and the size of that overlap: it is the analysis set's intersection
+    with the frozen matrix, not all 21,394 rows of the frozen matrix.
     """
     df = df.copy()
     df["_join"] = df["hgvs_c"].map(_norm_hgvs)
@@ -222,7 +244,9 @@ def orientation_check(df: pd.DataFrame) -> pd.DataFrame:
     records the measured sign rather than trusting either repo's convention.
     """
     rows = []
-    for name in list(PANEL) + [c for c in OPTIONAL_COLUMNS if c in df.columns]:
+    extra = [c for c in list(OPTIONAL_COLUMNS) + ["alphagenome_v061"]
+             if c in df.columns]
+    for name in list(PANEL) + extra:
         s = df[[name, "func_pathogenicity"]].dropna()
         rho = (float(s[name].corr(s["func_pathogenicity"], method="spearman"))
                if len(s) > 30 else np.nan)
@@ -303,9 +327,17 @@ def build() -> None:
     # AlphaGenome v0.6.1, the published study's definition, as a sensitivity column
     if ATLAS_V061.exists():
         v061 = pd.read_parquet(ATLAS_V061)
-        col = [c for c in v061.columns if c not in ("variant_id",)][0]
-        sel = sel.merge(v061[["variant_id", col]].rename(
-            columns={col: "alphagenome_v061"}), on="variant_id", how="left")
+        # Named explicitly. This file is a full matrix, not a two-column score file,
+        # so "the first column that is not variant_id" picks `gene` and the column
+        # silently becomes a gene symbol -- which is what it was until this was
+        # caught, and nothing downstream noticed because the v0.6.1 column is a
+        # sensitivity column outside the panel and outside the orientation check.
+        src_col = "alphagenome_splice"
+        if src_col not in v061.columns:
+            raise SystemExit(f"[E1] {ATLAS_V061} has no {src_col!r}; "
+                             f"columns are {list(v061.columns)}")
+        sel = sel.merge(v061[["variant_id", src_col]].rename(
+            columns={src_col: "alphagenome_v061"}), on="variant_id", how="left")
 
     for name, path in OPTIONAL_COLUMNS.items():
         if path.exists():
@@ -322,6 +354,9 @@ def build() -> None:
     file_date = cv.attrs.get("file_date")
     sel = sel.merge(cv, on=["chrom", "pos", "ref", "alt"], how="left")
     sel["clinvar_arm"] = sel["clnsig_class"].map(clinvar_arm)
+    sel["clinvar_arm_strict"] = [
+        clinvar_arm_strict(c, r) for c, r in zip(sel["clnsig_class"], sel["clnsig_raw"])]
+    sel["clinvar_has_assertion"] = sel["clinvar_arm_strict"] != "recorded_no_assertion"
 
     dirn = directionality(atlas)
     orient = orientation_check(sel)
@@ -329,7 +364,8 @@ def build() -> None:
     # ---- reports -----------------------------------------------------------
     counts = (sel.assign(labelled=sel.y_assay.notna(),
                          pos=(sel.y_assay == 1))
-                 .groupby(["gene", "stratum", "clinvar_arm"], observed=True)
+                 .groupby(["gene", "stratum", "clinvar_arm", "clinvar_arm_strict"],
+                          observed=True)
                  .agg(n=("key", "size"), n_labelled=("labelled", "sum"),
                       n_damaging=("pos", "sum"))
                  .reset_index())
@@ -429,6 +465,12 @@ def build() -> None:
         print(absent.groupby(["gene", "region_label", "is_splice"], observed=True)
                     .size().reset_index(name="n").to_string(index=False))
     print(f"\n[E1] ClinVar fileDate: {file_date}")
+    strict = sel["clinvar_arm_strict"].value_counts().to_dict()
+    print(f"[E1] arms with no-assertion records separated: {strict}")
+    noass = sel[sel["clinvar_arm_strict"] == "recorded_no_assertion"]
+    if len(noass):
+        print(f"     of the {len(noass)} records carrying no clinical assertion, "
+              f"by gene: {noass.gene.value_counts().to_dict()}")
     print("\n[E1] directionality gate:")
     print(dirn.to_string(index=False))
     print("\n[E1] measured feature orientation:")

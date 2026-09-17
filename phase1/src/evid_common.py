@@ -137,8 +137,41 @@ def band_lr(y: np.ndarray, s: np.ndarray, thr: float, side: str = "upper") -> fl
     else:
         p, n = float((pos <= thr).mean()), float((neg <= thr).mean())
     if p == 0.0:
-        return 0.0                         # band holds only normals: no PP3 evidence
+        # Zero damaging variants in the band. On the PP3 side that is simply no
+        # evidence. On the BP4 side the point estimate is also zero, but zero clears
+        # every benign cut, so a TIER must not be read off it -- callers assigning a
+        # benign tier use band_lr_benign_bound instead.
+        return 0.0
     return p / max(n, 1.0 / (len(neg) + 1))
+
+
+def band_lr_benign_bound(y: np.ndarray, s: np.ndarray, thr: float) -> float:
+    """The value a BP4 tier should be read off: the point estimate, except where the
+    band holds no damaging variant, where it is the rule-of-three upper bound."""
+    pos, neg = s[y == 1], s[y == 0]
+    if len(pos) < MIN_POS or len(neg) < MIN_NEG or not np.isfinite(thr):
+        return np.nan
+    if int((s <= thr).sum()) < MIN_BAND:
+        return np.nan
+    p = float((pos <= thr).mean())
+    if p > 0:
+        return p / max(float((neg <= thr).mean()), 1.0 / (len(neg) + 1))
+    return rule_of_three_lr(len(pos), float((neg <= thr).mean()), len(neg))
+
+
+def rule_of_three_lr(n_pos_total: int, frac_neg_in_band: float,
+                     n_neg_total: int) -> float:
+    """Upper bound on a band likelihood ratio whose damaging count is zero.
+
+    Observing zero of n has a one-sided 95% upper bound of 3/n on the rate (Hanley
+    and Lippman-Hand 1983). Dividing by the band's normal fraction gives the
+    matching bound on the ratio. Without it a band holding no damaging variant has a
+    ratio of exactly zero, and zero clears every benign cut -- so an empty-of-
+    positives band would be published as Very strong benign evidence, which is the
+    mirror of the flooring defect the PP3 side had.
+    """
+    fn = max(frac_neg_in_band, 1.0 / (n_neg_total + 1))
+    return (3.0 / n_pos_total) / fn
 
 
 def acmg_bands(cfg: dict) -> tuple[dict, dict]:

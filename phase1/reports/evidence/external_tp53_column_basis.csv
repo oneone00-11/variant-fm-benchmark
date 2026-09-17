@@ -1,0 +1,10 @@
+tool,comparable,external_min,external_max,analysis_set_min,analysis_set_max,spearman_vs_pathogenicity,range_overlap,fitted_q90,fitted_q90_percentile_here,reason
+spliceai,True,0.0001269347121706,0.9991713762283324,1.4467092114500701e-05,0.9990334510803223,0.654691018094024,0.9998874219390635,0.8972030997276307,0.7447916666666666,
+pangolin,True,0.0007199645042419,0.9045832753181458,0.0002806223928928375,0.9109037518501282,0.7105668285272496,0.9925767110183544,0.7870322108268738,0.71875,
+alphagenome,False,0.05191,8.664062,0.7811828467994928,2.199999785423279,0.6564121822910824,1.0,2.1999523401260377,0.5677083333333334,"declared definition mismatch: the published study scored TP53 with AlphaGenome client v0.6.1; the atlas column E3 fits on is the v0.7.0 merged-quantile definition. The two agree at rho = 0.672 on shared variants and are not interchangeable (companion Note S11). The atlas column is also bounded at 2.2, so a threshold near that ceiling sits at a different quantile here."
+cadd,True,0.007,35.0,0.001,36.0,0.6567173017158574,0.972054779299425,24.4,0.7291666666666666,
+phylop,True,-3.28354,9.04253,-4.944,9.891,0.5898219240130179,0.8308776541961577,4.294758000000001,0.84375,
+phastcons,True,0.0,1.0,0.0,1.0,0.5898601845846126,1.0,1.0,1.0,
+gpn_msa,False,-13.02,2.9,-7.31,13.51,-0.584830971334033,0.49039385206532177,8.3,1.0,anti-correlated on this gene: different orientation convention
+nt,True,-2.568767547607422,7.60554313659668,-4.374051094055176,8.912702560424805,0.5094081463798389,0.7657484249942095,3.2625938415527345,0.7083333333333334,
+spliceai_walker,False,,,,,,,,,no column of this name in the analysis set

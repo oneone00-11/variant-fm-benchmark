@@ -35,6 +35,7 @@ import pandas as pd
 import yaml
 
 from . import config as C
+from . import evid_common as K
 
 SET_PATH = Path("data/evidence/analysis_set_v1.parquet")
 CONFIG_PATH = Path("config/walker2023.yaml")
@@ -118,6 +119,13 @@ def _band_stats(y: np.ndarray, s: np.ndarray, pp3: float, bp4: float) -> dict:
     n_lo = int((s <= bp4).sum())
     lr_pp3 = (hi_p / max(hi_n, 1.0 / (n_neg + 1))) if n_hi >= MIN_BAND else np.nan
     lr_bp4 = (lo_p / max(lo_n, 1.0 / (n_neg + 1))) if n_lo >= MIN_BAND else np.nan
+    # A BP4 band holding no damaging variant has a ratio of exactly zero, and zero
+    # clears every benign cut -- so the TIER must be read off a bound, not off the
+    # point estimate. Rule of three, as on the E3 side.
+    if n_lo >= MIN_BAND and lo_p == 0.0:
+        lr_bp4_for_tier = K.rule_of_three_lr(n_pos, lo_n, n_neg)
+    else:
+        lr_bp4_for_tier = lr_bp4
     spec = 1.0 - hi_n
     lr_minus = (1.0 - hi_p) / spec if spec > 0 else np.nan
     return {
@@ -126,7 +134,8 @@ def _band_stats(y: np.ndarray, s: np.ndarray, pp3: float, bp4: float) -> dict:
         "frac_pp3": float((s >= pp3).mean()), "frac_grey": float(((s > bp4) & (s < pp3)).mean()),
         "frac_bp4": float((s <= bp4).mean()),
         "sens_pp3": hi_p, "spec_pp3": spec,
-        "lr_pp3": lr_pp3, "lr_bp4": lr_bp4, "lr_minus_at_pp3": lr_minus,
+        "lr_pp3": lr_pp3, "lr_bp4": lr_bp4,
+        "lr_bp4_for_tier": lr_bp4_for_tier, "lr_minus_at_pp3": lr_minus,
         "prop_grey_pos": mid_p, "prop_grey_neg": mid_n,
     }
 
@@ -213,7 +222,7 @@ def evaluate(df: pd.DataFrame, score: str, cfg: dict) -> pd.DataFrame:
                       else {"ci_basis": "per-gene point estimate; no interval"})
                 row = base | st | ci | {"status": "ok", "reason": ""}
                 row["tier_pp3"] = tier_pathogenic(st["lr_pp3"], path_bands)
-                row["tier_bp4"] = tier_benign(st["lr_bp4"], ben_bands)
+                row["tier_bp4"] = tier_benign(st["lr_bp4_for_tier"], ben_bands)
                 for p in PRIORS:
                     row[f"posterior_pp3_prior{p:g}"] = posterior(st["lr_pp3"], p)
                     row[f"posterior_bp4_prior{p:g}"] = posterior(st["lr_bp4"], p)

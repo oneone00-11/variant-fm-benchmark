@@ -1,97 +1,136 @@
-gene,label_definition,stratum,tool,n,n_pos,n_neg,status,reason,walker_frac_pp3,walker_frac_grey,walker_sens_pp3,walker_spec_pp3,walker_lr_pp3,walker_lr_bp4,walker_tier_pp3,walker_tier_bp4,e3_supporting_threshold,e3_supporting_lr_here,e3_supporting_tier_here,e3_moderate_threshold,e3_moderate_lr_here,e3_moderate_tier_here,e3_strong_threshold,e3_strong_lr_here,e3_strong_tier_here
-TP53,y_control_anchored,pm12,spliceai,48,47,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,pm12,pangolin,48,47,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,pm12,alphagenome,48,47,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,pm12,cadd,48,47,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,pm12,phylop,48,47,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,pm12,phastcons,48,47,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,pm12,gpn_msa,48,47,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,pm12,nt,48,47,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,s3_10,spliceai,144,15,129,ok,,0.22916666666666666,0.1388888888888889,0.8666666666666667,0.8449612403100775,5.59,0.09555555555555555,Moderate,Moderate,0.397732138633728,6.45,Moderate,0.5762056112289429,6.688888888888889,Moderate,0.8964378833770752,26.0,Strong
-TP53,y_control_anchored,s3_10,pangolin,144,15,129,ok,,,,,,,,,,0.4068579971790313,27.950000000000003,Strong,0.547325074672699,51.6,Strong,0.7039144039154053,60.2,Strong
-TP53,y_control_anchored,s3_10,alphagenome,144,15,129,ok,,,,,,,,,,2.1991482853889464,4.48695652173913,Moderate,2.1995542287826537,4.48695652173913,Moderate,2.1998827695846557,4.48695652173913,Moderate
-TP53,y_control_anchored,s3_10,cadd,144,15,129,ok,,,,,,,,,,19.31,8.6,Moderate,,,not evaluable,,,not evaluable
-TP53,y_control_anchored,s3_10,phylop,144,15,129,ok,,,,,,,,,,4.58587,8.125,Moderate,5.34067,8.125,Moderate,,,not evaluable
-TP53,y_control_anchored,s3_10,phastcons,144,15,129,ok,,,,,,,,,,1.0,8.125,Moderate,,,not evaluable,,,not evaluable
-TP53,y_control_anchored,s3_10,gpn_msa,144,15,129,ok,,,,,,,,,,7.48,8.125,Moderate,9.13,8.125,Moderate,,,not evaluable
-TP53,y_control_anchored,s3_10,nt,144,15,129,ok,,,,,,,,,,3.6899900436401367,7.525,Moderate,4.4537434577941895,25.8,Strong,,,not evaluable
-TP53,y_control_anchored,s11_50,spliceai,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,s11_50,pangolin,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,s11_50,alphagenome,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,s11_50,cadd,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,s11_50,phylop,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,s11_50,phastcons,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,s11_50,gpn_msa,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,s11_50,nt,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_control_anchored,all_1_50,spliceai,192,62,130,ok,,0.4166666666666667,0.109375,0.967741935483871,0.8461538461538461,6.290322580645161,0.023297491039426525,Moderate,Strong,0.3839756846427917,9.784946236559138,Moderate,0.7496998906135559,15.87557603686636,Moderate,0.9439656734466552,103.53225806451613,Strong
-TP53,y_control_anchored,all_1_50,pangolin,192,62,130,ok,,,,,,,,,,0.4337601959705353,31.451612903225804,Strong,0.617111086845398,58.70967741935483,Strong,0.8736386299133301,57.0483870967742,Strong
-TP53,y_control_anchored,all_1_50,alphagenome,192,62,130,ok,,,,,,,,,,2.19936226606369,5.154569892473118,Moderate,2.199539077281952,5.154569892473118,Moderate,2.1999856352806093,5.154569892473118,Moderate
-TP53,y_control_anchored,all_1_50,cadd,192,62,130,ok,,,,,,,,,,22.7,17.473118279569892,Moderate,24.3,25.161290322580644,Strong,35.0,21.129032258064516,Strong
-TP53,y_control_anchored,all_1_50,phylop,192,62,130,ok,,,,,,,,,,4.72246,63.38709677419355,Strong,4.7712,63.38709677419355,Strong,6.43175,50.70967741935484,Strong
-TP53,y_control_anchored,all_1_50,phastcons,192,62,130,ok,,,,,,,,,,1.0,88.74193548387096,Strong,1.0,88.74193548387096,Strong,,,not evaluable
-TP53,y_control_anchored,all_1_50,gpn_msa,192,62,130,ok,,,,,,,,,,7.29,2.0793650793650795,below supporting,8.46,2.0793650793650795,below supporting,10.78,2.0793650793650795,below supporting
-TP53,y_control_anchored,all_1_50,nt,192,62,130,ok,,,,,,,,,,3.2741851806640625,5.241935483870967,Moderate,4.94184684753418,22.01612903225806,Strong,5.782716751098633,27.258064516129032,Strong
-TP53,y_median_split,pm12,spliceai,48,48,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,pm12,pangolin,48,48,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,pm12,alphagenome,48,48,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,pm12,cadd,48,48,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,pm12,phylop,48,48,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,pm12,phastcons,48,48,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,pm12,gpn_msa,48,48,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,pm12,nt,48,48,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,s3_10,spliceai,144,48,96,ok,,0.22916666666666666,0.1388888888888889,0.4166666666666667,0.8645833333333334,3.076923076923077,0.6764705882352942,Supporting,below supporting,0.397732138633728,2.6666666666666665,Supporting,0.5762056112289429,2.571428571428571,Supporting,0.8964378833770752,6.0625,Moderate
-TP53,y_median_split,s3_10,pangolin,144,48,96,ok,,,,,,,,,,0.4068579971790313,34.35416666666667,Strong,0.547325074672699,28.291666666666668,Strong,0.7039144039154053,16.166666666666668,Moderate
-TP53,y_median_split,s3_10,alphagenome,144,48,96,ok,,,,,,,,,,2.1991482853889464,3.0,Supporting,2.1995542287826537,3.0,Supporting,2.1998827695846557,3.0,Supporting
-TP53,y_median_split,s3_10,cadd,144,48,96,ok,,,,,,,,,,19.31,7.333333333333333,Moderate,,,not evaluable,,,not evaluable
-TP53,y_median_split,s3_10,phylop,144,48,96,ok,,,,,,,,,,4.58587,1.9795918367346939,below supporting,5.34067,1.9795918367346939,below supporting,,,not evaluable
-TP53,y_median_split,s3_10,phastcons,144,48,96,ok,,,,,,,,,,1.0,1.9795918367346939,below supporting,,,not evaluable,,,not evaluable
-TP53,y_median_split,s3_10,gpn_msa,144,48,96,ok,,,,,,,,,,7.48,1.9795918367346939,below supporting,9.13,1.9795918367346939,below supporting,,,not evaluable
-TP53,y_median_split,s3_10,nt,144,48,96,ok,,,,,,,,,,3.6899900436401367,5.5,Moderate,4.4537434577941895,6.0,Moderate,,,not evaluable
-TP53,y_median_split,s11_50,spliceai,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,s11_50,pangolin,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,s11_50,alphagenome,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,s11_50,cadd,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,s11_50,phylop,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,s11_50,phastcons,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,s11_50,gpn_msa,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,s11_50,nt,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_median_split,all_1_50,spliceai,192,96,96,ok,,0.4166666666666667,0.109375,0.6979166666666666,0.8645833333333334,5.153846153846154,0.3382352941176471,Moderate,Supporting,0.3839756846427917,6.555555555555556,Moderate,0.7496998906135559,9.0,Moderate,0.9439656734466552,49.510416666666664,Strong
-TP53,y_median_split,all_1_50,pangolin,192,96,96,ok,,,,,,,,,,0.4337601959705353,64.66666666666667,Strong,0.617111086845398,58.604166666666664,Strong,0.8736386299133301,27.28125,Strong
-TP53,y_median_split,all_1_50,alphagenome,192,96,96,ok,,,,,,,,,,2.19936226606369,4.928571428571428,Moderate,2.199539077281952,4.928571428571428,Moderate,2.1999856352806093,4.928571428571428,Moderate
-TP53,y_median_split,all_1_50,cadd,192,96,96,ok,,,,,,,,,,22.7,27.0,Strong,24.3,51.0,Strong,35.0,10.104166666666668,Moderate
-TP53,y_median_split,all_1_50,phylop,192,96,96,ok,,,,,,,,,,4.72246,30.3125,Strong,4.7712,30.3125,Strong,6.43175,24.25,Strong
-TP53,y_median_split,all_1_50,phastcons,192,96,96,ok,,,,,,,,,,1.0,42.4375,Strong,1.0,42.4375,Strong,,,not evaluable
-TP53,y_median_split,all_1_50,gpn_msa,192,96,96,ok,,,,,,,,,,7.29,1.0,below supporting,8.46,1.0,below supporting,10.78,1.0,below supporting
-TP53,y_median_split,all_1_50,nt,192,96,96,ok,,,,,,,,,,3.2741851806640625,5.222222222222222,Moderate,4.94184684753418,10.5,Moderate,5.782716751098633,13.0,Moderate
-TP53,y_mid_band_excluded,pm12,spliceai,44,43,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,pm12,pangolin,44,43,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,pm12,alphagenome,44,43,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,pm12,cadd,44,43,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,pm12,phylop,44,43,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,pm12,phastcons,44,43,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,pm12,gpn_msa,44,43,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,pm12,nt,44,43,1,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,s3_10,spliceai,137,12,125,ok,,0.2116788321167883,0.1386861313868613,1.0,0.864,7.352941176470588,0.108038029386344,Moderate,Moderate,0.397732138633728,7.575757575757576,Moderate,0.5762056112289429,7.8125,Moderate,0.8964378833770752,31.5,Strong
-TP53,y_mid_band_excluded,s3_10,pangolin,137,12,125,ok,,,,,,,,,,0.4068579971790313,62.5,Strong,0.547325074672699,125.0,Strong,0.7039144039154053,73.50000000000001,Strong
-TP53,y_mid_band_excluded,s3_10,alphagenome,137,12,125,ok,,,,,,,,,,2.1991482853889464,5.456349206349206,Moderate,2.1995542287826537,5.456349206349206,Moderate,2.1998827695846557,5.456349206349206,Moderate
-TP53,y_mid_band_excluded,s3_10,cadd,137,12,125,ok,,,,,,,,,,19.31,10.416666666666666,Moderate,,,not evaluable,,,not evaluable
-TP53,y_mid_band_excluded,s3_10,phylop,137,12,125,ok,,,,,,,,,,4.58587,9.692307692307693,Moderate,5.34067,9.692307692307693,Moderate,,,not evaluable
-TP53,y_mid_band_excluded,s3_10,phastcons,137,12,125,ok,,,,,,,,,,1.0,9.692307692307693,Moderate,,,not evaluable,,,not evaluable
-TP53,y_mid_band_excluded,s3_10,gpn_msa,137,12,125,ok,,,,,,,,,,7.48,9.692307692307693,Moderate,9.13,9.692307692307693,Moderate,,,not evaluable
-TP53,y_mid_band_excluded,s3_10,nt,137,12,125,ok,,,,,,,,,,3.6899900436401367,7.8125,Moderate,4.4537434577941895,26.041666666666668,Strong,,,not evaluable
-TP53,y_mid_band_excluded,s11_50,spliceai,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,s11_50,pangolin,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,s11_50,alphagenome,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,s11_50,cadd,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,s11_50,phylop,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,s11_50,phastcons,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,s11_50,gpn_msa,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,s11_50,nt,0,0,0,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
-TP53,y_mid_band_excluded,all_1_50,spliceai,181,55,126,ok,,0.39779005524861877,0.11049723756906077,1.0,0.8650793650793651,7.411764705882353,0.02528089887640449,Moderate,Strong,0.3839756846427917,10.621487603305786,Moderate,0.7496998906135559,16.036363636363635,Moderate,0.9439656734466552,103.90909090909092,Strong
-TP53,y_mid_band_excluded,all_1_50,pangolin,181,55,126,ok,,,,,,,,,,0.4337601959705353,42.0,Strong,0.617111086845398,119.12727272727273,Strong,0.8736386299133301,60.03636363636364,Strong
-TP53,y_mid_band_excluded,all_1_50,alphagenome,181,55,126,ok,,,,,,,,,,2.19936226606369,5.623140495867768,Moderate,2.199539077281952,5.623140495867768,Moderate,2.1999856352806093,5.623140495867768,Moderate
-TP53,y_mid_band_excluded,all_1_50,cadd,181,55,126,ok,,,,,,,,,,22.7,20.61818181818182,Strong,24.3,32.83636363636364,Strong,35.0,23.090909090909093,Strong
-TP53,y_mid_band_excluded,all_1_50,phylop,181,55,126,ok,,,,,,,,,,4.72246,64.65454545454544,Strong,4.7712,64.65454545454544,Strong,6.43175,53.10909090909091,Strong
-TP53,y_mid_band_excluded,all_1_50,phastcons,181,55,126,ok,,,,,,,,,,1.0,90.05454545454546,Strong,1.0,90.05454545454546,Strong,,,not evaluable
-TP53,y_mid_band_excluded,all_1_50,gpn_msa,181,55,126,ok,,,,,,,,,,7.29,2.267857142857143,Supporting,8.46,2.267857142857143,Supporting,10.78,2.267857142857143,Supporting
-TP53,y_mid_band_excluded,all_1_50,nt,181,55,126,ok,,,,,,,,,,3.2741851806640625,5.803636363636364,Moderate,4.94184684753418,21.763636363636365,Strong,5.782716751098633,27.490909090909092,Strong
+gene,label_definition,stratum,tool,n,n_pos,n_neg,walker_in_scope,status,reason,walker_frac_pp3,walker_frac_grey,walker_sens_pp3,walker_spec_pp3,walker_lr_pp3,walker_lr_bp4,walker_tier_pp3,walker_tier_bp4,column_basis_comparable,e3_supporting_reachable_in_sample,e3_supporting_logo_folds,e3_supporting_threshold,e3_supporting_lr_here,e3_supporting_tier_here,e3_moderate_reachable_in_sample,e3_moderate_logo_folds,e3_moderate_threshold,e3_moderate_lr_here,e3_moderate_tier_here,e3_strong_reachable_in_sample,e3_strong_logo_folds,e3_strong_threshold,e3_strong_lr_here,e3_strong_tier_here,e3_moderate_note,e3_strong_note,e3_thresholds
+TP53,y_control_anchored,pm12,spliceai,48,47,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,pm12,pangolin,48,47,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,pm12,alphagenome,48,47,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,pm12,cadd,48,47,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,pm12,phylop,48,47,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,pm12,phastcons,48,47,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,pm12,gpn_msa,48,47,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,pm12,nt,48,47,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,pm12,spliceai_walker,48,47,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s3_10,spliceai,144,15,129,True,ok,,0.22916666666666666,0.1388888888888889,0.8666666666666667,0.8449612403100775,5.59,0.09555555555555555,Moderate,Moderate,True,True,7.0,0.397732138633728,6.45,Moderate,True,7.0,0.5762056112289429,6.688888888888889,Moderate,True,7.0,0.8964378833770752,,not evaluable,,,
+TP53,y_control_anchored,s3_10,pangolin,144,15,129,True,ok,,,,,,,,,,True,True,7.0,0.4068579971790313,27.950000000000003,Strong,True,7.0,0.547325074672699,51.6,Strong,True,7.0,0.7039144039154053,,not evaluable,,,
+TP53,y_control_anchored,s3_10,alphagenome,144,15,129,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s3_10,cadd,144,15,129,True,ok,,,,,,,,,,True,True,7.0,19.31,8.6,Moderate,False,0.0,,,not evaluable,False,0.0,,,not evaluable,tier unreachable in-sample; LOGO median not carried over,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_control_anchored,s3_10,phylop,144,15,129,True,ok,,,,,,,,,,True,True,7.0,4.58587,,not evaluable,True,7.0,5.34067,,not evaluable,False,0.0,,,not evaluable,,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_control_anchored,s3_10,phastcons,144,15,129,True,ok,,,,,,,,,,True,True,7.0,1.0,,not evaluable,False,0.0,,,not evaluable,False,0.0,,,not evaluable,tier unreachable in-sample; LOGO median not carried over,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_control_anchored,s3_10,gpn_msa,144,15,129,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s3_10,nt,144,15,129,True,ok,,,,,,,,,,True,True,7.0,3.6899900436401367,7.525,Moderate,False,4.0,,,not evaluable,False,0.0,,,not evaluable,tier unreachable in-sample; LOGO median not carried over,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_control_anchored,s3_10,spliceai_walker,144,15,129,True,ok,,0.2361111111111111,0.1597222222222222,0.8666666666666667,0.8372093023255814,5.3238095238095235,0.1,Moderate,Moderate,False,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s11_50,spliceai,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s11_50,pangolin,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s11_50,alphagenome,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s11_50,cadd,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s11_50,phylop,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s11_50,phastcons,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s11_50,gpn_msa,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s11_50,nt,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s11_50,spliceai_walker,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s3_50,spliceai,144,15,129,True,ok,,0.22916666666666666,0.1388888888888889,0.8666666666666667,0.8449612403100775,5.59,0.09555555555555555,Moderate,Moderate,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=spliceai, stratum=s3_50"
+TP53,y_control_anchored,s3_50,pangolin,144,15,129,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=pangolin, stratum=s3_50"
+TP53,y_control_anchored,s3_50,alphagenome,144,15,129,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s3_50,cadd,144,15,129,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=cadd, stratum=s3_50"
+TP53,y_control_anchored,s3_50,phylop,144,15,129,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=phylop, stratum=s3_50"
+TP53,y_control_anchored,s3_50,phastcons,144,15,129,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=phastcons, stratum=s3_50"
+TP53,y_control_anchored,s3_50,gpn_msa,144,15,129,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,s3_50,nt,144,15,129,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=nt, stratum=s3_50"
+TP53,y_control_anchored,s3_50,spliceai_walker,144,15,129,True,ok,,0.2361111111111111,0.1597222222222222,0.8666666666666667,0.8372093023255814,5.3238095238095235,0.1,Moderate,Moderate,False,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,all_1_50,spliceai,192,62,130,False,ok,,0.4166666666666667,0.109375,0.967741935483871,0.8461538461538461,6.290322580645161,0.023297491039426525,Moderate,Strong,True,True,7.0,0.3839756846427917,9.784946236559138,Moderate,True,7.0,0.7496998906135559,15.87557603686636,Moderate,True,7.0,0.9439656734466552,103.53225806451613,Strong,,,
+TP53,y_control_anchored,all_1_50,pangolin,192,62,130,False,ok,,,,,,,,,,True,True,7.0,0.4337601959705353,31.451612903225804,Strong,True,7.0,0.617111086845398,58.70967741935483,Strong,True,7.0,0.8736386299133301,57.0483870967742,Strong,,,
+TP53,y_control_anchored,all_1_50,alphagenome,192,62,130,False,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,all_1_50,cadd,192,62,130,False,ok,,,,,,,,,,True,True,7.0,22.7,17.473118279569892,Moderate,True,7.0,24.3,25.161290322580644,Strong,True,7.0,35.0,21.129032258064516,Strong,,,
+TP53,y_control_anchored,all_1_50,phylop,192,62,130,False,ok,,,,,,,,,,True,True,7.0,4.72246,63.38709677419355,Strong,True,7.0,4.7712,63.38709677419355,Strong,True,7.0,6.43175,50.70967741935484,Strong,,,
+TP53,y_control_anchored,all_1_50,phastcons,192,62,130,False,ok,,,,,,,,,,True,True,7.0,1.0,88.74193548387096,Strong,True,7.0,1.0,88.74193548387096,Strong,False,0.0,,,not evaluable,,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_control_anchored,all_1_50,gpn_msa,192,62,130,False,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_control_anchored,all_1_50,nt,192,62,130,False,ok,,,,,,,,,,True,True,7.0,3.2741851806640625,5.241935483870967,Moderate,True,7.0,4.94184684753418,22.01612903225806,Strong,True,6.0,5.782716751098633,27.258064516129032,Strong,,,
+TP53,y_control_anchored,all_1_50,spliceai_walker,192,62,130,False,ok,,0.4270833333333333,0.11979166666666667,0.967741935483871,0.8307692307692308,5.718475073313783,0.024381095273818456,Moderate,Strong,False,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,pm12,spliceai,48,48,0,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,pm12,pangolin,48,48,0,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,pm12,alphagenome,48,48,0,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,pm12,cadd,48,48,0,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,pm12,phylop,48,48,0,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,pm12,phastcons,48,48,0,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,pm12,gpn_msa,48,48,0,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,pm12,nt,48,48,0,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,pm12,spliceai_walker,48,48,0,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s3_10,spliceai,144,48,96,True,ok,,0.22916666666666666,0.1388888888888889,0.4166666666666667,0.8645833333333334,3.076923076923077,0.6764705882352942,Supporting,below supporting,True,True,7.0,0.397732138633728,2.6666666666666665,Supporting,True,7.0,0.5762056112289429,2.571428571428571,Supporting,True,7.0,0.8964378833770752,,not evaluable,,,
+TP53,y_median_split,s3_10,pangolin,144,48,96,True,ok,,,,,,,,,,True,True,7.0,0.4068579971790313,34.35416666666667,Strong,True,7.0,0.547325074672699,28.291666666666668,Strong,True,7.0,0.7039144039154053,,not evaluable,,,
+TP53,y_median_split,s3_10,alphagenome,144,48,96,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s3_10,cadd,144,48,96,True,ok,,,,,,,,,,True,True,7.0,19.31,7.333333333333333,Moderate,False,0.0,,,not evaluable,False,0.0,,,not evaluable,tier unreachable in-sample; LOGO median not carried over,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_median_split,s3_10,phylop,144,48,96,True,ok,,,,,,,,,,True,True,7.0,4.58587,,not evaluable,True,7.0,5.34067,,not evaluable,False,0.0,,,not evaluable,,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_median_split,s3_10,phastcons,144,48,96,True,ok,,,,,,,,,,True,True,7.0,1.0,,not evaluable,False,0.0,,,not evaluable,False,0.0,,,not evaluable,tier unreachable in-sample; LOGO median not carried over,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_median_split,s3_10,gpn_msa,144,48,96,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s3_10,nt,144,48,96,True,ok,,,,,,,,,,True,True,7.0,3.6899900436401367,5.5,Moderate,False,4.0,,,not evaluable,False,0.0,,,not evaluable,tier unreachable in-sample; LOGO median not carried over,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_median_split,s3_10,spliceai_walker,144,48,96,True,ok,,0.2361111111111111,0.1597222222222222,0.4375,0.8645833333333334,3.230769230769231,0.6769230769230768,Supporting,below supporting,False,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s11_50,spliceai,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s11_50,pangolin,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s11_50,alphagenome,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s11_50,cadd,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s11_50,phylop,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s11_50,phastcons,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s11_50,gpn_msa,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s11_50,nt,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s11_50,spliceai_walker,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s3_50,spliceai,144,48,96,True,ok,,0.22916666666666666,0.1388888888888889,0.4166666666666667,0.8645833333333334,3.076923076923077,0.6764705882352942,Supporting,below supporting,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=spliceai, stratum=s3_50"
+TP53,y_median_split,s3_50,pangolin,144,48,96,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=pangolin, stratum=s3_50"
+TP53,y_median_split,s3_50,alphagenome,144,48,96,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s3_50,cadd,144,48,96,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=cadd, stratum=s3_50"
+TP53,y_median_split,s3_50,phylop,144,48,96,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=phylop, stratum=s3_50"
+TP53,y_median_split,s3_50,phastcons,144,48,96,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=phastcons, stratum=s3_50"
+TP53,y_median_split,s3_50,gpn_msa,144,48,96,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,s3_50,nt,144,48,96,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=nt, stratum=s3_50"
+TP53,y_median_split,s3_50,spliceai_walker,144,48,96,True,ok,,0.2361111111111111,0.1597222222222222,0.4375,0.8645833333333334,3.230769230769231,0.6769230769230768,Supporting,below supporting,False,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,all_1_50,spliceai,192,96,96,False,ok,,0.4166666666666667,0.109375,0.6979166666666666,0.8645833333333334,5.153846153846154,0.3382352941176471,Moderate,Supporting,True,True,7.0,0.3839756846427917,6.555555555555556,Moderate,True,7.0,0.7496998906135559,9.0,Moderate,True,7.0,0.9439656734466552,49.510416666666664,Strong,,,
+TP53,y_median_split,all_1_50,pangolin,192,96,96,False,ok,,,,,,,,,,True,True,7.0,0.4337601959705353,64.66666666666667,Strong,True,7.0,0.617111086845398,58.604166666666664,Strong,True,7.0,0.8736386299133301,27.28125,Strong,,,
+TP53,y_median_split,all_1_50,alphagenome,192,96,96,False,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,all_1_50,cadd,192,96,96,False,ok,,,,,,,,,,True,True,7.0,22.7,27.0,Strong,True,7.0,24.3,51.0,Strong,True,7.0,35.0,10.104166666666668,Moderate,,,
+TP53,y_median_split,all_1_50,phylop,192,96,96,False,ok,,,,,,,,,,True,True,7.0,4.72246,30.3125,Strong,True,7.0,4.7712,30.3125,Strong,True,7.0,6.43175,24.25,Strong,,,
+TP53,y_median_split,all_1_50,phastcons,192,96,96,False,ok,,,,,,,,,,True,True,7.0,1.0,42.4375,Strong,True,7.0,1.0,42.4375,Strong,False,0.0,,,not evaluable,,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_median_split,all_1_50,gpn_msa,192,96,96,False,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_median_split,all_1_50,nt,192,96,96,False,ok,,,,,,,,,,True,True,7.0,3.2741851806640625,5.222222222222222,Moderate,True,7.0,4.94184684753418,10.5,Moderate,True,6.0,5.782716751098633,13.0,Moderate,,,
+TP53,y_median_split,all_1_50,spliceai_walker,192,96,96,False,ok,,0.4270833333333333,0.11979166666666667,0.71875,0.8645833333333334,5.307692307692308,0.3384615384615384,Moderate,Supporting,False,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,pm12,spliceai,44,43,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,pm12,pangolin,44,43,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,pm12,alphagenome,44,43,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,pm12,cadd,44,43,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,pm12,phylop,44,43,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,pm12,phastcons,44,43,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,pm12,gpn_msa,44,43,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,pm12,nt,44,43,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,pm12,spliceai_walker,44,43,1,False,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_10,spliceai,137,12,125,True,ok,,0.2116788321167883,0.1386861313868613,1.0,0.864,7.352941176470588,0.0,Moderate,Supporting,True,True,7.0,0.397732138633728,7.575757575757576,Moderate,True,7.0,0.5762056112289429,7.8125,Moderate,True,7.0,0.8964378833770752,,not evaluable,,,
+TP53,y_mid_band_excluded,s3_10,pangolin,137,12,125,True,ok,,,,,,,,,,True,True,7.0,0.4068579971790313,62.5,Strong,True,7.0,0.547325074672699,125.0,Strong,True,7.0,0.7039144039154053,,not evaluable,,,
+TP53,y_mid_band_excluded,s3_10,alphagenome,137,12,125,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_10,cadd,137,12,125,True,ok,,,,,,,,,,True,True,7.0,19.31,10.416666666666666,Moderate,False,0.0,,,not evaluable,False,0.0,,,not evaluable,tier unreachable in-sample; LOGO median not carried over,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_mid_band_excluded,s3_10,phylop,137,12,125,True,ok,,,,,,,,,,True,True,7.0,4.58587,,not evaluable,True,7.0,5.34067,,not evaluable,False,0.0,,,not evaluable,,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_mid_band_excluded,s3_10,phastcons,137,12,125,True,ok,,,,,,,,,,True,True,7.0,1.0,,not evaluable,False,0.0,,,not evaluable,False,0.0,,,not evaluable,tier unreachable in-sample; LOGO median not carried over,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_mid_band_excluded,s3_10,gpn_msa,137,12,125,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_10,nt,137,12,125,True,ok,,,,,,,,,,True,True,7.0,3.6899900436401367,7.8125,Moderate,False,4.0,,,not evaluable,False,0.0,,,not evaluable,tier unreachable in-sample; LOGO median not carried over,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_mid_band_excluded,s3_10,spliceai_walker,137,12,125,True,ok,,0.21897810218978103,0.16058394160583941,1.0,0.856,6.944444444444445,0.0,Moderate,Supporting,False,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s11_50,spliceai,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s11_50,pangolin,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s11_50,alphagenome,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s11_50,cadd,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s11_50,phylop,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s11_50,phastcons,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s11_50,gpn_msa,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s11_50,nt,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s11_50,spliceai_walker,0,0,0,True,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_50,spliceai,137,12,125,True,ok,,0.2116788321167883,0.1386861313868613,1.0,0.864,7.352941176470588,0.0,Moderate,Supporting,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=spliceai, stratum=s3_50"
+TP53,y_mid_band_excluded,s3_50,pangolin,137,12,125,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=pangolin, stratum=s3_50"
+TP53,y_mid_band_excluded,s3_50,alphagenome,137,12,125,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_50,cadd,137,12,125,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=cadd, stratum=s3_50"
+TP53,y_mid_band_excluded,s3_50,phylop,137,12,125,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=phylop, stratum=s3_50"
+TP53,y_mid_band_excluded,s3_50,phastcons,137,12,125,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=phastcons, stratum=s3_50"
+TP53,y_mid_band_excluded,s3_50,gpn_msa,137,12,125,True,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_50,nt,137,12,125,True,ok,,,,,,,,,,True,,,,,,,,,,,,,,,,,,"none: E3 has no rows for tool=nt, stratum=s3_50"
+TP53,y_mid_band_excluded,s3_50,spliceai_walker,137,12,125,True,ok,,0.21897810218978103,0.16058394160583941,1.0,0.856,6.944444444444445,0.0,Moderate,Supporting,False,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,all_1_50,spliceai,181,55,126,False,ok,,0.39779005524861877,0.11049723756906077,1.0,0.8650793650793651,7.411764705882353,0.0,Moderate,Moderate,True,True,7.0,0.3839756846427917,10.621487603305786,Moderate,True,7.0,0.7496998906135559,16.036363636363635,Moderate,True,7.0,0.9439656734466552,103.90909090909092,Strong,,,
+TP53,y_mid_band_excluded,all_1_50,pangolin,181,55,126,False,ok,,,,,,,,,,True,True,7.0,0.4337601959705353,42.0,Strong,True,7.0,0.617111086845398,119.12727272727273,Strong,True,7.0,0.8736386299133301,60.03636363636364,Strong,,,
+TP53,y_mid_band_excluded,all_1_50,alphagenome,181,55,126,False,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,all_1_50,cadd,181,55,126,False,ok,,,,,,,,,,True,True,7.0,22.7,20.61818181818182,Strong,True,7.0,24.3,32.83636363636364,Strong,True,7.0,35.0,23.090909090909093,Strong,,,
+TP53,y_mid_band_excluded,all_1_50,phylop,181,55,126,False,ok,,,,,,,,,,True,True,7.0,4.72246,64.65454545454544,Strong,True,7.0,4.7712,64.65454545454544,Strong,True,7.0,6.43175,53.10909090909091,Strong,,,
+TP53,y_mid_band_excluded,all_1_50,phastcons,181,55,126,False,ok,,,,,,,,,,True,True,7.0,1.0,90.05454545454546,Strong,True,7.0,1.0,90.05454545454546,Strong,False,0.0,,,not evaluable,,tier unreachable in-sample; LOGO median not carried over,
+TP53,y_mid_band_excluded,all_1_50,gpn_msa,181,55,126,False,ok,,,,,,,,,,False,,,,,,,,,,,,,,,,,,
+TP53,y_mid_band_excluded,all_1_50,nt,181,55,126,False,ok,,,,,,,,,,True,True,7.0,3.2741851806640625,5.803636363636364,Moderate,True,7.0,4.94184684753418,21.763636363636365,Strong,True,6.0,5.782716751098633,27.490909090909092,Strong,,,
+TP53,y_mid_band_excluded,all_1_50,spliceai_walker,181,55,126,False,ok,,0.4088397790055249,0.12154696132596685,1.0,0.8492063492063492,6.631578947368421,0.0,Moderate,Moderate,False,,,,,,,,,,,,,,,,,,

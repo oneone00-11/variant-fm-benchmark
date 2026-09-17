@@ -211,14 +211,35 @@ def classify_pangolin(row, tmap) -> dict:
         return base | {"exon_length": ln,
                        "frame": "in_frame" if ln % 3 == 0 else "out_of_frame",
                        "reason": f"skipping an exon of {ln} bp"}
-    gg, ln = min(sites, key=lambda tt: abs(tt[0] - g_event))
-    shift = abs(g_event - gg)
-    if shift == 0:
+    # Pangolin reports one gain without saying whether the gained site is a donor
+    # or an acceptor. The reading-frame shift is only meaningful against a natural
+    # site of the SAME kind, so measuring against whichever boundary happens to be
+    # nearest turns a third of these into a coin flip. Both readings are taken; the
+    # call stands only where they agree.
+    reads = {}
+    for kind, group in (("acceptor", acc), ("donor", don)):
+        if not group:
+            continue
+        gg, ln = min(group, key=lambda tt: abs(tt[0] - g_event))
+        sh = abs(g_event - gg)
+        reads[kind] = (sh, ln)
+    if not reads:
+        return base | {"frame": "undetermined", "reason": "no natural site of either kind"}
+    if any(sh == 0 for sh, _ in reads.values()):
         return base | {"frame": "undetermined",
                        "reason": "gain predicted at a natural site itself"}
-    return base | {"exon_length": ln, "shift": int(shift),
-                   "frame": "in_frame" if shift % 3 == 0 else "out_of_frame",
-                   "reason": f"cryptic site {shift} bp from the nearest natural site"}
+    frames = {k: ("in_frame" if sh % 3 == 0 else "out_of_frame")
+              for k, (sh, _) in reads.items()}
+    detail = ", ".join(f"{k} {reads[k][0]} bp -> {frames[k]}" for k in sorted(reads))
+    if len(set(frames.values())) > 1:
+        return base | {"frame": "undetermined",
+                       "reason": f"Pangolin does not type the gained site and the "
+                                 f"two readings disagree ({detail})"}
+    kind = sorted(reads)[0]
+    sh, ln = reads[kind]
+    return base | {"exon_length": ln, "shift": int(sh),
+                   "frame": frames[kind],
+                   "reason": f"cryptic site, both readings agree ({detail})"}
 
 
 def _attribute_one(events_path: Path, subset_path: Path, tool: str,
