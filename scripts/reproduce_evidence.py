@@ -25,6 +25,7 @@ Stages
   5  evid_inframe            what the false positives are predicting (E6)
   6  evid_external TP53      fixed and fitted thresholds on the held-out gene (E7)
   7  evid_external DDX3X     the same, on a gene outside the seven (E7)
+  8  evid_delta              every published quantity with a counterpart (E8)
 
 Outputs land in `phase1/reports/evidence/`.
 
@@ -49,6 +50,7 @@ STAGES = [
     ("src.evid_inframe",            "E6  in-frame attribution", ["--attribute"]),
     ("src.evid_external",           "E7  external gene: TP53", ["--apply", "TP53"]),
     ("src.evid_external",           "E7  external gene: DDX3X", ["--apply", "DDX3X"]),
+    ("src.evid_delta",              "E8  old/new quantity list -> docs/evidence-delta.md", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.
