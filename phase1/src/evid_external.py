@@ -268,6 +268,11 @@ def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
         df["y_median_split"] = (rfs > np.median(rfs)).astype(float)
         mid = np.abs(rfs) >= 0.5
         df["y_mid_band_excluded"] = np.where(mid, (rfs > 0).astype(float), np.nan)
+        walker = EXT_DIR / "tp53_spliceai_walker.parquet"
+        if walker.exists():
+            w = pd.read_parquet(walker)
+            cols = [c for c in w.columns if c.startswith("spliceai_walker")]
+            df = df.merge(w[["variant_id"] + cols], on="variant_id", how="left")
         return df, ["y_control_anchored", "y_median_split", "y_mid_band_excluded"]
     if gene.upper() == "DDX3X":
         df = pd.read_parquet(EXT_DIR / "ddx3x_splice.parquet")
