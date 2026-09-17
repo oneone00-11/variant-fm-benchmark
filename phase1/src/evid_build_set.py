@@ -354,6 +354,11 @@ def build() -> None:
     sel = sel.drop(columns=[c for c in drop if c in sel.columns])
     sel.to_parquet(OUT_PARQUET, index=False)
 
+    # the scoring input for the model re-scores, written here so a clean clone has
+    # it without an ad-hoc step
+    sel[["variant_id", "gene", "chrom", "pos", "ref", "alt"]].to_parquet(
+        OUT_DIR / "analysis_set_variants.parquet", index=False)
+
     # ---- manifest ----------------------------------------------------------
     fm = pd.read_parquet(C.OUTPUT_DIR / "frozen_matrix_v2.parquet",
                          columns=["variant_id", "hgvs_nt"])
