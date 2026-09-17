@@ -1,0 +1,41 @@
+gene,label_definition,stratum,tool,n,n_pos,n_neg,status,reason,e3_supporting_threshold,e3_supporting_lr_here,e3_supporting_tier_here,e3_moderate_threshold,e3_moderate_lr_here,e3_moderate_tier_here,e3_strong_threshold,e3_strong_lr_here,e3_strong_tier_here,walker_frac_pp3,walker_frac_grey,walker_sens_pp3,walker_spec_pp3,walker_lr_pp3,walker_lr_bp4,walker_tier_pp3,walker_tier_bp4
+DDX3X,y_control_anchored,pm12,cadd,192,118,74,ok,,,,not evaluable,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_control_anchored,pm12,phylop,192,118,74,ok,,,,not evaluable,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_control_anchored,pm12,phastcons,192,118,74,ok,,,,not evaluable,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_control_anchored,pm12,gpn_msa,192,118,74,ok,,,,not evaluable,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_control_anchored,pm12,spliceai_walker,192,118,74,ok,,,,,,,,,,,0.9947916666666666,0.005208333333333333,1.0,0.013513513513513514,1.0136986301369864,0.6302521008403361,below supporting,below supporting
+DDX3X,y_control_anchored,s3_10,cadd,768,26,742,ok,,19.31,6.272189349112426,Moderate,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_control_anchored,s3_10,phylop,768,26,742,ok,,4.58587,8.781065088757398,Moderate,5.34067,12.408026755852845,Moderate,,,not evaluable,,,,,,,,
+DDX3X,y_control_anchored,s3_10,phastcons,768,26,742,ok,,1.0,3.6587771203155817,Supporting,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_control_anchored,s3_10,gpn_msa,768,26,742,ok,,7.48,5.958579881656805,Moderate,9.13,9.08041958041958,Moderate,,,not evaluable,,,,,,,,
+DDX3X,y_control_anchored,s3_10,spliceai_walker,768,26,742,ok,,,,,,,,,,,0.2669270833333333,0.1796875,1.0,0.7587601078167115,4.145251396648044,0.06466230936819171,Supporting,Moderate
+DDX3X,y_control_anchored,s11_50,cadd,897,8,889,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
+DDX3X,y_control_anchored,s11_50,phylop,897,8,889,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
+DDX3X,y_control_anchored,s11_50,phastcons,897,8,889,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
+DDX3X,y_control_anchored,s11_50,gpn_msa,897,8,889,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
+DDX3X,y_control_anchored,s11_50,spliceai_walker,897,8,889,not evaluable,fewer than 10 labelled on one side,,,,,,,,,,,,,,,,,
+DDX3X,y_control_anchored,all_1_50,cadd,1857,152,1705,ok,,22.7,12.110503027480206,Moderate,24.3,13.124013157894737,Moderate,35.0,37.8577302631579,Strong,,,,,,,,
+DDX3X,y_control_anchored,all_1_50,phylop,1857,152,1705,ok,,4.72246,15.408111625216886,Moderate,4.7712,15.408111625216886,Moderate,6.43175,23.657894736842106,Strong,,,,,,,,
+DDX3X,y_control_anchored,all_1_50,phastcons,1857,152,1705,ok,,1.0,7.986091247139587,Moderate,1.0,7.986091247139587,Moderate,,,not evaluable,,,,,,,,
+DDX3X,y_control_anchored,all_1_50,gpn_msa,1857,152,1705,ok,,7.29,9.233592747111683,Moderate,8.46,12.065457762052189,Moderate,10.78,23.368969298245617,Strong,,,,,,,,
+DDX3X,y_control_anchored,all_1_50,spliceai_walker,1857,152,1705,ok,,,,,,,,,,,0.2633279483037157,0.12924071082390953,1.0,0.8023460410557185,5.059347181008902,0.009879247207157094,Moderate,Strong
+DDX3X,y_fdr,pm12,cadd,192,144,48,ok,,,,not evaluable,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,pm12,phylop,192,144,48,ok,,,,not evaluable,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,pm12,phastcons,192,144,48,ok,,,,not evaluable,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,pm12,gpn_msa,192,144,48,ok,,,,not evaluable,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,pm12,spliceai_walker,192,144,48,ok,,,,,,,,,,,0.9947916666666666,0.005208333333333333,1.0,0.020833333333333332,1.021276595744681,0.33793103448275863,below supporting,Supporting
+DDX3X,y_fdr,s3_10,cadd,768,41,727,ok,,19.31,5.423816355810617,Moderate,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,s3_10,phylop,768,41,727,ok,,4.58587,6.709294660514173,Moderate,5.34067,10.132404181184668,Moderate,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,s3_10,phastcons,768,41,727,ok,,1.0,3.546341463414634,Supporting,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,s3_10,gpn_msa,768,41,727,ok,,7.48,4.687692738996356,Moderate,9.13,7.352171326591314,Moderate,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,s3_10,spliceai_walker,768,41,727,ok,,,,,,,,,,,0.2669270833333333,0.1796875,0.9024390243902439,0.7689133425034388,3.9051974448315914,0.12605479135360073,Supporting,Moderate
+DDX3X,y_fdr,s11_50,cadd,897,26,871,ok,,22.75,6.451851851851851,Moderate,21.9,6.7,Moderate,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,s11_50,phylop,897,26,871,ok,,3.362335,4.1875,Supporting,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,s11_50,phastcons,897,26,871,ok,,1.0,16.75,Moderate,,,not evaluable,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,s11_50,gpn_msa,897,26,871,ok,,6.595,4.785714285714286,Moderate,7.07,4.1875,Supporting,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,s11_50,spliceai_walker,897,26,871,ok,,,,,,,,,,,0.10367892976588629,0.11259754738015608,0.6538461538461539,0.912743972445465,7.49342105263158,0.3856115107913669,Moderate,Supporting
+DDX3X,y_fdr,all_1_50,cadd,1857,211,1646,ok,,22.7,14.023132475739109,Moderate,24.3,15.388171135493087,Moderate,35.0,37.70458135860979,Strong,,,,,,,,
+DDX3X,y_fdr,all_1_50,phylop,1857,211,1646,ok,,4.72246,16.978533593532198,Moderate,4.7712,16.978533593532198,Moderate,6.43175,33.8853672985782,Strong,,,,,,,,
+DDX3X,y_fdr,all_1_50,phastcons,1857,211,1646,ok,,1.0,8.47255265057594,Moderate,1.0,8.47255265057594,Moderate,,,not evaluable,,,,,,,,
+DDX3X,y_fdr,all_1_50,gpn_msa,1857,211,1646,ok,,7.29,9.224478500017298,Moderate,8.46,13.142901298166084,Moderate,10.78,30.683728278041077,Strong,,,,,,,,
+DDX3X,y_fdr,all_1_50,spliceai_walker,1857,211,1646,ok,,,,,,,,,,,0.2633279483037157,0.12924071082390953,0.9383886255924171,0.8232077764277035,5.307861435481507,0.07682222608798958,Moderate,Moderate

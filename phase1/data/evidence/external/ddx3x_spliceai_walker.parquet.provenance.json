@@ -7,10 +7,10 @@
   "statistic": "max over ds_ag, ds_al, ds_dg, ds_dl; full float precision",
   "reference_fasta": "phase1/data/evidence/refs/chrX.fa",
   "annotation": "grch38",
-  "n_variants": 5,
-  "n_scored": 5,
+  "n_variants": 1857,
+  "n_scored": 1857,
   "basis": "Walker et al. 2023 Methods; phase1/config/walker2023.yaml",
-  "output_sha256": "343e9fc5277df14e7f7919e83dbd0d34678aa36a7a546236668516165e6d7985",
-  "scored_utc": "2026-09-17T06:27:56+00:00",
-  "runtime_minutes": 0.2
+  "output_sha256": "9f1388c4a8b3cdbd6c022786539672835d950906165c2a7f5d17f5d907164cb6",
+  "scored_utc": "2026-09-17T07:28:59+00:00",
+  "runtime_minutes": 60.9
 }
