@@ -210,6 +210,11 @@ def prepare_ddx3x() -> None:
 # the applied-threshold report then covers fewer tools and says so.
 DDX3X_SCORE_FILES = {
     "ddx3x_spliceai_walker.parquet": ["spliceai_walker"],
+    # deliberately not scored: the distance-50 column would only be needed to apply
+    # thresholds fitted on the distance-50 column, and E3 fits thresholds on the
+    # Walker-basis column too, so the external gene is evaluated end to end on one
+    # basis. CPU was the binding constraint; this pass was dropped to give the
+    # seven-gene re-score the machine.
     "ddx3x_spliceai_d50.parquet": ["spliceai"],
     "ddx3x_cadd.parquet": ["cadd"],
     "ddx3x_phyloP100way.parquet": ["phylop100way"],
