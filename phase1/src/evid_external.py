@@ -302,15 +302,21 @@ def apply_thresholds(gene: str) -> None:
     rows = []
     tools = [t for t in K.PANEL + K.OPTIONAL if t in df.columns]
     for label in label_cols:
-        for stratum in ["pm12", "s3_10", "s11_50", "all_1_50"]:
-            sub = df if stratum == "all_1_50" else df[df["stratum"] == stratum]
+        for stratum in K.STRATA:
+            sub = (df if stratum == "all_1_50"
+                   else df[df["stratum"] != "pm12"] if stratum == "s3_50"
+                   else df[df["stratum"] == stratum])
             for tool in tools:
                 s = sub.dropna(subset=[label, tool])
                 y = s[label].to_numpy(dtype=float)
                 v = s[tool].to_numpy(dtype=float)
                 base = {"gene": gene.upper(), "label_definition": label,
                         "stratum": stratum, "tool": tool, "n": int(len(s)),
-                        "n_pos": int((y == 1).sum()), "n_neg": int((y == 0).sum())}
+                        "n_pos": int((y == 1).sum()), "n_neg": int((y == 0).sum()),
+                        # pm12 and any pool containing it sit outside the ClinGen
+                        # SVI recommendation; without this flag a reader takes a
+                        # pm12-inclusive row as a threshold result
+                        "walker_in_scope": stratum in K.IN_SCOPE_STRATA}
                 if base["n_pos"] < K.MIN_POS or base["n_neg"] < K.MIN_NEG:
                     rows.append(base | {"status": "not evaluable",
                                         "reason": "fewer than 10 labelled on one side"})
@@ -332,9 +338,27 @@ def apply_thresholds(gene: str) -> None:
                 if ev is not None:
                     e = ev[(ev.tool == tool) & (ev.stratum == stratum)
                            & (ev.status == "ok")]
+                    if not len(e):
+                        row["e3_thresholds"] = (
+                            f"none: E3 has no rows for tool={tool}, stratum={stratum}")
                     for tier in ["supporting", "moderate", "strong"]:
                         t = e[e.tier == tier]
                         if not len(t):
+                            continue
+                        # A tier E3 could not reach in-sample still has a finite
+                        # LOGO median, because that median is taken over only the
+                        # folds where a threshold was found. Carrying it over would
+                        # publish a "moderate" cut looser than the "supporting" cut.
+                        reachable = bool(t["pp3_threshold_reachable"].iloc[0])
+                        folds = float(t["pp3_logo_folds_reaching"].iloc[0] or 0)
+                        row[f"e3_{tier}_reachable_in_sample"] = reachable
+                        row[f"e3_{tier}_logo_folds"] = folds
+                        if not reachable:
+                            row[f"e3_{tier}_threshold"] = np.nan
+                            row[f"e3_{tier}_lr_here"] = np.nan
+                            row[f"e3_{tier}_tier_here"] = "not evaluable"
+                            row[f"e3_{tier}_note"] = (
+                                "tier unreachable in-sample; LOGO median not carried over")
                             continue
                         tau = float(t["pp3_logo_threshold_median"].iloc[0])
                         row[f"e3_{tier}_threshold"] = tau

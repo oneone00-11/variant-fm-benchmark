@@ -25,7 +25,8 @@ Stages
   5  evid_inframe            what the false positives are predicting (E6)
   6  evid_external TP53      fixed and fitted thresholds on the held-out gene (E7)
   7  evid_external DDX3X     the same, on a gene outside the seven (E7)
-  8  evid_delta              every published quantity with a counterpart (E8)
+  8  evid_diagnostics        cut-point and monotonicity diagnostic tables (E8)
+  9  evid_delta              every published quantity with a counterpart (E8)
 
 Outputs land in `phase1/reports/evidence/`.
 
@@ -50,6 +51,7 @@ STAGES = [
     ("src.evid_inframe",            "E6  in-frame attribution", ["--attribute"]),
     ("src.evid_external",           "E7  external gene: TP53", ["--apply", "TP53"]),
     ("src.evid_external",           "E7  external gene: DDX3X", ["--apply", "DDX3X"]),
+    ("src.evid_diagnostics",        "E8  cut-point and monotonicity diagnostics", []),
     ("src.evid_delta",              "E8  old/new quantity list -> docs/evidence-delta.md", []),
 ]
 
@@ -68,14 +70,25 @@ NEEDS = {
 }
 
 
-def run_stage(module: str, label: str, n: int, total: int, args: list) -> None:
+def run_stage(module: str, label: str, n: int, total: int, args: list) -> bool:
+    """Run one stage. Returns False if it was skipped for a missing input.
+
+    A missing input skips its own stage and lets the rest run. Exiting the whole
+    script would mean an un-scored model column silently prevents the stages after
+    it from regenerating at all, which is how outputs drift from the code that is
+    supposed to produce them.
+    """
     print(f"\n{'=' * 74}\n[{n}/{total}] {module}  --  {label}\n{'=' * 74}", flush=True)
-    for rel, how in NEEDS.get(module, []):
-        if not (REPO / rel).exists():
-            sys.exit(f"\nMISSING INPUT for stage {n}: {rel}\n  produce it with:  {how}")
+    missing = [(rel, how) for rel, how in NEEDS.get(module, [])
+               if not (REPO / rel).exists()]
+    if missing:
+        for rel, how in missing:
+            print(f"  SKIPPED -- missing input {rel}\n    produce it with:  {how}")
+        return False
     r = subprocess.run([sys.executable, "-m", module, *args], cwd=PHASE1)
     if r.returncode != 0:
         sys.exit(f"\nFAILED at stage {n}/{total} ({module}); exit code {r.returncode}")
+    return True
 
 
 def main() -> None:
@@ -84,12 +97,21 @@ def main() -> None:
     ap.add_argument("--from", dest="start", type=int, default=1)
     args = ap.parse_args()
     total = len(STAGES)
+    skipped = []
     for i, (mod, label, extra) in enumerate(STAGES, 1):
         if i < args.start:
-            print(f"[{i}/{total}] {mod} -- skipped")
+            print(f"[{i}/{total}] {mod} -- skipped (--from)")
             continue
-        run_stage(mod, label, i, total, extra)
-    print(f"\nAll stages done. Tables: phase1/reports/evidence/\n")
+        if not run_stage(mod, label, i, total, extra):
+            skipped.append(f"{i}. {mod} -- {label}")
+    print(f"\nTables: phase1/reports/evidence/")
+    if skipped:
+        print("\nStages skipped for a missing input -- their outputs are whatever "
+              "the last successful run left:")
+        for s in skipped:
+            print(f"  {s}")
+        sys.exit(1)
+    print("All stages ran.\n")
 
 
 if __name__ == "__main__":

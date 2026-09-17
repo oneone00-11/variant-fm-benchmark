@@ -61,14 +61,27 @@ def test_clinvar_arms_are_the_three_declared(df):
     assert un.isna().all()
 
 
-def test_every_published_splice_variant_is_accounted_for(manifest):
+def test_every_published_splice_variant_is_accounted_for(manifest, df):
+    """The brief's gate. The manifest's two counts sum to len(disp) by construction,
+    so summing them proves nothing; this recomputes the split from the disposition
+    table and from set membership, which is what the gate is actually about."""
     disp = pd.read_csv(REPORTS / "old_set_disposition.csv")
     assert len(disp) == 1781, "the published study's splice set is 1,781 variants"
-    assert manifest["checks"]["old_splice_set_in_new"] \
-        + manifest["checks"]["old_splice_set_explained"] == 1781
-    # nothing may be unexplained
+    assert disp["variant_id"].nunique() == 1781
+
+    # recomputed, not read back from the manifest
+    in_new = disp["disposition"] == "in_new_set"
+    keys = set(df["key"]) if "key" in df.columns else set(
+        df.chrom.astype(str) + "-" + df.pos.astype(str) + "-" + df.ref + "-" + df.alt)
+    assert set(disp.loc[in_new, "variant_id"]) <= keys, \
+        "a variant marked in_new_set is not in the analysis set"
+    assert not (disp.loc[~in_new, "variant_id"].isin(keys)).any(), \
+        "a variant marked as leaving the set is still in it"
+
+    assert int(in_new.sum()) == manifest["checks"]["old_splice_set_in_new"]
+    assert int((~in_new).sum()) == manifest["checks"]["old_splice_set_explained"]
     assert not (disp["disposition"] == "other").any()
-    assert disp.loc[disp["disposition"] != "in_new_set", "reason"].str.len().gt(0).all()
+    assert disp.loc[~in_new, "reason"].str.len().gt(0).all()
 
 
 def test_hgvs_join_key_agrees_with_the_published_matrix(manifest):

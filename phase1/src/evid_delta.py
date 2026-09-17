@@ -64,13 +64,15 @@ def new_rho(df: pd.DataFrame, tool: str) -> tuple[float, int]:
     return float(dl_pool(pg)["rho"]), len(sub)
 
 
-def new_lr(df: pd.DataFrame, tool: str) -> tuple[float, float]:
+def new_lr(df: pd.DataFrame, tool: str) -> tuple[float, float, int]:
+    """(scanned LR+, interpolated LR+, n). The likelihood ratio needs a binary
+    label, so it runs on the labelled subset -- a different and smaller sample than
+    the rank correlation, which needs only the continuous score. The count is
+    returned with the estimate so the two cannot drift apart in the table."""
     sub = df.dropna(subset=[tool, "y_assay"])
     y = sub["y_assay"].to_numpy(float)
     s = sub[tool].to_numpy(float)
-    scan = lr_at_specificity(y, s)[0]
-    interp = lr_interp_at_specificity(y, s)[0]
-    return scan, interp
+    return lr_at_specificity(y, s)[0], lr_interp_at_specificity(y, s)[0], len(sub)
 
 
 def build() -> None:
@@ -83,7 +85,7 @@ def build() -> None:
         if new_name not in df.columns:
             continue
         rho_new, n_new = new_rho(df, new_name)
-        scan, interp = new_lr(df, new_name)
+        scan, interp, n_lr = new_lr(df, new_name)
         old_rho = np.nan
         if len(old_lb):
             m = old_lb[old_lb["model"].astype(str) == f"single:{old_name}"]
@@ -108,12 +110,12 @@ def build() -> None:
         rows.append({
             "quantity": "LR+ at 95% specificity (interpolated)", "object": new_name,
             "published_set_1781": old_lrplus, "evid_set_8853": interp,
-            "n_new": n_new, "comparable": "same estimator, different variant set",
+            "n_new": n_lr, "comparable": "same estimator, different variant set",
         })
         rows.append({
             "quantity": "LR+ at 95% specificity (scanned)", "object": new_name,
             "published_set_1781": old_lrscan, "evid_set_8853": scan,
-            "n_new": n_new, "comparable": "same estimator, different variant set",
+            "n_new": n_lr, "comparable": "same estimator, different variant set",
         })
 
     out = pd.DataFrame(rows)

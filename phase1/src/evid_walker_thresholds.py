@@ -43,7 +43,16 @@ OUT = REPORT_DIR / "walker_thresholds.csv"
 
 N_BOOT = 2000
 MIN_POS = MIN_NEG = 10
-STRATUM_ORDER = ["pm12", "s3_10", "s11_50", "all_1_50"]
+# A band also needs occupants before it gets a ratio. Without this a band holding a
+# single variant yields a finite likelihood ratio and an evidence tier: pm12's BP4
+# band holds one variant, zero of them damaging, which is arithmetically a ratio of
+# zero and reads as Very strong benign evidence from one observation.
+MIN_BAND = 10
+STRATUM_ORDER = ["pm12", "s3_10", "s11_50", "s3_50", "all_1_50"]
+# The recommendation excludes the canonical +/-1,2 dinucleotides, so a pool that
+# contains them is not a place to read a Walker-threshold result off. On this set
+# pm12 supplies half the positives of the full pool.
+IN_SCOPE = {"s3_10", "s11_50", "s3_50"}
 ARM_ORDER = ["all", "classified", "recorded_unclassified", "unrecorded"]
 PRIORS = [0.05, 0.10, 0.20]
 
@@ -100,15 +109,20 @@ def _band_stats(y: np.ndarray, s: np.ndarray, pp3: float, bp4: float) -> dict:
     lo_p, lo_n = float((pos <= bp4).mean()), float((neg <= bp4).mean())
     mid_p = 1.0 - hi_p - lo_p
     mid_n = 1.0 - hi_n - lo_n
-    # a zero denominator is bounded away from zero rather than reported as an
-    # infinite ratio, the convention phase5 already uses
-    lr_pp3 = hi_p / max(hi_n, 1.0 / (n_neg + 1))
-    lr_bp4 = lo_p / max(lo_n, 1.0 / (n_neg + 1)) if lo_p > 0 else \
-        (1.0 / (n_pos + 1)) / max(lo_n, 1.0 / (n_neg + 1))
+    # A zero denominator is bounded away from zero rather than reported as an
+    # infinite ratio, the convention phase5 already uses. A zero numerator is left
+    # at zero, and an EMPTY band is not given a ratio at all: flooring the numerator
+    # would report a likelihood ratio -- and an evidence tier -- computed from the
+    # class sizes alone, with no variant from the band in it.
+    n_hi = int((s >= pp3).sum())
+    n_lo = int((s <= bp4).sum())
+    lr_pp3 = (hi_p / max(hi_n, 1.0 / (n_neg + 1))) if n_hi >= MIN_BAND else np.nan
+    lr_bp4 = (lo_p / max(lo_n, 1.0 / (n_neg + 1))) if n_lo >= MIN_BAND else np.nan
     spec = 1.0 - hi_n
     lr_minus = (1.0 - hi_p) / spec if spec > 0 else np.nan
     return {
         "n_pos": n_pos, "n_neg": n_neg,
+        "n_in_pp3_band": n_hi, "n_in_bp4_band": n_lo,
         "frac_pp3": float((s >= pp3).mean()), "frac_grey": float(((s > bp4) & (s < pp3)).mean()),
         "frac_bp4": float((s <= bp4).mean()),
         "sens_pp3": hi_p, "spec_pp3": spec,
@@ -145,10 +159,18 @@ def _boot_ci(sub: pd.DataFrame, score: str, pp3: float, bp4: float,
     for k in keys:
         v = np.asarray(draws[k], dtype=float)
         v = v[np.isfinite(v)]
+        out[f"{k}_n_boot_used"] = int(v.size)
         if v.size >= N_BOOT * 0.5:
             lo, hi = np.nanpercentile(v, [2.5, 97.5])
             out[f"{k}_lo"], out[f"{k}_hi"] = float(lo), float(hi)
-    out["ci_basis"] = f"gene-clustered bootstrap, {N_BOOT} resamples of {len(ug)} genes"
+    # A draw is dropped when the resampled gene set fell below the minimum count on
+    # one side, so the interval is a percentile of the draws that CLEARED the gate,
+    # not of all N_BOOT. Where many are dropped the interval is conditioned on having
+    # drawn the genes that carry the scarce side, which narrows it; the used count is
+    # reported per quantity so that is visible rather than implied.
+    used = min(int(out.get(f"{k}_n_boot_used", 0)) for k in keys)
+    out["ci_basis"] = (f"gene-clustered bootstrap over {len(ug)} genes; "
+                       f"{used} of {N_BOOT} draws evaluable")
     return out
 
 
@@ -161,7 +183,9 @@ def evaluate(df: pd.DataFrame, score: str, cfg: dict) -> pd.DataFrame:
 
     rows = []
     for stratum in STRATUM_ORDER:
-        ss = df if stratum == "all_1_50" else df[df["stratum"] == stratum]
+        ss = (df if stratum == "all_1_50"
+              else df[df["stratum"] != "pm12"] if stratum == "s3_50"
+              else df[df["stratum"] == stratum])
         for arm in ARM_ORDER:
             sa = ss if arm == "all" else ss[ss["clinvar_arm"] == arm]
             scopes = [("pooled", None)] + [("gene", g) for g in sorted(sa["gene"].unique())]
@@ -172,7 +196,7 @@ def evaluate(df: pd.DataFrame, score: str, cfg: dict) -> pd.DataFrame:
                     "score_column": score, "stratum": stratum, "clinvar_arm": arm,
                     "scope": scope, "gene": gene or "(pooled)",
                     "n": int(len(sub)),
-                    "walker_in_scope": stratum != "pm12",
+                    "walker_in_scope": stratum in IN_SCOPE,
                 }
                 st = _band_stats(sub["y_assay"].to_numpy(dtype=float),
                                  sub[score].to_numpy(dtype=float), pp3, bp4)

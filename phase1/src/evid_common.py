@@ -23,12 +23,20 @@ PANEL = ["spliceai", "pangolin", "alphagenome", "cadd", "phylop", "phastcons",
 # scored separately; present only once their stage has run
 OPTIONAL = ["spliceai_walker", "avi", "avi_splice"]
 
-STRATA = ["pm12", "s3_10", "s11_50", "all_1_50"]
+# pm12 is OUT of the ClinGen SVI recommendation's scope: those variants go through
+# the PVS1 decision tree, not PP3/BP4. So there are two pools, not one. `s3_50` is
+# the in-scope pool and is the one a Walker-threshold result should be read off;
+# `all_1_50` is the descriptive total and carries half its positives from pm12,
+# which inflates sensitivity and moves the BP4 band.
+STRATA = ["pm12", "s3_10", "s11_50", "s3_50", "all_1_50"]
+IN_SCOPE_STRATA = {"s3_10", "s11_50", "s3_50"}
 ARMS = ["all", "classified", "recorded_unclassified", "unrecorded"]
 
 FUSION = "fusion_enet"
 
 MIN_POS = MIN_NEG = 10
+# a band needs occupants before it gets a ratio -- see band_lr
+MIN_BAND = 10
 
 
 def load_set(path: Path | str = SET_PATH) -> pd.DataFrame:
@@ -41,7 +49,11 @@ def panel_of(df: pd.DataFrame) -> list[str]:
 
 
 def stratum_frame(df: pd.DataFrame, stratum: str) -> pd.DataFrame:
-    return df if stratum == "all_1_50" else df[df["stratum"] == stratum]
+    if stratum == "all_1_50":
+        return df
+    if stratum == "s3_50":
+        return df[df["stratum"] != "pm12"]
+    return df[df["stratum"] == stratum]
 
 
 def arm_frame(df: pd.DataFrame, arm: str) -> pd.DataFrame:
@@ -78,6 +90,13 @@ def logo_fusion(df: pd.DataFrame, feats: list[str]) -> np.ndarray:
 
     Returned as an out-of-fold score aligned to df's rows. Genes are never a
     feature and every in-fold statistic is fit on training genes only.
+
+    One consequence to carry downstream: this is a SINGLE out-of-fold column, so
+    gene h's score came from a model trained on every gene except h -- including
+    gene g. Anything that later holds g out and fits on the other six is therefore
+    not free of g. That is fine for per-gene rank correlation, which compares each
+    gene's score with its own labels, and it is NOT fine for fitting a threshold on
+    six genes and reporting it on the seventh; E3 flags the affected rows.
     """
     from .phase2_model import logo_oof, rank_target_within_gene
     xrn = rank_within_gene(df, feats)
@@ -97,19 +116,29 @@ def band_lr(y: np.ndarray, s: np.ndarray, thr: float, side: str = "upper") -> fl
     """P(band | damaging) / P(band | normal) for the band a threshold cuts off.
 
     side='upper' is the PP3 band (s >= thr), side='lower' the BP4 band (s <= thr).
-    A zero denominator is bounded away from zero rather than returned as infinity,
-    the convention phase5 already uses.
+
+    A zero DENOMINATOR is bounded away from zero, so a perfectly separating score
+    gives a large finite ratio rather than infinity -- the convention phase5 uses.
+    A zero NUMERATOR is not bounded, and a band with fewer than MIN_BAND occupants
+    is not evaluated at all.
+    Flooring the numerator would turn "no damaging variant is in this band" into a
+    positive likelihood ratio computed from the class sizes alone, with no
+    observation from the band in it; on the PP3 side that manufactures evidence for
+    pathogenicity out of a band that contains none.
     """
     pos, neg = s[y == 1], s[y == 0]
     if len(pos) < MIN_POS or len(neg) < MIN_NEG or not np.isfinite(thr):
         return np.nan
+    in_band = (s >= thr) if side == "upper" else (s <= thr)
+    if int(in_band.sum()) < MIN_BAND:
+        return np.nan            # too few occupants to estimate a ratio from
     if side == "upper":
         p, n = float((pos >= thr).mean()), float((neg >= thr).mean())
     else:
         p, n = float((pos <= thr).mean()), float((neg <= thr).mean())
-    n = max(n, 1.0 / (len(neg) + 1))
-    p = max(p, 1.0 / (len(pos) + 1)) if p == 0 else p
-    return p / n
+    if p == 0.0:
+        return 0.0                         # band holds only normals: no PP3 evidence
+    return p / max(n, 1.0 / (len(neg) + 1))
 
 
 def acmg_bands(cfg: dict) -> tuple[dict, dict]:

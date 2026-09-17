@@ -153,12 +153,23 @@ other_tools:
     regions. No numeric score threshold and no evidence strength is recommended for
     any tool other than SpliceAI, so no other tool enters the E2 fixed-threshold
     analysis.
-    Note for this project: that comparison dataset is BRCA1 saturation genome
-    editing, which is one of the seven assays the analysis set here is built on. The
-    SpliceAI thresholds themselves were calibrated on a different set (2,736
-    variants across eight genes with in vitro splicing assay data), so the cut
-    points are not circular with respect to this analysis set, but the
-    tool-ranking claim is.
+    Note for this project, CORRECTED after checking the source. Two separate
+    datasets are involved and both touch our seven genes:
+      * the TOOL-RANKING comparison ran on Findlay's BRCA1 saturation genome
+        editing (414 variants), which is one of the seven assays this analysis set
+        is built on;
+      * the THRESHOLD CALIBRATION ran on 2,736 variants outside the canonical sites
+        across EIGHT genes -- BRCA1, BRCA2, MLH1, MSH2, MSH6, PMS2, NF1 and
+        POU1F1 -- against in vitro splicing assay data curated from the literature.
+    BRCA1 and BRCA2 are in that calibration set, and they are two of our seven. So
+    applying these cut points here is NOT a clean out-of-sample test: the variants
+    differ (literature in vitro splicing assays against SGE functional scores) and
+    the endpoint differs (a splice event against gene function), but the genes
+    overlap. An earlier version of this file asserted non-circularity flatly; that
+    was wrong and is corrected here. The honest statement is that the overlap is at
+    the gene level, not the variant level, and that the five non-overlapping genes
+    (BARD1, PALB2, RAD51C, VHL, BAP1) and the external gene DDX3X are where the cut
+    points are genuinely out of sample.
 
 # ---------------------------------------------------------------------------
 # Region definitions used by the source (recorded for reference; the strata of
@@ -224,7 +235,10 @@ column_check:
   action: >-
     A separate column `spliceai_walker` is scored for the analysis set at
     distance 4999, mask 0, max over the four deltas, full precision, with the same
-    pinned SpliceAI 1.3.1 environment and the same GRCh38 reference. It is the
-    column E2 applies the 0.2/0.1 cut points to. `spliceai` (distance 50) stays as
-    the panel's ranking column and as a sensitivity comparison.
-  provenance_file: "docs/column-provenance.md (evidence section)"
+    pinned SpliceAI 1.3.1 environment and the same GRCh38 reference
+    (src/evid_score_spliceai_walker.py). Once it exists, E2 applies the 0.2/0.1 cut
+    points to it and `spliceai` (distance 50) stays as the panel's ranking column
+    and as a sensitivity comparison. E2 reports which column it used and warns when
+    only the distance-50 column is present, so a table produced before the re-score
+    finished is not mistaken for one produced after.
+  provenance_file: "data/evidence/spliceai_walker.parquet.provenance.json"

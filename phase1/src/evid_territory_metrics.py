@@ -78,9 +78,16 @@ def per_gene_and_pool(sub: pd.DataFrame, tool: str, ce) -> dict:
     vz = pg["var"] / (pg["auroc"] * (1 - pg["auroc"])) ** 2
     p = ce.dl_pool(z.tolist(), vz.tolist())
     inv = lambda x: 1 / (1 + math.exp(-x))  # noqa: E731
+    # Genes below the minimum count are dropped from the estimate. The row's `n`
+    # and `positive_rate` describe the whole cell, so they are NOT the sample the
+    # estimate was computed on; the retained figures are reported beside them rather
+    # than leaving a cell size next to an estimate that did not use it.
     return {
         "k_genes": len(pg),
         "n_pos": int(pg["n_pos"].sum()), "n_neg": int(pg["n_neg"].sum()),
+        "n_used": int(pg["n_pos"].sum() + pg["n_neg"].sum()),
+        "positive_rate_used": float(pg["n_pos"].sum()
+                                    / (pg["n_pos"].sum() + pg["n_neg"].sum())),
         "auroc": inv(p["pooled"]), "auroc_lo": inv(p["ci_lo"]),
         "auroc_hi": inv(p["ci_hi"]), "auroc_i2_pct": p["i2_pct"],
         "auprc_median": float(pg["auprc"].median()),
@@ -127,9 +134,9 @@ def main() -> None:
             for arm in K.ARMS:
                 sub = K.arm_frame(ss, arm).dropna(subset=["y_assay", tool])
                 base = {"tool": tool, "stratum": stratum, "clinvar_arm": arm,
-                        "n": int(len(sub)),
-                        "positive_rate": (float((sub["y_assay"] == 1).mean())
-                                          if len(sub) else np.nan)}
+                        "n_cell": int(len(sub)),
+                        "positive_rate_cell": (float((sub["y_assay"] == 1).mean())
+                                               if len(sub) else np.nan)}
                 rows.append(base | per_gene_and_pool(sub, tool, ce))
 
     out = pd.DataFrame(rows)

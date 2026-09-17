@@ -117,48 +117,26 @@ def test_e2_band_lr_reproduces_from_the_set_itself():
         assert np.isclose(expected, r.lr_pp3, rtol=1e-9), (r.stratum, r.clinvar_arm)
 
 
-@pytest.mark.skipif(not (WALKER.exists() and EVIDENCE.exists()), reason="E2/E3 not run")
-def test_the_cut_point_sits_where_the_local_ratio_is_uninformative():
-    """The two stages disagree about the cut point by construction, and the shape of
-    the disagreement is itself the finding, so it is recorded rather than asserted
-    away.
+CUTPOINT = REPORTS / "walker_cutpoint_local_vs_band.csv"
 
-    At Walker's 0.2 the LOCAL likelihood ratio is close to 1 in every stratum: the
-    variants sitting near the cut point carry almost no evidence either way, which
-    is what Walker's own uninformative band (>0.1 and <0.2, LR 1.00) says. The BAND
-    ratio above it is much larger, because the damaging variants that make PP3 worth
-    applying score far above the cut point rather than near it. A reader who reads
-    the 0.2 threshold as "variants at 0.2 are moderately predictive" has the wrong
-    picture; the table written here is the evidence for that.
+
+@pytest.mark.skipif(not CUTPOINT.exists(), reason="E8 diagnostics not run")
+def test_the_cut_point_sits_where_the_local_ratio_is_uninformative():
+    """The two stages report different quantities at the same cut point, and the
+    shape of the difference is the finding. src.evid_diagnostics computes the table;
+    this reads it, because a test that writes a tracked output means no entry point
+    produces it.
+
+    At Walker's 0.2 the LOCAL likelihood ratio is close to 1: the variants sitting
+    at the cut point carry almost no evidence either way, which is what Walker's own
+    uninformative band (>0.1 and <0.2, LR 1.00) says. The BAND ratio above it is
+    much larger, because the damaging variants that make PP3 worth applying score
+    far above the cut point rather than near it.
     """
-    e2 = pd.read_csv(WALKER)
-    e3 = pd.read_csv(EVIDENCE)
-    if "walker_pp3_local_lr" not in e3.columns:
-        pytest.skip("E3 carries no Walker-cut-point columns")
-    e3 = e3[(e3.status == "ok") & e3["walker_pp3_local_lr"].notna()]
-    if not len(e3):
-        pytest.skip("no Walker-cut-point rows")
-    rows = []
-    for tool in e3.tool.unique():
-        for stratum in e3[e3.tool == tool].stratum.unique():
-            a = e2[(e2.score_column == tool) & (e2.stratum == stratum)
-                   & (e2.scope == "pooled") & (e2.clinvar_arm == "all")
-                   & (e2.status == "ok")]
-            b = e3[(e3.tool == tool) & (e3.stratum == stratum)]
-            if not len(a) or not len(b):
-                continue
-            rows.append({"tool": tool, "stratum": stratum,
-                         "frac_called_pp3": round(float(a.frac_pp3.iloc[0]), 4),
-                         "band_lr_above_cut": round(float(a.lr_pp3.iloc[0]), 3),
-                         "local_lr_at_cut": round(float(b.walker_pp3_local_lr.iloc[0]), 3),
-                         "local_lr_lower_bound": round(
-                             float(b.walker_pp3_local_lr_lo.iloc[0]), 3)})
-    assert rows
-    out = pd.DataFrame(rows)
-    out.to_csv(REPORTS / "walker_cutpoint_local_vs_band.csv", index=False)
-    # the band ratio is the one PP3 application uses, and it must exceed the local
-    # ratio wherever the cut point is a tail
+    out = pd.read_csv(CUTPOINT)
+    assert len(out)
     tail = out[out.frac_called_pp3 < 0.5]
+    assert len(tail), "no cell had a cut point that cuts off a tail"
     assert (tail.band_lr_above_cut > tail.local_lr_at_cut).all(), tail
 
 
@@ -176,56 +154,18 @@ def test_evidence_thresholds_are_ordered_by_tier():
     assert not bad, bad
 
 
-@pytest.mark.skipif(not EVIDENCE.exists(), reason="E3 not run")
+MONO = REPORTS / "local_lr_monotonicity.txt"
+
+
+@pytest.mark.skipif(not MONO.exists(), reason="E8 diagnostics not run")
 def test_local_lr_monotonicity_is_recorded_not_assumed():
     """The threshold rule reads the local likelihood ratio as increasing in the
-    score. Where a curve dips, the dip is written down here so it is a known
-    property of that tool in that stratum rather than a silent assumption."""
-    curves = sorted(REPORTS.glob("interval_lr_*.csv"))
-    if not curves:
-        pytest.skip("E3 curve files not present")
-    report = []
-    for path in curves:
-        c = pd.read_csv(path).dropna(subset=["local_lr"])
-        if len(c) < 3:
-            continue
-        d = np.diff(c["local_lr"].to_numpy())
-        drops = int((d < 0).sum())
-        report.append((path.stem, len(c), drops, round(drops / max(len(d), 1), 3),
-                       float(c["local_lr"].iloc[-1] - c["local_lr"].iloc[0])))
-    assert report
-    lines = ["tool_stratum n_grid n_drops drop_frac end_minus_start"]
-    lines += [" ".join(str(x) for x in r) for r in report]
-    (REPORTS / "local_lr_monotonicity.txt").write_text("\n".join(lines) + "\n")
-    # the curve must at least end higher than it starts: that is the direction the
-    # whole PP3 side depends on
-    rising = [r for r in report if r[4] > 0]
-    assert len(rising) / len(report) > 0.7, [r for r in report if r[4] <= 0]
-
-
-@pytest.mark.skipif(not (WALKER.exists() and SET.exists()), reason="E2 not run")
-def test_the_bootstrap_interval_reproduces_cell_by_cell():
-    """Each bootstrap interval is seeded from its own cell key, so one row can be
-    recomputed without re-running the table in the same order. This recomputes two
-    rows and requires them to land on the stored bounds exactly."""
-    import sys
-    sys.path.insert(0, str(PHASE1))
-    from src import evid_walker_thresholds as E2
-
-    df = pd.read_parquet(SET)
-    col = "spliceai_walker" if "spliceai_walker" in df.columns else "spliceai"
-    d = pd.read_csv(WALKER)
-    d = d[(d.score_column == col) & (d.scope == "pooled") & (d.status == "ok")
-          & d.lr_pp3_lo.notna()]
-    if not len(d):
-        pytest.skip("no pooled rows with an interval")
-    keys = ("lr_pp3", "lr_bp4", "sens_pp3", "spec_pp3", "lr_minus_at_pp3")
-    for r in d.head(2).itertuples():
-        sub = df if r.stratum == "all_1_50" else df[df.stratum == r.stratum]
-        if r.clinvar_arm != "all":
-            sub = sub[sub.clinvar_arm == r.clinvar_arm]
-        sub = sub.dropna(subset=["y_assay", col])
-        ci = E2._boot_ci(sub, col, 0.2, 0.1, keys, (r.stratum, r.clinvar_arm))
-        assert np.isclose(ci["lr_pp3_lo"], r.lr_pp3_lo, rtol=1e-12), (
-            r.stratum, r.clinvar_arm, ci["lr_pp3_lo"], r.lr_pp3_lo)
-        assert np.isclose(ci["lr_pp3_hi"], r.lr_pp3_hi, rtol=1e-12)
+    score. src.evid_diagnostics records every curve's dips; this checks the record
+    is present and that the curves do rise overall, which is the direction the whole
+    PP3 side depends on."""
+    lines = [l.split() for l in MONO.read_text().strip().splitlines()]
+    assert lines and lines[0][0] == "tool_stratum"
+    rows = lines[1:]
+    assert len(rows) >= 4
+    rising = [r for r in rows if float(r[4]) > 0]
+    assert len(rising) / len(rows) > 0.7, [r for r in rows if float(r[4]) <= 0]

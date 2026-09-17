@@ -37,6 +37,20 @@ Two deliberate departures, both recorded here because they change numbers:
      Pejaver's own cuts (2.406 / 5.79 / 33.53 / 1124) are derived at their prior of
      0.0441 and are not used.
 
+The fusion's LOGO columns carry a leakage the single tools' do not, and it is
+flagged in the output rather than left for a reader to notice. `logo_fusion`
+produces ONE out-of-fold column: gene g's score comes from a model trained on the
+other six. When E3 then holds out gene g and fits a threshold on the six training
+genes' scores, each of those six scores came from a model whose training set
+INCLUDED g -- so g's labels have already influenced the scores the threshold is
+fitted on. The threshold is therefore not free of the held-out gene, and the
+fusion's held-out likelihood ratios are optimistic. The direction matters for how
+the result reads: the finding is that a fitted fusion threshold does NOT carry
+across genes, and a contaminated estimate can only make that transfer look BETTER
+than it is, so the finding survives its own caveat. A clean estimate would need a
+nested design -- refit the fusion inside each outer fold -- which is not run here.
+Rows for the fusion carry `logo_threshold_leakage`.
+
 A fitted fusion threshold and a single tool's threshold are not the same kind of
 object, and the LOGO columns show it. A single tool emits the same score scale in
 every gene, so a threshold chosen on six genes means the same thing on the seventh.
@@ -274,6 +288,13 @@ def run_tool_stratum(df, tool, stratum, path_cuts, ben_cuts, walker, n_boot_vari
             "tier": t,
             "status": "ok",
             "reason": "",
+            # see the module docstring: the fusion is refitted in every fold, so the
+            # six training genes' out-of-fold scores were produced by models that saw
+            # the held-out gene. Its LOGO numbers are optimistic by construction.
+            "logo_threshold_leakage": (
+                "fusion out-of-fold scores in the training folds were produced by "
+                "models trained on the held-out gene; held-out LR is optimistic"
+                if tool == K.FUSION else ""),
             "path_cut_lr": path_cuts[t],
             "pp3_threshold_insample": full["path"][t],
             "pp3_threshold_reachable": bool(np.isfinite(full["path"][t])),

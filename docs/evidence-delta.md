@@ -22,29 +22,29 @@ atlas region classifier (`reports/evidence/old_set_disposition.csv`).
 | quantity | object | published_set_1781 | evid_set_8853 | n_new | comparable |
 |---|---|---|---|---|---|
 | pooled Spearman rho | spliceai | 0.7517 | 0.5000 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (interpolated) | spliceai | 16.6139 | 15.9850 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (scanned) | spliceai | 16.8908 | 16.0177 | 8853 | same estimator, different variant set |
+| LR+ at 95% specificity (interpolated) | spliceai | 16.6139 | 15.9850 | 8453 | same estimator, different variant set |
+| LR+ at 95% specificity (scanned) | spliceai | 16.8908 | 16.0177 | 8453 | same estimator, different variant set |
 | pooled Spearman rho | pangolin | 0.7610 | 0.5034 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (interpolated) | pangolin | 16.7600 | 16.3602 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (scanned) | pangolin | 17.0394 | 16.3937 | 8853 | same estimator, different variant set |
+| LR+ at 95% specificity (interpolated) | pangolin | 16.7600 | 16.3602 | 8453 | same estimator, different variant set |
+| LR+ at 95% specificity (scanned) | pangolin | 17.0394 | 16.3937 | 8453 | same estimator, different variant set |
 | pooled Spearman rho | alphagenome | 0.7502 | 0.4955 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (interpolated) | alphagenome | 15.4689 | 16.4603 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (scanned) | alphagenome | 15.7268 | 16.4940 | 8853 | same estimator, different variant set |
+| LR+ at 95% specificity (interpolated) | alphagenome | 15.4689 | 16.4603 | 8453 | same estimator, different variant set |
+| LR+ at 95% specificity (scanned) | alphagenome | 15.7268 | 16.4940 | 8453 | same estimator, different variant set |
 | pooled Spearman rho | cadd | 0.6942 | 0.4037 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (interpolated) | cadd | 12.7263 | 13.1957 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (scanned) | cadd | 12.9519 | 13.2228 | 8853 | same estimator, different variant set |
+| LR+ at 95% specificity (interpolated) | cadd | 12.7263 | 13.1957 | 8453 | same estimator, different variant set |
+| LR+ at 95% specificity (scanned) | cadd | 12.9519 | 13.2228 | 8453 | same estimator, different variant set |
 | pooled Spearman rho | phylop | 0.6390 | 0.3942 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (interpolated) | phylop | 13.4592 | 12.2877 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (scanned) | phylop | 13.5968 | 12.2953 | 8853 | same estimator, different variant set |
+| LR+ at 95% specificity (interpolated) | phylop | 13.4592 | 12.2877 | 8453 | same estimator, different variant set |
+| LR+ at 95% specificity (scanned) | phylop | 13.5968 | 12.2953 | 8453 | same estimator, different variant set |
 | pooled Spearman rho | phastcons | 0.6122 | 0.3949 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (interpolated) | phastcons | 5.3278 | 9.6469 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (scanned) | phastcons | 6.6083 | n/a | 8853 | same estimator, different variant set |
+| LR+ at 95% specificity (interpolated) | phastcons | 5.3278 | 9.6469 | 8453 | same estimator, different variant set |
+| LR+ at 95% specificity (scanned) | phastcons | 6.6083 | n/a | 8453 | same estimator, different variant set |
 | pooled Spearman rho | gpn_msa | 0.6655 | 0.4133 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (interpolated) | gpn_msa | 12.7162 | 12.5700 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (scanned) | gpn_msa | 12.9281 | 12.6205 | 8853 | same estimator, different variant set |
+| LR+ at 95% specificity (interpolated) | gpn_msa | 12.7162 | 12.5700 | 8453 | same estimator, different variant set |
+| LR+ at 95% specificity (scanned) | gpn_msa | 12.9281 | 12.6205 | 8453 | same estimator, different variant set |
 | pooled Spearman rho | nt | 0.4923 | 0.2603 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (interpolated) | nt | 6.3581 | 7.1670 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (scanned) | nt | 6.4641 | 7.1816 | 8853 | same estimator, different variant set |
+| LR+ at 95% specificity (interpolated) | nt | 6.3581 | 7.1670 | 8453 | same estimator, different variant set |
+| LR+ at 95% specificity (scanned) | nt | 6.4641 | 7.1816 | 8453 | same estimator, different variant set |
 
 ## Quantities with no counterpart
 
