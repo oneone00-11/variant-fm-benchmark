@@ -1,0 +1,40 @@
+{
+  "files": {
+    "ensembl/lookup_ENST00000644876.json": {
+      "accession": "ENST00000644876",
+      "bytes": 3862,
+      "fetched_at": "2026-09-17T06:25:39+00:00",
+      "registered_at": "2026-09-17T06:25:39.596716+00:00",
+      "sha256": "6dd9d333cb1aab3f03a34851c577c7898f2c455985a623275036361ecbedbf42",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000644876?expand=1;content-type=application/json"
+    },
+    "ensembl/seq_GRCh38_chrX_41329162_41355274.fa": {
+      "bytes": 26113,
+      "chrom": "X",
+      "fetched_at": "2026-09-17T06:25:42+00:00",
+      "registered_at": "2026-09-17T06:25:42.360377+00:00",
+      "sha256": "5ec0ee16cd62de83fb181a14f46a191c1c6b70f25203a1b5884922e2d1715e15",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/X:41329162..41355274:1?content-type=text/plain"
+    },
+    "mane/MANE.GRCh38.v1.5.summary.txt.gz": {
+      "bytes": 1115288,
+      "description": "MANE summary table, GRCh38",
+      "fetched_at": "2026-09-17T06:25:38+00:00",
+      "registered_at": "2026-09-17T06:25:38.062766+00:00",
+      "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c",
+      "source": "NCBI MANE project",
+      "source_url": "https://ftp.ncbi.nlm.nih.gov/refseq/MANE/MANE_human/current/MANE.GRCh38.v1.5.summary.txt.gz"
+    },
+    "mutalyzer/reference_model_NM_001356.5.json": {
+      "accession": "NM_001356.5",
+      "bytes": 8531,
+      "fetched_at": "2026-09-17T06:25:38+00:00",
+      "registered_at": "2026-09-17T06:25:38.691241+00:00",
+      "sha256": "60657b4ce115299a3c4c9e32a4a21e62d6fd24f1ef8a8e5e41adf8ce8f2eccd5",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_001356.5"
+    }
+  }
+}

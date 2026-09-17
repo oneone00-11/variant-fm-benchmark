@@ -1,0 +1,68 @@
+{
+  "gene": "DDX3X",
+  "source": "MaveDB",
+  "experiment": "urn:mavedb:00000658",
+  "score_sets": [
+    "urn:mavedb:00000658-a-1",
+    "urn:mavedb:00000658-b-1",
+    "urn:mavedb:00000658-c-1",
+    "urn:mavedb:00000658-d-1",
+    "urn:mavedb:00000658-e-1",
+    "urn:mavedb:00000658-f-1",
+    "urn:mavedb:00000658-g-1",
+    "urn:mavedb:00000658-h-1",
+    "urn:mavedb:00000658-i-1",
+    "urn:mavedb:00000658-j-1",
+    "urn:mavedb:00000658-k-1",
+    "urn:mavedb:00000658-l-1",
+    "urn:mavedb:00000658-m-1",
+    "urn:mavedb:00000658-n-1",
+    "urn:mavedb:00000658-o-1",
+    "urn:mavedb:00000658-p-1",
+    "urn:mavedb:00000658-q-1"
+  ],
+  "licence": "CC0",
+  "transcript": "ENST00000644876.2",
+  "mane_select": true,
+  "assembly": "GRCh38",
+  "chrom": "X",
+  "n_intronic_snv_mapped": 1857,
+  "n_mapping_failures": 0,
+  "mapping_failures": {},
+  "strata": {
+    "s11_50": 897,
+    "s3_10": 768,
+    "pm12": 192
+  },
+  "controls": {
+    "n_synonymous": 1758,
+    "n_nonsense": 443,
+    "median_synonymous": 0.00019093735,
+    "median_nonsense": -0.20967568632799,
+    "midpoint": -0.104742374488995,
+    "control_auroc": 0.9664301471249137,
+    "gate": "OK"
+  },
+  "labels": {
+    "control_anchored": "assay_score < midpoint of control medians",
+    "fdr": "trend BH-FDR < 0.01 and assay_score < synonymous median",
+    "note": "the deposit publishes no functional classification; both definitions are constructed here and neither is the assay authors' own call",
+    "n_damaging_control_anchored": 152,
+    "n_damaging_fdr": 211
+  },
+  "transcript_map_provenance": {
+    "assay_accession": "ENST00000644876.2",
+    "mutalyzer_model_accession": "NM_001356.5",
+    "mutalyzer_model": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_001356.5",
+    "ensembl_anchor": "ENST00000644876",
+    "ensembl_lookup": "https://rest.ensembl.org/lookup/id/ENST00000644876?expand=1",
+    "n_exons": 17,
+    "cds_t_offsets": [
+      91,
+      2080
+    ],
+    "exon_anchor_adjustments": []
+  },
+  "sha256": "612e860c5f7299b3f408dced305a8495f3f7a72da1ebdc0b3e9d28130ee7d888",
+  "built_utc": "2026-09-17T06:25:42+00:00"
+}

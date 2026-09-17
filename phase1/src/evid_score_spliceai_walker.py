@@ -94,6 +94,13 @@ def main() -> int:
     ap.add_argument("--variants", required=True,
                     help="parquet with variant_id, chrom, pos, ref, alt")
     ap.add_argument("--out", default="phase1/data/evidence/spliceai_walker.parquet")
+    ap.add_argument("--fasta", default=str(REF_FASTA),
+                    help="GRCh38 fasta; the atlas subset covers chr 2/3/13/16/17 only, "
+                         "so an external gene on another chromosome needs its own")
+    ap.add_argument("--distance", type=int, default=DISTANCE,
+                    help="SpliceAI -D; 4999 is Walker's setting, 50 is the atlas column's")
+    ap.add_argument("--column", default=None,
+                    help="output column name; defaults to spliceai_walker for -D 4999")
     ap.add_argument("--validate", action="store_true")
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--limit", type=int, default=None)
@@ -104,10 +111,15 @@ def main() -> int:
     import spliceai
 
     variants = pd.read_parquet(args.variants)
+    if "gene" not in variants.columns:
+        variants["gene"] = ""
     variants["chrom_s"] = variants["chrom"].astype(str)
     variants = variants.sort_values(["chrom_s", "pos"]).reset_index(drop=True)
 
-    ann = Annotator(str(REF_FASTA), ANNOTATION)
+    distance = args.distance
+    column = args.column or ("spliceai_walker" if distance == DISTANCE
+                             else f"spliceai_d{distance}")
+    ann = Annotator(args.fasta, ANNOTATION)
     fullprec = build_fullprec()
 
     if args.validate:
@@ -115,8 +127,8 @@ def main() -> int:
         checked = mismatched = 0
         for r in sample.itertuples():
             rec = Rec(r.chrom_s, int(r.pos), r.ref, r.alt)
-            stock = get_delta_scores(rec, ann, DISTANCE, MASK)
-            fine = fullprec(rec, ann, DISTANCE, MASK)
+            stock = get_delta_scores(rec, ann, distance, MASK)
+            fine = fullprec(rec, ann, distance, MASK)
             if len(stock) != len(fine):
                 mismatched += 1
                 continue
@@ -129,7 +141,7 @@ def main() -> int:
                     mismatched += 1
                     print("MISMATCH", pa[2:6], pb[2:6])
         print(f"validated {checked} score fields on {len(sample)} variants at "
-              f"distance {DISTANCE}, mask {MASK}; {mismatched} mismatches")
+              f"distance {distance}, mask {MASK}; {mismatched} mismatches")
         return 1 if mismatched else 0
 
     if not args.run:
@@ -141,7 +153,7 @@ def main() -> int:
     for i, r in enumerate(variants.itertuples(), 1):
         rec = Rec(r.chrom_s, int(r.pos), r.ref, r.alt)
         try:
-            rows.append(aggregate(fullprec(rec, ann, DISTANCE, MASK)))
+            rows.append(aggregate(fullprec(rec, ann, distance, MASK)))
         except Exception:
             rows.append((np.nan,) * 5)
         if i % args.report_every == 0:
@@ -151,9 +163,9 @@ def main() -> int:
 
     out = variants[["variant_id", "gene", "chrom", "pos", "ref", "alt"]].copy()
     arr = np.asarray(rows, dtype=float)
-    out["spliceai_walker"] = arr[:, 0]
+    out[column] = arr[:, 0]
     for j, f in enumerate(FIELDS):
-        out[f"spliceai_walker_{f}"] = arr[:, j + 1]
+        out[f"{column}_{f}"] = arr[:, j + 1]
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -161,13 +173,13 @@ def main() -> int:
 
     sha = hashlib.sha256(out_path.read_bytes()).hexdigest()
     prov = {
-        "column": "spliceai_walker",
+        "column": column,
         "tool": "SpliceAI",
         "package_version": getattr(spliceai, "__version__", "1.3.1"),
-        "distance": DISTANCE,
+        "distance": distance,
         "mask": MASK,
         "statistic": "max over ds_ag, ds_al, ds_dg, ds_dl; full float precision",
-        "reference_fasta": str(REF_FASTA),
+        "reference_fasta": args.fasta,
         "annotation": ANNOTATION,
         "n_variants": int(len(out)),
         "n_scored": int(out["spliceai_walker"].notna().sum()),

@@ -1,0 +1,16 @@
+{
+  "column": "spliceai_walker",
+  "tool": "SpliceAI",
+  "package_version": "1.3.1",
+  "distance": 4999,
+  "mask": 0,
+  "statistic": "max over ds_ag, ds_al, ds_dg, ds_dl; full float precision",
+  "reference_fasta": "phase1/data/evidence/refs/chrX.fa",
+  "annotation": "grch38",
+  "n_variants": 5,
+  "n_scored": 5,
+  "basis": "Walker et al. 2023 Methods; phase1/config/walker2023.yaml",
+  "output_sha256": "343e9fc5277df14e7f7919e83dbd0d34678aa36a7a546236668516165e6d7985",
+  "scored_utc": "2026-09-17T06:27:56+00:00",
+  "runtime_minutes": 0.2
+}
