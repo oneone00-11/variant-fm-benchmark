@@ -24,9 +24,11 @@
 #   Table numbering differs between the two: the threshold table is Table 2 in the
 #   preprint and Table 1 in the published version. The published numbering is used
 #   in `source` fields below and the preprint number is given beside it.
-#   NOT VERIFIED: printed page numbers for individual tables/sentences. The article
-#   spans pp. 1046-1067; no per-item page number could be confirmed without the
-#   publisher PDF. Section headings are given instead.
+#   VERIFIED 2026-09-20 against the publisher PDF (23 pages; the first is the
+#   unnumbered graphical abstract, so printed page = PDF page + 1044, giving the
+#   article's 1046-1067). Every `source` below now carries the printed page. Two
+#   items differ from the preprint and the published text wins; both are flagged
+#   `preprint_differs` where they occur.
 
 provenance:
   published:
@@ -42,7 +44,12 @@ provenance:
     retrieved: "2026-09-17"
     access: "Europe PMC REST fullTextXML (JATS), CC-BY"
     local_copy: "verbatim text cached outside the repo during transcription"
-  page_numbers: "not verified -- see header"
+  publisher_pdf:
+    checked: "2026-09-20"
+    pages: 23
+    page_mapping: "printed = PDF page + 1044 (PDF p.1 is the unnumbered graphical abstract)"
+    location: "outside the repository; not redistributable"
+  page_numbers: "verified against the publisher PDF"
 
 # ---------------------------------------------------------------------------
 # The score the thresholds are defined on.
@@ -54,14 +61,13 @@ score_definition:
               (acceptor loss, acceptor gain, donor loss, donor gain)"
   masked: false          # "maximum RAW delta score" -- SpliceAI -M 0
   distance: 4999         # "maximum distance of 10,000 nucleotides (+/-4,999 nucleotides)"
-  source: "Methods, 'Splicing prediction analysis' (published; preprint identical)"
+  source: "p. 1049, Methods, 'Splicing prediction analysis'"
   quote: >-
-    The deep learning-based splice variant software SpliceAI (Version 1.3.1) was
-    used to predict the effect on splicing for each variant. We used the maximum
-    raw delta score, defined as the maximum probability of altered splicing across
-    four output probabilities (loss of acceptor or donor sites, gain of acceptor or
-    donor sites), and the maximum distance of 10,000 nucleotides (+/-4,999
-    nucleotides from the variant of interest).
+    We used the maximum raw SpliceAI delta score, defined as the maximum
+    probability of altered splicing across 4 output probabilities (designated by the
+    tool as loss of acceptor or donor sites, gain of acceptor or donor sites) and the
+    maximum distance of 10,000 nucleotides (+/-4,999 nucleotides from the variant of
+    interest).   [verbatim, p. 1049]
 
 # ---------------------------------------------------------------------------
 # The thresholds. Published Table 1 (= preprint Table 2).
@@ -70,8 +76,10 @@ score_definition:
 # positions using optimal cut offs".
 # ---------------------------------------------------------------------------
 thresholds:
-  source: "Table 1 (published) / Table 2 (preprint); Results, 'Model for
-           establishing thresholds for splicing prediction tools'"
+  source: "Table 1, p. 1051 (Table 2 in the preprint); the sentences that assign the
+           strengths are on p. 1056, Results, 'Model for establishing thresholds for
+           splicing prediction tools'. Every cell of Table 1 was checked against the
+           PDF and matches."
   scope: "variants located OUTSIDE the donor/acceptor +/-1,2 dinucleotides"
   pp3:
     operator: ">="
@@ -85,9 +93,14 @@ thresholds:
     reported_n_splice_yes: 381
     reported_sensitivity_all_noncanonical: 0.78
     quote: >-
-      Based on this analysis, the optimal threshold for assigning PP3 to
-      [variants outside the donor/acceptor +/-1,2 dinucleotides] was determined to
-      be >=0.2, which equated to a moderate level of evidence for spliceogenicity.
+      Based on this analysis, the optimal threshold for assigning PP3 to variants
+      outside the donor/acceptor +/-1,2 dinucleotides was determined to be >=0.2,
+      which equated to a moderate level of evidence for spliceogenicity (Table 1 and
+      Figures 3B and 4).   [verbatim, p. 1056]
+    preprint_differs: >-
+      The preprint cited "Table 2, Figure 2B, Figure 3" for the same sentence. Same
+      content, different figure and table numbers; the published numbering is used
+      throughout this file.
     note: >-
       This resolves the ambiguity the brief flagged. The threshold's own strength
       is MODERATE, in the table and in the sentence. The "supporting" figure that
@@ -108,9 +121,10 @@ thresholds:
     reported_specificity_standard_splice_region: 0.73
     quote: >-
       The optimal threshold for assigning BP4 was determined to be <=0.1 for
-      moderate level of evidence for non-spliceogenicity with 87% specificity for
-      all [variants outside the +/-1,2 dinucleotides] and 73% specificity for
-      variants within the standard splice region.
+      moderate level of evidence for non-spliceogenicity, with 87% specificity for
+      all variants outside the donor/acceptor +/-1,2 dinucleotides (Table 1) and 73%
+      specificity for variants within the donor/acceptor splice region (Table S11).
+      [verbatim, p. 1056]
   grey_zone:
     interval: "> 0.1 and < 0.2"
     evidence_strength: "Uninformative"
@@ -130,10 +144,11 @@ thresholds:
 canonical_pm12:
   pp3_bp4_applicable: false
   route: "PVS1 decision tree"
-  source: "Figure 2 legend; Results/Discussion on PVS1 decision trees"
+  source: "Figure 3 legend, p. 1057 (Figure 2 in the preprint)"
   quote: >-
-    Note: truth datasets exclude splice site variants, which are captured by the
-    PVS1 decision tree process.
+    Note: truth datasets were filtered to exclude splice donor/acceptor +/-1,2
+    dinucleotide variants, which are captured by the PVS1 decision tree process.
+    [verbatim, p. 1057]
   consequence_for_this_analysis: >-
     The pm12 stratum is reported descriptively only. Applying the PP3/BP4 cut
     points there is outside the recommendation's own scope, so any LR quoted for
@@ -144,7 +159,8 @@ canonical_pm12:
 # ---------------------------------------------------------------------------
 other_tools:
   thresholds_recommended: false
-  source: "Methods, 'Splicing prediction analysis'; Table S3; Figure S5"
+  source: "p. 1055, Results (ROC comparison, AUC = 0.959, Figure S5); the tool list
+           is Table S3"
   note: >-
     Ten other splicing prediction tools were compared with SpliceAI by ROC/AUC on
     the BRCA1 saturation genome editing dataset of Findlay et al. (414 variants,
@@ -176,18 +192,26 @@ other_tools:
 # this analysis are defined by intronic offset and do not reuse them).
 # ---------------------------------------------------------------------------
 region_definitions:
-  standard_splice_region:
-    donor: "last 3 bases of the exon and 6 nucleotides of intronic sequence adjacent to the exon"
-    acceptor: "first base of the exon and 20 nucleotides upstream from the exon boundary"
-    source: "Methods, 'Designation of donor and acceptor motif ranges for bioinformatic code application'"
+  donor_acceptor_splice_region:
+    donor: "last 3 bases of the exon and 3-6 nucleotides of intronic sequence adjacent to the exon"
+    acceptor: "first base of the exon and from 3 to 20 nucleotides upstream from the exon boundary"
+    source: "p. 1056, in the PP3 sentence's parenthesis, citing Figure 1"
+    preprint_differs: >-
+      CORRECTED against the PDF. The preprint gives single values -- 6 nucleotides
+      on the donor side, 20 on the acceptor side -- and calls it the "standard
+      splice region". The published text gives RANGES, 3-6 and 3-20, and calls it
+      the "donor/acceptor splice region". The earlier transcription here carried the
+      preprint's single values under the preprint's name; both are fixed. Nothing in
+      this analysis is computed from these bounds -- the strata are defined by
+      intronic offset -- so no number changes.
   minimal_splice_region:
     donor: "last 3 bases of the exon and 6 nucleotides of intronic sequence adjacent to the exon"
     acceptor: "first base of the exon and 3 nucleotides upstream from the exon boundary"
     source: "Methods, same section"
   stratum_note: >-
-    Strength was unchanged when restricted to variants within the standard splice
-    site motifs, and was at least Supporting for variants outside it
-    (published Table S11 / preprint Table S10).
+    Strength was unchanged when restricted to variants within the donor/acceptor
+    splice region, and was at least Supporting for variants outside it
+    (published Table S11; the preprint numbered the same table S10).
 
 # ---------------------------------------------------------------------------
 # Evidence bands. Walker designates strengths from Tavtigian LR ranges at a global
@@ -207,7 +231,7 @@ evidence_bands:
     strong: 0.05347593582887701
     moderate: 0.23094688221709006
     supporting: 0.4807692307692308
-  source: "Walker Methods, 'Calibration of code weights based on odds of
+  source: "p. 1049-1050, Methods, 'Calibration of code weights based on odds of
            spliceogenicity' (Tavtigian et al. LR ranges, prior 0.10; their Table S5)"
   note: >-
     Walker's LRs are likelihood ratios for SPLICEOGENICITY (a splice event

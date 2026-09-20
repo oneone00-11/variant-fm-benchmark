@@ -13,9 +13,10 @@ spot-check, which is exactly that rounding. E6 uses the event TYPE and its POSIT
 not the magnitude, so the rounding does not enter any reported number; the subset
 itself is selected on the full-precision column.
 
-Only the seven frozen genes are in scope. Pangolin needs a gffutils database of the
-annotation, and the one the atlas built covers chromosomes 2, 3, 13, 16 and 17;
-DDX3X is on chrX and would need a new database, which is a separate job.
+The seven frozen genes use the atlas's reference and database, which cover
+chromosomes 2, 3, 13, 16 and 17. An external gene on another chromosome needs its
+own pair, passed with --fasta and --gtf-db; DDX3X's were built from the same Ensembl
+r112 GTF by the same gffutils recipe the atlas used, subset to chrX.
 
 Runs in the atlas's pinned Pangolin environment:
     <atlas>/models/pangolin/.venv/bin/python phase1/src/evid_score_pangolin_events.py \
@@ -41,8 +42,8 @@ import pandas as pd
 
 ATLAS = Path(os.environ.get("evidence-strength_ATLAS_REPO",
                             "/Users/cliffzhang/work/functional-standard-atlas"))
-REF_FASTA = ATLAS / "data" / "refs" / "grch38_subset.fa"
-GTF_DB = ATLAS / "data" / "refs" / "grch38_subset.gtf.db"
+DEFAULT_FASTA = ATLAS / "data" / "refs" / "grch38_subset.fa"
+DEFAULT_GTF_DB = ATLAS / "data" / "refs" / "grch38_subset.gtf.db"
 DISTANCE = 50           # the atlas column's setting; Pangolin has no Walker basis
 
 # gene|<gain_pos>:<gain>|<loss_pos>:<loss>|Warnings
@@ -88,7 +89,8 @@ def parse_with_positions(path: Path) -> dict:
     return out
 
 
-def run_chunks(csv_path: Path, chunks_dir: Path, n_chunks: int) -> dict:
+def run_chunks(csv_path: Path, chunks_dir: Path, n_chunks: int,
+               ref_fasta: Path, gtf_db: Path) -> dict:
     chunks_dir.mkdir(parents=True, exist_ok=True)
     lines = csv_path.read_text().splitlines()
     header, body = lines[0], lines[1:]
@@ -115,8 +117,8 @@ def run_chunks(csv_path: Path, chunks_dir: Path, n_chunks: int) -> dict:
             return out
         marker.unlink(missing_ok=True)
         time.sleep((i % 5) * 10)      # stagger torch model loads
-        cmd = [str(exe), "-d", str(DISTANCE), str(cc), str(REF_FASTA),
-               str(GTF_DB), str(cc.with_suffix(".out"))]
+        cmd = [str(exe), "-d", str(DISTANCE), str(cc), str(ref_fasta),
+               str(gtf_db), str(cc.with_suffix(".out"))]
         proc = subprocess.run(cmd, capture_output=True, text=True, env=env)
         if proc.returncode != 0:
             raise RuntimeError(f"pangolin failed on {cc.name}: {proc.stderr[-400:]}")
@@ -138,12 +140,17 @@ def main() -> int:
     ap.add_argument("--out", required=True)
     ap.add_argument("--work", default="data/evidence/pangolin_events_work")
     ap.add_argument("--chunks", type=int, default=5)
+    ap.add_argument("--fasta", default=str(DEFAULT_FASTA),
+                    help="GRCh38 fasta; the atlas subset covers chr 2/3/13/16/17 only")
+    ap.add_argument("--gtf-db", default=str(DEFAULT_GTF_DB),
+                    help="gffutils database matching the fasta")
     ap.add_argument("--run", action="store_true")
     args = ap.parse_args()
     if not args.run:
         ap.error("pass --run")
 
-    for p in (REF_FASTA, GTF_DB):
+    ref_fasta, gtf_db = Path(args.fasta), Path(args.gtf_db)
+    for p in (ref_fasta, gtf_db):
         if not p.exists():
             raise SystemExit(f"missing reference: {p}")
 
@@ -154,7 +161,7 @@ def main() -> int:
     n = emit_csv(df, csv_path)
     print(f"[pangolin-events] {n} SNVs, {args.chunks} chunks, -d {DISTANCE}", flush=True)
     t0 = time.time()
-    scores = run_chunks(csv_path, work / "chunks", args.chunks)
+    scores = run_chunks(csv_path, work / "chunks", args.chunks, ref_fasta, gtf_db)
 
     key = list(zip(df["chrom"].astype(str), df["pos"].astype(int), df["ref"], df["alt"]))
     hit = [scores.get(k) for k in key]
@@ -171,7 +178,7 @@ def main() -> int:
     prov = {
         "product": "Pangolin gain/loss scores with their positions",
         "distance": DISTANCE,
-        "reference_fasta": str(REF_FASTA), "gtf_db": str(GTF_DB),
+        "reference_fasta": str(ref_fasta), "gtf_db": str(gtf_db),
         "n_variants": int(len(out)),
         "n_scored": int(out["pangolin_event_max"].notna().sum()),
         "output_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
