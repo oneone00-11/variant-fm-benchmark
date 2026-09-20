@@ -1,0 +1,253 @@
+gene,label_definition,stratum,tool,tier,n_pos,n_neg,column_basis_comparable,lr_at_walker_cut,tier_at_walker_cut,logo_threshold,lr_at_logo_threshold,tier_at_logo_threshold
+DDX3X,y_control_anchored,s3_10,cadd,supporting,37,731,True,,,19.53,4.541783162472818,Moderate
+DDX3X,y_control_anchored,s3_10,cadd,moderate,37,731,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_10,cadd,strong,37,731,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_10,phylop,supporting,37,731,True,,,4.58587,6.07900207900208,Moderate
+DDX3X,y_control_anchored,s3_10,phylop,moderate,37,731,True,,,5.34067,8.589894242068155,Moderate
+DDX3X,y_control_anchored,s3_10,phylop,strong,37,731,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_10,phastcons,supporting,37,731,True,,,1.0,2.532917532917533,Supporting
+DDX3X,y_control_anchored,s3_10,phastcons,moderate,37,731,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_10,phastcons,strong,37,731,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_10,gpn_msa,supporting,37,731,True,,,7.47,4.1250371250371245,Supporting
+DDX3X,y_control_anchored,s3_10,gpn_msa,moderate,37,731,True,,,9.13,6.2862407862407865,Moderate
+DDX3X,y_control_anchored,s3_10,gpn_msa,strong,37,731,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_10,spliceai_walker,supporting,37,731,True,2.8696965121546127,Supporting,0.4259027540683746,6.157950157950158,Moderate
+DDX3X,y_control_anchored,s3_10,spliceai_walker,moderate,37,731,True,2.8696965121546127,Supporting,0.5537148118019104,7.153308480894688,Moderate
+DDX3X,y_control_anchored,s3_10,spliceai_walker,strong,37,731,True,2.8696965121546127,Supporting,0.89483243227005,17.122522522522523,Moderate
+DDX3X,y_control_anchored,s11_50,cadd,supporting,34,863,True,,,21.1,5.439075630252102,Moderate
+DDX3X,y_control_anchored,s11_50,cadd,moderate,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s11_50,cadd,strong,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s11_50,phylop,supporting,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s11_50,phylop,moderate,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s11_50,phylop,strong,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s11_50,phastcons,supporting,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s11_50,phastcons,moderate,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s11_50,phastcons,strong,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s11_50,gpn_msa,supporting,34,863,True,,,6.585,3.6260504201680672,Supporting
+DDX3X,y_control_anchored,s11_50,gpn_msa,moderate,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s11_50,gpn_msa,strong,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s11_50,spliceai_walker,supporting,34,863,True,3.0581148121899364,Supporting,0.2532642036676407,3.744937319189971,Supporting
+DDX3X,y_control_anchored,s11_50,spliceai_walker,moderate,34,863,True,3.0581148121899364,Supporting,0.3130816221237182,3.9815455594002302,Supporting
+DDX3X,y_control_anchored,s11_50,spliceai_walker,strong,34,863,True,3.0581148121899364,Supporting,,,not evaluable
+DDX3X,y_control_anchored,s3_50,cadd,supporting,71,1594,True,,,19.19,4.923400049419322,Moderate
+DDX3X,y_control_anchored,s3_50,cadd,moderate,71,1594,True,,,22.6,2.1903126073514256,Supporting
+DDX3X,y_control_anchored,s3_50,cadd,strong,71,1594,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_50,phylop,supporting,71,1594,True,,,4.08529,5.282518641259321,Moderate
+DDX3X,y_control_anchored,s3_50,phylop,moderate,71,1594,True,,,5.25,8.634886240520045,Moderate
+DDX3X,y_control_anchored,s3_50,phylop,strong,71,1594,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_50,phastcons,supporting,71,1594,True,,,1.0,3.018582080719612,Supporting
+DDX3X,y_control_anchored,s3_50,phastcons,moderate,71,1594,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_50,phastcons,strong,71,1594,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_50,gpn_msa,supporting,71,1594,True,,,6.88,4.015573113477614,Supporting
+DDX3X,y_control_anchored,s3_50,gpn_msa,moderate,71,1594,True,,,8.31,6.562513542795232,Moderate
+DDX3X,y_control_anchored,s3_50,gpn_msa,strong,71,1594,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_50,spliceai_walker,supporting,71,1594,True,3.084829588216321,Supporting,0.3335808515548706,5.337929675957844,Moderate
+DDX3X,y_control_anchored,s3_50,spliceai_walker,moderate,71,1594,True,3.084829588216321,Supporting,0.4277547001838684,6.65206051121544,Moderate
+DDX3X,y_control_anchored,s3_50,spliceai_walker,strong,71,1594,True,3.084829588216321,Supporting,0.893125057220459,26.4125932062966,Strong
+DDX3X,y_fdr,s3_10,cadd,supporting,41,727,True,,,19.53,5.691659138813611,Moderate
+DDX3X,y_fdr,s3_10,cadd,moderate,41,727,True,,,,,not evaluable
+DDX3X,y_fdr,s3_10,cadd,strong,41,727,True,,,,,not evaluable
+DDX3X,y_fdr,s3_10,phylop,supporting,41,727,True,,,4.58587,6.709294660514173,Moderate
+DDX3X,y_fdr,s3_10,phylop,moderate,41,727,True,,,5.34067,10.132404181184668,Moderate
+DDX3X,y_fdr,s3_10,phylop,strong,41,727,True,,,,,not evaluable
+DDX3X,y_fdr,s3_10,phastcons,supporting,41,727,True,,,1.0,3.546341463414634,Supporting
+DDX3X,y_fdr,s3_10,phastcons,moderate,41,727,True,,,,,not evaluable
+DDX3X,y_fdr,s3_10,phastcons,strong,41,727,True,,,,,not evaluable
+DDX3X,y_fdr,s3_10,gpn_msa,supporting,41,727,True,,,7.47,4.687692738996356,Moderate
+DDX3X,y_fdr,s3_10,gpn_msa,moderate,41,727,True,,,9.13,7.352171326591314,Moderate
+DDX3X,y_fdr,s3_10,gpn_msa,strong,41,727,True,,,,,not evaluable
+DDX3X,y_fdr,s3_10,spliceai_walker,supporting,41,727,True,3.9051974448315914,Supporting,0.4259027540683746,8.605093256814921,Moderate
+DDX3X,y_fdr,s3_10,spliceai_walker,moderate,41,727,True,3.9051974448315914,Supporting,0.5537148118019104,9.206848030018762,Moderate
+DDX3X,y_fdr,s3_10,spliceai_walker,strong,41,727,True,3.9051974448315914,Supporting,0.89483243227005,20.45966228893058,Strong
+DDX3X,y_fdr,s11_50,cadd,supporting,26,871,True,,,21.1,7.178571428571429,Moderate
+DDX3X,y_fdr,s11_50,cadd,moderate,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s11_50,cadd,strong,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s11_50,phylop,supporting,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s11_50,phylop,moderate,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s11_50,phylop,strong,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s11_50,phastcons,supporting,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s11_50,phastcons,moderate,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s11_50,phastcons,strong,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s11_50,gpn_msa,supporting,26,871,True,,,6.585,4.785714285714286,Moderate
+DDX3X,y_fdr,s11_50,gpn_msa,moderate,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s11_50,gpn_msa,strong,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s11_50,spliceai_walker,supporting,26,871,True,7.49342105263158,Moderate,0.2532642036676407,9.136363636363637,Moderate
+DDX3X,y_fdr,s11_50,spliceai_walker,moderate,26,871,True,7.49342105263158,Moderate,0.3130816221237182,9.467391304347826,Moderate
+DDX3X,y_fdr,s11_50,spliceai_walker,strong,26,871,True,7.49342105263158,Moderate,,,not evaluable
+DDX3X,y_fdr,s3_50,cadd,supporting,67,1598,True,,,19.19,6.846047540077391,Moderate
+DDX3X,y_fdr,s3_50,cadd,moderate,67,1598,True,,,22.6,4.393558523173605,Moderate
+DDX3X,y_fdr,s3_50,cadd,strong,67,1598,True,,,,,not evaluable
+DDX3X,y_fdr,s3_50,phylop,supporting,67,1598,True,,,4.08529,6.814498933901919,Moderate
+DDX3X,y_fdr,s3_50,phylop,moderate,67,1598,True,,,5.25,11.92537313432836,Moderate
+DDX3X,y_fdr,s3_50,phylop,strong,67,1598,True,,,,,not evaluable
+DDX3X,y_fdr,s3_50,phastcons,supporting,67,1598,True,,,1.0,4.897921108742004,Moderate
+DDX3X,y_fdr,s3_50,phastcons,moderate,67,1598,True,,,,,not evaluable
+DDX3X,y_fdr,s3_50,phastcons,strong,67,1598,True,,,,,not evaluable
+DDX3X,y_fdr,s3_50,gpn_msa,supporting,67,1598,True,,,6.88,5.707870901900752,Moderate
+DDX3X,y_fdr,s3_50,gpn_msa,moderate,67,1598,True,,,8.31,8.992904330804992,Moderate
+DDX3X,y_fdr,s3_50,gpn_msa,strong,67,1598,True,,,,,not evaluable
+DDX3X,y_fdr,s3_50,spliceai_walker,supporting,67,1598,True,5.278443846342061,Moderate,0.3335808515548706,9.39005758608532,Moderate
+DDX3X,y_fdr,s3_50,spliceai_walker,moderate,67,1598,True,5.278443846342061,Moderate,0.4277547001838684,11.671641791044776,Moderate
+DDX3X,y_fdr,s3_50,spliceai_walker,strong,67,1598,True,5.278443846342061,Moderate,0.893125057220459,34.98109452736318,Strong
+TP53,y_control_anchored,s3_10,spliceai,supporting,15,129,True,5.59,Moderate,0.397732138633728,6.45,Moderate
+TP53,y_control_anchored,s3_10,spliceai,moderate,15,129,True,5.59,Moderate,0.5639702081680298,6.688888888888889,Moderate
+TP53,y_control_anchored,s3_10,spliceai,strong,15,129,True,5.59,Moderate,0.8993068933486938,,not evaluable
+TP53,y_control_anchored,s3_10,pangolin,supporting,15,129,True,,,0.4068579971790313,27.950000000000003,Strong
+TP53,y_control_anchored,s3_10,pangolin,moderate,15,129,True,,,0.547325074672699,51.6,Strong
+TP53,y_control_anchored,s3_10,pangolin,strong,15,129,True,,,0.7039144039154053,,not evaluable
+TP53,y_control_anchored,s3_10,alphagenome,supporting,15,129,False,,,,,
+TP53,y_control_anchored,s3_10,alphagenome,moderate,15,129,False,,,,,
+TP53,y_control_anchored,s3_10,alphagenome,strong,15,129,False,,,,,
+TP53,y_control_anchored,s3_10,cadd,supporting,15,129,True,,,19.53,8.6,Moderate
+TP53,y_control_anchored,s3_10,cadd,moderate,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_10,cadd,strong,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_10,phylop,supporting,15,129,True,,,4.58587,,not evaluable
+TP53,y_control_anchored,s3_10,phylop,moderate,15,129,True,,,5.34067,,not evaluable
+TP53,y_control_anchored,s3_10,phylop,strong,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_10,phastcons,supporting,15,129,True,,,1.0,,not evaluable
+TP53,y_control_anchored,s3_10,phastcons,moderate,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_10,phastcons,strong,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_10,gpn_msa,supporting,15,129,False,,,,,
+TP53,y_control_anchored,s3_10,gpn_msa,moderate,15,129,False,,,,,
+TP53,y_control_anchored,s3_10,gpn_msa,strong,15,129,False,,,,,
+TP53,y_control_anchored,s3_10,nt,supporting,15,129,True,,,3.6364574432373047,7.525,Moderate
+TP53,y_control_anchored,s3_10,nt,moderate,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_10,nt,strong,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_10,spliceai_walker,supporting,15,129,True,5.3238095238095235,Moderate,0.4259027540683746,8.6,Moderate
+TP53,y_control_anchored,s3_10,spliceai_walker,moderate,15,129,True,5.3238095238095235,Moderate,0.5537148118019104,9.555555555555555,Moderate
+TP53,y_control_anchored,s3_10,spliceai_walker,strong,15,129,True,5.3238095238095235,Moderate,0.89483243227005,,not evaluable
+TP53,y_control_anchored,s3_50,spliceai,supporting,15,129,True,5.59,Moderate,0.3335808515548706,5.5285714285714285,Moderate
+TP53,y_control_anchored,s3_50,spliceai,moderate,15,129,True,5.59,Moderate,0.3791576027870178,6.45,Moderate
+TP53,y_control_anchored,s3_50,spliceai,strong,15,129,True,5.59,Moderate,0.883614718914032,,not evaluable
+TP53,y_control_anchored,s3_50,pangolin,supporting,15,129,True,,,0.3767528235912323,22.36,Strong
+TP53,y_control_anchored,s3_50,pangolin,moderate,15,129,True,,,0.4281759262084961,37.266666666666666,Strong
+TP53,y_control_anchored,s3_50,pangolin,strong,15,129,True,,,0.6740013957023621,38.7,Strong
+TP53,y_control_anchored,s3_50,alphagenome,supporting,15,129,False,,,,,
+TP53,y_control_anchored,s3_50,alphagenome,moderate,15,129,False,,,,,
+TP53,y_control_anchored,s3_50,alphagenome,strong,15,129,False,,,,,
+TP53,y_control_anchored,s3_50,cadd,supporting,15,129,True,,,19.19,8.6,Moderate
+TP53,y_control_anchored,s3_50,cadd,moderate,15,129,True,,,22.6,,not evaluable
+TP53,y_control_anchored,s3_50,cadd,strong,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_50,phylop,supporting,15,129,True,,,4.08529,,not evaluable
+TP53,y_control_anchored,s3_50,phylop,moderate,15,129,True,,,5.25,,not evaluable
+TP53,y_control_anchored,s3_50,phylop,strong,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_50,phastcons,supporting,15,129,True,,,1.0,,not evaluable
+TP53,y_control_anchored,s3_50,phastcons,moderate,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_50,phastcons,strong,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_50,gpn_msa,supporting,15,129,False,,,,,
+TP53,y_control_anchored,s3_50,gpn_msa,moderate,15,129,False,,,,,
+TP53,y_control_anchored,s3_50,gpn_msa,strong,15,129,False,,,,,
+TP53,y_control_anchored,s3_50,nt,supporting,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_50,nt,moderate,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_50,nt,strong,15,129,True,,,,,not evaluable
+TP53,y_control_anchored,s3_50,spliceai_walker,supporting,15,129,True,5.3238095238095235,Moderate,0.3335808515548706,6.757142857142857,Moderate
+TP53,y_control_anchored,s3_50,spliceai_walker,moderate,15,129,True,5.3238095238095235,Moderate,0.4277547001838684,9.46,Moderate
+TP53,y_control_anchored,s3_50,spliceai_walker,strong,15,129,True,5.3238095238095235,Moderate,0.893125057220459,,not evaluable
+TP53,y_median_split,s3_10,spliceai,supporting,48,96,True,3.076923076923077,Supporting,0.397732138633728,2.6666666666666665,Supporting
+TP53,y_median_split,s3_10,spliceai,moderate,48,96,True,3.076923076923077,Supporting,0.5639702081680298,2.571428571428571,Supporting
+TP53,y_median_split,s3_10,spliceai,strong,48,96,True,3.076923076923077,Supporting,0.8993068933486938,,not evaluable
+TP53,y_median_split,s3_10,pangolin,supporting,48,96,True,,,0.4068579971790313,34.35416666666667,Strong
+TP53,y_median_split,s3_10,pangolin,moderate,48,96,True,,,0.547325074672699,28.291666666666668,Strong
+TP53,y_median_split,s3_10,pangolin,strong,48,96,True,,,0.7039144039154053,,not evaluable
+TP53,y_median_split,s3_10,alphagenome,supporting,48,96,False,,,,,
+TP53,y_median_split,s3_10,alphagenome,moderate,48,96,False,,,,,
+TP53,y_median_split,s3_10,alphagenome,strong,48,96,False,,,,,
+TP53,y_median_split,s3_10,cadd,supporting,48,96,True,,,19.53,7.333333333333333,Moderate
+TP53,y_median_split,s3_10,cadd,moderate,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_10,cadd,strong,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_10,phylop,supporting,48,96,True,,,4.58587,,not evaluable
+TP53,y_median_split,s3_10,phylop,moderate,48,96,True,,,5.34067,,not evaluable
+TP53,y_median_split,s3_10,phylop,strong,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_10,phastcons,supporting,48,96,True,,,1.0,,not evaluable
+TP53,y_median_split,s3_10,phastcons,moderate,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_10,phastcons,strong,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_10,gpn_msa,supporting,48,96,False,,,,,
+TP53,y_median_split,s3_10,gpn_msa,moderate,48,96,False,,,,,
+TP53,y_median_split,s3_10,gpn_msa,strong,48,96,False,,,,,
+TP53,y_median_split,s3_10,nt,supporting,48,96,True,,,3.6364574432373047,5.5,Moderate
+TP53,y_median_split,s3_10,nt,moderate,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_10,nt,strong,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_10,spliceai_walker,supporting,48,96,True,3.230769230769231,Supporting,0.4259027540683746,3.5000000000000004,Supporting
+TP53,y_median_split,s3_10,spliceai_walker,moderate,48,96,True,3.230769230769231,Supporting,0.5537148118019104,3.4285714285714284,Supporting
+TP53,y_median_split,s3_10,spliceai_walker,strong,48,96,True,3.230769230769231,Supporting,0.89483243227005,,not evaluable
+TP53,y_median_split,s3_50,spliceai,supporting,48,96,True,3.076923076923077,Supporting,0.3335808515548706,2.181818181818182,Supporting
+TP53,y_median_split,s3_50,spliceai,moderate,48,96,True,3.076923076923077,Supporting,0.3791576027870178,2.6666666666666665,Supporting
+TP53,y_median_split,s3_50,spliceai,strong,48,96,True,3.076923076923077,Supporting,0.883614718914032,,not evaluable
+TP53,y_median_split,s3_50,pangolin,supporting,48,96,True,,,0.3767528235912323,36.375,Strong
+TP53,y_median_split,s3_50,pangolin,moderate,48,96,True,,,0.4281759262084961,32.333333333333336,Strong
+TP53,y_median_split,s3_50,pangolin,strong,48,96,True,,,0.6740013957023621,22.229166666666668,Strong
+TP53,y_median_split,s3_50,alphagenome,supporting,48,96,False,,,,,
+TP53,y_median_split,s3_50,alphagenome,moderate,48,96,False,,,,,
+TP53,y_median_split,s3_50,alphagenome,strong,48,96,False,,,,,
+TP53,y_median_split,s3_50,cadd,supporting,48,96,True,,,19.19,7.333333333333333,Moderate
+TP53,y_median_split,s3_50,cadd,moderate,48,96,True,,,22.6,,not evaluable
+TP53,y_median_split,s3_50,cadd,strong,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_50,phylop,supporting,48,96,True,,,4.08529,,not evaluable
+TP53,y_median_split,s3_50,phylop,moderate,48,96,True,,,5.25,,not evaluable
+TP53,y_median_split,s3_50,phylop,strong,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_50,phastcons,supporting,48,96,True,,,1.0,,not evaluable
+TP53,y_median_split,s3_50,phastcons,moderate,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_50,phastcons,strong,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_50,gpn_msa,supporting,48,96,False,,,,,
+TP53,y_median_split,s3_50,gpn_msa,moderate,48,96,False,,,,,
+TP53,y_median_split,s3_50,gpn_msa,strong,48,96,False,,,,,
+TP53,y_median_split,s3_50,nt,supporting,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_50,nt,moderate,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_50,nt,strong,48,96,True,,,,,not evaluable
+TP53,y_median_split,s3_50,spliceai_walker,supporting,48,96,True,3.230769230769231,Supporting,0.3335808515548706,2.545454545454546,Supporting
+TP53,y_median_split,s3_50,spliceai_walker,moderate,48,96,True,3.230769230769231,Supporting,0.4277547001838684,4.0,Supporting
+TP53,y_median_split,s3_50,spliceai_walker,strong,48,96,True,3.230769230769231,Supporting,0.893125057220459,,not evaluable
+TP53,y_mid_band_excluded,s3_10,spliceai,supporting,12,125,True,7.352941176470588,Moderate,0.397732138633728,7.575757575757576,Moderate
+TP53,y_mid_band_excluded,s3_10,spliceai,moderate,12,125,True,7.352941176470588,Moderate,0.5639702081680298,7.8125,Moderate
+TP53,y_mid_band_excluded,s3_10,spliceai,strong,12,125,True,7.352941176470588,Moderate,0.8993068933486938,,not evaluable
+TP53,y_mid_band_excluded,s3_10,pangolin,supporting,12,125,True,,,0.4068579971790313,62.5,Strong
+TP53,y_mid_band_excluded,s3_10,pangolin,moderate,12,125,True,,,0.547325074672699,125.0,Strong
+TP53,y_mid_band_excluded,s3_10,pangolin,strong,12,125,True,,,0.7039144039154053,,not evaluable
+TP53,y_mid_band_excluded,s3_10,alphagenome,supporting,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_10,alphagenome,moderate,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_10,alphagenome,strong,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_10,cadd,supporting,12,125,True,,,19.53,10.416666666666666,Moderate
+TP53,y_mid_band_excluded,s3_10,cadd,moderate,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_10,cadd,strong,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_10,phylop,supporting,12,125,True,,,4.58587,,not evaluable
+TP53,y_mid_band_excluded,s3_10,phylop,moderate,12,125,True,,,5.34067,,not evaluable
+TP53,y_mid_band_excluded,s3_10,phylop,strong,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_10,phastcons,supporting,12,125,True,,,1.0,,not evaluable
+TP53,y_mid_band_excluded,s3_10,phastcons,moderate,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_10,phastcons,strong,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_10,gpn_msa,supporting,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_10,gpn_msa,moderate,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_10,gpn_msa,strong,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_10,nt,supporting,12,125,True,,,3.6364574432373047,7.8125,Moderate
+TP53,y_mid_band_excluded,s3_10,nt,moderate,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_10,nt,strong,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_10,spliceai_walker,supporting,12,125,True,6.944444444444445,Moderate,0.4259027540683746,10.416666666666666,Moderate
+TP53,y_mid_band_excluded,s3_10,spliceai_walker,moderate,12,125,True,6.944444444444445,Moderate,0.5537148118019104,11.71875,Moderate
+TP53,y_mid_band_excluded,s3_10,spliceai_walker,strong,12,125,True,6.944444444444445,Moderate,0.89483243227005,,not evaluable
+TP53,y_mid_band_excluded,s3_50,spliceai,supporting,12,125,True,7.352941176470588,Moderate,0.3335808515548706,6.410256410256411,Moderate
+TP53,y_mid_band_excluded,s3_50,spliceai,moderate,12,125,True,7.352941176470588,Moderate,0.3791576027870178,7.575757575757576,Moderate
+TP53,y_mid_band_excluded,s3_50,spliceai,strong,12,125,True,7.352941176470588,Moderate,0.883614718914032,,not evaluable
+TP53,y_mid_band_excluded,s3_50,pangolin,supporting,12,125,True,,,0.3767528235912323,62.5,Strong
+TP53,y_mid_band_excluded,s3_50,pangolin,moderate,12,125,True,,,0.4281759262084961,62.5,Strong
+TP53,y_mid_band_excluded,s3_50,pangolin,strong,12,125,True,,,0.6740013957023621,93.75,Strong
+TP53,y_mid_band_excluded,s3_50,alphagenome,supporting,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_50,alphagenome,moderate,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_50,alphagenome,strong,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_50,cadd,supporting,12,125,True,,,19.19,10.416666666666666,Moderate
+TP53,y_mid_band_excluded,s3_50,cadd,moderate,12,125,True,,,22.6,,not evaluable
+TP53,y_mid_band_excluded,s3_50,cadd,strong,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_50,phylop,supporting,12,125,True,,,4.08529,,not evaluable
+TP53,y_mid_band_excluded,s3_50,phylop,moderate,12,125,True,,,5.25,,not evaluable
+TP53,y_mid_band_excluded,s3_50,phylop,strong,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_50,phastcons,supporting,12,125,True,,,1.0,,not evaluable
+TP53,y_mid_band_excluded,s3_50,phastcons,moderate,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_50,phastcons,strong,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_50,gpn_msa,supporting,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_50,gpn_msa,moderate,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_50,gpn_msa,strong,12,125,False,,,,,
+TP53,y_mid_band_excluded,s3_50,nt,supporting,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_50,nt,moderate,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_50,nt,strong,12,125,True,,,,,not evaluable
+TP53,y_mid_band_excluded,s3_50,spliceai_walker,supporting,12,125,True,6.944444444444445,Moderate,0.3335808515548706,8.012820512820513,Moderate
+TP53,y_mid_band_excluded,s3_50,spliceai_walker,moderate,12,125,True,6.944444444444445,Moderate,0.4277547001838684,11.574074074074076,Moderate
+TP53,y_mid_band_excluded,s3_50,spliceai_walker,strong,12,125,True,6.944444444444445,Moderate,0.893125057220459,,not evaluable

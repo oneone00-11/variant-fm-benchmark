@@ -1,0 +1,11 @@
+direction,tier,lr
+pathogenic,very_strong,350.0
+pathogenic,strong,18.7
+pathogenic,moderate,4.33
+pathogenic,supporting,2.08
+benign,very_strong,0.002857142857142857
+benign,strong,0.05347593582887701
+benign,moderate,0.23094688221709006
+benign,supporting,0.4807692307692308
+walker_cutpoint,pp3,0.2
+walker_cutpoint,bp4,0.1

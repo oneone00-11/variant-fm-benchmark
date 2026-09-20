@@ -1,0 +1,34 @@
+source,gene,label_definition,stratum,arm,n_pos,n_neg,lr_pp3,lr_pp3_lo,lr_pp3_hi,tier_pp3,lr_le01,lr_le01_lo,lr_le01_hi,tier_le01
+seven_genes,seven_genes,assay_official,s3_10,all,570.0,2505.0,5.144226846185231,4.552874015807011,6.056491456803679,Moderate,0.1716694078947368,0.0918608238196889,0.2401096512665428,Moderate
+seven_genes,seven_genes,assay_official,s3_10,classified,95.0,578.0,14.602105263157895,8.602941176470589,19.638162718761023,Moderate,0.2159323151302054,0.0842170439391311,0.4637870185668252,Moderate
+seven_genes,seven_genes,assay_official,s3_10,recorded_unclassified,201.0,596.0,4.118297401879492,2.7020317792640216,5.361995082543028,Supporting,0.1381040005452191,0.0746969696969696,0.2267777983235629,Moderate
+seven_genes,seven_genes,assay_official,s3_10,unrecorded,274.0,1331.0,4.331942996176573,4.039631729772575,4.829685874089491,Moderate,0.184468262034556,0.061255943597311,0.2915384184901226,Moderate
+seven_genes,seven_genes,assay_official,s11_50,all,225.0,4312.0,10.303464755077655,5.875013635272815,22.10705057216685,Moderate,0.4771022594921966,0.2480767490270612,0.5911439845465503,Supporting
+seven_genes,seven_genes,assay_official,s11_50,classified,32.0,704.0,7.333333333333333,0.9776021080368908,52.8,Moderate,0.6500777604976672,0.2446849632779281,0.8195304569255739,below supporting
+seven_genes,seven_genes,assay_official,s11_50,recorded_unclassified,19.0,292.0,8.538011695906434,1.9629629629629628,13.920000000000002,Moderate,0.2509129967776584,0.0822404371584699,0.4907407407407407,Supporting
+seven_genes,seven_genes,assay_official,s11_50,unrecorded,174.0,3316.0,10.677590282872748,5.977416149068323,25.25210312075984,Moderate,0.4686263425664217,0.234483674892882,0.5771427426304082,Supporting
+seven_genes,seven_genes,assay_official,s3_50,all,795.0,6817.0,8.275546335627338,6.34902915798668,10.981684162418787,Moderate,0.2522912012488897,0.1148066377898713,0.3713934663533395,Supporting
+seven_genes,seven_genes,assay_official,s3_50,classified,127.0,1282.0,16.403543307086615,8.060723514211885,24.39686699466111,Moderate,0.3238873215714345,0.1003972358704884,0.5758829525030834,Supporting
+seven_genes,seven_genes,assay_official,s3_50,recorded_unclassified,220.0,888.0,5.0124777183600715,2.7208067940552016,7.425420476217741,Moderate,0.138956780923994,0.084655852173449,0.2549019607843137,Moderate
+seven_genes,seven_genes,assay_official,s3_50,unrecorded,448.0,4647.0,7.946878600230416,5.377229942695526,12.751786606696651,Moderate,0.2890244913754975,0.1126110714905263,0.4037898310560225,Supporting
+seven_genes,seven_genes_noBRCA1,assay_official,s3_10,classified_noBRCA1,,,12.264090177133657,,,Moderate,0.3534762833008447,,,
+seven_genes,seven_genes_noBRCA1,assay_official,s3_10,recorded_unclassified_noBRCA1,,,3.175983436853002,,,Supporting,0.16699604743083,,,
+seven_genes,seven_genes_noBRCA1,assay_official,s3_10,unrecorded_noBRCA1,,,4.331942996176573,,,Moderate,0.184468262034556,,,
+seven_genes,seven_genes_noBRCA1,assay_official,s11_50,classified_noBRCA1,,,6.705882352941177,,,Moderate,0.6575591985428051,,,
+seven_genes,seven_genes_noBRCA1,assay_official,s11_50,recorded_unclassified_noBRCA1,,,2.3359375,,,Supporting,0.359375,,,
+seven_genes,seven_genes_noBRCA1,assay_official,s11_50,unrecorded_noBRCA1,,,10.677590282872748,,,Moderate,0.4686263425664217,,,
+seven_genes,seven_genes_noBRCA1,assay_official,s3_50,classified_noBRCA1,,,11.974418604651165,,,Moderate,0.4653615935629477,,,
+seven_genes,seven_genes_noBRCA1,assay_official,s3_50,recorded_unclassified_noBRCA1,,,3.0453246753246757,,,Supporting,0.1859740259740259,,,
+seven_genes,seven_genes_noBRCA1,assay_official,s3_50,unrecorded_noBRCA1,,,7.946878600230416,,,Moderate,0.2890244913754975,,,
+external,DDX3X,y_control_anchored,s3_10,all,37.0,731.0,2.8696965121546127,,,Supporting,0.187712653270848,,,Moderate
+external,DDX3X,y_control_anchored,s11_50,all,34.0,863.0,3.0581148121899364,,,Supporting,0.6669815371404036,,,below supporting
+external,DDX3X,y_control_anchored,s3_50,all,71.0,1594.0,3.084829588216321,,,Supporting,0.4465782033976008,,,Supporting
+external,DDX3X,y_fdr,s3_10,all,41.0,727.0,3.9051974448315914,,,Supporting,0.1260547913536007,,,Moderate
+external,DDX3X,y_fdr,s11_50,all,26.0,871.0,7.49342105263158,,,Moderate,0.3856115107913669,,,Supporting
+external,DDX3X,y_fdr,s3_50,all,67.0,1598.0,5.278443846342061,,,Moderate,0.2348775371130025,,,Supporting
+external,TP53,y_control_anchored,s3_10,all,15.0,129.0,5.3238095238095235,,,Moderate,0.1,,,Moderate
+external,TP53,y_control_anchored,s3_50,all,15.0,129.0,5.3238095238095235,,,Moderate,0.1,,,Moderate
+external,TP53,y_median_split,s3_10,all,48.0,96.0,3.230769230769231,,,Supporting,0.6769230769230768,,,below supporting
+external,TP53,y_median_split,s3_50,all,48.0,96.0,3.230769230769231,,,Supporting,0.6769230769230768,,,below supporting
+external,TP53,y_mid_band_excluded,s3_10,all,12.0,125.0,6.944444444444445,,,Moderate,0.0,,,Supporting
+external,TP53,y_mid_band_excluded,s3_50,all,12.0,125.0,6.944444444444445,,,Moderate,0.0,,,Supporting
