@@ -64,3 +64,10 @@ phase1/data/evidence/refs/
 # atlas.mapping resolves its reference cache relative to the working directory;
 # these stages now point it at the atlas cache instead of re-fetching into phase1/.
 phase1/data/raw/reference/
+
+# Credentials never enter the tree; see tests/test_no_secrets.py.
+.env
+*.env
+!environment.yml
+*.key
+*.pem
