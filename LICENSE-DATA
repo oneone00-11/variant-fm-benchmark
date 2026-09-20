@@ -1,0 +1,67 @@
+Licence for derived data files
+==============================
+
+The source code is licensed separately (see LICENSE). Cite as described in
+CITATION.cff. This file covers the DATA products, which do not all carry the same
+terms, and it says which of them have been audited and which have not.
+
+
+1. The frozen analysis set
+--------------------------
+
+`phase1/data/frozen/frozen_matrix_v1.parquet` and `frozen_matrix_v2.parquet`
+combine third-party functional measurements with third-party predictor scores.
+The functional measurements are the seven MaveDB saturation genome editing
+deposits cited in the manuscript; their upstream terms (CC0 1.0 or CC BY 4.0 per
+deposit) continue to apply and are tabulated in the companion atlas repository's
+LICENSE-DATA, which audited them deposit by deposit.
+
+The predictor score columns are NOT uniformly redistributable. That audit was
+performed in the companion atlas repository, which found eight of its nineteen
+score columns more restrictive than CC BY 4.0 and three with no locatable terms.
+Columns shared between the two products carry the same upstream terms there.
+No separate per-column audit has been run in THIS repository, and this file does
+not assert one.
+
+
+2. AlphaGenome Variant Impact (AVI) and the AlphaGenome Atlas splice scores
+---------------------------------------------------------------------------
+
+Columns: `avi`, `avi_splice_sites`, `avi_splice_site_usage`,
+`avi_splice_junctions`, in `phase1/data/evidence/avi.parquet` and wherever they
+are merged downstream (the analysis set, the external-gene tables, and every
+reports/evidence/ table that carries an `avi*` row).
+
+    Source          AlphaGenome Atlas, queried through the AlphaGenome API
+                    (client 0.9.0, alphagenome.atlas), scorers AVI_SCORE,
+                    SPLICE_SITES, SPLICE_SITE_USAGE, SPLICE_JUNCTIONS
+    Terms           AlphaGenome Terms of Service
+                    https://deepmind.google.com/science/alphagenome/terms
+    Restriction     NON-COMMERCIAL USE ONLY, and the outputs must NOT be used to
+                    train other machine-learning models. Predictions are for
+                    theoretical modelling and research only and must not be used
+                    for clinical decision-making.
+    Consequence     These columns are MORE RESTRICTIVE than CC BY 4.0. Any archive
+                    of this repository that contains them is not a CC BY 4.0
+                    release of those columns, and a reuser who needs CC BY 4.0
+                    terms must drop them.
+
+The AlphaGenome Terms of Service designate certain artefacts as Permissive Use
+Downloadable Artifacts, which carry different terms. The columns here were
+obtained through the API rather than as such an artefact, so the non-commercial
+terms above are the ones that apply to them.
+
+The API key used to obtain these columns is not in this repository and never was;
+`tests/test_no_secrets.py` enforces that over `git ls-files`.
+
+
+3. What a reuser should do
+--------------------------
+
+- Code, and the analysis outputs that contain no third-party score value: MIT,
+  as LICENSE states.
+- The frozen assay matrix's functional-score columns: the deposits' own terms.
+- Any table carrying an `avi*` value: non-commercial only, no model training.
+- Anything else carrying a predictor score: check that predictor's own terms; the
+  companion atlas repository's LICENSE-DATA is the audit of record for the
+  columns the two products share.

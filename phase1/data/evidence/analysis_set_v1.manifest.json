@@ -1,8 +1,8 @@
 {
   "product": "evidence analysis_set_v1",
-  "built_utc": "2026-09-17T13:00:42+00:00",
+  "built_utc": "2026-09-20T05:17:55+00:00",
   "n_rows": 8853,
-  "sha256": "484ec25f9208c8ad1bc5145c9fcc694c493e5dc3e884057d736c7772c3b160d3",
+  "sha256": "388eebc387fbe010849943b14c521e00b033c6df78ec13e75bcdd621a8026e6d",
   "selection": {
     "variant_type": "SNV",
     "region": "intron-side splice, 1 <= |intron_offset| <= 50",
@@ -112,6 +112,10 @@
     "spliceai_walker_ds_al",
     "spliceai_walker_ds_dg",
     "spliceai_walker_ds_dl",
+    "avi",
+    "avi_splice_sites",
+    "avi_splice_site_usage",
+    "avi_splice_junctions",
     "y_assay",
     "y_assay_source",
     "variation_id",

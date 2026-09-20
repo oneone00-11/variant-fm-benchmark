@@ -21,7 +21,11 @@ REPORT_DIR = Path("reports/evidence")
 PANEL = ["spliceai", "pangolin", "alphagenome", "cadd", "phylop", "phastcons",
          "gpn_msa", "nt"]
 # scored separately; present only once their stage has run
-OPTIONAL = ["spliceai_walker", "avi", "avi_splice"]
+# Carried beside the panel: scored separately, evaluated like any other tool, but
+# not part of the fusion's feature set (the fusion is the published study's panel,
+# refit on the new strata, and adding a column would make it a different object).
+OPTIONAL = ["spliceai_walker", "avi", "avi_splice_sites",
+            "avi_splice_site_usage", "avi_splice_junctions"]
 
 # pm12 is OUT of the ClinGen SVI recommendation's scope: those variants go through
 # the PVS1 decision tree, not PP3/BP4. So there are two pools, not one. `s3_50` is

@@ -65,3 +65,32 @@ Per gene (the unit the per-gene Spearman is computed in):
 ## 4. Summary
 
 **Reading the table.** Eight columns are the same measurements in both repositories: CADD, AlphaMissense, phyloP, phastCons, gnomAD AF and GPN-MSA are identical value for value (the last two up to the atlas's sign flip), and the frozen SpliceAI and Pangolin columns are identical to the atlas's *rounded* CLI columns, whose full-precision counterparts re-round to them exactly. The two therefore differ only in output precision, not in model, version, reference or distance. Nucleotide Transformer is the same checkpoint and score definition re-run under a pinned environment; it is not value-identical (rho as tabulated) because the original run's context window was never recorded. AlphaGenome is a genuinely different score definition (client 0.6.1 max-|raw| versus 0.7.0 merged-quantile, 16-kb window) and is out of scope for a precision swap. Sixteen frozen variants (17-58692708-C-A, 17-58692708-C-T, 17-58695045-C-A, 17-58695047-C-G, 17-58695047-C-T, 17-58703309-T-A, 17-58703312-C-T, 17-58709943-G-A, 17-58720756-C-G, 17-58720758-A-G, 17-58724070-G-A, 17-58732512-C-A, 17-58732515-A-G, 17-58734190-A-C, 17-58734194-G-A, 17-58734194-G-T) are absent from the atlas's RAD51C deposit and have no atlas column at all.
+
+## AlphaGenome Atlas columns (added 2026-09-20)
+
+| column | source | definition | terms |
+|---|---|---|---|
+| `avi` | AlphaGenome Atlas via the AlphaGenome API, client 0.9.0, scorer `AVI_SCORE` | the Atlas's single combined coding/non-coding variant-impact score; one value per variant, taken as returned | non-commercial only; no model training |
+| `avi_splice_sites` | same, scorer `SPLICE_SITES` | maximum over the scorer's tracks | same |
+| `avi_splice_site_usage` | same, scorer `SPLICE_SITE_USAGE` | maximum over the scorer's 367 tracks | same |
+| `avi_splice_junctions` | same, scorer `SPLICE_JUNCTIONS` | maximum over tracks AND over rows: this scorer returns one row per junction | same |
+
+**Not the same variable as `alphagenome`.** The `alphagenome` column is the atlas's
+client-0.7.0 merged-quantile splice score over a 16-kb window, computed by the
+model at query time. The `avi*` columns are Atlas *precomputed* values retrieved by
+lookup, under a client two minor versions later, and the AVI score itself combines
+coding and non-coding evidence rather than splicing alone. They are correlated but
+distinct: on the 8,853 analysis-set variants, `avi` against `alphagenome`
+rho = 0.729, and `avi_splice_sites` against `alphagenome` rho = 0.872.
+
+**Orientation** is measured, not assumed: all four are positively correlated with
+functional pathogenicity on the analysis set (`reports/evidence/feature_orientation.csv`),
+so no flip is applied. `avi` rho = 0.393, `avi_splice_sites` rho = 0.405.
+
+**Provenance** including the access date, the scorer list as the service returned
+it, the request count and any failed batches:
+`phase1/data/evidence/avi.parquet.provenance.json` and
+`phase1/data/evidence/avi_scorers_20260920.json`.
+
+**Licence** is declared per column in LICENSE-DATA section 2. The key is never in
+the tree; `tests/test_no_secrets.py` enforces it.

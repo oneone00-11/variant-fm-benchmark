@@ -65,8 +65,13 @@ PANEL = {
 # scored later, merged if the file is present
 OPTIONAL_COLUMNS = {
     "spliceai_walker": OUT_DIR / "spliceai_walker.parquet",
-    "avi": OUT_DIR / "avi_scores.parquet",
 }
+# AVI arrives in one file covering the analysis set and both external genes, so it
+# is merged on the analysis-set rows by its own step rather than by the generic
+# optional-column rule.
+AVI_PATH = OUT_DIR / "avi.parquet"
+AVI_COLUMNS = ["avi", "avi_splice_sites", "avi_splice_site_usage",
+               "avi_splice_junctions"]
 
 CLINVAR_ARMS = ["classified", "recorded_unclassified", "unrecorded"]
 
@@ -244,7 +249,7 @@ def orientation_check(df: pd.DataFrame) -> pd.DataFrame:
     records the measured sign rather than trusting either repo's convention.
     """
     rows = []
-    extra = [c for c in list(OPTIONAL_COLUMNS) + ["alphagenome_v061"]
+    extra = [c for c in list(OPTIONAL_COLUMNS) + AVI_COLUMNS + ["alphagenome_v061"]
              if c in df.columns]
     for name in list(PANEL) + extra:
         s = df[[name, "func_pathogenicity"]].dropna()
@@ -345,6 +350,12 @@ def build() -> None:
             cols = [c for c in extra.columns
                     if c == name or c.startswith(name + "_")]
             sel = sel.merge(extra[["variant_id"] + cols], on="variant_id", how="left")
+
+    if AVI_PATH.exists():
+        avi = pd.read_parquet(AVI_PATH)
+        avi = avi[avi["set"] == "analysis"]
+        take = [c for c in AVI_COLUMNS if c in avi.columns]
+        sel = sel.merge(avi[["variant_id"] + take], on="variant_id", how="left")
 
     sel, label_cov = attach_labels(sel)
 

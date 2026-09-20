@@ -1,0 +1,73 @@
+{
+  "listed_utc": "2026-09-20T05:00:22+00:00",
+  "client_version": "0.9.0",
+  "n_scorers": 22,
+  "scorers": {
+    "ATAC": {
+      "name": "ATAC"
+    },
+    "ATAC_ACTIVE": {
+      "name": "ATAC_ACTIVE"
+    },
+    "AVI_SCORE": {
+      "name": "AVI_SCORE"
+    },
+    "AVI_SCORE_FEATURE_IMPORTANCE": {
+      "name": "AVI_SCORE_FEATURE_IMPORTANCE"
+    },
+    "AVI_SCORE_MODEL_FEATURES": {
+      "name": "AVI_SCORE_MODEL_FEATURES"
+    },
+    "CAGE": {
+      "name": "CAGE"
+    },
+    "CAGE_ACTIVE": {
+      "name": "CAGE_ACTIVE"
+    },
+    "CHIP_HISTONE": {
+      "name": "CHIP_HISTONE"
+    },
+    "CHIP_HISTONE_ACTIVE": {
+      "name": "CHIP_HISTONE_ACTIVE"
+    },
+    "CHIP_TF": {
+      "name": "CHIP_TF"
+    },
+    "CHIP_TF_ACTIVE": {
+      "name": "CHIP_TF_ACTIVE"
+    },
+    "CONTACT_MAPS": {
+      "name": "CONTACT_MAPS"
+    },
+    "DNASE": {
+      "name": "DNASE"
+    },
+    "DNASE_ACTIVE": {
+      "name": "DNASE_ACTIVE"
+    },
+    "POLYADENYLATION": {
+      "name": "POLYADENYLATION"
+    },
+    "PROCAP": {
+      "name": "PROCAP"
+    },
+    "PROCAP_ACTIVE": {
+      "name": "PROCAP_ACTIVE"
+    },
+    "RNA_SEQ": {
+      "name": "RNA_SEQ"
+    },
+    "RNA_SEQ_ACTIVE": {
+      "name": "RNA_SEQ_ACTIVE"
+    },
+    "SPLICE_JUNCTIONS": {
+      "name": "SPLICE_JUNCTIONS"
+    },
+    "SPLICE_SITES": {
+      "name": "SPLICE_SITES"
+    },
+    "SPLICE_SITE_USAGE": {
+      "name": "SPLICE_SITE_USAGE"
+    }
+  }
+}
