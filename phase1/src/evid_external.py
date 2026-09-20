@@ -58,7 +58,7 @@ from . import config as C
 from . import evid_common as K
 
 ATLAS_REPO = Path(os.environ.get(
-    "evidence-strength_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
+    "EVID_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
 EXT_DIR = Path("data/evidence/external")
 REPORT_DIR = Path("reports/evidence")
 CONFIG_PATH = Path("config/walker2023.yaml")

@@ -52,13 +52,13 @@ from . import config as C
 from . import evid_common as K
 
 ATLAS_REPO = Path(os.environ.get(
-    "evidence-strength_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
-evidence-strength_DIR = Path("data/evidence")
+    "EVID_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
+EVID_DIR = Path("data/evidence")
 REPORT_DIR = Path("reports/evidence")
-SUBSET = evidence-strength_DIR / "inframe_subset.parquet"
-EVENTS = evidence-strength_DIR / "inframe_events.parquet"
-PANG_SUBSET = evidence-strength_DIR / "inframe_subset_pangolin.parquet"
-PANG_EVENTS = evidence-strength_DIR / "inframe_events_pangolin.parquet"
+SUBSET = EVID_DIR / "inframe_subset.parquet"
+EVENTS = EVID_DIR / "inframe_events.parquet"
+PANG_SUBSET = EVID_DIR / "inframe_subset_pangolin.parquet"
+PANG_EVENTS = EVID_DIR / "inframe_events_pangolin.parquet"
 OUT = REPORT_DIR / "inframe_attribution.csv"
 CONFIG_PATH = Path("config/walker2023.yaml")
 
@@ -72,6 +72,23 @@ GENE_TRANSCRIPT = {
     "BAP1": "NM_004656.4", "BARD1": "NM_000465.4", "BRCA1": "NM_007294.4",
     "BRCA2": "NM_000059.4", "PALB2": "NM_024675.4", "RAD51C": "NM_058216.3",
     "VHL": "NM_000551.4",
+    # external genes, on their own MANE Select transcripts
+    "TP53": "NM_000546.6", "DDX3X": "ENST00000644876.2",
+}
+
+# E2.7: the same attribution on the external genes. Each needs its own false-
+# positive subset, because the cut point is applied to that gene's own scores.
+EXTERNAL = {
+    "ddx3x": {
+        "scored": EVID_DIR / "external/ddx3x_scored.parquet",
+        "labels": EVID_DIR / "external/ddx3x_splice.parquet",
+        "label_cols": ["y_control_anchored", "y_fdr"],
+        "spliceai_col": "spliceai_walker",
+        "fasta": EVID_DIR / "refs/chrX.fa",
+        "events": EVID_DIR / "external/ddx3x_inframe_events.parquet",
+        "subset": EVID_DIR / "external/ddx3x_inframe_subset.parquet",
+        "pangolin_events": EVID_DIR / "external/ddx3x_pangolin.parquet",
+    },
 }
 
 
@@ -308,17 +325,95 @@ def attribute() -> None:
     print(f"\n[E6] tools covered: {', '.join(tools)}")
 
 
+def external_subset(gene: str) -> None:
+    """The external gene's false positives: its own score over the cut point, its
+    own assay calling the variant normal. A variant is taken when EITHER label
+    definition calls it normal and the tool calls it, and the definition is carried
+    so the attribution can be read either way."""
+    cfg = yaml.safe_load(CONFIG_PATH.read_text())
+    pp3 = cfg["thresholds"]["pp3"]["value"]
+    spec = EXTERNAL[gene]
+    lab = pd.read_parquet(spec["labels"])
+    sc = pd.read_parquet(spec["scored"])
+    df = lab.merge(sc, on="variant_id", how="left")
+    col = spec["spliceai_col"]
+    normal = np.zeros(len(df), dtype=bool)
+    for c in spec["label_cols"]:
+        normal |= (df[c] == 0).to_numpy()
+    sub = df[(df[col] >= pp3) & normal].copy()
+    sub["score_column"] = col
+    keep = ["variant_id", "gene", "chrom", "pos", "ref", "alt", "stratum", "hgvs_c",
+            col, "score_column"] + spec["label_cols"]
+    sub[[k for k in keep if k in sub.columns]].to_parquet(spec["subset"], index=False)
+    print(f"[E2.7] {gene.upper()}: {len(sub):,} variants over {pp3} on `{col}` and "
+          f"called normal by at least one label definition")
+    print(sub.groupby("stratum", observed=True).size().to_string())
+    print(f"     wrote {spec['subset']}")
+    print("\n[E2.7] next, in the SpliceAI environment:")
+    print("  <atlas>/models/spliceai/.venv/bin/python phase1/src/evid_score_spliceai_events.py \\")
+    print(f"      --variants {spec['subset']} --distance 4999 \\")
+    print(f"      --fasta {spec['fasta']} --out {spec['events']} --run")
+
+
+def attribute_external(gene: str) -> None:
+    spec = EXTERNAL[gene]
+    parts = []
+    sai = _attribute_one(spec["events"], spec["subset"], "spliceai", classify)
+    if sai is not None:
+        parts.append(sai)
+    pg = spec["pangolin_events"]
+    if pg.exists():
+        sub_ids = set(pd.read_parquet(spec["subset"])["variant_id"])
+        ev = pd.read_parquet(pg)
+        ev = ev[ev["variant_id"].isin(sub_ids)]
+        if len(ev):
+            tmp = EVID_DIR / f"external/_{gene}_pangolin_subset.parquet"
+            ev.to_parquet(tmp, index=False)
+            p = _attribute_one(tmp, spec["subset"], "pangolin", classify_pangolin)
+            tmp.unlink(missing_ok=True)
+            if p is not None:
+                parts.append(p)
+    if not parts:
+        raise SystemExit(f"[E2.7] {gene}: no event table -- see --external-subset")
+    out = pd.concat(parts, ignore_index=True)
+    out["gene_set"] = gene.upper()
+    path = REPORT_DIR / f"inframe_attribution_{gene}.csv"
+    keep = ["tool", "gene_set", "variant_id", "gene", "stratum", "event",
+            "dominant_score", "event_position", "dp", "exon_length", "shift",
+            "frame", "reason"]
+    out[[c for c in keep if c in out.columns]].to_csv(path, index=False)
+    summary = (out.groupby(["tool", "stratum", "frame"], observed=True).size()
+                  .unstack(fill_value=0))
+    for c in ("in_frame", "out_of_frame", "undetermined"):
+        if c not in summary:
+            summary[c] = 0
+    summary["n"] = summary.sum(axis=1)
+    summary["in_frame_share"] = (summary["in_frame"] / summary["n"]).round(4)
+    summary["resolved_in_frame_share"] = (
+        summary["in_frame"] / (summary["in_frame"] + summary["out_of_frame"])).round(4)
+    summary.to_csv(REPORT_DIR / f"inframe_attribution_{gene}_summary.csv")
+    print(f"[E2.7] wrote {path} ({len(out)} variants)\n")
+    print(summary.to_string())
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--subset", action="store_true")
     ap.add_argument("--attribute", action="store_true")
+    ap.add_argument("--external-subset", choices=sorted(EXTERNAL))
+    ap.add_argument("--external-attribute", choices=sorted(EXTERNAL))
     args = ap.parse_args()
     if args.subset:
         write_subset()
     elif args.attribute:
         attribute()
+    elif args.external_subset:
+        external_subset(args.external_subset)
+    elif args.external_attribute:
+        attribute_external(args.external_attribute)
     else:
-        ap.error("pass --subset or --attribute")
+        ap.error("pass --subset, --attribute, --external-subset or "
+                 "--external-attribute")
 
 
 if __name__ == "__main__":

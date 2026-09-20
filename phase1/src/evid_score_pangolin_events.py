@@ -40,7 +40,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ATLAS = Path(os.environ.get("evidence-strength_ATLAS_REPO",
+ATLAS = Path(os.environ.get("EVID_ATLAS_REPO",
                             "/Users/cliffzhang/work/functional-standard-atlas"))
 DEFAULT_FASTA = ATLAS / "data" / "refs" / "grch38_subset.fa"
 DEFAULT_GTF_DB = ATLAS / "data" / "refs" / "grch38_subset.gtf.db"

@@ -34,7 +34,7 @@ from . import config as C
 from .phase1_method_b_labels import _norm_hgvs
 
 ATLAS_REPO = Path(os.environ.get(
-    "evidence-strength_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
+    "EVID_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
 ATLAS_MATRIX = ATLAS_REPO / "results" / "score_matrix_atlas_v2.parquet"
 ATLAS_V061 = ATLAS_REPO / "results" / "alphagenome_v061_scores.parquet"
 

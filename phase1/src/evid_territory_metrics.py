@@ -33,7 +33,7 @@ from scipy.stats import spearmanr
 from . import evid_common as K
 
 ATLAS_REPO = Path(os.environ.get(
-    "evidence-strength_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
+    "EVID_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
 REPORT_DIR = Path("reports/evidence")
 OUT = REPORT_DIR / "territory_metrics.csv"
 
