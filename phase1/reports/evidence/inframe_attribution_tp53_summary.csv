@@ -1,0 +1,3 @@
+tool,stratum,in_frame,out_of_frame,undetermined,n,in_frame_share,resolved_in_frame_share
+spliceai,pm12,0,0,1,1,0.0,
+spliceai,s3_10,2,10,9,21,0.0952,0.1667

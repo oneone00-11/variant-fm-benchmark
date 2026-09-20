@@ -1,0 +1,13 @@
+{
+  "product": "SpliceAI full record (four deltas and four positions)",
+  "package_version": "1.3.1",
+  "distance": 4999,
+  "mask": 0,
+  "reference_fasta": "phase1/data/evidence/refs/chrX.fa",
+  "annotation": "grch38",
+  "n_variants": 332,
+  "n_scored": 332,
+  "output_sha256": "7511da2e3367b74b80c01c8b7514e54c52f15b86015b698163d3128cba504ca0",
+  "scored_utc": "2026-09-20T05:57:42+00:00",
+  "runtime_minutes": 4.2
+}

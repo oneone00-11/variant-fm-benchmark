@@ -89,6 +89,19 @@ EXTERNAL = {
         "subset": EVID_DIR / "external/ddx3x_inframe_subset.parquet",
         "pangolin_events": EVID_DIR / "external/ddx3x_pangolin.parquet",
     },
+    "tp53": {
+        # TP53's columns come from the published study's frozen matrix, so its
+        # SpliceAI value is the distance-50 one unless the Walker-basis column has
+        # been merged; whichever is present is used and recorded in the subset.
+        "scored": Path("data/external/tp53_splice_scored_v2.parquet"),
+        "labels": Path("data/external/tp53_splice_scored_v2.parquet"),
+        "label_cols": ["y_tp53_control_anchored"],
+        "spliceai_col": "spliceai_walker",
+        "fasta": None,          # chr17 is in the atlas subset fasta
+        "events": EVID_DIR / "external/tp53_inframe_events.parquet",
+        "subset": EVID_DIR / "external/tp53_inframe_subset.parquet",
+        "pangolin_events": EVID_DIR / "external/tp53_pangolin.parquet",
+    },
 }
 
 
@@ -335,7 +348,24 @@ def external_subset(gene: str) -> None:
     spec = EXTERNAL[gene]
     lab = pd.read_parquet(spec["labels"])
     sc = pd.read_parquet(spec["scored"])
-    df = lab.merge(sc, on="variant_id", how="left")
+    df = lab if spec["labels"] == spec["scored"] else lab.merge(
+        sc, on="variant_id", how="left")
+    if gene == "tp53":
+        df = df[df["is_splice"]].copy()
+        df["intron_offset_abs"] = df["intron_offset"].abs()
+        df["stratum"] = df["intron_offset_abs"].map(
+            lambda o: "pm12" if o <= 2 else ("s3_10" if o <= 10 else "s11_50"))
+        # the published study's control-anchored definition: RFS is anchored at -1
+        # for synonymous and +1 for nonsense, so damaging is RFS > 0
+        df["y_tp53_control_anchored"] = (
+            df["func_pathogenicity"].to_numpy(dtype=float) > 0).astype(float)
+        w = EVID_DIR / "external/tp53_spliceai_walker.parquet"
+        if w.exists():
+            ww = pd.read_parquet(w)
+            df = df.merge(ww[["variant_id", "spliceai_walker"]],
+                          on="variant_id", how="left")
+        else:
+            df["spliceai_walker"] = df["spliceai"]
     col = spec["spliceai_col"]
     normal = np.zeros(len(df), dtype=bool)
     for c in spec["label_cols"]:
@@ -350,9 +380,10 @@ def external_subset(gene: str) -> None:
     print(sub.groupby("stratum", observed=True).size().to_string())
     print(f"     wrote {spec['subset']}")
     print("\n[E2.7] next, in the SpliceAI environment:")
+    fasta = f" \\\n      --fasta {spec['fasta']}" if spec["fasta"] else ""
     print("  <atlas>/models/spliceai/.venv/bin/python phase1/src/evid_score_spliceai_events.py \\")
-    print(f"      --variants {spec['subset']} --distance 4999 \\")
-    print(f"      --fasta {spec['fasta']} --out {spec['events']} --run")
+    print(f"      --variants {spec['subset']} --distance 4999{fasta} \\")
+    print(f"      --out {spec['events']} --run")
 
 
 def attribute_external(gene: str) -> None:
