@@ -1,0 +1,11 @@
+{
+  "product": "Pangolin gain/loss scores with their positions",
+  "distance": 50,
+  "reference_fasta": "data/evidence/refs/chrX.fa",
+  "gtf_db": "data/evidence/refs/chrX.gtf.db",
+  "n_variants": 1857,
+  "n_scored": 1857,
+  "output_sha256": "70e3dc12f6617fd9e625cac1cfcfe1d6f38fc810b98fb8e41345a7a561aac756",
+  "scored_utc": "2026-09-20T05:48:53+00:00",
+  "runtime_minutes": 26.1
+}

@@ -257,11 +257,17 @@ DDX3X_SCORE_FILES = {
     "ddx3x_phyloP100way.parquet": ["phylop100way"],
     "ddx3x_phastCons100way.parquet": ["phastcons100way"],
     "ddx3x_gpn_msa.parquet": ["gpn_msa"],
-    "ddx3x_pangolin.parquet": ["pangolin_score"],
+    # The external gene's Pangolin value comes from the event scorer, which reads
+    # the CLI's printed CSV and is therefore at two decimals, where the seven-gene
+    # column is full precision. Recorded rather than hidden: the column-basis check
+    # sees the same variable and the rounding is below the precision any threshold
+    # here is quoted at.
+    "ddx3x_pangolin.parquet": ["pangolin_event_max"],
     "ddx3x_nt.parquet": ["nucleotide_transformer"],
 }
 DDX3X_RENAME = {"phylop100way": "phylop", "phastcons100way": "phastcons",
-                "pangolin_score": "pangolin", "nucleotide_transformer": "nt"}
+                "pangolin_score": "pangolin", "pangolin_event_max": "pangolin",
+                "nucleotide_transformer": "nt"}
 
 
 def merge_ddx3x_scores() -> None:
