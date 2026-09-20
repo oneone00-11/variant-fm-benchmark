@@ -12,7 +12,10 @@ re-scores, and each is pinned by sha256 in a manifest instead:
   * the `spliceai_walker` column, re-scored at Walker's -D 4999 in the atlas's
     pinned SpliceAI 1.3.1 environment (`src/evid_score_spliceai_walker.py`);
   * the external-gene columns (`src/evid_score_spliceai_events.py` and the E7
-    scoring), likewise.
+    scoring), likewise;
+  * the AlphaGenome Atlas columns (`src/evid_score_avi.py`), which need an API key
+    outside the tree and a separate venv carrying alphagenome>=0.9.0 -- the pinned
+    .venv keeps 0.7.0 because that is the provenance of the alphagenome column.
 
 Each of those prints the command that produces it when its input is missing.
 
@@ -26,7 +29,10 @@ Stages
   6  evid_external TP53      fixed and fitted thresholds on the held-out gene (E7)
   7  evid_external DDX3X     the same, on a gene outside the seven (E7)
   8  evid_diagnostics        cut-point and monotonicity diagnostic tables (E8)
-  9  evid_delta              every published quantity with a counterpart (E8)
+  9  evid_tier_logo          in-sample tier vs held-out ratio, per fold (E2.2)
+ 10  evid_arms               ClinVar arms without BRCA1, and within gene (E2.3/E2.4)
+ 11  evid_fig_data           the figure tables and draft PNGs (E2.9)
+ 12  evid_delta              every published quantity with a counterpart (E8)
 
 Outputs land in `phase1/reports/evidence/`.
 
@@ -52,11 +58,18 @@ STAGES = [
     ("src.evid_external",           "E7  external gene: TP53", ["--apply", "TP53"]),
     ("src.evid_external",           "E7  external gene: DDX3X", ["--apply", "DDX3X"]),
     ("src.evid_diagnostics",        "E8  cut-point and monotonicity diagnostics", []),
+    ("src.evid_tier_logo",          "E2.2 in-sample tier against held-out ratio", []),
+    ("src.evid_arms",               "E2.3/E2.4 ClinVar arms without the gene confound", []),
+    ("src.evid_fig_data",           "E2.9 one tidy table per figure, plus draft PNGs", []),
     ("src.evid_delta",              "E8  old/new quantity list -> docs/evidence-delta.md", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.
 NEEDS = {
+    "src.evid_tier_logo": [
+        ("phase1/reports/evidence/evidence_thresholds_logo_folds.csv",
+         "python -m src.evid_interval_lr (stage 3)"),
+    ],
     "src.evid_build_set": [
         ("phase1/data/evidence/clinvar/clinvar_20260615.vcf.gz",
          "curl -O https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/weekly/"
