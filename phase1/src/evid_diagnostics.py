@@ -83,6 +83,63 @@ def main() -> None:
         print(f"\n[E8] wrote local_lr_monotonicity.txt ({len(mono.splitlines()) - 1} curves)")
     else:
         print("[E8] local_lr_monotonicity.txt: no curve files, not written")
+    _main_concordance()
+
+
+# ---------------------------------------------------------------------------
+# E8b -- concordance between columns that measure related things
+# ---------------------------------------------------------------------------
+# The manuscript states how far the two SpliceAI bases agree (the atlas's -D 50
+# column against the Walker-basis -D 4999 re-score) and how far the Atlas's
+# precomputed AVI columns agree with the model-computed alphagenome column. Those
+# numbers were computed ad hoc for the execution reports; a number the text cites
+# has to come from a pipeline output, so they are written here.
+_PAIRS = [
+    ("spliceai", "spliceai_walker"),
+    ("avi", "alphagenome"),
+    ("avi_splice_sites", "alphagenome"),
+    ("avi_splice_site_usage", "alphagenome"),
+    ("avi_splice_junctions", "alphagenome"),
+    ("avi", "alphagenome_v061"),
+]
+
+
+def column_concordance() -> pd.DataFrame | None:
+    from scipy.stats import spearmanr
+    import yaml
+    set_path = Path("data/evidence/analysis_set_v1.parquet")
+    cfg_path = Path("config/walker2023.yaml")
+    if not (set_path.exists() and cfg_path.exists()):
+        return None
+    df = pd.read_parquet(set_path)
+    pp3 = float(yaml.safe_load(cfg_path.read_text())["thresholds"]["pp3"]["value"])
+    rows = []
+    for a, b in _PAIRS:
+        if a not in df.columns or b not in df.columns:
+            continue
+        x = df[a].to_numpy(dtype=float)
+        y = df[b].to_numpy(dtype=float)
+        m = np.isfinite(x) & np.isfinite(y)
+        row = {"column_a": a, "column_b": b, "n": int(m.sum()),
+               "spearman_rho": float(spearmanr(x[m], y[m]).statistic)}
+        if a == "spliceai" and b == "spliceai_walker":
+            # the same tool on two bases: how many variants change side of the
+            # PP3 cut point, in each direction
+            row["cut_point"] = pp3
+            row["n_a_below_b_at_or_above"] = int(((x[m] < pp3) & (y[m] >= pp3)).sum())
+            row["n_a_at_or_above_b_below"] = int(((x[m] >= pp3) & (y[m] < pp3)).sum())
+        rows.append(row)
+    return pd.DataFrame(rows) if rows else None
+
+
+def _main_concordance() -> None:
+    cc = column_concordance()
+    if cc is not None:
+        cc.to_csv(REPORT_DIR / "column_concordance.csv", index=False)
+        print(f"\n[E8] wrote column_concordance.csv ({len(cc)} pairs)")
+        print(cc.to_string(index=False))
+    else:
+        print("[E8] column_concordance.csv: inputs missing, not written")
 
 
 if __name__ == "__main__":

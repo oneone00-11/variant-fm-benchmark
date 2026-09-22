@@ -270,6 +270,27 @@ DDX3X_RENAME = {"phylop100way": "phylop", "phastcons100way": "phastcons",
                 "nucleotide_transformer": "nt"}
 
 
+# The AlphaGenome Atlas columns are not in the registry above because they do not
+# arrive as a per-gene file: one Atlas pass covered the analysis set and both
+# external genes, and wrote a single table carrying a `set` label. They are taken
+# from it here, filtered to this gene's rows, so the external gene is scored on the
+# same lookup the seven genes are.
+AVI_PATH = Path("data/evidence/avi.parquet")
+AVI_COLUMNS = ["avi", "avi_splice_sites", "avi_splice_site_usage",
+               "avi_splice_junctions"]
+
+
+def _avi_for(set_name: str) -> pd.DataFrame | None:
+    if not AVI_PATH.exists():
+        return None
+    a = pd.read_parquet(AVI_PATH)
+    if "set" not in a.columns:
+        return None
+    a = a[a["set"] == set_name]
+    take = [c for c in AVI_COLUMNS if c in a.columns]
+    return a[["variant_id"] + take] if len(a) and take else None
+
+
 def merge_ddx3x_scores() -> None:
     """Collect whatever has been scored into one table the apply step reads."""
     base = pd.read_parquet(EXT_DIR / "ddx3x_splice.parquet")[["variant_id"]]
@@ -286,6 +307,12 @@ def merge_ddx3x_scores() -> None:
             continue
         base = base.merge(d[["variant_id"] + take], on="variant_id", how="left")
         present += take
+    avi = _avi_for("ddx3x")
+    if avi is not None:
+        base = base.merge(avi, on="variant_id", how="left")
+        present += [c for c in avi.columns if c != "variant_id"]
+    else:
+        missing.append("avi.parquet (Atlas columns)")
     base = base.rename(columns=DDX3X_RENAME)
     out = EXT_DIR / "ddx3x_scored.parquet"
     base.to_parquet(out, index=False)

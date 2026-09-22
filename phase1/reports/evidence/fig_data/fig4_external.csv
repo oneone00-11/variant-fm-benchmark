@@ -1,4 +1,7 @@
 gene,label_definition,stratum,tool,tier,n_pos,n_neg,column_basis_comparable,lr_at_walker_cut,tier_at_walker_cut,logo_threshold,lr_at_logo_threshold,tier_at_logo_threshold
+DDX3X,y_control_anchored,s3_10,pangolin,supporting,37,731,True,,,0.4068579971790313,5.474763920547053,Moderate
+DDX3X,y_control_anchored,s3_10,pangolin,moderate,37,731,True,,,0.547325074672699,6.8991848991849,Moderate
+DDX3X,y_control_anchored,s3_10,pangolin,strong,37,731,True,,,0.7039144039154053,8.673698088332236,Moderate
 DDX3X,y_control_anchored,s3_10,cadd,supporting,37,731,True,,,19.53,4.541783162472818,Moderate
 DDX3X,y_control_anchored,s3_10,cadd,moderate,37,731,True,,,,,not evaluable
 DDX3X,y_control_anchored,s3_10,cadd,strong,37,731,True,,,,,not evaluable
@@ -14,6 +17,21 @@ DDX3X,y_control_anchored,s3_10,gpn_msa,strong,37,731,True,,,,,not evaluable
 DDX3X,y_control_anchored,s3_10,spliceai_walker,supporting,37,731,True,2.8696965121546127,Supporting,0.4259027540683746,6.157950157950158,Moderate
 DDX3X,y_control_anchored,s3_10,spliceai_walker,moderate,37,731,True,2.8696965121546127,Supporting,0.5537148118019104,7.153308480894688,Moderate
 DDX3X,y_control_anchored,s3_10,spliceai_walker,strong,37,731,True,2.8696965121546127,Supporting,0.89483243227005,17.122522522522523,Moderate
+DDX3X,y_control_anchored,s3_10,avi,supporting,37,731,True,,,0.844028890132904,6.585585585585586,Moderate
+DDX3X,y_control_anchored,s3_10,avi,moderate,37,731,True,,,1.0689042806625366,8.621130221130223,Moderate
+DDX3X,y_control_anchored,s3_10,avi,strong,37,731,True,,,1.3679836988449097,15.266584766584767,Moderate
+DDX3X,y_control_anchored,s3_10,avi_splice_sites,supporting,37,731,True,,,0.33984375,6.498933143669985,Moderate
+DDX3X,y_control_anchored,s3_10,avi_splice_sites,moderate,37,731,True,,,0.455810546875,7.244144144144145,Moderate
+DDX3X,y_control_anchored,s3_10,avi_splice_sites,strong,37,731,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_10,avi_splice_site_usage,supporting,37,731,True,,,0.568359375,8.706367384333486,Moderate
+DDX3X,y_control_anchored,s3_10,avi_splice_site_usage,moderate,37,731,True,,,0.6669921875,9.146646646646646,Moderate
+DDX3X,y_control_anchored,s3_10,avi_splice_site_usage,strong,37,731,True,,,0.91949462890625,12.347972972972974,Moderate
+DDX3X,y_control_anchored,s3_10,avi_splice_junctions,supporting,37,731,True,,,3.509765625,3.5425908667287977,Supporting
+DDX3X,y_control_anchored,s3_10,avi_splice_junctions,moderate,37,731,True,,,5.375,5.837223587223588,Moderate
+DDX3X,y_control_anchored,s3_10,avi_splice_junctions,strong,37,731,True,,,6.83984375,8.036646816307833,Moderate
+DDX3X,y_control_anchored,s11_50,pangolin,supporting,34,863,True,,,0.1923362016677856,5.251521298174442,Moderate
+DDX3X,y_control_anchored,s11_50,pangolin,moderate,34,863,True,,,0.3521193712949753,11.537433155080215,Moderate
+DDX3X,y_control_anchored,s11_50,pangolin,strong,34,863,True,,,,,not evaluable
 DDX3X,y_control_anchored,s11_50,cadd,supporting,34,863,True,,,21.1,5.439075630252102,Moderate
 DDX3X,y_control_anchored,s11_50,cadd,moderate,34,863,True,,,,,not evaluable
 DDX3X,y_control_anchored,s11_50,cadd,strong,34,863,True,,,,,not evaluable
@@ -29,6 +47,21 @@ DDX3X,y_control_anchored,s11_50,gpn_msa,strong,34,863,True,,,,,not evaluable
 DDX3X,y_control_anchored,s11_50,spliceai_walker,supporting,34,863,True,3.0581148121899364,Supporting,0.2532642036676407,3.744937319189971,Supporting
 DDX3X,y_control_anchored,s11_50,spliceai_walker,moderate,34,863,True,3.0581148121899364,Supporting,0.3130816221237182,3.9815455594002302,Supporting
 DDX3X,y_control_anchored,s11_50,spliceai_walker,strong,34,863,True,3.0581148121899364,Supporting,,,not evaluable
+DDX3X,y_control_anchored,s11_50,avi,supporting,34,863,True,,,0.5901179909706116,8.752535496957403,Moderate
+DDX3X,y_control_anchored,s11_50,avi,moderate,34,863,True,,,0.691426157951355,14.101307189542483,Moderate
+DDX3X,y_control_anchored,s11_50,avi,strong,34,863,True,,,1.1923002004623413,,not evaluable
+DDX3X,y_control_anchored,s11_50,avi_splice_sites,supporting,34,863,True,,,0.270484447479248,6.011609907120743,Moderate
+DDX3X,y_control_anchored,s11_50,avi_splice_sites,moderate,34,863,True,,,0.5078125,16.92156862745098,Moderate
+DDX3X,y_control_anchored,s11_50,avi_splice_sites,strong,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s11_50,avi_splice_site_usage,supporting,34,863,True,,,0.154296875,10.575980392156865,Moderate
+DDX3X,y_control_anchored,s11_50,avi_splice_site_usage,moderate,34,863,True,,,0.2469959259033203,13.359133126934983,Moderate
+DDX3X,y_control_anchored,s11_50,avi_splice_site_usage,strong,34,863,True,,,0.6455078125,25.38235294117647,Strong
+DDX3X,y_control_anchored,s11_50,avi_splice_junctions,supporting,34,863,True,,,3.3779296875,5.517902813299233,Moderate
+DDX3X,y_control_anchored,s11_50,avi_splice_junctions,moderate,34,863,True,,,4.36328125,8.18785578747628,Moderate
+DDX3X,y_control_anchored,s11_50,avi_splice_junctions,strong,34,863,True,,,,,not evaluable
+DDX3X,y_control_anchored,s3_50,pangolin,supporting,71,1594,True,,,0.3767528235912323,7.067814293166405,Moderate
+DDX3X,y_control_anchored,s3_50,pangolin,moderate,71,1594,True,,,0.4281759262084961,7.256793284962299,Moderate
+DDX3X,y_control_anchored,s3_50,pangolin,strong,71,1594,True,,,0.6740013957023621,9.893530675578898,Moderate
 DDX3X,y_control_anchored,s3_50,cadd,supporting,71,1594,True,,,19.19,4.923400049419322,Moderate
 DDX3X,y_control_anchored,s3_50,cadd,moderate,71,1594,True,,,22.6,2.1903126073514256,Supporting
 DDX3X,y_control_anchored,s3_50,cadd,strong,71,1594,True,,,,,not evaluable
@@ -44,6 +77,21 @@ DDX3X,y_control_anchored,s3_50,gpn_msa,strong,71,1594,True,,,,,not evaluable
 DDX3X,y_control_anchored,s3_50,spliceai_walker,supporting,71,1594,True,3.084829588216321,Supporting,0.3335808515548706,5.337929675957844,Moderate
 DDX3X,y_control_anchored,s3_50,spliceai_walker,moderate,71,1594,True,3.084829588216321,Supporting,0.4277547001838684,6.65206051121544,Moderate
 DDX3X,y_control_anchored,s3_50,spliceai_walker,strong,71,1594,True,3.084829588216321,Supporting,0.893125057220459,26.4125932062966,Strong
+DDX3X,y_control_anchored,s3_50,avi,supporting,71,1594,True,,,0.7155988216400146,7.152436744359965,Moderate
+DDX3X,y_control_anchored,s3_50,avi,moderate,71,1594,True,,,0.845728874206543,9.28994657600777,Moderate
+DDX3X,y_control_anchored,s3_50,avi,strong,71,1594,True,,,1.1815255880355835,14.237031947784269,Moderate
+DDX3X,y_control_anchored,s3_50,avi_splice_sites,supporting,71,1594,True,,,0.2978515625,6.695824067210278,Moderate
+DDX3X,y_control_anchored,s3_50,avi_splice_sites,moderate,71,1594,True,,,0.439453125,8.92271578187071,Moderate
+DDX3X,y_control_anchored,s3_50,avi_splice_sites,strong,71,1594,True,,,0.8583984375,17.348271446862995,Moderate
+DDX3X,y_control_anchored,s3_50,avi_splice_site_usage,supporting,71,1594,True,,,0.3828125,9.737654844731036,Moderate
+DDX3X,y_control_anchored,s3_50,avi_splice_site_usage,moderate,71,1594,True,,,0.4921875,10.921964217738866,Moderate
+DDX3X,y_control_anchored,s3_50,avi_splice_site_usage,strong,71,1594,True,,,0.913726806640625,15.715492957746475,Moderate
+DDX3X,y_control_anchored,s3_50,avi_splice_junctions,supporting,71,1594,True,,,3.212890625,3.9425626932325657,Supporting
+DDX3X,y_control_anchored,s3_50,avi_splice_junctions,moderate,71,1594,True,,,3.955078125,5.115350329827063,Moderate
+DDX3X,y_control_anchored,s3_50,avi_splice_junctions,strong,71,1594,True,,,6.24609375,9.13691451031772,Moderate
+DDX3X,y_fdr,s3_10,pangolin,supporting,41,727,True,,,0.4068579971790313,8.01570330771801,Moderate
+DDX3X,y_fdr,s3_10,pangolin,moderate,41,727,True,,,0.547325074672699,10.179313459801264,Moderate
+DDX3X,y_fdr,s3_10,pangolin,strong,41,727,True,,,0.7039144039154053,10.543177323665128,Moderate
 DDX3X,y_fdr,s3_10,cadd,supporting,41,727,True,,,19.53,5.691659138813611,Moderate
 DDX3X,y_fdr,s3_10,cadd,moderate,41,727,True,,,,,not evaluable
 DDX3X,y_fdr,s3_10,cadd,strong,41,727,True,,,,,not evaluable
@@ -59,6 +107,21 @@ DDX3X,y_fdr,s3_10,gpn_msa,strong,41,727,True,,,,,not evaluable
 DDX3X,y_fdr,s3_10,spliceai_walker,supporting,41,727,True,3.9051974448315914,Supporting,0.4259027540683746,8.605093256814921,Moderate
 DDX3X,y_fdr,s3_10,spliceai_walker,moderate,41,727,True,3.9051974448315914,Supporting,0.5537148118019104,9.206848030018762,Moderate
 DDX3X,y_fdr,s3_10,spliceai_walker,strong,41,727,True,3.9051974448315914,Supporting,0.89483243227005,20.45966228893058,Strong
+DDX3X,y_fdr,s3_10,avi,supporting,41,727,True,,,0.844028890132904,9.792136876592648,Moderate
+DDX3X,y_fdr,s3_10,avi,moderate,41,727,True,,,1.0689042806625366,13.39728997289973,Moderate
+DDX3X,y_fdr,s3_10,avi,strong,41,727,True,,,1.3679836988449097,20.6869918699187,Strong
+DDX3X,y_fdr,s3_10,avi_splice_sites,supporting,41,727,True,,,0.33984375,8.998179832544594,Moderate
+DDX3X,y_fdr,s3_10,avi_splice_sites,moderate,41,727,True,,,0.455810546875,9.702254947077773,Moderate
+DDX3X,y_fdr,s3_10,avi_splice_sites,strong,41,727,True,,,,,not evaluable
+DDX3X,y_fdr,s3_10,avi_splice_site_usage,supporting,41,727,True,,,0.568359375,12.41219512195122,Moderate
+DDX3X,y_fdr,s3_10,avi_splice_site_usage,moderate,41,727,True,,,0.6669921875,13.39728997289973,Moderate
+DDX3X,y_fdr,s3_10,avi_splice_site_usage,strong,41,727,True,,,0.91949462890625,17.73170731707317,Moderate
+DDX3X,y_fdr,s3_10,avi_splice_junctions,supporting,41,727,True,,,3.509765625,4.896068438296323,Moderate
+DDX3X,y_fdr,s3_10,avi_splice_junctions,moderate,41,727,True,,,5.375,8.183864915572233,Moderate
+DDX3X,y_fdr,s3_10,avi_splice_junctions,strong,41,727,True,,,6.83984375,11.125777140124343,Moderate
+DDX3X,y_fdr,s11_50,pangolin,supporting,26,871,True,,,0.1923362016677856,9.136363636363637,Moderate
+DDX3X,y_fdr,s11_50,pangolin,moderate,26,871,True,,,0.3521193712949753,29.558823529411764,Strong
+DDX3X,y_fdr,s11_50,pangolin,strong,26,871,True,,,,,not evaluable
 DDX3X,y_fdr,s11_50,cadd,supporting,26,871,True,,,21.1,7.178571428571429,Moderate
 DDX3X,y_fdr,s11_50,cadd,moderate,26,871,True,,,,,not evaluable
 DDX3X,y_fdr,s11_50,cadd,strong,26,871,True,,,,,not evaluable
@@ -74,6 +137,21 @@ DDX3X,y_fdr,s11_50,gpn_msa,strong,26,871,True,,,,,not evaluable
 DDX3X,y_fdr,s11_50,spliceai_walker,supporting,26,871,True,7.49342105263158,Moderate,0.2532642036676407,9.136363636363637,Moderate
 DDX3X,y_fdr,s11_50,spliceai_walker,moderate,26,871,True,7.49342105263158,Moderate,0.3130816221237182,9.467391304347826,Moderate
 DDX3X,y_fdr,s11_50,spliceai_walker,strong,26,871,True,7.49342105263158,Moderate,,,not evaluable
+DDX3X,y_fdr,s11_50,avi,supporting,26,871,True,,,0.5901179909706116,20.9375,Strong
+DDX3X,y_fdr,s11_50,avi,moderate,26,871,True,,,0.691426157951355,33.5,Strong
+DDX3X,y_fdr,s11_50,avi,strong,26,871,True,,,1.1923002004623413,,not evaluable
+DDX3X,y_fdr,s11_50,avi_splice_sites,supporting,26,871,True,,,0.270484447479248,11.485714285714286,Moderate
+DDX3X,y_fdr,s11_50,avi_splice_sites,moderate,26,871,True,,,0.5078125,33.5,Strong
+DDX3X,y_fdr,s11_50,avi_splice_sites,strong,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s11_50,avi_splice_site_usage,supporting,26,871,True,,,0.154296875,26.44736842105263,Strong
+DDX3X,y_fdr,s11_50,avi_splice_site_usage,moderate,26,871,True,,,0.2469959259033203,35.89285714285714,Strong
+DDX3X,y_fdr,s11_50,avi_splice_site_usage,strong,26,871,True,,,0.6455078125,100.5,Strong
+DDX3X,y_fdr,s11_50,avi_splice_junctions,supporting,26,871,True,,,3.3779296875,12.256097560975608,Moderate
+DDX3X,y_fdr,s11_50,avi_splice_junctions,moderate,26,871,True,,,4.36328125,19.326923076923077,Strong
+DDX3X,y_fdr,s11_50,avi_splice_junctions,strong,26,871,True,,,,,not evaluable
+DDX3X,y_fdr,s3_50,pangolin,supporting,67,1598,True,,,0.3767528235912323,12.17910447761194,Moderate
+DDX3X,y_fdr,s3_50,pangolin,moderate,67,1598,True,,,0.4281759262084961,13.345060412224592,Moderate
+DDX3X,y_fdr,s3_50,pangolin,strong,67,1598,True,,,0.6740013957023621,18.38495024875622,Moderate
 DDX3X,y_fdr,s3_50,cadd,supporting,67,1598,True,,,19.19,6.846047540077391,Moderate
 DDX3X,y_fdr,s3_50,cadd,moderate,67,1598,True,,,22.6,4.393558523173605,Moderate
 DDX3X,y_fdr,s3_50,cadd,strong,67,1598,True,,,,,not evaluable
@@ -89,6 +167,18 @@ DDX3X,y_fdr,s3_50,gpn_msa,strong,67,1598,True,,,,,not evaluable
 DDX3X,y_fdr,s3_50,spliceai_walker,supporting,67,1598,True,5.278443846342061,Moderate,0.3335808515548706,9.39005758608532,Moderate
 DDX3X,y_fdr,s3_50,spliceai_walker,moderate,67,1598,True,5.278443846342061,Moderate,0.4277547001838684,11.671641791044776,Moderate
 DDX3X,y_fdr,s3_50,spliceai_walker,strong,67,1598,True,5.278443846342061,Moderate,0.893125057220459,34.98109452736318,Strong
+DDX3X,y_fdr,s3_50,avi,supporting,67,1598,True,,,0.7155988216400146,12.412123058178496,Moderate
+DDX3X,y_fdr,s3_50,avi,moderate,67,1598,True,,,0.845728874206543,16.336127581271725,Moderate
+DDX3X,y_fdr,s3_50,avi,strong,67,1598,True,,,1.1815255880355835,21.80639658848614,Strong
+DDX3X,y_fdr,s3_50,avi_splice_sites,supporting,67,1598,True,,,0.2978515625,10.756218905472638,Moderate
+DDX3X,y_fdr,s3_50,avi_splice_sites,moderate,67,1598,True,,,0.439453125,14.380597014925373,Moderate
+DDX3X,y_fdr,s3_50,avi_splice_sites,strong,67,1598,True,,,0.8583984375,22.65820895522388,Strong
+DDX3X,y_fdr,s3_50,avi_splice_site_usage,supporting,67,1598,True,,,0.3828125,17.888059701492537,Moderate
+DDX3X,y_fdr,s3_50,avi_splice_site_usage,moderate,67,1598,True,,,0.4921875,20.61674677460157,Strong
+DDX3X,y_fdr,s3_50,avi_splice_site_usage,strong,67,1598,True,,,0.913726806640625,26.83208955223881,Strong
+DDX3X,y_fdr,s3_50,avi_splice_junctions,supporting,67,1598,True,,,3.212890625,6.562110084498145,Moderate
+DDX3X,y_fdr,s3_50,avi_splice_junctions,moderate,67,1598,True,,,3.955078125,8.734076098381333,Moderate
+DDX3X,y_fdr,s3_50,avi_splice_junctions,strong,67,1598,True,,,6.24609375,15.682682478020851,Moderate
 TP53,y_control_anchored,s3_10,spliceai,supporting,15,129,True,5.59,Moderate,0.397732138633728,6.45,Moderate
 TP53,y_control_anchored,s3_10,spliceai,moderate,15,129,True,5.59,Moderate,0.5639702081680298,6.688888888888889,Moderate
 TP53,y_control_anchored,s3_10,spliceai,strong,15,129,True,5.59,Moderate,0.8993068933486938,,not evaluable

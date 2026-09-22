@@ -32,7 +32,8 @@ Stages
   9  evid_tier_logo          in-sample tier vs held-out ratio, per fold (E2.2)
  10  evid_arms               ClinVar arms without BRCA1, and within gene (E2.3/E2.4)
  11  evid_fig_data           the figure tables and draft PNGs (E2.9)
- 12  evid_delta              every published quantity with a counterpart (E8)
+ 12  evid_training_provenance where each predictor's training signal comes from (E9)
+ 13  evid_delta              every published quantity with a counterpart (E8)
 
 Outputs land in `phase1/reports/evidence/`.
 
@@ -61,6 +62,7 @@ STAGES = [
     ("src.evid_tier_logo",          "E2.2 in-sample tier against held-out ratio", []),
     ("src.evid_arms",               "E2.3/E2.4 ClinVar arms without the gene confound", []),
     ("src.evid_fig_data",           "E2.9 one tidy table per figure, plus draft PNGs", []),
+    ("src.evid_training_provenance", "E9  predictor training signals and overlaps", []),
     ("src.evid_delta",              "E8  old/new quantity list -> docs/evidence-delta.md", []),
 ]
 

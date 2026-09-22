@@ -1,0 +1,7 @@
+column_a,column_b,n,spearman_rho,cut_point,n_a_below_b_at_or_above,n_a_at_or_above_b_below
+spliceai,spliceai_walker,8853,0.9144755818677697,0.2,144.0,0.0
+avi,alphagenome,8853,0.7287814586627772,,,
+avi_splice_sites,alphagenome,8853,0.8714829798942861,,,
+avi_splice_site_usage,alphagenome,8853,0.78613045003175,,,
+avi_splice_junctions,alphagenome,8853,0.8141341923736829,,,
+avi,alphagenome_v061,3242,0.8282532246268852,,,

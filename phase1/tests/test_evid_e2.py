@@ -9,6 +9,8 @@ than retyped.
 from __future__ import annotations
 
 import json
+import os
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -18,6 +20,10 @@ import pytest
 PHASE1 = Path(__file__).resolve().parents[1]
 DATA = PHASE1 / "data/evidence"
 REPORTS = PHASE1 / "reports/evidence"
+ATLAS_REPO = Path(os.environ.get(
+    "EVID_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
+if str(PHASE1) not in sys.path:
+    sys.path.insert(0, str(PHASE1))
 SET = DATA / "analysis_set_v1.parquet"
 
 AVI_COLS = ["avi", "avi_splice_sites", "avi_splice_site_usage", "avi_splice_junctions"]
@@ -167,3 +173,49 @@ def test_the_figure_tables_only_carry_in_scope_strata():
         if "stratum" in d.columns:
             assert set(d.stratum) <= {"s3_10", "s11_50", "s3_50"}, \
                 f"{name} carries an out-of-scope stratum: {set(d.stratum)}"
+
+
+# ---------------------------------------------------------------------------
+# E9 -- the predictor training-signal table
+# ---------------------------------------------------------------------------
+def test_every_evaluated_column_has_a_training_provenance_row():
+    """The table answers a reviewer's question about hidden dependencies, so a
+    column that is evaluated anywhere and missing here is the failure mode."""
+    t = pd.read_csv(REPORTS / "predictor_training_provenance.csv")
+    have = set(t.score_column)
+    evaluated = set(pd.read_csv(REPORTS / "evidence_thresholds.csv").tool)
+    missing = evaluated - have
+    assert not missing, f"evaluated but no training provenance row: {sorted(missing)}"
+
+
+def test_the_training_rows_that_come_from_the_atlas_are_not_restated():
+    """Nine columns are carried from the companion atlas's curated table. If this
+    module ever restates one instead of importing it, the two papers can disagree
+    about what a model was trained on."""
+    import importlib.util
+    import sys as _sys
+
+    t = pd.read_csv(REPORTS / "predictor_training_provenance.csv")
+    spec = importlib.util.spec_from_file_location(
+        "_atlas_pr", ATLAS_REPO / "src/atlas/predictor_resources.py")
+    mod = importlib.util.module_from_spec(spec)
+    _sys.modules.setdefault("_atlas_pr", mod)
+    spec.loader.exec_module(mod)
+
+    from src.evid_training_provenance import FROM_ATLAS
+    checked = 0
+    for col, name in FROM_ATLAS.items():
+        row = t[t.score_column == col]
+        assert len(row) == 1, col
+        assert row.training_data.iloc[0] == mod.TRAINING[name][0], col
+        assert row.row_origin.iloc[0].startswith("companion atlas"), col
+        checked += 1
+    assert checked == len(FROM_ATLAS)
+
+
+def test_no_panel_column_is_trained_on_clinical_classifications():
+    """The claim the manuscript makes from this table. It is a statement about
+    the panel as assembled, so it is asserted against the file, not in prose."""
+    t = pd.read_csv(REPORTS / "predictor_training_provenance.csv")
+    offenders = t.loc[t.contains_clinical_labels != "No", "score_column"].tolist()
+    assert not offenders, f"trained on clinical classifications: {offenders}"
