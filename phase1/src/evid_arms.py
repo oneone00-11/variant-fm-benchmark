@@ -112,7 +112,16 @@ def main() -> None:
     # ---- E2.4: where the no-assertion records are ---------------------------
     strict = (df.groupby(["clinvar_arm", "clinvar_arm_strict"], observed=True)
                 .size().reset_index(name="n"))
-    strict.to_csv(REPORT_DIR / "clinvar_arm_no_assertion.csv", index=False)
+    strict["gene"] = "(all)"
+    # The no-assertion records are not spread evenly, and where they sit decides
+    # how much of an arm difference is a gene difference. The split is written
+    # rather than only printed, because the manuscript states it.
+    by_gene = (df[df["clinvar_arm_strict"] == "recorded_no_assertion"]
+               .groupby("gene", observed=True).size().reset_index(name="n"))
+    by_gene["clinvar_arm"] = "recorded_unclassified"
+    by_gene["clinvar_arm_strict"] = "recorded_no_assertion"
+    out_strict = pd.concat([strict, by_gene[strict.columns]], ignore_index=True)
+    out_strict.to_csv(REPORT_DIR / "clinvar_arm_no_assertion.csv", index=False)
     noass = df[df["clinvar_arm_strict"] == "recorded_no_assertion"]
     print(f"[E2.4] {len(noass)} ClinVar records carry no clinical assertion "
           f"(empty CLNSIG). They sit in the `recorded_unclassified` arm, which is "

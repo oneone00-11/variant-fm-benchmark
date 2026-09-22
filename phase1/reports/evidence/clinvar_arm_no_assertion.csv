@@ -1,5 +1,11 @@
-clinvar_arm,clinvar_arm_strict,n
-classified,classified,1985
-recorded_unclassified,recorded_no_assertion,588
-recorded_unclassified,recorded_unclassified,706
-unrecorded,unrecorded,5574
+clinvar_arm,clinvar_arm_strict,n,gene
+classified,classified,1985,(all)
+recorded_unclassified,recorded_no_assertion,588,(all)
+recorded_unclassified,recorded_unclassified,706,(all)
+unrecorded,unrecorded,5574,(all)
+recorded_unclassified,recorded_no_assertion,7,BAP1
+recorded_unclassified,recorded_no_assertion,2,BARD1
+recorded_unclassified,recorded_no_assertion,576,BRCA1
+recorded_unclassified,recorded_no_assertion,1,PALB2
+recorded_unclassified,recorded_no_assertion,1,RAD51C
+recorded_unclassified,recorded_no_assertion,1,VHL
