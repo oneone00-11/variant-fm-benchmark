@@ -63,7 +63,7 @@ Outputs (data/evidence/external/):
 Model environments (override with the environment variable in brackets):
     SpliceAI     <atlas>/models/spliceai/.venv            [EVID_SPLICEAI_PYTHON]
     Pangolin     <atlas>/models/pangolin/.venv            [EVID_PANGOLIN_PYTHON]
-    NT           ~/work/envs/nt                            [EVID_NT_PYTHON]
+    NT           <atlas>/../envs/nt                        [EVID_NT_PYTHON]
     AlphaGenome  an env with alphagenome==0.6.1 (ag-env)   [EVID_AG061_PYTHON]
     Atlas        an env with alphagenome>=0.9.0            [EVID_AG_ATLAS_PYTHON]
 The AlphaGenome key is read at run time from $ALPHAGENOME_API_KEY or
@@ -304,22 +304,18 @@ def _atlas_repo() -> Path:
 
 
 def _python(env: str, atlas: Path) -> str:
-    """The interpreter of a scorer's pinned environment."""
-    home = Path.home()
+    """The interpreter of a scorer's pinned environment: the environment variable,
+    or the environment beside the atlas checkout. Only a fresh scoring run needs
+    these; the stage itself runs offline from the cached score files."""
     options = {
         "spliceai": ("EVID_SPLICEAI_PYTHON",
-                     [atlas / "models/spliceai/.venv/bin/python",
-                      home / "Documents/kimi/workspace/functional-standard-atlas/models/spliceai/.venv/bin/python"]),
+                     [atlas / "models/spliceai/.venv/bin/python"]),
         "pangolin": ("EVID_PANGOLIN_PYTHON",
-                     [atlas / "models/pangolin/.venv/bin/python",
-                      home / "Documents/kimi/workspace/functional-standard-atlas/models/pangolin/.venv/bin/python"]),
-        "nt": ("EVID_NT_PYTHON", [atlas.parent / "envs/nt/bin/python",
-                                  home / "work/envs/nt/bin/python"]),
+                     [atlas / "models/pangolin/.venv/bin/python"]),
+        "nt": ("EVID_NT_PYTHON", [atlas.parent / "envs/nt/bin/python"]),
         "alphagenome_v061": ("EVID_AG061_PYTHON",
-                             [REPO / "ag-env/bin/python",
-                              home / "Documents/variant-fm-benchmark/ag-env/bin/python"]),
-        "atlas": ("EVID_AG_ATLAS_PYTHON", [atlas.parent / "envs/alphagenome-atlas/bin/python",
-                                          home / "work/envs/alphagenome-atlas/bin/python"]),
+                             [REPO / "ag-env/bin/python"]),
+        "atlas": ("EVID_AG_ATLAS_PYTHON", [atlas.parent / "envs/alphagenome-atlas/bin/python"]),
     }
     if env == "analysis":
         return sys.executable

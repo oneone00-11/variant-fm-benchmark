@@ -11,14 +11,39 @@ labels — to avoid circularity).
   (`phase1/data/frozen/`; the published `frozen-matrix-v1` is kept beside it and
   is what v2 is rebuilt from — see [docs/frozen-matrix-v2.md](docs/frozen-matrix-v2.md));
   the flat TSV view is `data/processed/score_matrix_final.tsv`
-- **External held-out gene:** TP53 (192 splice SNVs), never used for fitting
+- **External held-out gene:** TP53 (192 splice SNVs in Studies A and B; 288, to
+  |offset| 12, in the evidence-strength analysis), never used for fitting
+
+## Evidence strength of splice-region predictors (the current manuscript)
+
+What evidence strength, in the ClinGen likelihood-ratio sense behind PP3/BP4, do
+splice-region predictors support against saturation genome editing data, by distance
+from the exon boundary, and do the thresholds hold in genes they were not fitted on?
+
+- **Analysis set:** `analysis_set_v1` (`phase1/data/evidence/`), 8,853 intron-side
+  SNVs within 50 nt of the exon boundary in the seven genes, 8,453 labelled by each
+  deposit's own functional classification; built from the companion atlas score
+  matrix (release v2.5.0) and the ClinVar GRCh38 release of 15 June 2026.
+- **External genes:** DDX3X (1,857 intron-side SNVs to 25 nt; labelled by the
+  deposit's own classification) and TP53 (288 SNVs to 12 nt).
+- **Entry point:** `python scripts/reproduce_evidence.py` (22 stages; the companion
+  atlas is found through `EVID_ATLAS_REPO` or as a checkout named
+  `functional-standard-atlas` beside this one). Outputs: `phase1/reports/evidence/`.
+- **Not rebuilt by the entry point**, and tracked with checksums or provenance
+  records instead: the ClinVar release, the published-basis SpliceAI re-score and
+  SpliceAI event records, the DDX3X deposit and its panel scores, the TP53 scores
+  for offsets 9-12, and the AlphaGenome Atlas columns (which need an API key held
+  outside the repository). The entry point's docstring lists how each is produced.
+- **Environment:** Python 3.12 with the package set in
+  `requirements-evidence.lock.txt`. Changes between rounds are recorded in
+  `docs/evidence-change-log.md`; data terms per column in `LICENSE-DATA`.
 
 ## What this repository contains
 
 This repository carries **two related analyses** over the same frozen matrix. They
 answer different questions and have separate entry points.
 
-### Study A — calibration and fusion (the current manuscript)
+### Study A — calibration and fusion (an earlier manuscript)
 
 *"Ranking is saturated, calibration is not, and neither changes the evidence
 strength."* Given that the top splice predictors are statistically tied on
@@ -138,7 +163,7 @@ re-scores any model: both start from the frozen matrix that ships in the repo.
 `make_raw` + `phase1_build_frozen_matrix`, for rebuilding the frozen matrix
 itself; see [docs/NOTE_S9.md](docs/NOTE_S9.md).)
 
-**Study A — fusion & calibration** (the current manuscript):
+**Study A — fusion & calibration** (an earlier manuscript):
 ```bash
 pip install -r requirements.txt
 python scripts/reproduce_calibration.py
@@ -177,7 +202,7 @@ regenerated** — `reproduce_calibration.py` writes all of it except the
 a module that neither script runs, so the entry points cannot fall behind the
 pipeline again.
 
-**evidence-strength reframe (branch `evidence/rework`, analysis only):**
+**Evidence strength (the current manuscript; branch `evidence/rework`):**
 ```bash
 python scripts/reproduce_evidence.py
 ```
@@ -186,9 +211,9 @@ strata, three ClinVar arms) and runs the evidence-strength stages on it: the
 ClinGen SVI fixed cut points, the Pejaver-style score-to-evidence intervals, the
 territory and ClinVar-arm metrics, the in-frame attribution, and the two external
 genes. Writes `phase1/reports/evidence/`. It leaves `phase1/reports/phase1/`
-untouched, so the published tables stay beside it as the control. Three inputs are
-downloads or model re-scores rather than analysis steps and are pinned by sha256
-instead of rebuilt; the script names the command for each when it is missing.
+untouched, so the published tables stay beside it as the control. Five kinds of
+input are downloads or model re-scores rather than analysis steps and are tracked
+with checksums or provenance records instead of rebuilt (see the section above).
 The stages also write the printed main and supplementary tables and the figures. It
 ran under Python 3.12 with the exact package set in `requirements-evidence.lock.txt`;
 the companion atlas repository is found through `EVID_ATLAS_REPO`, or as a checkout

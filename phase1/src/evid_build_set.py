@@ -427,12 +427,14 @@ def build() -> None:
         },
         "sources": {
             "atlas_matrix": {
-                "path": str(ATLAS_MATRIX),
+                # relative to the atlas checkout, so the record is the same on
+                # every machine; the sha256 identifies the file
+                "path": "atlas:" + str(Path(ATLAS_MATRIX).relative_to(ATLAS_REPO)),
                 "sha256": sha256_of(ATLAS_MATRIX),
                 "atlas_git_head": git_head(ATLAS_REPO),
             },
             "clinvar_vcf": {
-                "path": str(CLINVAR_VCF),
+                "path": str(CLINVAR_VCF),  # relative to phase1/
                 "sha256": sha256_of(CLINVAR_VCF),
                 "file_date": file_date,
                 "release": "GRCh38 weekly, 15 June 2026",

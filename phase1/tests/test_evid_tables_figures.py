@@ -53,7 +53,7 @@ def test_the_atlas_combined_score_is_counted_over_its_unseen_genes():
     two folds out of its counts and marks the row."""
     from src.evid_tables import AVI_SEEN_IN_TRAINING
     t3 = pd.read_csv(TABLES / "table3_evidence_tiers.csv", dtype=str).set_index("Predictor")
-    row = t3.loc["Atlas combined score †"]
+    row = t3.loc["Atlas combined score\u00a0†"]
     folds = pd.read_csv(EV / "evidence_thresholds_logo_folds.csv")
     band = {"s3_10": "3–10 bp", "s11_50": "11–50 bp", "s3_50": "3–50 bp"}
     for st, lab in band.items():
@@ -69,7 +69,7 @@ def test_table1_totals_add_up_to_the_count_table():
     sc = pd.read_csv(EV / "set_counts.csv")
     ins = sc[sc.stratum != "pm12"]
     total = a[a.Gene == "Total"].iloc[0]
-    assert int(total["Variants, 3–50 bp"].replace(",", "")) == int(ins.n.sum())
+    assert int(total["Variants at 3–50\u00a0bp"].replace(",", "")) == int(ins.n.sum())
     assert int(total["3–50 bp: labelled"].replace(",", "")) == int(ins.n_labelled.sum())
 
 

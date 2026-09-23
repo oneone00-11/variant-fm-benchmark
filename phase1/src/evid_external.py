@@ -14,14 +14,14 @@ reported by count only.
 DDX3X is new, and is outside the gene class everything else here sits in: it is
 X-linked, and its disease association is neurodevelopmental rather than cancer
 predisposition. Its assay is NOT a different kind of readout, and an earlier version
-of this docstring implied it was: like most of the seven, the DDX3X deposit scores
+of this docstring implied it was: like all seven, the DDX3X deposit scores
 variants by depletion from HAP1 cells over a time course, where the gene is
 essential (Radford et al. 2023). What differs is the gene, not the measurement. Its saturation
 editing deposit (MaveDB urn:mavedb:00000658, seventeen exon-level score sets, CC0)
 carries 1,857 intron-side SNVs at 1 <= |offset| <= 50 -- more splice-region variants
 than the published study's whole analysis set -- with 192 / 768 / 897 across the
 three strata. That is what makes it worth the work: it is the only candidate found
-that populates 11-50 bp, the territory the companion atlas locates the real failure
+that populates the distal band, to 25 nt, the territory the companion atlas locates the real failure
 in, on a gene set that shares nothing with the seven.
 
 Labels follow the rule used for the seven genes: the assay authors' own
@@ -80,6 +80,11 @@ from . import evid_common as K
 
 from .evid_common import ATLAS_REPO as _atlas_repo_default  # noqa: E402
 ATLAS_REPO = _atlas_repo_default  # EVID_ATLAS_REPO overrides; see evid_common
+# Transcript models and reference sequence the mapping reads, tracked in this
+# repository (a copy of the atlas cache, including the models fetched after the
+# atlas archive was made), so these stages need neither that cache nor the
+# Mutalyzer and Ensembl services.
+REF_CACHE = Path("data/evidence/reference_cache")
 EXT_DIR = Path("data/evidence/external")
 REPORT_DIR = Path("reports/evidence")
 CONFIG_PATH = Path("config/walker2023.yaml")
@@ -132,7 +137,8 @@ def prepare_ddx3x() -> None:
     # Mutalyzer model and Ensembl lookup would be missed and re-fetched -- slowly,
     # and with a second copy of the cache appearing under phase1/. Point it at the
     # atlas's own cache.
-    M.REF_CACHE = ATLAS_REPO / "data/raw/reference"
+    M.REF_CACHE = (REF_CACHE if REF_CACHE.exists()
+                   else ATLAS_REPO / "data/raw/reference")
 
     raw_dir = EXT_DIR / "ddx3x_raw"
     raw_dir.mkdir(parents=True, exist_ok=True)

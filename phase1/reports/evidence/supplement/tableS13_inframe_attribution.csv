@@ -7,28 +7,28 @@ Seven genes,,Pangolin,Pangolin ≥ 0.2 and assay normal,3–10,131,185,32,348,0.
 Seven genes,,Pangolin,Pangolin ≥ 0.2 and assay normal,11–50,44,84,13,141,0.312,0.344
 DDX3X,Deposit classification,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,Canonical dinucleotides (out of scope),15,32,0,47,0.319,0.319
 DDX3X,Deposit classification,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,3–10,45,99,18,162,0.278,0.313
-DDX3X,Deposit classification,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,11–50,14,53,14,81,0.173,0.209
+DDX3X,Deposit classification,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,11–25,14,53,14,81,0.173,0.209
 DDX3X,Deposit classification,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,Canonical dinucleotides (out of scope),15,31,1,47,0.319,0.326
 DDX3X,Deposit classification,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,3–10,39,111,12,162,0.241,0.260
-DDX3X,Deposit classification,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,11–50,9,55,17,81,0.111,0.141
+DDX3X,Deposit classification,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,11–25,9,55,17,81,0.111,0.141
 DDX3X,"Control-anchored, gated",SpliceAI (published basis),"SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored, gated label",Canonical dinucleotides (out of scope),19,44,0,63,0.302,0.302
 DDX3X,"Control-anchored, gated",SpliceAI (published basis),"SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored, gated label",3–10,47,111,18,176,0.267,0.297
-DDX3X,"Control-anchored, gated",SpliceAI (published basis),"SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored, gated label",11–50,15,51,14,80,0.188,0.227
+DDX3X,"Control-anchored, gated",SpliceAI (published basis),"SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored, gated label",11–25,15,51,14,80,0.188,0.227
 DDX3X,"Control-anchored, gated",Pangolin,"SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored, gated label",Canonical dinucleotides (out of scope),19,43,1,63,0.302,0.306
 DDX3X,"Control-anchored, gated",Pangolin,"SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored, gated label",3–10,40,123,13,176,0.227,0.245
-DDX3X,"Control-anchored, gated",Pangolin,"SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored, gated label",11–50,11,52,17,80,0.138,0.175
+DDX3X,"Control-anchored, gated",Pangolin,"SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored, gated label",11–25,11,52,17,80,0.138,0.175
 DDX3X,Control-anchored,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,Canonical dinucleotides (out of scope),19,46,0,65,0.292,0.292
 DDX3X,Control-anchored,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,3–10,48,113,18,179,0.268,0.298
-DDX3X,Control-anchored,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,11–50,15,54,14,83,0.181,0.217
+DDX3X,Control-anchored,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,11–25,15,54,14,83,0.181,0.217
 DDX3X,Control-anchored,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,Canonical dinucleotides (out of scope),19,45,1,65,0.292,0.297
 DDX3X,Control-anchored,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,3–10,41,125,13,179,0.229,0.247
-DDX3X,Control-anchored,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,11–50,11,55,17,83,0.133,0.167
-DDX3X,FDR,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the fdr label,Canonical dinucleotides (out of scope),12,35,0,47,0.255,0.255
-DDX3X,FDR,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the fdr label,3–10,42,108,18,168,0.250,0.280
-DDX3X,FDR,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the fdr label,11–50,10,52,14,76,0.132,0.161
-DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the fdr label,Canonical dinucleotides (out of scope),12,34,1,47,0.255,0.261
-DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the fdr label,3–10,35,120,13,168,0.208,0.226
-DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the fdr label,11–50,5,54,17,76,0.066,0.085
+DDX3X,Control-anchored,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,11–25,11,55,17,83,0.133,0.167
+DDX3X,FDR,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,Canonical dinucleotides (out of scope),12,35,0,47,0.255,0.255
+DDX3X,FDR,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,3–10,42,108,18,168,0.250,0.280
+DDX3X,FDR,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,11–25,10,52,14,76,0.132,0.161
+DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,Canonical dinucleotides (out of scope),12,34,1,47,0.255,0.261
+DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,3–10,35,120,13,168,0.208,0.226
+DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,11–25,5,54,17,76,0.066,0.085
 TP53,Control-anchored,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,Canonical dinucleotides (out of scope),0,0,1,1,0.000,
 TP53,Control-anchored,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,3–10,2,14,9,25,0.080,0.125
-TP53,Control-anchored,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,11–50,0,1,1,2,0.000,0.000
+TP53,Control-anchored,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,11–12,0,1,1,2,0.000,0.000

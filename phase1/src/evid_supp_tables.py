@@ -44,8 +44,8 @@ denominator. The choices that change what is printed, and why:
     written as text so that pandas' float printing cannot vary it, and rows in a
     fixed order.
 
-S8 and S9 are written by their own stages; the numbering here is fixed and leaves
-them their places. The manifest lists the tables this stage writes.
+S8 is written here from threshold_dilution_summary.csv; S9 is written by its own
+stage (evid_fusion_stability) and indexed in the manifest. The numbering is fixed.
 
 Run (PYTHONPATH=phase1):  python -m src.evid_supp_tables
 """
@@ -156,10 +156,14 @@ LABEL_NAME = {"y_deposit": "Deposit classification",
 
 # What each panel column is, in words. Numbers belong to the configuration column,
 # which reads them from the provenance files.
+# the AlphaGenome terms as the tables print them (LICENSE-DATA section 2)
+AG_TERMS = ("AlphaGenome terms of service: non-commercial research only; outputs not "
+            "for clinical decision-making and not to train other models")
+
 WHAT = {
     "spliceai": "Largest of SpliceAI's four delta scores (acceptor and donor, gain "
-                "and loss) at the companion atlas's scoring window; the panel's "
-                "ranking column",
+                "and loss) at the companion atlas's scoring window, fifty "
+                "nucleotides",
     "spliceai_walker": "The same SpliceAI statistic re-scored at the window the "
                        "published cut points were calibrated on; the column those "
                        "cut points are applied to",
@@ -318,6 +322,25 @@ def _sha256(p: Path) -> str:
         for block in iter(lambda: f.read(1 << 20), b""):
             h.update(block)
     return h.hexdigest()
+
+
+# Keys that record when a manifest was written rather than what it describes. A
+# source manifest is hashed without them, so a rebuild that reproduces every data
+# file byte for byte also reproduces this manifest.
+_WALL_CLOCK_KEYS = {"built_utc", "scored_utc", "retrieved_utc", "run_at"}
+
+
+def _source_sha256(p: Path) -> str:
+    if p.suffix != ".json":
+        return _sha256(p)
+    def strip(x):
+        if isinstance(x, dict):
+            return {k: strip(v) for k, v in x.items() if k not in _WALL_CLOCK_KEYS}
+        if isinstance(x, list):
+            return [strip(v) for v in x]
+        return x
+    blob = json.dumps(strip(json.loads(p.read_text())), sort_keys=True).encode()
+    return hashlib.sha256(blob).hexdigest()
 
 
 def _display(p: Path) -> str:
@@ -742,22 +765,27 @@ def s3() -> tuple[pd.DataFrame, list[Path]]:
     rows = []
     for col in TOOLS:
         if col in avi["columns"]:
-            what = avi_def[col].replace(" AND ", " and ")
+            what = avi_def[col].replace(" AND ", " and ").replace(" -- ", ", ")
             what = (what[0].upper() + what[1:] if scorer[col] == "AVI_SCORE"
                     else f"Atlas {scorer[col]} scorer; {what}")
             version = (f"AlphaGenome API client {avi['client_version']}; Atlas "
                        f"released {avi['atlas_released']}; scorer {scorer[col]}; "
                        "precomputed values retrieved by lookup")
-            source = avi["product"]
+            source = avi["product"].replace(" -- ", ", ")
             accessed = avi["accessed_utc"][:10]
-            licence, lic_src = avi["licence"], avi["licence_source"]
+            licence, lic_src = AG_TERMS, avi["licence_source"]
             audit = f"LICENSE-DATA section {avi_sec[0]} (this repository)"
         else:
             r = rows_by[FROM_ATLAS[col]]
             what = WHAT[col]
             source, licence, lic_src = r["source"], r["licence"], r["licence_source"]
-            audit = (f"Companion atlas audit (predictor_resources.ROWS), to which "
-                     f"LICENSE-DATA section {set_sec[0]} defers")
+            audit = (f"Companion atlas licence audit, to which LICENSE-DATA "
+                     f"section {set_sec[0]} defers")
+            if col == "alphagenome":
+                # the same terms of service as the Atlas columns; declared in the
+                # same LICENSE-DATA section
+                licence = AG_TERMS
+                audit = f"LICENSE-DATA section {avi_sec[0]} (this repository)"
             if col == "spliceai_walker":
                 version = (f"{walker['package_version']}; {walker['statistic']}; "
                            f"distance {walker['distance']}; "
@@ -777,7 +805,10 @@ def s3() -> tuple[pd.DataFrame, list[Path]]:
         tr = train.loc[col] if col in train.index else None
         rows.append({
             "Tool": _tool(col), "Score column": col,
-            "Role": "Fusion panel" if col in K.PANEL else "Evaluated beside the panel",
+            "Role": ("Elastic-net input" if col in K.FUSION_FEATURES else
+                     "Evaluated alone; left out of the elastic-net combination under "
+                     "the AlphaGenome terms of service" if col == "alphagenome" else
+                     "Evaluated alone"),
             "What the column is": what,
             "Version, resource and scoring configuration": version,
             "Source": source, "Accessed": accessed,
@@ -1358,9 +1389,14 @@ def s13() -> tuple[pd.DataFrame, list[Path]]:
         srcs.append(path)
         blocks = ([(None, sm)] if labels is None else
                   [(lab, sm[sm.label_definition == lab]) for lab in labels])
+        gene = None if name == "Seven genes" else name
         for lab, part_all in blocks:
-            normal = ("assay normal" if lab is None
-                      else f"normal under the {LABEL_NAME[lab].lower()} label")
+            if lab is None:
+                normal = "assay normal"
+            else:
+                word = LABEL_NAME[lab]
+                word = word if word.isupper() else word[0].lower() + word[1:]
+                normal = f"normal under the {word} label"
             for tool in ("spliceai", "pangolin"):
                 part = part_all[part_all.tool == tool]
                 if part.empty:
@@ -1382,7 +1418,9 @@ def s13() -> tuple[pd.DataFrame, list[Path]]:
                             "Events read from": _tool(tool) if tool != "spliceai"
                             else _tool(col[0]),
                             "Variant subset": f"{_tool(col[0])} ≥ {pp3} and {normal}",
-                            "Stratum (intronic offset, bp)": STRATUM_LABEL[st],
+                            "Stratum (intronic offset, bp)": (
+                                STRATUM_LABEL[st] if gene is None or st == "pm12"
+                                else _ext_band(gene, st)),
                             "In-frame": str(int(r.in_frame)),
                             "Out-of-frame": str(int(r.out_of_frame)),
                             "Undetermined": str(int(r.undetermined)),
@@ -1518,14 +1556,16 @@ def write_all(out_dir: Path = OUT_DIR) -> pd.DataFrame:
         path = out_dir / fname
         df.to_csv(path, index=False, lineterminator="\n", encoding="utf-8")
         srcs = list(dict.fromkeys(Path(s) for s in srcs))
-        data_srcs = [s_ for s_ in srcs if s_.suffix != ".py"]
         manifest.append({
             "Table": table, "File": fname, "Title": title,
             "Source files": "; ".join(_display(s) for s in srcs),
-            "Source sha256": "; ".join(_sha256(s_) for s_ in data_srcs),
+            # one entry per listed file, so hash and file pair by position; code
+            # is versioned by the commit, not hashed here
+            "Source sha256": "; ".join("n/a (code)" if s_.suffix == ".py"
+                                       else _source_sha256(s_) for s_ in srcs),
             "Rows": str(len(df)), "File sha256": _sha256(path), "Notes": notes,
         })
-    # S8 and S9 are written by their own stages into the same directory
+    # S9 is written by its own stage into the same directory
     for table, fname, stage, title in (
             ("S9", "tableS9_fusion.csv", "src/evid_fusion_stability.py",
              "Elastic-net combination: tier, per-fold thresholds and coefficient stability"),):

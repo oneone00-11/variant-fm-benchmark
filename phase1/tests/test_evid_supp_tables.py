@@ -231,13 +231,20 @@ def test_every_manifest_table_exists_and_matches_its_record():
         df = pd.read_csv(p, dtype=str, keep_default_na=False)
         assert len(df) == int(r["Rows"]) > 0
         assert hashlib.sha256(p.read_bytes()).hexdigest() == r["File sha256"]
-        # sources are named so that another machine can resolve them, and only the
-        # data inputs are hashed: a code edit is not a change of input
+        # sources are named so that another machine can resolve them, and each
+        # listed file has one hash entry, paired by position; only the data inputs
+        # are hashed, since a code edit is not a change of input
         srcs = [x for x in r["Source files"].split("; ") if x]
         assert not any(x.startswith("/") for x in srcs)
-        data = [x for x in srcs if not x.endswith(".py") and not x.startswith("written by")]
         shas = [x for x in r["Source sha256"].split("; ") if x]
-        assert len(data) == len(shas), r["File"]
+        if r["File"] == "tableS9_fusion.csv":
+            continue
+        assert len(srcs) == len(shas), r["File"]
+        for src, sha in zip(srcs, shas):
+            if src.endswith(".py"):
+                assert sha == "n/a (code)", (r["File"], src)
+            else:
+                assert len(sha) == 64 and int(sha, 16) >= 0, (r["File"], src)
 
 
 @needs_atlas

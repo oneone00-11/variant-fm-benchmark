@@ -24,13 +24,17 @@ No separate per-column audit has been run in THIS repository, and this file does
 not assert one.
 
 
-2. AlphaGenome Variant Impact (AVI) and the AlphaGenome Atlas splice scores
----------------------------------------------------------------------------
+2. AlphaGenome outputs: the AlphaGenome splice score, AlphaGenome Variant Impact (AVI) and the Atlas splice scores
+-------------------------------------------------------------------------------------------------------------
 
 Columns: `avi`, `avi_splice_sites`, `avi_splice_site_usage`,
 `avi_splice_junctions`, in `phase1/data/evidence/avi.parquet` and wherever they
 are merged downstream (the analysis set, the external-gene tables, and every
-reports/evidence/ table that carries an `avi*` row).
+reports/evidence/ table that carries an `avi*` row). Also `alphagenome` and
+`alphagenome_v061`, the AlphaGenome splice score computed by the model through the
+same API (clients 0.7.0 and 0.6.1), in the analysis set, the TP53 tables including
+`tp53_12nt_alphagenome_v061.parquet`, and every table that carries them; they fall
+under the same terms of service, and the restriction below applies to them too.
 
     Source          AlphaGenome Atlas, queried through the AlphaGenome API
                     (client 0.9.0, alphagenome.atlas), scorers AVI_SCORE,
@@ -61,7 +65,10 @@ The API key used to obtain these columns is not in this repository and never was
 - Code, and the analysis outputs that contain no third-party score value: MIT,
   as LICENSE states.
 - The frozen assay matrix's functional-score columns: the deposits' own terms.
-- Any table carrying an `avi*` value: non-commercial only, no model training.
+- Any table carrying an `avi*`, `alphagenome` or `alphagenome_v061` value:
+  non-commercial research only, no model training, no clinical decision-making. The
+  elastic-net combination in this repository leaves the AlphaGenome splice score out
+  of its inputs for this reason.
 - Anything else carrying a predictor score: check that predictor's own terms; the
   companion atlas repository's LICENSE-DATA is the audit of record for the
   columns the two products share.

@@ -79,8 +79,8 @@ fitted on. The threshold is not free of the held-out gene, and the fusion's held
 likelihood ratios are optimistic. What block b shows is that the fusion's fitted
 thresholds can seldom be tested in the held-out gene: across the in-scope strata
 and the three tiers, a held-out ratio exists in fewer than half of the folds, and
-where one exists it nearly always clears the tier's cut. The contamination can only
-make those ratios look better than they are.
+where one exists it nearly always clears the tier's cut. The contamination is more
+likely to flatter those ratios than to understate them.
 
 Stability is measured by leaving one gene out at a time, so any two folds share all
 but one training gene. "Stable" therefore means that removing a single gene barely
@@ -437,10 +437,10 @@ def build(df: pd.DataFrame, report_dir: Path | str = REPORT_DIR
 S9_HEADERS = {
     "block": "Block", "stratum": "Stratum", "comparison_set": "Comparison set",
     "n_single_columns_compared": "Single columns compared",
-    "fusion_insample_tier": "Fusion, in-sample tier",
+    "fusion_insample_tier": "Combination, in-sample tier",
     "best_single_insample_tier": "Best single column, in-sample tier",
     "single_columns_reaching_best_tier": "Single columns reaching that tier",
-    "fusion_vs_best_single": "Fusion against the best single column",
+    "fusion_vs_best_single": "Combination against the best single column",
     "tier": "Tier", "tier_lr_cut": "Tier boundary (LR)", "heldout_gene": "Held-out gene",
     "n_training_genes": "Training genes",
     "threshold_from_training_genes": "Threshold from the training genes",
@@ -459,11 +459,45 @@ S9_HEADERS = {
 }
 
 
+_BLOCK = {"a_insample_tier": "In-sample tier", "b_logo_fold": "Leave-one-gene-out fold",
+          "c_coefficients": "Coefficients"}
+_STRATUM = {"pm12": "Canonical dinucleotides", "s3_10": "3–10", "s11_50": "11–50",
+            "s3_50": "3–50", "all_1_50": "1–50"}
+_SET = {"fusion inputs": "The combination's seven inputs",
+        "all single columns in E3": "All thirteen single columns"}
+_VS = {"fusion lower": "Lower", "same tier": "Same", "fusion higher": "Higher"}
+
+
 def printed_s9(s9: pd.DataFrame) -> pd.DataFrame:
-    """Table S9 as printed: readable headers, and Yes/No for the two flags."""
+    """Table S9 as printed: readable headers and values, the names the main text
+    uses, Yes/No for the two flags, and ratios and thresholds at print precision."""
+    from .evid_figures import NAME
+    def tier(v):
+        return v if pd.isna(v) else str(v).replace("_", " ").capitalize()
+    def tool(v):
+        if pd.isna(v):
+            return v
+        if str(v).endswith("_isna"):
+            base = str(v)[:-len("_isna")]
+            return f"{NAME.get(base, base)}, missing"
+        return NAME.get(str(v), str(v))
+    def sig(v, n):
+        return v if pd.isna(v) else float(f"{float(v):.{n}g}")
     out = s9.copy()
     for c in BOOL_COLS:
         out[c] = out[c].map({True: "Yes", False: "No"}).astype("string")
+    out["block"] = out["block"].map(_BLOCK)
+    out["stratum"] = out["stratum"].map(lambda v: _STRATUM.get(v, v))
+    out["comparison_set"] = out["comparison_set"].map(lambda v: _SET.get(v, v))
+    out["fusion_vs_best_single"] = out["fusion_vs_best_single"].map(lambda v: _VS.get(v, v))
+    for c in ("fusion_insample_tier", "best_single_insample_tier", "tier"):
+        out[c] = out[c].map(tier)
+    out["single_columns_reaching_best_tier"] = out["single_columns_reaching_best_tier"].map(
+        lambda v: v if pd.isna(v) else "; ".join(tool(t) for t in str(v).split("; ")))
+    out["term"] = out["term"].map(tool)
+    out["threshold_from_training_genes"] = out["threshold_from_training_genes"].map(
+        lambda v: sig(v, 4))
+    out["heldout_lr"] = out["heldout_lr"].map(lambda v: sig(v, 3))
     return out.rename(columns=S9_HEADERS)
 
 

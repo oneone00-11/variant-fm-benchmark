@@ -1,0 +1,7 @@
+Predictor,Band,PP3: Supporting,PP3: Moderate,PP3: Strong,BP4: Supporting,BP4: Moderate
+SpliceAI (published basis),3–10 bp,≥ 0.420,≥ 0.539,≥ 0.960,≤ 0.0263,≤ 0.00282
+SpliceAI (published basis),11–50 bp,≥ 0.241,≥ 0.293,–,≤ 0.00127,–
+SpliceAI (published basis),3–50 bp,≥ 0.316,≥ 0.427,≥ 0.878,≤ 0.00340,–
+Pangolin,3–10 bp,≥ 0.393,≥ 0.511,≥ 0.698,≤ 0.00377,≤ 0.00156
+Pangolin,11–50 bp,≥ 0.203,≥ 0.415,–,–,–
+Pangolin,3–50 bp,≥ 0.360,≥ 0.415,≥ 0.680,≤ 0.000795,–

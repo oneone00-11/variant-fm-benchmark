@@ -24,7 +24,10 @@ their own environments; each is pinned by sha256 in a manifest or provenance fil
     outside the tree and a separate venv carrying alphagenome>=0.9.0 -- the pinned
     .venv keeps 0.7.0 because that is the provenance of the alphagenome column.
 
-Each of those prints the command that produces it when its input is missing.
+Each is tracked with a checksum or a provenance record, except four DDX3X score
+lookups (CADD, GPN-MSA, phyloP, phastCons). The ClinVar VCF and the SpliceAI event
+records print the command that produces them when they are missing; the module
+named above documents the others.
 
 Stages
 ------

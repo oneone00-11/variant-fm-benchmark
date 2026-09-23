@@ -157,6 +157,10 @@ def test_summary_is_the_detail_table_counted(detail, summary):
         d = detail[(detail.tool == r.tool) & (detail.stratum == r.stratum)
                    & (detail.tier == r.tier) & (detail.k == r.k)]
         subsets = d.drop_duplicates("training_genes")
+        if r.tool == "avi":
+            # pairs are counted over the genes its model selection did not see;
+            # the subsets it was fitted on are all still counted
+            d = d[~d.heldout_gene.isin(K.AVI_SEEN_IN_TRAINING)]
         ev = d[d.evaluable]
         assert r.n_pairs == len(d)
         assert r.n_subsets_reached == int(subsets.tier_reached.sum())

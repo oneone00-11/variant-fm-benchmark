@@ -14,8 +14,9 @@ for accidents:
     top of each panel; they are the reading frame of every figure.
   * Only the in-scope strata appear. The canonical dinucleotides are outside the
     PP3/BP4 recommendation and are reported in the supplementary tables instead.
-  * Colour carries one job per figure: ClinVar record status in Figure 1, label
-    definition in Figure 4. The three colours are the first three slots of a
+  * Colour carries one job per figure: ClinVar record status in Figure 1; in
+    Figure 4, grey marks the one column that is not an external test, the Atlas
+    combined score in DDX3X, whose model was selected on that assay. The three colours are the first three slots of a
     palette validated for colour-vision deficiency on all pairs, and every
     coloured mark has a second channel (position or marker shape), so no reading
     depends on hue alone.
@@ -195,8 +196,8 @@ def figure1() -> None:
             if len(r):
                 rows.append((y, ARM_LABEL[arm], None, r.iloc[0])); y += 1
         y += 0.4
-    for gene, lab in (("DDX3X", "deposit classification"),
-                      ("TP53", "control-anchored labels")):
+    for gene, lab in (("DDX3X", "deposit label"),
+                      ("TP53", "control-anchored label")):
         g = ext[ext.gene == gene]
         if not len(g):
             continue
@@ -423,7 +424,8 @@ def figure3() -> None:
                 if k % 2 == 0:
                     ax.axhspan(k - 0.5, k + 0.5, color=BAND, zorder=-1, lw=0)
     axes[0, 0].set_yticks(range(len(COLUMNS)))
-    axes[0, 0].set_yticklabels([NAME[c] for c in COLUMNS])
+    # † as in Table 3: its model was selected on two of these genes' assays
+    axes[0, 0].set_yticklabels([NAME[c] + (" †" if c == "avi" else "") for c in COLUMNS])
     axes[0, 0].set_ylim(len(COLUMNS) - 0.5, -0.5)
     _panel_letter(axes[0, 0], "a", x=-0.62)
     _panel_letter(axes[1, 0], "b", x=-0.62)
@@ -505,7 +507,7 @@ def figure4() -> None:
                     draw(tier, t["lr_at_logo_threshold"],
                          t.get("lr_at_logo_threshold_lo", np.nan),
                          t.get("lr_at_logo_threshold_hi", np.nan))
-        lab = "deposit classification" if gene == "DDX3X" else "control-anchored labels"
+        lab = "deposit classification" if gene == "DDX3X" else "control-anchored label"
         ax.set_title(f"{_it(gene)}, {_band_label(gene, st)}, {lab}", loc="left", pad=11)
         ax.set_xlabel("Likelihood ratio in the external gene")
         _logfmt(ax)
@@ -534,8 +536,8 @@ def figure_s3() -> None:
     a = a[a.status == "ok"]
     pools = [("s3_50", "all_genes", "3–50 bp, seven genes"),
              ("s3_50", "no_BRCA1", f"3–50 bp, without {_it('BRCA1')}"),
-             ("all_1_50", "all_genes", "1–50 bp, including the canonical\n"
-                                       "dinucleotides (out of scope)")]
+             ("all_1_50", "all_genes", "1–50 bp with canonical sites,\n"
+                                       "seven genes (out of scope)")]
     fig, axes = plt.subplots(1, 3, figsize=(DOUBLE, 95 * MM), sharey=True,
                              gridspec_kw={"wspace": 0.14})
     arms = ["classified", "recorded_unclassified", "unrecorded"]
@@ -557,9 +559,9 @@ def figure_s3() -> None:
                         lw=0.8, zorder=2)
                 ax.plot(r.auroc, ypos[c] + dy, "o", ms=3.2, color=ARM_COLOUR[arm],
                         mec="white", mew=0.3, zorder=3)
-        ax.set_title(title, fontweight="bold")
-        ax.set_xlim(0.5, 1.0)
-        ax.set_xticks([0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
+        ax.set_title(title, fontweight="bold", fontsize=7)
+        ax.set_xlim(0.4, 1.0)
+        ax.set_xticks([0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
         ax.set_xlabel("AUROC, pooled across genes (95% CI)")
         ax.tick_params(axis="y", length=0)
     axes[0].set_yticks(range(len(COLUMNS)))
@@ -568,7 +570,7 @@ def figure_s3() -> None:
     handles = [Line2D([], [], marker="o", ls="-", lw=0.8, color=ARM_COLOUR[a2],
                       mec="white", ms=4, label=ARM_LABEL[a2]) for a2 in arms]
     fig.legend(handles=handles, loc="lower center", ncol=3, bbox_to_anchor=(0.55, 0.0))
-    fig.subplots_adjust(left=0.19, right=0.98, top=0.93, bottom=0.17)
+    fig.subplots_adjust(left=0.19, right=0.98, top=0.9, bottom=0.17)
     _save(fig, "figureS3")
 
 
@@ -598,16 +600,18 @@ def figure_s2() -> None:
     for i, (col, ylab) in enumerate(metrics):
         for j, st in enumerate(STRATA):
             ax = axes[i, j]
-            for tool, colour, marker in DILUTION_TOOLS:
+            for ti, (tool, colour, marker) in enumerate(DILUTION_TOOLS):
                 t = d[(d.tool == tool) & (d.stratum == st)].sort_values("k")
                 t = t[np.isfinite(t[col])]
                 if not len(t):
                     continue
-                ax.plot(t.k, t[col], color=colour, marker=marker, ms=3.5, lw=1.2,
-                        mec="white", mew=0.4)
+                # a small horizontal offset per tool, so coinciding points stay visible
+                ax.plot(t.k + (ti - 1.5) * 0.07, t[col], color=colour, marker=marker,
+                        ms=3.5, lw=1.2, mec="white", mew=0.4)
             ax.set_ylim(-0.04, 1.04)
-            ax.set_xticks(range(2, 7))
-            ax.set_xlim(1.7, 6.3)
+            top_k = int(d[d.stratum == st].k.max())
+            ax.set_xticks(range(2, top_k + 1))
+            ax.set_xlim(1.7, top_k + 0.3)
             if i == 0:
                 ax.set_title(STRATUM_LABEL[st], fontweight="bold")
             if i == 1:

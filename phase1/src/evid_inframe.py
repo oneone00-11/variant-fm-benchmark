@@ -33,8 +33,15 @@ score alone and is matched against both boundary sets. On DDX3X, Pangolin's even
 are read on the false-positive subset SpliceAI defines rather than on Pangolin's own,
 so its DDX3X rows describe SpliceAI's false positives.
 
+The same attribution runs on the external genes (--external-subset, then
+--external-attribute): on DDX3X under each of its label definitions, and on TP53
+under its control-anchored label, reading SpliceAI's events only. An external
+gene's subset is the union over its label definitions, and each definition is
+summarised on its own.
+
 Run (PYTHONPATH=phase1):  python -m src.evid_inframe --subset   # write the variant list
                           python -m src.evid_inframe --attribute
+                          python -m src.evid_inframe --external-attribute ddx3x
 """
 from __future__ import annotations
 
@@ -53,6 +60,11 @@ from . import evid_common as K
 
 from .evid_common import ATLAS_REPO as _atlas_repo_default  # noqa: E402
 ATLAS_REPO = _atlas_repo_default  # EVID_ATLAS_REPO overrides; see evid_common
+# Transcript models and reference sequence the mapping reads, tracked in this
+# repository (a copy of the atlas cache, including the models fetched after the
+# atlas archive was made), so these stages need neither that cache nor the
+# Mutalyzer and Ensembl services.
+REF_CACHE = Path("data/evidence/reference_cache")
 EVID_DIR = Path("data/evidence")
 REPORT_DIR = Path("reports/evidence")
 SUBSET = EVID_DIR / "inframe_subset.parquet"
@@ -148,7 +160,8 @@ def _transcript_maps(genes: list[str]) -> dict:
     # Mutalyzer model and Ensembl lookup would be missed and re-fetched -- slowly,
     # and with a second copy of the cache appearing under phase1/. Point it at the
     # atlas's own cache.
-    M.REF_CACHE = ATLAS_REPO / "data/raw/reference"
+    M.REF_CACHE = (REF_CACHE if REF_CACHE.exists()
+                   else ATLAS_REPO / "data/raw/reference")
     mane = M.load_mane_records(genes)
     maps = {}
     for g in genes:

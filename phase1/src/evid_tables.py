@@ -27,6 +27,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from . import evid_common as K
 from .evid_figures import COLUMNS, NAME
 
 REPORT_DIR = Path("reports/evidence")
@@ -39,10 +40,9 @@ ARMS = ["classified", "recorded_unclassified", "unrecorded"]
 # one label set for the arms across text, tables and figures
 ARM_LABEL = {"classified": "Classified", "recorded_unclassified": "Recorded, unclassified",
              "unrecorded": "Unrecorded"}
-# the combined Atlas score's model was selected on the BRCA1 and RAD51C assays
-# (predictor_training_provenance.csv, row avi), so its held-out counts are given
-# over the genes its training did not see
-AVI_SEEN_IN_TRAINING = ("BRCA1", "RAD51C")
+# held-out counts of the combined Atlas score leave out the genes whose assays
+# selected its model (evid_common.AVI_SEEN_IN_TRAINING)
+AVI_SEEN_IN_TRAINING = K.AVI_SEEN_IN_TRAINING
 
 
 def _it(gene: str) -> str:
@@ -67,7 +67,7 @@ def table1() -> tuple[pd.DataFrame, pd.DataFrame]:
     rows = []
     for g in genes + ["Total"]:
         sub = ins if g == "Total" else ins[ins.gene == g]
-        r = {"Gene": g if g == "Total" else _it(g), "Variants, 3–50 bp": f"{int(sub.n.sum()):,}"}
+        r = {"Gene": g if g == "Total" else _it(g), "Variants at 3–50\u00a0bp": f"{int(sub.n.sum()):,}"}
         for st in STRATA:
             s2 = sub if st == "s3_50" else sub[sub.stratum == st]
             lab, dmg = int(s2.n_labelled.sum()), int(s2.n_damaging.sum())
@@ -105,8 +105,10 @@ READOUT_SHORT = {
         "Indirect: predicts a splice event, while the assay measures gene function",
     "Functional genomics tracks, including splicing":
         "Indirect: predicts molecular effects including splicing",
-    "Proxy contrast of simulated against fixed derived variants":
-        "Shared cause: the training contrast is shaped by selection",
+    "Proxy contrast of simulated against fixed derived variants, over "
+    "annotations that include SpliceAI and MMSplice predictions":
+        "Shared cause (selection), and a shared input: SpliceAI scores are among "
+        "its annotations",
     "Cross-species sequence constraint":
         "Shared cause: constraint and functional damage both reflect selection",
     "Cross-species sequence constraint (self-supervised)":
@@ -115,8 +117,10 @@ READOUT_SHORT = {
     "and conservation inputs":
         "Direct for *BRCA1*, *RAD51C* and *DDX3X*, whose assays selected the model; "
         "shared cause (allele frequency, constraint) otherwise",
-    "Genomic sequence (self-supervised)": "None documented",
-    "This study's own functional labels, refitted per fold":
+    "Genomic sequence (self-supervised)":
+        "Shared cause, indirectly: sequence patterns learned across species reflect "
+        "selection",
+    "Within-gene rank of the seven assays' continuous scores, refitted per fold":
         "Direct: fitted on the functional standard, so evaluated leave-one-gene-out",
 }
 
@@ -148,11 +152,10 @@ def table2() -> pd.DataFrame:
         if (mave == "None documented").all():
             mave_cell = "None documented"
         elif (g.score_column == "fusion_enet").all():
-            mave_cell = "By construction (this study's labels)"
+            mave_cell = "Yes, by construction"
         elif (g.score_column == "avi").all():
-            mave_cell = ("Yes: four saturation genome editing assays, including the "
-                         "*BRCA1*, *RAD51C* and *DDX3X* assays used here, selected "
-                         "the model")
+            mave_cell = ("Yes: four genome editing assays, including the *BRCA1*, "
+                         "*RAD51C* and *DDX3X* assays used here, selected the model")
         else:
             raise SystemExit(f"[tables] Table 2: no printed form for {list(g.score_column)}")
         rows.append({
@@ -229,7 +232,7 @@ def table3() -> pd.DataFrame:
     folds = pd.read_csv(REPORT_DIR / "evidence_thresholds_logo_folds.csv")
     rows = []
     for c in COLUMNS:
-        r = {"Predictor": NAME[c] + (" †" if c == "avi" else "")}
+        r = {"Predictor": NAME[c] + ("\u00a0†" if c == "avi" else "")}
         for st in STRATA:
             lab = STRATUM_LABEL[st]
             r[f"{lab}: In-sample"] = _highest_tier(ev, c, st)
@@ -238,6 +241,43 @@ def table3() -> pd.DataFrame:
                     _folds_excluding(t, folds, c, st, tier, AVI_SEEN_IN_TRAINING)
                     if c == "avi" else _folds(t, c, st, tier))
         rows.append(r)
+    return pd.DataFrame(rows)
+
+
+# Table 3b: the thresholds a laboratory would apply, for the two predictors the
+# practical statements name (the others are in Supplementary Tables S6 and S7)
+THRESHOLD_TOOLS = ["spliceai_walker", "pangolin"]
+
+
+def _conservative(x: float, side: str, sig: int = 3) -> str:
+    """Three significant figures, rounded in the direction that never admits a
+    variant the fitted threshold excludes: up for PP3 (score at or above), down for
+    BP4 (score at or below). The fitted values are in Supplementary Tables S6-S7."""
+    from decimal import Decimal, ROUND_CEILING, ROUND_FLOOR
+    d = Decimal(repr(float(x)))
+    q = Decimal(1).scaleb(d.adjusted() - sig + 1)
+    return str(d.quantize(q, rounding=ROUND_CEILING if side == "upper" else ROUND_FLOOR))
+
+
+def table3b() -> pd.DataFrame:
+    ev = pd.read_csv(REPORT_DIR / "evidence_thresholds.csv")
+    ev = ev[ev.status == "ok"]
+    rows = []
+    for c in THRESHOLD_TOOLS:
+        for st in STRATA:
+            e = ev[(ev.tool == c) & (ev.stratum == st)].set_index("tier")
+            r = {"Predictor": NAME[c], "Band": STRATUM_LABEL[st]}
+            for tier in ("supporting", "moderate", "strong"):
+                ok = tier in e.index and bool(e.loc[tier, "pp3_threshold_reachable"])
+                r[f"PP3: {TIER_SHORT[tier]}"] = (
+                    "≥ " + _conservative(e.loc[tier, "pp3_threshold_insample"], "upper")
+                    if ok else "–")
+            for tier in ("supporting", "moderate"):
+                ok = tier in e.index and bool(e.loc[tier, "bp4_threshold_reachable"])
+                r[f"BP4: {TIER_SHORT[tier]}"] = (
+                    "≤ " + _conservative(e.loc[tier, "bp4_threshold_insample"], "lower")
+                    if ok else "–")
+            rows.append(r)
     return pd.DataFrame(rows)
 
 
@@ -329,6 +369,7 @@ def main() -> None:
     t1b.to_csv(OUT / "table1b_composition_by_clinvar_status.csv", index=False)
     table2().to_csv(OUT / "table2_training_signal.csv", index=False)
     table3().to_csv(OUT / "table3_evidence_tiers.csv", index=False)
+    table3b().to_csv(OUT / "table3b_thresholds.csv", index=False)
     table3_counts().to_csv(OUT / "table3_counts.csv", index=False)
     a, b, c, d = table4()
     a.to_csv(OUT / "table4a_spliceai_published_cut_by_arm.csv", index=False)

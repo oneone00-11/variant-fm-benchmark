@@ -33,6 +33,10 @@ PANEL = ["spliceai", "pangolin", "alphagenome", "cadd", "phylop", "phastcons",
 # (LICENSE-DATA), and the elastic net is a model trained on its inputs, with its
 # fitted coefficients in the repository. An earlier version fused all eight.
 FUSION_FEATURES = [t for t in PANEL if t != "alphagenome"]
+# The combined Atlas score's checkpoint was selected on the BRCA1 and RAD51C assays
+# used here (predictor_training_provenance.csv, row avi), so its held-out results
+# are counted over the other genes only, wherever held-out genes are counted.
+AVI_SEEN_IN_TRAINING = ("BRCA1", "RAD51C")
 # scored separately; present only once their stage has run
 # Carried beside the panel: scored separately, evaluated like any other tool, but
 # not part of the fusion's feature set (the fusion is the published study's panel,

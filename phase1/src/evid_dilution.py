@@ -115,7 +115,6 @@ from . import evid_interval_lr as E
 REPORT_DIR = K.REPORT_DIR
 OUT = REPORT_DIR / "threshold_dilution.csv"
 OUT_SUMMARY = REPORT_DIR / "threshold_dilution_summary.csv"
-OUT_SUPP = REPORT_DIR / "supplement" / "tableS8_dilution.csv"
 
 TOOLS = ["spliceai_walker", "pangolin", "alphagenome", "avi"]
 STRATA = ["s3_10", "s11_50", "s3_50"]
@@ -348,6 +347,10 @@ def summarise(fits: pd.DataFrame, detail: pd.DataFrame) -> pd.DataFrame:
                     taus = fk.loc[fk.tier_reached, "threshold"]
                     d = detail[(detail.tool == tool) & (detail.stratum == stratum)
                                & (detail.tier == tier) & (detail.k == k)]
+                    if tool == "avi":
+                        # its model was selected on these genes' assays, so they are
+                        # not held out for it; the detail file keeps every pair
+                        d = d[~d.heldout_gene.isin(K.AVI_SEEN_IN_TRAINING)]
                     ev = d[d.evaluable]
                     lrs = ev["heldout_lr"]
                     n_clear = int(ev["cleared_cut"].sum())

@@ -1,0 +1,265 @@
+{
+  "files": {
+    "ensembl/lookup_ENST00000256474.json": {
+      "accession": "ENST00000256474",
+      "bytes": 1200,
+      "fetched_at": "2026-07-24T17:13:14+00:00",
+      "registered_at": "2026-07-24T17:13:14.746908+00:00",
+      "sha256": "09b3c7123bc9bc4ca49e73a293497db11d9a852c4a4762f86760b0e57d509ca9",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000256474?expand=1;content-type=application/json"
+    },
+    "ensembl/lookup_ENST00000260947.json": {
+      "accession": "ENST00000260947",
+      "bytes": 2760,
+      "fetched_at": "2026-07-24T17:37:40+00:00",
+      "registered_at": "2026-07-24T17:37:40.411204+00:00",
+      "sha256": "6f59c6c0fd8941f6d49acd216d42a50bcb92bb4cb5da877b6f316ba1e9a295ef",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000260947?expand=1;content-type=application/json"
+    },
+    "ensembl/lookup_ENST00000261584.json": {
+      "accession": "ENST00000261584",
+      "bytes": 3131,
+      "fetched_at": "2026-07-24T17:38:09+00:00",
+      "registered_at": "2026-07-24T17:38:09.395794+00:00",
+      "sha256": "c83c983290727021cc17d5471e6fa964bcb5e18c676fd6fd367c265c612f20f9",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000261584?expand=1;content-type=application/json"
+    },
+    "ensembl/lookup_ENST00000269305.json": {
+      "accession": "ENST00000269305",
+      "bytes": 2692,
+      "fetched_at": "2026-09-20T06:02:43+00:00",
+      "registered_at": "2026-09-20T06:02:43.284732+00:00",
+      "sha256": "9e684f83babd478fc9606dd4a613d9fea1024b5ed75abc3a69da50b81d0b7e2b",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000269305?expand=1;content-type=application/json"
+    },
+    "ensembl/lookup_ENST00000337432.json": {
+      "accession": "ENST00000337432",
+      "bytes": 2353,
+      "fetched_at": "2026-07-24T17:38:34+00:00",
+      "registered_at": "2026-07-24T17:38:34.270660+00:00",
+      "sha256": "88bfb07042ed73e3e9ad15b8afa837795e818f20f3bfc75b27b3840dcf441946",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000337432?expand=1;content-type=application/json"
+    },
+    "ensembl/lookup_ENST00000357654.json": {
+      "accession": "ENST00000357654",
+      "bytes": 5051,
+      "fetched_at": "2026-07-24T17:24:34+00:00",
+      "registered_at": "2026-07-24T17:24:34.475923+00:00",
+      "sha256": "0001a054fa42db7e74ff06aa4d530437bcf4d082c765f613fff18cc60ec68a5a",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000357654?expand=1;content-type=application/json"
+    },
+    "ensembl/lookup_ENST00000380152.json": {
+      "accession": "ENST00000380152",
+      "bytes": 5792,
+      "fetched_at": "2026-07-24T17:37:16+00:00",
+      "registered_at": "2026-07-24T17:37:16.650148+00:00",
+      "sha256": "61b9ea47c77918c6f98e83f3a72abddf62fb51bb9bc62ce2e64ea4ada8ec2454",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000380152?expand=1;content-type=application/json"
+    },
+    "ensembl/lookup_ENST00000460680.json": {
+      "accession": "ENST00000460680",
+      "bytes": 3879,
+      "fetched_at": "2026-07-24T17:39:33+00:00",
+      "registered_at": "2026-07-24T17:39:33.039277+00:00",
+      "sha256": "d8f62b2b09b860141f99e9a8e321825b0d0487b20a0f1ada7ef480504fafe51f",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000460680?expand=1;content-type=application/json"
+    },
+    "ensembl/lookup_ENST00000644876.json": {
+      "accession": "ENST00000644876",
+      "bytes": 3862,
+      "fetched_at": "2026-09-17T06:22:17+00:00",
+      "registered_at": "2026-09-17T06:22:17.128150+00:00",
+      "sha256": "1eaad7fa2172677870a41fe590eb085480883b12245cdc51b33a5fed8343e3a5",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000644876?expand=1;content-type=application/json"
+    },
+    "ensembl/seq_GRCh38_chr13_32310508_32405268.fa": {
+      "bytes": 94761,
+      "chrom": "13",
+      "fetched_at": "2026-07-24T17:37:25+00:00",
+      "registered_at": "2026-07-24T17:37:25.945345+00:00",
+      "sha256": "d9947be565c4a75184045165ab187f7408c692a33b241f69b6435ca0bc9f6a32",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/13:32310508..32405268:1?content-type=text/plain"
+    },
+    "ensembl/seq_GRCh38_chr16_23598165_23646310.fa": {
+      "bytes": 48146,
+      "chrom": "16",
+      "fetched_at": "2026-07-24T17:38:10+00:00",
+      "registered_at": "2026-07-24T17:38:10.193041+00:00",
+      "sha256": "e49d3aa71046404dc2d619596323423e9812db04907c3093c244e36c6a32c534",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/16:23598165..23646310:1?content-type=text/plain"
+    },
+    "ensembl/seq_GRCh38_chr17_43039295_43130483.fa": {
+      "bytes": 91189,
+      "chrom": "17",
+      "fetched_at": "2026-07-24T17:34:08+00:00",
+      "registered_at": "2026-07-24T17:34:08.175779+00:00",
+      "sha256": "6023f125b4cc475a26ef6afef1066ea40beb90140bb93b57f18c80a964a74b7b",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/17:43039295..43130483:1?content-type=text/plain"
+    },
+    "ensembl/seq_GRCh38_chr17_58687602_58740611.fa": {
+      "bytes": 53010,
+      "chrom": "17",
+      "fetched_at": "2026-07-24T17:38:43+00:00",
+      "registered_at": "2026-07-24T17:38:43.252298+00:00",
+      "sha256": "63c6b3f034f3d7195d7bf09afde200243e030bf22fd435bbcdc4b6e47804d75d",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/17:58687602..58740611:1?content-type=text/plain"
+    },
+    "ensembl/seq_GRCh38_chr2_214720646_214814683.fa": {
+      "bytes": 94038,
+      "chrom": "2",
+      "fetched_at": "2026-07-24T17:37:42+00:00",
+      "registered_at": "2026-07-24T17:37:42.755977+00:00",
+      "sha256": "6600079e531dad672aa3adcfc7aef9a73a52e3816cc173c210c362454ec2740a",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/2:214720646..214814683:1?content-type=text/plain"
+    },
+    "ensembl/seq_GRCh38_chr3_10136778_10158667.fa": {
+      "bytes": 21890,
+      "chrom": "3",
+      "fetched_at": "2026-07-24T17:13:21+00:00",
+      "registered_at": "2026-07-24T17:13:21.169103+00:00",
+      "sha256": "1e568b85143fbaea0e4d42057d83d4909a5020c7273f80c5f6c932d0974ed350",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/3:10136778..10158667:1?content-type=text/plain"
+    },
+    "ensembl/seq_GRCh38_chr3_52396008_52415008.fa": {
+      "bytes": 19001,
+      "chrom": "3",
+      "fetched_at": "2026-07-24T17:39:33+00:00",
+      "registered_at": "2026-07-24T17:39:33.769146+00:00",
+      "sha256": "91fa49831df5f44b82295baea50b8b7ed3e8503a5b54f292ed4be7a693e31848",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/3:52396008..52415008:1?content-type=text/plain"
+    },
+    "ensembl/seq_GRCh38_chrX_41329162_41355274.fa": {
+      "bytes": 26113,
+      "chrom": "X",
+      "fetched_at": "2026-09-17T06:22:55+00:00",
+      "registered_at": "2026-09-17T06:22:55.673517+00:00",
+      "sha256": "5ec0ee16cd62de83fb181a14f46a191c1c6b70f25203a1b5884922e2d1715e15",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/X:41329162..41355274:1?content-type=text/plain"
+    },
+    "mane/MANE.GRCh38.v1.5.summary.txt.gz": {
+      "bytes": 1115288,
+      "description": "MANE summary table, GRCh38",
+      "fetched_at": "2026-07-24T17:11:54+00:00",
+      "registered_at": "2026-07-24T17:11:54.608097+00:00",
+      "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c",
+      "source": "NCBI MANE project",
+      "source_url": "https://ftp.ncbi.nlm.nih.gov/refseq/MANE/MANE_human/current/MANE.GRCh38.v1.5.summary.txt.gz"
+    },
+    "mutalyzer/reference_model_ENST00000256474.3.json": {
+      "accession": "ENST00000256474.3",
+      "bytes": 18450,
+      "fetched_at": "2026-07-24T17:11:55+00:00",
+      "registered_at": "2026-07-24T17:11:55.529124+00:00",
+      "sha256": "275f5da4027b4cfb420033ac99cd6fdcb94c77c39edae09ad235f8e7a804daff",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=ENST00000256474.3"
+    },
+    "mutalyzer/reference_model_NM_000059.4.json": {
+      "accession": "NM_000059.4",
+      "bytes": 17616,
+      "fetched_at": "2026-07-24T17:37:15+00:00",
+      "registered_at": "2026-07-24T17:37:15.759578+00:00",
+      "sha256": "562f7a4d1b3c183865a07d5f5edcd2c33fd2f671b6f9db5f2b44cccda1d34858",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_000059.4"
+    },
+    "mutalyzer/reference_model_NM_000465.4.json": {
+      "accession": "NM_000465.4",
+      "bytes": 8271,
+      "fetched_at": "2026-07-24T17:37:39+00:00",
+      "registered_at": "2026-07-24T17:37:39.551033+00:00",
+      "sha256": "d717887d25d94ea199ac0aa2497cdf0d2dc3a9f647004117a83c7763e3041e34",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_000465.4"
+    },
+    "mutalyzer/reference_model_NM_000546.6.json": {
+      "accession": "NM_000546.6",
+      "bytes": 5345,
+      "fetched_at": "2026-09-20T06:02:32+00:00",
+      "registered_at": "2026-09-20T06:02:32.917194+00:00",
+      "sha256": "1adab581ae3f0101d727c8244a6be353a226aec0b4c7d045f5e924beb5912c26",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_000546.6"
+    },
+    "mutalyzer/reference_model_NM_000551.4.json": {
+      "accession": "NM_000551.4",
+      "bytes": 5869,
+      "fetched_at": "2026-07-24T17:39:11+00:00",
+      "registered_at": "2026-07-24T17:39:11.762406+00:00",
+      "sha256": "4a568b1d861f116c9c790d15ebf8e7a3d0b86c0143ef2e4c55c86e182a1e353a",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_000551.4"
+    },
+    "mutalyzer/reference_model_NM_001356.5.json": {
+      "accession": "NM_001356.5",
+      "bytes": 8531,
+      "fetched_at": "2026-09-17T06:22:15+00:00",
+      "registered_at": "2026-09-17T06:22:15.981889+00:00",
+      "sha256": "60657b4ce115299a3c4c9e32a4a21e62d6fd24f1ef8a8e5e41adf8ce8f2eccd5",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_001356.5"
+    },
+    "mutalyzer/reference_model_NM_004656.4.json": {
+      "accession": "NM_004656.4",
+      "bytes": 7473,
+      "fetched_at": "2026-07-24T17:39:32+00:00",
+      "registered_at": "2026-07-24T17:39:32.167468+00:00",
+      "sha256": "501674c4d5ab294e1e199d83afacba43e5f317c36fbd3ed588166efd3509dea0",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_004656.4"
+    },
+    "mutalyzer/reference_model_NM_007294.3.json": {
+      "accession": "NM_007294.3",
+      "bytes": 12184,
+      "fetched_at": "2026-07-24T17:23:32+00:00",
+      "registered_at": "2026-07-24T17:23:32.531114+00:00",
+      "sha256": "1ee707d165c1f4f861e9de3815948f29495d0c1ade40489b16eb84720b03ce2d",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_007294.3"
+    },
+    "mutalyzer/reference_model_NM_007294.4.json": {
+      "accession": "NM_007294.4",
+      "bytes": 12046,
+      "fetched_at": "2026-09-17T13:21:47+00:00",
+      "registered_at": "2026-09-17T13:21:47.976150+00:00",
+      "sha256": "7d787a236fa3e7ba68d3658d4dc15ed725842ce726236318c278378bd750503a",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_007294.4"
+    },
+    "mutalyzer/reference_model_NM_024675.4.json": {
+      "accession": "NM_024675.4",
+      "bytes": 7185,
+      "fetched_at": "2026-07-24T17:38:06+00:00",
+      "registered_at": "2026-07-24T17:38:06.607600+00:00",
+      "sha256": "9354d38e2c4097b1035d0dee5416ba230e88afb98bbfaf05fe3a46190de6cce5",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_024675.4"
+    },
+    "mutalyzer/reference_model_NM_058216.3.json": {
+      "accession": "NM_058216.3",
+      "bytes": 5070,
+      "fetched_at": "2026-07-24T17:38:30+00:00",
+      "registered_at": "2026-07-24T17:38:30.060021+00:00",
+      "sha256": "47ac07113f087c9edf03b9ba8cd425a6e357a8ce13ec08829645180bb4909c83",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_058216.3"
+    }
+  }
+}

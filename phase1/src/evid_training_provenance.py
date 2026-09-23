@@ -10,9 +10,13 @@ training data include measurements of the same kind as this study's standard.
 Three dependencies are kept apart, because only the first is usually discussed.
 
   clinical circularity  a predictor trained on clinical assertions, then scored
-                        against clinical assertions. This study cannot have it:
-                        the standard is an assay measurement, and ClinVar status
-                        is a stratifying variable rather than a label.
+                        against clinical assertions. No panel column is trained
+                        on clinical assertions, and ClinVar status is a
+                        stratifying variable rather than a label. The DDX3X
+                        deposit's own classification, the primary label there,
+                        has a decision boundary trained on clinically classified
+                        variants, which is why DDX3X takes no part in the ClinVar
+                        comparison.
   assay overlap         a predictor trained on multiplexed assay measurements,
                         then scored against measurements of the same kind.
   shared conservation   a predictor whose training signal is cross-species
@@ -80,12 +84,14 @@ SIGNAL_CLASS = {
     "avi_splice_sites": "Functional genomics tracks, including splicing",
     "avi_splice_site_usage": "Functional genomics tracks, including splicing",
     "avi_splice_junctions": "Functional genomics tracks, including splicing",
-    "cadd": "Proxy contrast of simulated against fixed derived variants",
+    "cadd": "Proxy contrast of simulated against fixed derived variants, over "
+            "annotations that include SpliceAI and MMSplice predictions",
     "phylop": "Cross-species sequence constraint",
     "phastcons": "Cross-species sequence constraint",
     "gpn_msa": "Cross-species sequence constraint (self-supervised)",
     "nt": "Genomic sequence (self-supervised)",
-    "fusion_enet": "This study's own functional labels, refitted per fold",
+    "fusion_enet": "Within-gene rank of the seven assays' continuous scores, "
+                   "refitted per fold",
 }
 
 _AG_TRAINING = ("Multi-task supervision on functional genomics tracks "
@@ -106,9 +112,10 @@ ATLAS_COLUMNS = {
         "scores (PhastCons 470-way, Cactus 241-way), trained to separate gnomAD v4.1 "
         "variants above and below a filtering allele frequency of 0.1%",
         "No",
-        "Yes: four saturation genome editing studies (BRCA1 Findlay 2018, RAD51C "
-        "Olvera-Leon 2024, DDX3X Radford 2023, ATM Lee 2025) formed the validation "
-        "set that selected its checkpoint and stopped training; BRCA2, BARD1, "
+        "Yes: its checkpoint selection and early stopping used a validation set of "
+        "complex-trait variants and four genome editing assays, the BRCA1 (Findlay "
+        "2018), RAD51C (Olvera-León 2024) and DDX3X (Radford 2023) saturation genome "
+        "editing assays and an ATM prime-editing screen (Lee 2025); BRCA2, BARD1, "
         "PALB2, VHL and BAP1 were among its test sets",
         f"{_ATLAS_PAPER}; https://alphagenome.google/atlas"),
     "avi_splice_sites": (
@@ -144,9 +151,11 @@ READOUT_OVERLAP = {
     "Functional genomics tracks, including splicing":
         "Indirect: predicts molecular effects including splicing, not gene "
         "function; no multiplexed assay measurement documented in training",
-    "Proxy contrast of simulated against fixed derived variants":
+    "Proxy contrast of simulated against fixed derived variants, over "
+    "annotations that include SpliceAI and MMSplice predictions":
         "Shared cause: the proxy contrast is itself shaped by selection, which "
-        "also shapes which variants damage function",
+        "also shapes which variants damage function; and a shared input, since "
+        "SpliceAI scores are among its annotations",
     "Cross-species sequence constraint":
         "Shared cause: constraint and functional damage are both consequences of "
         "selection; holding genes out does not remove it",
@@ -159,8 +168,9 @@ READOUT_OVERLAP = {
         "assays selected its checkpoint; shared cause otherwise, since allele "
         "frequency and constraint are both shaped by selection",
     "Genomic sequence (self-supervised)":
-        "None documented: no labels of any kind enter training",
-    "This study's own functional labels, refitted per fold":
+        "Shared cause, indirectly: sequence patterns learned across species "
+        "reflect selection; no labels of any kind enter training",
+    "Within-gene rank of the seven assays' continuous scores, refitted per fold":
         "Direct: fitted on the standard itself, which is why it is evaluated "
         "leave-one-gene-out and reported in the supplement only",
 }
