@@ -1,23 +1,29 @@
-tool,gene_set,variant_id,gene,stratum,event,dominant_score,event_position,dp,exon_length,shift,frame,reason
-spliceai,TP53,17-7673698-T-G,TP53,s3_10,acceptor_loss,0.20911234617233276,7673840,142,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
-spliceai,TP53,17-7673699-A-G,TP53,pm12,acceptor_loss,0.396184504032135,7673840,141,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
-spliceai,TP53,17-7673840-A-G,TP53,s3_10,acceptor_loss,0.22475945949554443,7673840,0,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
-spliceai,TP53,17-7673841-C-A,TP53,s3_10,acceptor_loss,0.751667320728302,7673840,-1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
-spliceai,TP53,17-7673841-C-G,TP53,s3_10,acceptor_loss,0.7516487240791321,7673840,-1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
-spliceai,TP53,17-7673841-C-T,TP53,s3_10,acceptor_loss,0.7516693472862244,7673840,-1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
-spliceai,TP53,17-7673842-T-A,TP53,s3_10,acceptor_loss,0.7517268061637878,7673840,-2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
-spliceai,TP53,17-7673842-T-C,TP53,s3_10,acceptor_loss,0.7516615390777588,7673840,-2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
-spliceai,TP53,17-7673842-T-G,TP53,s3_10,acceptor_loss,0.7517143487930298,7673840,-2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
-spliceai,TP53,17-7673843-C-A,TP53,s3_10,acceptor_gain,0.24713200330734253,7673840,-3,137.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor
-spliceai,TP53,17-7673843-C-T,TP53,s3_10,acceptor_gain,0.22350507974624634,7673840,-3,137.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor
-spliceai,TP53,17-7673845-G-C,TP53,s3_10,acceptor_loss,0.20545607805252075,7673840,-5,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript
-spliceai,TP53,17-7674174-T-A,TP53,s3_10,donor_gain,0.23724767565727234,7674176,2,110.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor
-spliceai,TP53,17-7674293-A-T,TP53,s3_10,acceptor_gain,0.3759014308452606,7674339,46,110.0,49.0,out_of_frame,cryptic site 49 bp from the nearest natural acceptor
-spliceai,TP53,17-7674851-A-C,TP53,s3_10,donor_gain,0.4271346926689148,7674854,3,113.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor
-spliceai,TP53,17-7674854-C-T,TP53,s3_10,donor_loss,0.27663183212280273,7674859,5,113.0,,out_of_frame,skipping an exon of 113 bp
-spliceai,TP53,17-7674855-A-T,TP53,s3_10,donor_gain,0.8272956013679504,7674854,-1,113.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor
-spliceai,TP53,17-7674978-G-T,TP53,s3_10,acceptor_gain,0.40606895089149475,7674954,-24,113.0,17.0,out_of_frame,cryptic site 17 bp from the nearest natural acceptor
-spliceai,TP53,17-7675049-T-C,TP53,s3_10,donor_gain,0.6958371996879578,7675099,50,184.0,46.0,out_of_frame,cryptic site 46 bp from the nearest natural donor
-spliceai,TP53,17-7675049-T-G,TP53,s3_10,donor_gain,0.37388551235198975,7675099,50,184.0,46.0,out_of_frame,cryptic site 46 bp from the nearest natural donor
-spliceai,TP53,17-7675050-C-A,TP53,s3_10,donor_gain,0.6436067223548889,7675099,49,184.0,46.0,out_of_frame,cryptic site 46 bp from the nearest natural donor
-spliceai,TP53,17-7675050-C-G,TP53,s3_10,donor_gain,0.5345370173454285,7675099,49,184.0,46.0,out_of_frame,cryptic site 46 bp from the nearest natural donor
+tool,gene_set,variant_id,gene,stratum,event,dominant_score,event_position,dp,exon_length,shift,frame,reason,y_tp53_control_anchored
+spliceai,TP53,17-7673698-T-G,TP53,s3_10,acceptor_loss,0.20911234617233276,7673840,142,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript,0.0
+spliceai,TP53,17-7673699-A-G,TP53,pm12,acceptor_loss,0.396184504032135,7673840,141,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript,0.0
+spliceai,TP53,17-7673840-A-G,TP53,s3_10,acceptor_loss,0.22475945949554443,7673840,0,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript,0.0
+spliceai,TP53,17-7673841-C-A,TP53,s3_10,acceptor_loss,0.751667320728302,7673840,-1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript,0.0
+spliceai,TP53,17-7673841-C-G,TP53,s3_10,acceptor_loss,0.7516487240791321,7673840,-1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript,0.0
+spliceai,TP53,17-7673841-C-T,TP53,s3_10,acceptor_loss,0.7516693472862244,7673840,-1,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript,0.0
+spliceai,TP53,17-7673842-T-A,TP53,s3_10,acceptor_loss,0.7517268061637878,7673840,-2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript,0.0
+spliceai,TP53,17-7673842-T-C,TP53,s3_10,acceptor_loss,0.7516615390777588,7673840,-2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript,0.0
+spliceai,TP53,17-7673842-T-G,TP53,s3_10,acceptor_loss,0.7517143487930298,7673840,-2,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript,0.0
+spliceai,TP53,17-7673843-C-A,TP53,s3_10,acceptor_gain,0.24713200330734253,7673840,-3,137.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor,0.0
+spliceai,TP53,17-7673843-C-T,TP53,s3_10,acceptor_gain,0.22350507974624634,7673840,-3,137.0,3.0,in_frame,cryptic site 3 bp from the nearest natural acceptor,0.0
+spliceai,TP53,17-7673845-G-C,TP53,s3_10,acceptor_loss,0.20545607805252075,7673840,-5,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript,0.0
+spliceai,TP53,17-7674174-T-A,TP53,s3_10,donor_gain,0.23724767565727234,7674176,2,110.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor,0.0
+spliceai,TP53,17-7674293-A-T,TP53,s3_10,acceptor_gain,0.3759014308452606,7674339,46,110.0,49.0,out_of_frame,cryptic site 49 bp from the nearest natural acceptor,0.0
+spliceai,TP53,17-7674848-G-A,TP53,s11_50,donor_gain,0.7395426630973816,7674854,6,113.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor,0.0
+spliceai,TP53,17-7674850-A-G,TP53,s3_10,donor_gain,0.2248753160238266,7674854,4,113.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor,0.0
+spliceai,TP53,17-7674850-A-T,TP53,s3_10,donor_gain,0.7293810844421387,7674854,4,113.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor,0.0
+spliceai,TP53,17-7674851-A-C,TP53,s3_10,donor_gain,0.4271346926689148,7674854,3,113.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor,0.0
+spliceai,TP53,17-7674854-C-T,TP53,s3_10,donor_loss,0.27663183212280273,7674859,5,113.0,,out_of_frame,skipping an exon of 113 bp,0.0
+spliceai,TP53,17-7674855-A-T,TP53,s3_10,donor_gain,0.8272956013679504,7674854,-1,113.0,5.0,out_of_frame,cryptic site 5 bp from the nearest natural donor,0.0
+spliceai,TP53,17-7674978-G-T,TP53,s3_10,acceptor_gain,0.40606895089149475,7674954,-24,113.0,17.0,out_of_frame,cryptic site 17 bp from the nearest natural acceptor,0.0
+spliceai,TP53,17-7674981-A-C,TP53,s3_10,acceptor_loss,0.5353265404701233,7674971,-10,113.0,,out_of_frame,skipping an exon of 113 bp,0.0
+spliceai,TP53,17-7674982-T-A,TP53,s11_50,acceptor_loss,0.2247418761253357,7674954,-28,,,undetermined,predicted loss does not sit on an internal exon boundary of this transcript,0.0
+spliceai,TP53,17-7675044-G-C,TP53,s3_10,donor_gain,0.4525713324546814,7675045,1,184.0,8.0,out_of_frame,cryptic site 8 bp from the nearest natural donor,0.0
+spliceai,TP53,17-7675049-T-C,TP53,s3_10,donor_gain,0.6958371996879578,7675099,50,184.0,46.0,out_of_frame,cryptic site 46 bp from the nearest natural donor,0.0
+spliceai,TP53,17-7675049-T-G,TP53,s3_10,donor_gain,0.37388551235198975,7675099,50,184.0,46.0,out_of_frame,cryptic site 46 bp from the nearest natural donor,0.0
+spliceai,TP53,17-7675050-C-A,TP53,s3_10,donor_gain,0.6436067223548889,7675099,49,184.0,46.0,out_of_frame,cryptic site 46 bp from the nearest natural donor,0.0
+spliceai,TP53,17-7675050-C-G,TP53,s3_10,donor_gain,0.5345370173454285,7675099,49,184.0,46.0,out_of_frame,cryptic site 46 bp from the nearest natural donor,0.0

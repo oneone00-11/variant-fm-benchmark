@@ -15,12 +15,12 @@ authors:
     orcid: "https://orcid.org/0009-0004-3020-4044"
 repository-code: "https://github.com/oneone00-11/variant-fm-benchmark"
 abstract: >-
-  A benchmark of splice and sequence-based variant-effect predictors against
-  saturation genome editing (SGE/MAVE) functional assays in seven
-  hereditary-cancer genes (BRCA1, BRCA2, BARD1, PALB2, RAD51C, VHL, BAP1),
-  with elastic-net fusion, leave-one-gene-out isotonic/Platt calibration,
-  ACMG evidence-strength translation, and external validation on the held-out
-  gene TP53.
+  Evidence strength of splice-region variant effect predictors against
+  saturation genome editing functional assays in seven hereditary-cancer genes
+  (BRCA1, BRCA2, BARD1, PALB2, RAD51C, VHL, BAP1): the published SpliceAI cut
+  points of the ClinGen splicing recommendation, predictor-specific interval
+  calibration of PP3/BP4 likelihood ratios under leave-one-gene-out evaluation,
+  and transfer to two genes outside the seven (DDX3X and TP53).
 keywords:
   - variant effect prediction
   - saturation genome editing
@@ -39,7 +39,7 @@ identifiers:
     description: Concept DOI for all versions of the archived repository
 preferred-citation:
   type: article
-  title: "Ranking is saturated, calibration is not, and neither changes the evidence strength: an independent benchmark of splice-region variant effect predictors against a functional standard"
+  title: "Evidence strength of splice-region variant effect predictors assessed against saturation genome editing data in seven cancer susceptibility genes"
   authors:
     - family-names: Zhang
       given-names: Ningyi

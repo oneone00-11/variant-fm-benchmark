@@ -34,10 +34,20 @@ OUT = REPORT_DIR / "tables"
 
 STRATA = ["s3_10", "s11_50", "s3_50"]
 STRATUM_LABEL = {"s3_10": "3–10 bp", "s11_50": "11–50 bp", "s3_50": "3–50 bp",
-                 "all_1_50": "1–50 bp incl. ±1,2 (out of scope)"}
+                 "all_1_50": "1–50 bp including the canonical dinucleotides (out of scope)"}
 ARMS = ["classified", "recorded_unclassified", "unrecorded"]
+# one label set for the arms across text, tables and figures
 ARM_LABEL = {"classified": "Classified", "recorded_unclassified": "Recorded, unclassified",
-             "unrecorded": "Not in ClinVar"}
+             "unrecorded": "Unrecorded"}
+# the combined Atlas score's model was selected on the BRCA1 and RAD51C assays
+# (predictor_training_provenance.csv, row avi), so its held-out counts are given
+# over the genes its training did not see
+AVI_SEEN_IN_TRAINING = ("BRCA1", "RAD51C")
+
+
+def _it(gene: str) -> str:
+    """Gene symbols are italic in print; the assembler renders *...* as italic."""
+    return f"*{gene}*"
 TIER_SHORT = {"supporting": "Supporting", "moderate": "Moderate", "strong": "Strong",
               "very_strong": "Very strong"}
 
@@ -57,7 +67,7 @@ def table1() -> tuple[pd.DataFrame, pd.DataFrame]:
     rows = []
     for g in genes + ["Total"]:
         sub = ins if g == "Total" else ins[ins.gene == g]
-        r = {"Gene": g, "Variants, 3–50 bp": f"{int(sub.n.sum()):,}"}
+        r = {"Gene": g if g == "Total" else _it(g), "Variants, 3–50 bp": f"{int(sub.n.sum()):,}"}
         for st in STRATA:
             s2 = sub if st == "s3_50" else sub[sub.stratum == st]
             lab, dmg = int(s2.n_labelled.sum()), int(s2.n_damaging.sum())
@@ -71,7 +81,7 @@ def table1() -> tuple[pd.DataFrame, pd.DataFrame]:
                     ("recorded_unclassified", None, "Recorded without such a classification"),
                     ("recorded_unclassified", "recorded_no_assertion",
                      "   of which no clinical assertion"),
-                    ("unrecorded", "unrecorded", "Not in the ClinVar release")]
+                    ("unrecorded", "unrecorded", "Unrecorded (not in the ClinVar release)")]
     for arm, strict, label in strict_order:
         sub = ins[ins.clinvar_arm == arm]
         if strict is not None:
@@ -101,9 +111,31 @@ READOUT_SHORT = {
         "Shared cause: constraint and functional damage both reflect selection",
     "Cross-species sequence constraint (self-supervised)":
         "Shared cause: constraint and functional damage both reflect selection",
+    "Supervised on population allele frequency, with AlphaGenome, AlphaMissense "
+    "and conservation inputs":
+        "Direct for *BRCA1*, *RAD51C* and *DDX3X*, whose assays selected the model; "
+        "shared cause (allele frequency, constraint) otherwise",
     "Genomic sequence (self-supervised)": "None documented",
     "This study's own functional labels, refitted per fold":
         "Direct: fitted on the functional standard, so evaluated leave-one-gene-out",
+}
+
+
+# Short printed form of each column's terms of use (full text in the provenance
+# file and Supplementary Table S3). A row group must share one form.
+TERMS_SHORT = {
+    "spliceai": "Non-commercial trained models (CC BY-NC 4.0); commercial use needs a licence",
+    "spliceai_walker": "Non-commercial trained models (CC BY-NC 4.0); commercial use needs a licence",
+    "pangolin": "Open software (GPL-3.0)",
+    "alphagenome": "Research only: no clinical decision-making, no training of other models",
+    "avi": "Research only: no clinical decision-making, no training of other models",
+    "avi_splice_sites": "Research only: no clinical decision-making, no training of other models",
+    "avi_splice_site_usage": "Research only: no clinical decision-making, no training of other models",
+    "avi_splice_junctions": "Research only: no clinical decision-making, no training of other models",
+    "cadd": "Non-commercial; commercial licence available",
+    "phylop": "Free, including commercial use", "phastcons": "Free, including commercial use",
+    "gpn_msa": "Open (MIT)", "nt": "Non-commercial (CC BY-NC-SA 4.0)",
+    "fusion_enet": "Terms of its inputs",
 }
 
 
@@ -112,17 +144,38 @@ def table2() -> pd.DataFrame:
     names = dict(NAME, fusion_enet="Elastic-net combination (Supplementary Table S9)")
     rows = []
     for cls, g in t.groupby("training_signal_class", sort=False):
+        mave = g.documented_mave_or_sge_in_training
+        if (mave == "None documented").all():
+            mave_cell = "None documented"
+        elif (g.score_column == "fusion_enet").all():
+            mave_cell = "By construction (this study's labels)"
+        elif (g.score_column == "avi").all():
+            mave_cell = ("Yes: four saturation genome editing assays, including the "
+                         "*BRCA1*, *RAD51C* and *DDX3X* assays used here, selected "
+                         "the model")
+        else:
+            raise SystemExit(f"[tables] Table 2: no printed form for {list(g.score_column)}")
         rows.append({
-            "Score columns": "; ".join(names.get(c, c) for c in g.score_column),
+            "Score columns": "; ".join(names.get(c, c) for c in
+                                       sorted(g.score_column, key=_display_order)),
             "Training signal": cls,
-            "Clinical classifications in training":
-                "None" if (g.contains_clinical_labels == "No").all() else "Yes",
-            "Multiplexed-assay measurements in training":
-                "None documented" if (g.documented_mave_or_sge_in_training
-                                      == "None documented").all() else "This study's",
+            "Clinical labels in training":
+                "No" if (g.contains_clinical_labels == "No").all() else "Yes",
+            "Multiplexed-assay measurements in training": mave_cell,
             "Relation to the functional readout": READOUT_SHORT[cls],
+            "Terms of use": _one({TERMS_SHORT[c] for c in g.score_column}, cls),
         })
     return pd.DataFrame(rows)
+
+
+def _display_order(c: str) -> int:
+    return COLUMNS.index(c) if c in COLUMNS else len(COLUMNS)
+
+
+def _one(values: set, what: str) -> str:
+    if len(values) != 1:
+        raise SystemExit(f"[tables] Table 2 row '{what}' mixes terms of use: {values}")
+    return next(iter(values))
 
 
 # ---------------------------------------------------------------------------
@@ -146,17 +199,44 @@ def _folds(t: pd.DataFrame, tool: str, stratum: str, tier: str) -> str:
     return f"{k}/{n}" + (f" ({n - ev_})" if ev_ < n else "")
 
 
+def _folds_excluding(t: pd.DataFrame, folds: pd.DataFrame, tool: str, stratum: str,
+                     tier: str, exclude: tuple[str, ...]) -> str:
+    """k/n (m) over the held-out genes not in `exclude`, from the per-fold file.
+
+    The same rule as tier_logo_table: a fold clears when its held-out ratio is at
+    or above the tier's boundary. Checked against tier_logo_table on all genes."""
+    r = t[(t.tool == tool) & (t.stratum == stratum) & (t.tier == tier)]
+    if not len(r) or r.status.iloc[0] != "ok" or not bool(r.in_sample_tier_reached.iloc[0]):
+        return "–"
+    cut = float(r.tier_lr_cut.iloc[0])
+    f = folds[(folds.tool == tool) & (folds.stratum == stratum) & (folds.tier == tier)
+              & (folds.side == "pp3")]
+    def count(ff):
+        lr = ff.heldout_lr
+        return len(ff), int(lr.notna().sum()), int((lr >= cut).sum())
+    n_all, ev_all, k_all = count(f)
+    if (n_all, ev_all, k_all) != (int(r.n_folds.iloc[0]), int(r.folds_with_heldout_lr.iloc[0]),
+                                  int(r.folds_heldout_lr_above_cut.iloc[0])):
+        raise SystemExit(f"[tables] {tool} {stratum} {tier}: per-fold file disagrees "
+                         "with tier_logo_table")
+    n, ev_, k = count(f[~f.heldout_gene.isin(exclude)])
+    return f"{k}/{n}" + (f" ({n - ev_})" if ev_ < n else "")
+
+
 def table3() -> pd.DataFrame:
     ev = pd.read_csv(REPORT_DIR / "evidence_thresholds.csv")
     t = pd.read_csv(REPORT_DIR / "tier_logo_table.csv")
+    folds = pd.read_csv(REPORT_DIR / "evidence_thresholds_logo_folds.csv")
     rows = []
     for c in COLUMNS:
-        r = {"Predictor": NAME[c]}
+        r = {"Predictor": NAME[c] + (" †" if c == "avi" else "")}
         for st in STRATA:
             lab = STRATUM_LABEL[st]
             r[f"{lab}: In-sample"] = _highest_tier(ev, c, st)
-            r[f"{lab}: Moderate, held out"] = _folds(t, c, st, "moderate")
-            r[f"{lab}: Strong, held out"] = _folds(t, c, st, "strong")
+            for tier, head in (("moderate", "Moderate, held out"), ("strong", "Strong, held out")):
+                r[f"{lab}: {head}"] = (
+                    _folds_excluding(t, folds, c, st, tier, AVI_SEEN_IN_TRAINING)
+                    if c == "avi" else _folds(t, c, st, tier))
         rows.append(r)
     return pd.DataFrame(rows)
 
@@ -193,7 +273,7 @@ def table4() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     # (a) SpliceAI, published basis, at the published cut point
     rows = []
     pub = ok[(ok.tool == "spliceai_walker") & (ok.threshold_basis == "published cut point")]
-    for gs, gl in (("all_genes", "Seven genes"), ("no_BRCA1", "Without BRCA1")):
+    for gs, gl in (("all_genes", "Seven genes"), ("no_BRCA1", "Without *BRCA1*")):
         for st in STRATA:
             s = pub[(pub.gene_set == gs) & (pub.stratum == st)]
             r = {"Genes": gl, "Band": STRATUM_LABEL[st]}
@@ -206,7 +286,7 @@ def table4() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     # (b) every column at its own fitted threshold: which arm is highest
     fitted = ok[ok.threshold_basis.str.startswith("fitted") & ok.tool.isin(COLUMNS)]
     rows, detail = [], []
-    for gs, gl in (("all_genes", "Seven genes"), ("no_BRCA1", "Without BRCA1")):
+    for gs, gl in (("all_genes", "Seven genes"), ("no_BRCA1", "Without *BRCA1*")):
         for st in STRATA:
             s = fitted[(fitted.gene_set == gs) & (fitted.stratum == st)
                        & fitted.clinvar_arm.isin(ARMS)]
@@ -228,14 +308,15 @@ def table4() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     am = am[(am.status == "ok") & am.tool.isin(COLUMNS)]
     rows = []
     for st in ("s3_50", "all_1_50"):
-        for gs, gl in (("all_genes", "Seven genes"), ("no_BRCA1", "Without BRCA1")):
+        for gs, gl in (("all_genes", "Seven genes"), ("no_BRCA1", "Without *BRCA1*")):
             s = am[(am.stratum == st) & (am.gene_set == gs)]
             p = s.pivot_table(index="tool", columns="clinvar_arm", values="auroc")
             p = p.reindex(columns=ARMS).dropna()
-            top = p.idxmax(axis=1)
+            top, bottom = p.idxmax(axis=1), p.idxmin(axis=1)
             r = {"Pool": STRATUM_LABEL[st], "Genes": gl, "Columns": str(len(p))}
             for arm in ARMS:
                 r[f"Highest AUROC: {ARM_LABEL[arm]}"] = str(int((top == arm).sum()))
+            r["Lowest AUROC: Classified"] = str(int((bottom == "classified").sum()))
             rows.append(r)
     c = pd.DataFrame(rows)
     return a, b, c, pd.DataFrame(detail)

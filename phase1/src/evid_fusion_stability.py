@@ -1,11 +1,11 @@
 """Fusion stability -- are the fused model's weights stable across the leave-one-
 gene-out folds, and does the fusion reach a tier that no single column reaches?
 
-A reader asked whether the elastic-net fusion's weights are stable. The fusion is
+Are the elastic-net fusion's weights stable? The fusion is
 refitted inside every leave-one-gene-out fold, so there is one set of weights per
 held-out gene, and E3 reports only the out-of-fold score those fits produce. This
-stage refits exactly the same fusion -- the same panel columns (evid_common.PANEL,
-in the order E3 passes them), the same rows, the same within-gene rank target and
+stage refits exactly the same fusion -- the same columns (evid_common.FUSION_FEATURES,
+the panel without the AlphaGenome splice score, in the order E3 passes them), the same rows, the same within-gene rank target and
 the same call into phase2_model.logo_oof that evid_common.logo_fusion makes -- with
 the per-fold coefficients kept, and writes them fold by fold beside their spread.
 The cross-fold mean alone cannot answer the question: a weight that swings between
@@ -141,7 +141,7 @@ BOOL_COLS = ["heldout_lr_at_or_above_cut", "changes_sign_across_folds"]
 
 def fusion_features(df: pd.DataFrame) -> list[str]:
     """The fusion's inputs, chosen exactly as evid_interval_lr.main chooses them."""
-    return [t for t in K.PANEL if t in df.columns]
+    return [t for t in K.FUSION_FEATURES if t in df.columns]
 
 
 def read_e3(report_dir: Path, name: str) -> pd.DataFrame:
@@ -313,7 +313,7 @@ def block_a(ev: pd.DataFrame) -> pd.DataFrame:
     singles = ([t for t in K.PANEL + K.OPTIONAL if t in tools]
                + sorted(t for t in tools
                         if t not in K.PANEL + K.OPTIONAL and t != K.FUSION))
-    sets = {"fusion inputs": [t for t in singles if t in K.PANEL],
+    sets = {"fusion inputs": [t for t in singles if t in K.FUSION_FEATURES],
             "all single columns in E3": singles}
     rows = []
     for stratum in STRATA:
@@ -433,15 +433,52 @@ def build(df: pd.DataFrame, report_dir: Path | str = REPORT_DIR
     return coef, table_s9(block_a(ev), block_b(df, ev, folds), block_c(coef))
 
 
+# Printed headers for Table S9; build() keeps the internal names the tests use.
+S9_HEADERS = {
+    "block": "Block", "stratum": "Stratum", "comparison_set": "Comparison set",
+    "n_single_columns_compared": "Single columns compared",
+    "fusion_insample_tier": "Fusion, in-sample tier",
+    "best_single_insample_tier": "Best single column, in-sample tier",
+    "single_columns_reaching_best_tier": "Single columns reaching that tier",
+    "fusion_vs_best_single": "Fusion against the best single column",
+    "tier": "Tier", "tier_lr_cut": "Tier boundary (LR)", "heldout_gene": "Held-out gene",
+    "n_training_genes": "Training genes",
+    "threshold_from_training_genes": "Threshold from the training genes",
+    "heldout_lr": "Held-out LR", "heldout_lr_at_or_above_cut": "Held-out LR clears the boundary",
+    "heldout_n": "Held-out variants", "heldout_n_damaging": "Held-out damaging",
+    "heldout_n_normal": "Held-out normal", "heldout_n_in_band": "Held-out variants above the threshold",
+    "why_no_heldout_lr": "Why no held-out LR",
+    "logo_threshold_leakage": "Leakage into the threshold",
+    "term": "Term", "term_kind": "Term kind", "n_folds": "Folds",
+    "mean": "Mean coefficient", "sd": "SD", "min": "Minimum", "max": "Maximum",
+    "mean_abs": "Mean absolute coefficient", "rank_mean_abs": "Rank by mean absolute value",
+    "n_folds_nonzero": "Folds with a non-zero coefficient",
+    "n_folds_nonzero_same_sign_as_mean": "Non-zero folds with the sign of the mean",
+    "changes_sign_across_folds": "Changes sign across folds",
+    "rank_in_fold_best": "Best rank in a fold", "rank_in_fold_worst": "Worst rank in a fold",
+}
+
+
+def printed_s9(s9: pd.DataFrame) -> pd.DataFrame:
+    """Table S9 as printed: readable headers, and Yes/No for the two flags."""
+    out = s9.copy()
+    for c in BOOL_COLS:
+        out[c] = out[c].map({True: "Yes", False: "No"}).astype("string")
+    return out.rename(columns=S9_HEADERS)
+
+
 def main() -> None:
     df = K.load_set()
     coef, s9 = build(df)
+    missing = [c for c in s9.columns if c not in S9_HEADERS]
+    if missing:
+        raise SystemExit(f"[fusion-stability] no printed header for {missing}")
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     SUPP_DIR.mkdir(parents=True, exist_ok=True)
     # literal names in the to_csv calls, the form the reproduction-coverage check
     # looks for when it works back from an output to the module that writes it
     coef.to_csv(REPORT_DIR / "fusion_fold_coefficients.csv", **CSV_OPTS)
-    s9.to_csv(SUPP_DIR / "tableS9_fusion.csv", **CSV_OPTS)
+    printed_s9(s9).to_csv(SUPP_DIR / "tableS9_fusion.csv", **CSV_OPTS)
     n_folds = int(coef["n_folds"].iloc[0])
     print(f"[fusion-stability] refit matches logo_fusion and E3; {n_folds} folds, "
           f"{len(coef)} design terms")
@@ -465,7 +502,7 @@ def main() -> None:
     print("\n--- fusion threshold from the other genes, ratio in the held-out one ---")
     print(b.groupby(["stratum", "tier"], sort=False).agg(
         folds=("heldout_gene", "size"),
-        with_threshold=("threshold_from_6_genes", "count"),
+        with_threshold=("threshold_from_training_genes", "count"),
         with_heldout_lr=("heldout_lr", "count"),
         at_or_above_cut=("heldout_lr_at_or_above_cut", "sum"),
         lr_min=("heldout_lr", "min"), lr_max=("heldout_lr", "max"),

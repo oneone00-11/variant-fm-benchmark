@@ -28,6 +28,11 @@ REPORT_DIR = Path("reports/evidence")
 # columns (BA1/BS1/PM2 evidence, not PP3) are out by design.
 PANEL = ["spliceai", "pangolin", "alphagenome", "cadd", "phylop", "phastcons",
          "gpn_msa", "nt"]
+# The fusion's features: the panel without the AlphaGenome splice score. The
+# AlphaGenome terms of service forbid using its outputs to train another model
+# (LICENSE-DATA), and the elastic net is a model trained on its inputs, with its
+# fitted coefficients in the repository. An earlier version fused all eight.
+FUSION_FEATURES = [t for t in PANEL if t != "alphagenome"]
 # scored separately; present only once their stage has run
 # Carried beside the panel: scored separately, evaluated like any other tool, but
 # not part of the fusion's feature set (the fusion is the published study's panel,

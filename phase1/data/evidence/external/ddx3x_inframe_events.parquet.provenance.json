@@ -5,9 +5,9 @@
   "mask": 0,
   "reference_fasta": "phase1/data/evidence/refs/chrX.fa",
   "annotation": "grch38",
-  "n_variants": 332,
-  "n_scored": 332,
-  "output_sha256": "7511da2e3367b74b80c01c8b7514e54c52f15b86015b698163d3128cba504ca0",
-  "scored_utc": "2026-09-20T05:57:42+00:00",
-  "runtime_minutes": 4.2
+  "n_variants": 333,
+  "n_scored": 333,
+  "output_sha256": "219fbf0559d9f031bd8321f3d089b3c636d809cab50479a82fa455e10e948db6",
+  "scored_utc": "2026-09-23T11:03:54+00:00",
+  "runtime_minutes": 6.3
 }

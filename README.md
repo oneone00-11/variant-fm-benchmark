@@ -189,6 +189,10 @@ genes. Writes `phase1/reports/evidence/`. It leaves `phase1/reports/phase1/`
 untouched, so the published tables stay beside it as the control. Three inputs are
 downloads or model re-scores rather than analysis steps and are pinned by sha256
 instead of rebuilt; the script names the command for each when it is missing.
+The stages also write the printed main and supplementary tables and the figures. It
+ran under Python 3.12 with the exact package set in `requirements-evidence.lock.txt`;
+the companion atlas repository is found through `EVID_ATLAS_REPO`, or as a checkout
+named `functional-standard-atlas` beside this one.
 
 **Study B — coverage & complementarity:**
 ```bash

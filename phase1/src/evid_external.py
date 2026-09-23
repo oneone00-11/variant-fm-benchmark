@@ -2,10 +2,14 @@
 
 Two genes, and they answer different questions.
 
-TP53 is the gene the published study already held out. Its scores exist, so it is
-carried forward unchanged and the Walker cut points and the E3 thresholds are
-applied to it as they stand. Its window is the published one (|offset| <= 8), so it
-populates pm12 and s3_10 and says nothing about 11-50 bp.
+TP53 is the gene the published study already held out. Its archived table stopped
+at |offset| 8 because of that study's splice-window constant, although the deposit
+reaches 12; evid_tp53_extend carries the 192 archived rows unchanged and scores the
+96 deposited SNVs at offsets 9-12 with the same scorers, so TP53 now populates pm12,
+s3_10 and eleven to twelve nucleotides of s11_50. The deposit publishes no
+per-variant classification, so its labels are constructed (below). Its 11-12 nt
+rows hold no damaging variant under the control-anchored label, so that band is
+reported by count only.
 
 DDX3X is new, and is outside the gene class everything else here sits in: it is
 X-linked, and its disease association is neurodevelopmental rather than cancer
@@ -20,18 +24,31 @@ three strata. That is what makes it worth the work: it is the only candidate fou
 that populates 11-50 bp, the territory the companion atlas locates the real failure
 in, on a gene set that shares nothing with the seven.
 
-Labels are the honest weak point and are reported twice rather than once. The
-deposit publishes no functional classification, so a binary has to be constructed,
-exactly as the published study had to for TP53. Two constructions are carried side
-by side and both are reported:
+Labels follow the rule used for the seven genes: the assay authors' own
+per-variant classification. The DDX3X deposit publishes one in a separate score
+set (urn:mavedb:00000658-0-1): a random-forest call whose only inputs are the
+assay's combined log fold-changes at days 7, 11 and 15, with a decision boundary
+trained on clinically classified variants for the neurodevelopmental context,
+'abnormal' above a posterior of 0.5 (Radford et al. 2023). An earlier version of
+this module said the deposit published no classification; that was wrong, and the
+constructions it used instead are kept below as sensitivity labels:
 
-  control_anchored : damaging if the score falls below the midpoint of the
-                     synonymous and nonsense control medians
-  fdr              : damaging if the trend FDR clears 0.01 and the score sits
-                     below the synonymous median
+  deposit                   : the published call (primary)
+  control_anchored_gated    : damaging if the score falls below the midpoint of
+                              the score set's synonymous and nonsense control
+                              medians, in score sets whose controls separate
+                              (control AUROC >= 0.80); unlabelled elsewhere
+  control_anchored          : the same without the gate
+  fdr                       : damaging if the trend FDR clears 0.01 and the score
+                              sits below the synonymous median
 
-Neither is the assay authors' own call. Any statement about DDX3X has to survive
-both or be reported as depending on the label definition.
+The gate exists because one score set, urn:mavedb:00000658-q-1 (the final-exon
+tile), has nonsense controls that are not depleted -- control AUROC 0.51 against
+0.99 to 1.0 in fifteen of the other sixteen -- so its midpoint carries no
+information and the ungated label is close to a coin flip there. Without the gate
+that one tile supplies over half of the in-scope control-anchored damaging calls.
+Its behaviour is consistent with nonsense-mediated decay escape in the last exon.
+The ungated label is kept so the effect of the gate is visible.
 
 Run (PYTHONPATH=phase1):
     python -m src.evid_external --prepare ddx3x
@@ -70,6 +87,16 @@ CONFIG_PATH = Path("config/walker2023.yaml")
 DDX3X_EXPERIMENT = "urn:mavedb:00000658"
 DDX3X_SCORESETS = [f"{DDX3X_EXPERIMENT}-{c}-1" for c in "abcdefghijklmnopq"]
 DDX3X_TRANSCRIPT = "ENST00000644876.2"
+# the deposit's own per-variant classification, published as its own score set
+DDX3X_CLASSIFICATION_SCORESET = f"{DDX3X_EXPERIMENT}-0-1"
+DDX3X_CLASS_COLUMN = "SGE_prediction_of_variant_function_in_NDD_context"
+DDX3X_CLASS_MAP = {"abnormal": 1.0, "normal": 0.0}
+# per-score-set control separation below which the control-anchored label is not
+# assigned in that set; the same 0.80 the pooled orientation gate uses
+CONTROL_GATE = 0.80
+# primary first; the rest are sensitivity labels
+DDX3X_LABELS = ["y_deposit", "y_control_anchored_gated", "y_control_anchored", "y_fdr"]
+N_BOOT = 2000
 MAVEDB_API = "https://api.mavedb.org/api/v1/score-sets"
 
 _SPLICE = re.compile(r"(ENST[\d.]+):(c\.[-*]?\d+[+-](\d+)[ACGT]>[ACGT])$")
@@ -77,6 +104,8 @@ _PRO_SYN = re.compile(r"p\.[A-Za-z]{3}\d+=")
 _PRO_NON = re.compile(r"p\.[A-Za-z]{3}\d+(Ter|\*)")
 
 FDR_CUT = 0.01
+# TP53 to |offset| 12: the archived 192 rows plus the 96 scored by evid_tp53_extend
+TP53_TABLE = EXT_DIR / "tp53_splice_scored_12nt.parquet"
 
 
 def stratum_of(offset: int) -> str:
@@ -191,6 +220,40 @@ def prepare_ddx3x() -> None:
     df["y_control_anchored"] = (df["assay_score"] < mid).astype(float)
     df["y_fdr"] = ((df["fdr"] < FDR_CUT) & (df["assay_score"] < syn)).astype(float)
 
+    # The pooled gate above can pass while one score set's controls do not separate
+    # at all, so separation is also checked per set, and the control-anchored label
+    # is withheld in a set that fails it.
+    set_auroc = {}
+    for urn, g in ctl.groupby("scoreset"):
+        yy = (g["class"] == "nonsense").astype(int).to_numpy()
+        set_auroc[urn] = (float(roc_auc_score(yy, -g["score"].to_numpy()))
+                          if 0 < yy.sum() < len(yy) else np.nan)
+    per_set["control_auroc"] = pd.Series(set_auroc)
+    # how much of the ungated label each set supplies, in the in-scope window
+    ins = df[df["stratum"] != "pm12"]
+    per_set["n_in_scope"] = ins.groupby("scoreset").size()
+    per_set["n_damaging_control_anchored_in_scope"] = (
+        ins.groupby("scoreset")["y_control_anchored"].sum())
+    per_set = per_set.fillna({"n_in_scope": 0, "n_damaging_control_anchored_in_scope": 0})
+    gated = sorted(u for u, a in set_auroc.items() if not (a >= CONTROL_GATE))
+    df["y_control_anchored_gated"] = np.where(df["scoreset"].isin(gated), np.nan,
+                                              df["y_control_anchored"])
+
+    # The deposit's own call, joined on the transcript-level HGVS.
+    cpath = raw_dir / f"{DDX3X_CLASSIFICATION_SCORESET.replace(':', '_')}.csv"
+    if not cpath.exists():
+        cpath.write_bytes(_fetch(f"{MAVEDB_API}/{DDX3X_CLASSIFICATION_SCORESET}/scores"))
+    cls = pd.read_csv(cpath, usecols=["hgvs_nt", "score", DDX3X_CLASS_COLUMN])
+    cls = cls[cls["hgvs_nt"].str.startswith(DDX3X_TRANSCRIPT + ":", na=False)]
+    cls["hgvs_c"] = cls["hgvs_nt"].str.split(":", n=1).str[1]
+    if cls["hgvs_c"].duplicated().any():
+        raise SystemExit("[E7] DDX3X classification: duplicated HGVS in the deposit")
+    cls = cls.set_index("hgvs_c")
+    df["deposit_class"] = df["hgvs_c"].map(cls[DDX3X_CLASS_COLUMN])
+    df["deposit_posterior"] = df["hgvs_c"].map(cls["score"])
+    df["y_deposit"] = df["deposit_class"].map(DDX3X_CLASS_MAP)
+    n_unmatched = int(df["deposit_class"].isna().sum())
+
     EXT_DIR.mkdir(parents=True, exist_ok=True)
     out = EXT_DIR / "ddx3x_splice.parquet"
     df.to_parquet(out, index=False)
@@ -203,6 +266,8 @@ def prepare_ddx3x() -> None:
         "n_mapping_failures": int(sum(failures.values())),
         "mapping_failures": failures,
         "strata": df["stratum"].value_counts().to_dict(),
+        "n_in_scope_3_to_max": int((df["stratum"] != "pm12").sum()),
+        "max_intron_offset": int(df["intron_offset_abs"].max()),
         "controls": {"n_synonymous": int((ctl["class"] == "synonymous").sum()),
                      "n_nonsense": int((ctl["class"] == "nonsense").sum()),
                      "median_synonymous_pooled": med_syn,
@@ -214,13 +279,26 @@ def prepare_ddx3x() -> None:
                      "n_scoresets_without_controls": int(missing.sum()),
                      "control_auroc": auroc,
                      "gate": "OK" if auroc >= 0.80 else
-                             ("WEAK_SEPARATION" if auroc >= 0.65 else "FLIP_NEEDED")},
+                             ("WEAK_SEPARATION" if auroc >= 0.65 else "FLIP_NEEDED"),
+                     "per_scoreset_gate": CONTROL_GATE,
+                     "scoresets_gated_out": gated},
         "labels": {
+            "primary": "deposit",
+            "deposit": (f"{DDX3X_CLASSIFICATION_SCORESET} column {DDX3X_CLASS_COLUMN}: "
+                        "random-forest call on the assay's combined log fold-changes, "
+                        "decision boundary trained on clinically classified variants; "
+                        "abnormal -> 1, normal -> 0"),
+            "control_anchored_gated": ("assay_score < midpoint of the score set's "
+                                       "control medians, in score sets with control "
+                                       f"AUROC >= {CONTROL_GATE}; unlabelled elsewhere"),
             "control_anchored": "assay_score < midpoint of control medians",
             "fdr": f"trend BH-FDR < {FDR_CUT} and assay_score < synonymous median",
-            "note": "the deposit publishes no functional classification; both "
-                    "definitions are constructed here and neither is the assay "
-                    "authors' own call",
+            "note": "the deposit label is the assay authors' own call, as for the "
+                    "seven genes; the other three are constructed here and reported "
+                    "as sensitivity labels",
+            "n_unmatched_to_deposit_call": n_unmatched,
+            "n_damaging_deposit": int(df["y_deposit"].sum()),
+            "n_damaging_control_anchored_gated": int(df["y_control_anchored_gated"].sum()),
             "n_damaging_control_anchored": int(df["y_control_anchored"].sum()),
             "n_damaging_fdr": int(df["y_fdr"].sum()),
         },
@@ -237,8 +315,12 @@ def prepare_ddx3x() -> None:
           f"pooled syn median {med_syn:.4f}, nonsense median {med_non:.4f}")
     print(f"     anchored per score set; per-set midpoints "
           f"{per_set['midpoint'].min():.4f} to {per_set['midpoint'].max():.4f}")
-    print(f"     damaging: control-anchored {manifest['labels']['n_damaging_control_anchored']}, "
-          f"FDR {manifest['labels']['n_damaging_fdr']}")
+    lab = manifest["labels"]
+    print(f"     damaging: deposit call {lab['n_damaging_deposit']} (primary; "
+          f"{lab['n_unmatched_to_deposit_call']} unmatched), control-anchored gated "
+          f"{lab['n_damaging_control_anchored_gated']}, ungated "
+          f"{lab['n_damaging_control_anchored']}, FDR {lab['n_damaging_fdr']}")
+    print(f"     score sets gated out of the control-anchored label: {gated or 'none'}")
     print(f"     wrote {out}")
     print("\n[E7] next: score the panel for these variants, then --apply DDX3X")
 
@@ -331,7 +413,7 @@ def merge_ddx3x_scores() -> None:
 
 def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
     if gene.upper() == "TP53":
-        df = pd.read_parquet("data/external/tp53_splice_scored_v2.parquet")
+        df = pd.read_parquet(TP53_TABLE)
         df = df[df["is_splice"]].copy()
         df["intron_offset_abs"] = df["intron_offset"].abs()
         df["stratum"] = df["intron_offset_abs"].map(
@@ -347,11 +429,8 @@ def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
         df["y_median_split"] = (rfs > np.median(rfs)).astype(float)
         mid = np.abs(rfs) >= 0.5
         df["y_mid_band_excluded"] = np.where(mid, (rfs > 0).astype(float), np.nan)
-        walker = EXT_DIR / "tp53_spliceai_walker.parquet"
-        if walker.exists():
-            w = pd.read_parquet(walker)
-            cols = [c for c in w.columns if c.startswith("spliceai_walker")]
-            df = df.merge(w[["variant_id"] + cols], on="variant_id", how="left")
+        # the extended table carries the published-basis SpliceAI column and the
+        # four Atlas columns itself (evid_tp53_extend)
         return df, ["y_control_anchored", "y_median_split", "y_mid_band_excluded"]
     if gene.upper() == "DDX3X":
         df = pd.read_parquet(EXT_DIR / "ddx3x_splice.parquet")
@@ -359,7 +438,7 @@ def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
         if scored.exists():
             extra = pd.read_parquet(scored)
             df = df.merge(extra, on="variant_id", how="left", suffixes=("", "_dup"))
-        return df, ["y_control_anchored", "y_fdr"]
+        return df, list(DDX3X_LABELS)
     raise SystemExit(f"[E7] no external gene '{gene}'")
 
 
@@ -436,6 +515,49 @@ def column_basis_check(df: pd.DataFrame, tools: list[str],
     return pd.DataFrame(rows)
 
 
+def _rng_for(*key) -> np.random.Generator:
+    """Seeded from the cell's identity, as evid_walker_thresholds does, so one row
+    can be reproduced on its own and adding a row changes no other."""
+    h = hashlib.sha256(("|".join(str(k) for k in key)).encode()).digest()
+    return np.random.default_rng([C.RANDOM_SEED, int.from_bytes(h[:8], "big")])
+
+
+def _band_detail(y: np.ndarray, v: np.ndarray, thr: float, side: str,
+                 bands: dict, direction: str, cell: tuple) -> dict:
+    """Counts in the band, the ratio, and a variant-level bootstrap interval.
+
+    An external gene is one gene, so there is no cluster structure to resample and
+    the gene-clustered interval of the seven-gene tables does not exist here. The
+    interval below resamples variants within each class (2,000 draws, class sizes
+    fixed): it describes how precisely this gene's own variants estimate the ratio,
+    not how the ratio would vary between genes. A tier is reported both from the
+    point estimate and from the lower bound, so a transfer that rests on the point
+    estimate alone is visible as such.
+    """
+    in_band = (v >= thr) if side == "upper" else (v <= thr)
+    out = {"n_pos_band": int((in_band & (y == 1)).sum()),
+           "n_neg_band": int((in_band & (y == 0)).sum())}
+    lr = K.band_lr(y, v, thr, side)
+    out["lr"] = lr
+    out["lr_lo"] = out["lr_hi"] = np.nan
+    if np.isfinite(lr):
+        rng = _rng_for(*cell)
+        ip, ineg = np.where(y == 1)[0], np.where(y == 0)[0]
+        draws = np.empty(N_BOOT)
+        for b in range(N_BOOT):
+            idx = np.concatenate([rng.choice(ip, ip.size), rng.choice(ineg, ineg.size)])
+            draws[b] = K.band_lr(y[idx], v[idx], thr, side)
+        draws = draws[np.isfinite(draws)]
+        if draws.size >= N_BOOT * 0.5:
+            out["lr_lo"], out["lr_hi"] = (float(q) for q in np.percentile(draws, [2.5, 97.5]))
+    out["tier"] = K.tier_of(lr, bands, direction)
+    # the conservative end of the interval: the lower bound on the pathogenic side,
+    # the upper bound on the benign side
+    bound = out["lr_lo"] if direction == "pathogenic" else out["lr_hi"]
+    out["tier_at_bound"] = K.tier_of(bound, bands, direction)
+    return out
+
+
 def apply_thresholds(gene: str) -> None:
     cfg = yaml.safe_load(CONFIG_PATH.read_text())
     pp3 = cfg["thresholds"]["pp3"]["value"]
@@ -489,6 +611,17 @@ def apply_thresholds(gene: str) -> None:
                                                       path_bands, "pathogenic")
                     row["walker_tier_bp4"] = K.tier_of(
                         K.band_lr_benign_bound(y, v, bp4), ben_bands, "benign")
+                    d = _band_detail(y, v, pp3, "upper", path_bands, "pathogenic",
+                                     (gene.upper(), label, stratum, tool, "walker_pp3"))
+                    row |= {"walker_pp3_n_pos_band": d["n_pos_band"],
+                            "walker_pp3_n_neg_band": d["n_neg_band"],
+                            "walker_lr_pp3_lo": d["lr_lo"], "walker_lr_pp3_hi": d["lr_hi"],
+                            "walker_tier_pp3_at_bound": d["tier_at_bound"]}
+                    d = _band_detail(y, v, bp4, "lower", ben_bands, "benign",
+                                     (gene.upper(), label, stratum, tool, "walker_bp4"))
+                    row |= {"walker_bp4_n_pos_band": d["n_pos_band"],
+                            "walker_bp4_n_neg_band": d["n_neg_band"],
+                            "walker_lr_bp4_lo": d["lr_lo"], "walker_lr_bp4_hi": d["lr_hi"]}
                 row["column_basis_comparable"] = tool in comparable
                 # --- E3's LOGO thresholds, applied unchanged
                 if ev is not None and tool in comparable:
@@ -518,9 +651,15 @@ def apply_thresholds(gene: str) -> None:
                             continue
                         tau = float(t["pp3_logo_threshold_median"].iloc[0])
                         row[f"e3_{tier}_threshold"] = tau
-                        row[f"e3_{tier}_lr_here"] = K.band_lr(y, v, tau, "upper")
-                        row[f"e3_{tier}_tier_here"] = K.tier_of(
-                            row[f"e3_{tier}_lr_here"], path_bands, "pathogenic")
+                        d = _band_detail(y, v, tau, "upper", path_bands, "pathogenic",
+                                         (gene.upper(), label, stratum, tool, tier))
+                        row[f"e3_{tier}_lr_here"] = d["lr"]
+                        row[f"e3_{tier}_tier_here"] = d["tier"]
+                        row[f"e3_{tier}_n_pos_band"] = d["n_pos_band"]
+                        row[f"e3_{tier}_n_neg_band"] = d["n_neg_band"]
+                        row[f"e3_{tier}_lr_lo"] = d["lr_lo"]
+                        row[f"e3_{tier}_lr_hi"] = d["lr_hi"]
+                        row[f"e3_{tier}_tier_at_bound"] = d["tier_at_bound"]
                 rows.append(row)
 
     out = pd.DataFrame(rows)

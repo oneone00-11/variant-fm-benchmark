@@ -34,6 +34,8 @@
     "s3_10": 768,
     "pm12": 192
   },
+  "n_in_scope_3_to_max": 1665,
+  "max_intron_offset": 25,
   "controls": {
     "n_synonymous": 1758,
     "n_nonsense": 443,
@@ -45,97 +47,158 @@
       "urn:mavedb:00000658-a-1": {
         "med_non": -0.147422,
         "med_syn": 0.000176,
-        "midpoint": -0.073623
+        "midpoint": -0.073623,
+        "control_auroc": 1.0,
+        "n_in_scope": 39,
+        "n_damaging_control_anchored_in_scope": 0.0
       },
       "urn:mavedb:00000658-b-1": {
         "med_non": -0.157956,
         "med_syn": -0.003012,
-        "midpoint": -0.080484
+        "midpoint": -0.080484,
+        "control_auroc": 1.0,
+        "n_in_scope": 108,
+        "n_damaging_control_anchored_in_scope": 9.0
       },
       "urn:mavedb:00000658-c-1": {
         "med_non": -0.184261,
         "med_syn": 0.00272,
-        "midpoint": -0.090771
+        "midpoint": -0.090771,
+        "control_auroc": 1.0,
+        "n_in_scope": 108,
+        "n_damaging_control_anchored_in_scope": 0.0
       },
       "urn:mavedb:00000658-d-1": {
         "med_non": -0.207555,
         "med_syn": -0.000353,
-        "midpoint": -0.103954
+        "midpoint": -0.103954,
+        "control_auroc": 1.0,
+        "n_in_scope": 96,
+        "n_damaging_control_anchored_in_scope": 1.0
       },
       "urn:mavedb:00000658-e-1": {
         "med_non": -0.235164,
         "med_syn": -0.000227,
-        "midpoint": -0.117696
+        "midpoint": -0.117696,
+        "control_auroc": 1.0,
+        "n_in_scope": 99,
+        "n_damaging_control_anchored_in_scope": 1.0
       },
       "urn:mavedb:00000658-f-1": {
         "med_non": -0.244998,
         "med_syn": 0.000232,
-        "midpoint": -0.122383
+        "midpoint": -0.122383,
+        "control_auroc": 1.0,
+        "n_in_scope": 108,
+        "n_damaging_control_anchored_in_scope": 6.0
       },
       "urn:mavedb:00000658-g-1": {
         "med_non": -0.242205,
         "med_syn": -0.000445,
-        "midpoint": -0.121325
+        "midpoint": -0.121325,
+        "control_auroc": 1.0,
+        "n_in_scope": 108,
+        "n_damaging_control_anchored_in_scope": 7.0
       },
       "urn:mavedb:00000658-h-1": {
         "med_non": -0.22068,
         "med_syn": -0.001376,
-        "midpoint": -0.111028
+        "midpoint": -0.111028,
+        "control_auroc": 0.994048,
+        "n_in_scope": 108,
+        "n_damaging_control_anchored_in_scope": 3.0
       },
       "urn:mavedb:00000658-i-1": {
         "med_non": -0.269978,
         "med_syn": 0.000759,
-        "midpoint": -0.134609
+        "midpoint": -0.134609,
+        "control_auroc": 1.0,
+        "n_in_scope": 108,
+        "n_damaging_control_anchored_in_scope": 1.0
       },
       "urn:mavedb:00000658-j-1": {
         "med_non": -0.188064,
         "med_syn": 0.002526,
-        "midpoint": -0.092769
+        "midpoint": -0.092769,
+        "control_auroc": 0.998079,
+        "n_in_scope": 108,
+        "n_damaging_control_anchored_in_scope": 1.0
       },
       "urn:mavedb:00000658-k-1": {
         "med_non": -0.260055,
         "med_syn": 0.000673,
-        "midpoint": -0.129691
+        "midpoint": -0.129691,
+        "control_auroc": 1.0,
+        "n_in_scope": 99,
+        "n_damaging_control_anchored_in_scope": 3.0
       },
       "urn:mavedb:00000658-l-1": {
         "med_non": -0.195245,
         "med_syn": 0.000657,
-        "midpoint": -0.097294
+        "midpoint": -0.097294,
+        "control_auroc": 1.0,
+        "n_in_scope": 108,
+        "n_damaging_control_anchored_in_scope": 0.0
       },
       "urn:mavedb:00000658-m-1": {
         "med_non": -0.252905,
         "med_syn": 0.000726,
-        "midpoint": -0.126089
+        "midpoint": -0.126089,
+        "control_auroc": 0.991998,
+        "n_in_scope": 108,
+        "n_damaging_control_anchored_in_scope": 0.0
       },
       "urn:mavedb:00000658-n-1": {
         "med_non": -0.227877,
         "med_syn": -0.003226,
-        "midpoint": -0.115552
+        "midpoint": -0.115552,
+        "control_auroc": 1.0,
+        "n_in_scope": 93,
+        "n_damaging_control_anchored_in_scope": 0.0
       },
       "urn:mavedb:00000658-o-1": {
         "med_non": -0.176093,
         "med_syn": -0.000375,
-        "midpoint": -0.088234
+        "midpoint": -0.088234,
+        "control_auroc": 1.0,
+        "n_in_scope": 108,
+        "n_damaging_control_anchored_in_scope": 2.0
       },
       "urn:mavedb:00000658-p-1": {
         "med_non": -0.197914,
         "med_syn": 0.00182,
-        "midpoint": -0.098047
+        "midpoint": -0.098047,
+        "control_auroc": 0.804142,
+        "n_in_scope": 90,
+        "n_damaging_control_anchored_in_scope": 0.0
       },
       "urn:mavedb:00000658-q-1": {
         "med_non": -0.000909,
         "med_syn": 0.000733,
-        "midpoint": -8.8e-05
+        "midpoint": -8.8e-05,
+        "control_auroc": 0.510292,
+        "n_in_scope": 69,
+        "n_damaging_control_anchored_in_scope": 37.0
       }
     },
     "n_scoresets_without_controls": 0,
     "control_auroc": 0.9664301471249137,
-    "gate": "OK"
+    "gate": "OK",
+    "per_scoreset_gate": 0.8,
+    "scoresets_gated_out": [
+      "urn:mavedb:00000658-q-1"
+    ]
   },
   "labels": {
+    "primary": "deposit",
+    "deposit": "urn:mavedb:00000658-0-1 column SGE_prediction_of_variant_function_in_NDD_context: random-forest call on the assay's combined log fold-changes, decision boundary trained on clinically classified variants; abnormal -> 1, normal -> 0",
+    "control_anchored_gated": "assay_score < midpoint of the score set's control medians, in score sets with control AUROC >= 0.8; unlabelled elsewhere",
     "control_anchored": "assay_score < midpoint of control medians",
     "fdr": "trend BH-FDR < 0.01 and assay_score < synonymous median",
-    "note": "the deposit publishes no functional classification; both definitions are constructed here and neither is the assay authors' own call",
+    "note": "the deposit label is the assay authors' own call, as for the seven genes; the other three are constructed here and reported as sensitivity labels",
+    "n_unmatched_to_deposit_call": 0,
+    "n_damaging_deposit": 209,
+    "n_damaging_control_anchored_gated": 156,
     "n_damaging_control_anchored": 197,
     "n_damaging_fdr": 211
   },
@@ -152,6 +215,6 @@
     ],
     "exon_anchor_adjustments": []
   },
-  "sha256": "7b525dba05247455e4ac38cdfd8f6ce1e8560b852d86abc79d4fc8f01770b0a9",
-  "built_utc": "2026-09-17T12:11:58+00:00"
+  "sha256": "cf51a401813aecf6ad6848393d33eef5592f5f5d7a4b55a7d1276869677c2dd1",
+  "built_utc": "2026-09-23T11:17:01+00:00"
 }

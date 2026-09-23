@@ -100,8 +100,8 @@ def test_s2_total_is_the_analysis_set_and_rows_add_up():
     assert (num["Labelled"] <= num["Variants"]).all()
     # the three stratum totals add up to the overall total
     tot = s2[(s2.Gene == "All genes") & (s2["ClinVar record status"] == "All variants")]
-    per = tot[tot["Stratum (intronic offset, bp)"].isin(["±1,2 (out of scope)",
-                                                          "3–10", "11–50"])]
+    per = tot[tot["Stratum (intronic offset, bp)"].isin(
+        [S.STRATUM_LABEL[k] for k in ("pm12", "s3_10", "s11_50")])]
     assert per["Variants"].astype(int).sum() == n_set
     # and the gene rows of each stratum add up to that stratum's total
     for st, t in zip(per["Stratum (intronic offset, bp)"], per["Variants"].astype(int)):
@@ -177,7 +177,9 @@ def test_s1_counts_and_publication_names():
         # name must agree with it
         m = re.fullmatch(r"[a-z0-9]+_([a-z]+)(\d{4})\.tsv", C.ASSAY_LABELS[g]["file"])
         if m:
-            assert r["Assay publication"] == f"{m.group(1).capitalize()} {m.group(2)}"
+            # a preprint carries a "(preprint)" suffix after author and year
+            assert r["Assay publication"].split(" (")[0] == \
+                f"{m.group(1).capitalize()} {m.group(2)}"
     assert set(s1.index) == set(S.SEVEN) | {"DDX3X", "TP53"}
     ext = pd.read_csv(REPORTS / "external_tp53.csv")
     t = ext[(ext.label_definition == "y_control_anchored") & (ext.stratum == "all_1_50")]
@@ -207,10 +209,12 @@ def test_s12_external_rows_follow_the_basis_check():
     e = e[(e.tool == "spliceai_walker") & (e.stratum == "s3_50")
           & (e.label_definition == "y_control_anchored")].iloc[0]
     row = s12[(s12.Gene == "DDX3X") & (s12["Label definition"] == "Control-anchored")
-              & (s12["Stratum (intronic offset, bp)"] == "3–50")
+              & (s12["Stratum (intronic offset, bp)"] == S._ext_band("DDX3X", "s3_50"))
               & (s12.Tool == S.tool_labels()["spliceai_walker"])]
     col = [c for c in s12.columns if c.startswith("LR at published cut point")][0]
-    assert row[col].iloc[0] == S.fmt_lr(e.walker_lr_pp3)
+    # the cell is the point estimate followed by its interval
+    assert row[col].iloc[0].split(" (")[0] == S.fmt_lr(e.walker_lr_pp3)
+    assert row[col].iloc[0].endswith(")")
 
 
 # ---------------------------------------------------------------------------

@@ -1,3 +1,4 @@
-tool,stratum,in_frame,out_of_frame,undetermined,n,in_frame_share,resolved_in_frame_share
-spliceai,pm12,0,0,1,1,0.0,
-spliceai,s3_10,2,10,9,21,0.0952,0.1667
+label_definition,tool,stratum,in_frame,out_of_frame,undetermined,n,in_frame_share,resolved_in_frame_share
+y_tp53_control_anchored,spliceai,pm12,0,0,1,1,0.0,
+y_tp53_control_anchored,spliceai,s11_50,0,1,1,2,0.0,0.0
+y_tp53_control_anchored,spliceai,s3_10,2,14,9,25,0.08,0.125

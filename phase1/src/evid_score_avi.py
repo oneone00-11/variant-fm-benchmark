@@ -172,7 +172,7 @@ AVI_SCORER = "AVI_SCORE"
 TARGETS = {
     "analysis": Path("data/evidence/analysis_set_v1.parquet"),
     "ddx3x": Path("data/evidence/external/ddx3x_splice.parquet"),
-    "tp53": Path("data/external/tp53_splice_scored_v2.parquet"),
+    "tp53": Path("data/evidence/external/tp53_splice_scored_12nt.parquet"),
 }
 
 

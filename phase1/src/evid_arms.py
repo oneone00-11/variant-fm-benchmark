@@ -166,17 +166,24 @@ def main() -> None:
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
     # ---- E2.4: where the no-assertion records are ---------------------------
-    strict = (df.groupby(["clinvar_arm", "clinvar_arm_strict"], observed=True)
-                .size().reset_index(name="n"))
-    strict["gene"] = "(all)"
     # The no-assertion records are not spread evenly, and where they sit decides
     # how much of an arm difference is a gene difference. The split is written
-    # rather than only printed, because the manuscript states it.
-    by_gene = (df[df["clinvar_arm_strict"] == "recorded_no_assertion"]
-               .groupby("gene", observed=True).size().reset_index(name="n"))
-    by_gene["clinvar_arm"] = "recorded_unclassified"
-    by_gene["clinvar_arm_strict"] = "recorded_no_assertion"
-    out_strict = pd.concat([strict, by_gene[strict.columns]], ignore_index=True)
+    # rather than only printed, because the manuscript states it -- for the whole
+    # set and for the in-scope window the comparisons use, which excludes the
+    # canonical dinucleotides.
+    parts = []
+    for window, sub in (("1-50", df), ("3-50", df[df["stratum"] != "pm12"])):
+        strict = (sub.groupby(["clinvar_arm", "clinvar_arm_strict"], observed=True)
+                     .size().reset_index(name="n"))
+        strict["gene"] = "(all)"
+        by_gene = (sub[sub["clinvar_arm_strict"] == "recorded_no_assertion"]
+                   .groupby("gene", observed=True).size().reset_index(name="n"))
+        by_gene["clinvar_arm"] = "recorded_unclassified"
+        by_gene["clinvar_arm_strict"] = "recorded_no_assertion"
+        part = pd.concat([strict, by_gene[strict.columns]], ignore_index=True)
+        part.insert(0, "window_nt", window)
+        parts.append(part)
+    out_strict = pd.concat(parts, ignore_index=True)
     out_strict.to_csv(REPORT_DIR / "clinvar_arm_no_assertion.csv", index=False)
     noass = df[df["clinvar_arm_strict"] == "recorded_no_assertion"]
     print(f"[E2.4] {len(noass)} ClinVar records carry no clinical assertion "

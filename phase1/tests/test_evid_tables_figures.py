@@ -34,7 +34,8 @@ def test_table3_fold_counts_match_the_tier_table():
     band = {"s3_10": "3–10 bp", "s11_50": "11–50 bp", "s3_50": "3–50 bp"}
     checked = 0
     for r in t[(t.status == "ok") & t.in_sample_tier_reached.astype(bool)].itertuples():
-        if r.tool not in NAME:
+        # the combined Atlas score is counted over its unseen genes; see below
+        if r.tool not in NAME or r.tool == "avi":
             continue
         cell = t3.loc[NAME[r.tool], f"{band[r.stratum]}: {r.tier.capitalize()}, held out"] \
             if r.tier in ("moderate", "strong") else None
@@ -44,6 +45,22 @@ def test_table3_fold_counts_match_the_tier_table():
         assert int(k) == r.folds_heldout_lr_above_cut and int(n) == r.n_folds, (r.tool, r.stratum, r.tier)
         checked += 1
     assert checked > 20
+
+
+@need
+def test_the_atlas_combined_score_is_counted_over_its_unseen_genes():
+    """Its model was selected on the BRCA1 and RAD51C assays, so Table 3 leaves those
+    two folds out of its counts and marks the row."""
+    from src.evid_tables import AVI_SEEN_IN_TRAINING
+    t3 = pd.read_csv(TABLES / "table3_evidence_tiers.csv", dtype=str).set_index("Predictor")
+    row = t3.loc["Atlas combined score †"]
+    folds = pd.read_csv(EV / "evidence_thresholds_logo_folds.csv")
+    band = {"s3_10": "3–10 bp", "s11_50": "11–50 bp", "s3_50": "3–50 bp"}
+    for st, lab in band.items():
+        f = folds[(folds.tool == "avi") & (folds.stratum == st) & (folds.tier == "moderate")
+                  & (folds.side == "pp3")]
+        n_unseen = int((~f.heldout_gene.isin(AVI_SEEN_IN_TRAINING)).sum())
+        assert row[f"{lab}: Moderate, held out"].split(" ")[0].split("/")[1] == str(n_unseen)
 
 
 @need

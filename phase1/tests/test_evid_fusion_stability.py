@@ -68,7 +68,7 @@ def _block(s9, name):
 # ---------------------------------------------------------------- the refit
 def test_the_refit_is_logo_fusion_bit_for_bit(df, refit):
     feats, oof, coefs = refit
-    assert feats == [t for t in K.PANEL if t in df.columns]
+    assert feats == [t for t in K.FUSION_FEATURES if t in df.columns]
     ref = K.logo_fusion(df, feats)
     assert np.array_equal(oof, ref, equal_nan=True)
     assert np.isfinite(oof).any()
@@ -165,7 +165,7 @@ def test_block_a_is_the_highest_tier_e3_reached(built, e3):
     singles = [t for t in ev.tool.unique() if t != K.FUSION]
     assert sorted(a["stratum"].unique()) == sorted(K.IN_SCOPE_STRATA)
     for r in a.itertuples():
-        pool = [t for t in singles if t in K.PANEL] if r.comparison_set == "fusion inputs" \
+        pool = [t for t in singles if t in K.FUSION_FEATURES] if r.comparison_set == "fusion inputs" \
             else singles
         assert r.n_single_columns_compared == len(pool)
         assert r.fusion_insample_tier == best(K.FUSION, r.stratum)
@@ -223,7 +223,7 @@ def test_a_rebuild_is_byte_identical_and_matches_the_files_on_disk(df, built):
     for first, second in zip(built, again):
         assert M.csv_text(first) == M.csv_text(second)
     for d, path in ((built[0], REPORTS / M.COEF_OUT.name),
-                    (built[1], REPORTS / "supplement" / M.TABLE_OUT.name)):
+                    (M.printed_s9(built[1]), REPORTS / "supplement" / M.TABLE_OUT.name)):
         if path.exists():
             assert path.read_text() == M.csv_text(d), f"{path.name} is stale"
 

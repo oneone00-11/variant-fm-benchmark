@@ -2,17 +2,24 @@
 """
 evidence-strength reframe -- one command for every analysis stage of the reworked study.
 
-What this reproduces, and what it does not. The analysis stages below run from
-tracked inputs and are deterministic under the seed in `phase1/src/config.py`.
-Three inputs are NOT rebuilt here because they are third-party downloads or model
-re-scores, and each is pinned by sha256 in a manifest instead:
+What this reproduces, and what it does not. The analysis stages below run in order
+and are deterministic under the seed in `phase1/src/config.py`; several of them,
+including the build of the analysis set, also read the companion atlas repository
+(EVID_ATLAS_REPO, or a checkout beside this one). Five kinds of input are NOT
+rebuilt here, because they are third-party downloads or model re-scores that need
+their own environments; each is pinned by sha256 in a manifest or provenance file:
 
   * the ClinVar GRCh38 VCF of 15 June 2026 (192 MB; `phase1/data/evidence/clinvar/`,
     gitignored, md5 checked against NCBI's own file on download);
-  * the `spliceai_walker` column, re-scored at Walker's -D 4999 in the atlas's
-    pinned SpliceAI 1.3.1 environment (`src/evid_score_spliceai_walker.py`);
-  * the external-gene columns (`src/evid_score_spliceai_events.py` and the E7
-    scoring), likewise;
+  * the `spliceai_walker` column, re-scored at Walker's -D 4999 in the pinned
+    SpliceAI 1.3.1 environment (`src/evid_score_spliceai_walker.py`), and the
+    SpliceAI event records for the in-frame attribution
+    (`src/evid_score_spliceai_events.py`);
+  * the DDX3X deposit and its labels (`src/evid_external.py --prepare ddx3x`, which
+    fetches the MaveDB score sets and the deposit's classification) and its panel
+    scores;
+  * the TP53 scores for offsets 9-12 (`src/evid_tp53_extend.py`, whose model scores
+    are cached; the stage below reruns it offline from that cache);
   * the AlphaGenome Atlas columns (`src/evid_score_avi.py`), which need an API key
     outside the tree and a separate venv carrying alphagenome>=0.9.0 -- the pinned
     .venv keeps 0.7.0 because that is the provenance of the alphagenome column.
@@ -22,25 +29,27 @@ Each of those prints the command that produces it when its input is missing.
 Stages
 ------
   1  evid_build_set          rebuild the 1 <= |offset| <= 50 analysis set (E1)
-  2  evid_walker_thresholds  the ClinGen SVI fixed cut points, by stratum and arm (E2)
+  2  evid_walker_thresholds  the ClinGen fixed cut points, by stratum and arm (E2)
   3  evid_interval_lr        score-to-evidence intervals, Pejaver's procedure (E3)
   4  evid_territory_metrics  AUROC / PR-AUC by territory and ClinVar arm (E4)
-  5  evid_inframe            what the false positives are predicting (E6), then the
-                             same attribution on the two external genes (E2.7)
-  6  evid_external TP53      fixed and fitted thresholds on the held-out gene (E7)
-  7  evid_external DDX3X     merge the scored columns, then the same on a gene
-                             outside the seven (E7)
-  8  evid_diagnostics        cut-point and monotonicity diagnostic tables (E8)
-  9  evid_tier_logo          in-sample tier vs held-out ratio, per fold (E2.2)
- 10  evid_arms               ClinVar arms without BRCA1, and within gene (E2.3/E2.4)
- 11  evid_fig_data           the figure tables and draft PNGs (E2.9)
- 12  evid_training_provenance where each predictor's training signal comes from (E9)
- 13  evid_fusion_stability   the fusion's coefficients in every fold (E10)
- 14  evid_dilution           thresholds refitted on every subset of training genes (E11)
- 15  evid_tables             the four main tables as printed (E12)
- 16  evid_supp_tables        the supplementary tables as printed (E13)
- 17  evid_figures            main and supplementary figures, PDF and PNG (E14)
- 18  evid_delta              every published quantity with a counterpart (E8)
+  5  evid_inframe            what the false positives are predicting (E6)
+  6  evid_inframe DDX3X      the same attribution on DDX3X (E2.7)
+  7  evid_tp53_extend        TP53 to |offset| 12, offline from cached scores (E7)
+  8  evid_inframe TP53       the same attribution on TP53 (E2.7)
+  9  evid_external TP53      fixed and fitted thresholds on TP53 (E7)
+ 10  evid_external DDX3X     merge the scored columns (E7)
+ 11  evid_external DDX3X     fixed and fitted thresholds on DDX3X (E7)
+ 12  evid_diagnostics        cut-point, monotonicity, concordance and depth tables (E8)
+ 13  evid_tier_logo          in-sample tier vs held-out ratio, per fold (E2.2)
+ 14  evid_arms               ClinVar arms without BRCA1, and within gene (E2.3/E2.4)
+ 15  evid_fig_data           the figure tables and draft PNGs (E2.9)
+ 16  evid_training_provenance where each predictor's training signal comes from (E9)
+ 17  evid_fusion_stability   the fusion's coefficients in every fold (E10)
+ 18  evid_dilution           thresholds refitted on every subset of training genes (E11)
+ 19  evid_tables             the four main tables as printed (E12)
+ 20  evid_supp_tables        the supplementary tables as printed (E13)
+ 21  evid_figures            main and supplementary figures, PDF and PNG (E14)
+ 22  evid_delta              every published quantity with a counterpart (E8)
 
 Outputs land in `phase1/reports/evidence/`.
 
@@ -64,6 +73,7 @@ STAGES = [
     ("src.evid_territory_metrics",  "E4  territory and ClinVar-arm metrics", []),
     ("src.evid_inframe",            "E6  in-frame attribution", ["--attribute"]),
     ("src.evid_inframe",            "E2.7 in-frame attribution: DDX3X", ["--external-attribute", "ddx3x"]),
+    ("src.evid_tp53_extend",        "E7  TP53 extended to |offset| 12 (offline)", ["--offline"]),
     ("src.evid_inframe",            "E2.7 in-frame attribution: TP53", ["--external-attribute", "tp53"]),
     ("src.evid_external",           "E7  external gene: TP53", ["--apply", "TP53"]),
     ("src.evid_external",           "E7  external gene: DDX3X, merge scored columns",

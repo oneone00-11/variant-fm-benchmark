@@ -1,0 +1,32 @@
+{
+  "file": "phase1/data/evidence/external/tp53_12nt_pangolin.parquet",
+  "interpreter": "/Users/cliffzhang/Documents/kimi/workspace/functional-standard-atlas/models/pangolin/.venv/bin/python",
+  "python_version": "3.12.14",
+  "pip_freeze": [
+    "Jinja2==3.1.6",
+    "MarkupSafe==3.0.3",
+    "PyVCF3==1.0.4",
+    "argcomplete==3.7.0",
+    "argh==0.31.3",
+    "filelock==3.29.0",
+    "fsspec==2026.4.0",
+    "gffutils==0.14",
+    "mpmath==1.3.0",
+    "networkx==3.6.1",
+    "numpy==2.5.1",
+    "packaging==26.2",
+    "pandas==3.0.5",
+    "pangolin @ git+https://github.com/tkzeng/Pangolin.git@5cf94b8db938c658391b4305cd7ce33297d44ff7",
+    "pip==26.2",
+    "pyarrow==25.0.0",
+    "pyfaidx==0.9.0.4",
+    "pyfastx==2.3.1",
+    "python-dateutil==2.9.0.post0",
+    "setuptools==78.1.0",
+    "simplejson==4.1.1",
+    "six==1.17.0",
+    "sympy==1.14.0",
+    "torch==2.13.0",
+    "typing_extensions==4.15.0"
+  ]
+}

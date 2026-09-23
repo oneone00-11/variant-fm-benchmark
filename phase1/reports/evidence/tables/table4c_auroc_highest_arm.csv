@@ -1,5 +1,5 @@
-Pool,Genes,Columns,Highest AUROC: Classified,"Highest AUROC: Recorded, unclassified",Highest AUROC: Not in ClinVar
-3–50 bp,Seven genes,13,3,6,4
-3–50 bp,Without BRCA1,13,2,1,10
-"1–50 bp incl. ±1,2 (out of scope)",Seven genes,13,13,0,0
-"1–50 bp incl. ±1,2 (out of scope)",Without BRCA1,13,13,0,0
+Pool,Genes,Columns,Highest AUROC: Classified,"Highest AUROC: Recorded, unclassified",Highest AUROC: Unrecorded,Lowest AUROC: Classified
+3–50 bp,Seven genes,13,3,6,4,10
+3–50 bp,Without *BRCA1*,13,2,1,10,10
+1–50 bp including the canonical dinucleotides (out of scope),Seven genes,13,13,0,0,0
+1–50 bp including the canonical dinucleotides (out of scope),Without *BRCA1*,13,13,0,0,0

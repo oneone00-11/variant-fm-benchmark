@@ -61,9 +61,9 @@ BEN_CUTS = [("Supporting", 1 / 2.08), ("Moderate", 1 / 4.33), ("Strong", 1 / 18.
 STRATA = ["s3_10", "s11_50", "s3_50"]
 STRATUM_LABEL = {"s3_10": "3–10 bp", "s11_50": "11–50 bp", "s3_50": "3–50 bp"}
 ARMS = ["all", "classified", "recorded_unclassified", "unrecorded"]
-ARM_LABEL = {"all": "All variants", "classified": "Classified in ClinVar",
+ARM_LABEL = {"all": "All variants", "classified": "Classified",
              "recorded_unclassified": "Recorded, unclassified",
-             "unrecorded": "Not in ClinVar"}
+             "unrecorded": "Unrecorded"}
 ARM_COLOUR = {"all": INK, "classified": BLUE, "recorded_unclassified": ORANGE,
               "unrecorded": AQUA}
 
@@ -88,12 +88,33 @@ NAME = {
 }
 SPLICE_AWARE = ["spliceai_walker", "pangolin", "alphagenome", "avi",
                 "avi_splice_sites", "avi_splice_site_usage", "avi_splice_junctions"]
-LABEL_DEF = {"y_control_anchored": "Control-anchored labels",
-             "y_fdr": "FDR labels"}
-# The external genes' two label definitions are told apart by fill, not colour:
-# filled for control-anchored, open for FDR. Colour already carries ClinVar record
-# status in Figure 1, and one colour must not mean two things in one figure.
-LABEL_FILLED = {"y_control_anchored": True, "y_fdr": False}
+# Each external gene is drawn under its primary label only: DDX3X under the
+# deposit's own classification (the rule the seven genes follow) and TP53, whose
+# deposit publishes none, under its control-anchored construction. The
+# sensitivity labels are in Supplementary Table S12.
+PRIMARY_LABEL = {"DDX3X": "y_deposit", "TP53": "y_control_anchored"}
+# the combined Atlas score's model was selected on the DDX3X assay, so in DDX3X it
+# is not an external test and is drawn in grey (predictor_training_provenance.csv)
+NOT_EXTERNAL = {("DDX3X", "avi")}
+EXT_DIR = Path("data/evidence/external")
+
+
+def _it(gene: str) -> str:
+    """Gene symbols in italics, via mathtext."""
+    return rf"$\it{{{gene}}}$"
+
+
+def _band_label(gene: str, stratum: str) -> str:
+    """A band's label, cut at the depth the gene's deposit actually reaches."""
+    depth = {"DDX3X": EXT_DIR / "ddx3x_splice.parquet",
+             "TP53": EXT_DIR / "tp53_splice_scored_12nt.parquet"}.get(gene)
+    top = 50
+    if depth is not None and depth.exists():
+        col = "intron_offset_abs" if gene == "DDX3X" else "intron_offset"
+        top = int(pd.read_parquet(depth, columns=[col])[col].abs().max())
+    lo, hi = {"s3_10": (3, 10), "s11_50": (11, 50), "s3_50": (3, 50)}[stratum]
+    hi = min(hi, top)
+    return f"{lo}–{hi} bp"
 
 
 def _style() -> None:
@@ -108,6 +129,10 @@ def _style() -> None:
         "axes.spines.top": False, "axes.spines.right": False,
         "pdf.fonttype": 42, "svg.hashsalt": "evidence",
         "legend.frameon": False,
+        # mathtext is used only for italic gene symbols, whose digits mathtext
+        # sets in its roman face; that face is therefore Arial italic too
+        "mathtext.fontset": "custom", "mathtext.rm": "Arial:italic",
+        "mathtext.it": "Arial:italic", "mathtext.bf": "Arial:bold",
     })
 
 
@@ -131,8 +156,12 @@ def _tier_lines(ax, cuts, ymax_frac: float = 1.0, label: bool = True,
         if vertical:
             ax.axvline(v, color=MUTED, lw=0.6, ls=(0, (1.5, 1.5)), zorder=0)
             if label:
+                # Supporting and Moderate sit close on a log axis, so the one
+                # nearer to 1 is labelled on its far side from the other
+                away = (name == "Supporting") if v > 1 else (name == "Moderate")
                 ax.text(v, 1.0, name, transform=ax.get_xaxis_transform(), fontsize=6,
-                        color=INK2, ha="left", va="bottom", rotation=0)
+                        color=INK2, ha="right" if away else "left",
+                        va="bottom", rotation=0)
         else:
             ax.axhline(v, color=MUTED, lw=0.6, ls=(0, (1.5, 1.5)), zorder=0)
             if label:
@@ -155,9 +184,7 @@ def figure1() -> None:
     d = pd.read_csv(FIG_DATA / "fig1_walker_cutpoints.csv")
     seven = d[(d.source == "seven_genes") & (d.gene == "seven_genes")]
     ext = d[(d.source == "external")
-            & ((d.gene == "DDX3X") | ((d.gene == "TP53")
-                                      & (d.label_definition == "y_control_anchored")
-                                      & (d.stratum == "s3_10")))]
+            & (d.label_definition == d.gene.map(PRIMARY_LABEL))]
 
     rows = []           # (y, label, group header or None, record)
     y = 0.0
@@ -168,19 +195,21 @@ def figure1() -> None:
             if len(r):
                 rows.append((y, ARM_LABEL[arm], None, r.iloc[0])); y += 1
         y += 0.4
-    rows.append((y, None, "DDX3X, all variants", None)); y += 1
-    for st in STRATA:
-        for ld in ("y_control_anchored", "y_fdr"):
-            r = ext[(ext.gene == "DDX3X") & (ext.stratum == st) & (ext.label_definition == ld)]
-            if len(r):
-                short = "control-anchored" if ld == "y_control_anchored" else "FDR"
-                rows.append((y, f"{STRATUM_LABEL[st]}, {short}", None, r.iloc[0])); y += 1
-    y += 0.4
-    rows.append((y, None, "TP53, all variants", None)); y += 1
-    r = ext[ext.gene == "TP53"]
-    if len(r):
-        rows.append((y, "3–10 bp, control-anchored", None, r.iloc[0])); y += 1
-    ymax = y
+    for gene, lab in (("DDX3X", "deposit classification"),
+                      ("TP53", "control-anchored labels")):
+        g = ext[ext.gene == gene]
+        if not len(g):
+            continue
+        rows.append((y, None, f"{_it(gene)}, {lab}", None)); y += 1
+        # TP53 reaches twelve nucleotides, so beyond the proximal band it holds too
+        # few variants for a tier and is reported by count only (Table S12)
+        for st in (STRATA if gene == "DDX3X" else ["s3_10"]):
+            r = g[g.stratum == st]
+            # a band needs ten labelled variants on each side to carry a ratio
+            if len(r) and np.isfinite(r.iloc[0]["lr_pp3"]):
+                rows.append((y, _band_label(gene, st), None, r.iloc[0])); y += 1
+        y += 0.4
+    ymax = y - 0.4
 
     fig, axes = plt.subplots(1, 2, figsize=(DOUBLE, 118 * MM), sharey=True,
                              gridspec_kw={"wspace": 0.08})
@@ -197,8 +226,7 @@ def figure1() -> None:
                 continue
             arm = rec["arm"] if rec["source"] == "seven_genes" else "all"
             colour = ARM_COLOUR.get(arm, INK) if rec["source"] == "seven_genes" else INK2
-            filled = (rec["source"] == "seven_genes"
-                      or LABEL_FILLED.get(rec["label_definition"], True))
+            filled = True
             v = rec[col]
             if not np.isfinite(v):
                 continue
@@ -228,11 +256,8 @@ def figure1() -> None:
                      fontsize=7, fontweight="bold", color=INK, va="center", ha="left")
     handles = [Line2D([], [], marker="o", ls="", color=ARM_COLOUR[a], mec="white",
                       label=ARM_LABEL[a], ms=4.5) for a in ARMS]
-    handles += [Line2D([], [], marker="D", ls="", color=INK2,
-                       mfc=INK2 if LABEL_FILLED[k] else "white",
-                       mec="white" if LABEL_FILLED[k] else INK2,
-                       label=f"External gene, {v.replace('Control', 'control')}", ms=4)
-                for k, v in LABEL_DEF.items()]
+    handles += [Line2D([], [], marker="D", ls="-", lw=1.0, color=INK2, mec="white",
+                       label="External gene (variant-level interval)", ms=4)]
     if any(rec is not None and (rec["lr_pp3"] == 0 or rec["lr_le01"] == 0)
            for _, _, _, rec in rows):
         handles += [Line2D([], [], marker="o", ls="", mfc="white", mec=INK2,
@@ -308,7 +333,7 @@ def figure2() -> None:
                             va={"Supporting": "top", "Moderate": "bottom"}.get(name, "center"))
     handles = [Line2D([], [], color=BLUE, lw=1.0, label="Local likelihood ratio"),
                matplotlib.patches.Patch(color=BLUE, alpha=0.18, lw=0,
-                                        label="95% interval, gene-clustered bootstrap"),
+                                        label="5th to 95th percentile, gene-clustered bootstrap"),
                Line2D([], [], color=INK2, lw=0.7, ls=(0, (3, 1.5)),
                       label="Fitted Moderate threshold"),
                Line2D([], [], color=INK2, lw=0.7, label="Fitted Strong threshold"),
@@ -365,13 +390,15 @@ def figure3() -> None:
                 reached = len(thr[(thr.tool == c) & (thr.stratum == st) & (thr.tier == tier)])
                 if not reached:
                     ax.text(floor * 1.15, yy, "not reached in-sample", fontsize=5.5,
-                            color=MUTED, va="center")
+                            color=MUTED, va="center", zorder=5,
+                            bbox=dict(facecolor="white", edgecolor="none", pad=0.4))
                     continue
                 v = f[(f.tool == c) & (f.stratum == st) & (f.tier == tier)]["heldout_lr"]
                 v = v[np.isfinite(v)].to_numpy()
                 if not len(v):
                     ax.text(floor * 1.15, yy, "no evaluable fold", fontsize=5.5,
-                            color=MUTED, va="center")
+                            color=MUTED, va="center", zorder=5,
+                            bbox=dict(facecolor="white", edgecolor="none", pad=0.4))
                     continue
                 jitter = (np.arange(len(v)) - (len(v) - 1) / 2) * 0.09
                 above = v >= cut
@@ -406,9 +433,9 @@ def figure3() -> None:
                  f"threshold (dotted line: {tname} boundary, {cut:g})",
                  transform=mid.transAxes, ha="center", va="top", fontsize=7)
     handles = [Line2D([], [], marker="o", ls="", color=BLUE, mec="white", ms=4,
-                      label="Held-out gene, ratio clears the cut"),
+                      label="Held-out gene, ratio clears the boundary"),
                Line2D([], [], marker="o", ls="", mfc="white", mec=BLUE, ms=4,
-                      label="Held-out gene, ratio below the cut"),
+                      label="Held-out gene, ratio below the boundary"),
                Line2D([], [], color=INK, lw=1.0, label="Median across held-out genes")]
     if any_zero:
         handles.insert(2, Line2D([], [], marker="o", ls="", mfc="white", mec=INK2, ms=4,
@@ -426,25 +453,23 @@ def figure4() -> None:
     d = pd.read_csv(FIG_DATA / "fig4_external.csv")
     basis = {g: pd.read_csv(REPORT_DIR / f"external_{g.lower()}_column_basis.csv")
              for g in ("DDX3X", "TP53")}
-    marks = {"walker": ("o", "Published cut point (0.2)"),
+    marks = {"walker": ("o", "Published cut point, 0.2 (SpliceAI, published basis)"),
              "moderate": ("s", "Fitted Moderate threshold"),
              "strong": ("^", "Fitted Strong threshold")}
     cols = ["spliceai_walker", "spliceai", "pangolin", "alphagenome", "avi",
             "avi_splice_sites", "avi_splice_site_usage", "avi_splice_junctions"]
-    panels = [("DDX3X", st, ["y_control_anchored", "y_fdr"]) for st in STRATA]
-    panels.append(("TP53", "s3_10", ["y_control_anchored"]))
+    panels = [("DDX3X", st) for st in STRATA] + [("TP53", "s3_10")]
     floor, ceil = 0.8, 300
-    fig, axes = plt.subplots(2, 2, figsize=(DOUBLE, 150 * MM), sharey=True,
-                             gridspec_kw={"wspace": 0.06, "hspace": 0.42})
+    fig, axes = plt.subplots(2, 2, figsize=(DOUBLE, 158 * MM), sharey=True,
+                             gridspec_kw={"wspace": 0.06, "hspace": 0.5})
     ypos = {c: i for i, c in enumerate(cols)}
-    for ax, (gene, st, lds), letter in zip(axes.ravel(), panels, "abcd"):
-        sub = d[(d.gene == gene) & (d.stratum == st) & d.label_definition.isin(lds)]
+    offsets = {"walker": -0.27, "moderate": 0.0, "strong": 0.27}
+    for ax, (gene, st), letter in zip(axes.ravel(), panels, "abcd"):
+        sub = d[(d.gene == gene) & (d.stratum == st)
+                & (d.label_definition == PRIMARY_LABEL[gene])]
         ax.set_xscale("log")
         ax.set_xlim(floor, ceil)
-        for name, v in PATH_CUTS:
-            ax.axvline(v, color=MUTED, lw=0.6, ls=(0, (1.5, 1.5)), zorder=0)
-            ax.text(v * 1.06, -0.45, name, fontsize=5.8, color=INK2, rotation=90,
-                    ha="left", va="top")
+        _tier_lines(ax, PATH_CUTS)
         for k in range(len(cols)):
             if k % 2 == 0:
                 ax.axhspan(k - 0.5, k + 0.5, color=BAND, zorder=-1, lw=0)
@@ -453,49 +478,51 @@ def figure4() -> None:
             r = sub[sub.tool == c]
             if not len(r) or not bool(r.column_basis_comparable.iloc[0]):
                 if c in b.index and not bool(b.loc[c, "comparable"]):
-                    note = "excluded by the column-basis check"
-                elif gene == "TP53" and c.startswith("avi"):
-                    note = "not evaluated in this gene"
+                    note = "excluded: a different variable in this gene"
                 else:
                     note = "not scored in this gene"
                 ax.text(ceil / 1.1, ypos[c], note, fontsize=5.6, color=MUTED,
                         ha="right", va="center")
                 continue
-            for li, ld in enumerate(lds):
-                rr = r[r.label_definition == ld]
-                if not len(rr):
-                    continue
-                dy = (li - (len(lds) - 1) / 2) * 0.28
-                filled = LABEL_FILLED[ld]
-                style = dict(ls="", ms=4.4, color=BLUE, mfc=BLUE if filled else "white",
-                             mec="white" if filled else BLUE, mew=0.4 if filled else 0.9,
-                             zorder=3)
-                w = rr.iloc[0]["lr_at_walker_cut"]
-                if np.isfinite(w):
-                    ax.plot(w, ypos[c] + dy, marker=marks["walker"][0], **style)
-                for tier in ("moderate", "strong"):
-                    t = rr[rr.tier == tier]
-                    if len(t) and np.isfinite(t.iloc[0]["lr_at_logo_threshold"]):
-                        ax.plot(t.iloc[0]["lr_at_logo_threshold"], ypos[c] + dy,
-                                marker=marks[tier][0], **style)
-        ax.set_title(f"{gene}, {STRATUM_LABEL[st]}", fontweight="bold", loc="left")
+            colour = MUTED if (gene, c) in NOT_EXTERNAL else BLUE
+            style = dict(ls="", ms=4.4, color=colour, mec="white", mew=0.4, zorder=3)
+            def draw(key, v, lo, hi):
+                if not np.isfinite(v):
+                    return
+                yy = ypos[c] + offsets[key]
+                if np.isfinite(lo) and np.isfinite(hi):
+                    ax.plot([max(lo, floor), min(hi, ceil)], [yy, yy], color=colour,
+                            lw=0.8, solid_capstyle="butt", zorder=2)
+                ax.plot(min(max(v, floor), ceil), yy, marker=marks[key][0], **style)
+            if c == "spliceai_walker":
+                w = r.iloc[0]
+                draw("walker", w["lr_at_walker_cut"], w.get("lr_at_walker_cut_lo", np.nan),
+                     w.get("lr_at_walker_cut_hi", np.nan))
+            for tier in ("moderate", "strong"):
+                t = r[r.tier == tier]
+                if len(t):
+                    t = t.iloc[0]
+                    draw(tier, t["lr_at_logo_threshold"],
+                         t.get("lr_at_logo_threshold_lo", np.nan),
+                         t.get("lr_at_logo_threshold_hi", np.nan))
+        lab = "deposit classification" if gene == "DDX3X" else "control-anchored labels"
+        ax.set_title(f"{_it(gene)}, {_band_label(gene, st)}, {lab}", loc="left", pad=11)
         ax.set_xlabel("Likelihood ratio in the external gene")
         _logfmt(ax)
         ax.tick_params(axis="y", length=0)
         _panel_letter(ax, letter, x=-0.02 if letter in "bd" else -0.45)
+    ylabels = [NAME[c] + (" †" if c == "avi" else "") for c in cols]
     axes[0, 0].set_yticks(range(len(cols)))
-    axes[0, 0].set_yticklabels([NAME[c] for c in cols])
+    axes[0, 0].set_yticklabels(ylabels)
     axes[0, 0].set_ylim(len(cols) - 0.5, -0.5)
-    axes[1, 0].set_yticklabels([NAME[c] for c in cols])
-    handles = [Line2D([], [], marker=m, ls="", color=INK2, mec="white", ms=4.4, label=lab)
-               for m, lab in marks.values()]
-    handles += [matplotlib.patches.Patch(facecolor=BLUE, edgecolor=BLUE,
-                                         label="Filled: control-anchored labels"),
-                matplotlib.patches.Patch(facecolor="white", edgecolor=BLUE, lw=0.9,
-                                         label="Open: FDR labels")]
-    fig.legend(handles=handles, loc="lower center", ncol=3, bbox_to_anchor=(0.58, 0.0),
-               handlelength=1.0)
-    fig.subplots_adjust(left=0.19, right=0.98, top=0.95, bottom=0.14)
+    axes[1, 0].set_yticklabels(ylabels)
+    handles = [Line2D([], [], marker=m, ls="-", lw=0.8, color=BLUE, mec="white", ms=4.4,
+                      label=lab) for m, lab in marks.values()]
+    handles += [Line2D([], [], marker="s", ls="", color=MUTED, mec="white", ms=4.4,
+                       label=f"† Grey in {_it('DDX3X')}: model selected on this assay")]
+    fig.legend(handles=handles, loc="lower center", ncol=2, bbox_to_anchor=(0.58, 0.0),
+               handlelength=1.6)
+    fig.subplots_adjust(left=0.19, right=0.98, top=0.93, bottom=0.15)
     _save(fig, "figure4")
 
 
@@ -506,8 +533,9 @@ def figure_s3() -> None:
     a = pd.read_csv(REPORT_DIR / "territory_metrics_arms_noBRCA1.csv")
     a = a[a.status == "ok"]
     pools = [("s3_50", "all_genes", "3–50 bp, seven genes"),
-             ("s3_50", "no_BRCA1", "3–50 bp, without BRCA1"),
-             ("all_1_50", "all_genes", "1–50 bp including ±1,2 (out of scope)")]
+             ("s3_50", "no_BRCA1", f"3–50 bp, without {_it('BRCA1')}"),
+             ("all_1_50", "all_genes", "1–50 bp, including the canonical\n"
+                                       "dinucleotides (out of scope)")]
     fig, axes = plt.subplots(1, 3, figsize=(DOUBLE, 95 * MM), sharey=True,
                              gridspec_kw={"wspace": 0.14})
     arms = ["classified", "recorded_unclassified", "unrecorded"]

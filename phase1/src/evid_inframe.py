@@ -29,9 +29,9 @@ maximum score, so its gain/loss values and their positions are re-scored for the
 same kind of subset (`src/evid_score_pangolin_events.py`). Its output is coarser
 than SpliceAI's: one gain and one loss per transcript record rather than four typed
 events, so a predicted loss cannot be read as donor-side or acceptor-side from the
-score alone and is matched against both boundary sets. On the external gene Pangolin
-is not covered at all -- its gffutils database covers the frozen genes' chromosomes
-only.
+score alone and is matched against both boundary sets. On DDX3X, Pangolin's events
+are read on the false-positive subset SpliceAI defines rather than on Pangolin's own,
+so its DDX3X rows describe SpliceAI's false positives.
 
 Run (PYTHONPATH=phase1):  python -m src.evid_inframe --subset   # write the variant list
                           python -m src.evid_inframe --attribute
@@ -82,7 +82,11 @@ EXTERNAL = {
     "ddx3x": {
         "scored": EVID_DIR / "external/ddx3x_scored.parquet",
         "labels": EVID_DIR / "external/ddx3x_splice.parquet",
-        "label_cols": ["y_control_anchored", "y_fdr"],
+        # primary first: the deposit's own call, then the sensitivity labels
+        # (evid_external.DDX3X_LABELS); the subset is their union so the event
+        # table serves every label, and each is summarised on its own
+        "label_cols": ["y_deposit", "y_control_anchored_gated",
+                       "y_control_anchored", "y_fdr"],
         "spliceai_col": "spliceai_walker",
         "fasta": EVID_DIR / "refs/chrX.fa",
         "events": EVID_DIR / "external/ddx3x_inframe_events.parquet",
@@ -93,13 +97,13 @@ EXTERNAL = {
         # TP53's columns come from the published study's frozen matrix, so its
         # SpliceAI value is the distance-50 one unless the Walker-basis column has
         # been merged; whichever is present is used and recorded in the subset.
-        "scored": Path("data/external/tp53_splice_scored_v2.parquet"),
-        "labels": Path("data/external/tp53_splice_scored_v2.parquet"),
+        "scored": EVID_DIR / "external/tp53_splice_scored_12nt.parquet",
+        "labels": EVID_DIR / "external/tp53_splice_scored_12nt.parquet",
         "label_cols": ["y_tp53_control_anchored"],
         "spliceai_col": "spliceai_walker",
         "fasta": None,          # chr17 is in the atlas subset fasta
-        "events": EVID_DIR / "external/tp53_inframe_events.parquet",
-        "subset": EVID_DIR / "external/tp53_inframe_subset.parquet",
+        "events": EVID_DIR / "external/tp53_inframe_events_12nt.parquet",
+        "subset": EVID_DIR / "external/tp53_inframe_subset_12nt.parquet",
         "pangolin_events": EVID_DIR / "external/tp53_pangolin.parquet",
     },
 }
@@ -340,9 +344,10 @@ def attribute() -> None:
 
 def external_subset(gene: str) -> None:
     """The external gene's false positives: its own score over the cut point, its
-    own assay calling the variant normal. A variant is taken when EITHER label
-    definition calls it normal and the tool calls it, and the definition is carried
-    so the attribution can be read either way."""
+    own assay calling the variant normal. The subset is the union over the gene's
+    label definitions, so one event table serves all of them, and every label is
+    carried so the attribution is summarised per definition (attribute_external)
+    rather than for the union, which would mix definitions that disagree."""
     cfg = yaml.safe_load(CONFIG_PATH.read_text())
     pp3 = cfg["thresholds"]["pp3"]["value"]
     spec = EXTERNAL[gene]
@@ -360,7 +365,9 @@ def external_subset(gene: str) -> None:
         df["y_tp53_control_anchored"] = (
             df["func_pathogenicity"].to_numpy(dtype=float) > 0).astype(float)
         w = EVID_DIR / "external/tp53_spliceai_walker.parquet"
-        if w.exists():
+        if "spliceai_walker" in df.columns:
+            pass            # the extended table carries the column itself
+        elif w.exists():
             ww = pd.read_parquet(w)
             df = df.merge(ww[["variant_id", "spliceai_walker"]],
                           on="variant_id", how="left")
@@ -376,7 +383,8 @@ def external_subset(gene: str) -> None:
             col, "score_column"] + spec["label_cols"]
     sub[[k for k in keep if k in sub.columns]].to_parquet(spec["subset"], index=False)
     print(f"[E2.7] {gene.upper()}: {len(sub):,} variants over {pp3} on `{col}` and "
-          f"called normal by at least one label definition")
+          f"called normal by at least one label definition (the union; each "
+          f"definition is summarised separately)")
     print(sub.groupby("stratum", observed=True).size().to_string())
     print(f"     wrote {spec['subset']}")
     print("\n[E2.7] next, in the SpliceAI environment:")
@@ -408,23 +416,38 @@ def attribute_external(gene: str) -> None:
         raise SystemExit(f"[E2.7] {gene}: no event table -- see --external-subset")
     out = pd.concat(parts, ignore_index=True)
     out["gene_set"] = gene.upper()
+    labs = pd.read_parquet(spec["subset"])
+    labs = labs[["variant_id"] + [c for c in spec["label_cols"] if c in labs.columns]]
+    out = out.merge(labs, on="variant_id", how="left")
     path = REPORT_DIR / f"inframe_attribution_{gene}.csv"
     keep = ["tool", "gene_set", "variant_id", "gene", "stratum", "event",
             "dominant_score", "event_position", "dp", "exon_length", "shift",
-            "frame", "reason"]
+            "frame", "reason"] + list(spec["label_cols"])
     out[[c for c in keep if c in out.columns]].to_csv(path, index=False)
-    summary = (out.groupby(["tool", "stratum", "frame"], observed=True).size()
-                  .unstack(fill_value=0))
-    for c in ("in_frame", "out_of_frame", "undetermined"):
-        if c not in summary:
-            summary[c] = 0
-    summary["n"] = summary.sum(axis=1)
-    summary["in_frame_share"] = (summary["in_frame"] / summary["n"]).round(4)
-    summary["resolved_in_frame_share"] = (
-        summary["in_frame"] / (summary["in_frame"] + summary["out_of_frame"])).round(4)
-    summary.to_csv(REPORT_DIR / f"inframe_attribution_{gene}_summary.csv")
+    # one summary block per label definition: a false positive is a variant that
+    # definition calls normal, so the definitions are never pooled
+    parts = []
+    for lab in spec["label_cols"]:
+        if lab not in out.columns:
+            continue
+        o = out[out[lab] == 0]
+        sm = (o.groupby(["tool", "stratum", "frame"], observed=True).size()
+                .unstack(fill_value=0))
+        for c in ("in_frame", "out_of_frame", "undetermined"):
+            if c not in sm:
+                sm[c] = 0
+        sm = sm[["in_frame", "out_of_frame", "undetermined"]]
+        sm["n"] = sm.sum(axis=1)
+        sm["in_frame_share"] = (sm["in_frame"] / sm["n"]).round(4)
+        sm["resolved_in_frame_share"] = (
+            sm["in_frame"] / (sm["in_frame"] + sm["out_of_frame"])).round(4)
+        sm = sm.reset_index()
+        sm.insert(0, "label_definition", lab)
+        parts.append(sm)
+    summary = pd.concat(parts, ignore_index=True)
+    summary.to_csv(REPORT_DIR / f"inframe_attribution_{gene}_summary.csv", index=False)
     print(f"[E2.7] wrote {path} ({len(out)} variants)\n")
-    print(summary.to_string())
+    print(summary.to_string(index=False))
 
 
 def main() -> None:

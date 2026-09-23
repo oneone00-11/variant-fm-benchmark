@@ -1,0 +1,44 @@
+{
+  "tool": "Pangolin",
+  "version": "1.0.2 (git 5cf94b8db938c658391b4305cd7ce33297d44ff7)",
+  "configuration": {
+    "distance": 50,
+    "mask": "True (default)",
+    "score_cutoff": null,
+    "score_exons": "False",
+    "score_definition": "max(splice gain, |splice loss|) over transcript records"
+  },
+  "scorer": "scripts/phase4b_score_pinned.py::score_pangolin",
+  "n": 120,
+  "n_scored": {
+    "pangolin_fullprec": 120
+  },
+  "input": "phase1/data/evidence/external/tp53_12nt_score_input.parquet",
+  "input_sha256": "58c1802b11638e1836fa93618e74cd2e553865cb9ff73bb5df732ae784329661",
+  "sha256": "6761715d816f9a8fd867ad22fdda77bdfb2c54745504c0a404a8154cdfa642b2",
+  "scored_utc": "2026-09-23T11:04:14+00:00",
+  "runtime_seconds": 348.8,
+  "python": "3.12.14",
+  "interpreter": "/Users/cliffzhang/Documents/kimi/workspace/functional-standard-atlas/models/pangolin/.venv/bin/python",
+  "scorer_record": {
+    "tool": "Pangolin",
+    "tool_version": "1.0.2",
+    "git_commit": "5cf94b8db938c658391b4305cd7ce33297d44ff7",
+    "torch": "2.13.0",
+    "gffutils": "0.14",
+    "parameters": {
+      "distance": 50,
+      "mask": "True (default)",
+      "score_cutoff": null,
+      "score_exons": "False",
+      "score_definition": "max(splice gain, |splice loss|) over transcript records"
+    },
+    "precision": "full float (round(...,2) formatting removed by score_fullprec.build_fullprec)",
+    "reference_fasta": "/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.fa",
+    "reference_fasta_sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811",
+    "annotation_db": "/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+    "annotation_db_sha256": "4e01b083fe56f890c5d08fd933c53f6e86f9196fd88a26398c7a0ac4b7f3fc0b",
+    "scorer_module": "/Users/cliffzhang/work/functional-standard-atlas/models/pangolin/score_fullprec.py",
+    "scorer_module_sha256": "1e65b2fe82776fb5830f8f397a73979f01c8e9f7b6a629ec291a91ee4d217e40"
+  }
+}

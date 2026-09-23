@@ -21,7 +21,8 @@ PHASE1 = Path(__file__).resolve().parents[1]
 DATA = PHASE1 / "data/evidence"
 REPORTS = PHASE1 / "reports/evidence"
 ATLAS_REPO = Path(os.environ.get(
-    "EVID_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
+    "EVID_ATLAS_REPO",
+    str(Path(__file__).resolve().parents[2].parent / "functional-standard-atlas")))
 if str(PHASE1) not in sys.path:
     sys.path.insert(0, str(PHASE1))
 SET = DATA / "analysis_set_v1.parquet"

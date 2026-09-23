@@ -76,3 +76,40 @@ point for the two SpliceAI columns only.
   the fitted value; AlphaGenome's sit just under its ceiling of 2.2.
 - The companion atlas is located through `evid_common.ATLAS_REPO`, defaulting to a
   checkout beside this repository.
+
+## Round 4 (2026-09-23)
+
+Changes that alter results, each with the reason:
+
+- **DDX3X labels.** The deposit does publish a per-variant classification, in a
+  separate score set (urn:mavedb:00000658-0-1), a random-forest call on the assay's
+  fold-changes; it is now the primary label, as the seven genes use their deposits'
+  own classifications. The control-anchored label is kept as a sensitivity label,
+  ungated and gated: in score set q-1 (the final exon) the nonsense controls are not
+  depleted (control AUROC 0.51), and that set supplied 37 of the label's 71 in-scope
+  damaging calls. The earlier finding that the Strong thresholds did not transfer to
+  DDX3X came from that set.
+- **External intervals.** Every external likelihood ratio now carries a
+  variant-level bootstrap interval within the gene and the damaging and normal counts
+  in its band, and a tier is reported from the lower bound as well as the point
+  estimate (`evid_external._band_detail`).
+- **TP53 to |offset| 12.** The archived TP53 table stopped at 8 because of the
+  earlier study's splice-window constant; `src/evid_tp53_extend.py` scores the 96
+  deposited SNVs at offsets 9-12 with the same scorers and carries the 192 archived
+  rows unchanged. It runs offline from cached scores as a stage of the entry point.
+- **Fusion without the AlphaGenome splice score.** The AlphaGenome terms of service
+  bar the use of its outputs to train other models (LICENSE-DATA), so the elastic net
+  is refitted on the other seven panel columns (`evid_common.FUSION_FEATURES`). The
+  single-column thresholds were rerun with it and came back identical.
+- **Atlas combined score provenance.** It is a supervised model trained on gnomAD
+  allele frequency, with AlphaMissense and conservation inputs, whose checkpoint was
+  selected on four saturation genome editing datasets including the BRCA1, RAD51C and
+  DDX3X assays used here. Its provenance row is corrected, and Table 3 counts its
+  held-out folds over the other five genes.
+- **Walker configuration.** `config/walker2023.yaml` now records the applied weight
+  (Supporting, p. 1056) beside the calibrated strength (Moderate, p. 1051), and the
+  BRCA1 check at a score of 0.5 (p. 1055); an earlier note told readers not to carry
+  "supporting", which was wrong.
+- New outputs: `depth_counts.csv` (labelled and damaging variants by intronic depth),
+  terms-of-use columns in `predictor_training_provenance.csv` and Table 2, and an
+  in-scope split in `clinvar_arm_no_assertion.csv`.

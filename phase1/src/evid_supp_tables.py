@@ -88,8 +88,8 @@ SET_PATH = PHASE1 / "data/evidence/analysis_set_v1.parquet"
 SET_MANIFEST = PHASE1 / "data/evidence/analysis_set_v1.manifest.json"
 DDX3X_PARQUET = PHASE1 / "data/evidence/external/ddx3x_splice.parquet"
 DDX3X_MANIFEST = PHASE1 / "data/evidence/external/ddx3x_splice.manifest.json"
-TP53_PARQUET = PHASE1 / "data/external/tp53_splice_scored_v2.parquet"
-TP53_MANIFEST = PHASE1 / "data/external/tp53_splice_scored_v2.manifest.json"
+TP53_PARQUET = PHASE1 / "data/evidence/external/tp53_splice_scored_12nt.parquet"
+TP53_MANIFEST = PHASE1 / "data/evidence/external/tp53_splice_scored_12nt.manifest.json"
 TP53_DEPOSIT = REPO / "data/external/tp53_mavedb_scores.tsv"
 WALKER_CFG = PHASE1 / "config/walker2023.yaml"
 WALKER_PROV = PHASE1 / "data/evidence/spliceai_walker.parquet.provenance.json"
@@ -103,9 +103,21 @@ SEVEN = ["BAP1", "BARD1", "BRCA1", "BRCA2", "PALB2", "RAD51C", "VHL"]
 EXTERNAL = ["DDX3X", "TP53"]
 # Short names of the assay publications, as the manuscript cites them.
 PUBLICATION = {
-    "BRCA1": "Findlay 2018", "BRCA2": "Huang 2025", "BARD1": "Woo 2025",
-    "PALB2": "Boonen 2026", "RAD51C": "Olvera-Leon 2024", "VHL": "Buckley 2024",
+    "BRCA1": "Findlay 2018", "BRCA2": "Huang 2025", "BARD1": "Woo 2025 (preprint)",
+    # the PALB2 deposit carries no linked publication; its depositors' laboratory
+    # describes PALB2 saturation genome editing in this preprint
+    "PALB2": "Tejura 2026 (preprint)", "RAD51C": "Olvera-León 2024", "VHL": "Buckley 2024",
     "BAP1": "Waters 2024", "DDX3X": "Radford 2023", "TP53": "Funk 2025",
+}
+
+# Version history of the analysed MaveDB score sets, checked against the MaveDB API
+# on 2026-09-23; a superseded score set stays retrievable under its own accession.
+VERSION_NOTE = {
+    "BARD1": ("Superseded on 11 September 2026 by urn:mavedb:00001250-a-3, which "
+              "revises the scores and does not yet carry the investigator-provided "
+              "classes; the analysed version remains retrievable under its accession"),
+    "PALB2": ("Supersedes urn:mavedb:00001259-a-1, the version analysed in Tejura 2026, "
+              "with more variants; the deposit carries no linked publication"),
 }
 
 TOOLS = K.PANEL + K.OPTIONAL
@@ -117,22 +129,28 @@ STRICT_ARMS = ["classified", "recorded_unclassified", "recorded_no_assertion",
 WALKER_TOOLS = ("spliceai", "spliceai_walker")
 
 STRATUM_LABEL = {
-    "pm12": "±1,2 (out of scope)", "s3_10": "3–10", "s11_50": "11–50",
-    "s3_50": "3–50", "all_1_50": "1–50 incl. ±1,2, out of scope",
+    "pm12": "Canonical dinucleotides (out of scope)", "s3_10": "3–10",
+    "s11_50": "11–50", "s3_50": "3–50",
+    "all_1_50": "1–50 including the canonical dinucleotides (out of scope)",
 }
+# the same arm names as the main text, tables and figures
 ARM_LABEL = {
     "all": "All variants", "classified": "Classified (P/LP or B/LB)",
-    "recorded_unclassified": "Recorded, not classified",
-    "unrecorded": "Not in ClinVar",
+    "recorded_unclassified": "Recorded, unclassified",
+    "unrecorded": "Unrecorded",
 }
 STRICT_ARM_LABEL = {
     "classified": "Classified (P/LP or B/LB)",
     "recorded_unclassified": "Recorded: VUS, conflicting or other",
     "recorded_no_assertion": "Recorded: no clinical assertion",
-    "unrecorded": "Not in ClinVar",
+    "unrecorded": "Unrecorded",
 }
-GENE_SET_LABEL = {"all_genes": "All genes", "no_BRCA1": "BRCA1 excluded"}
-LABEL_NAME = {"y_control_anchored": "Control-anchored", "y_fdr": "FDR",
+GENE_SET_LABEL = {"all_genes": "Seven genes", "no_BRCA1": "Without BRCA1"}
+LABEL_NAME = {"y_deposit": "Deposit classification",
+              "y_control_anchored_gated": "Control-anchored, gated",
+              "y_control_anchored": "Control-anchored", "y_fdr": "FDR",
+              # evid_inframe's name for TP53's control-anchored label
+              "y_tp53_control_anchored": "Control-anchored",
               "y_median_split": "Median split",
               "y_mid_band_excluded": "Mid-band excluded"}
 
@@ -369,23 +387,19 @@ def _distance_label(d: int) -> str:
 
 @lru_cache(maxsize=1)
 def tool_labels() -> dict:
-    """Printed name of every score column, built from the provenance sources."""
-    rows = _resource_rows()
+    """Printed name of every score column: the display names the main text uses."""
     cfg = _walker_cfg()
     walker = _json(WALKER_PROV)
     avi = _json(AVI_PROV)
-    lab = {}
-    for col, name in FROM_ATLAS.items():
-        lab[col] = rows[name]["predictor"]
-    d50 = int(cfg["column_check"]["atlas_definition"]["distance"])
-    lab["spliceai"] = f"SpliceAI ({_distance_label(d50)})"
-    lab["spliceai_walker"] = (f"SpliceAI ({_distance_label(int(walker['distance']))}, "
-                              "Walker basis)")
+    # the panel columns carry the names the main text, tables and figures use;
+    # versions, distances and scorer names belong to Table S3's configuration
+    # column, which reads them from the provenance files
+    from .evid_figures import NAME
+    lab = {c: NAME[c] for c in NAME}
+    if int(walker["distance"]) == int(cfg["column_check"]["atlas_definition"]["distance"]):
+        raise SystemExit("[supp] the two SpliceAI columns share a distance")
     if len(avi["columns"]) != len(avi["scorers_requested"]):
         raise SystemExit("[supp] AVI provenance: columns and scorers do not pair")
-    for col, scorer in zip(avi["columns"], avi["scorers_requested"]):
-        name = "AVI" if scorer == "AVI_SCORE" else scorer.replace("_", " ").lower()
-        lab[col] = f"AlphaGenome Atlas {name}"
     v = re.fullmatch(r"alphagenome_v(\d)(\d)(\d)", "alphagenome_v061")
     lab["alphagenome_v061"] = f"AlphaGenome (client {'.'.join(v.groups())} definition)"
     missing = [t for t in TOOLS if t not in lab]
@@ -489,11 +503,13 @@ def s1() -> tuple[pd.DataFrame, list[Path]]:
             "Damaging": str(dam), "Normal": str(nor), "Not labelled": str(n - lab),
             "Note": (f"Not labelled: {int(src.get('indeterminate', 0))} in a class "
                      f"mapped to missing, {int(src.get('unlabelled', 0))} absent from "
-                     "the label file"),
+                     "the label file"
+                     + (f". {VERSION_NOTE[g]}" if g in VERSION_NOTE else "")),
         })
 
-    # DDX3X: the deposit publishes scores only; both label definitions are built
-    # by evid_external's preparation step and recorded in its manifest
+    # DDX3X: the deposit's own classification is the primary label, as for the
+    # seven genes; the constructed labels built by evid_external's preparation step
+    # are sensitivity labels, all recorded in its manifest
     man = _json(DDX3X_MANIFEST)
     if _sha256(_need(DDX3X_PARQUET)) != man["sha256"]:
         raise SystemExit("[supp] ddx3x_splice.parquet does not match its manifest")
@@ -501,46 +517,59 @@ def s1() -> tuple[pd.DataFrame, list[Path]]:
     if f"< {EXT.FDR_CUT}" not in fdr_text:
         raise SystemExit("[supp] DDX3X manifest FDR cut differs from evid_external")
     d, dcols = _external_labels("DDX3X")
+    if dcols[0] != "y_deposit":
+        raise SystemExit("[supp] DDX3X primary label is not the deposit's call")
     ctrl = man["controls"]
     n_sets = len(man["score_sets"])
     if ctrl.get("n_scoresets_without_controls", 0):
         raise SystemExit("[supp] a DDX3X score set lacks controls; S1 wording assumes "
                          "every set is anchored on its own controls")
+    gated = ctrl["scoresets_gated_out"]
+    auroc = {u: v.get("control_auroc") for u, v in ctrl["per_scoreset"].items()}
     cnt = {c: _label_counts(d, c) for c in dcols}
-    miss = sum(v["missing"] for v in cnt.values())
     rows.append({
         "Gene": "DDX3X", "Role": "External gene",
         "Assay publication": PUBLICATION["DDX3X"],
-        "MaveDB accession": (f"{man['score_sets'][0]} to {man['score_sets'][-1]} "
-                             f"({n_sets} score sets)"),
+        "MaveDB accession": (f"{EXT.DDX3X_CLASSIFICATION_SCORESET} (classification); "
+                             f"{man['score_sets'][0]} to {man['score_sets'][-1]} "
+                             f"({n_sets} score sets, assay scores)"),
         "Transcript": man["transcript"],
-        "Published class field": "None published; labels constructed from the assay score",
+        "Published class field": EXT.DDX3X_CLASS_COLUMN,
         "Classes mapped to damaging": (
-            f"{LABEL_NAME['y_control_anchored']} (primary): score below the midpoint "
-            f"of the synonymous and nonsense control medians of its own score set, "
-            f"each of the {n_sets} sets anchored separately. "
-            f"{LABEL_NAME['y_fdr']}: trend BH-FDR < {EXT.FDR_CUT} and score below "
-            "the synonymous median"),
-        "Classes mapped to normal": "Every other scored variant, under each definition",
+            f"{LABEL_NAME['y_deposit']} (primary): abnormal, a random-forest call on "
+            "the assay's combined log fold-changes whose boundary was trained on "
+            "clinically classified variants"),
+        "Classes mapped to normal": f"{LABEL_NAME['y_deposit']}: normal",
         "Classes mapped to missing": (
-            "No variant: every scored variant is labelled under both definitions"
-            if miss == 0 else f"{miss} variants without a label"),
+            "No variant: every scored variant carries the deposit's call"
+            if cnt["y_deposit"]["missing"] == 0
+            else f"{cnt['y_deposit']['missing']} variants without the deposit's call"),
         "Intronic offset (bp)": _offsets(d["intron_offset_abs"]),
         "Intron-side SNVs": str(len(d)),
-        "Labelled": str(cnt["y_control_anchored"]["labelled"]),
-        "Damaging": str(cnt["y_control_anchored"]["damaging"]),
-        "Normal": str(cnt["y_control_anchored"]["normal"]),
-        "Not labelled": str(cnt["y_control_anchored"]["missing"]),
-        "Note": "Counts are for the primary definition. " + "; ".join(
-            f"{LABEL_NAME[c]}: {v['damaging']} damaging, {v['normal']} normal"
-            for c, v in cnt.items()) + f". {man['labels']['note'].capitalize()}.",
+        "Labelled": str(cnt["y_deposit"]["labelled"]),
+        "Damaging": str(cnt["y_deposit"]["damaging"]),
+        "Normal": str(cnt["y_deposit"]["normal"]),
+        "Not labelled": str(cnt["y_deposit"]["missing"]),
+        "Note": (
+            "Counts are for the primary label. Sensitivity labels, constructed from "
+            f"the assay score: {LABEL_NAME['y_control_anchored']}, score below the "
+            "midpoint of the synonymous and nonsense control medians of its own "
+            f"score set; {LABEL_NAME['y_control_anchored_gated']}, the same in score "
+            f"sets whose controls separate (control AUROC ≥ {EXT.CONTROL_GATE}), which "
+            + ("excludes " + ", ".join(
+                f"{u} (AUROC {fmt_sig(auroc[u], 2)})" for u in gated) if gated
+               else "excludes none")
+            + f"; {LABEL_NAME['y_fdr']}, trend BH-FDR < {EXT.FDR_CUT} and score below "
+            "the synonymous median. " + "; ".join(
+                f"{LABEL_NAME[c]}: {v['damaging']} damaging, {v['normal']} normal"
+                for c, v in cnt.items()) + "."),
     })
 
     # TP53: the published study's constructions, carried unchanged by evid_external
     tman = _json(TP53_MANIFEST)
     t, tcols = _external_labels("TP53")
     if canonical_sha256(pd.read_parquet(TP53_PARQUET)) != tman["sha256"]:
-        raise SystemExit("[supp] tp53_splice_scored_v2.parquet does not match its "
+        raise SystemExit(f"[supp] {TP53_PARQUET.name} does not match its "
                          "manifest's content hash")
     rules = _tp53_rules()
     med = _check_tp53_rules(t, rules)
@@ -634,7 +663,7 @@ def s2() -> tuple[pd.DataFrame, list[Path]]:
                                 by_arm.loc[arm]))
         rows.append(row(STRATUM_LABEL[st], "All genes", ARM_LABEL["all"], s[cols].sum()))
     for pool, keep, label in (("s3_50", lambda x: x != "pm12", STRATUM_LABEL["s3_50"]),
-                              ("all_1_50", lambda x: True, "1–50 incl. ±1,2 (out of scope)")):
+                              ("all_1_50", lambda x: True, "1–50 including the canonical dinucleotides (out of scope)")):
         s = sc[sc["stratum"].map(keep)]
         by_arm = s.groupby("clinvar_arm_strict")[cols].sum()
         for arm in STRICT_ARMS:
@@ -777,6 +806,8 @@ def s3() -> tuple[pd.DataFrame, list[Path]]:
 # ---------------------------------------------------------------------------
 def s4() -> tuple[pd.DataFrame, list[Path]]:
     cc = _csv(REPORTS / "column_concordance.csv")
+    # the client 0.6.1 AlphaGenome definition plays no part in any reported result
+    cc = cc[(cc.column_a != "alphagenome_v061") & (cc.column_b != "alphagenome_v061")]
     rows = []
     for r in cc.itertuples():
         has_cut = _finite(r.cut_point)
@@ -810,10 +841,10 @@ def s5() -> tuple[pd.DataFrame, list[Path]]:
         ok = r.status == "ok"
         notes = []
         if r.stratum == "pm12":
-            notes.append(f"Out of scope: the recommendation excludes ±1,2 variants, "
-                         f"which go through the {route}")
+            notes.append("Out of scope: the recommendation routes the canonical "
+                         f"dinucleotides to the {route}")
         elif r.stratum == "all_1_50":
-            notes.append("Out of scope: the pool includes the ±1,2 stratum")
+            notes.append("Out of scope: the pool includes the canonical dinucleotides")
         if not ok:
             notes.append(f"Not evaluable: {r.reason}")
         pp3_cell = bp4_cell = ""
@@ -1198,6 +1229,18 @@ def s11_summary() -> tuple[pd.DataFrame, list[Path]]:
 # ---------------------------------------------------------------------------
 # S12 -- external genes
 # ---------------------------------------------------------------------------
+def _ext_band(gene: str, st: str) -> str:
+    """The band label cut at the depth the external deposit reaches."""
+    d, _ = _external_labels(gene)
+    top = int(d["intron_offset_abs"].max())
+    lo, hi = {"s3_10": (3, 10), "s11_50": (11, 50), "s3_50": (3, 50)}[st]
+    return f"{lo}–{min(hi, top)}"
+
+
+def _counts_band(pos, neg) -> str:
+    return f"{fmt_int(pos)} / {fmt_int(neg)}" if _finite(pos) and _finite(neg) else ""
+
+
 def s12() -> tuple[pd.DataFrame, list[Path]]:
     pp3 = fmt_const(_walker_cfg()["thresholds"]["pp3"]["value"])
     fig = _csv(REPORTS / "fig_data/fig4_external.csv")
@@ -1224,34 +1267,51 @@ def s12() -> tuple[pd.DataFrame, list[Path]]:
                     if not ok:
                         notes.append(f"Not evaluable: {r.reason}")
                     row = {"Gene": gene, "Label definition": LABEL_NAME[lab],
-                           "Stratum (intronic offset, bp)": STRATUM_LABEL[st],
+                           "Stratum (intronic offset, bp)": _ext_band(gene, st),
                            "Tool": _tool(tool),
                            "Damaging": fmt_int(r.n_pos), "Normal": fmt_int(r.n_neg),
                            "Evaluated": yes_no(ok),
                            "Same variable as the fitted column": yes_no(comparable),
                            "Why not comparable": ("" if comparable or b is None
                                                   else _plain_reason(b.reason))}
-                    wl = f"LR at published cut point (≥ {pp3})"
-                    row[wl] = row["Tier at published cut point"] = ""
+                    wl = f"LR at published cut point (≥ {pp3}), 95% CI"
+                    wc = "At or above the cut point: damaging / normal"
+                    row[wl] = row[wc] = row["Tier at published cut point"] = ""
+                    row["Tier at the lower bound"] = ""
                     if ok and tool in WALKER_TOOLS:
-                        row[wl] = fmt_lr(r.walker_lr_pp3) if _finite(r.walker_lr_pp3) \
-                            else "not evaluable"
+                        row[wl] = (fmt_ci(r.walker_lr_pp3, r.get("walker_lr_pp3_lo"),
+                                          r.get("walker_lr_pp3_hi"))
+                                   if _finite(r.walker_lr_pp3) else "not evaluable")
+                        row[wc] = _counts_band(r.get("walker_pp3_n_pos_band"),
+                                               r.get("walker_pp3_n_neg_band"))
                         row["Tier at published cut point"] = tier_text(r.walker_tier_pp3)
+                        row["Tier at the lower bound"] = tier_text(
+                            r.get("walker_tier_pp3_at_bound"))
                     for tier in TIERS:
                         name = tier.capitalize()
-                        tcol, lcol, gcol = (f"{name}: threshold (median of leave-one-gene-out fits)",
-                                            f"{name}: LR in this gene",
-                                            f"{name}: tier reached")
-                        row[tcol] = row[lcol] = row[gcol] = ""
+                        tcol, lcol, ccol, gcol, bcol = (
+                            f"{name}: threshold (median of leave-one-gene-out fits)",
+                            f"{name}: LR in this gene, 95% CI",
+                            f"{name}: above the threshold, damaging / normal",
+                            f"{name}: tier reached",
+                            f"{name}: tier at the lower bound")
+                        row[tcol] = row[lcol] = row[ccol] = row[gcol] = row[bcol] = ""
                         if not (ok and comparable):
                             continue
                         thr = r.get(f"e3_{tier}_threshold")
                         lr = r.get(f"e3_{tier}_lr_here")
                         note = r.get(f"e3_{tier}_note")
                         row[tcol] = fmt_thr(thr, tool)
-                        row[lcol] = fmt_lr(lr) if _finite(lr) else (
-                            "not evaluable" if _finite(thr) else "")
+                        row[lcol] = (fmt_ci(lr, r.get(f"e3_{tier}_lr_lo"),
+                                            r.get(f"e3_{tier}_lr_hi"))
+                                     if _finite(lr) else (
+                                         "not evaluable" if _finite(thr) else ""))
+                        if _finite(thr):
+                            row[ccol] = _counts_band(r.get(f"e3_{tier}_n_pos_band"),
+                                                     r.get(f"e3_{tier}_n_neg_band"))
                         row[gcol] = tier_text(r.get(f"e3_{tier}_tier_here"))
+                        row[bcol] = (tier_text(r.get(f"e3_{tier}_tier_at_bound"))
+                                     if _finite(lr) else "")
                         if _text(note):
                             notes.append(f"{name}: {note}")
                         # the figure table is built from this file; it must agree
@@ -1281,52 +1341,56 @@ def s12() -> tuple[pd.DataFrame, list[Path]]:
 # ---------------------------------------------------------------------------
 def s13() -> tuple[pd.DataFrame, list[Path]]:
     pp3 = fmt_const(_walker_cfg()["thresholds"]["pp3"]["value"])
-    sets = [
-        ("Seven genes", REPORTS / "inframe_attribution_summary.csv",
-         {"spliceai": PHASE1 / INF.SUBSET, "pangolin": PHASE1 / INF.PANG_SUBSET},
-         "assay normal"),
-    ]
+    # (name, summary file, subset per tool, label definition or None)
+    sets = [("Seven genes", REPORTS / "inframe_attribution_summary.csv",
+             {"spliceai": PHASE1 / INF.SUBSET, "pangolin": PHASE1 / INF.PANG_SUBSET},
+             None)]
     for g in ("ddx3x", "tp53"):
         spec = INF.EXTERNAL[g]
-        normal = ("normal under either label definition" if len(spec["label_cols"]) > 1
-                  else "normal under the control-anchored definition")
-        # the external gene's Pangolin events are read on SpliceAI's subset
+        # the external gene's Pangolin events are read on SpliceAI's subset, and
+        # the external summary has one block per label definition
         sets.append((g.upper(), REPORTS / f"inframe_attribution_{g}_summary.csv",
                      {"spliceai": PHASE1 / spec["subset"],
-                      "pangolin": PHASE1 / spec["subset"]}, normal))
+                      "pangolin": PHASE1 / spec["subset"]}, spec["label_cols"]))
     rows, srcs = [], []
-    for name, path, subset, normal in sets:
+    for name, path, subset, labels in sets:
         sm = _csv(path)
         srcs.append(path)
-        for tool in ("spliceai", "pangolin"):
-            part = sm[sm.tool == tool]
-            if part.empty:
-                continue
-            sub = pd.read_parquet(_need(subset[tool]), columns=["score_column"])
-            srcs.append(subset[tool])
-            col = sub["score_column"].unique()
-            if len(col) != 1:
-                raise SystemExit(f"[supp] {subset[tool].name}: mixed score columns")
-            for st in K.STRATA:
-                for r in part[part.stratum == st].itertuples():
-                    total = int(r.in_frame + r.out_of_frame + r.undetermined)
-                    if total != int(r.n):
-                        raise SystemExit(f"[supp] {path.name}: counts do not add up")
-                    resolved = int(r.in_frame + r.out_of_frame)
-                    rows.append({
-                        "Gene set": name,
-                        "Events read from": _tool(tool) if tool != "spliceai"
-                        else _tool(col[0]),
-                        "Variant subset": f"{_tool(col[0])} ≥ {pp3} and {normal}",
-                        "Stratum (intronic offset, bp)": STRATUM_LABEL[st],
-                        "In-frame": str(int(r.in_frame)),
-                        "Out-of-frame": str(int(r.out_of_frame)),
-                        "Undetermined": str(int(r.undetermined)),
-                        "Total": str(total),
-                        "In-frame share": fmt_dp(r.in_frame / total) if total else "",
-                        "In-frame share among resolved":
-                            fmt_dp(r.in_frame / resolved) if resolved else "",
-                    })
+        blocks = ([(None, sm)] if labels is None else
+                  [(lab, sm[sm.label_definition == lab]) for lab in labels])
+        for lab, part_all in blocks:
+            normal = ("assay normal" if lab is None
+                      else f"normal under the {LABEL_NAME[lab].lower()} label")
+            for tool in ("spliceai", "pangolin"):
+                part = part_all[part_all.tool == tool]
+                if part.empty:
+                    continue
+                sub = pd.read_parquet(_need(subset[tool]), columns=["score_column"])
+                srcs.append(subset[tool])
+                col = sub["score_column"].unique()
+                if len(col) != 1:
+                    raise SystemExit(f"[supp] {subset[tool].name}: mixed score columns")
+                for st in K.STRATA:
+                    for r in part[part.stratum == st].itertuples():
+                        total = int(r.in_frame + r.out_of_frame + r.undetermined)
+                        if total != int(r.n):
+                            raise SystemExit(f"[supp] {path.name}: counts do not add up")
+                        resolved = int(r.in_frame + r.out_of_frame)
+                        rows.append({
+                            "Gene set": name,
+                            "Label definition": "" if lab is None else LABEL_NAME[lab],
+                            "Events read from": _tool(tool) if tool != "spliceai"
+                            else _tool(col[0]),
+                            "Variant subset": f"{_tool(col[0])} ≥ {pp3} and {normal}",
+                            "Stratum (intronic offset, bp)": STRATUM_LABEL[st],
+                            "In-frame": str(int(r.in_frame)),
+                            "Out-of-frame": str(int(r.out_of_frame)),
+                            "Undetermined": str(int(r.undetermined)),
+                            "Total": str(total),
+                            "In-frame share": fmt_dp(r.in_frame / total) if total else "",
+                            "In-frame share among resolved":
+                                fmt_dp(r.in_frame / resolved) if resolved else "",
+                        })
     return pd.DataFrame(rows), list(dict.fromkeys(srcs))
 
 
@@ -1337,15 +1401,16 @@ TABLES = [
     ("S1", "tableS1_functional_standards.csv", s1,
      "Functional standards: assay, accession, transcript, published class labels "
      "and how each maps to damaging, normal or missing, with variant counts",
-     "External genes publish no classification; their constructed definitions are "
-     "stated as implemented, and counts are for the primary (control-anchored) "
-     "definition."),
+     "The DDX3X deposit's own classification is its primary label, as for the seven "
+     "genes, and its constructed sensitivity labels are stated as implemented. The "
+     "TP53 deposit publishes no classification, and its constructed definitions are "
+     "stated as implemented. Counts are for each gene's primary label."),
     ("S2", "tableS2_analysis_set.csv", s2,
      "Analysis-set composition by gene, intronic-offset stratum and ClinVar record "
      "status",
      "ClinVar status is the strict split, which separates records carrying no "
-     "clinical assertion. The ±1,2 stratum is outside the scope of the splicing "
-     "recommendation and is shown for completeness."),
+     "clinical assertion. The canonical dinucleotides are outside the scope of "
+     "PP3 and BP4, which the recommendation routes to the PVS1 decision tree."),
     ("S3", "tableS3_predictor_columns.csv", s3,
      "Predictor score columns: definition, version and scoring configuration, "
      "source, access date, licence, orientation, coverage and training signal",
@@ -1353,11 +1418,12 @@ TABLES = [
      "Every column is positively oriented as stored, including GPN-MSA, whose sign "
      "was flipped when it was scored, so no column is flipped here."),
     ("S4", "tableS4_column_agreement.csv", s4,
-     "Agreement between related score columns",
+     "Agreement between related score columns: the two SpliceAI bases, and the "
+     "AlphaGenome Atlas columns against the model-computed AlphaGenome splice score",
      "The cut point applies only to the two SpliceAI columns."),
     ("S5", "tableS5_published_cut_points.csv", s5,
-     "The published SpliceAI cut points on the Walker-basis column, by stratum and "
-     "ClinVar record status, with per-gene point estimates",
+     "The published SpliceAI cut points on the published-basis column, by stratum "
+     "and ClinVar record status, with per-gene point estimates",
      "Band likelihood ratios are point estimates; pooled intervals are 95% "
      "percentile intervals of a gene-clustered bootstrap; per-gene rows carry no "
      "interval. The BP4 tier is read off the rule-of-three bound where the band "
@@ -1367,7 +1433,11 @@ TABLES = [
      "thresholds under the gene-clustered and variant-level bootstraps, and "
      "leave-one-gene-out transfer",
      "Held-out likelihood ratios are point estimates in the held-out gene at the "
-     "threshold fitted on the other genes. n.e. = not evaluable: the training genes "
+     "threshold fitted on the other genes. Where the band holds no normal variant, "
+     "the normal fraction is set to one over the number of normal variants plus "
+     "one, so the ratio stays finite. The Atlas combined score's model was selected "
+     "on the BRCA1 and RAD51C assays, so its held-out ratios in those two genes are "
+     "not independent. n.e. = not evaluable: the training genes "
      "did not reach the tier, fewer than ten of the held-out gene's variants scored "
      "above the threshold, or the held-out gene had fewer than ten damaging or ten "
      "normal variants. Thresholds are printed at four significant figures, or more "
@@ -1385,8 +1455,7 @@ TABLES = [
      "Four splice-aware columns, Moderate and Strong tiers, every training subset of "
      "two or more genes. A held-out pair is one training subset and one gene left "
      "out of it. With two or three training genes the gene-clustered bootstrap gives "
-     "wide intervals, so a low share of subsets reaching Strong partly reflects that "
-     "width. Thresholds are printed at four significant figures, or more where four "
+     "wide intervals. Thresholds are printed at four significant figures, or more where four "
      "would move a variant across the threshold."),
     ("S10", "tableS10_clinvar_status.csv", s10,
      "Band likelihood ratios and AUROC by ClinVar record status, with and without "
@@ -1408,18 +1477,25 @@ TABLES = [
      "Genes contributing all three arms only."),
     ("S12", "tableS12_external_genes.csv", s12,
      "External genes: the published cut point and the seven-gene fitted thresholds "
-     "applied to DDX3X and TP53",
-     "In-scope strata only. Fitted thresholds are the median of the "
-     "leave-one-gene-out (LOGO) fits, carried over only where the tier is reached "
-     "in-sample and the external column is the same variable. Label definitions "
-     "are stated in Table S1."),
+     "applied to DDX3X and TP53 under every label definition",
+     "In-scope strata only, each cut at the depth the deposit reaches. Fitted "
+     "thresholds are the median of the leave-one-gene-out fits over the folds that "
+     "reached the tier, carried over only where the tier is reached in-sample and "
+     "the external column is the same variable. Intervals are 95% percentile "
+     "intervals of 2,000 bootstrap resamples of variants within the gene, class "
+     "sizes fixed; they describe this gene's variants, not variation between genes. "
+     "The tier at the lower bound is read off the lower end of that interval. The "
+     "Atlas combined score's model was selected on the DDX3X assay, so its DDX3X "
+     "rows are not an external test. Label definitions are stated in Table S1."),
     ("S13", "tableS13_inframe_attribution.csv", s13,
      "In-frame attribution of variants scored at or above the PP3 cut point and "
      "called normal by the assay",
      "An inference from each tool's own predicted events, not a transcript "
      "measurement. Shares are recomputed from the counts. The PP3 cut point of 0.2 "
-     "is calibrated for SpliceAI only; the Pangolin rows use the same score as a "
-     "comparison device, so that both tools' false positives are defined alike."),
+     "is calibrated for SpliceAI only; in the seven genes the Pangolin rows use the "
+     "same score as a comparison device, and in the external genes Pangolin's "
+     "events are read on SpliceAI's false positives. External genes are summarised "
+     "per label definition, never pooled across definitions."),
 ]
 
 

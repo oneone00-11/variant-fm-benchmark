@@ -1,343 +1,604 @@
-gene,label_definition,stratum,tool,tier,n_pos,n_neg,column_basis_comparable,lr_at_walker_cut,tier_at_walker_cut,logo_threshold,lr_at_logo_threshold,tier_at_logo_threshold
-DDX3X,y_control_anchored,s3_10,pangolin,supporting,37,731,True,,,0.4068579971790313,5.474763920547053,Moderate
-DDX3X,y_control_anchored,s3_10,pangolin,moderate,37,731,True,,,0.547325074672699,6.8991848991849,Moderate
-DDX3X,y_control_anchored,s3_10,pangolin,strong,37,731,True,,,0.7039144039154053,8.673698088332236,Moderate
-DDX3X,y_control_anchored,s3_10,cadd,supporting,37,731,True,,,19.53,4.541783162472818,Moderate
-DDX3X,y_control_anchored,s3_10,cadd,moderate,37,731,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_10,cadd,strong,37,731,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_10,phylop,supporting,37,731,True,,,4.58587,6.07900207900208,Moderate
-DDX3X,y_control_anchored,s3_10,phylop,moderate,37,731,True,,,5.34067,8.589894242068155,Moderate
-DDX3X,y_control_anchored,s3_10,phylop,strong,37,731,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_10,phastcons,supporting,37,731,True,,,1.0,2.532917532917533,Supporting
-DDX3X,y_control_anchored,s3_10,phastcons,moderate,37,731,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_10,phastcons,strong,37,731,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_10,gpn_msa,supporting,37,731,True,,,7.47,4.1250371250371245,Supporting
-DDX3X,y_control_anchored,s3_10,gpn_msa,moderate,37,731,True,,,9.13,6.2862407862407865,Moderate
-DDX3X,y_control_anchored,s3_10,gpn_msa,strong,37,731,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_10,spliceai_walker,supporting,37,731,True,2.8696965121546127,Supporting,0.4259027540683746,6.157950157950158,Moderate
-DDX3X,y_control_anchored,s3_10,spliceai_walker,moderate,37,731,True,2.8696965121546127,Supporting,0.5537148118019104,7.153308480894688,Moderate
-DDX3X,y_control_anchored,s3_10,spliceai_walker,strong,37,731,True,2.8696965121546127,Supporting,0.89483243227005,17.122522522522523,Moderate
-DDX3X,y_control_anchored,s3_10,avi,supporting,37,731,True,,,0.844028890132904,6.585585585585586,Moderate
-DDX3X,y_control_anchored,s3_10,avi,moderate,37,731,True,,,1.0689042806625366,8.621130221130223,Moderate
-DDX3X,y_control_anchored,s3_10,avi,strong,37,731,True,,,1.3679836988449097,15.266584766584767,Moderate
-DDX3X,y_control_anchored,s3_10,avi_splice_sites,supporting,37,731,True,,,0.33984375,6.498933143669985,Moderate
-DDX3X,y_control_anchored,s3_10,avi_splice_sites,moderate,37,731,True,,,0.455810546875,7.244144144144145,Moderate
-DDX3X,y_control_anchored,s3_10,avi_splice_sites,strong,37,731,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_10,avi_splice_site_usage,supporting,37,731,True,,,0.568359375,8.706367384333486,Moderate
-DDX3X,y_control_anchored,s3_10,avi_splice_site_usage,moderate,37,731,True,,,0.6669921875,9.146646646646646,Moderate
-DDX3X,y_control_anchored,s3_10,avi_splice_site_usage,strong,37,731,True,,,0.91949462890625,12.347972972972974,Moderate
-DDX3X,y_control_anchored,s3_10,avi_splice_junctions,supporting,37,731,True,,,3.509765625,3.5425908667287977,Supporting
-DDX3X,y_control_anchored,s3_10,avi_splice_junctions,moderate,37,731,True,,,5.375,5.837223587223588,Moderate
-DDX3X,y_control_anchored,s3_10,avi_splice_junctions,strong,37,731,True,,,6.83984375,8.036646816307833,Moderate
-DDX3X,y_control_anchored,s11_50,pangolin,supporting,34,863,True,,,0.1923362016677856,5.251521298174442,Moderate
-DDX3X,y_control_anchored,s11_50,pangolin,moderate,34,863,True,,,0.3521193712949753,11.537433155080215,Moderate
-DDX3X,y_control_anchored,s11_50,pangolin,strong,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,cadd,supporting,34,863,True,,,21.1,5.439075630252102,Moderate
-DDX3X,y_control_anchored,s11_50,cadd,moderate,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,cadd,strong,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,phylop,supporting,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,phylop,moderate,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,phylop,strong,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,phastcons,supporting,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,phastcons,moderate,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,phastcons,strong,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,gpn_msa,supporting,34,863,True,,,6.585,3.6260504201680672,Supporting
-DDX3X,y_control_anchored,s11_50,gpn_msa,moderate,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,gpn_msa,strong,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,spliceai_walker,supporting,34,863,True,3.0581148121899364,Supporting,0.2532642036676407,3.744937319189971,Supporting
-DDX3X,y_control_anchored,s11_50,spliceai_walker,moderate,34,863,True,3.0581148121899364,Supporting,0.3130816221237182,3.9815455594002302,Supporting
-DDX3X,y_control_anchored,s11_50,spliceai_walker,strong,34,863,True,3.0581148121899364,Supporting,,,not evaluable
-DDX3X,y_control_anchored,s11_50,avi,supporting,34,863,True,,,0.5901179909706116,8.752535496957403,Moderate
-DDX3X,y_control_anchored,s11_50,avi,moderate,34,863,True,,,0.691426157951355,14.101307189542483,Moderate
-DDX3X,y_control_anchored,s11_50,avi,strong,34,863,True,,,1.1923002004623413,,not evaluable
-DDX3X,y_control_anchored,s11_50,avi_splice_sites,supporting,34,863,True,,,0.270484447479248,6.011609907120743,Moderate
-DDX3X,y_control_anchored,s11_50,avi_splice_sites,moderate,34,863,True,,,0.5078125,16.92156862745098,Moderate
-DDX3X,y_control_anchored,s11_50,avi_splice_sites,strong,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s11_50,avi_splice_site_usage,supporting,34,863,True,,,0.154296875,10.575980392156865,Moderate
-DDX3X,y_control_anchored,s11_50,avi_splice_site_usage,moderate,34,863,True,,,0.2469959259033203,13.359133126934983,Moderate
-DDX3X,y_control_anchored,s11_50,avi_splice_site_usage,strong,34,863,True,,,0.6455078125,25.38235294117647,Strong
-DDX3X,y_control_anchored,s11_50,avi_splice_junctions,supporting,34,863,True,,,3.3779296875,5.517902813299233,Moderate
-DDX3X,y_control_anchored,s11_50,avi_splice_junctions,moderate,34,863,True,,,4.36328125,8.18785578747628,Moderate
-DDX3X,y_control_anchored,s11_50,avi_splice_junctions,strong,34,863,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_50,pangolin,supporting,71,1594,True,,,0.3767528235912323,7.067814293166405,Moderate
-DDX3X,y_control_anchored,s3_50,pangolin,moderate,71,1594,True,,,0.4281759262084961,7.256793284962299,Moderate
-DDX3X,y_control_anchored,s3_50,pangolin,strong,71,1594,True,,,0.6740013957023621,9.893530675578898,Moderate
-DDX3X,y_control_anchored,s3_50,cadd,supporting,71,1594,True,,,19.19,4.923400049419322,Moderate
-DDX3X,y_control_anchored,s3_50,cadd,moderate,71,1594,True,,,22.6,2.1903126073514256,Supporting
-DDX3X,y_control_anchored,s3_50,cadd,strong,71,1594,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_50,phylop,supporting,71,1594,True,,,4.08529,5.282518641259321,Moderate
-DDX3X,y_control_anchored,s3_50,phylop,moderate,71,1594,True,,,5.25,8.634886240520045,Moderate
-DDX3X,y_control_anchored,s3_50,phylop,strong,71,1594,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_50,phastcons,supporting,71,1594,True,,,1.0,3.018582080719612,Supporting
-DDX3X,y_control_anchored,s3_50,phastcons,moderate,71,1594,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_50,phastcons,strong,71,1594,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_50,gpn_msa,supporting,71,1594,True,,,6.88,4.015573113477614,Supporting
-DDX3X,y_control_anchored,s3_50,gpn_msa,moderate,71,1594,True,,,8.31,6.562513542795232,Moderate
-DDX3X,y_control_anchored,s3_50,gpn_msa,strong,71,1594,True,,,,,not evaluable
-DDX3X,y_control_anchored,s3_50,spliceai_walker,supporting,71,1594,True,3.084829588216321,Supporting,0.3335808515548706,5.337929675957844,Moderate
-DDX3X,y_control_anchored,s3_50,spliceai_walker,moderate,71,1594,True,3.084829588216321,Supporting,0.4277547001838684,6.65206051121544,Moderate
-DDX3X,y_control_anchored,s3_50,spliceai_walker,strong,71,1594,True,3.084829588216321,Supporting,0.893125057220459,26.4125932062966,Strong
-DDX3X,y_control_anchored,s3_50,avi,supporting,71,1594,True,,,0.7155988216400146,7.152436744359965,Moderate
-DDX3X,y_control_anchored,s3_50,avi,moderate,71,1594,True,,,0.845728874206543,9.28994657600777,Moderate
-DDX3X,y_control_anchored,s3_50,avi,strong,71,1594,True,,,1.1815255880355835,14.237031947784269,Moderate
-DDX3X,y_control_anchored,s3_50,avi_splice_sites,supporting,71,1594,True,,,0.2978515625,6.695824067210278,Moderate
-DDX3X,y_control_anchored,s3_50,avi_splice_sites,moderate,71,1594,True,,,0.439453125,8.92271578187071,Moderate
-DDX3X,y_control_anchored,s3_50,avi_splice_sites,strong,71,1594,True,,,0.8583984375,17.348271446862995,Moderate
-DDX3X,y_control_anchored,s3_50,avi_splice_site_usage,supporting,71,1594,True,,,0.3828125,9.737654844731036,Moderate
-DDX3X,y_control_anchored,s3_50,avi_splice_site_usage,moderate,71,1594,True,,,0.4921875,10.921964217738866,Moderate
-DDX3X,y_control_anchored,s3_50,avi_splice_site_usage,strong,71,1594,True,,,0.913726806640625,15.715492957746475,Moderate
-DDX3X,y_control_anchored,s3_50,avi_splice_junctions,supporting,71,1594,True,,,3.212890625,3.9425626932325657,Supporting
-DDX3X,y_control_anchored,s3_50,avi_splice_junctions,moderate,71,1594,True,,,3.955078125,5.115350329827063,Moderate
-DDX3X,y_control_anchored,s3_50,avi_splice_junctions,strong,71,1594,True,,,6.24609375,9.13691451031772,Moderate
-DDX3X,y_fdr,s3_10,pangolin,supporting,41,727,True,,,0.4068579971790313,8.01570330771801,Moderate
-DDX3X,y_fdr,s3_10,pangolin,moderate,41,727,True,,,0.547325074672699,10.179313459801264,Moderate
-DDX3X,y_fdr,s3_10,pangolin,strong,41,727,True,,,0.7039144039154053,10.543177323665128,Moderate
-DDX3X,y_fdr,s3_10,cadd,supporting,41,727,True,,,19.53,5.691659138813611,Moderate
-DDX3X,y_fdr,s3_10,cadd,moderate,41,727,True,,,,,not evaluable
-DDX3X,y_fdr,s3_10,cadd,strong,41,727,True,,,,,not evaluable
-DDX3X,y_fdr,s3_10,phylop,supporting,41,727,True,,,4.58587,6.709294660514173,Moderate
-DDX3X,y_fdr,s3_10,phylop,moderate,41,727,True,,,5.34067,10.132404181184668,Moderate
-DDX3X,y_fdr,s3_10,phylop,strong,41,727,True,,,,,not evaluable
-DDX3X,y_fdr,s3_10,phastcons,supporting,41,727,True,,,1.0,3.546341463414634,Supporting
-DDX3X,y_fdr,s3_10,phastcons,moderate,41,727,True,,,,,not evaluable
-DDX3X,y_fdr,s3_10,phastcons,strong,41,727,True,,,,,not evaluable
-DDX3X,y_fdr,s3_10,gpn_msa,supporting,41,727,True,,,7.47,4.687692738996356,Moderate
-DDX3X,y_fdr,s3_10,gpn_msa,moderate,41,727,True,,,9.13,7.352171326591314,Moderate
-DDX3X,y_fdr,s3_10,gpn_msa,strong,41,727,True,,,,,not evaluable
-DDX3X,y_fdr,s3_10,spliceai_walker,supporting,41,727,True,3.9051974448315914,Supporting,0.4259027540683746,8.605093256814921,Moderate
-DDX3X,y_fdr,s3_10,spliceai_walker,moderate,41,727,True,3.9051974448315914,Supporting,0.5537148118019104,9.206848030018762,Moderate
-DDX3X,y_fdr,s3_10,spliceai_walker,strong,41,727,True,3.9051974448315914,Supporting,0.89483243227005,20.45966228893058,Strong
-DDX3X,y_fdr,s3_10,avi,supporting,41,727,True,,,0.844028890132904,9.792136876592648,Moderate
-DDX3X,y_fdr,s3_10,avi,moderate,41,727,True,,,1.0689042806625366,13.39728997289973,Moderate
-DDX3X,y_fdr,s3_10,avi,strong,41,727,True,,,1.3679836988449097,20.6869918699187,Strong
-DDX3X,y_fdr,s3_10,avi_splice_sites,supporting,41,727,True,,,0.33984375,8.998179832544594,Moderate
-DDX3X,y_fdr,s3_10,avi_splice_sites,moderate,41,727,True,,,0.455810546875,9.702254947077773,Moderate
-DDX3X,y_fdr,s3_10,avi_splice_sites,strong,41,727,True,,,,,not evaluable
-DDX3X,y_fdr,s3_10,avi_splice_site_usage,supporting,41,727,True,,,0.568359375,12.41219512195122,Moderate
-DDX3X,y_fdr,s3_10,avi_splice_site_usage,moderate,41,727,True,,,0.6669921875,13.39728997289973,Moderate
-DDX3X,y_fdr,s3_10,avi_splice_site_usage,strong,41,727,True,,,0.91949462890625,17.73170731707317,Moderate
-DDX3X,y_fdr,s3_10,avi_splice_junctions,supporting,41,727,True,,,3.509765625,4.896068438296323,Moderate
-DDX3X,y_fdr,s3_10,avi_splice_junctions,moderate,41,727,True,,,5.375,8.183864915572233,Moderate
-DDX3X,y_fdr,s3_10,avi_splice_junctions,strong,41,727,True,,,6.83984375,11.125777140124343,Moderate
-DDX3X,y_fdr,s11_50,pangolin,supporting,26,871,True,,,0.1923362016677856,9.136363636363637,Moderate
-DDX3X,y_fdr,s11_50,pangolin,moderate,26,871,True,,,0.3521193712949753,29.558823529411764,Strong
-DDX3X,y_fdr,s11_50,pangolin,strong,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,cadd,supporting,26,871,True,,,21.1,7.178571428571429,Moderate
-DDX3X,y_fdr,s11_50,cadd,moderate,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,cadd,strong,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,phylop,supporting,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,phylop,moderate,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,phylop,strong,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,phastcons,supporting,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,phastcons,moderate,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,phastcons,strong,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,gpn_msa,supporting,26,871,True,,,6.585,4.785714285714286,Moderate
-DDX3X,y_fdr,s11_50,gpn_msa,moderate,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,gpn_msa,strong,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,spliceai_walker,supporting,26,871,True,7.49342105263158,Moderate,0.2532642036676407,9.136363636363637,Moderate
-DDX3X,y_fdr,s11_50,spliceai_walker,moderate,26,871,True,7.49342105263158,Moderate,0.3130816221237182,9.467391304347826,Moderate
-DDX3X,y_fdr,s11_50,spliceai_walker,strong,26,871,True,7.49342105263158,Moderate,,,not evaluable
-DDX3X,y_fdr,s11_50,avi,supporting,26,871,True,,,0.5901179909706116,20.9375,Strong
-DDX3X,y_fdr,s11_50,avi,moderate,26,871,True,,,0.691426157951355,33.5,Strong
-DDX3X,y_fdr,s11_50,avi,strong,26,871,True,,,1.1923002004623413,,not evaluable
-DDX3X,y_fdr,s11_50,avi_splice_sites,supporting,26,871,True,,,0.270484447479248,11.485714285714286,Moderate
-DDX3X,y_fdr,s11_50,avi_splice_sites,moderate,26,871,True,,,0.5078125,33.5,Strong
-DDX3X,y_fdr,s11_50,avi_splice_sites,strong,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s11_50,avi_splice_site_usage,supporting,26,871,True,,,0.154296875,26.44736842105263,Strong
-DDX3X,y_fdr,s11_50,avi_splice_site_usage,moderate,26,871,True,,,0.2469959259033203,35.89285714285714,Strong
-DDX3X,y_fdr,s11_50,avi_splice_site_usage,strong,26,871,True,,,0.6455078125,100.5,Strong
-DDX3X,y_fdr,s11_50,avi_splice_junctions,supporting,26,871,True,,,3.3779296875,12.256097560975608,Moderate
-DDX3X,y_fdr,s11_50,avi_splice_junctions,moderate,26,871,True,,,4.36328125,19.326923076923077,Strong
-DDX3X,y_fdr,s11_50,avi_splice_junctions,strong,26,871,True,,,,,not evaluable
-DDX3X,y_fdr,s3_50,pangolin,supporting,67,1598,True,,,0.3767528235912323,12.17910447761194,Moderate
-DDX3X,y_fdr,s3_50,pangolin,moderate,67,1598,True,,,0.4281759262084961,13.345060412224592,Moderate
-DDX3X,y_fdr,s3_50,pangolin,strong,67,1598,True,,,0.6740013957023621,18.38495024875622,Moderate
-DDX3X,y_fdr,s3_50,cadd,supporting,67,1598,True,,,19.19,6.846047540077391,Moderate
-DDX3X,y_fdr,s3_50,cadd,moderate,67,1598,True,,,22.6,4.393558523173605,Moderate
-DDX3X,y_fdr,s3_50,cadd,strong,67,1598,True,,,,,not evaluable
-DDX3X,y_fdr,s3_50,phylop,supporting,67,1598,True,,,4.08529,6.814498933901919,Moderate
-DDX3X,y_fdr,s3_50,phylop,moderate,67,1598,True,,,5.25,11.92537313432836,Moderate
-DDX3X,y_fdr,s3_50,phylop,strong,67,1598,True,,,,,not evaluable
-DDX3X,y_fdr,s3_50,phastcons,supporting,67,1598,True,,,1.0,4.897921108742004,Moderate
-DDX3X,y_fdr,s3_50,phastcons,moderate,67,1598,True,,,,,not evaluable
-DDX3X,y_fdr,s3_50,phastcons,strong,67,1598,True,,,,,not evaluable
-DDX3X,y_fdr,s3_50,gpn_msa,supporting,67,1598,True,,,6.88,5.707870901900752,Moderate
-DDX3X,y_fdr,s3_50,gpn_msa,moderate,67,1598,True,,,8.31,8.992904330804992,Moderate
-DDX3X,y_fdr,s3_50,gpn_msa,strong,67,1598,True,,,,,not evaluable
-DDX3X,y_fdr,s3_50,spliceai_walker,supporting,67,1598,True,5.278443846342061,Moderate,0.3335808515548706,9.39005758608532,Moderate
-DDX3X,y_fdr,s3_50,spliceai_walker,moderate,67,1598,True,5.278443846342061,Moderate,0.4277547001838684,11.671641791044776,Moderate
-DDX3X,y_fdr,s3_50,spliceai_walker,strong,67,1598,True,5.278443846342061,Moderate,0.893125057220459,34.98109452736318,Strong
-DDX3X,y_fdr,s3_50,avi,supporting,67,1598,True,,,0.7155988216400146,12.412123058178496,Moderate
-DDX3X,y_fdr,s3_50,avi,moderate,67,1598,True,,,0.845728874206543,16.336127581271725,Moderate
-DDX3X,y_fdr,s3_50,avi,strong,67,1598,True,,,1.1815255880355835,21.80639658848614,Strong
-DDX3X,y_fdr,s3_50,avi_splice_sites,supporting,67,1598,True,,,0.2978515625,10.756218905472638,Moderate
-DDX3X,y_fdr,s3_50,avi_splice_sites,moderate,67,1598,True,,,0.439453125,14.380597014925373,Moderate
-DDX3X,y_fdr,s3_50,avi_splice_sites,strong,67,1598,True,,,0.8583984375,22.65820895522388,Strong
-DDX3X,y_fdr,s3_50,avi_splice_site_usage,supporting,67,1598,True,,,0.3828125,17.888059701492537,Moderate
-DDX3X,y_fdr,s3_50,avi_splice_site_usage,moderate,67,1598,True,,,0.4921875,20.61674677460157,Strong
-DDX3X,y_fdr,s3_50,avi_splice_site_usage,strong,67,1598,True,,,0.913726806640625,26.83208955223881,Strong
-DDX3X,y_fdr,s3_50,avi_splice_junctions,supporting,67,1598,True,,,3.212890625,6.562110084498145,Moderate
-DDX3X,y_fdr,s3_50,avi_splice_junctions,moderate,67,1598,True,,,3.955078125,8.734076098381333,Moderate
-DDX3X,y_fdr,s3_50,avi_splice_junctions,strong,67,1598,True,,,6.24609375,15.682682478020851,Moderate
-TP53,y_control_anchored,s3_10,spliceai,supporting,15,129,True,5.59,Moderate,0.397732138633728,6.45,Moderate
-TP53,y_control_anchored,s3_10,spliceai,moderate,15,129,True,5.59,Moderate,0.5639702081680298,6.688888888888889,Moderate
-TP53,y_control_anchored,s3_10,spliceai,strong,15,129,True,5.59,Moderate,0.8993068933486938,,not evaluable
-TP53,y_control_anchored,s3_10,pangolin,supporting,15,129,True,,,0.4068579971790313,27.950000000000003,Strong
-TP53,y_control_anchored,s3_10,pangolin,moderate,15,129,True,,,0.547325074672699,51.6,Strong
-TP53,y_control_anchored,s3_10,pangolin,strong,15,129,True,,,0.7039144039154053,,not evaluable
-TP53,y_control_anchored,s3_10,alphagenome,supporting,15,129,False,,,,,
-TP53,y_control_anchored,s3_10,alphagenome,moderate,15,129,False,,,,,
-TP53,y_control_anchored,s3_10,alphagenome,strong,15,129,False,,,,,
-TP53,y_control_anchored,s3_10,cadd,supporting,15,129,True,,,19.53,8.6,Moderate
-TP53,y_control_anchored,s3_10,cadd,moderate,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_10,cadd,strong,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_10,phylop,supporting,15,129,True,,,4.58587,,not evaluable
-TP53,y_control_anchored,s3_10,phylop,moderate,15,129,True,,,5.34067,,not evaluable
-TP53,y_control_anchored,s3_10,phylop,strong,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_10,phastcons,supporting,15,129,True,,,1.0,,not evaluable
-TP53,y_control_anchored,s3_10,phastcons,moderate,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_10,phastcons,strong,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_10,gpn_msa,supporting,15,129,False,,,,,
-TP53,y_control_anchored,s3_10,gpn_msa,moderate,15,129,False,,,,,
-TP53,y_control_anchored,s3_10,gpn_msa,strong,15,129,False,,,,,
-TP53,y_control_anchored,s3_10,nt,supporting,15,129,True,,,3.6364574432373047,7.525,Moderate
-TP53,y_control_anchored,s3_10,nt,moderate,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_10,nt,strong,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_10,spliceai_walker,supporting,15,129,True,5.3238095238095235,Moderate,0.4259027540683746,8.6,Moderate
-TP53,y_control_anchored,s3_10,spliceai_walker,moderate,15,129,True,5.3238095238095235,Moderate,0.5537148118019104,9.555555555555555,Moderate
-TP53,y_control_anchored,s3_10,spliceai_walker,strong,15,129,True,5.3238095238095235,Moderate,0.89483243227005,,not evaluable
-TP53,y_control_anchored,s3_50,spliceai,supporting,15,129,True,5.59,Moderate,0.3335808515548706,5.5285714285714285,Moderate
-TP53,y_control_anchored,s3_50,spliceai,moderate,15,129,True,5.59,Moderate,0.3791576027870178,6.45,Moderate
-TP53,y_control_anchored,s3_50,spliceai,strong,15,129,True,5.59,Moderate,0.883614718914032,,not evaluable
-TP53,y_control_anchored,s3_50,pangolin,supporting,15,129,True,,,0.3767528235912323,22.36,Strong
-TP53,y_control_anchored,s3_50,pangolin,moderate,15,129,True,,,0.4281759262084961,37.266666666666666,Strong
-TP53,y_control_anchored,s3_50,pangolin,strong,15,129,True,,,0.6740013957023621,38.7,Strong
-TP53,y_control_anchored,s3_50,alphagenome,supporting,15,129,False,,,,,
-TP53,y_control_anchored,s3_50,alphagenome,moderate,15,129,False,,,,,
-TP53,y_control_anchored,s3_50,alphagenome,strong,15,129,False,,,,,
-TP53,y_control_anchored,s3_50,cadd,supporting,15,129,True,,,19.19,8.6,Moderate
-TP53,y_control_anchored,s3_50,cadd,moderate,15,129,True,,,22.6,,not evaluable
-TP53,y_control_anchored,s3_50,cadd,strong,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_50,phylop,supporting,15,129,True,,,4.08529,,not evaluable
-TP53,y_control_anchored,s3_50,phylop,moderate,15,129,True,,,5.25,,not evaluable
-TP53,y_control_anchored,s3_50,phylop,strong,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_50,phastcons,supporting,15,129,True,,,1.0,,not evaluable
-TP53,y_control_anchored,s3_50,phastcons,moderate,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_50,phastcons,strong,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_50,gpn_msa,supporting,15,129,False,,,,,
-TP53,y_control_anchored,s3_50,gpn_msa,moderate,15,129,False,,,,,
-TP53,y_control_anchored,s3_50,gpn_msa,strong,15,129,False,,,,,
-TP53,y_control_anchored,s3_50,nt,supporting,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_50,nt,moderate,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_50,nt,strong,15,129,True,,,,,not evaluable
-TP53,y_control_anchored,s3_50,spliceai_walker,supporting,15,129,True,5.3238095238095235,Moderate,0.3335808515548706,6.757142857142857,Moderate
-TP53,y_control_anchored,s3_50,spliceai_walker,moderate,15,129,True,5.3238095238095235,Moderate,0.4277547001838684,9.46,Moderate
-TP53,y_control_anchored,s3_50,spliceai_walker,strong,15,129,True,5.3238095238095235,Moderate,0.893125057220459,,not evaluable
-TP53,y_median_split,s3_10,spliceai,supporting,48,96,True,3.076923076923077,Supporting,0.397732138633728,2.6666666666666665,Supporting
-TP53,y_median_split,s3_10,spliceai,moderate,48,96,True,3.076923076923077,Supporting,0.5639702081680298,2.571428571428571,Supporting
-TP53,y_median_split,s3_10,spliceai,strong,48,96,True,3.076923076923077,Supporting,0.8993068933486938,,not evaluable
-TP53,y_median_split,s3_10,pangolin,supporting,48,96,True,,,0.4068579971790313,34.35416666666667,Strong
-TP53,y_median_split,s3_10,pangolin,moderate,48,96,True,,,0.547325074672699,28.291666666666668,Strong
-TP53,y_median_split,s3_10,pangolin,strong,48,96,True,,,0.7039144039154053,,not evaluable
-TP53,y_median_split,s3_10,alphagenome,supporting,48,96,False,,,,,
-TP53,y_median_split,s3_10,alphagenome,moderate,48,96,False,,,,,
-TP53,y_median_split,s3_10,alphagenome,strong,48,96,False,,,,,
-TP53,y_median_split,s3_10,cadd,supporting,48,96,True,,,19.53,7.333333333333333,Moderate
-TP53,y_median_split,s3_10,cadd,moderate,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_10,cadd,strong,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_10,phylop,supporting,48,96,True,,,4.58587,,not evaluable
-TP53,y_median_split,s3_10,phylop,moderate,48,96,True,,,5.34067,,not evaluable
-TP53,y_median_split,s3_10,phylop,strong,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_10,phastcons,supporting,48,96,True,,,1.0,,not evaluable
-TP53,y_median_split,s3_10,phastcons,moderate,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_10,phastcons,strong,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_10,gpn_msa,supporting,48,96,False,,,,,
-TP53,y_median_split,s3_10,gpn_msa,moderate,48,96,False,,,,,
-TP53,y_median_split,s3_10,gpn_msa,strong,48,96,False,,,,,
-TP53,y_median_split,s3_10,nt,supporting,48,96,True,,,3.6364574432373047,5.5,Moderate
-TP53,y_median_split,s3_10,nt,moderate,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_10,nt,strong,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_10,spliceai_walker,supporting,48,96,True,3.230769230769231,Supporting,0.4259027540683746,3.5000000000000004,Supporting
-TP53,y_median_split,s3_10,spliceai_walker,moderate,48,96,True,3.230769230769231,Supporting,0.5537148118019104,3.4285714285714284,Supporting
-TP53,y_median_split,s3_10,spliceai_walker,strong,48,96,True,3.230769230769231,Supporting,0.89483243227005,,not evaluable
-TP53,y_median_split,s3_50,spliceai,supporting,48,96,True,3.076923076923077,Supporting,0.3335808515548706,2.181818181818182,Supporting
-TP53,y_median_split,s3_50,spliceai,moderate,48,96,True,3.076923076923077,Supporting,0.3791576027870178,2.6666666666666665,Supporting
-TP53,y_median_split,s3_50,spliceai,strong,48,96,True,3.076923076923077,Supporting,0.883614718914032,,not evaluable
-TP53,y_median_split,s3_50,pangolin,supporting,48,96,True,,,0.3767528235912323,36.375,Strong
-TP53,y_median_split,s3_50,pangolin,moderate,48,96,True,,,0.4281759262084961,32.333333333333336,Strong
-TP53,y_median_split,s3_50,pangolin,strong,48,96,True,,,0.6740013957023621,22.229166666666668,Strong
-TP53,y_median_split,s3_50,alphagenome,supporting,48,96,False,,,,,
-TP53,y_median_split,s3_50,alphagenome,moderate,48,96,False,,,,,
-TP53,y_median_split,s3_50,alphagenome,strong,48,96,False,,,,,
-TP53,y_median_split,s3_50,cadd,supporting,48,96,True,,,19.19,7.333333333333333,Moderate
-TP53,y_median_split,s3_50,cadd,moderate,48,96,True,,,22.6,,not evaluable
-TP53,y_median_split,s3_50,cadd,strong,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_50,phylop,supporting,48,96,True,,,4.08529,,not evaluable
-TP53,y_median_split,s3_50,phylop,moderate,48,96,True,,,5.25,,not evaluable
-TP53,y_median_split,s3_50,phylop,strong,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_50,phastcons,supporting,48,96,True,,,1.0,,not evaluable
-TP53,y_median_split,s3_50,phastcons,moderate,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_50,phastcons,strong,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_50,gpn_msa,supporting,48,96,False,,,,,
-TP53,y_median_split,s3_50,gpn_msa,moderate,48,96,False,,,,,
-TP53,y_median_split,s3_50,gpn_msa,strong,48,96,False,,,,,
-TP53,y_median_split,s3_50,nt,supporting,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_50,nt,moderate,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_50,nt,strong,48,96,True,,,,,not evaluable
-TP53,y_median_split,s3_50,spliceai_walker,supporting,48,96,True,3.230769230769231,Supporting,0.3335808515548706,2.545454545454546,Supporting
-TP53,y_median_split,s3_50,spliceai_walker,moderate,48,96,True,3.230769230769231,Supporting,0.4277547001838684,4.0,Supporting
-TP53,y_median_split,s3_50,spliceai_walker,strong,48,96,True,3.230769230769231,Supporting,0.893125057220459,,not evaluable
-TP53,y_mid_band_excluded,s3_10,spliceai,supporting,12,125,True,7.352941176470588,Moderate,0.397732138633728,7.575757575757576,Moderate
-TP53,y_mid_band_excluded,s3_10,spliceai,moderate,12,125,True,7.352941176470588,Moderate,0.5639702081680298,7.8125,Moderate
-TP53,y_mid_band_excluded,s3_10,spliceai,strong,12,125,True,7.352941176470588,Moderate,0.8993068933486938,,not evaluable
-TP53,y_mid_band_excluded,s3_10,pangolin,supporting,12,125,True,,,0.4068579971790313,62.5,Strong
-TP53,y_mid_band_excluded,s3_10,pangolin,moderate,12,125,True,,,0.547325074672699,125.0,Strong
-TP53,y_mid_band_excluded,s3_10,pangolin,strong,12,125,True,,,0.7039144039154053,,not evaluable
-TP53,y_mid_band_excluded,s3_10,alphagenome,supporting,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_10,alphagenome,moderate,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_10,alphagenome,strong,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_10,cadd,supporting,12,125,True,,,19.53,10.416666666666666,Moderate
-TP53,y_mid_band_excluded,s3_10,cadd,moderate,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_10,cadd,strong,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_10,phylop,supporting,12,125,True,,,4.58587,,not evaluable
-TP53,y_mid_band_excluded,s3_10,phylop,moderate,12,125,True,,,5.34067,,not evaluable
-TP53,y_mid_band_excluded,s3_10,phylop,strong,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_10,phastcons,supporting,12,125,True,,,1.0,,not evaluable
-TP53,y_mid_band_excluded,s3_10,phastcons,moderate,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_10,phastcons,strong,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_10,gpn_msa,supporting,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_10,gpn_msa,moderate,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_10,gpn_msa,strong,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_10,nt,supporting,12,125,True,,,3.6364574432373047,7.8125,Moderate
-TP53,y_mid_band_excluded,s3_10,nt,moderate,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_10,nt,strong,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_10,spliceai_walker,supporting,12,125,True,6.944444444444445,Moderate,0.4259027540683746,10.416666666666666,Moderate
-TP53,y_mid_band_excluded,s3_10,spliceai_walker,moderate,12,125,True,6.944444444444445,Moderate,0.5537148118019104,11.71875,Moderate
-TP53,y_mid_band_excluded,s3_10,spliceai_walker,strong,12,125,True,6.944444444444445,Moderate,0.89483243227005,,not evaluable
-TP53,y_mid_band_excluded,s3_50,spliceai,supporting,12,125,True,7.352941176470588,Moderate,0.3335808515548706,6.410256410256411,Moderate
-TP53,y_mid_band_excluded,s3_50,spliceai,moderate,12,125,True,7.352941176470588,Moderate,0.3791576027870178,7.575757575757576,Moderate
-TP53,y_mid_band_excluded,s3_50,spliceai,strong,12,125,True,7.352941176470588,Moderate,0.883614718914032,,not evaluable
-TP53,y_mid_band_excluded,s3_50,pangolin,supporting,12,125,True,,,0.3767528235912323,62.5,Strong
-TP53,y_mid_band_excluded,s3_50,pangolin,moderate,12,125,True,,,0.4281759262084961,62.5,Strong
-TP53,y_mid_band_excluded,s3_50,pangolin,strong,12,125,True,,,0.6740013957023621,93.75,Strong
-TP53,y_mid_band_excluded,s3_50,alphagenome,supporting,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_50,alphagenome,moderate,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_50,alphagenome,strong,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_50,cadd,supporting,12,125,True,,,19.19,10.416666666666666,Moderate
-TP53,y_mid_band_excluded,s3_50,cadd,moderate,12,125,True,,,22.6,,not evaluable
-TP53,y_mid_band_excluded,s3_50,cadd,strong,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_50,phylop,supporting,12,125,True,,,4.08529,,not evaluable
-TP53,y_mid_band_excluded,s3_50,phylop,moderate,12,125,True,,,5.25,,not evaluable
-TP53,y_mid_band_excluded,s3_50,phylop,strong,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_50,phastcons,supporting,12,125,True,,,1.0,,not evaluable
-TP53,y_mid_band_excluded,s3_50,phastcons,moderate,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_50,phastcons,strong,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_50,gpn_msa,supporting,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_50,gpn_msa,moderate,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_50,gpn_msa,strong,12,125,False,,,,,
-TP53,y_mid_band_excluded,s3_50,nt,supporting,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_50,nt,moderate,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_50,nt,strong,12,125,True,,,,,not evaluable
-TP53,y_mid_band_excluded,s3_50,spliceai_walker,supporting,12,125,True,6.944444444444445,Moderate,0.3335808515548706,8.012820512820513,Moderate
-TP53,y_mid_band_excluded,s3_50,spliceai_walker,moderate,12,125,True,6.944444444444445,Moderate,0.4277547001838684,11.574074074074076,Moderate
-TP53,y_mid_band_excluded,s3_50,spliceai_walker,strong,12,125,True,6.944444444444445,Moderate,0.893125057220459,,not evaluable
+gene,label_definition,stratum,tool,tier,n_pos,n_neg,column_basis_comparable,lr_at_walker_cut,tier_at_walker_cut,logo_threshold,lr_at_logo_threshold,tier_at_logo_threshold,n_pos_above_logo_threshold,n_neg_above_logo_threshold,lr_at_logo_threshold_lo,lr_at_logo_threshold_hi,tier_at_logo_threshold_lower_bound,lr_at_walker_cut_lo,lr_at_walker_cut_hi
+DDX3X,y_deposit,s3_10,pangolin,supporting,48,720,True,,,0.4068579971790313,8.382352941176471,Moderate,38.0,68.0,6.499537037037037,11.25,Moderate,,
+DDX3X,y_deposit,s3_10,pangolin,moderate,48,720,True,,,0.547325074672699,10.0,Moderate,34.0,51.0,7.38085480093677,14.143452380952375,Moderate,,
+DDX3X,y_deposit,s3_10,pangolin,strong,48,720,True,,,0.7039144039154053,11.818181818181818,Moderate,26.0,33.0,7.856737012987013,18.410402097902093,Moderate,,
+DDX3X,y_deposit,s3_10,cadd,supporting,48,720,True,,,19.53,6.11842105263158,Moderate,31.0,76.0,4.4678694652098905,8.181818181818182,Moderate,,
+DDX3X,y_deposit,s3_10,cadd,moderate,48,720,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_10,cadd,strong,48,720,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_10,phylop,supporting,48,720,True,,,4.58587,6.25,Moderate,15.0,36.0,3.36734693877551,10.385869565217384,Supporting,,
+DDX3X,y_deposit,s3_10,phylop,moderate,48,720,True,,,5.34067,9.75,Moderate,13.0,20.0,5.168103448275862,18.75,Moderate,,
+DDX3X,y_deposit,s3_10,phylop,strong,48,720,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_10,phastcons,supporting,48,720,True,,,1.0,3.165137614678899,Supporting,23.0,109.0,2.1609687981510017,4.264705882352941,Supporting,,
+DDX3X,y_deposit,s3_10,phastcons,moderate,48,720,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_10,phastcons,strong,48,720,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_10,gpn_msa,supporting,48,720,True,,,7.47,4.642857142857142,Moderate,26.0,84.0,3.292682926829269,6.397132352941176,Supporting,,
+DDX3X,y_deposit,s3_10,gpn_msa,moderate,48,720,True,,,9.13,5.7142857142857135,Moderate,16.0,42.0,3.3333333333333335,9.19447890818858,Supporting,,
+DDX3X,y_deposit,s3_10,gpn_msa,strong,48,720,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_10,spliceai_walker,supporting,48,720,True,3.9814814814814814,Supporting,0.4259027540683746,8.671875,Moderate,37.0,64.0,6.58511526896091,11.666666666666668,Moderate,3.368811082426701,4.694030612244897
+DDX3X,y_deposit,s3_10,spliceai_walker,moderate,48,720,True,3.9814814814814814,Supporting,0.5537148118019104,10.212765957446807,Moderate,32.0,47.0,7.372881355932203,14.559138655462185,Moderate,3.368811082426701,4.694030612244897
+DDX3X,y_deposit,s3_10,spliceai_walker,strong,48,720,True,3.9814814814814814,Supporting,0.89483243227005,27.0,Strong,18.0,10.0,13.846153846153848,63.0187499999999,Moderate,3.368811082426701,4.694030612244897
+DDX3X,y_deposit,s3_10,avi,supporting,48,720,True,,,0.844028890132904,9.761904761904765,Moderate,41.0,63.0,7.5,13.086103723404248,Moderate,,
+DDX3X,y_deposit,s3_10,avi,moderate,48,720,True,,,1.0689042806625366,13.214285714285715,Moderate,37.0,42.0,9.705882352941178,19.13995150862068,Moderate,,
+DDX3X,y_deposit,s3_10,avi,strong,48,720,True,,,1.3679836988449097,19.41176470588235,Strong,22.0,17.0,11.536764705882357,36.670454545454525,Moderate,,
+DDX3X,y_deposit,s3_10,avi_splice_sites,supporting,48,720,True,,,0.33984375,9.047619047619047,Moderate,38.0,63.0,7.071113445378151,12.127659574468083,Moderate,,
+DDX3X,y_deposit,s3_10,avi_splice_sites,moderate,48,720,True,,,0.455810546875,11.170212765957446,Moderate,35.0,47.0,8.25,15.857142857142858,Moderate,,
+DDX3X,y_deposit,s3_10,avi_splice_sites,strong,48,720,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_10,avi_splice_site_usage,supporting,48,720,True,,,0.568359375,13.333333333333334,Moderate,40.0,45.0,10.0,18.532085561497315,Moderate,,
+DDX3X,y_deposit,s3_10,avi_splice_site_usage,moderate,48,720,True,,,0.6669921875,13.902439024390244,Moderate,38.0,41.0,10.2,19.838709677419356,Moderate,,
+DDX3X,y_deposit,s3_10,avi_splice_site_usage,strong,48,720,True,,,0.91949462890625,18.91304347826087,Strong,29.0,23.0,12.09435483870968,31.875,Moderate,,
+DDX3X,y_deposit,s3_10,avi_splice_junctions,supporting,48,720,True,,,3.509765625,4.883720930232558,Moderate,42.0,129.0,4.080882352941177,5.948840810177432,Supporting,,
+DDX3X,y_deposit,s3_10,avi_splice_junctions,moderate,48,720,True,,,5.375,8.424657534246576,Moderate,41.0,73.0,6.593406593406594,11.0,Moderate,,
+DDX3X,y_deposit,s3_10,avi_splice_junctions,strong,48,720,True,,,6.83984375,12.06521739130435,Moderate,37.0,46.0,8.839285714285714,16.714285714285715,Moderate,,
+DDX3X,y_deposit,s11_50,pangolin,supporting,17,880,True,,,0.1923362016677856,9.651046859421736,Moderate,11.0,59.0,5.940212150433943,14.62915601023018,Moderate,,
+DDX3X,y_deposit,s11_50,pangolin,moderate,17,880,True,,,0.3521193712949753,27.11484593837535,Strong,11.0,21.0,14.789915966386555,48.0672268907563,Moderate,,
+DDX3X,y_deposit,s11_50,pangolin,strong,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,cadd,supporting,17,880,True,,,21.1,6.901960784313726,Moderate,2.0,15.0,0.0,21.568627450980394,below supporting,,
+DDX3X,y_deposit,s11_50,cadd,moderate,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,cadd,strong,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,phylop,supporting,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,phylop,moderate,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,phylop,strong,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,phastcons,supporting,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,phastcons,moderate,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,phastcons,strong,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,gpn_msa,supporting,17,880,True,,,6.585,3.450980392156863,Supporting,1.0,15.0,0.0,12.941176470588236,below supporting,,
+DDX3X,y_deposit,s11_50,gpn_msa,moderate,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,gpn_msa,strong,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,spliceai_walker,supporting,17,880,True,7.66884531590414,Moderate,0.2532642036676407,9.651046859421736,Moderate,11.0,59.0,5.85976155526118,14.317897371714643,Moderate,4.989369241672573,10.757002801120445
+DDX3X,y_deposit,s11_50,spliceai_walker,moderate,17,880,True,7.66884531590414,Moderate,0.3130816221237182,9.31764705882353,Moderate,9.0,50.0,4.705882352941176,15.099354375896691,Moderate,4.989369241672573,10.757002801120445
+DDX3X,y_deposit,s11_50,spliceai_walker,strong,17,880,True,7.66884531590414,Moderate,,,not evaluable,,,,,,4.989369241672573,10.757002801120445
+DDX3X,y_deposit,s11_50,avi,supporting,17,880,True,,,0.5901179909706116,20.336134453781515,Strong,11.0,28.0,11.50326797385621,33.649872122762126,Moderate,,
+DDX3X,y_deposit,s11_50,avi,moderate,17,880,True,,,0.691426157951355,28.758169934640524,Strong,10.0,18.0,15.22491349480969,55.74660633484163,Moderate,,
+DDX3X,y_deposit,s11_50,avi,strong,17,880,True,,,1.1923002004623413,,not evaluable,3.0,2.0,,,not evaluable,,
+DDX3X,y_deposit,s11_50,avi_splice_sites,supporting,17,880,True,,,0.270484447479248,13.99046104928458,Moderate,10.0,37.0,7.764705882352941,22.650294117647043,Moderate,,
+DDX3X,y_deposit,s11_50,avi_splice_sites,moderate,17,880,True,,,0.5078125,34.509803921568626,Strong,8.0,12.0,15.22491349480969,81.34453781512606,Moderate,,
+DDX3X,y_deposit,s11_50,avi_splice_sites,strong,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s11_50,avi_splice_site_usage,supporting,17,880,True,,,0.154296875,24.757033248081843,Strong,11.0,23.0,13.70242214532872,43.800904977375566,Moderate,,
+DDX3X,y_deposit,s11_50,avi_splice_site_usage,moderate,17,880,True,,,0.2469959259033203,31.633986928104576,Strong,11.0,18.0,17.918552036199095,59.72850678733032,Moderate,,
+DDX3X,y_deposit,s11_50,avi_splice_site_usage,strong,17,880,True,,,0.6455078125,51.76470588235294,Strong,8.0,8.0,21.568627450980394,138.0392156862745,Strong,,
+DDX3X,y_deposit,s11_50,avi_splice_junctions,supporting,17,880,True,,,3.3779296875,12.65359477124183,Moderate,11.0,45.0,7.526050420168067,19.58664546899841,Moderate,,
+DDX3X,y_deposit,s11_50,avi_splice_junctions,moderate,17,880,True,,,4.36328125,16.698292220113853,Moderate,10.0,31.0,8.924949290060853,28.2411764705882,Moderate,,
+DDX3X,y_deposit,s11_50,avi_splice_junctions,strong,17,880,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_50,pangolin,supporting,65,1600,True,,,0.3767528235912323,12.969396195202648,Moderate,49.0,93.0,10.37645367277033,16.71415004748338,Moderate,,
+DDX3X,y_deposit,s3_50,pangolin,moderate,65,1600,True,,,0.4281759262084961,14.235403151065803,Moderate,48.0,83.0,11.116625310173696,18.55289058767319,Moderate,,
+DDX3X,y_deposit,s3_50,pangolin,strong,65,1600,True,,,0.6740013957023621,19.901800327332243,Strong,38.0,47.0,14.12214015492704,28.13445378151259,Moderate,,
+DDX3X,y_deposit,s3_50,cadd,supporting,65,1600,True,,,19.19,8.284023668639053,Moderate,35.0,104.0,6.099387338325393,10.876715940118633,Moderate,,
+DDX3X,y_deposit,s3_50,cadd,moderate,65,1600,True,,,22.6,6.153846153846154,Moderate,9.0,36.0,2.4615384615384617,11.36094674556213,Supporting,,
+DDX3X,y_deposit,s3_50,cadd,strong,65,1600,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_50,phylop,supporting,65,1600,True,,,4.08529,7.692307692307693,Moderate,15.0,48.0,4.179970972423803,12.959784075573523,Supporting,,
+DDX3X,y_deposit,s3_50,phylop,moderate,65,1600,True,,,5.25,13.91304347826087,Moderate,13.0,23.0,6.923076923076923,27.350427350427353,Moderate,,
+DDX3X,y_deposit,s3_50,phylop,strong,65,1600,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_50,phastcons,supporting,65,1600,True,,,1.0,5.322245322245322,Moderate,24.0,111.0,3.516483516483517,7.452364149611855,Supporting,,
+DDX3X,y_deposit,s3_50,phastcons,moderate,65,1600,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_50,phastcons,strong,65,1600,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_50,gpn_msa,supporting,65,1600,True,,,6.88,6.69365721997301,Moderate,31.0,114.0,4.770423375074538,8.92652445593622,Moderate,,
+DDX3X,y_deposit,s3_50,gpn_msa,moderate,65,1600,True,,,8.31,9.846153846153848,Moderate,24.0,60.0,6.3199530891838585,14.674556213017752,Moderate,,
+DDX3X,y_deposit,s3_50,gpn_msa,strong,65,1600,True,,,,,not evaluable,,,,,,,
+DDX3X,y_deposit,s3_50,spliceai_walker,supporting,65,1600,True,5.571383349161127,Moderate,0.3335808515548706,9.691096305269534,Moderate,50.0,127.0,7.782805429864252,11.986622073578596,Moderate,4.755244755244755,6.458533357686622
+DDX3X,y_deposit,s3_50,spliceai_walker,moderate,65,1600,True,5.571383349161127,Moderate,0.4277547001838684,12.045826513911624,Moderate,46.0,94.0,9.426783479349188,15.664335664335663,Moderate,4.755244755244755,6.458533357686622
+DDX3X,y_deposit,s3_50,spliceai_walker,strong,65,1600,True,5.571383349161127,Moderate,0.893125057220459,45.44378698224852,Strong,24.0,13.0,24.615384615384617,98.46153846153844,Strong,4.755244755244755,6.458533357686622
+DDX3X,y_deposit,s3_50,avi,supporting,65,1600,True,,,0.7155988216400146,13.195876288659797,Moderate,52.0,97.0,10.491803278688526,16.623376623376625,Moderate,,
+DDX3X,y_deposit,s3_50,avi,moderate,65,1600,True,,,0.845728874206543,17.435897435897438,Moderate,51.0,72.0,13.675213675213676,22.975682382133993,Moderate,,
+DDX3X,y_deposit,s3_50,avi,strong,65,1600,True,,,1.1815255880355835,22.505494505494507,Strong,32.0,35.0,15.187208863149944,35.02958579881656,Moderate,,
+DDX3X,y_deposit,s3_50,avi_splice_sites,supporting,65,1600,True,,,0.2978515625,11.815384615384616,Moderate,48.0,100.0,9.25698862540968,15.042735042735044,Moderate,,
+DDX3X,y_deposit,s3_50,avi_splice_sites,moderate,65,1600,True,,,0.439453125,16.662721893491124,Moderate,44.0,65.0,12.467532467532466,22.336182336182333,Moderate,,
+DDX3X,y_deposit,s3_50,avi_splice_sites,strong,65,1600,True,,,0.8583984375,31.855203619909503,Strong,22.0,17.0,18.13765182186235,61.53846153846154,Moderate,,
+DDX3X,y_deposit,s3_50,avi_splice_site_usage,supporting,65,1600,True,,,0.3828125,18.46153846153846,Moderate,51.0,68.0,14.384948384948384,24.18390173608729,Moderate,,
+DDX3X,y_deposit,s3_50,avi_splice_site_usage,moderate,65,1600,True,,,0.4921875,20.512820512820515,Strong,50.0,60.0,15.69665551839465,27.12846677132391,Moderate,,
+DDX3X,y_deposit,s3_50,avi_splice_site_usage,strong,65,1600,True,,,0.913726806640625,29.379652605459057,Strong,37.0,31.0,19.89998181487543,44.954292084726845,Strong,,
+DDX3X,y_deposit,s3_50,avi_splice_junctions,supporting,65,1600,True,,,3.212890625,6.939443535188216,Moderate,53.0,188.0,5.747650657295328,8.2989010989011,Moderate,,
+DDX3X,y_deposit,s3_50,avi_splice_junctions,moderate,65,1600,True,,,3.955078125,8.77891339429801,Moderate,51.0,143.0,7.166362751172878,10.830952927669346,Moderate,,
+DDX3X,y_deposit,s3_50,avi_splice_junctions,strong,65,1600,True,,,6.24609375,17.334777898158183,Moderate,50.0,71.0,13.371320037986704,22.88798920377868,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,pangolin,supporting,26,718,True,,,0.4068579971790313,7.8414055080721745,Moderate,23.0,81.0,6.172692966656416,10.196449704142012,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,pangolin,moderate,26,718,True,,,0.547325074672699,9.799007444168735,Moderate,22.0,62.0,7.463321288321289,13.058365764670093,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,pangolin,strong,26,718,True,,,0.7039144039154053,12.123827392120075,Moderate,18.0,41.0,7.965976331360945,18.122596153846153,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,cadd,supporting,26,718,True,,,19.53,6.348364279398762,Moderate,20.0,87.0,4.602564102564103,8.285447173308615,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,cadd,moderate,26,718,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_10,cadd,strong,26,718,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_10,phylop,supporting,26,718,True,,,4.58587,8.497041420118343,Moderate,12.0,39.0,4.699993064994868,14.253869684264563,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,phylop,moderate,26,718,True,,,5.34067,12.006688963210705,Moderate,10.0,23.0,5.712827664222188,22.4375,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,phylop,strong,26,718,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_10,phastcons,supporting,26,718,True,,,1.0,3.5404339250493093,Supporting,15.0,117.0,2.3012820512820515,4.931783900062199,Supporting,,
+DDX3X,y_control_anchored_gated,s3_10,phastcons,moderate,26,718,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_10,phastcons,strong,26,718,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_10,gpn_msa,supporting,26,718,True,,,7.47,5.765849535080304,Moderate,19.0,91.0,4.184149184149184,7.746062409089949,Supporting,,
+DDX3X,y_control_anchored_gated,s3_10,gpn_msa,moderate,26,718,True,,,9.13,8.786713286713287,Moderate,14.0,44.0,5.288052373158756,13.807692307692308,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,gpn_msa,strong,26,718,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_10,spliceai_walker,supporting,26,718,True,4.079545454545455,Supporting,0.4259027540683746,8.836923076923076,Moderate,24.0,75.0,6.986929415273828,11.317780580075665,Moderate,3.6262626262626263,4.663099482217125
+DDX3X,y_control_anchored_gated,s3_10,spliceai_walker,moderate,26,718,True,4.079545454545455,Supporting,0.5537148118019104,10.35576923076923,Moderate,21.0,56.0,7.766826923076923,14.38301282051282,Moderate,3.6262626262626263,4.663099482217125
+DDX3X,y_control_anchored_gated,s3_10,spliceai_walker,strong,26,718,True,4.079545454545455,Supporting,0.89483243227005,23.933333333333337,Strong,13.0,15.0,12.552447552447552,48.32692307692307,Moderate,3.6262626262626263,4.663099482217125
+DDX3X,y_control_anchored_gated,s3_10,avi,supporting,26,718,True,,,0.844028890132904,9.447368421052632,Moderate,26.0,76.0,7.720430107526883,11.966666666666669,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,avi,moderate,26,718,True,,,1.0689042806625366,12.050349650349652,Moderate,24.0,55.0,9.32641198891199,16.055456171735244,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,avi,strong,26,718,True,,,1.3679836988449097,21.33916083916084,Strong,17.0,22.0,13.797231934731936,36.820512820512825,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,avi_splice_sites,supporting,26,718,True,,,0.33984375,9.32952182952183,Moderate,25.0,74.0,7.560608141858141,11.90477011494252,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,avi_splice_sites,moderate,26,718,True,,,0.455810546875,10.474801061007955,Moderate,22.0,58.0,7.670940170940171,14.10147299509002,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,avi_splice_sites,strong,26,718,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_10,avi_splice_site_usage,supporting,26,718,True,,,0.568359375,12.596491228070176,Moderate,26.0,57.0,9.972222222222223,16.697674418604652,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,avi_splice_site_usage,moderate,26,718,True,,,0.6669921875,13.27662721893491,Moderate,25.0,52.0,10.196449704142012,17.702169625246547,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,avi_splice_site_usage,strong,26,718,True,,,0.91949462890625,17.816377171215883,Moderate,20.0,31.0,12.11989837398374,27.615384615384617,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,avi_splice_junctions,supporting,26,718,True,,,3.509765625,5.020979020979021,Moderate,26.0,143.0,4.378048780487805,5.885245901639345,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,avi_splice_junctions,moderate,26,718,True,,,5.375,8.25287356321839,Moderate,26.0,87.0,6.903846153846153,10.257142857142858,Moderate,,
+DDX3X,y_control_anchored_gated,s3_10,avi_splice_junctions,strong,26,718,True,,,6.83984375,11.427055702917771,Moderate,24.0,58.0,8.931952488687783,15.578678929765884,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,pangolin,supporting,34,1562,True,,,0.3767528235912323,13.694004524886877,Moderate,31.0,104.0,10.994256180733162,17.034368803701256,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,pangolin,moderate,34,1562,True,,,0.4281759262084961,14.356617647058824,Moderate,30.0,96.0,11.366889023650698,17.92826398852224,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,pangolin,strong,34,1562,True,,,0.6740013957023621,19.343653250773993,Strong,24.0,57.0,13.92156862745098,26.96547314578005,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,cadd,supporting,34,1562,True,,,19.19,10.023529411764706,Moderate,24.0,110.0,7.430802079056948,13.356106076151384,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,cadd,moderate,34,1562,True,,,22.6,4.48206599713056,Moderate,4.0,41.0,0.9571078431372548,9.93322734499205,below supporting,,
+DDX3X,y_control_anchored_gated,s3_50,cadd,strong,34,1562,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_50,phylop,supporting,34,1562,True,,,4.08529,10.80968858131488,Moderate,12.0,51.0,5.955337690631808,17.750842030360527,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,phylop,moderate,34,1562,True,,,5.25,17.669683257918553,Moderate,10.0,26.0,8.244800420168069,32.81512605042017,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,phylop,strong,34,1562,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_50,phastcons,supporting,34,1562,True,,,1.0,6.176964903608503,Moderate,16.0,119.0,3.704933586337761,8.713377789046652,Supporting,,
+DDX3X,y_control_anchored_gated,s3_50,phastcons,moderate,34,1562,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_50,phastcons,strong,34,1562,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_50,gpn_msa,supporting,34,1562,True,,,6.88,7.907907425265189,Moderate,21.0,122.0,5.601982219717155,10.693493250162463,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,gpn_msa,moderate,34,1562,True,,,8.31,13.4289592760181,Moderate,19.0,65.0,8.72300819061802,19.567538126361654,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,gpn_msa,strong,34,1562,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored_gated,s3_50,spliceai_walker,supporting,34,1562,True,6.1015625,Moderate,0.3335808515548706,10.500840336134454,Moderate,32.0,140.0,8.803099682986968,12.69918699186992,Moderate,5.480701754385965,6.9115044247787605
+DDX3X,y_control_anchored_gated,s3_50,spliceai_walker,moderate,34,1562,True,6.1015625,Moderate,0.4277547001838684,13.126050420168069,Moderate,30.0,105.0,10.573682171983837,16.755017301038063,Moderate,5.480701754385965,6.9115044247787605
+DDX3X,y_control_anchored_gated,s3_50,spliceai_walker,strong,34,1562,True,6.1015625,Moderate,0.893125057220459,48.64359861591696,Strong,18.0,17.0,28.439775910364144,91.88235294117648,Strong,5.480701754385965,6.9115044247787605
+DDX3X,y_control_anchored_gated,s3_50,avi,supporting,34,1562,True,,,0.7155988216400146,14.2,Moderate,34.0,110.0,12.015384615384615,17.169603174603147,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,avi,moderate,34,1562,True,,,0.845728874206543,18.595238095238095,Moderate,34.0,84.0,15.31372549019608,23.313432835820898,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,avi,strong,34,1562,True,,,1.1815255880355835,28.012912482066,Strong,25.0,41.0,19.58113637987071,41.192601419878265,Strong,,
+DDX3X,y_control_anchored_gated,s3_50,avi_splice_sites,supporting,34,1562,True,,,0.2978515625,13.244303126656067,Moderate,32.0,111.0,10.889760348583875,16.335520622041916,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,avi_splice_sites,moderate,34,1562,True,,,0.439453125,17.76392156862745,Moderate,29.0,75.0,13.72842346035993,23.323981900452488,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,avi_splice_sites,strong,34,1562,True,,,0.8583984375,34.455882352941174,Strong,15.0,20.0,18.792184095860566,63.819950980392086,Strong,,
+DDX3X,y_control_anchored_gated,s3_50,avi_splice_site_usage,supporting,34,1562,True,,,0.3828125,19.525,Strong,34.0,80.0,16.103092783505154,24.40625,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,avi_splice_site_usage,moderate,34,1562,True,,,0.4921875,22.0,Strong,34.0,71.0,17.948922413793106,28.4,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,avi_splice_site_usage,strong,34,1562,True,,,0.913726806640625,31.433436532507734,Strong,26.0,38.0,22.01244005754476,45.94117647058823,Strong,,
+DDX3X,y_control_anchored_gated,s3_50,avi_splice_junctions,supporting,34,1562,True,,,3.212890625,7.732673267326732,Moderate,34.0,202.0,6.8508771929824555,8.875,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,avi_splice_junctions,moderate,34,1562,True,,,3.955078125,10.07741935483871,Moderate,34.0,155.0,8.775280898876405,11.746585213032567,Moderate,,
+DDX3X,y_control_anchored_gated,s3_50,avi_splice_junctions,strong,34,1562,True,,,6.24609375,18.048319327731093,Moderate,33.0,84.0,15.000953749921022,22.64600383631709,Moderate,,
+DDX3X,y_control_anchored,s3_10,pangolin,supporting,37,731,True,,,0.4068579971790313,5.474763920547053,Moderate,23.0,83.0,3.8303916161059015,7.441723269425967,Supporting,,
+DDX3X,y_control_anchored,s3_10,pangolin,moderate,37,731,True,,,0.547325074672699,6.8991848991849,Moderate,22.0,63.0,4.7413433574419495,9.692163321125586,Moderate,,
+DDX3X,y_control_anchored,s3_10,pangolin,strong,37,731,True,,,0.7039144039154053,8.673698088332236,Moderate,18.0,41.0,5.463846679125935,13.51940567211948,Moderate,,
+DDX3X,y_control_anchored,s3_10,cadd,supporting,37,731,True,,,19.53,4.541783162472818,Moderate,20.0,87.0,3.0391133480419197,6.383175675675674,Supporting,,
+DDX3X,y_control_anchored,s3_10,cadd,moderate,37,731,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_10,cadd,strong,37,731,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_10,phylop,supporting,37,731,True,,,4.58587,6.07900207900208,Moderate,12.0,39.0,3.2253585217870935,10.2753951093951,Supporting,,
+DDX3X,y_control_anchored,s3_10,phylop,moderate,37,731,True,,,5.34067,8.589894242068155,Moderate,10.0,23.0,3.9513513513513514,15.805405405405406,Supporting,,
+DDX3X,y_control_anchored,s3_10,phylop,strong,37,731,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_10,phastcons,supporting,37,731,True,,,1.0,2.532917532917533,Supporting,15.0,117.0,1.5461138550235016,3.704391891891892,below supporting,,
+DDX3X,y_control_anchored,s3_10,phastcons,moderate,37,731,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_10,phastcons,strong,37,731,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_10,gpn_msa,supporting,37,731,True,,,7.47,4.1250371250371245,Supporting,19.0,91.0,2.693885224589108,5.712797134483882,Supporting,,
+DDX3X,y_control_anchored,s3_10,gpn_msa,moderate,37,731,True,,,9.13,6.2862407862407865,Moderate,14.0,44.0,3.5562162162162165,10.131670131670132,Supporting,,
+DDX3X,y_control_anchored,s3_10,gpn_msa,strong,37,731,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_10,spliceai_walker,supporting,37,731,True,2.8696965121546127,Supporting,0.4259027540683746,6.157950157950158,Moderate,24.0,77.0,4.416216216216216,8.543907353299243,Moderate,2.1841640635610484,3.581896849002111
+DDX3X,y_control_anchored,s3_10,spliceai_walker,moderate,37,731,True,2.8696965121546127,Supporting,0.5537148118019104,7.153308480894688,Moderate,21.0,58.0,4.789275382420544,10.45945945945946,Moderate,2.1841640635610484,3.581896849002111
+DDX3X,y_control_anchored,s3_10,spliceai_walker,strong,37,731,True,2.8696965121546127,Supporting,0.89483243227005,17.122522522522523,Moderate,13.0,15.0,8.643581081081082,35.12312312312312,Moderate,2.1841640635610484,3.581896849002111
+DDX3X,y_control_anchored,s3_10,avi,supporting,37,731,True,,,0.844028890132904,6.585585585585586,Moderate,26.0,78.0,4.7980694980694985,8.876224050137093,Moderate,,
+DDX3X,y_control_anchored,s3_10,avi,moderate,37,731,True,,,1.0689042806625366,8.621130221130223,Moderate,24.0,55.0,6.07900207900208,12.158812535940193,Moderate,,
+DDX3X,y_control_anchored,s3_10,avi,strong,37,731,True,,,1.3679836988449097,15.266584766584767,Moderate,17.0,22.0,8.920758049484414,26.818311826864427,Moderate,,
+DDX3X,y_control_anchored,s3_10,avi_splice_sites,supporting,37,731,True,,,0.33984375,6.498933143669985,Moderate,25.0,76.0,4.824324324324325,8.78078078078078,Moderate,,
+DDX3X,y_control_anchored,s3_10,avi_splice_sites,moderate,37,731,True,,,0.455810546875,7.244144144144145,Moderate,22.0,60.0,4.9391891891891895,10.309483695652164,Moderate,,
+DDX3X,y_control_anchored,s3_10,avi_splice_sites,strong,37,731,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_10,avi_splice_site_usage,supporting,37,731,True,,,0.568359375,8.706367384333486,Moderate,26.0,59.0,6.298930402734751,12.230843629343628,Moderate,,
+DDX3X,y_control_anchored,s3_10,avi_splice_site_usage,moderate,37,731,True,,,0.6669921875,9.146646646646646,Moderate,25.0,54.0,6.391891891891892,12.644830907830906,Moderate,,
+DDX3X,y_control_anchored,s3_10,avi_splice_site_usage,strong,37,731,True,,,0.91949462890625,12.347972972972974,Moderate,20.0,32.0,7.902702702702703,20.516632016632016,Moderate,,
+DDX3X,y_control_anchored,s3_10,avi_splice_junctions,supporting,37,731,True,,,3.509765625,3.5425908667287977,Supporting,26.0,145.0,2.6811603250716156,4.524526661680764,Supporting,,
+DDX3X,y_control_anchored,s3_10,avi_splice_junctions,moderate,37,731,True,,,5.375,5.837223587223588,Moderate,26.0,88.0,4.346486486486487,7.731195016991137,Moderate,,
+DDX3X,y_control_anchored,s3_10,avi_splice_junctions,strong,37,731,True,,,6.83984375,8.036646816307833,Moderate,24.0,59.0,5.6447876447876455,11.349626221966648,Moderate,,
+DDX3X,y_control_anchored,s11_50,pangolin,supporting,34,863,True,,,0.1923362016677856,5.251521298174442,Moderate,12.0,58.0,2.776194852941176,8.46078431372549,Supporting,,
+DDX3X,y_control_anchored,s11_50,pangolin,moderate,34,863,True,,,0.3521193712949753,11.537433155080215,Moderate,10.0,22.0,5.383123416830847,22.562091503267972,Moderate,,
+DDX3X,y_control_anchored,s11_50,pangolin,strong,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,cadd,supporting,34,863,True,,,21.1,5.439075630252102,Moderate,3.0,14.0,0.0,15.07077205882353,below supporting,,
+DDX3X,y_control_anchored,s11_50,cadd,moderate,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,cadd,strong,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,phylop,supporting,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,phylop,moderate,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,phylop,strong,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,phastcons,supporting,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,phastcons,moderate,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,phastcons,strong,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,gpn_msa,supporting,34,863,True,,,6.585,3.6260504201680672,Supporting,2.0,14.0,0.0,10.152941176470588,below supporting,,
+DDX3X,y_control_anchored,s11_50,gpn_msa,moderate,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,gpn_msa,strong,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,spliceai_walker,supporting,34,863,True,3.0581148121899364,Supporting,0.2532642036676407,3.744937319189971,Supporting,9.0,61.0,1.781217750257998,6.348277043868381,below supporting,1.4585475224572588,5.005088600488378
+DDX3X,y_control_anchored,s11_50,spliceai_walker,moderate,34,863,True,3.0581148121899364,Supporting,0.3130816221237182,3.9815455594002302,Supporting,8.0,51.0,1.7505070993914806,6.923902072192506,below supporting,1.4585475224572588,5.005088600488378
+DDX3X,y_control_anchored,s11_50,spliceai_walker,strong,34,863,True,3.0581148121899364,Supporting,,,not evaluable,,,,,,1.4585475224572588,5.005088600488378
+DDX3X,y_control_anchored,s11_50,avi,supporting,34,863,True,,,0.5901179909706116,8.752535496957403,Moderate,10.0,29.0,4.230392156862745,15.716662289915943,Supporting,,
+DDX3X,y_control_anchored,s11_50,avi,moderate,34,863,True,,,0.691426157951355,14.101307189542483,Moderate,10.0,18.0,6.345588235294118,27.92058823529412,Moderate,,
+DDX3X,y_control_anchored,s11_50,avi,strong,34,863,True,,,1.1923002004623413,,not evaluable,4.0,1.0,,,not evaluable,,
+DDX3X,y_control_anchored,s11_50,avi_splice_sites,supporting,34,863,True,,,0.270484447479248,6.011609907120743,Moderate,9.0,38.0,2.700250312891114,10.8781512605042,Supporting,,
+DDX3X,y_control_anchored,s11_50,avi_splice_sites,moderate,34,863,True,,,0.5078125,16.92156862745098,Moderate,8.0,12.0,6.922459893048129,40.61176470588235,Moderate,,
+DDX3X,y_control_anchored,s11_50,avi_splice_sites,strong,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s11_50,avi_splice_site_usage,supporting,34,863,True,,,0.154296875,10.575980392156865,Moderate,10.0,24.0,4.880059523809524,20.04537925696591,Moderate,,
+DDX3X,y_control_anchored,s11_50,avi_splice_site_usage,moderate,34,863,True,,,0.2469959259033203,13.359133126934983,Moderate,10.0,19.0,6.339242647058824,27.334841628959275,Moderate,,
+DDX3X,y_control_anchored,s11_50,avi_splice_site_usage,strong,34,863,True,,,0.6455078125,25.38235294117647,Strong,8.0,8.0,9.229946524064172,69.8014705882353,Moderate,,
+DDX3X,y_control_anchored,s11_50,avi_splice_junctions,supporting,34,863,True,,,3.3779296875,5.517902813299233,Moderate,10.0,46.0,2.758314725555774,9.381617190354396,Supporting,,
+DDX3X,y_control_anchored,s11_50,avi_splice_junctions,moderate,34,863,True,,,4.36328125,8.18785578747628,Moderate,10.0,31.0,4.006696255804954,14.346547314578004,Supporting,,
+DDX3X,y_control_anchored,s11_50,avi_splice_junctions,strong,34,863,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_50,pangolin,supporting,71,1594,True,,,0.3767528235912323,7.067814293166405,Moderate,34.0,108.0,5.056338503996954,9.498844151867726,Moderate,,
+DDX3X,y_control_anchored,s3_50,pangolin,moderate,71,1594,True,,,0.4281759262084961,7.256793284962299,Moderate,32.0,99.0,5.046682460440268,9.97809076682316,Moderate,,
+DDX3X,y_control_anchored,s3_50,pangolin,strong,71,1594,True,,,0.6740013957023621,9.893530675578898,Moderate,26.0,59.0,6.584964247020585,14.836841884641162,Moderate,,
+DDX3X,y_control_anchored,s3_50,cadd,supporting,71,1594,True,,,19.19,4.923400049419322,Moderate,25.0,114.0,3.20664509444728,6.92494070027642,Supporting,,
+DDX3X,y_control_anchored,s3_50,cadd,moderate,71,1594,True,,,22.6,2.1903126073514256,Supporting,4.0,41.0,0.4774257691539307,4.762270593256509,below supporting,,
+DDX3X,y_control_anchored,s3_50,cadd,strong,71,1594,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_50,phylop,supporting,71,1594,True,,,4.08529,5.282518641259321,Moderate,12.0,51.0,2.6407090582711956,8.730829420970265,Supporting,,
+DDX3X,y_control_anchored,s3_50,phylop,moderate,71,1594,True,,,5.25,8.634886240520045,Moderate,10.0,26.0,3.90362881939312,16.838028169014084,Supporting,,
+DDX3X,y_control_anchored,s3_50,phylop,strong,71,1594,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_50,phastcons,supporting,71,1594,True,,,1.0,3.018582080719612,Supporting,16.0,119.0,1.7008109261630389,4.6054011569416495,below supporting,,
+DDX3X,y_control_anchored,s3_50,phastcons,moderate,71,1594,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_50,phastcons,strong,71,1594,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_50,gpn_msa,supporting,71,1594,True,,,6.88,4.015573113477614,Supporting,22.0,123.0,2.6025120381343423,5.773038229376257,Supporting,,
+DDX3X,y_control_anchored,s3_50,gpn_msa,moderate,71,1594,True,,,8.31,6.562513542795232,Moderate,19.0,65.0,3.904144927536231,9.930296120988224,Supporting,,
+DDX3X,y_control_anchored,s3_50,gpn_msa,strong,71,1594,True,,,,,not evaluable,,,,,,,
+DDX3X,y_control_anchored,s3_50,spliceai_walker,supporting,71,1594,True,3.084829588216321,Supporting,0.3335808515548706,5.337929675957844,Moderate,34.0,143.0,3.885441817572099,7.080606717226435,Supporting,2.319899199625799,3.908525909771799
+DDX3X,y_control_anchored,s3_50,spliceai_walker,moderate,71,1594,True,3.084829588216321,Supporting,0.4277547001838684,6.65206051121544,Moderate,32.0,108.0,4.651947722370258,9.024302678818009,Moderate,2.319899199625799,3.908525909771799
+DDX3X,y_control_anchored,s3_50,spliceai_walker,strong,71,1594,True,3.084829588216321,Supporting,0.893125057220459,26.4125932062966,Strong,20.0,17.0,14.522964374482186,51.02432778489116,Moderate,2.319899199625799,3.908525909771799
+DDX3X,y_control_anchored,s3_50,avi,supporting,71,1594,True,,,0.7155988216400146,7.152436744359965,Moderate,36.0,113.0,5.2586159278847315,9.621730382293762,Moderate,,
+DDX3X,y_control_anchored,s3_50,avi,moderate,71,1594,True,,,0.845728874206543,9.28994657600777,Moderate,36.0,87.0,6.616035147621508,12.47261345852895,Moderate,,
+DDX3X,y_control_anchored,s3_50,avi,strong,71,1594,True,,,1.1815255880355835,14.237031947784269,Moderate,26.0,41.0,9.057086730911786,21.809700983679853,Moderate,,
+DDX3X,y_control_anchored,s3_50,avi_splice_sites,supporting,71,1594,True,,,0.2978515625,6.695824067210278,Moderate,34.0,114.0,4.905195881169369,8.795348155234214,Moderate,,
+DDX3X,y_control_anchored,s3_50,avi_splice_sites,moderate,71,1594,True,,,0.439453125,8.92271578187071,Moderate,31.0,78.0,6.167775886085745,12.365005803803998,Moderate,,
+DDX3X,y_control_anchored,s3_50,avi_splice_sites,strong,71,1594,True,,,0.8583984375,17.348271446862995,Moderate,17.0,22.0,9.621730382293762,31.80762601927352,Moderate,,
+DDX3X,y_control_anchored,s3_50,avi_splice_site_usage,supporting,71,1594,True,,,0.3828125,9.737654844731036,Moderate,36.0,83.0,7.164855911244882,13.046351544091776,Moderate,,
+DDX3X,y_control_anchored,s3_50,avi_splice_site_usage,moderate,71,1594,True,,,0.4921875,10.921964217738866,Moderate,36.0,74.0,7.956778413612269,15.20854157201272,Moderate,,
+DDX3X,y_control_anchored,s3_50,avi_splice_site_usage,strong,71,1594,True,,,0.913726806640625,15.715492957746475,Moderate,28.0,40.0,10.124277133388569,24.05432595573441,Moderate,,
+DDX3X,y_control_anchored,s3_50,avi_splice_junctions,supporting,71,1594,True,,,3.212890625,3.9425626932325657,Supporting,36.0,205.0,2.9792403711367728,5.0123335609898865,Supporting,,
+DDX3X,y_control_anchored,s3_50,avi_splice_junctions,moderate,71,1594,True,,,3.955078125,5.115350329827063,Moderate,36.0,158.0,3.803124759485877,6.6651799155439875,Supporting,,
+DDX3X,y_control_anchored,s3_50,avi_splice_junctions,strong,71,1594,True,,,6.24609375,9.13691451031772,Moderate,35.0,86.0,6.54789501572542,12.32079763016436,Moderate,,
+DDX3X,y_fdr,s3_10,pangolin,supporting,41,727,True,,,0.4068579971790313,8.01570330771801,Moderate,33.0,73.0,6.1673474912094655,10.57680787334189,Moderate,,
+DDX3X,y_fdr,s3_10,pangolin,moderate,41,727,True,,,0.547325074672699,10.179313459801264,Moderate,31.0,54.0,7.435877261998427,13.898059573203044,Moderate,,
+DDX3X,y_fdr,s3_10,pangolin,strong,41,727,True,,,0.7039144039154053,10.543177323665128,Moderate,22.0,37.0,6.938024079869642,16.418247515808492,Moderate,,
+DDX3X,y_fdr,s3_10,cadd,supporting,41,727,True,,,19.53,5.691659138813611,Moderate,26.0,81.0,4.17184450112475,7.911069418386491,Supporting,,
+DDX3X,y_fdr,s3_10,cadd,moderate,41,727,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_10,cadd,strong,41,727,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_10,phylop,supporting,41,727,True,,,4.58587,6.709294660514173,Moderate,14.0,37.0,3.772703684483653,11.166050135501346,Supporting,,
+DDX3X,y_fdr,s3_10,phylop,moderate,41,727,True,,,5.34067,10.132404181184668,Moderate,12.0,21.0,4.835920177383592,19.209349593495936,Moderate,,
+DDX3X,y_fdr,s3_10,phylop,strong,41,727,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_10,phastcons,supporting,41,727,True,,,1.0,3.546341463414634,Supporting,22.0,110.0,2.433693652520017,4.835920177383592,Supporting,,
+DDX3X,y_fdr,s3_10,phastcons,moderate,41,727,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_10,phastcons,strong,41,727,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_10,gpn_msa,supporting,41,727,True,,,7.47,4.687692738996356,Moderate,23.0,87.0,3.3241518711143,6.50997616474808,Supporting,,
+DDX3X,y_fdr,s3_10,gpn_msa,moderate,41,727,True,,,9.13,7.352171326591314,Moderate,17.0,41.0,4.432926829268292,11.636432926829269,Moderate,,
+DDX3X,y_fdr,s3_10,gpn_msa,strong,41,727,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_10,spliceai_walker,supporting,41,727,True,3.9051974448315914,Supporting,0.4259027540683746,8.605093256814921,Moderate,33.0,68.0,6.592110852288298,11.59411862527716,Moderate,3.2944155671064905,4.620621268660904
+DDX3X,y_fdr,s3_10,spliceai_walker,moderate,41,727,True,3.9051974448315914,Supporting,0.5537148118019104,9.206848030018762,Moderate,27.0,52.0,6.49330127104088,13.18511569731082,Moderate,3.2944155671064905,4.620621268660904
+DDX3X,y_fdr,s3_10,spliceai_walker,strong,41,727,True,3.9051974448315914,Supporting,0.89483243227005,20.45966228893058,Strong,15.0,13.0,10.639024390243902,44.32926829268293,Moderate,3.2944155671064905,4.620621268660904
+DDX3X,y_fdr,s3_10,avi,supporting,41,727,True,,,0.844028890132904,9.792136876592648,Moderate,37.0,67.0,7.728457958921694,12.895787139689578,Moderate,,
+DDX3X,y_fdr,s3_10,avi,moderate,41,727,True,,,1.0689042806625366,13.39728997289973,Moderate,34.0,45.0,10.035750951763378,18.80719581485587,Moderate,,
+DDX3X,y_fdr,s3_10,avi,strong,41,727,True,,,1.3679836988449097,20.6869918699187,Strong,21.0,18.0,12.665505226480835,38.68736141906873,Moderate,,
+DDX3X,y_fdr,s3_10,avi_splice_sites,supporting,41,727,True,,,0.33984375,8.998179832544594,Moderate,34.0,67.0,6.850886917960088,11.928758101654442,Moderate,,
+DDX3X,y_fdr,s3_10,avi_splice_sites,moderate,41,727,True,,,0.455810546875,9.702254947077773,Moderate,29.0,53.0,6.938193017629906,13.742073170731707,Moderate,,
+DDX3X,y_fdr,s3_10,avi_splice_sites,strong,41,727,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_10,avi_splice_site_usage,supporting,41,727,True,,,0.568359375,12.41219512195122,Moderate,35.0,50.0,9.43784421715185,17.73170731707317,Moderate,,
+DDX3X,y_fdr,s3_10,avi_splice_site_usage,moderate,41,727,True,,,0.6669921875,13.39728997289973,Moderate,34.0,45.0,10.082735533237685,18.775539106995343,Moderate,,
+DDX3X,y_fdr,s3_10,avi_splice_site_usage,strong,41,727,True,,,0.91949462890625,17.73170731707317,Moderate,26.0,26.0,11.651869011324044,29.2051649928264,Moderate,,
+DDX3X,y_fdr,s3_10,avi_splice_junctions,supporting,41,727,True,,,3.509765625,4.896068438296323,Moderate,37.0,134.0,4.0829589216944795,5.864094872803561,Supporting,,
+DDX3X,y_fdr,s3_10,avi_splice_junctions,moderate,41,727,True,,,5.375,8.183864915572233,Moderate,36.0,78.0,6.48255966430632,10.581825334382376,Moderate,,
+DDX3X,y_fdr,s3_10,avi_splice_junctions,strong,41,727,True,,,6.83984375,11.125777140124343,Moderate,32.0,51.0,8.126719460520876,15.398587933247754,Moderate,,
+DDX3X,y_fdr,s11_50,pangolin,supporting,26,871,True,,,0.1923362016677856,9.136363636363637,Moderate,15.0,55.0,5.7578125,13.54255319148936,Moderate,,
+DDX3X,y_fdr,s11_50,pangolin,moderate,26,871,True,,,0.3521193712949753,29.558823529411764,Strong,15.0,17.0,16.75,58.64826388888876,Moderate,,
+DDX3X,y_fdr,s11_50,pangolin,strong,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,cadd,supporting,26,871,True,,,21.1,7.178571428571429,Moderate,3.0,14.0,0.0,20.1,below supporting,,
+DDX3X,y_fdr,s11_50,cadd,moderate,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,cadd,strong,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,phylop,supporting,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,phylop,moderate,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,phylop,strong,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,phastcons,supporting,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,phastcons,moderate,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,phastcons,strong,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,gpn_msa,supporting,26,871,True,,,6.585,4.785714285714286,Moderate,2.0,14.0,0.0,14.88888888888889,below supporting,,
+DDX3X,y_fdr,s11_50,gpn_msa,moderate,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,gpn_msa,strong,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,spliceai_walker,supporting,26,871,True,7.49342105263158,Moderate,0.2532642036676407,9.136363636363637,Moderate,15.0,55.0,5.87719298245614,13.403563829787217,Moderate,5.063553281299778,10.345588235294118
+DDX3X,y_fdr,s11_50,spliceai_walker,moderate,26,871,True,7.49342105263158,Moderate,0.3130816221237182,9.467391304347826,Moderate,13.0,46.0,5.481507421150279,14.98684210526316,Moderate,5.063553281299778,10.345588235294118
+DDX3X,y_fdr,s11_50,spliceai_walker,strong,26,871,True,7.49342105263158,Moderate,,,not evaluable,,,,,,5.063553281299778,10.345588235294118
+DDX3X,y_fdr,s11_50,avi,supporting,26,871,True,,,0.5901179909706116,20.9375,Strong,15.0,24.0,12.407407407407408,35.89285714285714,Moderate,,
+DDX3X,y_fdr,s11_50,avi,moderate,26,871,True,,,0.691426157951355,33.5,Strong,14.0,14.0,17.547619047619047,67.0,Moderate,,
+DDX3X,y_fdr,s11_50,avi,strong,26,871,True,,,1.1923002004623413,,not evaluable,4.0,1.0,,,not evaluable,,
+DDX3X,y_fdr,s11_50,avi_splice_sites,supporting,26,871,True,,,0.270484447479248,11.485714285714286,Moderate,12.0,35.0,6.090909090909092,18.48275862068966,Moderate,,
+DDX3X,y_fdr,s11_50,avi_splice_sites,moderate,26,871,True,,,0.5078125,33.5,Strong,10.0,10.0,15.461538461538463,83.75,Moderate,,
+DDX3X,y_fdr,s11_50,avi_splice_sites,strong,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s11_50,avi_splice_site_usage,supporting,26,871,True,,,0.154296875,26.44736842105263,Strong,15.0,19.0,15.35099431818182,48.96153846153846,Moderate,,
+DDX3X,y_fdr,s11_50,avi_splice_site_usage,moderate,26,871,True,,,0.2469959259033203,35.89285714285714,Strong,15.0,14.0,20.09238636363636,71.1875,Strong,,
+DDX3X,y_fdr,s11_50,avi_splice_site_usage,strong,26,871,True,,,0.6455078125,100.5,Strong,12.0,4.0,40.2,468.99999999999994,Strong,,
+DDX3X,y_fdr,s11_50,avi_splice_junctions,supporting,26,871,True,,,3.3779296875,12.256097560975608,Moderate,15.0,41.0,7.584905660377359,18.84509214743589,Moderate,,
+DDX3X,y_fdr,s11_50,avi_splice_junctions,moderate,26,871,True,,,4.36328125,19.326923076923077,Strong,15.0,26.0,11.166666666666666,33.5,Moderate,,
+DDX3X,y_fdr,s11_50,avi_splice_junctions,strong,26,871,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_50,pangolin,supporting,67,1598,True,,,0.3767528235912323,12.17910447761194,Moderate,48.0,94.0,9.636549333750825,15.583076469504327,Moderate,,
+DDX3X,y_fdr,s3_50,pangolin,moderate,67,1598,True,,,0.4281759262084961,13.345060412224592,Moderate,47.0,84.0,10.25838549189536,17.491716417910443,Moderate,,
+DDX3X,y_fdr,s3_50,pangolin,strong,67,1598,True,,,0.6740013957023621,18.38495024875622,Moderate,37.0,48.0,13.009497964721843,26.657551528073913,Moderate,,
+DDX3X,y_fdr,s3_50,cadd,supporting,67,1598,True,,,19.19,6.846047540077391,Moderate,31.0,108.0,4.927539201349884,9.28955184603299,Moderate,,
+DDX3X,y_fdr,s3_50,cadd,moderate,67,1598,True,,,22.6,4.393558523173605,Moderate,7.0,38.0,1.590049751243781,8.586268656716417,below supporting,,
+DDX3X,y_fdr,s3_50,cadd,strong,67,1598,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_50,phylop,supporting,67,1598,True,,,4.08529,6.814498933901919,Moderate,14.0,49.0,3.6676147564066457,11.05278485620677,Supporting,,
+DDX3X,y_fdr,s3_50,phylop,moderate,67,1598,True,,,5.25,11.92537313432836,Moderate,12.0,24.0,5.504018369690011,22.362266791044764,Moderate,,
+DDX3X,y_fdr,s3_50,phylop,strong,67,1598,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_50,phastcons,supporting,67,1598,True,,,1.0,4.897921108742004,Moderate,23.0,112.0,3.194254455366587,6.924410207029369,Supporting,,
+DDX3X,y_fdr,s3_50,phastcons,moderate,67,1598,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_50,phastcons,strong,67,1598,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_50,gpn_msa,supporting,67,1598,True,,,6.88,5.707870901900752,Moderate,28.0,117.0,3.906186738720193,7.792818087778927,Supporting,,
+DDX3X,y_fdr,s3_50,gpn_msa,moderate,67,1598,True,,,8.31,8.992904330804992,Moderate,23.0,61.0,5.8097971680061224,13.516592039800988,Moderate,,
+DDX3X,y_fdr,s3_50,gpn_msa,strong,67,1598,True,,,,,not evaluable,,,,,,,
+DDX3X,y_fdr,s3_50,spliceai_walker,supporting,67,1598,True,5.278443846342061,Moderate,0.3335808515548706,9.39005758608532,Moderate,50.0,127.0,7.514554371922075,11.716156061796282,Moderate,4.441128419067511,6.222048520383844
+DDX3X,y_fdr,s3_50,spliceai_walker,moderate,67,1598,True,5.278443846342061,Moderate,0.4277547001838684,11.671641791044776,Moderate,46.0,94.0,9.018717061592309,15.20989166486408,Moderate,4.441128419067511,6.222048520383844
+DDX3X,y_fdr,s3_50,spliceai_walker,strong,67,1598,True,5.278443846342061,Moderate,0.893125057220459,34.98109452736318,Strong,22.0,15.0,19.080597014925377,69.2267910447758,Strong,4.441128419067511,6.222048520383844
+DDX3X,y_fdr,s3_50,avi,supporting,67,1598,True,,,0.7155988216400146,12.412123058178496,Moderate,51.0,98.0,9.82089552238806,15.569237147595356,Moderate,,
+DDX3X,y_fdr,s3_50,avi,moderate,67,1598,True,,,0.845728874206543,16.336127581271725,Moderate,50.0,73.0,12.67047891330385,21.514995335820885,Moderate,,
+DDX3X,y_fdr,s3_50,avi,strong,67,1598,True,,,1.1815255880355835,21.80639658848614,Strong,32.0,35.0,14.495974076983506,33.3910447761194,Moderate,,
+DDX3X,y_fdr,s3_50,avi_splice_sites,supporting,67,1598,True,,,0.2978515625,10.756218905472638,Moderate,46.0,102.0,8.39175671123549,13.89109398064622,Moderate,,
+DDX3X,y_fdr,s3_50,avi_splice_sites,moderate,67,1598,True,,,0.439453125,14.380597014925373,Moderate,41.0,68.0,10.632260384822874,19.327328872876997,Moderate,,
+DDX3X,y_fdr,s3_50,avi_splice_sites,strong,67,1598,True,,,0.8583984375,22.65820895522388,Strong,19.0,20.0,12.443867618429593,42.590618336887,Moderate,,
+DDX3X,y_fdr,s3_50,avi_splice_site_usage,supporting,67,1598,True,,,0.3828125,17.888059701492537,Moderate,51.0,68.0,13.793202661391836,23.850746268656717,Moderate,,
+DDX3X,y_fdr,s3_50,avi_splice_site_usage,moderate,67,1598,True,,,0.4921875,20.61674677460157,Strong,51.0,59.0,15.682682478020851,28.32276119402985,Moderate,,
+DDX3X,y_fdr,s3_50,avi_splice_site_usage,strong,67,1598,True,,,0.913726806640625,26.83208955223881,Strong,36.0,32.0,18.201138106460174,41.48603990914986,Moderate,,
+DDX3X,y_fdr,s3_50,avi_splice_junctions,supporting,67,1598,True,,,3.212890625,6.562110084498145,Moderate,52.0,189.0,5.431331705598598,7.9502487562189055,Moderate,,
+DDX3X,y_fdr,s3_50,avi_splice_junctions,moderate,67,1598,True,,,3.955078125,8.734076098381333,Moderate,52.0,142.0,7.200225288651083,10.666433431255514,Moderate,,
+DDX3X,y_fdr,s3_50,avi_splice_junctions,strong,67,1598,True,,,6.24609375,15.682682478020851,Moderate,48.0,73.0,11.92537313432836,20.504399661610968,Moderate,,
+TP53,y_control_anchored,s3_10,spliceai,supporting,17,175,True,6.4338235294117645,Moderate,0.397732138633728,7.549019607843138,Moderate,11.0,15.0,4.210796692414339,14.869281045751633,Supporting,4.3672014260249545,10.294117647058822
+TP53,y_control_anchored,s3_10,spliceai,moderate,17,175,True,6.4338235294117645,Moderate,0.5639702081680298,9.264705882352942,Moderate,9.0,10.0,4.11764705882353,22.647058823529413,Supporting,4.3672014260249545,10.294117647058822
+TP53,y_control_anchored,s3_10,spliceai,strong,17,175,True,6.4338235294117645,Moderate,0.8993068933486938,,not evaluable,4.0,0.0,,,not evaluable,4.3672014260249545,10.294117647058822
+TP53,y_control_anchored,s3_10,pangolin,supporting,17,175,True,,,0.4068579971790313,22.058823529411764,Strong,15.0,7.0,12.348262032085564,72.05882352941177,Moderate,,
+TP53,y_control_anchored,s3_10,pangolin,moderate,17,175,True,,,0.547325074672699,48.0392156862745,Strong,14.0,3.0,19.11764705882353,164.7058823529412,Strong,,
+TP53,y_control_anchored,s3_10,pangolin,strong,17,175,True,,,0.7039144039154053,,not evaluable,8.0,1.0,,,not evaluable,,
+TP53,y_control_anchored,s3_10,alphagenome,supporting,17,175,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_10,alphagenome,moderate,17,175,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_10,alphagenome,strong,17,175,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_10,cadd,supporting,17,175,True,,,19.53,9.007352941176473,Moderate,7.0,8.0,3.7433155080213902,24.01960784313725,Supporting,,
+TP53,y_control_anchored,s3_10,cadd,moderate,17,175,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_10,cadd,strong,17,175,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_10,phylop,supporting,17,175,True,,,4.58587,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_control_anchored,s3_10,phylop,moderate,17,175,True,,,5.34067,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_control_anchored,s3_10,phylop,strong,17,175,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_10,phastcons,supporting,17,175,True,,,1.0,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_control_anchored,s3_10,phastcons,moderate,17,175,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_10,phastcons,strong,17,175,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_10,gpn_msa,supporting,17,175,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_10,gpn_msa,moderate,17,175,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_10,gpn_msa,strong,17,175,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_10,nt,supporting,17,175,True,,,3.6364574432373047,9.007352941176473,Moderate,7.0,8.0,3.431372549019608,25.735294117647054,Supporting,,
+TP53,y_control_anchored,s3_10,nt,moderate,17,175,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_10,nt,strong,17,175,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_10,spliceai_walker,supporting,17,175,True,6.176470588235294,Moderate,0.4259027540683746,9.558823529411764,Moderate,13.0,14.0,5.614973262032086,19.301470588235293,Moderate,4.2387543252595155,9.688581314878892
+TP53,y_control_anchored,s3_10,spliceai_walker,moderate,17,175,True,6.176470588235294,Moderate,0.5537148118019104,12.352941176470589,Moderate,12.0,10.0,6.660899653979239,30.88235294117647,Moderate,4.2387543252595155,9.688581314878892
+TP53,y_control_anchored,s3_10,spliceai_walker,strong,17,175,True,6.176470588235294,Moderate,0.89483243227005,,not evaluable,4.0,0.0,,,not evaluable,4.2387543252595155,9.688581314878892
+TP53,y_control_anchored,s3_10,avi,supporting,17,175,True,,,0.844028890132904,123.52941176470588,Strong,12.0,1.0,34.31372549019608,155.2941176470588,Strong,,
+TP53,y_control_anchored,s3_10,avi,moderate,17,175,True,,,1.0689042806625366,,not evaluable,2.0,0.0,,,not evaluable,,
+TP53,y_control_anchored,s3_10,avi,strong,17,175,True,,,1.3679836988449097,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_control_anchored,s3_10,avi_splice_sites,supporting,17,175,True,,,0.33984375,9.08304498269896,Moderate,15.0,17.0,6.082199591066372,15.911690433749245,Moderate,,
+TP53,y_control_anchored,s3_10,avi_splice_sites,moderate,17,175,True,,,0.455810546875,20.58823529411765,Strong,12.0,6.0,10.294117647058822,72.05882352941177,Moderate,,
+TP53,y_control_anchored,s3_10,avi_splice_sites,strong,17,175,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_10,avi_splice_site_usage,supporting,17,175,True,,,0.568359375,37.74509803921568,Strong,11.0,3.0,14.705882352941178,134.58823529411762,Moderate,,
+TP53,y_control_anchored,s3_10,avi_splice_site_usage,moderate,17,175,True,,,0.6669921875,113.23529411764706,Strong,11.0,1.0,30.88235294117647,154.41176470588235,Strong,,
+TP53,y_control_anchored,s3_10,avi_splice_site_usage,strong,17,175,True,,,0.91949462890625,,not evaluable,8.0,1.0,,,not evaluable,,
+TP53,y_control_anchored,s3_10,avi_splice_junctions,supporting,17,175,True,,,3.509765625,17.647058823529413,Moderate,12.0,7.0,9.136029411764708,51.47058823529411,Moderate,,
+TP53,y_control_anchored,s3_10,avi_splice_junctions,moderate,17,175,True,,,5.375,46.3235294117647,Strong,9.0,2.0,15.441176470588236,124.23529411764706,Moderate,,
+TP53,y_control_anchored,s3_10,avi_splice_junctions,strong,17,175,True,,,6.83984375,,not evaluable,7.0,1.0,,,not evaluable,,
+TP53,y_control_anchored,s3_50,spliceai,supporting,17,223,True,7.567873303167421,Moderate,0.3335808515548706,8.016339869281046,Moderate,11.0,18.0,4.372549019607844,15.30392156862745,Moderate,5.247058823529412,12.24450367647058
+TP53,y_control_anchored,s3_50,spliceai,moderate,17,223,True,7.567873303167421,Moderate,0.3791576027870178,9.018382352941178,Moderate,11.0,16.0,5.044047619047619,17.490196078431374,Moderate,5.247058823529412,12.24450367647058
+TP53,y_control_anchored,s3_50,spliceai,strong,17,223,True,7.567873303167421,Moderate,0.883614718914032,,not evaluable,5.0,0.0,,,not evaluable,5.247058823529412,12.24450367647058
+TP53,y_control_anchored,s3_50,pangolin,supporting,17,223,True,,,0.3767528235912323,21.862745098039216,Strong,15.0,9.0,12.34481509515571,52.47058823529411,Moderate,,
+TP53,y_control_anchored,s3_50,pangolin,moderate,17,223,True,,,0.4281759262084961,32.79411764705882,Strong,15.0,6.0,16.6951871657754,104.94117647058825,Moderate,,
+TP53,y_control_anchored,s3_50,pangolin,strong,17,223,True,,,0.6740013957023621,72.14705882352942,Strong,11.0,2.0,26.235294117647054,183.6470588235294,Strong,,
+TP53,y_control_anchored,s3_50,alphagenome,supporting,17,223,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_50,alphagenome,moderate,17,223,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_50,alphagenome,strong,17,223,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_50,cadd,supporting,17,223,True,,,19.19,11.660130718954248,Moderate,8.0,9.0,5.04524886877828,32.40058823529418,Moderate,,
+TP53,y_control_anchored,s3_50,cadd,moderate,17,223,True,,,22.6,7.495798319327731,Moderate,4.0,7.0,1.457516339869281,18.36470588235294,below supporting,,
+TP53,y_control_anchored,s3_50,cadd,strong,17,223,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_50,phylop,supporting,17,223,True,,,4.08529,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_control_anchored,s3_50,phylop,moderate,17,223,True,,,5.25,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_control_anchored,s3_50,phylop,strong,17,223,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_50,phastcons,supporting,17,223,True,,,1.0,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_control_anchored,s3_50,phastcons,moderate,17,223,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_50,phastcons,strong,17,223,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_50,gpn_msa,supporting,17,223,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_50,gpn_msa,moderate,17,223,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_50,gpn_msa,strong,17,223,False,,,,,,,,,,,,
+TP53,y_control_anchored,s3_50,nt,supporting,17,223,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_50,nt,moderate,17,223,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_50,nt,strong,17,223,True,,,,,not evaluable,,,,,,,
+TP53,y_control_anchored,s3_50,spliceai_walker,supporting,17,223,True,7.287581699346405,Moderate,0.3335808515548706,9.473856209150329,Moderate,13.0,18.0,5.830065359477125,17.052941176470586,Moderate,5.076985111662531,11.046439628482972
+TP53,y_control_anchored,s3_50,spliceai_walker,moderate,17,223,True,7.287581699346405,Moderate,0.4277547001838684,12.180672268907562,Moderate,13.0,14.0,7.15383801247772,24.595588235294116,Moderate,5.076985111662531,11.046439628482972
+TP53,y_control_anchored,s3_50,spliceai_walker,strong,17,223,True,7.287581699346405,Moderate,0.893125057220459,,not evaluable,4.0,0.0,,,not evaluable,5.076985111662531,11.046439628482972
+TP53,y_control_anchored,s3_50,avi,supporting,17,223,True,,,0.7155988216400146,39.352941176470594,Strong,12.0,4.0,18.036764705882355,171.2941176470588,Moderate,,
+TP53,y_control_anchored,s3_50,avi,moderate,17,223,True,,,0.845728874206543,157.41176470588238,Strong,12.0,1.0,39.352941176470594,197.64705882352945,Strong,,
+TP53,y_control_anchored,s3_50,avi,strong,17,223,True,,,1.1815255880355835,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_control_anchored,s3_50,avi_splice_sites,supporting,17,223,True,,,0.2978515625,9.838235294117649,Moderate,15.0,20.0,6.5588235294117645,16.39705882352941,Moderate,,
+TP53,y_control_anchored,s3_50,avi_splice_sites,moderate,17,223,True,,,0.439453125,26.235294117647054,Strong,14.0,7.0,13.992156862745098,72.14705882352942,Moderate,,
+TP53,y_control_anchored,s3_50,avi_splice_sites,strong,17,223,True,,,0.8583984375,,not evaluable,6.0,0.0,,,not evaluable,,
+TP53,y_control_anchored,s3_50,avi_splice_site_usage,supporting,17,223,True,,,0.3828125,36.07352941176471,Strong,11.0,4.0,15.30392156862745,157.41176470588238,Moderate,,
+TP53,y_control_anchored,s3_50,avi_splice_site_usage,moderate,17,223,True,,,0.4921875,48.09803921568628,Strong,11.0,3.0,18.542731092436973,170.52941176470588,Moderate,,
+TP53,y_control_anchored,s3_50,avi_splice_site_usage,strong,17,223,True,,,0.913726806640625,118.05882352941175,Strong,9.0,1.0,30.6078431372549,171.2941176470588,Strong,,
+TP53,y_control_anchored,s3_50,avi_splice_junctions,supporting,17,223,True,,,3.212890625,15.741176470588238,Moderate,12.0,10.0,8.3475935828877,39.35294117647059,Moderate,,
+TP53,y_control_anchored,s3_50,avi_splice_junctions,moderate,17,223,True,,,3.955078125,20.613445378151265,Strong,11.0,7.0,10.291106442577032,65.58823529411765,Moderate,,
+TP53,y_control_anchored,s3_50,avi_splice_junctions,strong,17,223,True,,,6.24609375,52.47058823529411,Strong,8.0,2.0,15.741176470588238,144.94117647058826,Moderate,,
+TP53,y_median_split,s3_10,spliceai,supporting,85,107,True,2.247899159663866,Supporting,0.397732138633728,2.0141176470588236,below supporting,16.0,10.0,0.9626297577854672,4.784578431372544,below supporting,1.258823529411765,4.3359477124183
+TP53,y_median_split,s3_10,spliceai,moderate,85,107,True,2.247899159663866,Supporting,0.5639702081680298,2.1579831932773113,Supporting,12.0,7.0,0.9155080213903743,6.713725490196079,below supporting,1.258823529411765,4.3359477124183
+TP53,y_median_split,s3_10,spliceai,strong,85,107,True,2.247899159663866,Supporting,0.8993068933486938,,not evaluable,4.0,0.0,,,not evaluable,1.258823529411765,4.3359477124183
+TP53,y_median_split,s3_10,pangolin,supporting,85,107,True,,,0.4068579971790313,12.588235294117649,Moderate,20.0,2.0,4.191582633053222,32.72941176470589,Supporting,,
+TP53,y_median_split,s3_10,pangolin,moderate,85,107,True,,,0.547325074672699,20.141176470588235,Strong,16.0,1.0,5.454901960784314,29.12205882352941,Moderate,,
+TP53,y_median_split,s3_10,pangolin,strong,85,107,True,,,0.7039144039154053,,not evaluable,9.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_10,alphagenome,supporting,85,107,False,,,,,,,,,,,,
+TP53,y_median_split,s3_10,alphagenome,moderate,85,107,False,,,,,,,,,,,,
+TP53,y_median_split,s3_10,alphagenome,strong,85,107,False,,,,,,,,,,,,
+TP53,y_median_split,s3_10,cadd,supporting,85,107,True,,,19.53,3.4617647058823535,Supporting,11.0,4.0,1.258823529411765,16.364705882352943,below supporting,,
+TP53,y_median_split,s3_10,cadd,moderate,85,107,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_10,cadd,strong,85,107,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_10,phylop,supporting,85,107,True,,,4.58587,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_10,phylop,moderate,85,107,True,,,5.34067,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_10,phylop,strong,85,107,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_10,phastcons,supporting,85,107,True,,,1.0,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_10,phastcons,moderate,85,107,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_10,phastcons,strong,85,107,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_10,gpn_msa,supporting,85,107,False,,,,,,,,,,,,
+TP53,y_median_split,s3_10,gpn_msa,moderate,85,107,False,,,,,,,,,,,,
+TP53,y_median_split,s3_10,gpn_msa,strong,85,107,False,,,,,,,,,,,,
+TP53,y_median_split,s3_10,nt,supporting,85,107,True,,,3.6364574432373047,3.4617647058823535,Supporting,11.0,4.0,1.258823529411765,16.364705882352943,below supporting,,
+TP53,y_median_split,s3_10,nt,moderate,85,107,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_10,nt,strong,85,107,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_10,spliceai_walker,supporting,85,107,True,2.3378151260504207,Supporting,0.4259027540683746,2.5176470588235293,Supporting,18.0,9.0,1.258823529411765,6.608823529411765,below supporting,1.3633508403361343,4.563235294117647
+TP53,y_median_split,s3_10,spliceai_walker,moderate,85,107,True,2.3378151260504207,Supporting,0.5537148118019104,2.6974789915966393,Supporting,15.0,7.0,1.1685617323852622,8.413137254901942,below supporting,1.3633508403361343,4.563235294117647
+TP53,y_median_split,s3_10,spliceai_walker,strong,85,107,True,2.3378151260504207,Supporting,0.89483243227005,,not evaluable,4.0,0.0,,,not evaluable,1.3633508403361343,4.563235294117647
+TP53,y_median_split,s3_10,avi,supporting,85,107,True,,,0.844028890132904,16.51764705882353,Moderate,13.0,0.0,12.705882352941178,25.411764705882355,Moderate,,
+TP53,y_median_split,s3_10,avi,moderate,85,107,True,,,1.0689042806625366,,not evaluable,2.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_10,avi,strong,85,107,True,,,1.3679836988449097,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_10,avi_splice_sites,supporting,85,107,True,,,0.33984375,2.769411764705883,Supporting,22.0,10.0,1.4521428571428574,6.79764705882353,below supporting,,
+TP53,y_median_split,s3_10,avi_splice_sites,moderate,85,107,True,,,0.455810546875,10.070588235294116,Moderate,16.0,2.0,3.147058823529412,26.68235294117647,Supporting,,
+TP53,y_median_split,s3_10,avi_splice_sites,strong,85,107,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_10,avi_splice_site_usage,supporting,85,107,True,,,0.568359375,16.364705882352943,Moderate,13.0,1.0,4.196078431372549,24.14117647058824,Supporting,,
+TP53,y_median_split,s3_10,avi_splice_site_usage,moderate,85,107,True,,,0.6669921875,15.247058823529413,Moderate,12.0,0.0,12.705882352941178,24.14117647058824,Moderate,,
+TP53,y_median_split,s3_10,avi_splice_site_usage,strong,85,107,True,,,0.91949462890625,,not evaluable,9.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_10,avi_splice_junctions,supporting,85,107,True,,,3.509765625,4.720588235294119,Moderate,15.0,4.0,1.888235294117647,22.049999999999955,below supporting,,
+TP53,y_median_split,s3_10,avi_splice_junctions,moderate,85,107,True,,,5.375,13.976470588235296,Moderate,11.0,0.0,12.705882352941178,22.87058823529412,Moderate,,
+TP53,y_median_split,s3_10,avi_splice_junctions,strong,85,107,True,,,6.83984375,,not evaluable,8.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,spliceai,supporting,11,37,True,,not evaluable,0.2397319227457046,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,spliceai,moderate,11,37,True,,not evaluable,0.3111262619495392,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,spliceai,strong,11,37,True,,not evaluable,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,pangolin,supporting,11,37,True,,,0.1923362016677856,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,pangolin,moderate,11,37,True,,,0.3521193712949753,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,pangolin,strong,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,alphagenome,supporting,11,37,False,,,,,,,,,,,,
+TP53,y_median_split,s11_50,alphagenome,moderate,11,37,False,,,,,,,,,,,,
+TP53,y_median_split,s11_50,alphagenome,strong,11,37,False,,,,,,,,,,,,
+TP53,y_median_split,s11_50,cadd,supporting,11,37,True,,,21.1,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,cadd,moderate,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,cadd,strong,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,phylop,supporting,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,phylop,moderate,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,phylop,strong,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,phastcons,supporting,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,phastcons,moderate,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,phastcons,strong,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,gpn_msa,supporting,11,37,False,,,,,,,,,,,,
+TP53,y_median_split,s11_50,gpn_msa,moderate,11,37,False,,,,,,,,,,,,
+TP53,y_median_split,s11_50,gpn_msa,strong,11,37,False,,,,,,,,,,,,
+TP53,y_median_split,s11_50,nt,supporting,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,nt,moderate,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,nt,strong,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,spliceai_walker,supporting,11,37,True,,not evaluable,0.2532642036676407,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,spliceai_walker,moderate,11,37,True,,not evaluable,0.3130816221237182,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,spliceai_walker,strong,11,37,True,,not evaluable,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,avi,supporting,11,37,True,,,0.5901179909706116,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,avi,moderate,11,37,True,,,0.691426157951355,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,avi,strong,11,37,True,,,1.1923002004623413,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,avi_splice_sites,supporting,11,37,True,,,0.270484447479248,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,avi_splice_sites,moderate,11,37,True,,,0.5078125,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,avi_splice_sites,strong,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s11_50,avi_splice_site_usage,supporting,11,37,True,,,0.154296875,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,avi_splice_site_usage,moderate,11,37,True,,,0.2469959259033203,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,avi_splice_site_usage,strong,11,37,True,,,0.6455078125,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,avi_splice_junctions,supporting,11,37,True,,,3.3779296875,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,avi_splice_junctions,moderate,11,37,True,,,4.36328125,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s11_50,avi_splice_junctions,strong,11,37,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_50,spliceai,supporting,96,144,True,2.5999999999999996,Supporting,0.3335808515548706,2.454545454545454,Supporting,18.0,11.0,1.2692307692307692,5.57276785714285,below supporting,1.4347826086956523,5.0
+TP53,y_median_split,s3_50,spliceai,moderate,96,144,True,2.5999999999999996,Supporting,0.3791576027870178,2.55,Supporting,17.0,10.0,1.2,6.6,below supporting,1.4347826086956523,5.0
+TP53,y_median_split,s3_50,spliceai,strong,96,144,True,2.5999999999999996,Supporting,0.883614718914032,,not evaluable,5.0,0.0,,,not evaluable,1.4347826086956523,5.0
+TP53,y_median_split,s3_50,pangolin,supporting,96,144,True,,,0.3767528235912323,16.5,Moderate,22.0,2.0,5.699999999999999,42.29166666666667,Moderate,,
+TP53,y_median_split,s3_50,pangolin,moderate,96,144,True,,,0.4281759262084961,14.25,Moderate,19.0,2.0,5.250000000000001,37.76041666666667,Moderate,,
+TP53,y_median_split,s3_50,pangolin,strong,96,144,True,,,0.6740013957023621,19.635416666666664,Strong,13.0,0.0,15.104166666666668,30.208333333333336,Moderate,,
+TP53,y_median_split,s3_50,alphagenome,supporting,96,144,False,,,,,,,,,,,,
+TP53,y_median_split,s3_50,alphagenome,moderate,96,144,False,,,,,,,,,,,,
+TP53,y_median_split,s3_50,alphagenome,strong,96,144,False,,,,,,,,,,,,
+TP53,y_median_split,s3_50,cadd,supporting,96,144,True,,,19.19,4.875,Moderate,13.0,4.0,1.8333333333333333,21.000000000000004,below supporting,,
+TP53,y_median_split,s3_50,cadd,moderate,96,144,True,,,22.6,4.0,Supporting,8.0,3.0,1.5,18.0,below supporting,,
+TP53,y_median_split,s3_50,cadd,strong,96,144,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_50,phylop,supporting,96,144,True,,,4.08529,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_50,phylop,moderate,96,144,True,,,5.25,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_50,phylop,strong,96,144,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_50,phastcons,supporting,96,144,True,,,1.0,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_50,phastcons,moderate,96,144,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_50,phastcons,strong,96,144,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_50,gpn_msa,supporting,96,144,False,,,,,,,,,,,,
+TP53,y_median_split,s3_50,gpn_msa,moderate,96,144,False,,,,,,,,,,,,
+TP53,y_median_split,s3_50,gpn_msa,strong,96,144,False,,,,,,,,,,,,
+TP53,y_median_split,s3_50,nt,supporting,96,144,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_50,nt,moderate,96,144,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_50,nt,strong,96,144,True,,,,,not evaluable,,,,,,,
+TP53,y_median_split,s3_50,spliceai_walker,supporting,96,144,True,2.6999999999999997,Supporting,0.3335808515548706,2.727272727272727,Supporting,20.0,11.0,1.40625,6.0,below supporting,1.5,5.250000000000001
+TP53,y_median_split,s3_50,spliceai_walker,moderate,96,144,True,2.6999999999999997,Supporting,0.4277547001838684,3.5625,Supporting,19.0,8.0,1.749519230769231,10.5,below supporting,1.5,5.250000000000001
+TP53,y_median_split,s3_50,spliceai_walker,strong,96,144,True,2.6999999999999997,Supporting,0.893125057220459,,not evaluable,4.0,0.0,,,not evaluable,1.5,5.250000000000001
+TP53,y_median_split,s3_50,avi,supporting,96,144,True,,,0.7155988216400146,24.166666666666664,Strong,16.0,0.0,15.104166666666668,34.739583333333336,Moderate,,
+TP53,y_median_split,s3_50,avi,moderate,96,144,True,,,0.845728874206543,19.635416666666664,Strong,13.0,0.0,15.104166666666668,30.208333333333336,Moderate,,
+TP53,y_median_split,s3_50,avi,strong,96,144,True,,,1.1815255880355835,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_50,avi_splice_sites,supporting,96,144,True,,,0.2978515625,3.2727272727272725,Supporting,24.0,11.0,1.7368421052631575,7.199999999999999,below supporting,,
+TP53,y_median_split,s3_50,avi_splice_sites,moderate,96,144,True,,,0.439453125,14.25,Moderate,19.0,2.0,4.875,37.76041666666667,Moderate,,
+TP53,y_median_split,s3_50,avi_splice_sites,strong,96,144,True,,,0.8583984375,,not evaluable,6.0,0.0,,,not evaluable,,
+TP53,y_median_split,s3_50,avi_splice_site_usage,supporting,96,144,True,,,0.3828125,21.000000000000004,Strong,14.0,1.0,5.5,31.71875,Moderate,,
+TP53,y_median_split,s3_50,avi_splice_site_usage,moderate,96,144,True,,,0.4921875,19.5,Strong,13.0,1.0,5.5,28.697916666666664,Moderate,,
+TP53,y_median_split,s3_50,avi_splice_site_usage,strong,96,144,True,,,0.913726806640625,15.104166666666668,Moderate,10.0,0.0,15.104166666666668,25.790364583333403,Moderate,,
+TP53,y_median_split,s3_50,avi_splice_junctions,supporting,96,144,True,,,3.212890625,6.75,Moderate,18.0,4.0,2.8125,31.5,Supporting,,
+TP53,y_median_split,s3_50,avi_splice_junctions,moderate,96,144,True,,,3.955078125,7.5,Moderate,15.0,3.0,2.6999999999999997,28.5,Supporting,,
+TP53,y_median_split,s3_50,avi_splice_junctions,strong,96,144,True,,,6.24609375,15.104166666666668,Moderate,10.0,0.0,15.104166666666668,25.677083333333336,Moderate,,
+TP53,y_mid_band_excluded,s3_10,spliceai,supporting,13,168,True,8.4,Moderate,0.397732138633728,8.946745562130177,Moderate,9.0,13.0,4.846153846153847,19.384615384615387,Moderate,5.793103448275862,14.0
+TP53,y_mid_band_excluded,s3_10,spliceai,moderate,13,168,True,8.4,Moderate,0.5639702081680298,10.051282051282053,Moderate,7.0,9.0,4.307692307692308,25.84615384615385,Supporting,5.793103448275862,14.0
+TP53,y_mid_band_excluded,s3_10,spliceai,strong,13,168,True,8.4,Moderate,0.8993068933486938,,not evaluable,4.0,0.0,,,not evaluable,5.793103448275862,14.0
+TP53,y_mid_band_excluded,s3_10,pangolin,supporting,13,168,True,,,0.4068579971790313,33.6,Strong,13.0,5.0,16.8,168.0,Moderate,,
+TP53,y_mid_band_excluded,s3_10,pangolin,moderate,13,168,True,,,0.547325074672699,84.0,Strong,13.0,2.0,33.6,169.0,Strong,,
+TP53,y_mid_band_excluded,s3_10,pangolin,strong,13,168,True,,,0.7039144039154053,,not evaluable,8.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_10,alphagenome,supporting,13,168,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_10,alphagenome,moderate,13,168,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_10,alphagenome,strong,13,168,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_10,cadd,supporting,13,168,True,,,19.53,11.076923076923078,Moderate,6.0,7.0,4.307692307692308,30.153846153846153,Supporting,,
+TP53,y_mid_band_excluded,s3_10,cadd,moderate,13,168,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_10,cadd,strong,13,168,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_10,phylop,supporting,13,168,True,,,4.58587,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_10,phylop,moderate,13,168,True,,,5.34067,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_10,phylop,strong,13,168,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_10,phastcons,supporting,13,168,True,,,1.0,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_10,phastcons,moderate,13,168,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_10,phastcons,strong,13,168,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_10,gpn_msa,supporting,13,168,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_10,gpn_msa,moderate,13,168,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_10,gpn_msa,strong,13,168,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_10,nt,supporting,13,168,True,,,3.6364574432373047,9.692307692307692,Moderate,6.0,8.0,3.876923076923078,25.84615384615385,Supporting,,
+TP53,y_mid_band_excluded,s3_10,nt,moderate,13,168,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_10,nt,strong,13,168,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_10,spliceai_walker,supporting,13,168,True,8.0,Moderate,0.4259027540683746,11.846153846153848,Moderate,11.0,12.0,7.046691769768693,25.84615384615385,Moderate,5.6,12.949999999999854
+TP53,y_mid_band_excluded,s3_10,spliceai_walker,moderate,13,168,True,8.0,Moderate,0.5537148118019104,14.35897435897436,Moderate,10.0,9.0,7.538461538461538,35.53846153846154,Moderate,5.6,12.949999999999854
+TP53,y_mid_band_excluded,s3_10,spliceai_walker,strong,13,168,True,8.0,Moderate,0.89483243227005,,not evaluable,4.0,0.0,,,not evaluable,5.6,12.949999999999854
+TP53,y_mid_band_excluded,s3_10,avi,supporting,13,168,True,,,0.844028890132904,156.0,Strong,12.0,0.0,130.0,169.0,Strong,,
+TP53,y_mid_band_excluded,s3_10,avi,moderate,13,168,True,,,1.0689042806625366,,not evaluable,2.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_10,avi,strong,13,168,True,,,1.3679836988449097,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_10,avi_splice_sites,supporting,13,168,True,,,0.33984375,11.2,Moderate,13.0,15.0,7.62806324110672,21.0,Moderate,,
+TP53,y_mid_band_excluded,s3_10,avi_splice_sites,moderate,13,168,True,,,0.455810546875,35.53846153846154,Strong,11.0,4.0,16.615384615384617,155.0769230769231,Moderate,,
+TP53,y_mid_band_excluded,s3_10,avi_splice_sites,strong,13,168,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_10,avi_splice_site_usage,supporting,13,168,True,,,0.568359375,64.61538461538463,Strong,10.0,2.0,23.26153846153846,156.0,Strong,,
+TP53,y_mid_band_excluded,s3_10,avi_splice_site_usage,moderate,13,168,True,,,0.6669921875,130.0,Strong,10.0,0.0,130.0,169.0,Strong,,
+TP53,y_mid_band_excluded,s3_10,avi_splice_site_usage,strong,13,168,True,,,0.91949462890625,,not evaluable,8.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_10,avi_splice_junctions,supporting,13,168,True,,,3.509765625,21.53846153846154,Strong,10.0,6.0,10.573426573426572,71.07692307692308,Moderate,,
+TP53,y_mid_band_excluded,s3_10,avi_splice_junctions,moderate,13,168,True,,,5.375,116.3076923076923,Strong,9.0,1.0,30.153846153846153,156.0,Strong,,
+TP53,y_mid_band_excluded,s3_10,avi_splice_junctions,strong,13,168,True,,,6.83984375,,not evaluable,7.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_50,spliceai,supporting,13,215,True,9.772727272727272,Moderate,0.3335808515548706,9.302884615384617,Moderate,9.0,16.0,5.222672064777329,18.192307692307693,Moderate,6.935483870967741,15.357142857142858
+TP53,y_mid_band_excluded,s3_50,spliceai,moderate,13,215,True,9.772727272727272,Moderate,0.3791576027870178,10.631868131868131,Moderate,9.0,14.0,5.512820512820513,21.263736263736263,Moderate,6.935483870967741,15.357142857142858
+TP53,y_mid_band_excluded,s3_50,spliceai,strong,13,215,True,9.772727272727272,Moderate,0.883614718914032,,not evaluable,5.0,0.0,,,not evaluable,6.935483870967741,15.357142857142858
+TP53,y_mid_band_excluded,s3_50,pangolin,supporting,13,215,True,,,0.3767528235912323,35.833333333333336,Strong,13.0,6.0,19.545454545454547,107.5,Strong,,
+TP53,y_mid_band_excluded,s3_50,pangolin,moderate,13,215,True,,,0.4281759262084961,43.0,Strong,13.0,5.0,21.5,215.0,Strong,,
+TP53,y_mid_band_excluded,s3_50,pangolin,strong,13,215,True,,,0.6740013957023621,165.3846153846154,Strong,10.0,1.0,45.48076923076923,199.38461538461544,Strong,,
+TP53,y_mid_band_excluded,s3_50,alphagenome,supporting,13,215,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_50,alphagenome,moderate,13,215,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_50,alphagenome,strong,13,215,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_50,cadd,supporting,13,215,True,,,19.19,14.471153846153843,Moderate,7.0,8.0,6.2019230769230775,38.58974358974359,Moderate,,
+TP53,y_mid_band_excluded,s3_50,cadd,moderate,13,215,True,,,22.6,,not evaluable,3.0,6.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_50,cadd,strong,13,215,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_50,phylop,supporting,13,215,True,,,4.08529,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_50,phylop,moderate,13,215,True,,,5.25,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_50,phylop,strong,13,215,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_50,phastcons,supporting,13,215,True,,,1.0,,not evaluable,0.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_50,phastcons,moderate,13,215,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_50,phastcons,strong,13,215,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_50,gpn_msa,supporting,13,215,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_50,gpn_msa,moderate,13,215,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_50,gpn_msa,strong,13,215,False,,,,,,,,,,,,
+TP53,y_mid_band_excluded,s3_50,nt,supporting,13,215,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_50,nt,moderate,13,215,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_50,nt,strong,13,215,True,,,,,not evaluable,,,,,,,
+TP53,y_mid_band_excluded,s3_50,spliceai_walker,supporting,13,215,True,9.347826086956522,Moderate,0.3335808515548706,11.370192307692308,Moderate,11.0,16.0,6.808849238996298,21.5,Moderate,6.71875,14.333333333333334
+TP53,y_mid_band_excluded,s3_50,spliceai_walker,moderate,13,215,True,9.347826086956522,Moderate,0.4277547001838684,15.16025641025641,Moderate,11.0,12.0,8.755656108597284,30.32051282051282,Moderate,6.71875,14.333333333333334
+TP53,y_mid_band_excluded,s3_50,spliceai_walker,strong,13,215,True,9.347826086956522,Moderate,0.893125057220459,,not evaluable,4.0,0.0,,,not evaluable,6.71875,14.333333333333334
+TP53,y_mid_band_excluded,s3_50,avi,supporting,13,215,True,,,0.7155988216400146,99.23076923076924,Strong,12.0,2.0,36.38461538461539,216.0,Strong,,
+TP53,y_mid_band_excluded,s3_50,avi,moderate,13,215,True,,,0.845728874206543,199.38461538461544,Strong,12.0,0.0,166.15384615384616,216.0,Strong,,
+TP53,y_mid_band_excluded,s3_50,avi,strong,13,215,True,,,1.1815255880355835,,not evaluable,1.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_50,avi_splice_sites,supporting,13,215,True,,,0.2978515625,12.647058823529411,Moderate,13.0,17.0,8.6,21.5,Moderate,,
+TP53,y_mid_band_excluded,s3_50,avi_splice_sites,moderate,13,215,True,,,0.439453125,43.0,Strong,13.0,5.0,21.5,215.0,Strong,,
+TP53,y_mid_band_excluded,s3_50,avi_splice_sites,strong,13,215,True,,,0.8583984375,,not evaluable,6.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_50,avi_splice_site_usage,supporting,13,215,True,,,0.3828125,82.6923076923077,Strong,10.0,2.0,29.76923076923077,199.38461538461544,Strong,,
+TP53,y_mid_band_excluded,s3_50,avi_splice_site_usage,moderate,13,215,True,,,0.4921875,82.6923076923077,Strong,10.0,2.0,27.56410256410257,199.38461538461544,Strong,,
+TP53,y_mid_band_excluded,s3_50,avi_splice_site_usage,strong,13,215,True,,,0.913726806640625,,not evaluable,8.0,0.0,,,not evaluable,,
+TP53,y_mid_band_excluded,s3_50,avi_splice_junctions,supporting,13,215,True,,,3.212890625,20.673076923076923,Strong,10.0,8.0,10.623813686313689,55.12820512820513,Moderate,,
+TP53,y_mid_band_excluded,s3_50,avi_splice_junctions,moderate,13,215,True,,,3.955078125,27.56410256410257,Strong,10.0,6.0,13.230769230769232,99.23076923076924,Moderate,,
+TP53,y_mid_band_excluded,s3_50,avi_splice_junctions,strong,13,215,True,,,6.24609375,,not evaluable,8.0,1.0,,,not evaluable,,

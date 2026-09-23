@@ -15,6 +15,9 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import yaml
+
+from . import evid_common as K
 
 REPORT_DIR = Path("reports/evidence")
 
@@ -84,6 +87,45 @@ def main() -> None:
     else:
         print("[E8] local_lr_monotonicity.txt: no curve files, not written")
     _main_concordance()
+    dc = depth_counts()
+    dc.to_csv(REPORT_DIR / "depth_counts.csv", index=False)
+    print(f"\n[E8] wrote depth_counts.csv ({len(dc)} rows)")
+    print(dc[dc.gene == "all"].to_string(index=False))
+
+
+# ---------------------------------------------------------------------------
+# E8c -- how deep into the intron the labelled data reach
+# ---------------------------------------------------------------------------
+# The deposits stop at different depths, and the distal band's damaging variants
+# sit almost entirely in its first twenty nucleotides. A statement about "11-50 bp"
+# is only as deep as the data under it, so the depth profile is written here and
+# every depth count the text quotes is read from it.
+DEPTH_BANDS = [("3-10", 3, 10), ("11-20", 11, 20), ("21-30", 21, 30),
+               ("31-40", 31, 40), ("41-50", 41, 50), ("11-30", 11, 30),
+               ("31-50", 31, 50), ("11-50", 11, 50), ("3-50", 3, 50)]
+
+
+def depth_counts() -> pd.DataFrame:
+    cfg = yaml.safe_load(Path("config/walker2023.yaml").read_text())
+    pp3 = cfg["thresholds"]["pp3"]["value"]
+    df = K.load_set()
+    rows = []
+    for gene in ["all"] + sorted(df["gene"].unique()):
+        g = df if gene == "all" else df[df["gene"] == gene]
+        for name, lo, hi in DEPTH_BANDS:
+            b = g[(g["intron_offset_abs"] >= lo) & (g["intron_offset_abs"] <= hi)]
+            lab = b[b["y_assay"].notna()]
+            called = lab["spliceai_walker"] >= pp3
+            rows.append({
+                "gene": gene, "depth_nt": name, "n": int(len(b)),
+                "labelled": int(len(lab)),
+                "damaging": int((lab["y_assay"] == 1).sum()),
+                "normal": int((lab["y_assay"] == 0).sum()),
+                "at_or_above_pp3_cut": int(called.sum()),
+                "damaging_at_or_above_pp3_cut": int((called & (lab["y_assay"] == 1)).sum()),
+                "max_offset_in_gene": int(g["intron_offset_abs"].max()),
+            })
+    return pd.DataFrame(rows)
 
 
 # ---------------------------------------------------------------------------

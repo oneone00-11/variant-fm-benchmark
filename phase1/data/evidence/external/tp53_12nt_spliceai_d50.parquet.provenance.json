@@ -1,0 +1,38 @@
+{
+  "tool": "SpliceAI",
+  "version": "1.3.1",
+  "configuration": {
+    "annotation": "grch38",
+    "distance": 50,
+    "mask": 0,
+    "score_definition": "max(DS_AG, DS_AL, DS_DG, DS_DL)"
+  },
+  "scorer": "scripts/phase4b_score_pinned.py::score_spliceai",
+  "n": 120,
+  "n_scored": {
+    "spliceai_ds_fullprec": 120
+  },
+  "input": "phase1/data/evidence/external/tp53_12nt_score_input.parquet",
+  "input_sha256": "58c1802b11638e1836fa93618e74cd2e553865cb9ff73bb5df732ae784329661",
+  "sha256": "a28b072a7dd8a8412e5778abf3c7057ddddafc055ff4930e85066354d33d6c11",
+  "scored_utc": "2026-09-23T10:56:30+00:00",
+  "runtime_seconds": 60.9,
+  "python": "3.12.13",
+  "interpreter": "/Users/cliffzhang/work/functional-standard-atlas/models/spliceai/.venv/bin/python",
+  "scorer_record": {
+    "tool": "SpliceAI",
+    "tool_version": "1.3.1",
+    "tensorflow": "2.19.1",
+    "parameters": {
+      "annotation": "grch38",
+      "distance": 50,
+      "mask": 0,
+      "score_definition": "max(DS_AG, DS_AL, DS_DG, DS_DL)"
+    },
+    "precision": "full float ({:.2f} formatting replaced by {:.17g} in score_fullprec.build_fullprec)",
+    "reference_fasta": "/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.fa",
+    "reference_fasta_sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811",
+    "scorer_module": "/Users/cliffzhang/work/functional-standard-atlas/models/spliceai/score_fullprec.py",
+    "scorer_module_sha256": "a5056203b0e941ed7b9b53b1914c769cc42bf2a5b681e994ec6f5e2e7280b970"
+  }
+}

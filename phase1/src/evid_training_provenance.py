@@ -28,8 +28,15 @@ documentation URL per row and is the single place either paper edits.
 
 The AlphaGenome Atlas columns are not in it -- the Atlas was released after it was
 built -- so their rows are defined below, with the same standard of evidence: what
-the project's own documentation states, and an explicit "not documented in the
-sources checked" where it states nothing.
+the project's own documentation states. An earlier version recorded the combined
+Atlas score (AVI) as undocumented and as an aggregation of AlphaGenome tracks; the
+Atlas paper documents it, and it is neither. AVI is a supervised model: a neural
+network over AlphaGenome features, AlphaMissense, three protein-termination
+features and two conservation scores, trained to separate gnomAD v4.1 variants
+above and below a filtering allele frequency of 0.1%, with four saturation genome
+editing studies -- including the BRCA1, RAD51C and DDX3X assays used here -- in the
+validation set that selected its checkpoint. Its row says so, and it is the one
+column whose training overlaps this study's standard.
 
 Run (PYTHONPATH=phase1):  python -m src.evid_training_provenance
 """
@@ -68,7 +75,8 @@ SIGNAL_CLASS = {
     "spliceai_walker": "Splicing (annotated junctions)",
     "pangolin": "Splicing (measured site usage)",
     "alphagenome": "Functional genomics tracks, including splicing",
-    "avi": "Functional genomics tracks, including splicing",
+    "avi": "Supervised on population allele frequency, with AlphaGenome, "
+           "AlphaMissense and conservation inputs",
     "avi_splice_sites": "Functional genomics tracks, including splicing",
     "avi_splice_site_usage": "Functional genomics tracks, including splicing",
     "avi_splice_junctions": "Functional genomics tracks, including splicing",
@@ -83,18 +91,26 @@ SIGNAL_CLASS = {
 _AG_TRAINING = ("Multi-task supervision on functional genomics tracks "
                 "(expression, splicing, chromatin) from ENCODE/GTEx-class data; "
                 "no variant labels")
-_ATLAS_AGG = ("Precomputed AlphaGenome predictions aggregated by the Atlas; the "
-              "combination behind the AVI score is not documented in the sources "
-              "checked (product page and API documentation, accessed 2026-09-20)")
+_ATLAS_PAPER = ("AlphaGenome Atlas team, AlphaGenome Atlas: in silico mutagenesis "
+                "of the entire human genome improves prioritization and "
+                "interpretation of non-coding variants (Google DeepMind, 2026), "
+                "Methods")
 _NONE_DOC = "None documented"
 
 # The Atlas columns, defined here to the same standard as the atlas table's rows.
 ATLAS_COLUMNS = {
     "avi": (
-        f"{_AG_TRAINING}. {_ATLAS_AGG}",
-        "No", _NONE_DOC,
-        "https://www.alphagenomedocs.com/ ; "
-        "https://deepmind.google/science/alphagenome/"),
+        "Neural network over precomputed AlphaGenome predictions (ten modality "
+        "groups, including splicing, each the per-variant maximum across tissues), "
+        "AlphaMissense, three protein-termination features and two conservation "
+        "scores (PhastCons 470-way, Cactus 241-way), trained to separate gnomAD v4.1 "
+        "variants above and below a filtering allele frequency of 0.1%",
+        "No",
+        "Yes: four saturation genome editing studies (BRCA1 Findlay 2018, RAD51C "
+        "Olvera-Leon 2024, DDX3X Radford 2023, ATM Lee 2025) formed the validation "
+        "set that selected its checkpoint and stopped training; BRCA2, BARD1, "
+        "PALB2, VHL and BAP1 were among its test sets",
+        f"{_ATLAS_PAPER}; https://alphagenome.google/atlas"),
     "avi_splice_sites": (
         f"{_AG_TRAINING}. Precomputed SPLICE_SITES scorer, retrieved by lookup",
         "No", _NONE_DOC,
@@ -137,11 +153,47 @@ READOUT_OVERLAP = {
     "Cross-species sequence constraint (self-supervised)":
         "Shared cause: constraint and functional damage are both consequences of "
         "selection; holding genes out does not remove it",
+    "Supervised on population allele frequency, with AlphaGenome, AlphaMissense "
+    "and conservation inputs":
+        "Direct for BRCA1 and RAD51C here and for the external gene DDX3X, whose "
+        "assays selected its checkpoint; shared cause otherwise, since allele "
+        "frequency and constraint are both shaped by selection",
     "Genomic sequence (self-supervised)":
         "None documented: no labels of any kind enter training",
     "This study's own functional labels, refitted per fold":
         "Direct: fitted on the standard itself, which is why it is evaluated "
         "leave-one-gene-out and reported in the supplement only",
+}
+
+
+# Terms of use per column, as recorded in this repository's LICENSE-DATA (the Atlas
+# columns and, by the same terms of service, the AlphaGenome splice score) and in
+# the companion atlas's LICENSE-DATA audit (every other column). Three questions a
+# laboratory needs answered: may it be used commercially, may it inform a clinical
+# decision, and may its output train another model.
+_AG_TOS = ("AlphaGenome Terms of Service: non-commercial, research only; outputs not "
+           "for clinical decision-making and not to train other models")
+TERMS = {
+    "spliceai": ("Trained models CC BY-NC 4.0 (Illumina); commercial use needs a "
+                 "licence", "No", "No"),
+    "spliceai_walker": ("Trained models CC BY-NC 4.0 (Illumina); commercial use needs "
+                        "a licence", "No", "No"),
+    "pangolin": ("Software GPL-3.0; its output is not encumbered by that licence",
+                 "No", "No"),
+    "alphagenome": (_AG_TOS, "Yes", "Yes"),
+    "avi": (_AG_TOS, "Yes", "Yes"),
+    "avi_splice_sites": (_AG_TOS, "Yes", "Yes"),
+    "avi_splice_site_usage": (_AG_TOS, "Yes", "Yes"),
+    "avi_splice_junctions": (_AG_TOS, "Yes", "Yes"),
+    "cadd": ("Non-commercial; commercial licence from the University of Washington",
+             "No", "No"),
+    "phylop": ("UCSC track data, free for commercial use", "No", "No"),
+    "phastcons": ("UCSC track data, free for commercial use", "No", "No"),
+    "gpn_msa": ("MIT", "No", "No"),
+    "nt": ("CC BY-NC-SA 4.0", "No", "No"),
+    "fusion_enet": ("This study's model, under the terms of its inputs; the AlphaGenome "
+                    "splice score is excluded from its features for that reason",
+                    "No", "No"),
 }
 
 
@@ -177,6 +229,9 @@ def build() -> pd.DataFrame:
             "overlap_with_the_functional_readout": READOUT_OVERLAP[signal],
             "training_source": src,
             "row_origin": origin,
+            "terms_of_use": TERMS[col][0],
+            "terms_bar_clinical_decision_making": TERMS[col][1],
+            "terms_bar_training_other_models": TERMS[col][2],
         })
     return pd.DataFrame(rows)
 

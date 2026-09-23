@@ -1,0 +1,623 @@
+{
+  "product": "TP53 intron-side SNVs at 1 <= |offset| <= 12 from MaveDB urn:mavedb:00001213-a-1 on NM_000546.6, GRCh38: the 192 frozen rows of tp53_splice_scored_v2.parquet unchanged plus the 96 at |offset| 9-12, scored by the same scorers",
+  "n_rows": 288,
+  "n_frozen_rows": 192,
+  "n_new_rows": 96,
+  "rows_per_abs_offset": {
+    "1": 24,
+    "2": 24,
+    "3": 24,
+    "4": 24,
+    "5": 24,
+    "6": 24,
+    "7": 24,
+    "8": 24,
+    "9": 24,
+    "10": 24,
+    "11": 24,
+    "12": 24
+  },
+  "rows_per_stratum": {
+    "pm12": 48,
+    "s11_50": 48,
+    "s3_10": 192
+  },
+  "frozen_rows": {
+    "source": "phase1/data/external/tp53_splice_scored_v2.parquet",
+    "identical_to_source": true,
+    "rebuilt_by_the_same_transforms_and_identical": true
+  },
+  "reference_alleles": {
+    "checked": true,
+    "n": 288,
+    "mismatches": 0,
+    "reference": "Ensembl r112 GRCh38 chr17 (<atlas>/data/refs/grch38_subset.fa)"
+  },
+  "columns": {
+    "spliceai": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "SpliceAI 1.3.1, -A grch38, -D 50, mask 0 (raw), max(DS_AG, DS_AL, DS_DG, DS_DL) over the annotated genes, full float precision; scripts/phase4b_score_pinned.py::score_spliceai -> <atlas>/models/spliceai/score_fullprec.py"
+    },
+    "pangolin": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "Pangolin git 5cf94b8, -d 50, default masking, no score cutoff, max(gain, |loss|) over transcript records, full float precision; scripts/phase4b_score_pinned.py::score_pangolin -> <atlas>/models/pangolin/score_fullprec.py"
+    },
+    "alphagenome": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "AlphaGenome dna_client, client 0.6.1, 1 Mb interval, the recommended SPLICE_* variant scorers, max |raw_score| printed to 6 d.p.; scripts/phase4a_ag_drift_check.py::build_scorer/score_one, the verbatim copy of scripts/91_score_alphagenome.py::score_one that scored the frozen rows (phase4a_tp53_external.py). A different variable from the analysis set's client 0.7.0 column (evid_external.DECLARED_MISMATCH)"
+    },
+    "gpn_msa": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "GPN-MSA precomputed hg38 scores (songlab/gpn-msa-hg38-scores at pinned revision cf1718a9), raw sign convention (config.REVERSED_FEATURES); scripts/phase4a_score_tp53.py::_score_gpn"
+    },
+    "nt": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species, masked 6-mer LLR, 6,000-bp window, CPU; scripts/phase4b_score_pinned.py::score_nt -> <atlas>/models/nt/score.py"
+    },
+    "cadd": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "CADD GRCh38-v1.7 PHRED via the CADD REST API; scripts/phase4a_score_tp53.py::_score_cadd -> scripts/75_cadd.py::fetch"
+    },
+    "alphamissense": {
+      "n_non_null": 0,
+      "n_non_null_frozen_rows": 0,
+      "n_non_null_new_rows": 0,
+      "definition": "not scored for the new rows; see not_scored"
+    },
+    "phylop": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "UCSC phyloP100way (hg38), getData/track API; scripts/phase4a_score_tp53.py::_score_conservation -> scripts/73_conservation.py::fetch_track"
+    },
+    "phastcons": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "UCSC phastCons100way (hg38), getData/track API; scripts/phase4a_score_tp53.py::_score_conservation -> scripts/73_conservation.py::fetch_track"
+    },
+    "gnomad_af": {
+      "n_non_null": 69,
+      "n_non_null_frozen_rows": 46,
+      "n_non_null_new_rows": 23,
+      "definition": "gnomAD r4 (gnomad_r4) global AF, max over genome and exome, GraphQL API; scripts/phase4a_score_tp53.py::_score_gnomad -> scripts/72_gnomad.py::fetch_gene('TP53')"
+    },
+    "spliceai_walker": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "SpliceAI 1.3.1, -A grch38, -D 4999, mask 0, max of the four deltas, full float precision; the four components at the winning gene beside it; src/evid_score_spliceai_walker.py"
+    },
+    "spliceai_walker_ds_ag": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "SpliceAI 1.3.1, -A grch38, -D 4999, mask 0, max of the four deltas, full float precision; the four components at the winning gene beside it; src/evid_score_spliceai_walker.py"
+    },
+    "spliceai_walker_ds_al": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "SpliceAI 1.3.1, -A grch38, -D 4999, mask 0, max of the four deltas, full float precision; the four components at the winning gene beside it; src/evid_score_spliceai_walker.py"
+    },
+    "spliceai_walker_ds_dg": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "SpliceAI 1.3.1, -A grch38, -D 4999, mask 0, max of the four deltas, full float precision; the four components at the winning gene beside it; src/evid_score_spliceai_walker.py"
+    },
+    "spliceai_walker_ds_dl": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "SpliceAI 1.3.1, -A grch38, -D 4999, mask 0, max of the four deltas, full float precision; the four components at the winning gene beside it; src/evid_score_spliceai_walker.py"
+    },
+    "avi": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "AlphaGenome Atlas, client 0.9.0, scorer AVI_SCORE, max over tracks and rows; src/evid_score_avi.py::run"
+    },
+    "avi_splice_sites": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "AlphaGenome Atlas, client 0.9.0, scorer SPLICE_SITES; as avi"
+    },
+    "avi_splice_site_usage": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "AlphaGenome Atlas, client 0.9.0, scorer SPLICE_SITE_USAGE; as avi"
+    },
+    "avi_splice_junctions": {
+      "n_non_null": 288,
+      "n_non_null_frozen_rows": 192,
+      "n_non_null_new_rows": 96,
+      "definition": "AlphaGenome Atlas, client 0.9.0, scorer SPLICE_JUNCTIONS; as avi"
+    }
+  },
+  "not_scored": {
+    "alphamissense": "AlphaMissense scores missense variants only, so an intron-side SNV has no entry by construction (the 192 frozen rows are 0/192 as well), and the file the scoring script reads (data/raw/scores/AlphaMissense_hg38.tsv.gz, phase4a_score_tp53._score_alphamissense) is not on this machine. Out of the E1 panel (evid_common.PANEL)."
+  },
+  "required_complete": [
+    "spliceai",
+    "spliceai_walker",
+    "pangolin",
+    "alphagenome",
+    "gpn_msa",
+    "nt",
+    "cadd",
+    "phylop",
+    "phastcons",
+    "avi",
+    "avi_splice_sites",
+    "avi_splice_site_usage",
+    "avi_splice_junctions"
+  ],
+  "derived_fields": {
+    "variant_id / chrom / pos / ref / alt": "phase4a_score_tp53.load_tp53_splice: the deposit's HGVS(genomic) g.-substitution on GRCh38 chr17, plus strand",
+    "hgvs_nt": "the deposit's HGVS(cDNA), NM_000546.6",
+    "intron_offset": "signed offset parsed from HGVS(cDNA) (c.N+k / c.N-k)",
+    "func_score": "the deposit's `score` column (relative fitness score)",
+    "func_pathogenicity": "+func_score (TP53 is in config.FLIP_GENES = ['TP53']); phase1_build_frozen_matrix.orient_functional",
+    "offset_source / splice_side": "phase1_build_frozen_matrix.derive_intron_offset: 'upstream'; donor if the offset is positive, acceptor if negative",
+    "region / is_splice": "phase1_build_frozen_matrix.assign_region from region_label 'splice' (phase4a_score_tp53 sets it for every row): True for all 288",
+    "splice_subclass / splice_bin / analysis_region": "assign_region: |offset| <= 2 splice_core, 3..8 splice_region, > 8 intronic (so the 96 new rows are 'intronic', splice_bin 'region', analysis_region 'intronic')",
+    "y_clinvar / y_assay / y_assay_source": "missing, as for the frozen rows",
+    "*_isna": "phase1_build_frozen_matrix.add_missingness_flags"
+  },
+  "reproduction_checks": [
+    {
+      "scorer": "spliceai",
+      "column": "spliceai_ds_fullprec",
+      "n_checked": 24,
+      "n_identical": 24,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "pangolin",
+      "column": "pangolin_fullprec",
+      "n_checked": 24,
+      "n_identical": 24,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "nt",
+      "column": "nucleotide_transformer",
+      "n_checked": 24,
+      "n_identical": 24,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "alphagenome",
+      "column": "alphagenome_splice",
+      "n_checked": 24,
+      "n_identical": 24,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "cadd",
+      "column": "cadd_phred",
+      "n_checked": 24,
+      "n_identical": 24,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "conservation",
+      "column": "phylop100way",
+      "n_checked": 192,
+      "n_identical": 192,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "conservation",
+      "column": "phastcons100way",
+      "n_checked": 192,
+      "n_identical": 192,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "gpn_msa",
+      "column": "gpn_msa_score",
+      "n_checked": 192,
+      "n_identical": 192,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "gnomad",
+      "column": "gnomad_af_global",
+      "n_checked": 192,
+      "n_identical": 192,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "spliceai_walker",
+      "column": "spliceai_walker",
+      "n_checked": 24,
+      "n_identical": 24,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "spliceai_walker",
+      "column": "spliceai_walker_ds_ag",
+      "n_checked": 24,
+      "n_identical": 24,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "spliceai_walker",
+      "column": "spliceai_walker_ds_al",
+      "n_checked": 24,
+      "n_identical": 24,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "spliceai_walker",
+      "column": "spliceai_walker_ds_dg",
+      "n_checked": 24,
+      "n_identical": 24,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "spliceai_walker",
+      "column": "spliceai_walker_ds_dl",
+      "n_checked": 24,
+      "n_identical": 24,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "avi",
+      "column": "avi",
+      "n_checked": 192,
+      "n_identical": 192,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "avi",
+      "column": "avi_splice_sites",
+      "n_checked": 192,
+      "n_identical": 192,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "avi",
+      "column": "avi_splice_site_usage",
+      "n_checked": 192,
+      "n_identical": 192,
+      "max_abs_diff": 0.0,
+      "differing": []
+    },
+    {
+      "scorer": "avi",
+      "column": "avi_splice_junctions",
+      "n_checked": 192,
+      "n_identical": 192,
+      "max_abs_diff": 0.0,
+      "differing": []
+    }
+  ],
+  "score_files": {
+    "spliceai": {
+      "file": "phase1/data/evidence/external/tp53_12nt_spliceai_d50.parquet",
+      "run_on": "the 96 new rows and 24 frozen rows re-scored as a check",
+      "columns": [
+        "spliceai_ds_fullprec"
+      ],
+      "stored_as": "TSV write + pandas.read_csv default parse, as the frozen rows (see TSV_STORED)",
+      "environment": {
+        "interpreter": "/Users/cliffzhang/work/functional-standard-atlas/models/spliceai/.venv/bin/python",
+        "python_version": "3.12.13",
+        "key_packages": [
+          "keras==3.15.0",
+          "numpy==2.1.3",
+          "pandas==3.0.5",
+          "pyfaidx==0.9.0.4",
+          "pysam==0.24.0",
+          "spliceai==1.3.1",
+          "tensorflow==2.19.1"
+        ],
+        "full_record": "phase1/data/evidence/external/tp53_12nt_spliceai_d50.parquet.environment.json",
+        "full_record_sha256": "0dbd217e558ea5805ca1dda8712867406b6efbf32f9e5cedb395cacf6e2fadf6"
+      }
+    },
+    "pangolin": {
+      "file": "phase1/data/evidence/external/tp53_12nt_pangolin.parquet",
+      "run_on": "the 96 new rows and 24 frozen rows re-scored as a check",
+      "columns": [
+        "pangolin_fullprec"
+      ],
+      "stored_as": "TSV write + pandas.read_csv default parse, as the frozen rows (see TSV_STORED)",
+      "environment": {
+        "interpreter": "/Users/cliffzhang/Documents/kimi/workspace/functional-standard-atlas/models/pangolin/.venv/bin/python",
+        "python_version": "3.12.14",
+        "key_packages": [
+          "gffutils==0.14",
+          "numpy==2.5.1",
+          "pandas==3.0.5",
+          "pangolin @ git+https://github.com/tkzeng/Pangolin.git@5cf94b8db938c658391b4305cd7ce33297d44ff7",
+          "pyfaidx==0.9.0.4",
+          "torch==2.13.0"
+        ],
+        "full_record": "phase1/data/evidence/external/tp53_12nt_pangolin.parquet.environment.json",
+        "full_record_sha256": "20799463035b7b47bf8eda0996e5d766ebce50f5bab5e68ad72a51842239c1bd"
+      }
+    },
+    "nt": {
+      "file": "phase1/data/evidence/external/tp53_12nt_nt.parquet",
+      "run_on": "the 96 new rows and 24 frozen rows re-scored as a check",
+      "columns": [
+        "nucleotide_transformer"
+      ],
+      "stored_as": "TSV write + pandas.read_csv default parse, as the frozen rows (see TSV_STORED)",
+      "environment": {
+        "interpreter": "/Users/cliffzhang/work/envs/nt/bin/python",
+        "python_version": "3.12.13",
+        "key_packages": [
+          "numpy==2.5.3",
+          "pandas==3.0.5",
+          "pyfaidx==0.9.0.4",
+          "torch==2.14.0",
+          "transformers==4.46.3"
+        ],
+        "full_record": "phase1/data/evidence/external/tp53_12nt_nt.parquet.environment.json",
+        "full_record_sha256": "4d9277448a1bb53db248814f1c17e956af370201eb9cb5d4585981c721e6ce21"
+      }
+    },
+    "alphagenome": {
+      "file": "phase1/data/evidence/external/tp53_12nt_alphagenome_v061.parquet",
+      "run_on": "the 96 new rows and 24 frozen rows re-scored as a check",
+      "columns": [
+        "alphagenome_splice"
+      ],
+      "stored_as": "as scored",
+      "environment": {
+        "interpreter": "/Users/cliffzhang/Documents/variant-fm-benchmark/ag-env/bin/python",
+        "python_version": "3.12.13",
+        "key_packages": [
+          "alphagenome==0.6.1",
+          "numpy==2.5.1",
+          "pandas==3.0.3"
+        ],
+        "full_record": "phase1/data/evidence/external/tp53_12nt_alphagenome_v061.parquet.environment.json",
+        "full_record_sha256": "449e3cad2e2755e7f1474b1a9ce70b1de24e8f2bf01e0c90b686ca5af4e98394"
+      }
+    },
+    "cadd": {
+      "file": "phase1/data/evidence/external/tp53_12nt_cadd.parquet",
+      "run_on": "the 96 new rows and 24 frozen rows re-scored as a check",
+      "columns": [
+        "cadd_phred"
+      ],
+      "stored_as": "as scored",
+      "environment": {
+        "interpreter": "/Users/cliffzhang/work/variant-fm-benchmark/.venv/bin/python",
+        "python_version": "3.12.13",
+        "key_packages": [
+          "numpy==2.0.2",
+          "pandas==2.3.3",
+          "pyarrow==21.0.0",
+          "pysam==0.24.1",
+          "requests==2.32.5"
+        ],
+        "full_record": "phase1/data/evidence/external/tp53_12nt_cadd.parquet.environment.json",
+        "full_record_sha256": "6a38cf6b7d94088a3327508681c2c3526d383e968f5327e561e0f726925ead92"
+      }
+    },
+    "conservation": {
+      "file": "phase1/data/evidence/external/tp53_12nt_conservation.parquet",
+      "run_on": "all 288 rows",
+      "columns": [
+        "phylop100way",
+        "phastcons100way"
+      ],
+      "stored_as": "as scored",
+      "environment": {
+        "interpreter": "/Users/cliffzhang/work/variant-fm-benchmark/.venv/bin/python",
+        "python_version": "3.12.13",
+        "key_packages": [
+          "numpy==2.0.2",
+          "pandas==2.3.3",
+          "pyarrow==21.0.0",
+          "pysam==0.24.1",
+          "requests==2.32.5"
+        ],
+        "full_record": "phase1/data/evidence/external/tp53_12nt_conservation.parquet.environment.json",
+        "full_record_sha256": "9af928c0418eb0649d5c721bf765d1db901bb141899e91317eed7b763003be89"
+      }
+    },
+    "gpn_msa": {
+      "file": "phase1/data/evidence/external/tp53_12nt_gpn_msa.parquet",
+      "run_on": "all 288 rows",
+      "columns": [
+        "gpn_msa_score"
+      ],
+      "stored_as": "as scored",
+      "environment": {
+        "interpreter": "/Users/cliffzhang/work/variant-fm-benchmark/.venv/bin/python",
+        "python_version": "3.12.13",
+        "key_packages": [
+          "numpy==2.0.2",
+          "pandas==2.3.3",
+          "pyarrow==21.0.0",
+          "pysam==0.24.1",
+          "requests==2.32.5"
+        ],
+        "full_record": "phase1/data/evidence/external/tp53_12nt_gpn_msa.parquet.environment.json",
+        "full_record_sha256": "2a12ec30ed0c17aac8a0fed59d653387075437d1f2caf0f4bb2eae5219e431a6"
+      }
+    },
+    "gnomad": {
+      "file": "phase1/data/evidence/external/tp53_12nt_gnomad.parquet",
+      "run_on": "all 288 rows",
+      "columns": [
+        "gnomad_af_global"
+      ],
+      "stored_as": "as scored",
+      "environment": {
+        "interpreter": "/Users/cliffzhang/work/variant-fm-benchmark/.venv/bin/python",
+        "python_version": "3.12.13",
+        "key_packages": [
+          "numpy==2.0.2",
+          "pandas==2.3.3",
+          "pyarrow==21.0.0",
+          "pysam==0.24.1",
+          "requests==2.32.5"
+        ],
+        "full_record": "phase1/data/evidence/external/tp53_12nt_gnomad.parquet.environment.json",
+        "full_record_sha256": "c42a26467a9111db51cf598cadfdb0c6baf7033db7d2227b45649a4fd5765cc5"
+      }
+    },
+    "spliceai_walker": {
+      "file": "phase1/data/evidence/external/tp53_12nt_spliceai_walker.parquet",
+      "run_on": "the 96 new rows and 24 frozen rows re-scored as a check",
+      "columns": [
+        "spliceai_walker",
+        "spliceai_walker_ds_ag",
+        "spliceai_walker_ds_al",
+        "spliceai_walker_ds_dg",
+        "spliceai_walker_ds_dl"
+      ],
+      "stored_as": "as scored",
+      "environment": {
+        "interpreter": "/Users/cliffzhang/work/functional-standard-atlas/models/spliceai/.venv/bin/python",
+        "python_version": "3.12.13",
+        "key_packages": [
+          "keras==3.15.0",
+          "numpy==2.1.3",
+          "pandas==3.0.5",
+          "pyfaidx==0.9.0.4",
+          "pysam==0.24.0",
+          "spliceai==1.3.1",
+          "tensorflow==2.19.1"
+        ],
+        "full_record": "phase1/data/evidence/external/tp53_12nt_spliceai_walker.parquet.environment.json",
+        "full_record_sha256": "d412d32761305a5eb67bd8c0749296d3b76d01b21290b10da818815b8a0de018"
+      }
+    },
+    "avi": {
+      "file": "phase1/data/evidence/external/tp53_avi_12nt.parquet",
+      "run_on": "all 288 rows",
+      "columns": [
+        "avi",
+        "avi_splice_sites",
+        "avi_splice_site_usage",
+        "avi_splice_junctions"
+      ],
+      "stored_as": "as scored",
+      "environment": {
+        "interpreter": "/Users/cliffzhang/work/envs/alphagenome-atlas/bin/python",
+        "python_version": "3.12.13",
+        "key_packages": [
+          "alphagenome==0.9.0",
+          "numpy==2.5.3",
+          "pandas==3.0.6"
+        ],
+        "full_record": "phase1/data/evidence/external/tp53_avi_12nt.parquet.environment.json",
+        "full_record_sha256": "d5e9626f39dd03730c293dc264efdef482bec3a9c7ab2891b7acf15ad564a827"
+      }
+    }
+  },
+  "inframe": {
+    "subset": "phase1/data/evidence/external/tp53_inframe_subset_12nt.parquet",
+    "subset_sha256": "f67202dfa7277e4975abf6ba590e33f0b6dcdabdcd1fd5843eecc07551ab1c15",
+    "events": "phase1/data/evidence/external/tp53_inframe_events_12nt.parquet",
+    "events_sha256": "82e2b5abfd6692e5c1540bc5560f1c6f3f9e2931cc62baa7936cd5bfc527e8b3",
+    "rule": "spliceai_walker >= the Walker PP3 cut point (config/walker2023.yaml) and func_pathogenicity <= 0 (control-anchored label normal), as evid_inframe.external_subset",
+    "n_subset": 28,
+    "by_stratum": {
+      "pm12": 1,
+      "s11_50": 2,
+      "s3_10": 25
+    },
+    "frozen_rows_reproduced": 22,
+    "new_rows": 6,
+    "events_environment": {
+      "interpreter": "/Users/cliffzhang/work/functional-standard-atlas/models/spliceai/.venv/bin/python",
+      "python_version": "3.12.13",
+      "key_packages": [
+        "keras==3.15.0",
+        "numpy==2.1.3",
+        "pandas==3.0.5",
+        "pyfaidx==0.9.0.4",
+        "pysam==0.24.0",
+        "spliceai==1.3.1",
+        "tensorflow==2.19.1"
+      ],
+      "full_record": "phase1/data/evidence/external/tp53_inframe_events_12nt.parquet.environment.json",
+      "full_record_sha256": "8d8034bd5b8a31c5bf747a4b54720d80eac4c3e45257f9d107bbb5dddb124a5f"
+    },
+    "pangolin_events": "not scored: there is no Pangolin event table for the 192 frozen rows either (evid_inframe's tp53_pangolin.parquet does not exist), so TP53 attribution stays SpliceAI-only"
+  },
+  "inputs_sha256": {
+    "data/external/tp53_mavedb_scores.tsv": "b0fc17b4ffad730e2aee04fb71261ac3bd99e6527ca887c327cb07e83a0ac46e",
+    "phase1/data/external/tp53_splice_scored_v2.parquet": "340f45f83a84f2c0e07fa05e0676e05f7e7a802d5ab375881fa236f5729c6c55",
+    "phase1/data/external/tp53_splice_scored_v2.manifest.json": "e3ffe26630fffd83f814c74a6e8e1ba01ac60faca6f2de74d6f8a8cf549c2491",
+    "phase1/data/evidence/external/tp53_spliceai_walker.parquet": "e8687b0af0241a00f50d737da5c9df23e34c2f6f4626f3c79626232c75b7627e",
+    "phase1/data/evidence/avi.parquet": "d2b5f1ea029ed2149d8f2fc0c37145c9a54e4efaa36b548754e3486d80af92e0",
+    "phase1/data/evidence/external/tp53_inframe_subset.parquet": "716326de2c9309b632b947f84b879151f5120cacd518cd6ab7fede0d519c65a7",
+    "phase1/data/evidence/external/tp53_inframe_events.parquet": "439690d2179a7950ba621f12d15e23cdefc002ca56c67ed9e02003069f92aca0",
+    "phase1/config/walker2023.yaml": "08ea00bf2cfd26b339bc35c4927f7d8777415364ee20589674087147d4aed3fc",
+    "scripts/phase4a_score_tp53.py": "31f812110c83a507f5d9ce98ccc6faafd9fccc4f14b42572d5fdd10efdbdf719",
+    "scripts/phase4b_score_pinned.py": "c83026a8cd280479dd07d6216de988d7676cd9f8d3c1289f202723379cd72f67",
+    "scripts/phase4a_ag_drift_check.py": "d9221e988f838b98a9d225569da37398adcdca4e019c07bac13bea56508cea8b",
+    "phase1/src/evid_score_spliceai_walker.py": "fe2af092f6f12db652f72e6e2dd7784ea239ef7353cf6686d2b2e3dff305ddcb",
+    "phase1/src/evid_score_spliceai_events.py": "ff9f34cc8674131b97e1d017ffec4208b6047aafc1a946c9b1e53950c2c82cc9",
+    "phase1/src/evid_score_avi.py": "89333947ff7d1a39c64914b6fbf12bd6af8045456a1aaa04cb24c46217ab857e",
+    "phase1/src/config.py": "49dca5248e7d8d8d597663a5b437bc16f7b784e2c7f79bfb312d208c6b101fd7",
+    "phase1/src/phase1_build_frozen_matrix.py": "c45379381f0db8f923f47b81bc04c2277b88e4cc8fb9df8f6ec37c4a213328c2",
+    "phase1/data/frozen/frozen_matrix_v1.parquet": "64e31fb1dcedf6ba199ff72267b1f679409f59623062830f7969320e5f6b417a",
+    "phase1/src/evid_tp53_extend.py": "47b3acdad6850f2e745111face51483e3ca9a86f3c5c746f6f926f7d45b85e14",
+    "phase1/data/evidence/external/tp53_12nt_spliceai_d50.parquet": "a28b072a7dd8a8412e5778abf3c7057ddddafc055ff4930e85066354d33d6c11",
+    "phase1/data/evidence/external/tp53_12nt_pangolin.parquet": "6761715d816f9a8fd867ad22fdda77bdfb2c54745504c0a404a8154cdfa642b2",
+    "phase1/data/evidence/external/tp53_12nt_nt.parquet": "19b4f6a6b5b9c6884846f679053f9cfefb263638182013befd07a3dee3a1abf6",
+    "phase1/data/evidence/external/tp53_12nt_alphagenome_v061.parquet": "8985b63c9c7413d4b5dae5d0a2940b46458a935df696f45f41e0949866ec39d2",
+    "phase1/data/evidence/external/tp53_12nt_cadd.parquet": "b9abd006184b5bf27d2d2e076f1fde6ff6e01a9315049769a9ddef754d9f59eb",
+    "phase1/data/evidence/external/tp53_12nt_conservation.parquet": "cd3cc8d64017f52dffb9abe1408e820872d29ea40701282e7547b65c1f802fb9",
+    "phase1/data/evidence/external/tp53_12nt_gpn_msa.parquet": "347bad1c86f087f8ee07095bab5bccff9f405cdbfd19df9c18b1422d7acf0688",
+    "phase1/data/evidence/external/tp53_12nt_gnomad.parquet": "1b69b5dd195292506806041b9768034771a6c06b089a202180a4fabbb7e8e4bc",
+    "phase1/data/evidence/external/tp53_12nt_spliceai_walker.parquet": "68aa0e88ba528cb7a489de980218b385f1fe48659b285b30c233e651281344dc",
+    "phase1/data/evidence/external/tp53_avi_12nt.parquet": "88d791ffd24cd4195d5c7e7459bdb618739854b8c4deb42fc0ebbf94c499f334",
+    "phase1/data/evidence/external/tp53_12nt_spliceai_d50.parquet.provenance.json": "36961fb2498fff2bec0a199f7f32abe14944b1e94cfe7d5d5bb1a76a776d7698",
+    "phase1/data/evidence/external/tp53_12nt_pangolin.parquet.provenance.json": "48b6c2fb5102a8093cf194126e23917878083e2c3c44f7b1711c3a98fc264bf6",
+    "phase1/data/evidence/external/tp53_12nt_nt.parquet.provenance.json": "d09cd1f256318cf5be0abc1c3d3eacd7d8092da135717a98fcf64522da967c00",
+    "phase1/data/evidence/external/tp53_12nt_alphagenome_v061.parquet.provenance.json": "97159b5c8304da2136f2f2a3eb60b63e87dee4abc5d3609700498149f98b3f39",
+    "phase1/data/evidence/external/tp53_12nt_cadd.parquet.provenance.json": "57b9f2876dd1c67ab0be292669880e15b191b40428bdcceb0bddf8c39cece9b8",
+    "phase1/data/evidence/external/tp53_12nt_conservation.parquet.provenance.json": "a2d833abf643ca345802102604c4d3572e62b21dea423ca669ce615c582be28c",
+    "phase1/data/evidence/external/tp53_12nt_gpn_msa.parquet.provenance.json": "571503395ba0f4273cbc4d834f832ee0580fb855f8b66c196caf3406c20d7198",
+    "phase1/data/evidence/external/tp53_12nt_gnomad.parquet.provenance.json": "95a1c8583bfd7adc2961f08bf2bc2bd65ddad9813daf06a6f38cfd33f0312550",
+    "phase1/data/evidence/external/tp53_12nt_spliceai_walker.parquet.provenance.json": "46853a6730d0eeb4d0c1d231af2cf0f6429254f72db789d67641264925e4e43a",
+    "phase1/data/evidence/external/tp53_avi_12nt.parquet.provenance.json": "c32be4d7183b894d6215cd5fbc4fd837a35e938e2e046c595d201925e300f4a8"
+  },
+  "sha256": "e12f28b5851529853a3294fe7fbc531486be864e78cb9ff37225aa3ec36cc043",
+  "sha256_recipe": "rows sorted by variant_id, CSV serialisation (phase1_build_frozen_matrix_v2.canonical_sha256), the same content hash the v2 manifest carries",
+  "parquet_sha256": "5037f972bab8ba1ca2aebe2c1cad0e03546b4d65cdc7a7dabf2647d387066581"
+}

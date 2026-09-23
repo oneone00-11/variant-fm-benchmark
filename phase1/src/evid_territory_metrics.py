@@ -124,7 +124,7 @@ def main() -> None:
     df = K.load_set()
     tools = K.panel_of(df)
     if K.FUSION not in df.columns:
-        df[K.FUSION] = K.logo_fusion(df, [t for t in K.PANEL if t in df.columns])
+        df[K.FUSION] = K.logo_fusion(df, [t for t in K.FUSION_FEATURES if t in df.columns])
     tools = tools + [K.FUSION]
 
     rows = []

@@ -81,6 +81,25 @@ thresholds:
            splicing prediction tools'. Every cell of Table 1 was checked against the
            PDF and matches."
   scope: "variants located OUTSIDE the donor/acceptor +/-1,2 dinucleotides"
+  applied_weight:
+    pp3: "Supporting"
+    bp4: "Supporting"
+    source: "p. 1056, Discussion"
+    quote: >-
+      For this reason, combined with the results for sensitivity analysis
+      considering LRs for narrow bands around selected cut points, a conservative
+      approach is to calibrate codes to reach a moderate level of evidence but only
+      apply predictive PP3/BP4 codes at a supporting weight.   [verbatim, p. 1056]
+    higher_score_check: >-
+      On the BRCA1 saturation genome editing data (414 variants), SpliceAI >= 0.5
+      gave Strong evidence for an effect on cell survival (lower 95% CI of the LR
+      18.58) and < 0.1 Moderate evidence for no effect [p. 1055, Table S10].
+    higher_score_check_n_variants: 414
+    higher_score_check_cut_point: 0.5
+    higher_score_check_lr_lower_95: 18.58
+    narrow_band_scores: [0.20, 0.22]
+    narrow_band_lr: 2.52
+    narrow_band_source: "p. 1056"
   pp3:
     operator: ">="
     value: 0.2
@@ -102,11 +121,14 @@ thresholds:
       content, different figure and table numbers; the published numbering is used
       throughout this file.
     note: >-
-      This resolves the ambiguity the brief flagged. The threshold's own strength
-      is MODERATE, in the table and in the sentence. The "supporting" figure that
-      circulates second-hand is a different quantity: a sensitivity analysis of a
-      NARROW BAND just above the cut point (score 0.20-0.22, LR = 2.52), reported
-      one paragraph later. Do not carry "supporting" for the >=0.2 threshold.
+      The threshold's CALIBRATED strength is Moderate, in the table and in the
+      sentence. The weight at which the recommendation APPLIES it is Supporting
+      (thresholds.applied_weight below). An earlier version of this note read the
+      "supporting" figure only as the narrow-band sensitivity analysis (score
+      0.20-0.22, LR = 2.52) and said not to carry it; that was wrong. The narrow
+      band is one of the two reasons the recommendation gives for applying the
+      codes at Supporting weight, and both quantities belong in any statement of
+      what the recommendation says.
   bp4:
     operator: "<="
     value: 0.1

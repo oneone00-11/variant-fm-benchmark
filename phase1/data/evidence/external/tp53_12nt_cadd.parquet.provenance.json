@@ -1,0 +1,20 @@
+{
+  "tool": "CADD",
+  "version": "GRCh38-v1.7 (REST API)",
+  "configuration": {
+    "api": "https://cadd.gs.washington.edu/api/v1.0/GRCh38-v1.7",
+    "value": "PHRED, max over returned annotations"
+  },
+  "scorer": "scripts/phase4a_score_tp53.py::_score_cadd",
+  "n": 120,
+  "n_scored": {
+    "cadd_phred": 120
+  },
+  "input": "phase1/data/evidence/external/tp53_12nt_score_input.parquet",
+  "input_sha256": "58c1802b11638e1836fa93618e74cd2e553865cb9ff73bb5df732ae784329661",
+  "sha256": "b9abd006184b5bf27d2d2e076f1fde6ff6e01a9315049769a9ddef754d9f59eb",
+  "scored_utc": "2026-09-23T10:52:19+00:00",
+  "runtime_seconds": 14.1,
+  "python": "3.12.13",
+  "interpreter": "/Users/cliffzhang/work/variant-fm-benchmark/.venv/bin/python"
+}

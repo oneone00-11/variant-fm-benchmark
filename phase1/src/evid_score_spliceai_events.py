@@ -18,6 +18,7 @@ Runs in the atlas's pinned SpliceAI environment:
 from __future__ import annotations
 
 import argparse
+import os
 import hashlib
 import inspect
 import json
@@ -30,7 +31,12 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ATLAS = Path("/Users/cliffzhang/work/functional-standard-atlas")
+# the companion atlas: EVID_ATLAS_REPO, or a checkout beside this repository,
+# the rule evid_common uses (this script runs in the atlas SpliceAI environment
+# and cannot import it)
+ATLAS = Path(os.environ.get(
+    "EVID_ATLAS_REPO",
+    str(Path(__file__).resolve().parents[2].parent / "functional-standard-atlas")))
 DEFAULT_FASTA = ATLAS / "data" / "refs" / "grch38_subset.fa"
 ANNOTATION = "grch38"
 MASK = 0

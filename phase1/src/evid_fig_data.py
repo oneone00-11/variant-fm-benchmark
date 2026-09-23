@@ -71,10 +71,17 @@ def fig1() -> pd.DataFrame:
             rows.append({"source": "external", "gene": gene.upper(),
                          "label_definition": r.label_definition, "stratum": r.stratum,
                          "arm": "all", "n_pos": r.n_pos, "n_neg": r.n_neg,
-                         "lr_pp3": r.walker_lr_pp3, "lr_pp3_lo": np.nan,
-                         "lr_pp3_hi": np.nan, "tier_pp3": r.walker_tier_pp3,
-                         "lr_le01": r.walker_lr_bp4, "lr_le01_lo": np.nan,
-                         "lr_le01_hi": np.nan, "tier_le01": r.walker_tier_bp4})
+                         # one gene: a variant-level bootstrap within the gene
+                         # (evid_external._band_detail), not the gene-clustered
+                         # interval of the seven-gene rows
+                         "lr_pp3": r.walker_lr_pp3,
+                         "lr_pp3_lo": getattr(r, "walker_lr_pp3_lo", np.nan),
+                         "lr_pp3_hi": getattr(r, "walker_lr_pp3_hi", np.nan),
+                         "tier_pp3": r.walker_tier_pp3,
+                         "lr_le01": r.walker_lr_bp4,
+                         "lr_le01_lo": getattr(r, "walker_lr_bp4_lo", np.nan),
+                         "lr_le01_hi": getattr(r, "walker_lr_bp4_hi", np.nan),
+                         "tier_le01": r.walker_tier_bp4})
     return pd.DataFrame(rows)
 
 
@@ -155,6 +162,14 @@ def fig4() -> pd.DataFrame:
                     "logo_threshold": getattr(r, f"e3_{tier}_threshold", np.nan),
                     "lr_at_logo_threshold": getattr(r, f"e3_{tier}_lr_here", np.nan),
                     "tier_at_logo_threshold": getattr(r, f"e3_{tier}_tier_here", ""),
+                    "n_pos_above_logo_threshold": getattr(r, f"e3_{tier}_n_pos_band", np.nan),
+                    "n_neg_above_logo_threshold": getattr(r, f"e3_{tier}_n_neg_band", np.nan),
+                    "lr_at_logo_threshold_lo": getattr(r, f"e3_{tier}_lr_lo", np.nan),
+                    "lr_at_logo_threshold_hi": getattr(r, f"e3_{tier}_lr_hi", np.nan),
+                    "tier_at_logo_threshold_lower_bound":
+                        getattr(r, f"e3_{tier}_tier_at_bound", ""),
+                    "lr_at_walker_cut_lo": getattr(r, "walker_lr_pp3_lo", np.nan),
+                    "lr_at_walker_cut_hi": getattr(r, "walker_lr_pp3_hi", np.nan),
                 })
     return pd.DataFrame(rows)
 

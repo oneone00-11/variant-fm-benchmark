@@ -1,0 +1,20 @@
+{
+  "tool": "GPN-MSA",
+  "version": "songlab/gpn-msa-hg38-scores@cf1718a926db35d078bcb08b9dcebc803494bf37",
+  "configuration": {
+    "index": "refs/gpn_scores.tsv.bgz.tbi",
+    "sign": "raw (config.REVERSED_FEATURES)"
+  },
+  "scorer": "scripts/phase4a_score_tp53.py::_score_gpn",
+  "n": 288,
+  "n_scored": {
+    "gpn_msa_score": 288
+  },
+  "input": "phase1/data/evidence/external/tp53_12nt_variants.parquet",
+  "input_sha256": "51a6db98055afa0e1473776d76bb10f7265189cd18ba01e9feeb919390629d30",
+  "sha256": "347bad1c86f087f8ee07095bab5bccff9f405cdbfd19df9c18b1422d7acf0688",
+  "scored_utc": "2026-09-23T10:52:04+00:00",
+  "runtime_seconds": 8.8,
+  "python": "3.12.13",
+  "interpreter": "/Users/cliffzhang/work/variant-fm-benchmark/.venv/bin/python"
+}

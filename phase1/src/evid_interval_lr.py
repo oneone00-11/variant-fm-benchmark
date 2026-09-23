@@ -43,12 +43,13 @@ produces ONE out-of-fold column: gene g's score comes from a model trained on th
 other six. When E3 then holds out gene g and fits a threshold on the six training
 genes' scores, each of those six scores came from a model whose training set
 INCLUDED g -- so g's labels have already influenced the scores the threshold is
-fitted on. The threshold is therefore not free of the held-out gene, and the
-fusion's held-out likelihood ratios are optimistic. The direction matters for how
-the result reads: the finding is that a fitted fusion threshold does NOT carry
-across genes, and a contaminated estimate can only make that transfer look BETTER
-than it is, so the finding survives its own caveat. A clean estimate would need a
-nested design -- refit the fusion inside each outer fold -- which is not run here.
+fitted on. The threshold is therefore not free of the held-out gene, so its
+held-out likelihood ratio is not an independent estimate and is read as optimistic.
+Where one could be computed it nearly always cleared the tier's boundary; that is
+not evidence that a fusion threshold transfers, and an earlier version of this
+docstring, which said the fusion's thresholds did not carry across genes, described
+the evaluable folds wrongly. A clean estimate would need a nested design -- refit
+the fusion inside each outer fold -- which is not run here.
 Rows for the fusion carry `logo_threshold_leakage`.
 
 A fitted fusion threshold and a single tool's threshold are not the same kind of
@@ -411,7 +412,7 @@ def main() -> None:
 
     df = K.load_set()
     tools = K.panel_of(df)
-    df[K.FUSION] = K.logo_fusion(df, [t for t in K.PANEL if t in df.columns])
+    df[K.FUSION] = K.logo_fusion(df, [t for t in K.FUSION_FEATURES if t in df.columns])
     tools = tools + [K.FUSION]
     if args.tools:
         tools = [t for t in args.tools.split(",") if t in df.columns or t == K.FUSION]

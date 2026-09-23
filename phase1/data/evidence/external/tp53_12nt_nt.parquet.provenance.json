@@ -1,0 +1,41 @@
+{
+  "tool": "Nucleotide Transformer v2 500M multi-species",
+  "version": "06615c1660c892fc199840c18123f8385b3542a8",
+  "configuration": {
+    "window_bp": 6000,
+    "kmer": 6,
+    "score_definition": "logP(ref 6-mer | masked) - logP(alt 6-mer | masked); higher = more pathogenic"
+  },
+  "scorer": "scripts/phase4b_score_pinned.py::score_nt",
+  "n": 120,
+  "n_scored": {
+    "nucleotide_transformer": 120
+  },
+  "input": "phase1/data/evidence/external/tp53_12nt_score_input.parquet",
+  "input_sha256": "58c1802b11638e1836fa93618e74cd2e553865cb9ff73bb5df732ae784329661",
+  "sha256": "19b4f6a6b5b9c6884846f679053f9cfefb263638182013befd07a3dee3a1abf6",
+  "scored_utc": "2026-09-23T11:07:37+00:00",
+  "runtime_seconds": 202.0,
+  "python": "3.12.13",
+  "interpreter": "/Users/cliffzhang/work/envs/nt/bin/python",
+  "scorer_record": {
+    "tool": "Nucleotide Transformer v2 500M multi-species",
+    "checkpoint": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+    "checkpoint_revision_sha": "06615c1660c892fc199840c18123f8385b3542a8",
+    "torch": "2.14.0",
+    "transformers": "4.46.3",
+    "device": "cpu",
+    "parameters": {
+      "window_bp": 6000,
+      "kmer": 6,
+      "score_definition": "logP(ref 6-mer | masked) - logP(alt 6-mer | masked); higher = more pathogenic"
+    },
+    "reference_fasta": "/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.fa",
+    "reference_fasta_sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811",
+    "scorer_module": "/Users/cliffzhang/work/functional-standard-atlas/models/nt/score.py",
+    "scorer_module_sha256": "d69318b80ce001342ea493d4cef38ea007735746d5cbb1b5a6005ad99e692d01",
+    "trust_remote_code": true,
+    "trust_remote_code_note": "the checkpoint repository now ships custom model code; transformers 4.46.3 refuses to load it without this flag (the atlas run predates that change)",
+    "note": "the atlas column was produced on a CUDA A6000 (models/nt/pipfreeze_runpod.txt); this run's device is recorded above and the concordance against the atlas column is reported in the run record"
+  }
+}

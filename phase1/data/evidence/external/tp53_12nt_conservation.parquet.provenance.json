@@ -1,0 +1,24 @@
+{
+  "tool": "UCSC phyloP100way / phastCons100way",
+  "version": "hg38",
+  "configuration": {
+    "api": "https://api.genome.ucsc.edu/getData/track",
+    "span": [
+      7673688,
+      7675248
+    ]
+  },
+  "scorer": "scripts/phase4a_score_tp53.py::_score_conservation",
+  "n": 288,
+  "n_scored": {
+    "phylop100way": 288,
+    "phastcons100way": 288
+  },
+  "input": "phase1/data/evidence/external/tp53_12nt_variants.parquet",
+  "input_sha256": "51a6db98055afa0e1473776d76bb10f7265189cd18ba01e9feeb919390629d30",
+  "sha256": "cd3cc8d64017f52dffb9abe1408e820872d29ea40701282e7547b65c1f802fb9",
+  "scored_utc": "2026-09-23T10:51:51+00:00",
+  "runtime_seconds": 1.8,
+  "python": "3.12.13",
+  "interpreter": "/Users/cliffzhang/work/variant-fm-benchmark/.venv/bin/python"
+}

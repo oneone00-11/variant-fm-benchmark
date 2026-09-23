@@ -1,9 +1,10 @@
-Score columns,Training signal,Clinical classifications in training,Multiplexed-assay measurements in training,Relation to the functional readout
-SpliceAI (distance 50); SpliceAI (published basis),Splicing (annotated junctions),None,None documented,"Indirect: predicts a splice event, while the assay measures gene function"
-Pangolin,Splicing (measured site usage),None,None documented,"Indirect: predicts a splice event, while the assay measures gene function"
-AlphaGenome splice score; Atlas combined score; Atlas splice sites; Atlas splice-site usage; Atlas splice junctions,"Functional genomics tracks, including splicing",None,None documented,Indirect: predicts molecular effects including splicing
-CADD,Proxy contrast of simulated against fixed derived variants,None,None documented,Shared cause: the training contrast is shaped by selection
-phyloP; phastCons,Cross-species sequence constraint,None,None documented,Shared cause: constraint and functional damage both reflect selection
-GPN-MSA,Cross-species sequence constraint (self-supervised),None,None documented,Shared cause: constraint and functional damage both reflect selection
-Nucleotide Transformer,Genomic sequence (self-supervised),None,None documented,None documented
-Elastic-net combination (Supplementary Table S9),"This study's own functional labels, refitted per fold",None,This study's,"Direct: fitted on the functional standard, so evaluated leave-one-gene-out"
+Score columns,Training signal,Clinical labels in training,Multiplexed-assay measurements in training,Relation to the functional readout,Terms of use
+SpliceAI (published basis); SpliceAI (distance 50),Splicing (annotated junctions),No,None documented,"Indirect: predicts a splice event, while the assay measures gene function",Non-commercial trained models (CC BY-NC 4.0); commercial use needs a licence
+Pangolin,Splicing (measured site usage),No,None documented,"Indirect: predicts a splice event, while the assay measures gene function",Open software (GPL-3.0)
+AlphaGenome splice score; Atlas splice sites; Atlas splice-site usage; Atlas splice junctions,"Functional genomics tracks, including splicing",No,None documented,Indirect: predicts molecular effects including splicing,"Research only: no clinical decision-making, no training of other models"
+Atlas combined score,"Supervised on population allele frequency, with AlphaGenome, AlphaMissense and conservation inputs",No,"Yes: four saturation genome editing assays, including the *BRCA1*, *RAD51C* and *DDX3X* assays used here, selected the model","Direct for *BRCA1*, *RAD51C* and *DDX3X*, whose assays selected the model; shared cause (allele frequency, constraint) otherwise","Research only: no clinical decision-making, no training of other models"
+CADD,Proxy contrast of simulated against fixed derived variants,No,None documented,Shared cause: the training contrast is shaped by selection,Non-commercial; commercial licence available
+phyloP; phastCons,Cross-species sequence constraint,No,None documented,Shared cause: constraint and functional damage both reflect selection,"Free, including commercial use"
+GPN-MSA,Cross-species sequence constraint (self-supervised),No,None documented,Shared cause: constraint and functional damage both reflect selection,Open (MIT)
+Nucleotide Transformer,Genomic sequence (self-supervised),No,None documented,None documented,Non-commercial (CC BY-NC-SA 4.0)
+Elastic-net combination (Supplementary Table S9),"This study's own functional labels, refitted per fold",No,By construction (this study's labels),"Direct: fitted on the functional standard, so evaluated leave-one-gene-out",Terms of its inputs

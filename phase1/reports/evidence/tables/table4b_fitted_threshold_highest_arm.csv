@@ -1,7 +1,7 @@
-Genes,Band,Columns with all three arms estimable,Highest: Classified,"Highest: Recorded, unclassified",Highest: Not in ClinVar
+Genes,Band,Columns with all three arms estimable,Highest: Classified,"Highest: Recorded, unclassified",Highest: Unrecorded
 Seven genes,3–10 bp,13,13,0,0
 Seven genes,11–50 bp,5,0,0,5
 Seven genes,3–50 bp,11,11,0,0
-Without BRCA1,3–10 bp,12,12,0,0
-Without BRCA1,11–50 bp,4,0,0,4
-Without BRCA1,3–50 bp,11,11,0,0
+Without *BRCA1*,3–10 bp,12,12,0,0
+Without *BRCA1*,11–50 bp,4,0,0,4
+Without *BRCA1*,3–50 bp,11,11,0,0

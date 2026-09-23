@@ -1,11 +1,11 @@
-"Stratum (intronic offset, bp)",Gene,Columns compared,Highest in: Classified (P/LP or B/LB),"Highest in: Recorded, not classified",Highest in: Not in ClinVar,Ties,Arm most often highest
-3–10,BAP1,13,4,1,8,0,Not in ClinVar
+"Stratum (intronic offset, bp)",Gene,Columns compared,Highest in: Classified (P/LP or B/LB),"Highest in: Recorded, unclassified",Highest in: Unrecorded,Ties,Arm most often highest
+3–10,BAP1,13,4,1,8,0,Unrecorded
 3–10,BRCA2,13,8,5,0,0,Classified (P/LP or B/LB)
-3–10,PALB2,13,3,0,10,0,Not in ClinVar
-3–10,RAD51C,13,3,10,0,0,"Recorded, not classified"
-3–10,"All 4 genes with three evaluable arms (BAP1, BRCA2, PALB2, RAD51C)",52,18,16,18,0,tie: Classified (P/LP or B/LB) / Not in ClinVar
-3–50,BAP1,13,0,1,12,0,Not in ClinVar
+3–10,PALB2,13,3,0,10,0,Unrecorded
+3–10,RAD51C,13,3,10,0,0,"Recorded, unclassified"
+3–10,"All 4 genes with three evaluable arms (BAP1, BRCA2, PALB2, RAD51C)",52,18,16,18,0,tie: Classified (P/LP or B/LB) / Unrecorded
+3–50,BAP1,13,0,1,12,0,Unrecorded
 3–50,BRCA2,13,8,5,0,0,Classified (P/LP or B/LB)
-3–50,PALB2,13,0,0,13,0,Not in ClinVar
-3–50,RAD51C,13,0,3,10,0,Not in ClinVar
-3–50,"All 4 genes with three evaluable arms (BAP1, BRCA2, PALB2, RAD51C)",52,8,9,35,0,Not in ClinVar
+3–50,PALB2,13,0,0,13,0,Unrecorded
+3–50,RAD51C,13,0,3,10,0,Unrecorded
+3–50,"All 4 genes with three evaluable arms (BAP1, BRCA2, PALB2, RAD51C)",52,8,9,35,0,Unrecorded

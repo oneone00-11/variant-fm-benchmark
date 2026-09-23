@@ -1,0 +1,44 @@
+{
+  "columns": [
+    "avi",
+    "avi_splice_sites",
+    "avi_splice_site_usage",
+    "avi_splice_junctions"
+  ],
+  "product": "AlphaGenome Atlas -- AlphaGenome Variant Impact (AVI)",
+  "atlas_released": "2026-09-08",
+  "client_version": "0.9.0",
+  "scorers_requested": [
+    "AVI_SCORE",
+    "SPLICE_SITES",
+    "SPLICE_SITE_USAGE",
+    "SPLICE_JUNCTIONS"
+  ],
+  "scorer_list_recorded_in": [
+    "data/evidence/avi_scorers_20260920.json"
+  ],
+  "aggregation": "per variant, the maximum over tracks and over rows; SPLICE_JUNCTIONS returns one row per junction",
+  "accessed_utc": "2026-09-23T10:55:11+00:00",
+  "n_variants": 288,
+  "n_scored": {
+    "avi": 288,
+    "avi_splice_sites": 288,
+    "avi_splice_site_usage": 288,
+    "avi_splice_junctions": 288
+  },
+  "by_set": {
+    "tp53": {
+      "n": 288,
+      "avi": 288,
+      "avi_splice_sites": 288,
+      "avi_splice_site_usage": 288,
+      "avi_splice_junctions": 288
+    }
+  },
+  "n_requests": 288,
+  "failed_batches": [],
+  "runtime_minutes": 0.2,
+  "licence": "AlphaGenome Terms of Service -- NON-COMMERCIAL use only; outputs must not be used to train other models",
+  "licence_source": "https://deepmind.google.com/science/alphagenome/terms",
+  "output_sha256": "88d791ffd24cd4195d5c7e7459bdb618739854b8c4deb42fc0ebbf94c499f334"
+}

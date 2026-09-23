@@ -1,0 +1,20 @@
+{
+  "tool": "gnomAD",
+  "version": "gnomad_r4 (GraphQL API)",
+  "configuration": {
+    "value": "max(genome af, exome af)",
+    "query": "gene TP53, GRCh38"
+  },
+  "scorer": "scripts/phase4a_score_tp53.py::_score_gnomad",
+  "n": 288,
+  "n_scored": {
+    "gnomad_af_global": 69
+  },
+  "input": "phase1/data/evidence/external/tp53_12nt_variants.parquet",
+  "input_sha256": "51a6db98055afa0e1473776d76bb10f7265189cd18ba01e9feeb919390629d30",
+  "sha256": "1b69b5dd195292506806041b9768034771a6c06b089a202180a4fabbb7e8e4bc",
+  "scored_utc": "2026-09-23T10:51:55+00:00",
+  "runtime_seconds": 2.7,
+  "python": "3.12.13",
+  "interpreter": "/Users/cliffzhang/work/variant-fm-benchmark/.venv/bin/python"
+}

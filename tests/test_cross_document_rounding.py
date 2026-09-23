@@ -43,7 +43,11 @@ def _supplement():
         p = Path(env).expanduser()
         return p if p.exists() else None
     desk = Path.home() / "Desktop"
-    return _newest([*desk.glob("*supplementary*.docx"), *(desk / "calibration").glob("*supplementary*.docx")])
+    # the evidence-strength study writes calibration_supplementary_information_*.docx
+    # to the same Desktop; it is a different document and must not be picked up here
+    found = [*desk.glob("*supplementary*.docx"), *(desk / "calibration").glob("*supplementary*.docx")]
+    return _newest([q for q in found
+                    if not q.name.startswith("calibration_supplementary_information")])
 
 
 def _docs():

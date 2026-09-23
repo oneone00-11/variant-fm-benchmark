@@ -1,7 +1,7 @@
-Genes,Band,Classified,"Recorded, unclassified",Not in ClinVar
+Genes,Band,Classified,"Recorded, unclassified",Unrecorded
 Seven genes,3–10 bp,14.6,4.1,4.3
 Seven genes,11–50 bp,7.3,8.5,10.7
 Seven genes,3–50 bp,16.4,5.0,7.9
-Without BRCA1,3–10 bp,12.3,3.2,4.3
-Without BRCA1,11–50 bp,6.7,2.3,10.7
-Without BRCA1,3–50 bp,12.0,3.0,7.9
+Without *BRCA1*,3–10 bp,12.3,3.2,4.3
+Without *BRCA1*,11–50 bp,6.7,2.3,10.7
+Without *BRCA1*,3–50 bp,12.0,3.0,7.9
