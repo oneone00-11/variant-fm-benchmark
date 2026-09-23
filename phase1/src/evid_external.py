@@ -7,8 +7,12 @@ carried forward unchanged and the Walker cut points and the E3 thresholds are
 applied to it as they stand. Its window is the published one (|offset| <= 8), so it
 populates pm12 and s3_10 and says nothing about 11-50 bp.
 
-DDX3X is new, and is outside the gene class everything else here sits in: it is not
-a tumour suppressor read out by cell survival, and it is X-linked. Its saturation
+DDX3X is new, and is outside the gene class everything else here sits in: it is
+X-linked, and its disease association is neurodevelopmental rather than cancer
+predisposition. Its assay is NOT a different kind of readout, and an earlier version
+of this docstring implied it was: like most of the seven, the DDX3X deposit scores
+variants by depletion from HAP1 cells over a time course, where the gene is
+essential (Radford et al. 2023). What differs is the gene, not the measurement. Its saturation
 editing deposit (MaveDB urn:mavedb:00000658, seventeen exon-level score sets, CC0)
 carries 1,857 intron-side SNVs at 1 <= |offset| <= 50 -- more splice-region variants
 than the published study's whole analysis set -- with 192 / 768 / 897 across the
@@ -57,8 +61,8 @@ from scipy.stats import spearmanr
 from . import config as C
 from . import evid_common as K
 
-ATLAS_REPO = Path(os.environ.get(
-    "EVID_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
+from .evid_common import ATLAS_REPO as _atlas_repo_default  # noqa: E402
+ATLAS_REPO = _atlas_repo_default  # EVID_ATLAS_REPO overrides; see evid_common
 EXT_DIR = Path("data/evidence/external")
 REPORT_DIR = Path("reports/evidence")
 CONFIG_PATH = Path("config/walker2023.yaml")
@@ -364,11 +368,11 @@ def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
 # per external gene and per column, with the source of the claim.
 DECLARED_MISMATCH = {
     ("TP53", "alphagenome"): (
-        "the published study scored TP53 with AlphaGenome client v0.6.1; the atlas "
-        "column E3 fits on is the v0.7.0 merged-quantile definition. The two agree "
-        "at rho = 0.672 on shared variants and are not interchangeable "
-        "(companion Note S11). The atlas column is also bounded at 2.2, so a "
-        "threshold near that ceiling sits at a different quantile here."),
+        "the TP53 column was scored with AlphaGenome client v0.6.1 as a maximum "
+        "absolute raw score, while the analysis-set column the thresholds are fitted "
+        "on is the client v0.7.0 merged-quantile score, bounded at 2.2. They are "
+        "different variables, so a threshold fitted on one does not apply to the "
+        "other."),
 }
 
 

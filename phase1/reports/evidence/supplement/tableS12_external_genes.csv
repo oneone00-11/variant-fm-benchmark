@@ -1,0 +1,115 @@
+Gene,Label definition,"Stratum (intronic offset, bp)",Tool,Damaging,Normal,Evaluated,Same variable as the fitted column,Why not comparable,LR at published cut point (≥ 0.2),Tier at published cut point,Supporting: threshold (median of leave-one-gene-out fits),Supporting: LR in this gene,Supporting: tier reached,Moderate: threshold (median of leave-one-gene-out fits),Moderate: LR in this gene,Moderate: tier reached,Strong: threshold (median of leave-one-gene-out fits),Strong: LR in this gene,Strong: tier reached,Note
+DDX3X,Control-anchored,3–10,Pangolin,37,731,Yes,Yes,,,,0.406857997,5.47,Moderate,0.5473,6.90,Moderate,0.7039,8.67,Moderate,
+DDX3X,Control-anchored,3–10,CADD,37,731,Yes,Yes,,,,19.53,4.54,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,3–10,phyloP-100way,37,731,Yes,Yes,,,,4.58587,6.08,Moderate,5.34067,8.59,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,3–10,phastCons-100way,37,731,Yes,Yes,,,,1.000,2.53,Supporting,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,3–10,GPN-MSA,37,731,Yes,Yes,,,,7.470,4.13,Supporting,9.130,6.29,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,3–10,"SpliceAI (±4,999 nt, Walker basis)",37,731,Yes,Yes,,2.87,Supporting,0.4259,6.16,Moderate,0.5537,7.15,Moderate,0.8948,17.1,Moderate,
+DDX3X,Control-anchored,3–10,AlphaGenome Atlas AVI,37,731,Yes,Yes,,,,0.8440,6.59,Moderate,1.0689,8.62,Moderate,1.36798,15.3,Moderate,
+DDX3X,Control-anchored,3–10,AlphaGenome Atlas splice sites,37,731,Yes,Yes,,,,0.3398,6.50,Moderate,0.4558,7.24,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,3–10,AlphaGenome Atlas splice site usage,37,731,Yes,Yes,,,,0.568359,8.71,Moderate,0.66699,9.15,Moderate,0.91949,12.3,Moderate,
+DDX3X,Control-anchored,3–10,AlphaGenome Atlas splice junctions,37,731,Yes,Yes,,,,3.5097656,3.54,Supporting,5.375,5.84,Moderate,6.8398,8.04,Moderate,
+DDX3X,Control-anchored,11–50,Pangolin,34,863,Yes,Yes,,,,0.1923,5.25,Moderate,0.3521,11.5,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,11–50,CADD,34,863,Yes,Yes,,,,21.10,5.44,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,11–50,phyloP-100way,34,863,Yes,Yes,,,,,,not evaluable,,,not evaluable,,,not evaluable,Supporting: tier unreachable in-sample; LOGO median not carried over; Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,11–50,phastCons-100way,34,863,Yes,Yes,,,,,,not evaluable,,,not evaluable,,,not evaluable,Supporting: tier unreachable in-sample; LOGO median not carried over; Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,11–50,GPN-MSA,34,863,Yes,Yes,,,,6.585,3.63,Supporting,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,11–50,"SpliceAI (±4,999 nt, Walker basis)",34,863,Yes,Yes,,3.06,Supporting,0.2533,3.74,Supporting,0.3131,3.98,Supporting,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,11–50,AlphaGenome Atlas AVI,34,863,Yes,Yes,,,,0.5901,8.75,Moderate,0.6914,14.1,Moderate,1.192,not evaluable,not evaluable,
+DDX3X,Control-anchored,11–50,AlphaGenome Atlas splice sites,34,863,Yes,Yes,,,,0.2705,6.01,Moderate,0.5078,16.9,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,11–50,AlphaGenome Atlas splice site usage,34,863,Yes,Yes,,,,0.154296875,10.6,Moderate,0.2470,13.4,Moderate,0.6455,25.4,Strong,
+DDX3X,Control-anchored,11–50,AlphaGenome Atlas splice junctions,34,863,Yes,Yes,,,,3.378,5.52,Moderate,4.363,8.19,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,3–50,Pangolin,71,1594,Yes,Yes,,,,0.37675,7.07,Moderate,0.4281759,7.26,Moderate,0.6740,9.89,Moderate,
+DDX3X,Control-anchored,3–50,CADD,71,1594,Yes,Yes,,,,19.19,4.92,Moderate,22.60,2.19,Supporting,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,3–50,phyloP-100way,71,1594,Yes,Yes,,,,4.085,5.28,Moderate,5.250,8.63,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,3–50,phastCons-100way,71,1594,Yes,Yes,,,,1.000,3.02,Supporting,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,3–50,GPN-MSA,71,1594,Yes,Yes,,,,6.880,4.02,Supporting,8.310,6.56,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,Control-anchored,3–50,"SpliceAI (±4,999 nt, Walker basis)",71,1594,Yes,Yes,,3.08,Supporting,0.33358,5.34,Moderate,0.42775,6.65,Moderate,0.8931,26.4,Strong,
+DDX3X,Control-anchored,3–50,AlphaGenome Atlas AVI,71,1594,Yes,Yes,,,,0.7155988,7.15,Moderate,0.8457,9.29,Moderate,1.1815,14.2,Moderate,
+DDX3X,Control-anchored,3–50,AlphaGenome Atlas splice sites,71,1594,Yes,Yes,,,,0.29785,6.70,Moderate,0.43945,8.92,Moderate,0.858398,17.3,Moderate,
+DDX3X,Control-anchored,3–50,AlphaGenome Atlas splice site usage,71,1594,Yes,Yes,,,,0.3828,9.74,Moderate,0.4921875,10.9,Moderate,0.9137,15.7,Moderate,
+DDX3X,Control-anchored,3–50,AlphaGenome Atlas splice junctions,71,1594,Yes,Yes,,,,3.21289,3.94,Supporting,3.955,5.12,Moderate,6.246,9.14,Moderate,
+DDX3X,FDR,3–10,Pangolin,41,727,Yes,Yes,,,,0.406857997,8.02,Moderate,0.5473,10.2,Moderate,0.7039,10.5,Moderate,
+DDX3X,FDR,3–10,CADD,41,727,Yes,Yes,,,,19.53,5.69,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,3–10,phyloP-100way,41,727,Yes,Yes,,,,4.58587,6.71,Moderate,5.34067,10.1,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,3–10,phastCons-100way,41,727,Yes,Yes,,,,1.000,3.55,Supporting,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,3–10,GPN-MSA,41,727,Yes,Yes,,,,7.470,4.69,Moderate,9.130,7.35,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,3–10,"SpliceAI (±4,999 nt, Walker basis)",41,727,Yes,Yes,,3.91,Supporting,0.4259,8.61,Moderate,0.5537,9.21,Moderate,0.8948,20.5,Strong,
+DDX3X,FDR,3–10,AlphaGenome Atlas AVI,41,727,Yes,Yes,,,,0.8440,9.79,Moderate,1.0689,13.4,Moderate,1.36798,20.7,Strong,
+DDX3X,FDR,3–10,AlphaGenome Atlas splice sites,41,727,Yes,Yes,,,,0.3398,9.00,Moderate,0.4558,9.70,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,3–10,AlphaGenome Atlas splice site usage,41,727,Yes,Yes,,,,0.568359,12.4,Moderate,0.66699,13.4,Moderate,0.91949,17.7,Moderate,
+DDX3X,FDR,3–10,AlphaGenome Atlas splice junctions,41,727,Yes,Yes,,,,3.5097656,4.90,Moderate,5.375,8.18,Moderate,6.8398,11.1,Moderate,
+DDX3X,FDR,11–50,Pangolin,26,871,Yes,Yes,,,,0.1923,9.14,Moderate,0.3521,29.6,Strong,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,11–50,CADD,26,871,Yes,Yes,,,,21.10,7.18,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,11–50,phyloP-100way,26,871,Yes,Yes,,,,,,not evaluable,,,not evaluable,,,not evaluable,Supporting: tier unreachable in-sample; LOGO median not carried over; Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,11–50,phastCons-100way,26,871,Yes,Yes,,,,,,not evaluable,,,not evaluable,,,not evaluable,Supporting: tier unreachable in-sample; LOGO median not carried over; Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,11–50,GPN-MSA,26,871,Yes,Yes,,,,6.585,4.79,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,11–50,"SpliceAI (±4,999 nt, Walker basis)",26,871,Yes,Yes,,7.49,Moderate,0.2533,9.14,Moderate,0.3131,9.47,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,11–50,AlphaGenome Atlas AVI,26,871,Yes,Yes,,,,0.5901,20.9,Strong,0.6914,33.5,Strong,1.192,not evaluable,not evaluable,
+DDX3X,FDR,11–50,AlphaGenome Atlas splice sites,26,871,Yes,Yes,,,,0.2705,11.5,Moderate,0.5078,33.5,Strong,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,11–50,AlphaGenome Atlas splice site usage,26,871,Yes,Yes,,,,0.154296875,26.4,Strong,0.2470,35.9,Strong,0.6455,101,Strong,
+DDX3X,FDR,11–50,AlphaGenome Atlas splice junctions,26,871,Yes,Yes,,,,3.378,12.3,Moderate,4.363,19.3,Strong,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,3–50,Pangolin,67,1598,Yes,Yes,,,,0.37675,12.2,Moderate,0.4281759,13.3,Moderate,0.6740,18.4,Moderate,
+DDX3X,FDR,3–50,CADD,67,1598,Yes,Yes,,,,19.19,6.85,Moderate,22.60,4.39,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,3–50,phyloP-100way,67,1598,Yes,Yes,,,,4.085,6.81,Moderate,5.250,11.9,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,3–50,phastCons-100way,67,1598,Yes,Yes,,,,1.000,4.90,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,3–50,GPN-MSA,67,1598,Yes,Yes,,,,6.880,5.71,Moderate,8.310,8.99,Moderate,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+DDX3X,FDR,3–50,"SpliceAI (±4,999 nt, Walker basis)",67,1598,Yes,Yes,,5.28,Moderate,0.33358,9.39,Moderate,0.42775,11.7,Moderate,0.8931,35.0,Strong,
+DDX3X,FDR,3–50,AlphaGenome Atlas AVI,67,1598,Yes,Yes,,,,0.7155988,12.4,Moderate,0.8457,16.3,Moderate,1.1815,21.8,Strong,
+DDX3X,FDR,3–50,AlphaGenome Atlas splice sites,67,1598,Yes,Yes,,,,0.29785,10.8,Moderate,0.43945,14.4,Moderate,0.858398,22.7,Strong,
+DDX3X,FDR,3–50,AlphaGenome Atlas splice site usage,67,1598,Yes,Yes,,,,0.3828,17.9,Moderate,0.4921875,20.6,Strong,0.9137,26.8,Strong,
+DDX3X,FDR,3–50,AlphaGenome Atlas splice junctions,67,1598,Yes,Yes,,,,3.21289,6.56,Moderate,3.955,8.73,Moderate,6.246,15.7,Moderate,
+TP53,Control-anchored,3–10,SpliceAI (±50 nt),15,129,Yes,Yes,,5.59,Moderate,0.3977,6.45,Moderate,0.56397,6.69,Moderate,0.8993,not evaluable,not evaluable,
+TP53,Control-anchored,3–10,Pangolin,15,129,Yes,Yes,,,,0.406857997,28.0,Strong,0.5473,51.6,Strong,0.7039,not evaluable,not evaluable,
+TP53,Control-anchored,3–10,AlphaGenome,15,129,Yes,No,"declared definition mismatch: the TP53 column was scored with AlphaGenome client v0.6.1 as a maximum absolute raw score, while the analysis-set column the thresholds are fitted on is the client v0.7.0 merged-quantile score, bounded at 2.2. They are different variables, so a threshold fitted on one does not apply to the other.",,,,,,,,,,,,
+TP53,Control-anchored,3–10,CADD,15,129,Yes,Yes,,,,19.53,8.60,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Control-anchored,3–10,phyloP-100way,15,129,Yes,Yes,,,,4.58587,not evaluable,not evaluable,5.34067,not evaluable,not evaluable,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Control-anchored,3–10,phastCons-100way,15,129,Yes,Yes,,,,1.000,not evaluable,not evaluable,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Control-anchored,3–10,GPN-MSA,15,129,Yes,No,anti-correlated on this gene: different orientation convention,,,,,,,,,,,,
+TP53,Control-anchored,3–10,NT-v2-500M,15,129,Yes,Yes,,,,3.636,7.53,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Control-anchored,3–10,"SpliceAI (±4,999 nt, Walker basis)",15,129,Yes,Yes,,5.32,Moderate,0.4259,8.60,Moderate,0.5537,9.56,Moderate,0.8948,not evaluable,not evaluable,
+TP53,Control-anchored,3–50,SpliceAI (±50 nt),15,129,Yes,Yes,,5.59,Moderate,0.33358,5.53,Moderate,0.3791576,6.45,Moderate,0.8836,not evaluable,not evaluable,
+TP53,Control-anchored,3–50,Pangolin,15,129,Yes,Yes,,,,0.37675,22.4,Strong,0.4281759,37.3,Strong,0.6740,38.7,Strong,
+TP53,Control-anchored,3–50,AlphaGenome,15,129,Yes,No,"declared definition mismatch: the TP53 column was scored with AlphaGenome client v0.6.1 as a maximum absolute raw score, while the analysis-set column the thresholds are fitted on is the client v0.7.0 merged-quantile score, bounded at 2.2. They are different variables, so a threshold fitted on one does not apply to the other.",,,,,,,,,,,,
+TP53,Control-anchored,3–50,CADD,15,129,Yes,Yes,,,,19.19,8.60,Moderate,22.60,not evaluable,not evaluable,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Control-anchored,3–50,phyloP-100way,15,129,Yes,Yes,,,,4.085,not evaluable,not evaluable,5.250,not evaluable,not evaluable,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Control-anchored,3–50,phastCons-100way,15,129,Yes,Yes,,,,1.000,not evaluable,not evaluable,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Control-anchored,3–50,GPN-MSA,15,129,Yes,No,anti-correlated on this gene: different orientation convention,,,,,,,,,,,,
+TP53,Control-anchored,3–50,NT-v2-500M,15,129,Yes,Yes,,,,,,not evaluable,,,not evaluable,,,not evaluable,Supporting: tier unreachable in-sample; LOGO median not carried over; Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Control-anchored,3–50,"SpliceAI (±4,999 nt, Walker basis)",15,129,Yes,Yes,,5.32,Moderate,0.33358,6.76,Moderate,0.42775,9.46,Moderate,0.8931,not evaluable,not evaluable,
+TP53,Median split,3–10,SpliceAI (±50 nt),48,96,Yes,Yes,,3.08,Supporting,0.3977,2.67,Supporting,0.56397,2.57,Supporting,0.8993,not evaluable,not evaluable,
+TP53,Median split,3–10,Pangolin,48,96,Yes,Yes,,,,0.406857997,34.4,Strong,0.5473,28.3,Strong,0.7039,not evaluable,not evaluable,
+TP53,Median split,3–10,AlphaGenome,48,96,Yes,No,"declared definition mismatch: the TP53 column was scored with AlphaGenome client v0.6.1 as a maximum absolute raw score, while the analysis-set column the thresholds are fitted on is the client v0.7.0 merged-quantile score, bounded at 2.2. They are different variables, so a threshold fitted on one does not apply to the other.",,,,,,,,,,,,
+TP53,Median split,3–10,CADD,48,96,Yes,Yes,,,,19.53,7.33,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Median split,3–10,phyloP-100way,48,96,Yes,Yes,,,,4.58587,not evaluable,not evaluable,5.34067,not evaluable,not evaluable,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Median split,3–10,phastCons-100way,48,96,Yes,Yes,,,,1.000,not evaluable,not evaluable,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Median split,3–10,GPN-MSA,48,96,Yes,No,anti-correlated on this gene: different orientation convention,,,,,,,,,,,,
+TP53,Median split,3–10,NT-v2-500M,48,96,Yes,Yes,,,,3.636,5.50,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Median split,3–10,"SpliceAI (±4,999 nt, Walker basis)",48,96,Yes,Yes,,3.23,Supporting,0.4259,3.50,Supporting,0.5537,3.43,Supporting,0.8948,not evaluable,not evaluable,
+TP53,Median split,3–50,SpliceAI (±50 nt),48,96,Yes,Yes,,3.08,Supporting,0.33358,2.18,Supporting,0.3791576,2.67,Supporting,0.8836,not evaluable,not evaluable,
+TP53,Median split,3–50,Pangolin,48,96,Yes,Yes,,,,0.37675,36.4,Strong,0.4281759,32.3,Strong,0.6740,22.2,Strong,
+TP53,Median split,3–50,AlphaGenome,48,96,Yes,No,"declared definition mismatch: the TP53 column was scored with AlphaGenome client v0.6.1 as a maximum absolute raw score, while the analysis-set column the thresholds are fitted on is the client v0.7.0 merged-quantile score, bounded at 2.2. They are different variables, so a threshold fitted on one does not apply to the other.",,,,,,,,,,,,
+TP53,Median split,3–50,CADD,48,96,Yes,Yes,,,,19.19,7.33,Moderate,22.60,not evaluable,not evaluable,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Median split,3–50,phyloP-100way,48,96,Yes,Yes,,,,4.085,not evaluable,not evaluable,5.250,not evaluable,not evaluable,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Median split,3–50,phastCons-100way,48,96,Yes,Yes,,,,1.000,not evaluable,not evaluable,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Median split,3–50,GPN-MSA,48,96,Yes,No,anti-correlated on this gene: different orientation convention,,,,,,,,,,,,
+TP53,Median split,3–50,NT-v2-500M,48,96,Yes,Yes,,,,,,not evaluable,,,not evaluable,,,not evaluable,Supporting: tier unreachable in-sample; LOGO median not carried over; Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Median split,3–50,"SpliceAI (±4,999 nt, Walker basis)",48,96,Yes,Yes,,3.23,Supporting,0.33358,2.55,Supporting,0.42775,4.00,Supporting,0.8931,not evaluable,not evaluable,
+TP53,Mid-band excluded,3–10,SpliceAI (±50 nt),12,125,Yes,Yes,,7.35,Moderate,0.3977,7.58,Moderate,0.56397,7.81,Moderate,0.8993,not evaluable,not evaluable,
+TP53,Mid-band excluded,3–10,Pangolin,12,125,Yes,Yes,,,,0.406857997,62.5,Strong,0.5473,125,Strong,0.7039,not evaluable,not evaluable,
+TP53,Mid-band excluded,3–10,AlphaGenome,12,125,Yes,No,"declared definition mismatch: the TP53 column was scored with AlphaGenome client v0.6.1 as a maximum absolute raw score, while the analysis-set column the thresholds are fitted on is the client v0.7.0 merged-quantile score, bounded at 2.2. They are different variables, so a threshold fitted on one does not apply to the other.",,,,,,,,,,,,
+TP53,Mid-band excluded,3–10,CADD,12,125,Yes,Yes,,,,19.53,10.4,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Mid-band excluded,3–10,phyloP-100way,12,125,Yes,Yes,,,,4.58587,not evaluable,not evaluable,5.34067,not evaluable,not evaluable,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Mid-band excluded,3–10,phastCons-100way,12,125,Yes,Yes,,,,1.000,not evaluable,not evaluable,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Mid-band excluded,3–10,GPN-MSA,12,125,Yes,No,anti-correlated on this gene: different orientation convention,,,,,,,,,,,,
+TP53,Mid-band excluded,3–10,NT-v2-500M,12,125,Yes,Yes,,,,3.636,7.81,Moderate,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Mid-band excluded,3–10,"SpliceAI (±4,999 nt, Walker basis)",12,125,Yes,Yes,,6.94,Moderate,0.4259,10.4,Moderate,0.5537,11.7,Moderate,0.8948,not evaluable,not evaluable,
+TP53,Mid-band excluded,3–50,SpliceAI (±50 nt),12,125,Yes,Yes,,7.35,Moderate,0.33358,6.41,Moderate,0.3791576,7.58,Moderate,0.8836,not evaluable,not evaluable,
+TP53,Mid-band excluded,3–50,Pangolin,12,125,Yes,Yes,,,,0.37675,62.5,Strong,0.4281759,62.5,Strong,0.6740,93.8,Strong,
+TP53,Mid-band excluded,3–50,AlphaGenome,12,125,Yes,No,"declared definition mismatch: the TP53 column was scored with AlphaGenome client v0.6.1 as a maximum absolute raw score, while the analysis-set column the thresholds are fitted on is the client v0.7.0 merged-quantile score, bounded at 2.2. They are different variables, so a threshold fitted on one does not apply to the other.",,,,,,,,,,,,
+TP53,Mid-band excluded,3–50,CADD,12,125,Yes,Yes,,,,19.19,10.4,Moderate,22.60,not evaluable,not evaluable,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Mid-band excluded,3–50,phyloP-100way,12,125,Yes,Yes,,,,4.085,not evaluable,not evaluable,5.250,not evaluable,not evaluable,,,not evaluable,Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Mid-band excluded,3–50,phastCons-100way,12,125,Yes,Yes,,,,1.000,not evaluable,not evaluable,,,not evaluable,,,not evaluable,Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Mid-band excluded,3–50,GPN-MSA,12,125,Yes,No,anti-correlated on this gene: different orientation convention,,,,,,,,,,,,
+TP53,Mid-band excluded,3–50,NT-v2-500M,12,125,Yes,Yes,,,,,,not evaluable,,,not evaluable,,,not evaluable,Supporting: tier unreachable in-sample; LOGO median not carried over; Moderate: tier unreachable in-sample; LOGO median not carried over; Strong: tier unreachable in-sample; LOGO median not carried over
+TP53,Mid-band excluded,3–50,"SpliceAI (±4,999 nt, Walker basis)",12,125,Yes,Yes,,6.94,Moderate,0.33358,8.01,Moderate,0.42775,11.6,Moderate,0.8931,not evaluable,not evaluable,

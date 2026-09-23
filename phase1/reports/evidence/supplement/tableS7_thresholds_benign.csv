@@ -1,0 +1,118 @@
+Tool,"Stratum (intronic offset, bp)",Tier,Benign tier LR cut,Reached in-sample,In-sample threshold (gene-clustered bootstrap),In-sample threshold (variant-level bootstrap),"Held-out LR, median over folds"
+SpliceAI (±50 nt),3–10,Supporting,0.481,Yes,0.0068527,0.009981,0.0466
+SpliceAI (±50 nt),3–10,Moderate,0.231,Yes,0.0009788777679,0.000823855,0.0571
+SpliceAI (±50 nt),3–10,Strong,0.0535,No,,,
+SpliceAI (±50 nt),11–50,Supporting,0.481,No,,,
+SpliceAI (±50 nt),11–50,Moderate,0.231,No,,,
+SpliceAI (±50 nt),11–50,Strong,0.0535,No,,,
+SpliceAI (±50 nt),3–50,Supporting,0.481,Yes,0.0003459,0.0003352,0
+SpliceAI (±50 nt),3–50,Moderate,0.231,No,,,
+SpliceAI (±50 nt),3–50,Strong,0.0535,No,,,
+Pangolin,3–10,Supporting,0.481,Yes,0.003778,0.0040245,0.0424
+Pangolin,3–10,Moderate,0.231,Yes,0.0015617,0.002310,0
+Pangolin,3–10,Strong,0.0535,No,,,
+Pangolin,11–50,Supporting,0.481,No,,,
+Pangolin,11–50,Moderate,0.231,No,,,
+Pangolin,11–50,Strong,0.0535,No,,,
+Pangolin,3–50,Supporting,0.481,Yes,0.0007956,0.0007733,0.0183
+Pangolin,3–50,Moderate,0.231,No,,,
+Pangolin,3–50,Strong,0.0535,No,,,
+AlphaGenome,3–10,Supporting,0.481,Yes,2.1433,1.98015,0.0919
+AlphaGenome,3–10,Moderate,0.231,Yes,1.2452,1.25542,0.476
+AlphaGenome,3–10,Strong,0.0535,No,,,
+AlphaGenome,11–50,Supporting,0.481,No,,,
+AlphaGenome,11–50,Moderate,0.231,No,,,
+AlphaGenome,11–50,Strong,0.0535,No,,,
+AlphaGenome,3–50,Supporting,0.481,Yes,1.245151,1.2585,0
+AlphaGenome,3–50,Moderate,0.231,No,,,
+AlphaGenome,3–50,Strong,0.0535,No,,,
+CADD,3–10,Supporting,0.481,Yes,0.7070,0.5940,0.286
+CADD,3–10,Moderate,0.231,Yes,0.3430,0.3430,0
+CADD,3–10,Strong,0.0535,No,,,
+CADD,11–50,Supporting,0.481,No,,,
+CADD,11–50,Moderate,0.231,No,,,
+CADD,11–50,Strong,0.0535,No,,,
+CADD,3–50,Supporting,0.481,Yes,0.2860,0.2860,0
+CADD,3–50,Moderate,0.231,No,,,
+CADD,3–50,Strong,0.0535,No,,,
+phyloP-100way,3–10,Supporting,0.481,Yes,-0.8509,-0.9730,0
+phyloP-100way,3–10,Moderate,0.231,Yes,-1.327,-1.327,0
+phyloP-100way,3–10,Strong,0.0535,No,,,
+phyloP-100way,11–50,Supporting,0.481,No,,,
+phyloP-100way,11–50,Moderate,0.231,No,,,
+phyloP-100way,11–50,Strong,0.0535,No,,,
+phyloP-100way,3–50,Supporting,0.481,Yes,-1.4978,-1.554,0
+phyloP-100way,3–50,Moderate,0.231,No,,,
+phyloP-100way,3–50,Strong,0.0535,No,,,
+phastCons-100way,3–10,Supporting,0.481,Yes,0,0,0.265
+phastCons-100way,3–10,Moderate,0.231,No,,,
+phastCons-100way,3–10,Strong,0.0535,No,,,
+phastCons-100way,11–50,Supporting,0.481,No,,,
+phastCons-100way,11–50,Moderate,0.231,No,,,
+phastCons-100way,11–50,Strong,0.0535,No,,,
+phastCons-100way,3–50,Supporting,0.481,No,,0,
+phastCons-100way,3–50,Moderate,0.231,No,,,
+phastCons-100way,3–50,Strong,0.0535,No,,,
+GPN-MSA,3–10,Supporting,0.481,Yes,1.640,1.530,0.118
+GPN-MSA,3–10,Moderate,0.231,Yes,-3.250,,0
+GPN-MSA,3–10,Strong,0.0535,No,,,
+GPN-MSA,11–50,Supporting,0.481,No,,,
+GPN-MSA,11–50,Moderate,0.231,No,,,
+GPN-MSA,11–50,Strong,0.0535,No,,,
+GPN-MSA,3–50,Supporting,0.481,Yes,-2.590,-2.830,0
+GPN-MSA,3–50,Moderate,0.231,No,,,
+GPN-MSA,3–50,Strong,0.0535,No,,,
+NT-v2-500M,3–10,Supporting,0.481,Yes,-1.264777,-1.3678,0.116
+NT-v2-500M,3–10,Moderate,0.231,No,,,
+NT-v2-500M,3–10,Strong,0.0535,No,,,
+NT-v2-500M,11–50,Supporting,0.481,Yes,-2.141,,0
+NT-v2-500M,11–50,Moderate,0.231,No,,,
+NT-v2-500M,11–50,Strong,0.0535,No,,,
+NT-v2-500M,3–50,Supporting,0.481,Yes,-1.76287,-1.76287,0.452
+NT-v2-500M,3–50,Moderate,0.231,No,,,
+NT-v2-500M,3–50,Strong,0.0535,No,,,
+"SpliceAI (±4,999 nt, Walker basis)",3–10,Supporting,0.481,Yes,0.02634668,0.024793578,0.0927
+"SpliceAI (±4,999 nt, Walker basis)",3–10,Moderate,0.231,Yes,0.002829,0.002829,0
+"SpliceAI (±4,999 nt, Walker basis)",3–10,Strong,0.0535,No,,,
+"SpliceAI (±4,999 nt, Walker basis)",11–50,Supporting,0.481,Yes,0.001270,,0
+"SpliceAI (±4,999 nt, Walker basis)",11–50,Moderate,0.231,No,,,
+"SpliceAI (±4,999 nt, Walker basis)",11–50,Strong,0.0535,No,,,
+"SpliceAI (±4,999 nt, Walker basis)",3–50,Supporting,0.481,Yes,0.003406,0.003408968,0.106
+"SpliceAI (±4,999 nt, Walker basis)",3–50,Moderate,0.231,No,,,
+"SpliceAI (±4,999 nt, Walker basis)",3–50,Strong,0.0535,No,,,
+AlphaGenome Atlas AVI,3–10,Supporting,0.481,Yes,0.041665,0.15959,0.0321
+AlphaGenome Atlas AVI,3–10,Moderate,0.231,Yes,-0.09308,-0.077236,0.124
+AlphaGenome Atlas AVI,3–10,Strong,0.0535,No,,,
+AlphaGenome Atlas AVI,11–50,Supporting,0.481,No,,,
+AlphaGenome Atlas AVI,11–50,Moderate,0.231,No,,,
+AlphaGenome Atlas AVI,11–50,Strong,0.0535,No,,,
+AlphaGenome Atlas AVI,3–50,Supporting,0.481,Yes,-0.06695,-0.08720,0.140
+AlphaGenome Atlas AVI,3–50,Moderate,0.231,No,,,
+AlphaGenome Atlas AVI,3–50,Strong,0.0535,No,,,
+AlphaGenome Atlas splice sites,3–10,Supporting,0.481,Yes,0.01520,0.018372,0.0886
+AlphaGenome Atlas splice sites,3–10,Moderate,0.231,No,,,
+AlphaGenome Atlas splice sites,3–10,Strong,0.0535,No,,,
+AlphaGenome Atlas splice sites,11–50,Supporting,0.481,Yes,0.0053711,0.0053711,0.377
+AlphaGenome Atlas splice sites,11–50,Moderate,0.231,No,,,
+AlphaGenome Atlas splice sites,11–50,Strong,0.0535,No,,,
+AlphaGenome Atlas splice sites,3–50,Supporting,0.481,No,,,
+AlphaGenome Atlas splice sites,3–50,Moderate,0.231,No,,,
+AlphaGenome Atlas splice sites,3–50,Strong,0.0535,No,,,
+AlphaGenome Atlas splice site usage,3–10,Supporting,0.481,Yes,0.01758,0.01758,0.0525
+AlphaGenome Atlas splice site usage,3–10,Moderate,0.231,Yes,0.013672,0.0107422,0.166
+AlphaGenome Atlas splice site usage,3–10,Strong,0.0535,No,,,
+AlphaGenome Atlas splice site usage,11–50,Supporting,0.481,Yes,0.0096817,,0.329
+AlphaGenome Atlas splice site usage,11–50,Moderate,0.231,No,,,
+AlphaGenome Atlas splice site usage,11–50,Strong,0.0535,No,,,
+AlphaGenome Atlas splice site usage,3–50,Supporting,0.481,Yes,0.009766,0.01758,0.0406
+AlphaGenome Atlas splice site usage,3–50,Moderate,0.231,No,,,
+AlphaGenome Atlas splice site usage,3–50,Strong,0.0535,No,,,
+AlphaGenome Atlas splice junctions,3–10,Supporting,0.481,Yes,0.38672,0.3845215,0.0727
+AlphaGenome Atlas splice junctions,3–10,Moderate,0.231,Yes,0.06229,0.06229,0
+AlphaGenome Atlas splice junctions,3–10,Strong,0.0535,No,,,
+AlphaGenome Atlas splice junctions,11–50,Supporting,0.481,No,,,
+AlphaGenome Atlas splice junctions,11–50,Moderate,0.231,No,,,
+AlphaGenome Atlas splice junctions,11–50,Strong,0.0535,No,,,
+AlphaGenome Atlas splice junctions,3–50,Supporting,0.481,Yes,0.07593,0.06238,0.117
+AlphaGenome Atlas splice junctions,3–50,Moderate,0.231,No,,,
+AlphaGenome Atlas splice junctions,3–50,Strong,0.0535,No,,,

@@ -25,15 +25,22 @@ Stages
   2  evid_walker_thresholds  the ClinGen SVI fixed cut points, by stratum and arm (E2)
   3  evid_interval_lr        score-to-evidence intervals, Pejaver's procedure (E3)
   4  evid_territory_metrics  AUROC / PR-AUC by territory and ClinVar arm (E4)
-  5  evid_inframe            what the false positives are predicting (E6)
+  5  evid_inframe            what the false positives are predicting (E6), then the
+                             same attribution on the two external genes (E2.7)
   6  evid_external TP53      fixed and fitted thresholds on the held-out gene (E7)
-  7  evid_external DDX3X     the same, on a gene outside the seven (E7)
+  7  evid_external DDX3X     merge the scored columns, then the same on a gene
+                             outside the seven (E7)
   8  evid_diagnostics        cut-point and monotonicity diagnostic tables (E8)
   9  evid_tier_logo          in-sample tier vs held-out ratio, per fold (E2.2)
  10  evid_arms               ClinVar arms without BRCA1, and within gene (E2.3/E2.4)
  11  evid_fig_data           the figure tables and draft PNGs (E2.9)
  12  evid_training_provenance where each predictor's training signal comes from (E9)
- 13  evid_delta              every published quantity with a counterpart (E8)
+ 13  evid_fusion_stability   the fusion's coefficients in every fold (E10)
+ 14  evid_dilution           thresholds refitted on every subset of training genes (E11)
+ 15  evid_tables             the four main tables as printed (E12)
+ 16  evid_supp_tables        the supplementary tables as printed (E13)
+ 17  evid_figures            main and supplementary figures, PDF and PNG (E14)
+ 18  evid_delta              every published quantity with a counterpart (E8)
 
 Outputs land in `phase1/reports/evidence/`.
 
@@ -56,13 +63,22 @@ STAGES = [
     ("src.evid_interval_lr",        "E3  score-to-evidence intervals", []),
     ("src.evid_territory_metrics",  "E4  territory and ClinVar-arm metrics", []),
     ("src.evid_inframe",            "E6  in-frame attribution", ["--attribute"]),
+    ("src.evid_inframe",            "E2.7 in-frame attribution: DDX3X", ["--external-attribute", "ddx3x"]),
+    ("src.evid_inframe",            "E2.7 in-frame attribution: TP53", ["--external-attribute", "tp53"]),
     ("src.evid_external",           "E7  external gene: TP53", ["--apply", "TP53"]),
+    ("src.evid_external",           "E7  external gene: DDX3X, merge scored columns",
+     ["--merge-scores", "ddx3x"]),
     ("src.evid_external",           "E7  external gene: DDX3X", ["--apply", "DDX3X"]),
     ("src.evid_diagnostics",        "E8  cut-point and monotonicity diagnostics", []),
     ("src.evid_tier_logo",          "E2.2 in-sample tier against held-out ratio", []),
     ("src.evid_arms",               "E2.3/E2.4 ClinVar arms without the gene confound", []),
     ("src.evid_fig_data",           "E2.9 one tidy table per figure, plus draft PNGs", []),
     ("src.evid_training_provenance", "E9  predictor training signals and overlaps", []),
+    ("src.evid_fusion_stability",   "E10 fusion coefficients across folds", []),
+    ("src.evid_dilution",           "E11 thresholds refitted on subsets of training genes", []),
+    ("src.evid_tables",             "E12 the four main tables, as printed", []),
+    ("src.evid_supp_tables",        "E13 the supplementary tables, as printed", []),
+    ("src.evid_figures",            "E14 main and supplementary figures", []),
     ("src.evid_delta",              "E8  old/new quantity list -> docs/evidence-delta.md", []),
 ]
 

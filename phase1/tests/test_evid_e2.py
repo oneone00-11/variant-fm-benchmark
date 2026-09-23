@@ -179,7 +179,7 @@ def test_the_figure_tables_only_carry_in_scope_strata():
 # E9 -- the predictor training-signal table
 # ---------------------------------------------------------------------------
 def test_every_evaluated_column_has_a_training_provenance_row():
-    """The table answers a reviewer's question about hidden dependencies, so a
+    """The table answers the question of hidden dependencies, so a
     column that is evaluated anywhere and missing here is the failure mode."""
     t = pd.read_csv(REPORTS / "predictor_training_provenance.csv")
     have = set(t.score_column)

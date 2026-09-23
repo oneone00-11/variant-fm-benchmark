@@ -1,9 +1,8 @@
 """E9 -- where each predictor's training signal comes from, and what it overlaps.
 
-A reviewer of the published study asked whether the evaluated predictors carry
-information that overlaps the data they are scored against, and named two routes:
-evolutionary conservation, and functional annotations shared with the training
-sets. The question cannot be answered with a correlation, so it is answered with
+The question is whether the evaluated predictors carry information that overlaps
+the data they are scored against, by two routes in particular: evolutionary
+conservation, and functional annotations shared with the training sets. The question cannot be answered with a correlation, so it is answered with
 provenance: for every score column in the panel, what supervised the model, whether
 any clinical variant classification entered that supervision, and whether the
 training data include measurements of the same kind as this study's standard.
@@ -43,8 +42,8 @@ from pathlib import Path
 
 import pandas as pd
 
-ATLAS_REPO = Path(os.environ.get(
-    "EVID_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
+from .evid_common import ATLAS_REPO as _atlas_repo_default  # noqa: E402
+ATLAS_REPO = _atlas_repo_default  # EVID_ATLAS_REPO overrides; see evid_common
 REPORT_DIR = Path("reports/evidence")
 OUT = REPORT_DIR / "predictor_training_provenance.csv"
 

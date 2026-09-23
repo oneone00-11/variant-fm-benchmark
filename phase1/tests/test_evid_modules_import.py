@@ -1,7 +1,7 @@
 """Every stage module must parse and import.
 
 This exists because a history rewrite that renamed paths and text across the branch
-also rewrote an identifier inside one module, turning EVID_DIR into a name with a
+also rewrote an identifier inside one module, turning a directory constant into a name with a
 hyphen in it. The file stopped parsing, and the whole suite still passed, because no
 test imported that module -- the tests read its OUTPUTS, which were already on disk.
 

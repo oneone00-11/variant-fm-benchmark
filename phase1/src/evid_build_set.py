@@ -33,8 +33,8 @@ import pandas as pd
 from . import config as C
 from .phase1_method_b_labels import _norm_hgvs
 
-ATLAS_REPO = Path(os.environ.get(
-    "EVID_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
+from .evid_common import ATLAS_REPO as _atlas_repo_default  # noqa: E402
+ATLAS_REPO = _atlas_repo_default  # EVID_ATLAS_REPO overrides; see evid_common
 ATLAS_MATRIX = ATLAS_REPO / "results" / "score_matrix_atlas_v2.parquet"
 ATLAS_V061 = ATLAS_REPO / "results" / "alphagenome_v061_scores.parquet"
 

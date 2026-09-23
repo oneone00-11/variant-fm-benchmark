@@ -1,0 +1,118 @@
+Tool,"Stratum (intronic offset, bp)",Tier,Tier LR cut,Reached in-sample,In-sample threshold (gene-clustered bootstrap),In-sample threshold (variant-level bootstrap),Held-out genes,Folds with a fitted threshold,Folds with an evaluable held-out LR,Held-out genes clearing the cut,"Held-out LR, median","Held-out LR, minimum","Held-out LR, maximum",Held-out LR per fold
+SpliceAI (±50 nt),3–10,Supporting,2.08,Yes,0.37547,0.37325859,7,7,7,7,9.87,7.61,32.3,BAP1=7.61; BARD1=9.87; BRCA1=32.3; BRCA2=17.9; PALB2=9.64; RAD51C=9.39; VHL=13.5
+SpliceAI (±50 nt),3–10,Moderate,4.33,Yes,0.5556567,0.52077,7,7,6,6,13.5,7.84,39.8,BAP1=7.84; BARD1=11.1; BRCA1=39.8; BRCA2=28.1; PALB2=15.4; RAD51C=11.6; VHL=n.e.
+SpliceAI (±50 nt),3–10,Strong,18.7,Yes,0.8605,0.85897,7,6,6,4,41.2,12.7,83.4,BAP1=13.2; BARD1=83.4; BRCA1=55.7; BRCA2=26.7; PALB2=12.7; RAD51C=66.1; VHL=no threshold
+SpliceAI (±50 nt),11–50,Supporting,2.08,Yes,0.23516,0.23225677,6,6,4,4,23.1,5.37,44.0,BAP1=5.37; BARD1=44.0; BRCA1=n.e.; PALB2=19.2; RAD51C=27.0; VHL=n.e.
+SpliceAI (±50 nt),11–50,Moderate,4.33,Yes,0.290056,0.3020,6,6,4,4,25.2,6.67,63.4,BAP1=6.67; BARD1=63.4; BRCA1=n.e.; PALB2=26.2; RAD51C=24.3; VHL=n.e.
+SpliceAI (±50 nt),11–50,Strong,18.7,No,,,6,1,1,0,9.61,9.61,9.61,BAP1=9.61; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+SpliceAI (±50 nt),3–50,Supporting,2.08,Yes,0.330177,0.3158,7,7,7,7,15.9,7.88,35.5,BAP1=7.88; BARD1=27.3; BRCA1=35.5; BRCA2=13.3; PALB2=12.1; RAD51C=17.5; VHL=15.9
+SpliceAI (±50 nt),3–50,Moderate,4.33,Yes,0.38189,0.38836,7,7,7,7,19.9,8.57,43.7,BAP1=8.57; BARD1=33.0; BRCA1=43.7; BRCA2=16.7; PALB2=15.7; RAD51C=22.4; VHL=19.9
+SpliceAI (±50 nt),3–50,Strong,18.7,Yes,0.881479,0.83557,7,7,6,5,47.0,14.0,284,BAP1=14.0; BARD1=284; BRCA1=51.0; BRCA2=35.6; PALB2=42.9; RAD51C=214; VHL=n.e.
+Pangolin,3–10,Supporting,2.08,Yes,0.3927895,0.3896,7,7,6,6,13.0,9.65,24.4,BAP1=9.65; BARD1=13.9; BRCA1=24.4; BRCA2=17.4; PALB2=12.1; RAD51C=9.92; VHL=n.e.
+Pangolin,3–10,Moderate,4.33,Yes,0.5108555555,0.6248989,7,7,6,6,20.9,11.8,47.5,BAP1=16.2; BARD1=25.7; BRCA1=47.5; BRCA2=27.3; PALB2=12.9; RAD51C=11.8; VHL=n.e.
+Pangolin,3–10,Strong,18.7,Yes,0.6972,0.701455,7,7,6,6,59.5,27.1,186,BAP1=32.4; BARD1=64.0; BRCA1=186; BRCA2=55.0; PALB2=78.2; RAD51C=27.1; VHL=n.e.
+Pangolin,11–50,Supporting,2.08,Yes,0.2021,0.1885,6,6,4,4,9.67,5.87,35.9,BAP1=5.87; BARD1=35.9; BRCA1=n.e.; PALB2=8.16; RAD51C=11.2; VHL=n.e.
+Pangolin,11–50,Moderate,4.33,Yes,0.4146675,0.3669,6,6,4,4,26.9,20.0,105,BAP1=20.0; BARD1=105; BRCA1=n.e.; PALB2=24.9; RAD51C=28.9; VHL=n.e.
+Pangolin,11–50,Strong,18.7,No,,0.6368,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+Pangolin,3–50,Supporting,2.08,Yes,0.3594,0.352165,7,7,7,7,19.7,14.2,40.4,BAP1=14.7; BARD1=40.4; BRCA1=27.5; BRCA2=14.2; PALB2=19.7; RAD51C=19.7; VHL=31.8
+Pangolin,3–50,Moderate,4.33,Yes,0.4146675,0.4196,7,7,7,7,22.8,16.6,51.9,BAP1=16.6; BARD1=51.9; BRCA1=42.2; BRCA2=17.4; PALB2=22.0; RAD51C=22.8; VHL=29.2
+Pangolin,3–50,Strong,18.7,Yes,0.6798,0.6798,7,7,6,6,123,41.1,227,BAP1=44.9; BARD1=190; BRCA1=180; BRCA2=41.1; PALB2=227; RAD51C=65.8; VHL=n.e.
+AlphaGenome,3–10,Supporting,2.08,Yes,2.199,2.198988,7,7,7,7,13.8,10.7,27.0,BAP1=11.1; BARD1=11.7; BRCA1=21.8; BRCA2=21.4; PALB2=13.8; RAD51C=10.7; VHL=27.0
+AlphaGenome,3–10,Moderate,4.33,Yes,2.199516,2.1994368,7,7,6,6,17.8,14.2,38.0,BAP1=14.2; BARD1=15.7; BRCA1=38.0; BRCA2=27.3; PALB2=19.9; RAD51C=15.2; VHL=n.e.
+AlphaGenome,3–10,Strong,18.7,Yes,2.19988276958,2.19988276958,7,7,6,5,41.6,16.9,65.2,BAP1=16.9; BARD1=62.5; BRCA1=48.3; BRCA2=35.0; PALB2=65.2; RAD51C=28.4; VHL=n.e.
+AlphaGenome,11–50,Supporting,2.08,Yes,2.1972,2.1972,6,6,3,3,27.0,8.43,27.9,BAP1=8.43; BARD1=27.9; BRCA1=n.e.; PALB2=n.e.; RAD51C=27.0; VHL=n.e.
+AlphaGenome,11–50,Moderate,4.33,Yes,2.198968,2.198879,6,6,3,3,27.0,8.04,51.3,BAP1=8.04; BARD1=51.3; BRCA1=n.e.; PALB2=n.e.; RAD51C=27.0; VHL=n.e.
+AlphaGenome,11–50,Strong,18.7,Yes,2.19960445,2.19951,6,1,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=n.e.
+AlphaGenome,3–50,Supporting,2.08,Yes,2.198835,2.198787,7,7,7,7,20.9,13.9,34.8,BAP1=13.9; BARD1=28.3; BRCA1=34.8; BRCA2=20.9; PALB2=24.4; RAD51C=20.7; VHL=14.9
+AlphaGenome,3–50,Moderate,4.33,Yes,2.19935889,2.19918979,7,7,7,7,32.6,16.6,69.0,BAP1=16.6; BARD1=54.9; BRCA1=50.5; BRCA2=22.6; PALB2=32.6; RAD51C=27.8; VHL=69.0
+AlphaGenome,3–50,Strong,18.7,Yes,2.1998709,2.19982656,7,7,6,6,70.3,19.3,241,BAP1=19.3; BARD1=241; BRCA1=83.0; BRCA2=38.3; PALB2=144; RAD51C=57.6; VHL=n.e.
+CADD,3–10,Supporting,2.08,Yes,19.30,18.79,7,7,6,6,4.04,3.13,13.3,BAP1=4.90; BARD1=4.20; BRCA1=3.13; BRCA2=13.3; PALB2=3.87; RAD51C=3.61; VHL=n.e.
+CADD,3–10,Moderate,4.33,No,,23.60,7,1,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=n.e.; VHL=no threshold
+CADD,3–10,Strong,18.7,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+CADD,11–50,Supporting,2.08,Yes,22.60,18.27,6,3,2,0,0.844,0,1.69,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=0; RAD51C=1.69; VHL=n.e.
+CADD,11–50,Moderate,4.33,No,,,6,1,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=n.e.; VHL=no threshold
+CADD,11–50,Strong,18.7,No,,,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+CADD,3–50,Supporting,2.08,Yes,19.27,18.14,7,7,6,6,6.84,3.26,15.0,BAP1=8.17; BARD1=15.0; BRCA1=5.51; BRCA2=8.33; PALB2=4.47; RAD51C=3.26; VHL=n.e.
+CADD,3–50,Moderate,4.33,Yes,22.60,20.30,7,7,6,5,7.01,3.89,15.6,BAP1=8.03; BARD1=12.5; BRCA1=3.89; BRCA2=15.6; PALB2=5.20; RAD51C=5.98; VHL=n.e.
+CADD,3–50,Strong,18.7,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phyloP-100way,3–10,Supporting,2.08,Yes,4.4836,3.1217,7,7,5,5,11.1,2.66,16.8,BAP1=4.81; BARD1=2.66; BRCA1=11.1; BRCA2=n.e.; PALB2=16.8; RAD51C=14.6; VHL=n.e.
+phyloP-100way,3–10,Moderate,4.33,Yes,5.34067,5.16179,7,7,2,2,5.01,4.96,5.06,BAP1=5.06; BARD1=4.96; BRCA1=n.e.; BRCA2=n.e.; PALB2=n.e.; RAD51C=n.e.; VHL=n.e.
+phyloP-100way,3–10,Strong,18.7,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phyloP-100way,11–50,Supporting,2.08,No,,,6,2,2,1,2.50,1.16,3.84,BAP1=3.84; BARD1=1.16; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phyloP-100way,11–50,Moderate,4.33,No,,,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phyloP-100way,11–50,Strong,18.7,No,,,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phyloP-100way,3–50,Supporting,2.08,Yes,4.15258,3.69068,7,7,5,5,14.3,4.62,20.2,BAP1=5.05; BARD1=4.62; BRCA1=14.3; BRCA2=n.e.; PALB2=20.2; RAD51C=20.2; VHL=n.e.
+phyloP-100way,3–50,Moderate,4.33,Yes,5.5818,4.5079,7,7,3,3,19.0,7.16,22.7,BAP1=7.16; BARD1=19.0; BRCA1=22.7; BRCA2=n.e.; PALB2=n.e.; RAD51C=n.e.; VHL=n.e.
+phyloP-100way,3–50,Strong,18.7,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phastCons-100way,3–10,Supporting,2.08,Yes,1.000,1.000,7,7,6,6,3.95,2.51,7.78,BAP1=4.35; BARD1=3.26; BRCA1=5.22; BRCA2=7.78; PALB2=2.51; RAD51C=3.55; VHL=n.e.
+phastCons-100way,3–10,Moderate,4.33,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phastCons-100way,3–10,Strong,18.7,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phastCons-100way,11–50,Supporting,2.08,No,,,6,1,1,0,0.976,0.976,0.976,BAP1=no threshold; BARD1=0.976; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phastCons-100way,11–50,Moderate,4.33,No,,,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phastCons-100way,11–50,Strong,18.7,No,,,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phastCons-100way,3–50,Supporting,2.08,Yes,0.9921,0.9921,7,7,6,6,4.90,4.17,9.56,BAP1=4.61; BARD1=5.19; BRCA1=9.56; BRCA2=7.78; PALB2=4.17; RAD51C=4.47; VHL=n.e.
+phastCons-100way,3–50,Moderate,4.33,No,,1.000,7,2,2,2,4.90,4.61,5.19,BAP1=4.61; BARD1=5.19; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+phastCons-100way,3–50,Strong,18.7,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+GPN-MSA,3–10,Supporting,2.08,Yes,7.520,7.370,7,7,6,6,6.25,4.60,11.4,BAP1=4.94; BARD1=5.75; BRCA1=6.75; BRCA2=6.97; PALB2=4.60; RAD51C=11.4; VHL=n.e.
+GPN-MSA,3–10,Moderate,4.33,Yes,9.010,9.250,7,7,5,5,7.66,6.80,56.4,BAP1=6.82; BARD1=7.66; BRCA1=6.80; BRCA2=n.e.; PALB2=11.2; RAD51C=56.4; VHL=n.e.
+GPN-MSA,3–10,Strong,18.7,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+GPN-MSA,11–50,Supporting,2.08,Yes,6.630,6.530,6,6,5,5,3.11,2.57,6.65,BAP1=3.11; BARD1=2.93; BRCA1=n.e.; PALB2=6.65; RAD51C=5.45; VHL=2.57
+GPN-MSA,11–50,Moderate,4.33,No,,,6,1,1,0,3.34,3.34,3.34,BAP1=3.34; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+GPN-MSA,11–50,Strong,18.7,No,,,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+GPN-MSA,3–50,Supporting,2.08,Yes,6.840,6.690,7,7,7,7,5.09,3.24,13.0,BAP1=5.09; BARD1=13.0; BRCA1=10.4; BRCA2=4.92; PALB2=5.09; RAD51C=8.99; VHL=3.24
+GPN-MSA,3–50,Moderate,4.33,Yes,8.240,7.700,7,7,6,6,12.0,5.96,156,BAP1=6.38; BARD1=26.9; BRCA1=17.5; BRCA2=5.96; PALB2=6.50; RAD51C=156; VHL=n.e.
+GPN-MSA,3–50,Strong,18.7,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+NT-v2-500M,3–10,Supporting,2.08,Yes,3.26899,3.229,7,7,6,5,4.55,1.39,8.27,BAP1=5.77; BARD1=2.98; BRCA1=1.39; BRCA2=3.33; PALB2=6.21; RAD51C=8.27; VHL=n.e.
+NT-v2-500M,3–10,Moderate,4.33,No,,4.185,7,5,0,0,,,,BAP1=no threshold; BARD1=n.e.; BRCA1=n.e.; BRCA2=n.e.; PALB2=n.e.; RAD51C=n.e.; VHL=no threshold
+NT-v2-500M,3–10,Strong,18.7,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+NT-v2-500M,11–50,Supporting,2.08,No,,,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+NT-v2-500M,11–50,Moderate,4.33,No,,,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+NT-v2-500M,11–50,Strong,18.7,No,,,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+NT-v2-500M,3–50,Supporting,2.08,No,,3.80712,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+NT-v2-500M,3–50,Moderate,4.33,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+NT-v2-500M,3–50,Strong,18.7,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+"SpliceAI (±4,999 nt, Walker basis)",3–10,Supporting,2.08,Yes,0.4195,0.393777,7,7,7,7,14.5,8.62,30.4,BAP1=8.62; BARD1=9.59; BRCA1=30.4; BRCA2=17.9; PALB2=14.5; RAD51C=10.8; VHL=18.0
+"SpliceAI (±4,999 nt, Walker basis)",3–10,Moderate,4.33,Yes,0.5386,0.5281,7,7,6,6,14.0,9.45,38.5,BAP1=9.45; BARD1=13.1; BRCA1=38.5; BRCA2=28.1; PALB2=14.9; RAD51C=11.8; VHL=n.e.
+"SpliceAI (±4,999 nt, Walker basis)",3–10,Strong,18.7,Yes,0.95946,0.85897,7,7,6,4,51.9,14.2,89.3,BAP1=14.2; BARD1=89.3; BRCA1=70.5; BRCA2=33.3; PALB2=14.2; RAD51C=72.8; VHL=n.e.
+"SpliceAI (±4,999 nt, Walker basis)",11–50,Supporting,2.08,Yes,0.24022,0.24022,6,6,4,4,19.2,6.30,34.7,BAP1=6.30; BARD1=34.7; BRCA1=n.e.; PALB2=19.2; RAD51C=19.1; VHL=n.e.
+"SpliceAI (±4,999 nt, Walker basis)",11–50,Moderate,4.33,Yes,0.2920,0.3111,6,6,4,4,25.1,6.15,52.0,BAP1=6.15; BARD1=52.0; BRCA1=n.e.; PALB2=29.9; RAD51C=20.3; VHL=n.e.
+"SpliceAI (±4,999 nt, Walker basis)",11–50,Strong,18.7,No,,,6,1,1,0,9.61,9.61,9.61,BAP1=9.61; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+"SpliceAI (±4,999 nt, Walker basis)",3–50,Supporting,2.08,Yes,0.3158,0.30246,7,7,7,7,15.9,7.70,29.7,BAP1=7.70; BARD1=23.5; BRCA1=29.7; BRCA2=10.9; PALB2=17.8; RAD51C=14.6; VHL=15.9
+"SpliceAI (±4,999 nt, Walker basis)",3–50,Moderate,4.33,Yes,0.4263,0.40249878,7,7,7,7,25.9,9.15,48.1,BAP1=9.15; BARD1=33.7; BRCA1=48.1; BRCA2=17.9; PALB2=25.9; RAD51C=26.4; VHL=24.8
+"SpliceAI (±4,999 nt, Walker basis)",3–50,Strong,18.7,Yes,0.8773,0.82697,7,7,6,5,45.6,15.2,284,BAP1=15.2; BARD1=284; BRCA1=57.8; BRCA2=33.3; PALB2=27.8; RAD51C=214; VHL=n.e.
+AlphaGenome Atlas AVI,3–10,Supporting,2.08,Yes,0.8246,0.8126,7,7,6,6,11.4,9.60,33.4,BAP1=9.60; BARD1=11.0; BRCA1=33.4; BRCA2=31.9; PALB2=11.6; RAD51C=11.2; VHL=n.e.
+AlphaGenome Atlas AVI,3–10,Moderate,4.33,Yes,1.071034,1.071034,7,7,6,6,35.2,11.1,54.6,BAP1=11.1; BARD1=25.8; BRCA1=44.5; BRCA2=46.7; PALB2=54.6; RAD51C=18.5; VHL=n.e.
+AlphaGenome Atlas AVI,3–10,Strong,18.7,Yes,1.36455,1.2806,7,7,5,5,67.2,24.3,149,BAP1=24.3; BARD1=149; BRCA1=130; BRCA2=n.e.; PALB2=67.2; RAD51C=28.4; VHL=n.e.
+AlphaGenome Atlas AVI,11–50,Supporting,2.08,Yes,0.5888686776,0.57095,6,6,4,4,8.39,7.48,51.3,BAP1=7.84; BARD1=51.3; BRCA1=n.e.; PALB2=7.48; RAD51C=8.93; VHL=n.e.
+AlphaGenome Atlas AVI,11–50,Moderate,4.33,Yes,0.69857,0.69857,6,6,4,4,36.1,9.98,60.7,BAP1=13.3; BARD1=58.9; BRCA1=n.e.; PALB2=9.98; RAD51C=60.7; VHL=n.e.
+AlphaGenome Atlas AVI,11–50,Strong,18.7,Yes,1.127,1.127,6,2,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=n.e.; PALB2=n.e.; RAD51C=no threshold; VHL=no threshold
+AlphaGenome Atlas AVI,3–50,Supporting,2.08,Yes,0.7119,0.72116,7,7,7,7,23.4,11.6,42.4,BAP1=11.6; BARD1=26.2; BRCA1=23.4; BRCA2=25.0; PALB2=15.2; RAD51C=14.9; VHL=42.4
+AlphaGenome Atlas AVI,3–50,Moderate,4.33,Yes,0.8246,0.8280,7,7,7,7,31.9,17.2,63.7,BAP1=17.2; BARD1=38.8; BRCA1=42.9; BRCA2=31.9; PALB2=18.2; RAD51C=28.3; VHL=63.7
+AlphaGenome Atlas AVI,3–50,Strong,18.7,Yes,1.171,1.171,7,7,7,7,69.9,36.7,305,BAP1=36.7; BARD1=305; BRCA1=218; BRCA2=46.7; PALB2=273; RAD51C=69.9; VHL=53.5
+AlphaGenome Atlas splice sites,3–10,Supporting,2.08,Yes,0.327255,0.321289,7,7,7,7,16.2,9.00,37.6,BAP1=10.4; BARD1=16.2; BRCA1=37.6; BRCA2=19.2; PALB2=16.8; RAD51C=12.7; VHL=9.00
+AlphaGenome Atlas splice sites,3–10,Moderate,4.33,Yes,0.4648,0.4726,7,7,6,6,22.7,11.0,48.9,BAP1=11.0; BARD1=25.2; BRCA1=48.9; BRCA2=30.7; PALB2=20.3; RAD51C=15.2; VHL=n.e.
+AlphaGenome Atlas splice sites,3–10,Strong,18.7,No,,0.8193,7,1,1,0,12.1,12.1,12.1,BAP1=12.1; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+AlphaGenome Atlas splice sites,11–50,Supporting,2.08,Yes,0.26948,0.2434,6,6,4,4,14.3,4.77,84.2,BAP1=5.87; BARD1=84.2; BRCA1=n.e.; PALB2=n.e.; RAD51C=22.8; VHL=4.77
+AlphaGenome Atlas splice sites,11–50,Moderate,4.33,Yes,0.4608755,0.3945,6,6,3,3,20.3,7.55,292,BAP1=7.55; BARD1=292; BRCA1=n.e.; PALB2=n.e.; RAD51C=20.3; VHL=n.e.
+AlphaGenome Atlas splice sites,11–50,Strong,18.7,No,,,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+AlphaGenome Atlas splice sites,3–50,Supporting,2.08,Yes,0.296875,0.2773,7,7,7,7,20.2,7.07,51.9,BAP1=7.17; BARD1=51.9; BRCA1=44.2; BRCA2=18.0; PALB2=27.0; RAD51C=20.2; VHL=7.07
+AlphaGenome Atlas splice sites,3–50,Moderate,4.33,Yes,0.4295,0.3896,7,7,7,7,25.6,9.83,89.6,BAP1=9.83; BARD1=89.6; BRCA1=77.8; BRCA2=21.9; PALB2=33.5; RAD51C=25.6; VHL=11.7
+AlphaGenome Atlas splice sites,3–50,Strong,18.7,Yes,0.84757,0.830688,7,7,6,5,71.0,13.1,602,BAP1=13.1; BARD1=602; BRCA1=97.5; BRCA2=44.4; PALB2=189; RAD51C=44.4; VHL=n.e.
+AlphaGenome Atlas splice site usage,3–10,Supporting,2.08,Yes,0.53906,0.49707,7,7,7,7,21.3,10.8,54.0,BAP1=10.8; BARD1=14.3; BRCA1=41.3; BRCA2=27.9; PALB2=14.6; RAD51C=21.3; VHL=54.0
+AlphaGenome Atlas splice site usage,3–10,Moderate,4.33,Yes,0.6787,0.6152,7,7,6,6,23.9,10.6,39.0,BAP1=10.6; BARD1=22.3; BRCA1=39.0; BRCA2=27.3; PALB2=18.6; RAD51C=25.5; VHL=n.e.
+AlphaGenome Atlas splice site usage,3–10,Strong,18.7,Yes,0.9189,0.9124755859,7,7,5,5,59.8,21.0,126,BAP1=21.0; BARD1=122; BRCA1=126; BRCA2=n.e.; PALB2=59.8; RAD51C=36.4; VHL=n.e.
+AlphaGenome Atlas splice site usage,11–50,Supporting,2.08,Yes,0.1328,0.1171875,6,6,5,5,21.8,7.88,26.6,BAP1=11.9; BARD1=26.6; BRCA1=n.e.; PALB2=7.88; RAD51C=21.8; VHL=23.8
+AlphaGenome Atlas splice site usage,11–50,Moderate,4.33,Yes,0.2539,0.1992,6,6,4,4,29.7,9.35,63.6,BAP1=14.9; BARD1=63.6; BRCA1=n.e.; PALB2=9.35; RAD51C=44.6; VHL=n.e.
+AlphaGenome Atlas splice site usage,11–50,Strong,18.7,Yes,0.6875,0.6416,6,2,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=n.e.; PALB2=n.e.; RAD51C=no threshold; VHL=no threshold
+AlphaGenome Atlas splice site usage,3–50,Supporting,2.08,Yes,0.4355,0.3613,7,7,7,7,26.5,13.6,48.7,BAP1=13.6; BARD1=42.7; BRCA1=42.2; BRCA2=20.4; PALB2=14.7; RAD51C=48.7; VHL=26.5
+AlphaGenome Atlas splice site usage,3–50,Moderate,4.33,Yes,0.484375,0.4598,7,7,7,7,39.8,17.8,62.3,BAP1=17.8; BARD1=62.3; BRCA1=61.9; BRCA2=24.1; PALB2=19.3; RAD51C=50.9; VHL=39.8
+AlphaGenome Atlas splice site usage,3–50,Strong,18.7,Yes,0.9124755859,0.7963867,7,7,5,5,143,20.6,550,BAP1=20.6; BARD1=550; BRCA1=143; BRCA2=n.e.; PALB2=167; RAD51C=107; VHL=n.e.
+AlphaGenome Atlas splice junctions,3–10,Supporting,2.08,Yes,3.4648,3.4648,7,7,6,6,17.2,5.86,21.4,BAP1=9.15; BARD1=5.86; BRCA1=20.8; BRCA2=21.4; PALB2=13.9; RAD51C=20.6; VHL=n.e.
+AlphaGenome Atlas splice junctions,3–10,Moderate,4.33,Yes,5.41796875,4.1875,7,7,6,6,35.7,7.41,82.2,BAP1=9.45; BARD1=7.41; BRCA1=39.9; BRCA2=70.0; PALB2=82.2; RAD51C=31.4; VHL=n.e.
+AlphaGenome Atlas splice junctions,3–10,Strong,18.7,Yes,6.8398,6.9296875,7,7,5,5,49.6,33.2,52.7,BAP1=52.7; BARD1=33.2; BRCA1=48.4; BRCA2=n.e.; PALB2=52.3; RAD51C=49.6; VHL=n.e.
+AlphaGenome Atlas splice junctions,11–50,Supporting,2.08,Yes,3.3027,1.9736,6,6,2,2,10.2,4.80,15.7,BAP1=4.80; BARD1=15.7; BRCA1=n.e.; PALB2=n.e.; RAD51C=n.e.; VHL=n.e.
+AlphaGenome Atlas splice junctions,11–50,Moderate,4.33,Yes,4.441,4.441,6,6,2,2,18.6,13.7,23.5,BAP1=13.7; BARD1=23.5; BRCA1=n.e.; PALB2=n.e.; RAD51C=n.e.; VHL=n.e.
+AlphaGenome Atlas splice junctions,11–50,Strong,18.7,No,,,6,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+AlphaGenome Atlas splice junctions,3–50,Supporting,2.08,Yes,3.191,3.08398,7,7,7,7,24.7,13.1,69.0,BAP1=13.1; BARD1=16.4; BRCA1=24.7; BRCA2=19.6; PALB2=27.8; RAD51C=29.9; VHL=69.0
+AlphaGenome Atlas splice junctions,3–50,Moderate,4.33,Yes,3.857,3.666,7,7,7,7,36.7,13.5,64.6,BAP1=13.5; BARD1=17.9; BRCA1=32.7; BRCA2=36.7; PALB2=44.0; RAD51C=64.6; VHL=63.7
+AlphaGenome Atlas splice junctions,3–50,Strong,18.7,Yes,6.082,5.97656,7,7,5,5,104,20.7,152,BAP1=20.7; BARD1=125; BRCA1=42.5; BRCA2=n.e.; PALB2=152; RAD51C=104; VHL=n.e.

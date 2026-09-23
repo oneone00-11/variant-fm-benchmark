@@ -36,8 +36,8 @@ import yaml
 
 from . import evid_common as K
 
-ATLAS_REPO = Path(os.environ.get(
-    "EVID_ATLAS_REPO", "/Users/cliffzhang/work/functional-standard-atlas"))
+from .evid_common import ATLAS_REPO as _atlas_repo_default  # noqa: E402
+ATLAS_REPO = _atlas_repo_default  # EVID_ATLAS_REPO overrides; see evid_common
 REPORT_DIR = Path("reports/evidence")
 CONFIG_PATH = Path("config/walker2023.yaml")
 MIN_POS = MIN_NEG = 10
@@ -99,6 +99,62 @@ def walker_lr(sub: pd.DataFrame, tool: str, pp3: float, bp4: float) -> dict:
             "lr_bp4_for_tier": K.band_lr_benign_bound(y, s, bp4)}
 
 
+# The columns the published cut points are defined on.
+WALKER_TOOLS = ("spliceai", "spliceai_walker")
+THRESHOLD_STRATA = ["s3_10", "s11_50", "s3_50"]
+
+
+def arms_at_tool_threshold(df: pd.DataFrame, tools: list[str], pp3: float) -> pd.DataFrame:
+    """The arm comparison at a threshold that means something for each column.
+
+    For every column and band, the threshold is that column's own in-sample
+    Moderate threshold from the interval calibration, or its Supporting threshold
+    where Moderate is not reached, and the band likelihood ratio above it is
+    computed separately in each arm. The two SpliceAI columns are also evaluated
+    at the published cut point, which is the quantity a laboratory applies.
+
+    The thresholds were fitted on all arms together. That is deliberate: the
+    question is whether one fixed threshold yields a different ratio depending on
+    which variants it is evaluated on, not what threshold each arm would choose.
+    """
+    ev = pd.read_csv(REPORT_DIR / "evidence_thresholds.csv")
+    ev = ev[(ev.status == "ok") & ev.pp3_threshold_reachable.astype(bool)]
+    rows = []
+    for tool in tools:
+        for stratum in THRESHOLD_STRATA:
+            choices = []
+            for tier in ("moderate", "supporting"):
+                e = ev[(ev.tool == tool) & (ev.stratum == stratum) & (ev.tier == tier)]
+                if len(e):
+                    choices.append((f"fitted {tier}", float(e.pp3_threshold_insample.iloc[0])))
+                    break
+            if tool in WALKER_TOOLS:
+                choices.append(("published cut point", float(pp3)))
+            for basis, thr in choices:
+                for excl, label in ((False, "all_genes"), (True, "no_BRCA1")):
+                    base = df[df.gene != "BRCA1"] if excl else df
+                    ss = K.stratum_frame(base, stratum)
+                    for arm in ["all"] + ARMS:
+                        sa = ss if arm == "all" else ss[ss.clinvar_arm == arm]
+                        sub = sa.dropna(subset=["y_assay", tool])
+                        y = sub["y_assay"].to_numpy(dtype=float)
+                        s = sub[tool].to_numpy(dtype=float)
+                        n_pos, n_neg = int((y == 1).sum()), int((y == 0).sum())
+                        r = {"tool": tool, "stratum": stratum, "threshold_basis": basis,
+                             "threshold": thr, "gene_set": label, "clinvar_arm": arm,
+                             "n_genes": int(sub.gene.nunique()), "n_pos": n_pos,
+                             "n_neg": n_neg, "n_in_band": int((s >= thr).sum())}
+                        if n_pos < MIN_POS or n_neg < MIN_NEG:
+                            rows.append(r | {"status": "not evaluable",
+                                             "reason": "fewer than 10 labelled on one side"})
+                            continue
+                        rows.append(r | {"status": "ok",
+                                         "sens": float((s[y == 1] >= thr).mean()),
+                                         "spec": float((s[y == 0] < thr).mean()),
+                                         "band_lr": K.band_lr(y, s, thr, "upper")})
+    return pd.DataFrame(rows)
+
+
 def main() -> None:
     cfg = yaml.safe_load(CONFIG_PATH.read_text())
     pp3 = cfg["thresholds"]["pp3"]["value"]
@@ -149,7 +205,18 @@ def main() -> None:
     arms_pooled = pd.DataFrame(rows)
     arms_pooled["walker_tier_pp3"] = arms_pooled.get("walker_lr_pp3", pd.Series(dtype=float)).map(
         lambda v: K.tier_of(v, path_bands, "pathogenic"))
+    # The published cut points are defined on SpliceAI's delta score and on nothing
+    # else. The walker_* columns above apply 0.2 / 0.1 to every column's raw scale so
+    # that the table is rectangular, which for AlphaGenome (range about 0.8 to 2.2),
+    # CADD or phyloP produces a number with no meaning. The flag says which rows are
+    # the recommendation's own quantity; arms_at_tool_threshold.csv is the version
+    # of this comparison that holds for every column.
+    arms_pooled["walker_cut_applicable"] = arms_pooled["tool"].isin(WALKER_TOOLS)
     arms_pooled.to_csv(REPORT_DIR / "territory_metrics_arms_noBRCA1.csv", index=False)
+
+    # ---- E2.3c: every column at its own fitted threshold ----------------------
+    at_thr = arms_at_tool_threshold(df, tools, pp3)
+    at_thr.to_csv(REPORT_DIR / "arms_at_tool_threshold.csv", index=False)
 
     # ---- E2.3b: within gene -------------------------------------------------
     rows = []

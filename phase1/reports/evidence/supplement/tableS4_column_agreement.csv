@@ -1,0 +1,7 @@
+Column A,Column B,Variants compared,Spearman rho,Cut point,"Below the cut on A, at or above it on B","At or above the cut on A, below it on B"
+SpliceAI (±50 nt),"SpliceAI (±4,999 nt, Walker basis)",8853,0.914,0.2,144,0
+AlphaGenome Atlas AVI,AlphaGenome,8853,0.729,,,
+AlphaGenome Atlas splice sites,AlphaGenome,8853,0.871,,,
+AlphaGenome Atlas splice site usage,AlphaGenome,8853,0.786,,,
+AlphaGenome Atlas splice junctions,AlphaGenome,8853,0.814,,,
+AlphaGenome Atlas AVI,AlphaGenome (client 0.6.1 definition),3242,0.828,,,

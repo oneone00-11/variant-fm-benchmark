@@ -1,0 +1,41 @@
+"Stratum (intronic offset, bp)",In scope of the recommendation,ClinVar record status,Gene,Damaging,Normal,Fraction of labelled scoring ≥ 0.2,Sensitivity,Specificity,PP3 band (≥ 0.2) LR (95% CI),PP3 tier,BP4 band (≤ 0.1) LR (95% CI),BP4 tier,CI basis,Note
+"±1,2 (out of scope)",No,All variants,All genes (pooled),804,37,0.999,1.000,0.027,1.03 (1.00–1.08),Below Supporting,not evaluable,not evaluable,"Gene-clustered bootstrap over 7 genes; draws evaluable: PP3 LR 1935 of 2000, BP4 LR 0 of 2000","Out of scope: the recommendation excludes ±1,2 variants, which go through the PVS1 decision tree; BP4 band holds 1 variant, fewer than 10"
+"±1,2 (out of scope)",No,Classified (P/LP or B/LB),All genes (pooled),469,11,1.000,1.000,0.000,1.00 (1.00–1.00),Below Supporting,not evaluable,not evaluable,"Gene-clustered bootstrap over 7 genes; draws evaluable: PP3 LR 1179 of 2000, BP4 LR 0 of 2000","Out of scope: the recommendation excludes ±1,2 variants, which go through the PVS1 decision tree; BP4 band holds 0 variants, fewer than 10"
+"±1,2 (out of scope)",No,"Recorded, not classified",All genes (pooled),86,9,,,,,not evaluable,,not evaluable,,"Out of scope: the recommendation excludes ±1,2 variants, which go through the PVS1 decision tree; Not evaluable: fewer than 10 labelled variants on one side"
+"±1,2 (out of scope)",No,Not in ClinVar,All genes (pooled),249,17,1.000,1.000,0.000,1.00 (1.00–1.00),Below Supporting,not evaluable,not evaluable,"Gene-clustered bootstrap over 6 genes; draws evaluable: PP3 LR 1581 of 2000, BP4 LR 0 of 2000","Out of scope: the recommendation excludes ±1,2 variants, which go through the PVS1 decision tree; BP4 band holds 0 variants, fewer than 10"
+3–10,Yes,All variants,All genes (pooled),570,2505,0.273,0.795,0.846,5.14 (4.55–6.06),Moderate,0.172 (0.0919–0.240),Moderate,"Gene-clustered bootstrap over 7 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000",
+3–10,Yes,Classified (P/LP or B/LB),All genes (pooled),95,578,0.152,0.758,0.948,14.6 (8.60–19.6),Moderate,0.216 (0.0842–0.464),Moderate,"Gene-clustered bootstrap over 7 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000",
+3–10,Yes,"Recorded, not classified",All genes (pooled),201,596,0.378,0.871,0.789,4.12 (2.70–5.36),Supporting,0.138 (0.0747–0.227),Moderate,"Gene-clustered bootstrap over 7 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000",
+3–10,Yes,Not in ClinVar,All genes (pooled),274,1331,0.272,0.752,0.826,4.33 (4.04–4.83),Moderate,0.184 (0.0613–0.292),Moderate,"Gene-clustered bootstrap over 6 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000",
+3–10,Yes,All variants,BAP1,146,591,0.204,0.575,0.888,5.15,Moderate,0.274,Supporting,Per-gene point estimate; no interval,
+3–10,Yes,All variants,BARD1,66,393,0.307,0.909,0.794,4.41,Moderate,0.134,Moderate,Per-gene point estimate; no interval,
+3–10,Yes,All variants,BRCA1,104,386,0.298,0.933,0.873,7.35,Moderate,0.0690,Moderate,Per-gene point estimate; no interval,
+3–10,Yes,All variants,BRCA2,69,460,0.219,0.739,0.859,5.23,Moderate,0.299,Supporting,Per-gene point estimate; no interval,
+3–10,Yes,All variants,PALB2,87,324,0.324,0.851,0.818,4.67,Moderate,0.135,Moderate,Per-gene point estimate; no interval,
+3–10,Yes,All variants,RAD51C,88,291,0.359,0.875,0.797,4.32,Supporting,0.0866,Moderate,Per-gene point estimate; no interval,
+3–10,Yes,All variants,VHL,10,60,0.257,1.000,0.867,7.50,Moderate,0,Supporting,Per-gene point estimate; no interval,No damaging variant in the BP4 band; the tier is read off the rule-of-three upper bound 0.400
+11–50,Yes,All variants,All genes (pooled),225,4312,0.063,0.444,0.957,10.3 (5.88–22.1),Moderate,0.477 (0.248–0.591),Supporting,"Gene-clustered bootstrap over 6 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000",
+11–50,Yes,Classified (P/LP or B/LB),All genes (pooled),32,704,0.033,0.188,0.974,7.33 (0.978–52.8),Moderate,0.650 (0.245–0.820),Below Supporting,"Gene-clustered bootstrap over 6 genes; draws evaluable: PP3 LR 1929 of 2000, BP4 LR 1954 of 2000",
+11–50,Yes,"Recorded, not classified",All genes (pooled),19,292,0.135,0.789,0.908,8.54 (1.96–13.9),Moderate,0.251 (0.0822–0.491),Supporting,"Gene-clustered bootstrap over 5 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000",
+11–50,Yes,Not in ClinVar,All genes (pooled),174,3316,0.063,0.454,0.957,10.7 (5.98–25.3),Moderate,0.469 (0.234–0.577),Supporting,"Gene-clustered bootstrap over 5 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000",
+11–50,Yes,All variants,BAP1,137,1316,0.090,0.314,0.933,4.69,Moderate,0.625,Below Supporting,Per-gene point estimate; no interval,
+11–50,Yes,All variants,BARD1,21,1414,0.045,0.810,0.967,24.4,Strong,0.215,Moderate,Per-gene point estimate; no interval,
+11–50,Yes,All variants,BRCA1,3,342,,,,,not evaluable,,not evaluable,,Not evaluable: fewer than 10 labelled variants on one side
+11–50,Yes,All variants,PALB2,15,449,0.060,0.667,0.960,16.6,Moderate,0.308,Supporting,Per-gene point estimate; no interval,
+11–50,Yes,All variants,RAD51C,36,729,0.051,0.528,0.973,19.2,Strong,0.274,Supporting,Per-gene point estimate; no interval,
+11–50,Yes,All variants,VHL,13,62,0.133,0.692,0.984,42.9,Strong,0.260,Supporting,Per-gene point estimate; no interval,
+3–50,Yes,All variants,All genes (pooled),795,6817,0.148,0.696,0.916,8.28 (6.35–11.0),Moderate,0.252 (0.115–0.371),Supporting,"Gene-clustered bootstrap over 7 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000",
+3–50,Yes,Classified (P/LP or B/LB),All genes (pooled),127,1282,0.089,0.614,0.963,16.4 (8.06–24.4),Moderate,0.324 (0.100–0.576),Supporting,"Gene-clustered bootstrap over 7 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000",
+3–50,Yes,"Recorded, not classified",All genes (pooled),220,888,0.310,0.864,0.828,5.01 (2.72–7.43),Moderate,0.139 (0.0847–0.255),Moderate,"Gene-clustered bootstrap over 7 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000",
+3–50,Yes,Not in ClinVar,All genes (pooled),448,4647,0.129,0.636,0.920,7.95 (5.38–12.8),Moderate,0.289 (0.113–0.404),Supporting,"Gene-clustered bootstrap over 6 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000",
+3–50,Yes,All variants,BAP1,283,1907,0.128,0.449,0.919,5.56,Moderate,0.444,Supporting,Per-gene point estimate; no interval,
+3–50,Yes,All variants,BARD1,87,1807,0.108,0.885,0.929,12.5,Moderate,0.137,Moderate,Per-gene point estimate; no interval,
+3–50,Yes,All variants,BRCA1,107,728,0.192,0.925,0.916,11.0,Moderate,0.0699,Moderate,Per-gene point estimate; no interval,
+3–50,Yes,All variants,BRCA2,69,460,0.219,0.739,0.859,5.23,Moderate,0.299,Supporting,Per-gene point estimate; no interval,
+3–50,Yes,All variants,PALB2,102,773,0.184,0.824,0.900,8.27,Moderate,0.149,Moderate,Per-gene point estimate; no interval,
+3–50,Yes,All variants,RAD51C,124,1020,0.153,0.774,0.923,10.0,Moderate,0.134,Moderate,Per-gene point estimate; no interval,
+3–50,Yes,All variants,VHL,23,122,0.193,0.826,0.926,11.2,Moderate,0.159,Moderate,Per-gene point estimate; no interval,
+"1–50 incl. ±1,2, out of scope",No,All variants,All genes (pooled),1599,6854,0.233,0.849,0.911,9.55 (7.78–11.9),Moderate,0.126 (0.0520–0.205),Moderate,"Gene-clustered bootstrap over 7 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000","Out of scope: the pool includes the ±1,2 stratum"
+"1–50 incl. ±1,2, out of scope",No,Classified (P/LP or B/LB),All genes (pooled),596,1293,0.321,0.918,0.954,20.1 (14.1–25.7),Strong,0.0696 (0.0221–0.134),Moderate,"Gene-clustered bootstrap over 7 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000","Out of scope: the pool includes the ±1,2 stratum"
+"1–50 incl. ±1,2, out of scope",No,"Recorded, not classified",All genes (pooled),306,897,0.363,0.902,0.821,5.03 (2.79–7.24),Moderate,0.101 (0.0608–0.200),Moderate,"Gene-clustered bootstrap over 7 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000","Out of scope: the pool includes the ±1,2 stratum"
+"1–50 incl. ±1,2, out of scope",No,Not in ClinVar,All genes (pooled),697,4664,0.172,0.766,0.917,9.19 (6.54–13.6),Moderate,0.186 (0.0681–0.272),Moderate,"Gene-clustered bootstrap over 6 genes; draws evaluable: PP3 LR 2000 of 2000, BP4 LR 2000 of 2000","Out of scope: the pool includes the ±1,2 stratum"

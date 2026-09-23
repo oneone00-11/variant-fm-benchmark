@@ -1,0 +1,15 @@
+Gene set,Events read from,Variant subset,"Stratum (intronic offset, bp)",In-frame,Out-of-frame,Undetermined,Total,In-frame share,In-frame share among resolved
+Seven genes,"SpliceAI (±4,999 nt, Walker basis)","SpliceAI (±4,999 nt, Walker basis) ≥ 0.2 and assay normal","±1,2 (out of scope)",9,26,1,36,0.250,0.257
+Seven genes,"SpliceAI (±4,999 nt, Walker basis)","SpliceAI (±4,999 nt, Walker basis) ≥ 0.2 and assay normal",3–10,155,169,63,387,0.401,0.478
+Seven genes,"SpliceAI (±4,999 nt, Walker basis)","SpliceAI (±4,999 nt, Walker basis) ≥ 0.2 and assay normal",11–50,48,107,31,186,0.258,0.310
+Seven genes,Pangolin,Pangolin ≥ 0.2 and assay normal,"±1,2 (out of scope)",9,25,1,35,0.257,0.265
+Seven genes,Pangolin,Pangolin ≥ 0.2 and assay normal,3–10,131,185,32,348,0.376,0.415
+Seven genes,Pangolin,Pangolin ≥ 0.2 and assay normal,11–50,44,84,13,141,0.312,0.344
+DDX3X,"SpliceAI (±4,999 nt, Walker basis)","SpliceAI (±4,999 nt, Walker basis) ≥ 0.2 and normal under either label definition","±1,2 (out of scope)",19,50,0,69,0.275,0.275
+DDX3X,"SpliceAI (±4,999 nt, Walker basis)","SpliceAI (±4,999 nt, Walker basis) ≥ 0.2 and normal under either label definition",3–10,48,113,18,179,0.268,0.298
+DDX3X,"SpliceAI (±4,999 nt, Walker basis)","SpliceAI (±4,999 nt, Walker basis) ≥ 0.2 and normal under either label definition",11–50,16,54,14,84,0.190,0.229
+DDX3X,Pangolin,"SpliceAI (±4,999 nt, Walker basis) ≥ 0.2 and normal under either label definition","±1,2 (out of scope)",19,49,1,69,0.275,0.279
+DDX3X,Pangolin,"SpliceAI (±4,999 nt, Walker basis) ≥ 0.2 and normal under either label definition",3–10,41,125,13,179,0.229,0.247
+DDX3X,Pangolin,"SpliceAI (±4,999 nt, Walker basis) ≥ 0.2 and normal under either label definition",11–50,11,56,17,84,0.131,0.164
+TP53,"SpliceAI (±4,999 nt, Walker basis)","SpliceAI (±4,999 nt, Walker basis) ≥ 0.2 and normal under the control-anchored definition","±1,2 (out of scope)",0,0,1,1,0.000,
+TP53,"SpliceAI (±4,999 nt, Walker basis)","SpliceAI (±4,999 nt, Walker basis) ≥ 0.2 and normal under the control-anchored definition",3–10,2,10,9,21,0.095,0.167

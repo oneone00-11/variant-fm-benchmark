@@ -5,6 +5,7 @@ defined once. Nothing here fits on data it is then evaluated on.
 """
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import numpy as np
@@ -12,6 +13,13 @@ import pandas as pd
 from scipy.stats import rankdata
 
 from . import config as C
+
+# The companion atlas repository, read by several stages. EVID_ATLAS_REPO overrides
+# it; the default is a checkout beside this one, so that a fresh clone of both
+# repositories into one directory works without configuration.
+ATLAS_REPO = Path(os.environ.get(
+    "EVID_ATLAS_REPO",
+    str(Path(__file__).resolve().parents[2].parent / "functional-standard-atlas")))
 
 SET_PATH = Path("data/evidence/analysis_set_v1.parquet")
 REPORT_DIR = Path("reports/evidence")

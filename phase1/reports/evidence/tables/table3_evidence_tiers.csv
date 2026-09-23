@@ -1,0 +1,14 @@
+Predictor,3–10 bp: In-sample,"3–10 bp: Moderate, held out","3–10 bp: Strong, held out",11–50 bp: In-sample,"11–50 bp: Moderate, held out","11–50 bp: Strong, held out",3–50 bp: In-sample,"3–50 bp: Moderate, held out","3–50 bp: Strong, held out"
+SpliceAI (published basis),Strong,6/7 (1),4/7 (1),Moderate,4/6 (2),–,Strong,7/7,5/7 (1)
+SpliceAI (distance 50),Strong,6/7 (1),4/7 (1),Moderate,4/6 (2),–,Strong,7/7,5/7 (1)
+Pangolin,Strong,6/7 (1),6/7 (1),Moderate,4/6 (2),–,Strong,7/7,6/7 (1)
+AlphaGenome splice score,Strong,6/7 (1),5/7 (1),Strong,3/6 (3),0/6 (6),Strong,7/7,6/7 (1)
+Atlas combined score,Strong,6/7 (1),5/7 (2),Strong,4/6 (2),0/6 (6),Strong,7/7,7/7
+Atlas splice sites,Moderate,6/7 (1),–,Moderate,3/6 (3),–,Strong,7/7,5/7 (1)
+Atlas splice-site usage,Strong,6/7 (1),5/7 (2),Strong,4/6 (2),0/6 (6),Strong,7/7,5/7 (2)
+Atlas splice junctions,Strong,6/7 (1),5/7 (2),Moderate,2/6 (4),–,Strong,7/7,5/7 (2)
+CADD,Supporting,–,–,Supporting,–,–,Moderate,5/7 (1),–
+phyloP,Moderate,2/7 (5),–,None,–,–,Moderate,3/7 (4),–
+phastCons,Supporting,–,–,None,–,–,Supporting,–,–
+GPN-MSA,Moderate,5/7 (2),–,Supporting,–,–,Moderate,6/7 (1),–
+Nucleotide Transformer,Supporting,–,–,None,–,–,None,–,–
