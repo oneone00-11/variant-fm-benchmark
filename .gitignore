@@ -75,3 +75,6 @@ phase1/data/raw/reference/
 # --- The companion atlas release archive, unpacked by
 # scripts/reproduce_evidence.py --fetch-inputs (50 MB; Zenodo 10.5281/zenodo.22751081)
 phase1/data/evidence/companion_atlas/
+
+# written by scripts/reproduce_evidence.py --verify
+reproduce_report.txt

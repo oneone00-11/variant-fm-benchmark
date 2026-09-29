@@ -70,13 +70,16 @@ Outputs land in `phase1/reports/evidence/`.
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import http.client
 import json
+import math
 import os
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import urllib.error
 import urllib.request
@@ -314,48 +317,135 @@ def _without_wall_clock(path: Path):
     return strip(json.loads(path.read_text()))
 
 
+# How --verify reads a file that is not byte-identical. Tables are compared cell by
+# cell, floats to a relative tolerance and integers and strings exactly, so that a
+# report from another platform says whether a difference is in the numbers; figures
+# are named as such. Neither refinement changes the verdict: REPRODUCED means every
+# file is byte-identical, the build time in a manifest aside.
+TABLE_DELIMITERS = {".csv": ",", ".tsv": "\t"}
+FIGURE_SUFFIXES = {".png", ".pdf", ".svg", ".tif", ".tiff"}
+RTOL = 1e-9
+REPORT_NAME = "reproduce_report.txt"      # at the repository root, gitignored
+
+
 def snapshot() -> dict:
-    """The outputs as the checkout carries them, before any stage runs."""
+    """The outputs as the checkout carries them, before any stage runs. Tables and
+    manifests are also copied aside, so a changed one can be compared cell by cell."""
+    keep = Path(tempfile.mkdtemp(prefix="reproduce_before_"))
     snap = {}
     for p in _outputs():
         entry = {"sha256": _digest(p, "sha256"), "mtime": p.stat().st_mtime}
-        if p.suffix == ".json":
-            entry["json"] = _without_wall_clock(p)
+        if p.suffix in TABLE_DELIMITERS or p.suffix in (".json", ".parquet"):
+            entry["copy"] = keep / p.relative_to(REPO)
+            entry["copy"].parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(p, entry["copy"])
         snap[p] = entry
     return snap
 
 
+def _cell(x):
+    """A table cell as a number when it reads as one."""
+    if isinstance(x, str):
+        for cast in (int, float):
+            try:
+                return cast(x)
+            except ValueError:
+                pass
+    return x
+
+
+def _equal(a, b) -> bool:
+    a, b = _cell(a), _cell(b)
+    if isinstance(a, bool) or isinstance(b, bool) or not (
+            isinstance(a, (int, float)) and isinstance(b, (int, float))):
+        return a == b
+    if isinstance(a, int) and isinstance(b, int):
+        return a == b
+    if math.isnan(a) or math.isnan(b):
+        return math.isnan(a) and math.isnan(b)
+    return math.isclose(a, b, rel_tol=RTOL, abs_tol=0.0)
+
+
+def _json_equal(a, b) -> bool:
+    if isinstance(a, dict) and isinstance(b, dict):
+        return a.keys() == b.keys() and all(_json_equal(a[k], b[k]) for k in a)
+    if isinstance(a, list) and isinstance(b, list):
+        return len(a) == len(b) and all(_json_equal(x, y) for x, y in zip(a, b))
+    return _equal(a, b)
+
+
+def _numerically_equal(before: Path, after: Path) -> bool:
+    try:
+        if after.suffix in TABLE_DELIMITERS:
+            d = TABLE_DELIMITERS[after.suffix]
+            with open(before, newline="") as f, open(after, newline="") as g:
+                x, y = list(csv.reader(f, delimiter=d)), list(csv.reader(g, delimiter=d))
+            return len(x) == len(y) and all(
+                len(r) == len(t) and all(_equal(u, v) for u, v in zip(r, t))
+                for r, t in zip(x, y))
+        if after.suffix == ".json":
+            return _json_equal(_without_wall_clock(before), _without_wall_clock(after))
+        if after.suffix == ".parquet":
+            import pandas as pd
+            x, y = pd.read_parquet(before), pd.read_parquet(after)
+            if list(x.columns) != list(y.columns) or x.shape != y.shape:
+                return False
+            return all(_equal(u, v) for c in x.columns
+                       for u, v in zip(x[c].tolist(), y[c].tolist()))
+    except (OSError, ValueError, csv.Error):
+        return False
+    return False
+
+
+def _status(p: Path, b: dict) -> str:
+    if not p.exists():
+        return "missing"
+    if _digest(p, "sha256") == b["sha256"]:
+        return "identical"
+    if p.suffix == ".json" and _without_wall_clock(p) == _without_wall_clock(b["copy"]):
+        return "identical (build time aside)"
+    if p.suffix in FIGURE_SUFFIXES:
+        return "differs (figure)"
+    if "copy" in b and _numerically_equal(b["copy"], p):
+        return "differs (numerically equal)"
+    return "differs"
+
+
 def verify(before: dict) -> bool:
-    """Every output the checkout carried, compared with what this run wrote."""
-    same, clock_only, differ, gone, stale = 0, [], [], [], []
-    for p, b in before.items():
-        rel = p.relative_to(REPO)
-        if not p.exists():
-            gone.append(rel)
-            continue
-        if p.stat().st_mtime == b["mtime"]:
-            stale.append(rel)                # not rewritten by this run
-        if _digest(p, "sha256") == b["sha256"]:
-            same += 1
-        elif "json" in b and _without_wall_clock(p) == b["json"]:
-            clock_only.append(rel)
-        else:
-            differ.append(rel)
+    """Every output the checkout carried, compared with what this run wrote; one line
+    per file in reproduce_report.txt, and a summary here."""
+    rows = [(_status(p, b), p.relative_to(REPO), p.exists() and p.stat().st_mtime == b["mtime"])
+            for p, b in before.items()]
     new = [p.relative_to(REPO) for p in _outputs() if p not in before]
+    rows += [("new", r, False) for r in new]
+    counts = {}
+    for status, _, _ in rows:
+        counts[status] = counts.get(status, 0) + 1
+    ok = all(st in ("identical", "identical (build time aside)") for st, _, _ in rows)
+    stale = sum(1 for _, _, untouched in rows if untouched)
+    verdict = ("REPRODUCED: every output matches the committed one." if ok else
+               "NOT REPRODUCED: every file not marked identical")
+    report = REPO / REPORT_NAME
+    with open(report, "w") as f:
+        f.write(f"# reproduce_evidence.py --verify\n# {verdict}\n")
+        f.write("# " + "; ".join(f"{k}: {v}" for k, v in sorted(counts.items())) + "\n")
+        f.write(f"# {stale} files under the output folders are inputs the run only reads\n")
+        for status, rel, _ in sorted(rows, key=lambda r: str(r[1])):
+            f.write(f"{status}\t{rel}\n")
     print(f"\n{'=' * 74}\nVerification against the outputs this checkout carried\n"
           f"{'=' * 74}")
-    print(f"  {len(before)} files under the output folders: {len(before) - len(stale)} "
-          f"rewritten by this run, {len(stale)} inputs it only reads")
-    print(f"  byte-identical:                 {same}")
-    print(f"  identical but for the build time: {len(clock_only)}"
-          + "".join(f"\n      {r}" for r in clock_only))
-    for label, rows in (("DIFFERENT", differ), ("MISSING after the run", gone),
-                        ("NEW, not in the checkout", new)):
-        if rows:
-            print(f"  {label}: {len(rows)}" + "".join(f"\n      {r}" for r in rows))
-    ok = not (differ or gone or new)
-    print("\nREPRODUCED: every output matches the committed one." if ok else
-          "\nNOT REPRODUCED: see the files listed above.")
+    print(f"  {len(before)} files under the output folders: {len(before) - stale} "
+          f"rewritten by this run, {stale} inputs it only reads")
+    for status in ("identical", "identical (build time aside)", "differs (numerically equal)",
+                   "differs (figure)", "differs", "missing", "new"):
+        if counts.get(status):
+            print(f"  {status + ':':30s} {counts[status]}")
+            if status != "identical":
+                for st, rel, _ in rows:
+                    if st == status:
+                        print(f"      {rel}")
+    print(f"  one line per file: {REPORT_NAME}")
+    print("\n" + (verdict if ok else verdict + " (listed above)"))
     return ok
 
 

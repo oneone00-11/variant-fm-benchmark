@@ -4,11 +4,12 @@ name: reproduce
 # checkout, then `bash reproduce.sh`, which builds the pinned environment, fetches
 # the two public inputs (ClinVar from NCBI, the atlas release archive from Zenodo),
 # rebuilds every output of the evidence-strength study and fails unless each one
-# matches the committed file.
+# matches the committed file. A tag push runs it on exactly the tagged tree.
 on:
   push:
     branches: [evidence/rework]
-    paths-ignore: ["**.md"]
+    tags: ["v*"]
+    paths-ignore: ["**.md", "CITATION.cff"]   # not evaluated for tag pushes
   workflow_dispatch:
 
 jobs:
@@ -16,7 +17,7 @@ jobs:
     # The platform the committed outputs were made on (macOS arm64, Python 3.12):
     # every output must match byte for byte, the build time aside.
     runs-on: macos-14
-    timeout-minutes: 150
+    timeout-minutes: 300          # the ClinVar download alone has taken an hour
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -24,13 +25,20 @@ jobs:
           python-version: "3.12"
       - name: bash reproduce.sh
         run: bash reproduce.sh
+      - name: Upload the per-file comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reproduce-report-macos-arm64
+          path: reproduce_report.txt
+          if-no-files-found: warn
 
   linux:
-    # Informational: which outputs differ off macOS. The figures use Arial, which
-    # Linux runners lack, and numpy links a different BLAS there.
+    # Informational: which outputs differ off macOS, and whether the numbers do. The
+    # figures use Arial, which Linux runners lack, and numpy links a different BLAS.
     runs-on: ubuntu-latest
     continue-on-error: true
-    timeout-minutes: 150
+    timeout-minutes: 300
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -38,3 +46,10 @@ jobs:
           python-version: "3.12"
       - name: bash reproduce.sh
         run: bash reproduce.sh
+      - name: Upload the per-file comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reproduce-report-linux
+          path: reproduce_report.txt
+          if-no-files-found: warn

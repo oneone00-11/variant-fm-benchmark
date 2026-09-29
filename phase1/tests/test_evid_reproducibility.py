@@ -203,6 +203,11 @@ def test_verify_passes_only_when_every_output_matches(tmp_path, monkeypatch, cap
 
     assert rewrite()                                   # only the build time moved
     assert "REPRODUCED" in capsys.readouterr().out
+    report = (tmp_path / "reproduce_report.txt").read_text()
+    assert "identical (build time aside)\treports/m.manifest.json" in report
+    assert not rewrite(csv="a,b\n1.0000000000001,2\n")  # same number, other bytes:
+    report = (tmp_path / "reproduce_report.txt").read_text()   # named, still a fail
+    assert "differs (numerically equal)\treports/t.csv" in report
     assert not rewrite(csv="a,b\n1,3\n")               # a table changed
     assert not rewrite(manifest='{"n": 2, "built_utc": "2026-09-29"}')
     (out / "extra.csv").write_text("x")                # a file no commit carries
@@ -269,3 +274,16 @@ def test_a_download_cut_short_resumes_from_where_it_stopped(tmp_path, monkeypatc
     assert dest.read_bytes() == payload
     assert requests[0] is None and requests[1] == f"bytes={len(payload) // 2}-"
     assert not (tmp_path / "file.bin.part").exists()
+
+
+def test_verify_names_a_changed_figure_as_one(tmp_path, monkeypatch):
+    out = tmp_path / "figures"
+    out.mkdir()
+    (out / "f.png").write_bytes(b"\x89PNG one")
+    monkeypatch.setattr(E, "REPO", tmp_path)
+    monkeypatch.setattr(E, "OUTPUT_ROOTS", [out])
+    monkeypatch.setattr(E, "NOT_OUTPUTS", [])
+    before = E.snapshot()
+    (out / "f.png").write_bytes(b"\x89PNG two")
+    assert not E.verify(before)
+    assert "differs (figure)\tfigures/f.png" in (tmp_path / "reproduce_report.txt").read_text()
