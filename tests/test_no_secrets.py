@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import re
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -36,9 +37,10 @@ MAX_BYTES = 4_000_000
 
 
 def tracked_files() -> list[Path]:
-    out = subprocess.run(["git", "-C", str(REPO), "ls-files", "-z"],
-                         capture_output=True, text=True, check=True).stdout
-    return [REPO / p for p in out.split("\0") if p]
+    """What the checkout carries: `git ls-files`, or the tree of a release archive."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from _checkout import checkout_files
+    return checkout_files()
 
 
 def test_no_credentials_in_tracked_files():
@@ -62,6 +64,8 @@ def test_no_credentials_in_tracked_files():
     assert not hits, "credential-shaped strings in tracked files:\n" + "\n".join(hits)
 
 
+@pytest.mark.skipif(not (REPO / ".git").exists(),
+                    reason="a release archive has no .git, so nothing is committable")
 def test_secret_bearing_paths_are_ignored():
     """The places a key is conventionally left must not be committable."""
     ignored = subprocess.run(

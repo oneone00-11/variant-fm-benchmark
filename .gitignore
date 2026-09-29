@@ -76,5 +76,7 @@ phase1/data/raw/reference/
 # scripts/reproduce_evidence.py --fetch-inputs (50 MB; Zenodo 10.5281/zenodo.22751081)
 phase1/data/evidence/companion_atlas/
 
-# written by scripts/reproduce_evidence.py --verify
+# written by scripts/reproduce_evidence.py --verify (the baseline only in a tree
+# without .git, such as a release archive)
 reproduce_report.txt
+.reproduce_baseline/

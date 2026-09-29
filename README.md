@@ -35,7 +35,8 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   `phase1/data/evidence/companion_atlas/`. Its `results/` files ship in that archive
   and are not in the atlas's git repository, so a bare clone of the atlas is not
   enough; the entry point checks for every atlas file the stages read and says what
-  is missing.
+  is missing. With `--verify` it reads only a copy that is the release file for file
+  (`scripts/atlas_release_v2.5.0.sha256`), downloading the archive when no copy here is.
 - **Not rebuilt by the entry point**, and tracked with checksums or provenance
   records instead: the published-basis SpliceAI re-score and SpliceAI event records,
   the DDX3X deposit and its panel scores, the TP53 scores for offsets 9-12, and the
@@ -45,9 +46,9 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   `requirements-evidence.lock.txt`. Changes between rounds are recorded in
   `docs/evidence-change-log.md`; data terms per column in `LICENSE-DATA`.
 
-**Reproducing from a fresh clone: one command** (about 25 minutes of computation
-and 250 MB of downloads on first use, the downloads up to an hour when NCBI is slow;
-needs Python 3.12 and network access):
+**Reproducing from a fresh clone: one command** (about 25 minutes of computation;
+on first use about 370 MB of downloads, 120 MB of Python packages and 240 MB of data,
+up to an hour when NCBI is slow; needs Python 3.12 and network access):
 
 ```bash
 git clone https://github.com/oneone00-11/variant-fm-benchmark
@@ -64,32 +65,36 @@ md5 against NCBI's file, sha256 against the analysis-set manifest) and the atlas
 release archive (50 MB, from Zenodo; md5 against Zenodo's). Both are gitignored.
 This release's Zenodo record (10.5281/zenodo.23043214) also holds the ClinVar file,
 NCBI's original unchanged, and `--fetch-inputs` falls back to it when NCBI cannot
-serve the file; the sha256 check is the same whichever source served it.
-`--verify` records every output the checkout carries before the run and compares each
-with what the run writes; it ends with `REPRODUCED` or lists what differs, and exits
-non-zero if anything does. On macOS arm64 with Python 3.12.13 every output is
-byte-identical except the build time in
-`phase1/data/evidence/analysis_set_v1.manifest.json`. On another platform the figure
-files may differ in their bytes where the Arial font differs.
+serve the exact file; the sha256 check is the same whichever source served it.
+`--verify` compares every committed output with what the run writes: in a clone, the
+files as HEAD has them, and in a release archive, the tree as first unpacked. A
+committed output the run leaves untouched fails too, unless
+`scripts/reproduce_inputs.txt` lists it as an input the stages only read. The run
+ends with `REPRODUCED` or lists what differs, and exits non-zero if anything does. On
+macOS arm64 with Python 3.12.13 every output is byte-identical except the build time
+in `phase1/data/evidence/analysis_set_v1.manifest.json`. On another platform the
+figure files may differ in their bytes where the Arial font differs.
 `.github/workflows/reproduce.yml` runs the same command on a GitHub macOS arm64
-runner on every push to this branch and on every release tag, and on a Linux runner
-to record what differs there; each run keeps its `reproduce_report.txt`, one line per
-output, as an artifact.
+runner on every push to this branch that changes more than documentation and on
+every release tag, and on a Linux runner to record what differs there; each run keeps
+its `reproduce_report.txt`, one line per output, as an artifact.
 
-**Quick check: five minutes, no download.** For a reader who does not want the full
-run:
+**Quick check: five minutes, no data download.** For a reader who does not want the
+full run:
 
 ```bash
 bash reproduce.sh --check
 ```
 
 It builds `.venv` as above (a minute or two, the only network use), then checks every
-checksum the repository's manifests and provenance records carry (105 of them, over 95
-files: the analysis set, the external-gene tables and the model scores they merge,
-the reference cache, the supplementary tables, the frozen matrices) and runs the test
+checksum the repository's manifests and provenance records carry about files it
+holds: the analysis set and the sources it was built from, the external-gene tables
+and the model scores they merge, the frozen matrices and their rescored columns, the
+reference cache, and the supplementary tables with their sources. The ClinVar
+release and the atlas are checked too when they are here. It then runs the test
 suite, which checks the printed tables against the files they are drawn from. It
-recomputes nothing and ends with `CHECKED` or lists what failed; the full run above is
-what rebuilds every output.
+recomputes nothing, prints how many checksums it checked, and ends with `CHECKED` or
+lists what failed; the full run above is what rebuilds every output.
 
 ## What this repository contains
 

@@ -9,7 +9,15 @@ on:
   push:
     branches: [evidence/rework]
     tags: ["v*"]
-    paths-ignore: ["**.md", "CITATION.cff"]   # not evaluated for tag pushes
+    # Skip pushes that change only documentation, but not the two Markdown files the
+    # pipeline writes or reads; a later pattern overrides an earlier one. Path filters
+    # are not evaluated for tag pushes, which always run.
+    paths:
+      - "**"
+      - "!**.md"
+      - "!CITATION.cff"
+      - "docs/evidence-delta.md"
+      - "docs/column-provenance.md"
   workflow_dispatch:
 
 jobs:

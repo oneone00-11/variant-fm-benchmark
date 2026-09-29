@@ -31,11 +31,11 @@ STAGE = re.compile(r'\(\s*"src\.([A-Za-z_0-9]+)"')
 
 
 def _tracked(paths: str) -> list[str]:
-    r = subprocess.run(["git", "ls-files", paths], cwd=REPO,
-                       capture_output=True, text=True)
-    if r.returncode != 0:
-        return []
-    return [ln.strip() for ln in r.stdout.splitlines() if ln.strip()]
+    """`git ls-files` in a clone; the tree of a release archive, which has no .git."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from _checkout import checkout_files
+    return [p.relative_to(REPO).as_posix() for p in checkout_files(paths)]
 
 
 def entry_points() -> dict[str, set[str]]:

@@ -25,9 +25,10 @@ REPO = PHASE1.parent
 
 
 def tracked(pattern: str) -> list[Path]:
-    out = subprocess.run(["git", "-C", str(REPO), "ls-files", pattern],
-                         capture_output=True, text=True, check=True).stdout
-    return [REPO / p for p in out.split("\n") if p.strip()]
+    """`git ls-files` in a clone; the tree of a release archive, which has no .git."""
+    sys.path.insert(0, str(REPO / "tests"))
+    from _checkout import checkout_files
+    return checkout_files(pattern)
 
 
 @pytest.mark.parametrize("path", tracked("*.py"), ids=lambda p: str(p.name))

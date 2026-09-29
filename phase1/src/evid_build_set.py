@@ -87,12 +87,10 @@ def sha256_of(path: Path) -> str:
     return h.hexdigest()
 
 
-# The atlas commit each release archive was cut from. The Zenodo archive of a release
-# carries no .git, so reading HEAD from it recorded "unknown" where a checkout records
-# the commit. Every file tracked at tag v2.5.0-submission is byte-identical in the
-# v2.5.0 archive (10.5281/zenodo.22751081; checked 2026-09-29), so an archive and a
-# checkout of the same release record the same commit.
-ATLAS_RELEASE_COMMIT = {"2.5.0": "c2b8af77452a3ec630cb54ee8553a6e97569a386"}
+# Reading HEAD from the release archive, which carries no .git, recorded "unknown"
+# where a checkout records the commit; evid_common holds the commit each release was
+# cut from.
+from .evid_common import ATLAS_RELEASE_COMMIT  # noqa: E402
 
 
 def git_head(repo: Path) -> str:

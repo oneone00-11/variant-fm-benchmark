@@ -158,13 +158,47 @@ other three depended on the machine that wrote them, and every result was unchan
   connection closed early otherwise ends the read without an error. The checksums
   are checked after every download as before.
 - **Quick check.** `bash reproduce.sh --check` (or `scripts/reproduce_evidence.py
-  --check`) needs no download: it checks every checksum the manifests and provenance
-  records carry about files in the repository (105 over 95 files; row-order-free
-  content hashes where the record says so) and runs the test suite. The one test that
-  reads the atlas's `predictor_resources.py` now skips when the atlas is absent, as
-  the other atlas-dependent tests do, so the suite passes on a bare clone.
+  --check`) needs no data download: it checks every checksum the manifests and
+  provenance records carry about files in the repository (row-order-free content
+  hashes where the record says so; the ClinVar release and the atlas when they are
+  here) and runs the test suite. The one test that reads the atlas's
+  `predictor_resources.py` now skips when the atlas is absent, as the other
+  atlas-dependent tests do, so the suite passes on a bare clone.
 - **A third ClinVar source.** The release's Zenodo record (10.5281/zenodo.23043214)
   carries NCBI's `clinvar_20260615.vcf.gz` unchanged (NCBI's ClinVar data are in the
   public domain), and `--fetch-inputs` tries it after NCBI's archive and weekly
   directories, checking it by sha256. On 2026-09-29 the file came from NCBI's
   `archive_2.0/2026/` directory.
+- **Review of the one command, before its first CI run.** An adversarial review
+  found 32 defects; all are fixed, with a test each where one can hold it:
+  - `--check` failed on every fresh clone because it counted the undownloaded ClinVar
+    file as missing; it now checks ClinVar and the atlas only when they are here, and
+    says so. It also left out whole records: it now covers the provenance records
+    under `data/` as well as `phase1/data/`, the TP53 manifests' input hashes, the
+    frozen matrix's rescored columns and the supplementary tables' sources.
+  - `--verify` took its baseline from the working tree, so a rerun after an
+    interrupted run compared the outputs with themselves; it now compares with HEAD
+    in a clone and with the tree as first unpacked (`.reproduce_baseline/`) in an
+    archive. It passed an output no stage writes any more; such a file now fails as
+    "not rewritten" unless `scripts/reproduce_inputs.txt` lists it as an input. A
+    manifest could differ in more than its build time (1 for 1.0, reordered keys);
+    now only the wall-clock values may differ. A parquet holding missing values
+    crashed the comparison.
+  - With `--verify` the atlas must be the release file for file
+    (`scripts/atlas_release_v2.5.0.sha256`, 46 files) and, for a checkout, at the
+    release commit; a local checkout that is not is passed over for the archive. The
+    stages, the tests and the entry point now find the atlas by one rule
+    (`evid_common.resolve_atlas`), and a relative `EVID_ATLAS_REPO` is made absolute.
+  - A ClinVar source whose file failed its checksums ended the fetch; the next
+    source is now tried. A 404 was retried for eleven minutes; client errors now end
+    a download at once, and a failed atlas download ends with a message, not a
+    traceback.
+  - The three tests that list files with `git ls-files` fall back to walking the
+    tree in a release archive (`tests/_checkout.py`), and the tests that make git
+    commits ignore the user's git configuration.
+  - `reproduce.yml` skips documentation-only pushes but not the two Markdown files
+    the pipeline writes or reads; `reproduce.sh` removes its temporary matplotlib
+    folder, and `--verify` its temporary copies.
+- **Known, not changed:** `requirements-evidence.lock.txt` pins `git-filter-repo`, a
+  development tool the analysis does not use; changing the lock file changes the
+  definition of the exact environment, so it stays until a release that needs to.

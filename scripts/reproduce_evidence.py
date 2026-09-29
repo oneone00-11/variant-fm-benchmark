@@ -77,6 +77,7 @@ import http.client
 import json
 import math
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -123,17 +124,19 @@ OUTPUT_ROOTS = [PHASE1 / "reports" / "evidence", PHASE1 / "data" / "evidence",
 NOT_OUTPUTS = [PHASE1 / "data" / "evidence" / "clinvar",
                PHASE1 / "data" / "evidence" / "companion_atlas"]
 WALL_CLOCK_KEYS = {"built_utc", "scored_utc", "retrieved_utc", "run_at"}
-ATLAS_BESIDE = REPO.parent / "functional-standard-atlas"
-ATLAS_FETCHED = PHASE1 / "data" / "evidence" / "companion_atlas" / "atlas"
-# Every atlas file the stages read. The three under results/ ship in the release
-# archive and are not tracked in the atlas's git repository.
-ATLAS_NEEDS = [
-    "CITATION.cff",
-    "src/atlas/__init__.py", "src/atlas/clinical_evidence.py", "src/atlas/evaluate.py",
-    "src/atlas/manifest.py", "src/atlas/mapping.py", "src/atlas/predictor_resources.py",
-    "results/score_matrix_atlas_v2.parquet", "results/alphagenome_v061_scores.parquet",
-    "results/table1_atlas_composition.tsv",
-]
+# Tracked files under the output folders that the stages only read; every other
+# tracked file there must be rewritten by a full run.
+RUN_INPUTS = REPO / "scripts" / "reproduce_inputs.txt"
+# The sha256 of every atlas file the stages read, as the release has them.
+ATLAS_PINS = REPO / "scripts" / f"atlas_release_v{ATLAS_ARCHIVE['version']}.sha256"
+# In a tree without .git (a release archive), where --verify keeps the tree as first
+# unpacked, so that a rerun after an interrupted run is still compared with it.
+BASELINE = REPO / ".reproduce_baseline"
+
+# One rule for finding the atlas, shared with the stages and the tests.
+sys.path.insert(0, str(PHASE1))
+from src.evid_common import (ATLAS_BESIDE, ATLAS_FETCHED, ATLAS_NEEDS,  # noqa: E402
+                             ATLAS_RELEASE_COMMIT, resolve_atlas)
 
 STAGES = [
     ("src.evid_build_set",          "E1  rebuild the analysis set", []),
@@ -188,6 +191,14 @@ def _digest(path: Path, algo: str) -> str:
     return h.hexdigest()
 
 
+# --------------------------------------------------------------------------
+# --fetch-inputs: the two public inputs this repository does not carry
+# --------------------------------------------------------------------------
+def _permanent(e: urllib.error.HTTPError) -> bool:
+    """A client error that another attempt will not cure (a 408 or 429 may)."""
+    return 400 <= e.code < 500 and e.code not in (408, 429)
+
+
 def _expected_size(r, offset: int) -> int | None:
     """The full size of the file the response belongs to, when the server says."""
     cr = r.headers.get("Content-Range", "")               # bytes a-b/total
@@ -200,8 +211,9 @@ def _expected_size(r, offset: int) -> int | None:
 def _download(url: str, dest: Path, attempts: int = 30) -> None:
     """Download `url` to `dest` through a .part file that survives a stall or a
     dropped connection: each retry asks for the remaining bytes only (NCBI and Zenodo
-    both honour HTTP ranges). A minute without data counts as a stall. The caller
-    checks the checksum, so a resumed file is never trusted on its own."""
+    both honour HTTP ranges). A minute without data counts as a stall; a client error
+    such as 404 ends at once. The caller checks the checksum, so a resumed file is
+    never trusted on its own."""
     dest.parent.mkdir(parents=True, exist_ok=True)
     part = dest.with_name(dest.name + ".part")
     for attempt in range(1, attempts + 1):
@@ -224,9 +236,13 @@ def _download(url: str, dest: Path, attempts: int = 30) -> None:
             if e.code == 416 and have:                 # nothing left to send
                 part.replace(dest)
                 return
+            if _permanent(e):
+                raise
             err = e
         except (OSError, http.client.HTTPException) as e:   # stalls, resets, a
             err = e                                           # connection cut short
+        if attempt == attempts:
+            break
         got = part.stat().st_size if part.exists() else 0
         print(f"  interrupted at {got / 2**20:.0f} MB ({err}); resuming, attempt "
               f"{attempt + 1} of {attempts}", flush=True)
@@ -234,32 +250,60 @@ def _download(url: str, dest: Path, attempts: int = 30) -> None:
     raise OSError(f"gave up on {url} after {attempts} attempts")
 
 
+def _fetch_md5(url: str, attempts: int = 3) -> str:
+    """A source's own md5 file, read with a few retries; anything that is not an md5
+    (an error page, say) counts as the source failing."""
+    for attempt in range(1, attempts + 1):
+        try:
+            text = urllib.request.urlopen(url, timeout=60).read().decode("ascii", "replace")
+            m = re.match(r"\s*([0-9a-fA-F]{32})\b", text)
+            if m:
+                return m.group(1).lower()
+            err = f"no md5 in {url}"
+        except urllib.error.HTTPError as e:
+            if _permanent(e):
+                raise
+            err = e
+        except (OSError, http.client.HTTPException) as e:
+            err = e
+        if attempt < attempts:
+            time.sleep(2 * attempt)
+    raise OSError(f"could not read an md5 from {url} ({err})")
+
+
 def fetch_clinvar() -> None:
-    """The ClinVar release, from NCBI, checked against NCBI's md5 and the sha256 the
-    analysis-set manifest records. An existing file is only checked."""
+    """The ClinVar release, from the first source that serves the exact file: its own
+    md5, where the source has one, and the sha256 the analysis-set manifest records.
+    A source whose file fails either is set aside for the next one. An existing file is
+    only checked."""
+    rel = CLINVAR_VCF.relative_to(REPO)
     if CLINVAR_VCF.exists():
         if _digest(CLINVAR_VCF, "sha256") != CLINVAR_SHA256:
-            sys.exit(f"{CLINVAR_VCF.relative_to(REPO)} is not the release the "
-                     "analysis set was built from (sha256 differs); remove it and rerun")
-        print(f"ClinVar release present, sha256 checked: {CLINVAR_VCF.relative_to(REPO)}")
+            sys.exit(f"{rel} is not the release the analysis set was built from (sha256 "
+                     "differs); remove it and rerun")
+        print(f"ClinVar release present, sha256 checked: {rel}")
         return
+    part = CLINVAR_VCF.with_name(CLINVAR_VCF.name + ".part")
     for url, md5_url in CLINVAR_SOURCES:
         try:
-            md5 = (urllib.request.urlopen(md5_url, timeout=60).read().decode().split()[0]
-                   if md5_url else None)
+            md5 = _fetch_md5(md5_url) if md5_url else None
             print(f"downloading {url} (192 MB)", flush=True)
             _download(url, CLINVAR_VCF)
-            break
         except (OSError, http.client.HTTPException) as e:
             print(f"  not available there ({e})")
-    else:
-        sys.exit("could not download the ClinVar release from any source")
-    if ((md5 is not None and _digest(CLINVAR_VCF, "md5") != md5)
-            or _digest(CLINVAR_VCF, "sha256") != CLINVAR_SHA256):
-        CLINVAR_VCF.unlink()     # a rerun downloads it afresh
-        sys.exit("the downloaded ClinVar file failed its checksums and was removed")
-    print(("  md5 matches the source's, " if md5 else "  ")
-          + "sha256 matches the analysis-set manifest")
+            part.unlink(missing_ok=True)          # never resume one source's bytes
+            continue                              # from another
+        if md5 is not None and _digest(CLINVAR_VCF, "md5") != md5:
+            print("  the file does not match that source's own md5; trying the next source")
+        elif _digest(CLINVAR_VCF, "sha256") != CLINVAR_SHA256:
+            print("  that source's file is not the release the analysis set was built "
+                  "from (sha256 differs); trying the next source")
+        else:
+            print(("  md5 matches the source's, " if md5 else "  ")
+                  + "sha256 matches the analysis-set manifest")
+            return
+        CLINVAR_VCF.unlink(missing_ok=True)
+    sys.exit("no source served the ClinVar release the analysis set was built from")
 
 
 def fetch_atlas() -> None:
@@ -271,7 +315,12 @@ def fetch_atlas() -> None:
     if not (zpath.exists() and _digest(zpath, "md5") == a["md5"]):
         print(f"downloading the atlas release v{a['version']} (doi {a['doi']}, 50 MB)",
               flush=True)
-        _download(a["url"], zpath)
+        try:
+            _download(a["url"], zpath)
+        except (OSError, http.client.HTTPException) as e:
+            sys.exit(f"could not download the atlas release archive ({e}). Download "
+                     f"https://doi.org/{a['doi']} by hand and set EVID_ATLAS_REPO to "
+                     "its unpacked atlas/ folder.")
     if _digest(zpath, "md5") != a["md5"]:
         zpath.unlink()
         sys.exit("the downloaded atlas archive failed its md5 check and was removed")
@@ -283,22 +332,43 @@ def fetch_atlas() -> None:
     print(f"  md5 matches Zenodo's; unpacked to {ATLAS_FETCHED.relative_to(REPO)}")
 
 
-def _missing(atlas: Path) -> list[str]:
-    return [f for f in ATLAS_NEEDS if not (atlas / f).is_file()]
+# --------------------------------------------------------------------------
+# which atlas the stages read
+# --------------------------------------------------------------------------
+def _pins() -> dict[str, str]:
+    pins = {}
+    for line in ATLAS_PINS.read_text().splitlines():
+        if line.strip() and not line.startswith("#"):
+            sha, rel = line.split(maxsplit=1)
+            pins[rel.strip()] = sha
+    return pins
 
 
-def resolve_atlas() -> tuple[Path, list[str]]:
-    """The atlas every stage will read, and the files it lacks: EVID_ATLAS_REPO if
-    set; otherwise the checkout beside this repository if it is complete, else the
-    fetched release archive."""
-    if os.environ.get("EVID_ATLAS_REPO"):
-        path = Path(os.environ["EVID_ATLAS_REPO"])
-        return path, _missing(path)
-    for path in (ATLAS_BESIDE, ATLAS_FETCHED):
-        if path.is_dir() and not _missing(path):
-            return path, []
-    path = ATLAS_BESIDE if ATLAS_BESIDE.is_dir() else ATLAS_FETCHED
-    return path, _missing(path)
+def _git_head(path: Path) -> str | None:
+    """HEAD of `path` if `path` is itself the top of a git checkout; an archive
+    unpacked inside this repository is not."""
+    try:
+        run = lambda *a: subprocess.run(["git", "-C", str(path), *a], check=True,  # noqa: E731
+                                        capture_output=True, text=True).stdout.strip()
+        if Path(run("rev-parse", "--show-toplevel")).resolve() != Path(path).resolve():
+            return None
+        return run("rev-parse", "HEAD")
+    except (OSError, subprocess.CalledProcessError):
+        return None
+
+
+def atlas_release_mismatch(path: Path) -> list[str]:
+    """What keeps `path` from being the atlas release the outputs were made from: files
+    that differ from the release's pinned sha256, and, for a git checkout, a HEAD other
+    than the release commit, which the analysis-set manifest records."""
+    path = Path(path)
+    bad = [f"{rel} {'missing' if not (path / rel).is_file() else 'differs'}"
+           for rel, sha in _pins().items()
+           if not (path / rel).is_file() or _digest(path / rel, "sha256") != sha]
+    head, want = _git_head(path), ATLAS_RELEASE_COMMIT[ATLAS_ARCHIVE["version"]]
+    if head is not None and head != want:
+        bad.append(f"a checkout at {head[:12]}, not the release commit {want[:12]}")
+    return bad
 
 
 def atlas_version(atlas: Path) -> str:
@@ -308,50 +378,143 @@ def atlas_version(atlas: Path) -> str:
     return "unknown"
 
 
+def choose_atlas(release_only: bool, fetch: bool) -> Path:
+    """The atlas every stage will read. With `release_only` (--verify), only a copy
+    that is the release file for file will do: EVID_ATLAS_REPO if it names one, else
+    the checkout beside this repository if it is one, else the fetched archive, which
+    --fetch-inputs downloads when needed. Otherwise the shared rule of
+    evid_common.resolve_atlas, which only asks that no file be missing."""
+    env = os.environ.get("EVID_ATLAS_REPO")
+    ver = ATLAS_ARCHIVE["version"]
+    if not release_only:
+        atlas, missing = resolve_atlas()
+        if missing and fetch and not env:
+            fetch_atlas()
+            atlas, missing = resolve_atlas()
+        if missing:
+            hint = ("point EVID_ATLAS_REPO at an unpacked copy of the release archive, or "
+                    "unset it and rerun with --fetch-inputs" if env else
+                    "rerun with --fetch-inputs to download the release archive")
+            sys.exit(f"The companion atlas at {atlas} lacks {', '.join(missing)}.\n"
+                     "Its results/ files ship in the release archive "
+                     f"(doi {ATLAS_ARCHIVE['doi']}), not in its git repository; {hint}.")
+        return atlas
+    if env:
+        atlas = Path(env).expanduser().resolve()
+        bad = atlas_release_mismatch(atlas)
+        if bad:
+            sys.exit(f"EVID_ATLAS_REPO={env} is not the atlas release {ver} file for "
+                     f"file ({'; '.join(bad[:3])}{'; ...' if len(bad) > 3 else ''}). "
+                     "Unset it, and --fetch-inputs downloads the release archive.")
+        return atlas
+    for atlas in (ATLAS_BESIDE, ATLAS_FETCHED):
+        if atlas.is_dir() and not atlas_release_mismatch(atlas):
+            return atlas
+    if not fetch:
+        sys.exit(f"No copy of the atlas release {ver} is here; rerun with --fetch-inputs.")
+    fetch_atlas()
+    bad = atlas_release_mismatch(ATLAS_FETCHED)
+    if bad:
+        sys.exit(f"the unpacked atlas archive does not match the release's pinned "
+                 f"checksums: {'; '.join(bad[:3])}")
+    return ATLAS_FETCHED
+
+
+# --------------------------------------------------------------------------
+# --verify: every output compared with the committed one
+# --------------------------------------------------------------------------
+# How --verify reads a file that is not byte-identical. Tables are compared cell by
+# cell, floats to a relative tolerance and integers and strings exactly, so that a
+# report from another platform says whether a difference is in the numbers; figures
+# are named as such. Neither refinement changes the verdict: REPRODUCED means every
+# output is byte-identical, a manifest's build time aside, and was rewritten by the run.
+TABLE_DELIMITERS = {".csv": ",", ".tsv": "\t"}
+COPY_SUFFIXES = {".csv", ".tsv", ".json", ".parquet"}
+FIGURE_SUFFIXES = {".png", ".pdf", ".svg", ".tif", ".tiff"}
+RTOL = 1e-9
+REPORT_NAME = "reproduce_report.txt"      # at the repository root, gitignored
+OK_STATUSES = ("identical", "identical (build time aside)")
+_WALL_CLOCK = re.compile(r'("(?:' + "|".join(map(re.escape, sorted(WALL_CLOCK_KEYS)))
+                         + r')"\s*:\s*)"[^"]*"')
+
+
+def _in_roots(p: Path) -> bool:
+    return (any(p == r or p.is_relative_to(r) for r in OUTPUT_ROOTS)
+            and not any(p.is_relative_to(x) for x in NOT_OUTPUTS))
+
+
 def _outputs() -> list[Path]:
     files = []
     for root in OUTPUT_ROOTS:
         for p in ([root] if root.is_file() else sorted(root.rglob("*"))):
             if (p.is_file() and not p.name.startswith(".") and "__pycache__" not in p.parts
-                    and not any(p.is_relative_to(x) for x in NOT_OUTPUTS)):
+                    and _in_roots(p)):
                 files.append(p)
     return files
 
 
-def _without_wall_clock(path: Path):
-    def strip(x):
-        if isinstance(x, dict):
-            return {k: strip(v) for k, v in x.items() if k not in WALL_CLOCK_KEYS}
-        if isinstance(x, list):
-            return [strip(v) for v in x]
-        return x
-    return strip(json.loads(path.read_text()))
+def _is_git_tree() -> bool:
+    return (REPO / ".git").exists() and _git_head(REPO) is not None
 
 
-# How --verify reads a file that is not byte-identical. Tables are compared cell by
-# cell, floats to a relative tolerance and integers and strings exactly, so that a
-# report from another platform says whether a difference is in the numbers; figures
-# are named as such. Neither refinement changes the verdict: REPRODUCED means every
-# file is byte-identical, the build time in a manifest aside.
-TABLE_DELIMITERS = {".csv": ",", ".tsv": "\t"}
-FIGURE_SUFFIXES = {".png", ".pdf", ".svg", ".tif", ".tiff"}
-RTOL = 1e-9
-REPORT_NAME = "reproduce_report.txt"      # at the repository root, gitignored
+def _git_files(*args: str) -> list[str]:
+    roots = [str(r.relative_to(REPO)) for r in OUTPUT_ROOTS]
+    out = subprocess.run(["git", "-C", str(REPO), "ls-files", "-z", *args, "--", *roots],
+                         check=True, capture_output=True, text=True).stdout
+    return [f for f in out.split("\0") if f and _in_roots(REPO / f)]
 
 
-def snapshot() -> dict:
-    """The outputs as the checkout carries them, before any stage runs. Tables and
-    manifests are also copied aside, so a changed one can be compared cell by cell."""
-    keep = Path(tempfile.mkdtemp(prefix="reproduce_before_"))
-    snap = {}
-    for p in _outputs():
-        entry = {"sha256": _digest(p, "sha256"), "mtime": p.stat().st_mtime}
-        if p.suffix in TABLE_DELIMITERS or p.suffix in (".json", ".parquet"):
-            entry["copy"] = keep / p.relative_to(REPO)
-            entry["copy"].parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(p, entry["copy"])
-        snap[p] = entry
-    return snap
+def _head_blobs(paths: list[str]):
+    """(path, bytes) for each path as HEAD has it, through one `git cat-file --batch`."""
+    request = "".join(f"HEAD:{p}\n" for p in paths).encode()
+    out = subprocess.run(["git", "-C", str(REPO), "cat-file", "--batch"], input=request,
+                         check=True, capture_output=True).stdout
+    pos = 0
+    for p in paths:
+        nl = out.index(b"\n", pos)
+        header = out[pos:nl].split()
+        if header[-1] == b"missing":
+            raise SystemExit(f"--verify: HEAD has no {p}")
+        size = int(header[2])
+        yield p, out[nl + 1: nl + 1 + size]
+        pos = nl + 1 + size + 1
+
+
+def baseline(keep: Path) -> dict:
+    """The committed outputs the run is compared against, with copies of the tables
+    and manifests. In a clone, the files as HEAD has them, whatever the working tree
+    holds, so an interrupted earlier run cannot become the baseline. In a release
+    archive, which has no .git, the tree as first unpacked: recorded in
+    .reproduce_baseline/ on the first --verify run and reused by every later one."""
+    files = {}
+    if _is_git_tree():
+        for rel, blob in _head_blobs(_git_files()):
+            entry = {"sha256": hashlib.sha256(blob).hexdigest()}
+            if Path(rel).suffix in COPY_SUFFIXES:
+                entry["copy"] = keep / rel
+                entry["copy"].parent.mkdir(parents=True, exist_ok=True)
+                entry["copy"].write_bytes(blob)
+            files[rel] = entry
+        return {"files": files, "git": True, "start": time.time()}
+    record = BASELINE / "baseline.json"
+    if not record.exists():
+        print(f"recording the tree as unpacked in {BASELINE.name}/ (no .git here)")
+        for p in _outputs():
+            rel = str(p.relative_to(REPO))
+            files[rel] = {"sha256": _digest(p, "sha256")}
+            if p.suffix in COPY_SUFFIXES:
+                (BASELINE / "copies" / rel).parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(p, BASELINE / "copies" / rel)
+        record.write_text(json.dumps(files, indent=0, sort_keys=True))
+    files = json.loads(record.read_text())
+    for rel, entry in files.items():
+        if Path(rel).suffix in COPY_SUFFIXES:
+            entry["copy"] = BASELINE / "copies" / rel
+    return {"files": files, "git": False, "start": time.time()}
+
+
+def _is_na(x) -> bool:
+    return x is None or type(x).__name__ in ("NAType", "NaTType")
 
 
 def _cell(x):
@@ -366,10 +529,12 @@ def _cell(x):
 
 
 def _equal(a, b) -> bool:
+    if _is_na(a) or _is_na(b):
+        return _is_na(a) and _is_na(b)
     a, b = _cell(a), _cell(b)
     if isinstance(a, bool) or isinstance(b, bool) or not (
             isinstance(a, (int, float)) and isinstance(b, (int, float))):
-        return a == b
+        return bool(a == b)
     if isinstance(a, int) and isinstance(b, int):
         return a == b
     if math.isnan(a) or math.isnan(b):
@@ -383,6 +548,16 @@ def _json_equal(a, b) -> bool:
     if isinstance(a, list) and isinstance(b, list):
         return len(a) == len(b) and all(_json_equal(x, y) for x, y in zip(a, b))
     return _equal(a, b)
+
+
+def _without_wall_clock(path: Path):
+    def strip(x):
+        if isinstance(x, dict):
+            return {k: strip(v) for k, v in x.items() if k not in WALL_CLOCK_KEYS}
+        if isinstance(x, list):
+            return [strip(v) for v in x]
+        return x
+    return strip(json.loads(path.read_text()))
 
 
 def _numerically_equal(before: Path, after: Path) -> bool:
@@ -403,7 +578,7 @@ def _numerically_equal(before: Path, after: Path) -> bool:
                 return False
             return all(_equal(u, v) for c in x.columns
                        for u, v in zip(x[c].tolist(), y[c].tolist()))
-    except (OSError, ValueError, csv.Error):
+    except Exception:            # a file that cannot be read as a table is "differs"
         return False
     return False
 
@@ -413,46 +588,68 @@ def _status(p: Path, b: dict) -> str:
         return "missing"
     if _digest(p, "sha256") == b["sha256"]:
         return "identical"
-    if p.suffix == ".json" and _without_wall_clock(p) == _without_wall_clock(b["copy"]):
+    copy = b.get("copy")
+    # only the values of the wall-clock fields may differ, byte for byte otherwise
+    if (p.suffix == ".json" and copy is not None
+            and _WALL_CLOCK.sub(r'\1""', p.read_text())
+            == _WALL_CLOCK.sub(r'\1""', copy.read_text())):
         return "identical (build time aside)"
     if p.suffix in FIGURE_SUFFIXES:
         return "differs (figure)"
-    if "copy" in b and _numerically_equal(b["copy"], p):
+    if copy is not None and _numerically_equal(copy, p):
         return "differs (numerically equal)"
     return "differs"
 
 
-def verify(before: dict) -> bool:
-    """Every output the checkout carried, compared with what this run wrote; one line
-    per file in reproduce_report.txt, and a summary here."""
-    rows = [(_status(p, b), p.relative_to(REPO), p.exists() and p.stat().st_mtime == b["mtime"])
-            for p, b in before.items()]
-    new = [p.relative_to(REPO) for p in _outputs() if p not in before]
-    rows += [("new", r, False) for r in new]
+def _run_inputs() -> set[str]:
+    return {line.strip() for line in RUN_INPUTS.read_text().splitlines()
+            if line.strip() and not line.startswith("#")}
+
+
+def verify(base: dict) -> bool:
+    """Every committed output compared with what this run wrote; one line per file in
+    reproduce_report.txt, and a summary here. A committed output the run left
+    untouched fails as "not rewritten", unless scripts/reproduce_inputs.txt lists it
+    as an input the stages only read."""
+    inputs, start = _run_inputs(), base["start"]
+    rows = []
+    for rel, b in sorted(base["files"].items()):
+        p = REPO / rel
+        status = _status(p, b)
+        if status in OK_STATUSES and rel not in inputs and p.stat().st_mtime < start:
+            status = "not rewritten"
+        rows.append((status, rel))
+    if base["git"]:
+        new = _git_files("--others", "--exclude-standard")
+    else:
+        new = [str(p.relative_to(REPO)) for p in _outputs()
+               if str(p.relative_to(REPO)) not in base["files"]]
+    rows += [("new", r) for r in sorted(new)]
     counts = {}
-    for status, _, _ in rows:
+    for status, _ in rows:
         counts[status] = counts.get(status, 0) + 1
-    ok = all(st in ("identical", "identical (build time aside)") for st, _, _ in rows)
-    stale = sum(1 for _, _, untouched in rows if untouched)
+    ok = all(status in OK_STATUSES for status, _ in rows)
+    n_inputs = sum(1 for _, rel in rows if rel in inputs)
     verdict = ("REPRODUCED: every output matches the committed one." if ok else
                "NOT REPRODUCED: every file not marked identical")
-    report = REPO / REPORT_NAME
-    with open(report, "w") as f:
-        f.write(f"# reproduce_evidence.py --verify\n# {verdict}\n")
+    with open(REPO / REPORT_NAME, "w") as f:
+        f.write(f"# reproduce_evidence.py --verify, against "
+                f"{'HEAD' if base['git'] else 'the tree as unpacked'}\n# {verdict}\n")
         f.write("# " + "; ".join(f"{k}: {v}" for k, v in sorted(counts.items())) + "\n")
-        f.write(f"# {stale} files under the output folders are inputs the run only reads\n")
-        for status, rel, _ in sorted(rows, key=lambda r: str(r[1])):
+        f.write(f"# {n_inputs} of these are inputs the stages only read "
+                f"({RUN_INPUTS.relative_to(REPO)})\n")
+        for status, rel in rows:
             f.write(f"{status}\t{rel}\n")
-    print(f"\n{'=' * 74}\nVerification against the outputs this checkout carried\n"
-          f"{'=' * 74}")
-    print(f"  {len(before)} files under the output folders: {len(before) - stale} "
-          f"rewritten by this run, {stale} inputs it only reads")
+    print(f"\n{'=' * 74}\nVerification against the committed outputs "
+          f"({'HEAD' if base['git'] else 'the tree as unpacked'})\n{'=' * 74}")
+    print(f"  {len(base['files'])} committed files under the output folders, {n_inputs} "
+          "of them inputs the stages only read")
     for status in ("identical", "identical (build time aside)", "differs (numerically equal)",
-                   "differs (figure)", "differs", "missing", "new"):
+                   "differs (figure)", "differs", "not rewritten", "missing", "new"):
         if counts.get(status):
             print(f"  {status + ':':30s} {counts[status]}")
             if status != "identical":
-                for st, rel, _ in rows:
+                for st, rel in rows:
                     if st == status:
                         print(f"      {rel}")
     print(f"  one line per file: {REPORT_NAME}")
@@ -465,38 +662,60 @@ def verify(before: dict) -> bool:
 # --------------------------------------------------------------------------
 def _canonical_sha256(path: Path) -> str:
     """The row-order-free content hash the frozen and TP53 manifests record."""
-    if str(PHASE1) not in sys.path:
-        sys.path.insert(0, str(PHASE1))
     import pandas as pd
     from src.phase1_build_frozen_matrix_v2 import canonical_sha256
     return canonical_sha256(pd.read_parquet(path))
 
 
-def recorded_checksums() -> list[tuple[str, Path, str, str]]:
-    """(record, file, expected sha256, "file" or "content") for every checksum a
-    tracked manifest or provenance record carries about a file in this repository,
-    and about the ClinVar release and the atlas files when they are present. A
-    "content" hash is taken over the table's rows, not the file's bytes. Hashes of
-    files that live only where the model scores were made (reference FASTAs, scorer
-    modules) are left out: nothing here can check them."""
-    ev, out = PHASE1 / "data" / "evidence", []
+def _source_sha256(path: Path) -> str:
+    """The hash evid_supp_tables records for a source: a JSON without its wall-clock
+    fields, keys sorted; any other file by its bytes."""
+    if path.suffix != ".json":
+        return _digest(path, "sha256")
+    blob = json.dumps(_without_wall_clock(path), sort_keys=True).encode()
+    return hashlib.sha256(blob).hexdigest()
+
+
+def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
+    """(record, file, expected, how) for every checksum a tracked manifest or
+    provenance record carries about a file in this repository, and about the ClinVar
+    release and the atlas when they are here; and the names of those two when they are
+    not. `how` is "file" (sha256 of the bytes), "content" (the row-order-free hash of a
+    table) or "source" (evid_supp_tables' hash of a source). Hashes of files that only
+    existed where the model scores were made (reference FASTAs, scorer modules,
+    interpreters) are left out: nothing here can check them."""
+    ev, out, absent = PHASE1 / "data" / "evidence", [], []
+    atlas, atlas_missing = resolve_atlas()
+    if atlas_missing:
+        absent.append("the atlas")
 
     def add(record: Path, target: Path, sha: str, how: str = "file") -> None:
         out.append((str(record.relative_to(REPO)), target, sha, how))
 
-    # provenance sidecars: <output>.provenance.json beside the file it describes
-    for rec in sorted((PHASE1 / "data").rglob("*.provenance.json")):
+    # provenance sidecars, in phase1/data and data/: <output>.provenance.json beside
+    # the output it describes (a .tsv where the output name has no suffix)
+    if _is_git_tree():                 # what the checkout carries, not stray local files
+        out_ = subprocess.run(["git", "-C", str(REPO), "ls-files", "-z", "--",
+                               "phase1/data/*.provenance.json", "data/*.provenance.json"],
+                              check=True, capture_output=True, text=True).stdout
+        records = [REPO / f for f in out_.split("\0") if f]
+    else:
+        records = [*(PHASE1 / "data").rglob("*.provenance.json"),
+                   *(REPO / "data").rglob("*.provenance.json")]
+    for rec in sorted(records):
+        if any(rec.is_relative_to(x) for x in NOT_OUTPUTS):
+            continue                                       # fetched inputs
         d = json.loads(rec.read_text())
-        stem = rec.name[: -len(".provenance.json")]
-        target = rec.with_name(stem)
-        if not target.exists():                    # atlas_columns_v2 -> .tsv
-            target = next(iter(sorted(p for p in rec.parent.glob(stem + ".*")
-                                      if p != rec)), target)
+        target = rec.with_name(rec.name[: -len(".provenance.json")])
+        if not target.suffix:
+            target = target.with_name(target.name + ".tsv")
         for key in ("output_sha256", "sha256"):
             if isinstance(d.get(key), str):
                 add(rec, target, d[key])
-        if isinstance(d.get("input_sha256"), str) and isinstance(d.get("input"), str):
-            add(rec, REPO / d["input"], d["input_sha256"])
+        source = d.get("input") or re.sub(r"^.*/variant-fm-benchmark/", "",
+                                          str(d.get("input_file", "")))
+        if isinstance(d.get("input_sha256"), str) and source and (REPO / source).is_file():
+            add(rec, REPO / source, d["input_sha256"])
 
     # the analysis set and the sources it was built from
     rec = ev / "analysis_set_v1.manifest.json"
@@ -507,9 +726,13 @@ def recorded_checksums() -> list[tuple[str, Path, str, str]]:
             for spec in src.values():
                 add(rec, PHASE1 / "data" / "assay_labels" / spec["file"], spec["sha256"])
         elif src.get("path", "").startswith("atlas:"):
-            atlas, missing = resolve_atlas()
-            if not missing:
+            if not atlas_missing:
                 add(rec, atlas / src["path"][len("atlas:"):], src["sha256"])
+        elif key == "clinvar_vcf":                 # CLINVAR_VCF is this path (a test)
+            if CLINVAR_VCF.exists():
+                add(rec, CLINVAR_VCF, src["sha256"])
+            else:
+                absent.append("the ClinVar release")
         elif "path" in src and "sha256" in src:
             add(rec, PHASE1 / src["path"], src["sha256"])
 
@@ -528,17 +751,28 @@ def recorded_checksums() -> list[tuple[str, Path, str, str]]:
     envs.append(d["inframe"]["events_environment"])
     for env in envs:
         add(rec, REPO / env["full_record"], env["full_record_sha256"])
+    for rel, sha in d["inputs_sha256"].items():
+        add(rec, REPO / rel, sha)
     rec = PHASE1 / "data" / "external" / "tp53_splice_scored_v2.manifest.json"
-    add(rec, rec.with_name("tp53_splice_scored_v2.parquet"),
-        json.loads(rec.read_text())["sha256"], "content")
+    d = json.loads(rec.read_text())
+    add(rec, rec.with_name("tp53_splice_scored_v2.parquet"), d["sha256"], "content")
+    for model, sha in d["inputs"].items():
+        add(rec, REPO / "data" / "tp53" / f"{model}_tp53.tsv", sha)
 
-    # the frozen matrices the set joins to
+    # the frozen matrices the set joins to, and the rescored columns of the second
+    frozen = PHASE1 / "data" / "frozen"
     for n in (1, 2):
-        rec = PHASE1 / "data" / "frozen" / f"manifest_v{n}.json"
+        rec = frozen / f"manifest_v{n}.json"
         d = json.loads(rec.read_text())
         add(rec, PHASE1 / d["output_path"], d["sha256"], "content")
+    add(rec, frozen / "frozen_matrix_v1.parquet", d["derived_from"]["sha256"], "content")
+    for name, sha in d["provenance"].items():
+        if isinstance(sha, str) and name.endswith(".tsv"):
+            here = [x / name for x in (PHASE1 / "data" / "rescore", REPO / "data" / "rescore")
+                    if (x / name).is_file()]
+            add(rec, here[0] if here else REPO / "data" / "rescore" / name, sha)
 
-    # the reference cache and the supplementary tables
+    # the reference cache, and the supplementary tables with their sources
     rec = ev / "reference_cache" / "MANIFEST.json"
     for rel, meta in json.loads(rec.read_text())["files"].items():
         add(rec, ev / "reference_cache" / rel, meta["sha256"])
@@ -546,33 +780,51 @@ def recorded_checksums() -> list[tuple[str, Path, str, str]]:
     with open(rec, newline="") as f:
         for row in csv.DictReader(f):
             add(rec, rec.with_name(row["File"]), row["File sha256"])
-    return out
+            files = [x for x in row["Source files"].split("; ") if x]
+            shas = [x for x in row["Source sha256"].split("; ") if x]
+            if len(files) != len(shas):                # S9: "written by <stage>"
+                continue
+            for src, sha in zip(files, shas):
+                if sha == "n/a (code)":
+                    continue
+                if src.startswith("atlas:"):
+                    if not atlas_missing:
+                        add(rec, atlas / src[len("atlas:"):], sha, "source")
+                    continue
+                add(rec, REPO / src, sha, "source")
+    return out, absent
 
 
 def check() -> bool:
     """Every recorded checksum, then the test suite. No download, no stage run."""
     print(f"{'=' * 74}\nChecksums recorded in the manifests and provenance records\n"
           f"{'=' * 74}")
-    rows = recorded_checksums()
+    rows, absent = recorded_checksums()
     bad = []
     for record, target, sha, how in rows:
         if not target.exists():
-            bad.append(f"missing  {target.relative_to(REPO)}  (recorded in {record})")
+            bad.append(f"missing  {target}  (recorded in {record})")
             continue
-        got = _canonical_sha256(target) if how == "content" else _digest(target, "sha256")
+        got = (_canonical_sha256(target) if how == "content" else
+               _source_sha256(target) if how == "source" else _digest(target, "sha256"))
         if got != sha:
-            bad.append(f"differs  {target.relative_to(REPO)}  (recorded in {record})")
-    n_files = len({t for _, t, _, _ in rows})
-    print(f"  {len(rows)} checksums over {n_files} files: "
-          f"{len(rows) - len(bad)} match, {len(bad)} do not")
+            bad.append(f"differs  {target}  (recorded in {record})")
+    inside = {t for _, t, _, _ in rows if t.is_relative_to(REPO)}
+    outside = {t for _, t, _, _ in rows} - inside
+    print(f"  {len(rows)} checksums over {len(inside)} files in this repository"
+          + (f" and {len(outside)} outside it" if outside else "")
+          + f": {len(rows) - len(bad)} match, {len(bad)} do not")
     for b in bad:
         print(f"      {b}")
-    if not CLINVAR_VCF.exists():
-        print("  the ClinVar release and the atlas are not here, so their checksums wait "
-              "for the full run")
+    for name in absent:
+        print(f"  {name} is not here, so its checksums wait for the full run")
     print(f"\n{'=' * 74}\nThe test suite (pytest -q)\n{'=' * 74}", flush=True)
+    env = dict(os.environ)
+    atlas, missing = resolve_atlas()
+    if not missing:                        # the tests read the atlas the checksums did
+        env["EVID_ATLAS_REPO"] = str(atlas)
     tests = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider"],
-                           cwd=REPO)
+                           cwd=REPO, env=env)
     ok = not bad and tests.returncode == 0
     print("\nCHECKED: every recorded checksum matches and every test passes." if ok else
           "\nCHECK FAILED: see above.")
@@ -608,12 +860,13 @@ def main() -> None:
                     help="download the ClinVar release and the atlas release archive "
                          "when they are missing, and check their checksums")
     ap.add_argument("--check", action="store_true",
-                    help="quick path, about five minutes, no download: check every "
+                    help="quick path, about five minutes, no data download: check every "
                          "checksum the manifests and provenance records carry, then run "
                          "the test suite; no stage runs")
     ap.add_argument("--verify", action="store_true",
-                    help="compare every output with the one the checkout carried before "
-                         "the run, and exit non-zero unless all match")
+                    help="compare every output with the committed one and exit non-zero "
+                         "unless all match; uses only an atlas that is the release file "
+                         "for file")
     args = ap.parse_args()
     if args.check:
         sys.exit(0 if check() else 1)
@@ -621,41 +874,34 @@ def main() -> None:
         sys.exit("--verify needs the full run (no --from)")
     if args.fetch_inputs:
         fetch_clinvar()
-    atlas, missing = resolve_atlas()
-    if missing and args.fetch_inputs and not os.environ.get("EVID_ATLAS_REPO"):
-        fetch_atlas()
-        atlas, missing = resolve_atlas()
-    if missing:
-        sys.exit(f"The companion atlas at {atlas} lacks {', '.join(missing)}.\n"
-                 "Its results/ files ship in the release archive, not in its git "
-                 "repository. Rerun with --fetch-inputs to download the archive "
-                 f"(doi {ATLAS_ARCHIVE['doi']}), or set EVID_ATLAS_REPO to an unpacked "
-                 "copy of it.")
+    atlas = choose_atlas(release_only=args.verify, fetch=args.fetch_inputs)
     os.environ["EVID_ATLAS_REPO"] = str(atlas)    # every stage reads this one atlas
     version = atlas_version(atlas)
-    print(f"companion atlas: {atlas} (release {version})")
+    print(f"companion atlas: {atlas} (release {version}"
+          + (", matches the release file for file)" if args.verify else ")"))
     if version != ATLAS_ARCHIVE["version"]:
         print(f"  WARNING: the analysis set was built from release "
               f"{ATLAS_ARCHIVE['version']}; outputs will differ")
-    before = snapshot() if args.verify else None
-    total = len(STAGES)
-    skipped = []
-    for i, (mod, label, extra) in enumerate(STAGES, 1):
-        if i < args.start:
-            print(f"[{i}/{total}] {mod} -- skipped (--from)")
-            continue
-        if not run_stage(mod, label, i, total, extra):
-            skipped.append(f"{i}. {mod} -- {label}")
-    print(f"\nTables: phase1/reports/evidence/")
-    if skipped:
-        print("\nStages skipped for a missing input -- their outputs are whatever "
-              "the last successful run left:")
-        for s in skipped:
-            print(f"  {s}")
-        sys.exit(1)
-    print("All stages ran.")
-    if before is not None and not verify(before):
-        sys.exit(1)
+    with tempfile.TemporaryDirectory(prefix="reproduce_before_") as keep:
+        base = baseline(Path(keep)) if args.verify else None
+        total = len(STAGES)
+        skipped = []
+        for i, (mod, label, extra) in enumerate(STAGES, 1):
+            if i < args.start:
+                print(f"[{i}/{total}] {mod} -- skipped (--from)")
+                continue
+            if not run_stage(mod, label, i, total, extra):
+                skipped.append(f"{i}. {mod} -- {label}")
+        print("\nTables: phase1/reports/evidence/")
+        if skipped:
+            print("\nStages skipped for a missing input -- their outputs are whatever "
+                  "the last successful run left:")
+            for s in skipped:
+                print(f"  {s}")
+            sys.exit(1)
+        print("All stages ran.")
+        if base is not None and not verify(base):
+            sys.exit(1)
     print()
 
 

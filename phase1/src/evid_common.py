@@ -14,17 +14,51 @@ from scipy.stats import rankdata
 
 from . import config as C
 
-# The companion atlas, read by several stages: EVID_ATLAS_REPO if set, otherwise a
-# checkout named functional-standard-atlas beside this repository, otherwise the
-# release archive that scripts/reproduce_evidence.py --fetch-inputs unpacks here. The
-# atlas's results/ files ship in that archive, not in its git repository, so a bare
-# clone of the atlas is not enough on its own; the entry point checks for them.
-_ATLAS_BESIDE = Path(__file__).resolve().parents[2].parent / "functional-standard-atlas"
+# The companion atlas, read by several stages. One rule, used here, by the entry point
+# and by the tests: EVID_ATLAS_REPO if set; otherwise a checkout named
+# functional-standard-atlas beside this repository if it holds every file in
+# ATLAS_NEEDS; otherwise the release archive that scripts/reproduce_evidence.py
+# --fetch-inputs unpacks here, if complete; otherwise whichever of the two exists, so
+# that a stage's error names the incomplete copy. The atlas's results/ files ship in
+# that archive, not in its git repository, so a bare clone of the atlas is incomplete.
+ATLAS_BESIDE = Path(__file__).resolve().parents[2].parent / "functional-standard-atlas"
 ATLAS_FETCHED = (Path(__file__).resolve().parents[1]
                  / "data" / "evidence" / "companion_atlas" / "atlas")
-ATLAS_REPO = Path(os.environ.get("EVID_ATLAS_REPO") or (
-    ATLAS_FETCHED if ATLAS_FETCHED.exists() and not _ATLAS_BESIDE.exists()
-    else _ATLAS_BESIDE))
+ATLAS_NEEDS = [
+    "CITATION.cff",
+    "src/atlas/__init__.py", "src/atlas/clinical_evidence.py", "src/atlas/evaluate.py",
+    "src/atlas/manifest.py", "src/atlas/mapping.py", "src/atlas/predictor_resources.py",
+    "results/score_matrix_atlas_v2.parquet", "results/alphagenome_v061_scores.parquet",
+    "results/table1_atlas_composition.tsv",
+]
+# The atlas commit each release archive was cut from. The Zenodo archive of a release
+# carries no .git; every file tracked at tag v2.5.0-submission is byte-identical in the
+# v2.5.0 archive (10.5281/zenodo.22751081; checked 2026-09-29), so an archive and a
+# checkout of the same release record the same commit.
+ATLAS_RELEASE_COMMIT = {"2.5.0": "c2b8af77452a3ec630cb54ee8553a6e97569a386"}
+
+
+def atlas_missing(path: Path) -> list[str]:
+    return [f for f in ATLAS_NEEDS if not (Path(path) / f).is_file()]
+
+
+def resolve_atlas(beside: Path = ATLAS_BESIDE,
+                  fetched: Path = ATLAS_FETCHED) -> tuple[Path, list[str]]:
+    """The atlas to read and the ATLAS_NEEDS files it lacks, by the rule above. An
+    EVID_ATLAS_REPO given relative to any directory is made absolute here, so the
+    entry point and a stage run from phase1/ read the same place."""
+    env = os.environ.get("EVID_ATLAS_REPO")
+    if env:
+        path = Path(env).expanduser().resolve()
+        return path, atlas_missing(path)
+    for path in (beside, fetched):
+        if path.is_dir() and not atlas_missing(path):
+            return path, []
+    path = beside if beside.is_dir() else fetched
+    return path, atlas_missing(path)
+
+
+ATLAS_REPO = resolve_atlas()[0]
 
 SET_PATH = Path("data/evidence/analysis_set_v1.parquet")
 REPORT_DIR = Path("reports/evidence")
