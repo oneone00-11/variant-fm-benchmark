@@ -163,3 +163,8 @@ other three depended on the machine that wrote them, and every result was unchan
   content hashes where the record says so) and runs the test suite. The one test that
   reads the atlas's `predictor_resources.py` now skips when the atlas is absent, as
   the other atlas-dependent tests do, so the suite passes on a bare clone.
+- **A third ClinVar source.** The release's Zenodo record (10.5281/zenodo.23043214)
+  carries NCBI's `clinvar_20260615.vcf.gz` unchanged (NCBI's ClinVar data are in the
+  public domain), and `--fetch-inputs` tries it after NCBI's archive and weekly
+  directories, checking it by sha256. On 2026-09-29 the file came from NCBI's
+  `archive_2.0/2026/` directory.

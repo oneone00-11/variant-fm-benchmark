@@ -61,7 +61,9 @@ def test_the_fetched_clinvar_release_is_the_one_the_manifest_records():
     sources = json.loads(SET_MANIFEST.read_text())["sources"]
     assert E.CLINVAR_SHA256 == sources["clinvar_vcf"]["sha256"]
     assert E.CLINVAR_VCF == PHASE1 / sources["clinvar_vcf"]["path"]
-    assert all(u.endswith("/" + E.CLINVAR_VCF.name) for u in E.CLINVAR_URLS)
+    assert all("/" + E.CLINVAR_VCF.name in u for u in E.CLINVAR_URLS)
+    assert E.CLINVAR_URLS[0].startswith("https://ftp.ncbi.nlm.nih.gov/")   # NCBI first
+    assert "zenodo.org" in E.CLINVAR_URLS[-1]                               # the mirror last
 
 
 def test_the_fetched_atlas_release_is_the_one_the_manifest_records():

@@ -62,6 +62,9 @@ the two public inputs this repository does not carry and checks them before any
 stage runs: the ClinVar GRCh38 release of 15 June 2026 (192 MB, from NCBI's archive;
 md5 against NCBI's file, sha256 against the analysis-set manifest) and the atlas
 release archive (50 MB, from Zenodo; md5 against Zenodo's). Both are gitignored.
+This release's Zenodo record (10.5281/zenodo.23043214) also holds the ClinVar file,
+NCBI's original unchanged, and `--fetch-inputs` falls back to it when NCBI cannot
+serve the file; the sha256 check is the same whichever source served it.
 `--verify` records every output the checkout carries before the run and compares each
 with what the run writes; it ends with `REPRODUCED` or lists what differs, and exits
 non-zero if anything does. On macOS arm64 with Python 3.12.13 every output is
