@@ -215,3 +215,12 @@ def test_the_one_command_fetches_and_verifies():
     script = (REPO / "reproduce.sh").read_text()
     assert "requirements-evidence.lock.txt" in script
     assert "reproduce_evidence.py --fetch-inputs --verify" in script
+
+
+def test_atlas_sources_are_named_the_same_wherever_the_atlas_sits(monkeypatch):
+    from src import evid_supp_tables as S
+    inside = PHASE1 / "data/evidence/companion_atlas/atlas"      # --fetch-inputs
+    monkeypatch.setattr(S, "ATLAS_REPO", inside)
+    assert S._display(inside / "src/atlas/predictor_resources.py") == \
+        "atlas:src/atlas/predictor_resources.py"
+    assert S._display(PHASE1 / "src/evid_common.py") == "phase1/src/evid_common.py"

@@ -1,0 +1,40 @@
+name: reproduce
+
+# The one command a reader runs, on machines other than the author's: a fresh
+# checkout, then `bash reproduce.sh`, which builds the pinned environment, fetches
+# the two public inputs (ClinVar from NCBI, the atlas release archive from Zenodo),
+# rebuilds every output of the evidence-strength study and fails unless each one
+# matches the committed file.
+on:
+  push:
+    branches: [evidence/rework]
+    paths-ignore: ["**.md"]
+  workflow_dispatch:
+
+jobs:
+  macos-arm64:
+    # The platform the committed outputs were made on (macOS arm64, Python 3.12):
+    # every output must match byte for byte, the build time aside.
+    runs-on: macos-14
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: bash reproduce.sh
+        run: bash reproduce.sh
+
+  linux:
+    # Informational: which outputs differ off macOS. The figures use Arial, which
+    # Linux runners lack, and numpy links a different BLAS there.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: bash reproduce.sh
+        run: bash reproduce.sh

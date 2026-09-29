@@ -344,10 +344,11 @@ def _source_sha256(p: Path) -> str:
 
 
 def _display(p: Path) -> str:
-    """A path a reader on another machine can resolve: repo-relative, or relative
-    to the atlas repository."""
+    """A path a reader on another machine can resolve: relative to the atlas, or to
+    this repository. The atlas comes first because it can sit inside this repository
+    (reproduce_evidence.py --fetch-inputs unpacks it under phase1/data/evidence/)."""
     p = Path(p).resolve()
-    for root, prefix in ((REPO.resolve(), ""), (ATLAS_REPO.resolve(), "atlas:")):
+    for root, prefix in ((ATLAS_REPO.resolve(), "atlas:"), (REPO.resolve(), "")):
         try:
             return prefix + p.relative_to(root).as_posix()
         except ValueError:
@@ -357,7 +358,8 @@ def _display(p: Path) -> str:
 
 def _need(p: Path) -> Path:
     if not p.exists():
-        hint = (" (set EVID_ATLAS_REPO to the companion atlas checkout)"
+        hint = (" (run scripts/reproduce_evidence.py --fetch-inputs, or set "
+                "EVID_ATLAS_REPO to the atlas release archive)"
                 if str(p).startswith(str(ATLAS_REPO)) else "")
         raise SystemExit(f"[supp] missing input {p}{hint}")
     return p

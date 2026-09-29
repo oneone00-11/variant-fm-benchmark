@@ -39,4 +39,13 @@ if ! diff -q <(grep -v '^#' requirements-evidence.lock.txt | grep -v '^$' | sort
     exit 1
 fi
 
+# Nothing on the machine may reach the outputs: single-threaded BLAS, so floating-point
+# sums run in one order on any number of cores (the outputs are identical this way and
+# with the default threads), and no user matplotlib configuration.
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+       VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+MPLCONFIGDIR="$(mktemp -d)"
+export MPLCONFIGDIR
+unset MATPLOTLIBRC EVID_ATLAS_REPO
+
 exec .venv/bin/python scripts/reproduce_evidence.py --fetch-inputs --verify "$@"

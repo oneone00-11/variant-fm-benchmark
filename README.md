@@ -67,6 +67,9 @@ non-zero if anything does. On macOS arm64 with Python 3.12.13 every output is
 byte-identical except the build time in
 `phase1/data/evidence/analysis_set_v1.manifest.json`. On another platform the figure
 files may differ in their bytes where the Arial font differs.
+`.github/workflows/reproduce.yml` runs the same command on a GitHub macOS arm64
+runner on every push to this branch, and on a Linux runner to record what differs
+there.
 
 ## What this repository contains
 

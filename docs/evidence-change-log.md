@@ -145,3 +145,10 @@ other three depended on the machine that wrote them, and every result was unchan
   --verify`. `--verify` records every output the checkout carries before the run,
   compares each with what the run writes, and ends with `REPRODUCED` or the list of
   what differs; a manifest may differ only in its wall-clock fields.
+- **Machine independence.** The supplementary-table manifest names atlas sources
+  `atlas:...` wherever the atlas sits (an archive unpacked inside this repository was
+  named by its repository path). `reproduce.sh` runs BLAS single-threaded, so sums
+  run in one order on any number of cores (the outputs are identical this way and
+  with default threads), and ignores any user matplotlib configuration.
+  `.github/workflows/reproduce.yml` runs `bash reproduce.sh` on a GitHub macOS arm64
+  runner, where it must pass, and on Linux for information.
