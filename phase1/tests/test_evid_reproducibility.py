@@ -287,3 +287,51 @@ def test_verify_names_a_changed_figure_as_one(tmp_path, monkeypatch):
     (out / "f.png").write_bytes(b"\x89PNG two")
     assert not E.verify(before)
     assert "differs (figure)\tfigures/f.png" in (tmp_path / "reproduce_report.txt").read_text()
+
+
+# --------------------------------------------------------------------------
+# a ClinVar source without an md5 file (a mirror) is checked by sha256 alone
+# --------------------------------------------------------------------------
+def _serve(files: dict):
+    import http.server
+    import threading
+
+    class Handler(http.server.BaseHTTPRequestHandler):
+        def log_message(self, *a):
+            pass
+
+        def do_GET(self):
+            body = files.get(self.path)
+            if body is None:
+                self.send_error(404)
+                return
+            self.send_response(200)
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+    server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    return server, f"http://127.0.0.1:{server.server_address[1]}"
+
+
+def test_clinvar_falls_back_to_a_mirror_and_checks_its_sha256(tmp_path, monkeypatch):
+    body = b"a stand-in for the release" * 1000
+    server, base = _serve({"/mirror/clinvar.vcf.gz": body})
+    monkeypatch.setattr(E, "CLINVAR_VCF", tmp_path / "clinvar.vcf.gz")
+    monkeypatch.setattr(E, "REPO", tmp_path)
+    monkeypatch.setattr(E, "CLINVAR_SOURCES", [
+        (base + "/ncbi/clinvar.vcf.gz", base + "/ncbi/clinvar.vcf.gz.md5"),   # 404
+        (base + "/mirror/clinvar.vcf.gz", None)])
+    monkeypatch.setattr(E.time, "sleep", lambda s: None)
+    try:
+        monkeypatch.setattr(E, "CLINVAR_SHA256", hashlib.sha256(body).hexdigest())
+        E.fetch_clinvar()
+        assert (tmp_path / "clinvar.vcf.gz").read_bytes() == body
+        (tmp_path / "clinvar.vcf.gz").unlink()
+        monkeypatch.setattr(E, "CLINVAR_SHA256", "0" * 64)          # a wrong file
+        with pytest.raises(SystemExit):
+            E.fetch_clinvar()
+        assert not (tmp_path / "clinvar.vcf.gz").exists()
+    finally:
+        server.shutdown()

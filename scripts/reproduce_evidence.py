@@ -94,11 +94,16 @@ PHASE1 = REPO / "phase1"
 # fallback. The sha256 is the one phase1/data/evidence/analysis_set_v1.manifest.json
 # records (a test keeps the two equal).
 CLINVAR_VCF = PHASE1 / "data" / "evidence" / "clinvar" / "clinvar_20260615.vcf.gz"
-CLINVAR_URLS = [
-    "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/archive_2.0/2026/"
-    "clinvar_20260615.vcf.gz",
-    "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/weekly/clinvar_20260615.vcf.gz",
+# Tried in order: (url, url of the source's own md5 file, or None). A mirror without
+# an md5 file is checked by the sha256 alone, which is the check that matters.
+_NCBI = "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/"
+CLINVAR_SOURCES = [
+    (_NCBI + "archive_2.0/2026/clinvar_20260615.vcf.gz",
+     _NCBI + "archive_2.0/2026/clinvar_20260615.vcf.gz.md5"),
+    (_NCBI + "weekly/clinvar_20260615.vcf.gz",
+     _NCBI + "weekly/clinvar_20260615.vcf.gz.md5"),
 ]
+CLINVAR_URLS = [url for url, _ in CLINVAR_SOURCES]
 CLINVAR_SHA256 = "10d86b892aae1f035e1950844e13fb039dad50be1087a0d1445c60d29191a342"
 ATLAS_ARCHIVE = {
     "version": "2.5.0",
@@ -235,20 +240,23 @@ def fetch_clinvar() -> None:
                      "analysis set was built from (sha256 differs); remove it and rerun")
         print(f"ClinVar release present, sha256 checked: {CLINVAR_VCF.relative_to(REPO)}")
         return
-    for url in CLINVAR_URLS:
+    for url, md5_url in CLINVAR_SOURCES:
         try:
-            md5 = urllib.request.urlopen(url + ".md5", timeout=60).read().decode().split()[0]
+            md5 = (urllib.request.urlopen(md5_url, timeout=60).read().decode().split()[0]
+                   if md5_url else None)
             print(f"downloading {url} (192 MB)", flush=True)
             _download(url, CLINVAR_VCF)
             break
         except (OSError, http.client.HTTPException) as e:
             print(f"  not available there ({e})")
     else:
-        sys.exit("could not download the ClinVar release from NCBI")
-    if _digest(CLINVAR_VCF, "md5") != md5 or _digest(CLINVAR_VCF, "sha256") != CLINVAR_SHA256:
+        sys.exit("could not download the ClinVar release from any source")
+    if ((md5 is not None and _digest(CLINVAR_VCF, "md5") != md5)
+            or _digest(CLINVAR_VCF, "sha256") != CLINVAR_SHA256):
         CLINVAR_VCF.unlink()     # a rerun downloads it afresh
         sys.exit("the downloaded ClinVar file failed its checksums and was removed")
-    print("  md5 matches NCBI's, sha256 matches the analysis-set manifest")
+    print(("  md5 matches the source's, " if md5 else "  ")
+          + "sha256 matches the analysis-set manifest")
 
 
 def fetch_atlas() -> None:
