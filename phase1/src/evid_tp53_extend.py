@@ -97,6 +97,7 @@ SCRIPTS = REPO / "scripts"
 EXT_DIR = PHASE1 / "data" / "evidence" / "external"
 REF_CACHE = PHASE1 / "data" / "evidence" / "reference_cache"
 REGION_PAD = 5000   # nt beyond TP53's first and last exon, as evid_external for DDX3X
+PARSE_TOLERANCE = 1e-12   # a stored score's last-digit parse difference across CPUs
 
 # frozen inputs, read only
 DEPOSIT = REPO / "data" / "external" / "tp53_mavedb_scores.tsv"
@@ -685,7 +686,8 @@ def _check(name: str, col: str, ids: list[str], got: pd.Series, want: pd.Series)
     return {"scorer": name, "column": col, "n_checked": int(len(ids)),
             "n_identical": int(same.sum()),
             "max_abs_diff": float(np.nanmax(diff)) if np.isfinite(diff).any() else 0.0,
-            "differing": [i for i, s in zip(ids, same) if not s]}
+            "differing": [i for i, s in zip(ids, same) if not s],
+            "nan_mismatch": bool((np.isnan(g) != np.isnan(w)).any())}   # not recorded
 
 
 def assemble() -> tuple[pd.DataFrame, dict, pd.DataFrame]:
@@ -729,7 +731,16 @@ def assemble() -> tuple[pd.DataFrame, dict, pd.DataFrame]:
                 extra[col] = d[col]
             else:
                 new_raw[target] = d.loc[new_ids, col].to_numpy(dtype=float)
-    failed = [c for c in checks if c["n_identical"] != c["n_checked"]]
+    # "Not the same scorer" means values that differ, not the last binary digit: the
+    # stored values were read back through pandas' default CSV parser, which is not
+    # correctly rounded and can land one or two units in the last place apart on
+    # another CPU architecture (x86_64 against the arm64 the values were made on). A
+    # check fails on any NaN mismatch or any difference above PARSE_TOLERANCE; the
+    # record keeps the exact counts either way.
+    failed = [c for c in checks if c["n_identical"] != c["n_checked"]
+              and (c["max_abs_diff"] > PARSE_TOLERANCE or c["nan_mismatch"])]
+    for c in checks:
+        c.pop("nan_mismatch")
     if failed:
         lines = [f"  {c['scorer']}/{c['column']}: {c['n_identical']}/{c['n_checked']} "
                  f"identical, max |diff| {c['max_abs_diff']:.3g}" for c in failed]

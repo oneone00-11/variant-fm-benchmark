@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.12.13"   # the outputs were made with 3.12.13
       - name: bash reproduce.sh
         run: bash reproduce.sh
       - name: Upload the per-file comparison
@@ -51,7 +51,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.12.13"   # the outputs were made with 3.12.13
       - name: bash reproduce.sh
         run: bash reproduce.sh
       - name: Upload the per-file comparison
