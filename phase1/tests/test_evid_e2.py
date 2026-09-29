@@ -186,6 +186,9 @@ def test_every_evaluated_column_has_a_training_provenance_row():
     assert not missing, f"evaluated but no training provenance row: {sorted(missing)}"
 
 
+@pytest.mark.skipif(
+    not (ATLAS_REPO / "src/atlas/predictor_resources.py").exists(),
+    reason="companion atlas not available (scripts/reproduce_evidence.py --fetch-inputs)")
 def test_the_training_rows_that_come_from_the_atlas_are_not_restated():
     """Nine columns are carried from the companion atlas's curated table. If this
     module ever restates one instead of importing it, the two papers can disagree

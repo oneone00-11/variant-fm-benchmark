@@ -157,3 +157,9 @@ other three depended on the machine that wrote them, and every result was unchan
   Zenodo both honour HTTP ranges), and checks the announced size, because a
   connection closed early otherwise ends the read without an error. The checksums
   are checked after every download as before.
+- **Quick check.** `bash reproduce.sh --check` (or `scripts/reproduce_evidence.py
+  --check`) needs no download: it checks every checksum the manifests and provenance
+  records carry about files in the repository (105 over 95 files; row-order-free
+  content hashes where the record says so) and runs the test suite. The one test that
+  reads the atlas's `predictor_resources.py` now skips when the atlas is absent, as
+  the other atlas-dependent tests do, so the suite passes on a bare clone.

@@ -335,3 +335,13 @@ def test_clinvar_falls_back_to_a_mirror_and_checks_its_sha256(tmp_path, monkeypa
         assert not (tmp_path / "clinvar.vcf.gz").exists()
     finally:
         server.shutdown()
+
+
+def test_every_recorded_checksum_names_a_file_of_its_own():
+    rows = E.recorded_checksums()
+    assert len(rows) >= 100
+    for record, target, sha, how in rows:
+        assert target != REPO / record, f"{record} points at itself"
+        assert len(sha) == 64 and how in ("file", "content")
+    inside = [t for _, t, _, _ in rows if t.is_relative_to(REPO)]
+    assert len(inside) >= 100          # the atlas's and ClinVar's lie outside, if at all

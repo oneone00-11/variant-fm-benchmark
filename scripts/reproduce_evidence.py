@@ -63,6 +63,7 @@ Stages
 Outputs land in `phase1/reports/evidence/`.
 
     bash reproduce.sh                                       # from a fresh clone: everything
+    bash reproduce.sh --check                               # five minutes, no download
     python scripts/reproduce_evidence.py --fetch-inputs --verify
     python scripts/reproduce_evidence.py
     python scripts/reproduce_evidence.py --from 3      # resume at a stage
@@ -457,6 +458,125 @@ def verify(before: dict) -> bool:
     return ok
 
 
+# --------------------------------------------------------------------------
+# --check: the quick path, with no download and no stage run
+# --------------------------------------------------------------------------
+def _canonical_sha256(path: Path) -> str:
+    """The row-order-free content hash the frozen and TP53 manifests record."""
+    if str(PHASE1) not in sys.path:
+        sys.path.insert(0, str(PHASE1))
+    import pandas as pd
+    from src.phase1_build_frozen_matrix_v2 import canonical_sha256
+    return canonical_sha256(pd.read_parquet(path))
+
+
+def recorded_checksums() -> list[tuple[str, Path, str, str]]:
+    """(record, file, expected sha256, "file" or "content") for every checksum a
+    tracked manifest or provenance record carries about a file in this repository,
+    and about the ClinVar release and the atlas files when they are present. A
+    "content" hash is taken over the table's rows, not the file's bytes. Hashes of
+    files that live only where the model scores were made (reference FASTAs, scorer
+    modules) are left out: nothing here can check them."""
+    ev, out = PHASE1 / "data" / "evidence", []
+
+    def add(record: Path, target: Path, sha: str, how: str = "file") -> None:
+        out.append((str(record.relative_to(REPO)), target, sha, how))
+
+    # provenance sidecars: <output>.provenance.json beside the file it describes
+    for rec in sorted((PHASE1 / "data").rglob("*.provenance.json")):
+        d = json.loads(rec.read_text())
+        stem = rec.name[: -len(".provenance.json")]
+        target = rec.with_name(stem)
+        if not target.exists():                    # atlas_columns_v2 -> .tsv
+            target = next(iter(sorted(p for p in rec.parent.glob(stem + ".*")
+                                      if p != rec)), target)
+        for key in ("output_sha256", "sha256"):
+            if isinstance(d.get(key), str):
+                add(rec, target, d[key])
+        if isinstance(d.get("input_sha256"), str) and isinstance(d.get("input"), str):
+            add(rec, REPO / d["input"], d["input_sha256"])
+
+    # the analysis set and the sources it was built from
+    rec = ev / "analysis_set_v1.manifest.json"
+    d = json.loads(rec.read_text())
+    add(rec, ev / "analysis_set_v1.parquet", d["sha256"])
+    for key, src in d["sources"].items():
+        if key == "assay_labels":
+            for spec in src.values():
+                add(rec, PHASE1 / "data" / "assay_labels" / spec["file"], spec["sha256"])
+        elif src.get("path", "").startswith("atlas:"):
+            atlas, missing = resolve_atlas()
+            if not missing:
+                add(rec, atlas / src["path"][len("atlas:"):], src["sha256"])
+        elif "path" in src and "sha256" in src:
+            add(rec, PHASE1 / src["path"], src["sha256"])
+
+    # the external genes
+    rec = ev / "external" / "ddx3x_splice.manifest.json"
+    add(rec, ev / "external" / "ddx3x_splice.parquet", json.loads(rec.read_text())["sha256"])
+    rec = ev / "external" / "tp53_splice_scored_12nt.manifest.json"
+    d = json.loads(rec.read_text())
+    table = ev / "external" / "tp53_splice_scored_12nt.parquet"
+    add(rec, table, d["parquet_sha256"])
+    add(rec, table, d["sha256"], "content")
+    add(rec, REPO / d["reference_alleles"]["file"], d["reference_alleles"]["sha256"])
+    for part in ("subset", "events"):
+        add(rec, REPO / d["inframe"][part], d["inframe"][part + "_sha256"])
+    envs = [s["environment"] for s in d["score_files"].values()]
+    envs.append(d["inframe"]["events_environment"])
+    for env in envs:
+        add(rec, REPO / env["full_record"], env["full_record_sha256"])
+    rec = PHASE1 / "data" / "external" / "tp53_splice_scored_v2.manifest.json"
+    add(rec, rec.with_name("tp53_splice_scored_v2.parquet"),
+        json.loads(rec.read_text())["sha256"], "content")
+
+    # the frozen matrices the set joins to
+    for n in (1, 2):
+        rec = PHASE1 / "data" / "frozen" / f"manifest_v{n}.json"
+        d = json.loads(rec.read_text())
+        add(rec, PHASE1 / d["output_path"], d["sha256"], "content")
+
+    # the reference cache and the supplementary tables
+    rec = ev / "reference_cache" / "MANIFEST.json"
+    for rel, meta in json.loads(rec.read_text())["files"].items():
+        add(rec, ev / "reference_cache" / rel, meta["sha256"])
+    rec = PHASE1 / "reports" / "evidence" / "supplement" / "supplement_tables_manifest.csv"
+    with open(rec, newline="") as f:
+        for row in csv.DictReader(f):
+            add(rec, rec.with_name(row["File"]), row["File sha256"])
+    return out
+
+
+def check() -> bool:
+    """Every recorded checksum, then the test suite. No download, no stage run."""
+    print(f"{'=' * 74}\nChecksums recorded in the manifests and provenance records\n"
+          f"{'=' * 74}")
+    rows = recorded_checksums()
+    bad = []
+    for record, target, sha, how in rows:
+        if not target.exists():
+            bad.append(f"missing  {target.relative_to(REPO)}  (recorded in {record})")
+            continue
+        got = _canonical_sha256(target) if how == "content" else _digest(target, "sha256")
+        if got != sha:
+            bad.append(f"differs  {target.relative_to(REPO)}  (recorded in {record})")
+    n_files = len({t for _, t, _, _ in rows})
+    print(f"  {len(rows)} checksums over {n_files} files: "
+          f"{len(rows) - len(bad)} match, {len(bad)} do not")
+    for b in bad:
+        print(f"      {b}")
+    if not CLINVAR_VCF.exists():
+        print("  the ClinVar release and the atlas are not here, so their checksums wait "
+              "for the full run")
+    print(f"\n{'=' * 74}\nThe test suite (pytest -q)\n{'=' * 74}", flush=True)
+    tests = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider"],
+                           cwd=REPO)
+    ok = not bad and tests.returncode == 0
+    print("\nCHECKED: every recorded checksum matches and every test passes." if ok else
+          "\nCHECK FAILED: see above.")
+    return ok
+
+
 def run_stage(module: str, label: str, n: int, total: int, args: list) -> bool:
     """Run one stage. Returns False if it was skipped for a missing input.
 
@@ -485,10 +605,16 @@ def main() -> None:
     ap.add_argument("--fetch-inputs", action="store_true",
                     help="download the ClinVar release and the atlas release archive "
                          "when they are missing, and check their checksums")
+    ap.add_argument("--check", action="store_true",
+                    help="quick path, about five minutes, no download: check every "
+                         "checksum the manifests and provenance records carry, then run "
+                         "the test suite; no stage runs")
     ap.add_argument("--verify", action="store_true",
                     help="compare every output with the one the checkout carried before "
                          "the run, and exit non-zero unless all match")
     args = ap.parse_args()
+    if args.check:
+        sys.exit(0 if check() else 1)
     if args.verify and args.start != 1:
         sys.exit("--verify needs the full run (no --from)")
     if args.fetch_inputs:

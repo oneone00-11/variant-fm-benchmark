@@ -45,13 +45,14 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   `requirements-evidence.lock.txt`. Changes between rounds are recorded in
   `docs/evidence-change-log.md`; data terms per column in `LICENSE-DATA`.
 
-**Reproducing from a fresh clone: one command** (about 25 minutes and 250 MB of
-downloads on first use; needs Python 3.12 and network access):
+**Reproducing from a fresh clone: one command** (about 25 minutes of computation
+and 250 MB of downloads on first use, the downloads up to an hour when NCBI is slow;
+needs Python 3.12 and network access):
 
 ```bash
 git clone https://github.com/oneone00-11/variant-fm-benchmark
 cd variant-fm-benchmark
-git checkout evidence/rework          # the release tag, once there is one
+git checkout v3.0.0-submission
 bash reproduce.sh
 ```
 
@@ -68,8 +69,24 @@ byte-identical except the build time in
 `phase1/data/evidence/analysis_set_v1.manifest.json`. On another platform the figure
 files may differ in their bytes where the Arial font differs.
 `.github/workflows/reproduce.yml` runs the same command on a GitHub macOS arm64
-runner on every push to this branch, and on a Linux runner to record what differs
-there.
+runner on every push to this branch and on every release tag, and on a Linux runner
+to record what differs there; each run keeps its `reproduce_report.txt`, one line per
+output, as an artifact.
+
+**Quick check: five minutes, no download.** For a reader who does not want the full
+run:
+
+```bash
+bash reproduce.sh --check
+```
+
+It builds `.venv` as above (a minute or two, the only network use), then checks every
+checksum the repository's manifests and provenance records carry (105 of them, over 95
+files: the analysis set, the external-gene tables and the model scores they merge,
+the reference cache, the supplementary tables, the frozen matrices) and runs the test
+suite, which checks the printed tables against the files they are drawn from. It
+recomputes nothing and ends with `CHECKED` or lists what failed; the full run above is
+what rebuilds every output.
 
 ## What this repository contains
 

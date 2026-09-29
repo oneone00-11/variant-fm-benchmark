@@ -2,7 +2,9 @@
 # One command from a fresh clone to every output of the evidence-strength study,
 # checked against the outputs this checkout carries:
 #
-#     bash reproduce.sh
+#     bash reproduce.sh            # everything, about 25 minutes plus downloads
+#     bash reproduce.sh --check    # about five minutes, no download: every recorded
+#                                  # checksum, then the test suite
 #
 # It builds .venv with Python 3.12 from requirements-evidence.lock.txt (once),
 # downloads and checks the two public inputs the repository does not carry (the
@@ -48,4 +50,7 @@ MPLCONFIGDIR="$(mktemp -d)"
 export MPLCONFIGDIR
 unset MATPLOTLIBRC EVID_ATLAS_REPO
 
+if [ "${1:-}" = "--check" ]; then     # the quick path: no download, no stage run
+    exec .venv/bin/python scripts/reproduce_evidence.py --check
+fi
 exec .venv/bin/python scripts/reproduce_evidence.py --fetch-inputs --verify "$@"
