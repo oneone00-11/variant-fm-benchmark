@@ -152,3 +152,8 @@ other three depended on the machine that wrote them, and every result was unchan
   with default threads), and ignores any user matplotlib configuration.
   `.github/workflows/reproduce.yml` runs `bash reproduce.sh` on a GitHub macOS arm64
   runner, where it must pass, and on Linux for information.
+- **Downloads that survive the network.** `--fetch-inputs` resumes a download cut
+  short or stalled for a minute, asking the server for the remaining bytes (NCBI and
+  Zenodo both honour HTTP ranges), and checks the announced size, because a
+  connection closed early otherwise ends the read without an error. The checksums
+  are checked after every download as before.

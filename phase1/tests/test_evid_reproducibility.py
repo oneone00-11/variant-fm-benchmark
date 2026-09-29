@@ -224,3 +224,48 @@ def test_atlas_sources_are_named_the_same_wherever_the_atlas_sits(monkeypatch):
     assert S._display(inside / "src/atlas/predictor_resources.py") == \
         "atlas:src/atlas/predictor_resources.py"
     assert S._display(PHASE1 / "src/evid_common.py") == "phase1/src/evid_common.py"
+
+
+# --------------------------------------------------------------------------
+# a download cut short resumes where it stopped
+# --------------------------------------------------------------------------
+def test_a_download_cut_short_resumes_from_where_it_stopped(tmp_path, monkeypatch):
+    import http.server
+    import threading
+
+    payload = bytes(range(256)) * 4096                   # 1 MiB
+    requests = []
+
+    class Handler(http.server.BaseHTTPRequestHandler):
+        def log_message(self, *a):
+            pass
+
+        def do_GET(self):
+            rng = self.headers.get("Range")
+            requests.append(rng)
+            if rng is None:                                # the first try: announce
+                self.send_response(200)                    # it all, send half, hang up
+                self.send_header("Content-Length", str(len(payload)))
+                self.end_headers()
+                self.wfile.write(payload[: len(payload) // 2])
+                self.wfile.flush()
+                self.close_connection = True
+                return
+            start = int(rng.split("=")[1].rstrip("-"))
+            self.send_response(206)
+            self.send_header("Content-Range", f"bytes {start}-{len(payload) - 1}/{len(payload)}")
+            self.send_header("Content-Length", str(len(payload) - start))
+            self.end_headers()
+            self.wfile.write(payload[start:])
+
+    server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    monkeypatch.setattr(E.time, "sleep", lambda s: None)
+    try:
+        dest = tmp_path / "file.bin"
+        E._download(f"http://127.0.0.1:{server.server_address[1]}/f", dest)
+    finally:
+        server.shutdown()
+    assert dest.read_bytes() == payload
+    assert requests[0] is None and requests[1] == f"bytes={len(payload) // 2}-"
+    assert not (tmp_path / "file.bin.part").exists()

@@ -71,11 +71,14 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import http.client
 import json
 import os
 import shutil
 import subprocess
 import sys
+import time
+import urllib.error
 import urllib.request
 import zipfile
 from pathlib import Path
@@ -174,12 +177,50 @@ def _digest(path: Path, algo: str) -> str:
     return h.hexdigest()
 
 
-def _download(url: str, dest: Path) -> None:
+def _expected_size(r, offset: int) -> int | None:
+    """The full size of the file the response belongs to, when the server says."""
+    cr = r.headers.get("Content-Range", "")               # bytes a-b/total
+    if "/" in cr and cr.rsplit("/", 1)[1].isdigit():
+        return int(cr.rsplit("/", 1)[1])
+    cl = r.headers.get("Content-Length", "")
+    return offset + int(cl) if cl.isdigit() else None
+
+
+def _download(url: str, dest: Path, attempts: int = 30) -> None:
+    """Download `url` to `dest` through a .part file that survives a stall or a
+    dropped connection: each retry asks for the remaining bytes only (NCBI and Zenodo
+    both honour HTTP ranges). A minute without data counts as a stall. The caller
+    checks the checksum, so a resumed file is never trusted on its own."""
     dest.parent.mkdir(parents=True, exist_ok=True)
     part = dest.with_name(dest.name + ".part")
-    with urllib.request.urlopen(url, timeout=300) as r, open(part, "wb") as f:
-        shutil.copyfileobj(r, f, 1 << 20)
-    part.replace(dest)
+    for attempt in range(1, attempts + 1):
+        have = part.stat().st_size if part.exists() else 0
+        headers = {"Range": f"bytes={have}-"} if have else {}
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=headers),
+                                        timeout=60) as r:
+                resume = bool(have) and r.status == 206   # else it sends it all
+                total = _expected_size(r, have if resume else 0)
+                with open(part, "ab" if resume else "wb") as f:
+                    shutil.copyfileobj(r, f, 1 << 20)
+            # a connection closed early ends the read without an error, so the size
+            # the server announced is the only sign the body is incomplete
+            if total is None or part.stat().st_size >= total:
+                part.replace(dest)
+                return
+            err = f"connection closed before {total} bytes"
+        except urllib.error.HTTPError as e:
+            if e.code == 416 and have:                 # nothing left to send
+                part.replace(dest)
+                return
+            err = e
+        except (OSError, http.client.HTTPException) as e:   # stalls, resets, a
+            err = e                                           # connection cut short
+        got = part.stat().st_size if part.exists() else 0
+        print(f"  interrupted at {got / 2**20:.0f} MB ({err}); resuming, attempt "
+              f"{attempt + 1} of {attempts}", flush=True)
+        time.sleep(min(30, 2 * attempt))
+    raise OSError(f"gave up on {url} after {attempts} attempts")
 
 
 def fetch_clinvar() -> None:
@@ -197,12 +238,12 @@ def fetch_clinvar() -> None:
             print(f"downloading {url} (192 MB)", flush=True)
             _download(url, CLINVAR_VCF)
             break
-        except OSError as e:
+        except (OSError, http.client.HTTPException) as e:
             print(f"  not available there ({e})")
     else:
         sys.exit("could not download the ClinVar release from NCBI")
     if _digest(CLINVAR_VCF, "md5") != md5 or _digest(CLINVAR_VCF, "sha256") != CLINVAR_SHA256:
-        CLINVAR_VCF.unlink()
+        CLINVAR_VCF.unlink()     # a rerun downloads it afresh
         sys.exit("the downloaded ClinVar file failed its checksums and was removed")
     print("  md5 matches NCBI's, sha256 matches the analysis-set manifest")
 
