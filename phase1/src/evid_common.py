@@ -14,12 +14,17 @@ from scipy.stats import rankdata
 
 from . import config as C
 
-# The companion atlas repository, read by several stages. EVID_ATLAS_REPO overrides
-# it; the default is a checkout beside this one, so that a fresh clone of both
-# repositories into one directory works without configuration.
-ATLAS_REPO = Path(os.environ.get(
-    "EVID_ATLAS_REPO",
-    str(Path(__file__).resolve().parents[2].parent / "functional-standard-atlas")))
+# The companion atlas, read by several stages: EVID_ATLAS_REPO if set, otherwise a
+# checkout named functional-standard-atlas beside this repository, otherwise the
+# release archive that scripts/reproduce_evidence.py --fetch-inputs unpacks here. The
+# atlas's results/ files ship in that archive, not in its git repository, so a bare
+# clone of the atlas is not enough on its own; the entry point checks for them.
+_ATLAS_BESIDE = Path(__file__).resolve().parents[2].parent / "functional-standard-atlas"
+ATLAS_FETCHED = (Path(__file__).resolve().parents[1]
+                 / "data" / "evidence" / "companion_atlas" / "atlas")
+ATLAS_REPO = Path(os.environ.get("EVID_ATLAS_REPO") or (
+    ATLAS_FETCHED if ATLAS_FETCHED.exists() and not _ATLAS_BESIDE.exists()
+    else _ATLAS_BESIDE))
 
 SET_PATH = Path("data/evidence/analysis_set_v1.parquet")
 REPORT_DIR = Path("reports/evidence")

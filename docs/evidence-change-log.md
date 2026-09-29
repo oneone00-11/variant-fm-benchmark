@@ -113,3 +113,35 @@ Changes that alter results, each with the reason:
 - New outputs: `depth_counts.csv` (labelled and damaging variants by intronic depth),
   terms-of-use columns in `predictor_training_provenance.csv` and Table 2, and an
   in-scope split in `clinvar_arm_no_assertion.csv`.
+
+## Round 5 (2026-09-29): reproducing from public sources
+
+A clean-room run from public sources only (a fresh clone, the atlas release archive
+from Zenodo, a Python environment built from `requirements-evidence.lock.txt`, the
+ClinVar release from NCBI) regenerated 160 of 163 committed outputs byte for byte. The
+other three depended on the machine that wrote them, and every result was unchanged.
+
+- **TP53 REF check.** `evid_tp53_extend` checked the 288 REF bases against a 706 MB
+  local FASTA that no archive carries, so elsewhere it recorded "not checked" and a
+  local path. It now reads TP53's GRCh38 region (MANE exons +/- 5,000 nt, the bounds
+  rule used for DDX3X; 29,070 nt from Ensembl REST) from the repository's reference
+  cache, where it is registered with its sha256. The fetched sequence is identical to
+  the Ensembl r112 FASTA the check used before, and all 288 REF bases match it.
+- **Atlas commit.** The analysis-set manifest read the atlas commit with `git`, which
+  gave "unknown" for the release archive. An archive now records the commit its
+  release was cut from (every file tracked at tag v2.5.0-submission is byte-identical
+  in the archive), a checkout records its own HEAD, and an archive unpacked inside
+  another checkout is no longer mistaken for it. The manifest also records the sha256
+  of the atlas's AlphaGenome v0.6.1 score file, which the set build reads, and a
+  missing copy of that file now stops the build instead of dropping the column.
+- **Entry point.** `--fetch-inputs` downloads the ClinVar release (NCBI's archive
+  first, the weekly directory as fallback) and the atlas release archive, checks
+  their checksums and unpacks the archive under `phase1/data/evidence/companion_atlas/`
+  (gitignored). Before any stage runs, the entry point checks every atlas file the
+  stages read, because the atlas's `results/` files ship in its archive and not in
+  its git repository.
+- **One command.** `bash reproduce.sh` builds `.venv` from the lock file (and refuses
+  a `.venv` that differs from it), then runs the entry point with `--fetch-inputs
+  --verify`. `--verify` records every output the checkout carries before the run,
+  compares each with what the run writes, and ends with `REPRODUCED` or the list of
+  what differs; a manifest may differ only in its wall-clock fields.

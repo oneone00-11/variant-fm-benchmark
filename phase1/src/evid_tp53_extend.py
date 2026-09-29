@@ -95,6 +95,8 @@ PHASE1 = Path(__file__).resolve().parents[1]
 REPO = PHASE1.parent
 SCRIPTS = REPO / "scripts"
 EXT_DIR = PHASE1 / "data" / "evidence" / "external"
+REF_CACHE = PHASE1 / "data" / "evidence" / "reference_cache"
+REGION_PAD = 5000   # nt beyond TP53's first and last exon, as evid_external for DDX3X
 
 # frozen inputs, read only
 DEPOSIT = REPO / "data" / "external" / "tp53_mavedb_scores.tsv"
@@ -426,20 +428,47 @@ def write_variant_lists() -> tuple[pd.DataFrame, pd.DataFrame]:
     return allv, inp
 
 
-def _check_reference_alleles(allv: pd.DataFrame, atlas: Path) -> dict:
+def _tp53_region(atlas: Path, offline: bool) -> tuple[str, int, int, str, str]:
+    """TP53's GRCh38 + strand sequence over its MANE Select exons +/- REGION_PAD nt,
+    the bounds rule evid_external uses for DDX3X, fetched from Ensembl REST by the
+    atlas mapping code into this repository's reference cache and registered in its
+    MANIFEST.json there. The file is tracked, so an offline run reads it from the
+    checkout; only a first build fetches it.
+
+    The check used to read a 706 MB local FASTA that no public archive carries, so on
+    any other machine it recorded "not checked" and a local path instead."""
+    sys.path.insert(0, str(atlas / "src"))
+    from atlas import mapping as M
+    from .evid_inframe import GENE_TRANSCRIPT
+    M.REF_CACHE = REF_CACHE
+    mane = M.load_mane_records(["TP53"])["TP53"]
+    tmap, _ = M.build_transcript_map(GENE_TRANSCRIPT["TP53"], mane)
+    lo = min(e.g_start for e in tmap.exons) - REGION_PAD
+    hi = max(e.g_end for e in tmap.exons) + REGION_PAD
+    rel = f"ensembl/seq_GRCh38_chr{mane.chr_name}_{lo}_{hi}.fa"
+    if offline and not (REF_CACHE / rel).exists():
+        raise SystemExit(f"[tp53-12nt] {_rel(REF_CACHE / rel)} is missing and "
+                         "--offline was given")
+    start, end, seq = M.fetch_ensembl_region(mane.chr_name, lo, hi)
+    return mane.chr_name, start, end, seq, rel
+
+
+def _check_reference_alleles(allv: pd.DataFrame, atlas: Path, offline: bool) -> dict:
     """The deposit's genomic REF base against GRCh38 at every one of the 288."""
-    import pysam
-    fasta = atlas / "data" / "refs" / "grch38_subset.fa"
-    if not fasta.exists():
-        return {"checked": False, "reason": f"{fasta} not found"}
-    fa = pysam.FastaFile(str(fasta))
+    chrom, start, end, seq, rel = _tp53_region(atlas, offline)
+    registered = json.loads((REF_CACHE / "MANIFEST.json").read_text())["files"][rel]
+    if sha256_file(REF_CACHE / rel) != registered["sha256"]:
+        raise SystemExit(f"[tp53-12nt] {rel} does not match its registration in "
+                         f"{_rel(REF_CACHE / 'MANIFEST.json')}")
     bad = [r.variant_id for r in allv.itertuples()
-           if fa.fetch(str(r.chrom), int(r.pos) - 1, int(r.pos)).upper() != r.ref]
-    fa.close()
+           if str(r.chrom) != chrom or not start <= int(r.pos) <= end
+           or seq[int(r.pos) - start] != r.ref]
     if bad:
         raise SystemExit(f"[tp53-12nt] REF does not match GRCh38 at {bad[:5]} ...")
     return {"checked": True, "n": int(len(allv)), "mismatches": 0,
-            "reference": "Ensembl r112 GRCh38 chr17 (<atlas>/data/refs/grch38_subset.fa)"}
+            "reference": f"GRCh38 chr{chrom}:{start}-{end}, + strand, Ensembl REST "
+                         "/sequence/region",
+            "file": _rel(REF_CACHE / rel), "sha256": registered["sha256"]}
 
 
 # ---------------------------------------------------------------------------
@@ -800,7 +829,7 @@ def assemble() -> tuple[pd.DataFrame, dict, pd.DataFrame]:
         "frozen_rows": {"source": _rel(FROZEN_TABLE),
                         "identical_to_source": True,
                         "rebuilt_by_the_same_transforms_and_identical": True},
-        "reference_alleles": None,       # filled by build() when the fasta is present
+        "reference_alleles": None,       # filled by build()
         "columns": columns,
         "not_scored": NOT_SCORED,
         "required_complete": REQUIRED_COMPLETE,
@@ -907,7 +936,7 @@ def build(offline: bool = False) -> dict:
         ensure_scored(name, atlas, offline)
     table, manifest, allv = assemble()
     manifest["inframe"] = ensure_events(inframe_subset(table), atlas, offline)
-    manifest["reference_alleles"] = _check_reference_alleles(allv, atlas)
+    manifest["reference_alleles"] = _check_reference_alleles(allv, atlas, offline)
     table.to_parquet(OUT, index=False)
     manifest["parquet_sha256"] = sha256_file(OUT)
     MANIFEST.write_text(json.dumps(manifest, indent=2, default=str) + "\n")

@@ -87,12 +87,43 @@ def sha256_of(path: Path) -> str:
     return h.hexdigest()
 
 
+# The atlas commit each release archive was cut from. The Zenodo archive of a release
+# carries no .git, so reading HEAD from it recorded "unknown" where a checkout records
+# the commit. Every file tracked at tag v2.5.0-submission is byte-identical in the
+# v2.5.0 archive (10.5281/zenodo.22751081; checked 2026-09-29), so an archive and a
+# checkout of the same release record the same commit.
+ATLAS_RELEASE_COMMIT = {"2.5.0": "c2b8af77452a3ec630cb54ee8553a6e97569a386"}
+
+
 def git_head(repo: Path) -> str:
+    """HEAD of `repo` if `repo` is itself the top of a git checkout. An archive
+    unpacked inside another checkout (reproduce_evidence.py --fetch-inputs puts it
+    under phase1/data/evidence/) would otherwise report that checkout's HEAD."""
     try:
-        return subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"],
-                              capture_output=True, text=True, check=True).stdout.strip()
+        run = lambda *a: subprocess.run(["git", "-C", str(repo), *a], capture_output=True,
+                                        text=True, check=True).stdout.strip()
+        if Path(run("rev-parse", "--show-toplevel")).resolve() != Path(repo).resolve():
+            return "unknown"
+        return run("rev-parse", "HEAD")
     except Exception:
         return "unknown"
+
+
+def atlas_release(repo: Path) -> str:
+    """The release version in the atlas's own CITATION.cff."""
+    for line in (Path(repo) / "CITATION.cff").read_text().splitlines():
+        if line.startswith("version:"):
+            return line.split(":", 1)[1].strip().strip('"').strip("'")
+    return "unknown"
+
+
+def atlas_commit(repo: Path) -> str:
+    """The atlas commit: a checkout's own HEAD, or, for a release archive, the
+    commit that release was cut from."""
+    head = git_head(repo)
+    if head != "unknown":
+        return head
+    return ATLAS_RELEASE_COMMIT.get(atlas_release(repo), "unknown")
 
 
 def _load_atlas_module(name: str, relpath: str):
@@ -329,20 +360,23 @@ def build() -> None:
     sel = sel.rename(columns=keep)
     sel["func_pathogenicity"] = sel["functional_pathogenicity"]
 
-    # AlphaGenome v0.6.1, the published study's definition, as a sensitivity column
-    if ATLAS_V061.exists():
-        v061 = pd.read_parquet(ATLAS_V061)
-        # Named explicitly. This file is a full matrix, not a two-column score file,
-        # so "the first column that is not variant_id" picks `gene` and the column
-        # silently becomes a gene symbol -- which is what it was until this was
-        # caught, and nothing downstream noticed because the v0.6.1 column is a
-        # sensitivity column outside the panel and outside the orientation check.
-        src_col = "alphagenome_splice"
-        if src_col not in v061.columns:
-            raise SystemExit(f"[E1] {ATLAS_V061} has no {src_col!r}; "
-                             f"columns are {list(v061.columns)}")
-        sel = sel.merge(v061[["variant_id", src_col]].rename(
-            columns={src_col: "alphagenome_v061"}), on="variant_id", how="left")
+    # AlphaGenome v0.6.1, the published study's definition, as a sensitivity column.
+    # Required: a missing file used to drop the column without a word.
+    if not ATLAS_V061.exists():
+        raise SystemExit(f"[E1] {ATLAS_V061} is missing; it ships in the atlas's "
+                         "release archive (results/), not in its git repository")
+    v061 = pd.read_parquet(ATLAS_V061)
+    # Named explicitly. This file is a full matrix, not a two-column score file,
+    # so "the first column that is not variant_id" picks `gene` and the column
+    # silently becomes a gene symbol -- which is what it was until this was
+    # caught, and nothing downstream noticed because the v0.6.1 column is a
+    # sensitivity column outside the panel and outside the orientation check.
+    src_col = "alphagenome_splice"
+    if src_col not in v061.columns:
+        raise SystemExit(f"[E1] {ATLAS_V061} has no {src_col!r}; "
+                         f"columns are {list(v061.columns)}")
+    sel = sel.merge(v061[["variant_id", src_col]].rename(
+        columns={src_col: "alphagenome_v061"}), on="variant_id", how="left")
 
     for name, path in OPTIONAL_COLUMNS.items():
         if path.exists():
@@ -431,7 +465,11 @@ def build() -> None:
                 # every machine; the sha256 identifies the file
                 "path": "atlas:" + str(Path(ATLAS_MATRIX).relative_to(ATLAS_REPO)),
                 "sha256": sha256_of(ATLAS_MATRIX),
-                "atlas_git_head": git_head(ATLAS_REPO),
+                "atlas_git_head": atlas_commit(ATLAS_REPO),
+            },
+            "atlas_alphagenome_v061": {
+                "path": "atlas:" + str(Path(ATLAS_V061).relative_to(ATLAS_REPO)),
+                "sha256": sha256_of(ATLAS_V061),
             },
             "clinvar_vcf": {
                 "path": str(CLINVAR_VCF),  # relative to phase1/

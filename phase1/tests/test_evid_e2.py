@@ -9,7 +9,6 @@ than retyped.
 from __future__ import annotations
 
 import json
-import os
 import sys
 from pathlib import Path
 
@@ -20,11 +19,9 @@ import pytest
 PHASE1 = Path(__file__).resolve().parents[1]
 DATA = PHASE1 / "data/evidence"
 REPORTS = PHASE1 / "reports/evidence"
-ATLAS_REPO = Path(os.environ.get(
-    "EVID_ATLAS_REPO",
-    str(Path(__file__).resolve().parents[2].parent / "functional-standard-atlas")))
 if str(PHASE1) not in sys.path:
     sys.path.insert(0, str(PHASE1))
+from src.evid_common import ATLAS_REPO  # noqa: E402  the stages' own resolution
 SET = DATA / "analysis_set_v1.parquet"
 
 AVI_COLS = ["avi", "avi_splice_sites", "avi_splice_site_usage", "avi_splice_junctions"]

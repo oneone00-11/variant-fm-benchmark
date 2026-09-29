@@ -117,6 +117,15 @@
       "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
       "source_url": "https://rest.ensembl.org/sequence/region/human/17:58687602..58740611:1?content-type=text/plain"
     },
+    "ensembl/seq_GRCh38_chr17_7663421_7692490.fa": {
+      "bytes": 29070,
+      "chrom": "17",
+      "fetched_at": "2026-09-29T13:05:52+00:00",
+      "registered_at": "2026-09-29T13:05:52.202802+00:00",
+      "sha256": "585072d94621fe511d614824f6300557b4e72a90b69791a2cb743aedbacbd10f",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/17:7663421..7692490:1?content-type=text/plain"
+    },
     "ensembl/seq_GRCh38_chr2_214720646_214814683.fa": {
       "bytes": 94038,
       "chrom": "2",

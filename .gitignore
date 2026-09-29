@@ -71,3 +71,7 @@ phase1/data/raw/reference/
 !environment.yml
 *.key
 *.pem
+
+# --- The companion atlas release archive, unpacked by
+# scripts/reproduce_evidence.py --fetch-inputs (50 MB; Zenodo 10.5281/zenodo.22751081)
+phase1/data/evidence/companion_atlas/

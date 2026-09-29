@@ -4,13 +4,19 @@ evidence-strength reframe -- one command for every analysis stage of the reworke
 
 What this reproduces, and what it does not. The analysis stages below run in order
 and are deterministic under the seed in `phase1/src/config.py`; several of them,
-including the build of the analysis set, also read the companion atlas repository
-(EVID_ATLAS_REPO, or a checkout beside this one). Five kinds of input are NOT
+including the build of the analysis set, also read the companion atlas, release
+v2.5.0: EVID_ATLAS_REPO, or a checkout named functional-standard-atlas beside this
+one, or the release archive that --fetch-inputs downloads from Zenodo
+(10.5281/zenodo.22751081, md5 checked) and unpacks under phase1/data/evidence/
+(gitignored). The atlas's results/ files ship in that archive and not in its git
+repository, so a bare clone of the atlas is not enough; the entry point checks for
+every atlas file the stages read before it starts. Five kinds of input are NOT
 rebuilt here, because they are third-party downloads or model re-scores that need
 their own environments; each is pinned by sha256 in a manifest or provenance file:
 
   * the ClinVar GRCh38 VCF of 15 June 2026 (192 MB; `phase1/data/evidence/clinvar/`,
-    gitignored, md5 checked against NCBI's own file on download);
+    gitignored; --fetch-inputs downloads it from NCBI's archive and checks its md5
+    against NCBI's file and its sha256 against the analysis-set manifest);
   * the `spliceai_walker` column, re-scored at Walker's -D 4999 in the pinned
     SpliceAI 1.3.1 environment (`src/evid_score_spliceai_walker.py`), and the
     SpliceAI event records for the in-frame attribution
@@ -56,18 +62,64 @@ Stages
 
 Outputs land in `phase1/reports/evidence/`.
 
+    bash reproduce.sh                                       # from a fresh clone: everything
+    python scripts/reproduce_evidence.py --fetch-inputs --verify
     python scripts/reproduce_evidence.py
     python scripts/reproduce_evidence.py --from 3      # resume at a stage
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
+import os
+import shutil
 import subprocess
 import sys
+import urllib.request
+import zipfile
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 PHASE1 = REPO / "phase1"
+
+# The two public inputs this repository does not carry, and where --fetch-inputs
+# gets them. NCBI's archive keeps every release; the weekly directory is the
+# fallback. The sha256 is the one phase1/data/evidence/analysis_set_v1.manifest.json
+# records (a test keeps the two equal).
+CLINVAR_VCF = PHASE1 / "data" / "evidence" / "clinvar" / "clinvar_20260615.vcf.gz"
+CLINVAR_URLS = [
+    "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/archive_2.0/2026/"
+    "clinvar_20260615.vcf.gz",
+    "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/weekly/clinvar_20260615.vcf.gz",
+]
+CLINVAR_SHA256 = "10d86b892aae1f035e1950844e13fb039dad50be1087a0d1445c60d29191a342"
+ATLAS_ARCHIVE = {
+    "version": "2.5.0",
+    "doi": "10.5281/zenodo.22751081",
+    "url": ("https://zenodo.org/api/records/22751081/files/"
+            "functional-standard-atlas-v2.5.0.zip/content"),
+    "md5": "0858fe136346428b764e8b1c3c35b223",      # Zenodo's checksum of the file
+}
+# What --verify compares: every file the stages write, as it stood before the run.
+# Fetched inputs are left out; manifests may differ only in their wall-clock fields,
+# the set evid_supp_tables also leaves out when it hashes them.
+OUTPUT_ROOTS = [PHASE1 / "reports" / "evidence", PHASE1 / "data" / "evidence",
+                REPO / "docs" / "evidence-delta.md"]
+NOT_OUTPUTS = [PHASE1 / "data" / "evidence" / "clinvar",
+               PHASE1 / "data" / "evidence" / "companion_atlas"]
+WALL_CLOCK_KEYS = {"built_utc", "scored_utc", "retrieved_utc", "run_at"}
+ATLAS_BESIDE = REPO.parent / "functional-standard-atlas"
+ATLAS_FETCHED = PHASE1 / "data" / "evidence" / "companion_atlas" / "atlas"
+# Every atlas file the stages read. The three under results/ ship in the release
+# archive and are not tracked in the atlas's git repository.
+ATLAS_NEEDS = [
+    "CITATION.cff",
+    "src/atlas/__init__.py", "src/atlas/clinical_evidence.py", "src/atlas/evaluate.py",
+    "src/atlas/manifest.py", "src/atlas/mapping.py", "src/atlas/predictor_resources.py",
+    "results/score_matrix_atlas_v2.parquet", "results/alphagenome_v061_scores.parquet",
+    "results/table1_atlas_composition.tsv",
+]
 
 STAGES = [
     ("src.evid_build_set",          "E1  rebuild the analysis set", []),
@@ -103,8 +155,8 @@ NEEDS = {
     ],
     "src.evid_build_set": [
         ("phase1/data/evidence/clinvar/clinvar_20260615.vcf.gz",
-         "curl -O https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/weekly/"
-         "clinvar_20260615.vcf.gz   (into phase1/data/evidence/clinvar/)"),
+         "python scripts/reproduce_evidence.py --fetch-inputs, or curl -O "
+         + CLINVAR_URLS[0] + "   (into phase1/data/evidence/clinvar/)"),
     ],
     "src.evid_inframe": [
         ("phase1/data/evidence/inframe_events.parquet",
@@ -112,6 +164,158 @@ NEEDS = {
          "it prints"),
     ],
 }
+
+
+def _digest(path: Path, algo: str) -> str:
+    h = hashlib.new(algo)
+    with open(path, "rb") as f:
+        for block in iter(lambda: f.read(1 << 20), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def _download(url: str, dest: Path) -> None:
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    part = dest.with_name(dest.name + ".part")
+    with urllib.request.urlopen(url, timeout=300) as r, open(part, "wb") as f:
+        shutil.copyfileobj(r, f, 1 << 20)
+    part.replace(dest)
+
+
+def fetch_clinvar() -> None:
+    """The ClinVar release, from NCBI, checked against NCBI's md5 and the sha256 the
+    analysis-set manifest records. An existing file is only checked."""
+    if CLINVAR_VCF.exists():
+        if _digest(CLINVAR_VCF, "sha256") != CLINVAR_SHA256:
+            sys.exit(f"{CLINVAR_VCF.relative_to(REPO)} is not the release the "
+                     "analysis set was built from (sha256 differs); remove it and rerun")
+        print(f"ClinVar release present, sha256 checked: {CLINVAR_VCF.relative_to(REPO)}")
+        return
+    for url in CLINVAR_URLS:
+        try:
+            md5 = urllib.request.urlopen(url + ".md5", timeout=60).read().decode().split()[0]
+            print(f"downloading {url} (192 MB)", flush=True)
+            _download(url, CLINVAR_VCF)
+            break
+        except OSError as e:
+            print(f"  not available there ({e})")
+    else:
+        sys.exit("could not download the ClinVar release from NCBI")
+    if _digest(CLINVAR_VCF, "md5") != md5 or _digest(CLINVAR_VCF, "sha256") != CLINVAR_SHA256:
+        CLINVAR_VCF.unlink()
+        sys.exit("the downloaded ClinVar file failed its checksums and was removed")
+    print("  md5 matches NCBI's, sha256 matches the analysis-set manifest")
+
+
+def fetch_atlas() -> None:
+    """The atlas release archive, from Zenodo, checked against Zenodo's md5 and
+    unpacked to phase1/data/evidence/companion_atlas/atlas/."""
+    a = ATLAS_ARCHIVE
+    root = ATLAS_FETCHED.parent
+    zpath = root / f"functional-standard-atlas-v{a['version']}.zip"
+    if not (zpath.exists() and _digest(zpath, "md5") == a["md5"]):
+        print(f"downloading the atlas release v{a['version']} (doi {a['doi']}, 50 MB)",
+              flush=True)
+        _download(a["url"], zpath)
+    if _digest(zpath, "md5") != a["md5"]:
+        zpath.unlink()
+        sys.exit("the downloaded atlas archive failed its md5 check and was removed")
+    with zipfile.ZipFile(zpath) as z:
+        for name in z.namelist():            # nothing may land outside root
+            if not (root / name).resolve().is_relative_to(root.resolve()):
+                sys.exit(f"unexpected path in the atlas archive: {name}")
+        z.extractall(root)
+    print(f"  md5 matches Zenodo's; unpacked to {ATLAS_FETCHED.relative_to(REPO)}")
+
+
+def _missing(atlas: Path) -> list[str]:
+    return [f for f in ATLAS_NEEDS if not (atlas / f).is_file()]
+
+
+def resolve_atlas() -> tuple[Path, list[str]]:
+    """The atlas every stage will read, and the files it lacks: EVID_ATLAS_REPO if
+    set; otherwise the checkout beside this repository if it is complete, else the
+    fetched release archive."""
+    if os.environ.get("EVID_ATLAS_REPO"):
+        path = Path(os.environ["EVID_ATLAS_REPO"])
+        return path, _missing(path)
+    for path in (ATLAS_BESIDE, ATLAS_FETCHED):
+        if path.is_dir() and not _missing(path):
+            return path, []
+    path = ATLAS_BESIDE if ATLAS_BESIDE.is_dir() else ATLAS_FETCHED
+    return path, _missing(path)
+
+
+def atlas_version(atlas: Path) -> str:
+    for line in (atlas / "CITATION.cff").read_text().splitlines():
+        if line.startswith("version:"):
+            return line.split(":", 1)[1].strip().strip('"').strip("'")
+    return "unknown"
+
+
+def _outputs() -> list[Path]:
+    files = []
+    for root in OUTPUT_ROOTS:
+        for p in ([root] if root.is_file() else sorted(root.rglob("*"))):
+            if (p.is_file() and not p.name.startswith(".") and "__pycache__" not in p.parts
+                    and not any(p.is_relative_to(x) for x in NOT_OUTPUTS)):
+                files.append(p)
+    return files
+
+
+def _without_wall_clock(path: Path):
+    def strip(x):
+        if isinstance(x, dict):
+            return {k: strip(v) for k, v in x.items() if k not in WALL_CLOCK_KEYS}
+        if isinstance(x, list):
+            return [strip(v) for v in x]
+        return x
+    return strip(json.loads(path.read_text()))
+
+
+def snapshot() -> dict:
+    """The outputs as the checkout carries them, before any stage runs."""
+    snap = {}
+    for p in _outputs():
+        entry = {"sha256": _digest(p, "sha256"), "mtime": p.stat().st_mtime}
+        if p.suffix == ".json":
+            entry["json"] = _without_wall_clock(p)
+        snap[p] = entry
+    return snap
+
+
+def verify(before: dict) -> bool:
+    """Every output the checkout carried, compared with what this run wrote."""
+    same, clock_only, differ, gone, stale = 0, [], [], [], []
+    for p, b in before.items():
+        rel = p.relative_to(REPO)
+        if not p.exists():
+            gone.append(rel)
+            continue
+        if p.stat().st_mtime == b["mtime"]:
+            stale.append(rel)                # not rewritten by this run
+        if _digest(p, "sha256") == b["sha256"]:
+            same += 1
+        elif "json" in b and _without_wall_clock(p) == b["json"]:
+            clock_only.append(rel)
+        else:
+            differ.append(rel)
+    new = [p.relative_to(REPO) for p in _outputs() if p not in before]
+    print(f"\n{'=' * 74}\nVerification against the outputs this checkout carried\n"
+          f"{'=' * 74}")
+    print(f"  {len(before)} files under the output folders: {len(before) - len(stale)} "
+          f"rewritten by this run, {len(stale)} inputs it only reads")
+    print(f"  byte-identical:                 {same}")
+    print(f"  identical but for the build time: {len(clock_only)}"
+          + "".join(f"\n      {r}" for r in clock_only))
+    for label, rows in (("DIFFERENT", differ), ("MISSING after the run", gone),
+                        ("NEW, not in the checkout", new)):
+        if rows:
+            print(f"  {label}: {len(rows)}" + "".join(f"\n      {r}" for r in rows))
+    ok = not (differ or gone or new)
+    print("\nREPRODUCED: every output matches the committed one." if ok else
+          "\nNOT REPRODUCED: see the files listed above.")
+    return ok
 
 
 def run_stage(module: str, label: str, n: int, total: int, args: list) -> bool:
@@ -139,7 +343,34 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--from", dest="start", type=int, default=1)
+    ap.add_argument("--fetch-inputs", action="store_true",
+                    help="download the ClinVar release and the atlas release archive "
+                         "when they are missing, and check their checksums")
+    ap.add_argument("--verify", action="store_true",
+                    help="compare every output with the one the checkout carried before "
+                         "the run, and exit non-zero unless all match")
     args = ap.parse_args()
+    if args.verify and args.start != 1:
+        sys.exit("--verify needs the full run (no --from)")
+    if args.fetch_inputs:
+        fetch_clinvar()
+    atlas, missing = resolve_atlas()
+    if missing and args.fetch_inputs and not os.environ.get("EVID_ATLAS_REPO"):
+        fetch_atlas()
+        atlas, missing = resolve_atlas()
+    if missing:
+        sys.exit(f"The companion atlas at {atlas} lacks {', '.join(missing)}.\n"
+                 "Its results/ files ship in the release archive, not in its git "
+                 "repository. Rerun with --fetch-inputs to download the archive "
+                 f"(doi {ATLAS_ARCHIVE['doi']}), or set EVID_ATLAS_REPO to an unpacked "
+                 "copy of it.")
+    os.environ["EVID_ATLAS_REPO"] = str(atlas)    # every stage reads this one atlas
+    version = atlas_version(atlas)
+    print(f"companion atlas: {atlas} (release {version})")
+    if version != ATLAS_ARCHIVE["version"]:
+        print(f"  WARNING: the analysis set was built from release "
+              f"{ATLAS_ARCHIVE['version']}; outputs will differ")
+    before = snapshot() if args.verify else None
     total = len(STAGES)
     skipped = []
     for i, (mod, label, extra) in enumerate(STAGES, 1):
@@ -155,7 +386,10 @@ def main() -> None:
         for s in skipped:
             print(f"  {s}")
         sys.exit(1)
-    print("All stages ran.\n")
+    print("All stages ran.")
+    if before is not None and not verify(before):
+        sys.exit(1)
+    print()
 
 
 if __name__ == "__main__":

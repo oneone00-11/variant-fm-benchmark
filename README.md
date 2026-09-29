@@ -26,17 +26,47 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   matrix (release v2.5.0) and the ClinVar GRCh38 release of 15 June 2026.
 - **External genes:** DDX3X (1,857 intron-side SNVs to 25 nt; labelled by the
   deposit's own classification) and TP53 (288 SNVs to 12 nt).
-- **Entry point:** `python scripts/reproduce_evidence.py` (22 stages; the companion
-  atlas is found through `EVID_ATLAS_REPO` or as a checkout named
-  `functional-standard-atlas` beside this one). Outputs: `phase1/reports/evidence/`.
+- **Entry point:** `python scripts/reproduce_evidence.py` (22 stages). Outputs:
+  `phase1/reports/evidence/`, with the analysis set and the external-gene tables
+  under `phase1/data/evidence/`.
+- **Companion atlas:** release v2.5.0 (Zenodo 10.5281/zenodo.22751081), found through
+  `EVID_ATLAS_REPO`, as a checkout named `functional-standard-atlas` beside this one,
+  or as the release archive that `--fetch-inputs` unpacks under
+  `phase1/data/evidence/companion_atlas/`. Its `results/` files ship in that archive
+  and are not in the atlas's git repository, so a bare clone of the atlas is not
+  enough; the entry point checks for every atlas file the stages read and says what
+  is missing.
 - **Not rebuilt by the entry point**, and tracked with checksums or provenance
-  records instead: the ClinVar release, the published-basis SpliceAI re-score and
-  SpliceAI event records, the DDX3X deposit and its panel scores, the TP53 scores
-  for offsets 9-12, and the AlphaGenome Atlas columns (which need an API key held
-  outside the repository). The entry point's docstring lists how each is produced.
+  records instead: the published-basis SpliceAI re-score and SpliceAI event records,
+  the DDX3X deposit and its panel scores, the TP53 scores for offsets 9-12, and the
+  AlphaGenome Atlas columns (which need an API key held outside the repository). The
+  entry point's docstring lists how each is produced.
 - **Environment:** Python 3.12 with the package set in
   `requirements-evidence.lock.txt`. Changes between rounds are recorded in
   `docs/evidence-change-log.md`; data terms per column in `LICENSE-DATA`.
+
+**Reproducing from a fresh clone: one command** (about 25 minutes and 250 MB of
+downloads on first use; needs Python 3.12 and network access):
+
+```bash
+git clone https://github.com/oneone00-11/variant-fm-benchmark
+cd variant-fm-benchmark
+git checkout evidence/rework          # the release tag, once there is one
+bash reproduce.sh
+```
+
+`reproduce.sh` builds `.venv` from `requirements-evidence.lock.txt`, then runs
+`scripts/reproduce_evidence.py --fetch-inputs --verify`. `--fetch-inputs` downloads
+the two public inputs this repository does not carry and checks them before any
+stage runs: the ClinVar GRCh38 release of 15 June 2026 (192 MB, from NCBI's archive;
+md5 against NCBI's file, sha256 against the analysis-set manifest) and the atlas
+release archive (50 MB, from Zenodo; md5 against Zenodo's). Both are gitignored.
+`--verify` records every output the checkout carries before the run and compares each
+with what the run writes; it ends with `REPRODUCED` or lists what differs, and exits
+non-zero if anything does. On macOS arm64 with Python 3.12.13 every output is
+byte-identical except the build time in
+`phase1/data/evidence/analysis_set_v1.manifest.json`. On another platform the figure
+files may differ in their bytes where the Arial font differs.
 
 ## What this repository contains
 
