@@ -104,8 +104,8 @@ CLINVAR_SOURCES = [
      _NCBI + "archive_2.0/2026/clinvar_20260615.vcf.gz.md5"),
     (_NCBI + "weekly/clinvar_20260615.vcf.gz",
      _NCBI + "weekly/clinvar_20260615.vcf.gz.md5"),
-    # NCBI's file, unchanged, in this release's Zenodo record (10.5281/zenodo.23043214)
-    ("https://zenodo.org/api/records/23043214/files/clinvar_20260615.vcf.gz/content", None),
+    # NCBI's file, unchanged, in this release's Zenodo record (10.5281/zenodo.23051009)
+    ("https://zenodo.org/api/records/23051009/files/clinvar_20260615.vcf.gz/content", None),
 ]
 CLINVAR_URLS = [url for url, _ in CLINVAR_SOURCES]
 CLINVAR_SHA256 = "10d86b892aae1f035e1950844e13fb039dad50be1087a0d1445c60d29191a342"

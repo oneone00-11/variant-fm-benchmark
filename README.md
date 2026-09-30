@@ -45,8 +45,8 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
 - **Environment:** Python 3.12 with the package set in
   `requirements-evidence.lock.txt`. Changes between rounds are recorded in
   `docs/evidence-change-log.md`; data terms per column in `LICENSE-DATA`.
-- **Archive:** release 3.0.0, tag `v3.0.0-submission`, on Zenodo as version DOI
-  10.5281/zenodo.23043214 (all versions: 10.5281/zenodo.22674887), which also holds
+- **Archive:** release 3.0.1, tag `v3.0.1-submission`, on Zenodo as version DOI
+  10.5281/zenodo.23051009 (all versions: 10.5281/zenodo.22674887), which also holds
   the ClinVar file.
 
 **Reproducing from a fresh clone: one command** (about 25 minutes of computation;
@@ -56,7 +56,7 @@ up to an hour when NCBI is slow; needs Python 3.12 and network access):
 ```bash
 git clone https://github.com/oneone00-11/variant-fm-benchmark
 cd variant-fm-benchmark
-git checkout v3.0.0-submission
+git checkout v3.0.1-submission
 bash reproduce.sh
 ```
 
@@ -66,7 +66,7 @@ the two public inputs this repository does not carry and checks them before any
 stage runs: the ClinVar GRCh38 release of 15 June 2026 (192 MB, from NCBI's archive;
 md5 against NCBI's file, sha256 against the analysis-set manifest) and the atlas
 release archive (50 MB, from Zenodo; md5 against Zenodo's). Both are gitignored.
-This release's Zenodo record (10.5281/zenodo.23043214) also holds the ClinVar file,
+This release's Zenodo record (10.5281/zenodo.23051009) also holds the ClinVar file,
 NCBI's original unchanged, and `--fetch-inputs` falls back to it when NCBI cannot
 serve the exact file; the sha256 check is the same whichever source served it.
 `--verify` compares every committed output with what the run writes: in a clone, the

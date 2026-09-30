@@ -261,3 +261,18 @@ in it changes a number of the study; the rounds above record what was reworked.
   `--verify`'s numerical tier. The full run still checks every file byte for byte on
   the machine that wrote it. Release 3.0.0 is unchanged; on x86_64 Linux its three
   strict tests fail as described here.
+
+## Release 3.0.1 (2026-09-30): `v3.0.1-submission`
+
+Archived at Zenodo as version DOI 10.5281/zenodo.23051009 (all versions:
+10.5281/zenodo.22674887).
+
+- **The cross-machine rebuild tests.** The three tests described under "After 3.0.0"
+  are archived with the release: two rebuilds on one machine byte-identical, the
+  printed S9 table byte for byte, and the rest against the committed files to the
+  relative 1e-9 of `--verify`'s numerical tier. On x86_64 Linux the suite passes: 368
+  passed, 14 skipped, 0 failed (run 36664902183). In the 3.0.0 archive these three
+  tests fail on x86_64 Linux, as described above; that record stays as it is.
+- **The ClinVar mirror** now points at this release's record, which holds the same
+  file (NCBI's `clinvar_20260615.vcf.gz`, unchanged); the 3.0.0 record keeps its copy.
+- **Nothing else:** the pipeline code and every output are those of 3.0.0.

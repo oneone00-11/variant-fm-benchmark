@@ -30,14 +30,14 @@ keywords:
   - reproducibility
 license: MIT
 license-url: "https://opensource.org/licenses/MIT"
-version: "3.0.0"
+version: "3.0.1"
 date-released: "2026-09-30"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.22674887"
     description: Concept DOI for all versions of the archived repository
   - type: doi
-    value: "10.5281/zenodo.23043214"
+    value: "10.5281/zenodo.23051009"
     description: Version DOI of this release
 preferred-citation:
   type: article
