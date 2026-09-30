@@ -202,3 +202,17 @@ other three depended on the machine that wrote them, and every result was unchan
 - **Known, not changed:** `requirements-evidence.lock.txt` pins `git-filter-repo`, a
   development tool the analysis does not use; changing the lock file changes the
   definition of the exact environment, so it stays until a release that needs to.
+- **Two verdicts, from the first independent runs.** On a GitHub-hosted M1 (macOS 14)
+  every printed table and figure matched byte for byte, while eight intermediate
+  tables of the elastic-net combination matched only to 1e-9 in relative terms:
+  numpy and scipy call the operating system's Accelerate library on macOS, whose
+  kernels differ between chips and releases. Pinning the runner to Python 3.12.13 was
+  not possible (the macOS 14 arm64 runners offer 3.12.10 at most). `--verify` now
+  ends `REPRODUCED` (byte for byte) or `REPRODUCED NUMERICALLY` (every printed table
+  and figure byte for byte, other files within 1e-9, and manifests differing only in
+  the hashes of such files); anything else fails. The macOS job must reach one of the
+  two. On the Linux runner (x86_64) the TP53 stage first stopped at its exact
+  reproduction check, one Nucleotide Transformer score reading back 4.4e-16 apart
+  through pandas' default CSV parser, which is not correctly rounded and can differ in
+  the last binary digit across CPU architectures; that check now allows a difference
+  below 1e-12 and still records the exact counts.

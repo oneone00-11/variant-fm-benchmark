@@ -22,15 +22,17 @@ on:
 
 jobs:
   macos-arm64:
-    # The platform the committed outputs were made on (macOS arm64, Python 3.12):
-    # every output must match byte for byte, the build time aside.
+    # The platform the committed outputs were made on (macOS arm64, Python 3.12). It
+    # must end REPRODUCED or REPRODUCED NUMERICALLY: every printed table and figure
+    # byte for byte, other files at most in the last digits, which the runner's
+    # Accelerate library (an M1 on macOS 14) can move.
     runs-on: macos-14
     timeout-minutes: 300          # the ClinVar download alone has taken an hour
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12.13"   # the outputs were made with 3.12.13
+          python-version: "3.12"
       - name: bash reproduce.sh
         run: bash reproduce.sh
       - name: Upload the per-file comparison
@@ -40,6 +42,23 @@ jobs:
           name: reproduce-report-macos-arm64
           path: reproduce_report.txt
           if-no-files-found: warn
+      - name: Collect the files that are not identical
+        if: always()
+        run: |
+          mkdir -p not-identical
+          if [ -f reproduce_report.txt ]; then
+            grep -E '^(differs|not rewritten|new)' reproduce_report.txt | cut -f2 |
+              while read -r f; do
+                [ -f "$f" ] && mkdir -p "not-identical/$(dirname "$f")" && cp "$f" "not-identical/$f"
+              done || true
+          fi
+      - name: Upload the files that are not identical
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reproduce-not-identical-macos-arm64
+          path: not-identical
+          if-no-files-found: ignore
 
   linux:
     # Informational: which outputs differ off macOS, and whether the numbers do. The
@@ -51,7 +70,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12.13"   # the outputs were made with 3.12.13
+          python-version: "3.12"
       - name: bash reproduce.sh
         run: bash reproduce.sh
       - name: Upload the per-file comparison
@@ -61,3 +80,20 @@ jobs:
           name: reproduce-report-linux
           path: reproduce_report.txt
           if-no-files-found: warn
+      - name: Collect the files that are not identical
+        if: always()
+        run: |
+          mkdir -p not-identical
+          if [ -f reproduce_report.txt ]; then
+            grep -E '^(differs|not rewritten|new)' reproduce_report.txt | cut -f2 |
+              while read -r f; do
+                [ -f "$f" ] && mkdir -p "not-identical/$(dirname "$f")" && cp "$f" "not-identical/$f"
+              done || true
+          fi
+      - name: Upload the files that are not identical
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reproduce-not-identical-linux
+          path: not-identical
+          if-no-files-found: ignore

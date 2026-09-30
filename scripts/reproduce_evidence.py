@@ -434,6 +434,17 @@ FIGURE_SUFFIXES = {".png", ".pdf", ".svg", ".tif", ".tiff"}
 RTOL = 1e-9
 REPORT_NAME = "reproduce_report.txt"      # at the repository root, gitignored
 OK_STATUSES = ("identical", "identical (build time aside)")
+# The second tier. On another machine the operating system's maths library (Apple's
+# Accelerate, which numpy and scipy call on macOS) can move a float's last digits:
+# on a GitHub M1 runner every printed table and figure matched byte for byte, while
+# eight intermediate tables of the elastic-net combination agreed only to 1e-9.
+# REPRODUCED NUMERICALLY allows exactly that: files outside the printed tables and
+# figures may differ within RTOL, and a manifest may differ only in the hashes of such
+# files. A printed table or figure, or any other difference, still fails.
+NUMERIC_STATUSES = OK_STATUSES + ("differs (numerically equal)",
+                                  "differs (hashes of numerically equal files)")
+PRINTED = [PHASE1 / "reports" / "evidence" / "tables",
+           PHASE1 / "reports" / "evidence" / "figures"]
 _WALL_CLOCK = re.compile(r'("(?:' + "|".join(map(re.escape, sorted(WALL_CLOCK_KEYS)))
                          + r')"\s*:\s*)"[^"]*"')
 
@@ -601,6 +612,42 @@ def _status(p: Path, b: dict) -> str:
     return "differs"
 
 
+def _printed(p: Path) -> bool:
+    """A table or figure as printed: the main tables, the figures and the
+    supplementary tables (not their manifest)."""
+    supp = PHASE1 / "reports" / "evidence" / "supplement"
+    return (any(p.is_relative_to(r) for r in PRINTED)
+            or (p.is_relative_to(supp) and p.name.startswith("table")))
+
+
+def _hash_only_differences(rows: list, base: dict) -> list:
+    """Re-grade a differing text file whose only differences are the hashes of files
+    that are themselves numerically equal (a manifest recording them)."""
+    swaps = {}
+    for status, rel in rows:
+        if status == "differs (numerically equal)":
+            p, b = REPO / rel, base["files"][rel]
+            swaps[_digest(p, "sha256")] = b["sha256"]
+            if p.suffix == ".json" and b.get("copy") is not None:
+                swaps[_source_sha256(p)] = _source_sha256(b["copy"])
+    if not swaps:
+        return rows
+    out = []
+    for status, rel in rows:
+        b = base["files"].get(rel, {})
+        if status == "differs" and b.get("copy") is not None and (REPO / rel).exists():
+            try:
+                text = (REPO / rel).read_text()
+                for new, old in swaps.items():
+                    text = text.replace(new, old)
+                if text == b["copy"].read_text():
+                    status = "differs (hashes of numerically equal files)"
+            except (OSError, UnicodeDecodeError):
+                pass
+        out.append((status, rel))
+    return out
+
+
 def _run_inputs() -> set[str]:
     return {line.strip() for line in RUN_INPUTS.read_text().splitlines()
             if line.strip() and not line.startswith("#")}
@@ -625,12 +672,22 @@ def verify(base: dict) -> bool:
         new = [str(p.relative_to(REPO)) for p in _outputs()
                if str(p.relative_to(REPO)) not in base["files"]]
     rows += [("new", r) for r in sorted(new)]
+    rows = _hash_only_differences(rows, base)
     counts = {}
     for status, _ in rows:
         counts[status] = counts.get(status, 0) + 1
-    ok = all(status in OK_STATUSES for status, _ in rows)
+    byte_ok = all(status in OK_STATUSES for status, _ in rows)
+    numeric_ok = all(status in NUMERIC_STATUSES and (status in OK_STATUSES
+                                                    or not _printed(REPO / rel))
+                     for status, rel in rows)
+    ok = byte_ok or numeric_ok
     n_inputs = sum(1 for _, rel in rows if rel in inputs)
-    verdict = ("REPRODUCED: every output matches the committed one." if ok else
+    n_last = sum(1 for status, _ in rows if status not in OK_STATUSES)
+    verdict = ("REPRODUCED: every output matches the committed one byte for byte."
+               if byte_ok else
+               f"REPRODUCED NUMERICALLY: every printed table and figure matches byte for "
+               f"byte; {n_last} other file(s) differ only in the last digits of their "
+               f"numbers (relative {RTOL:g})" if numeric_ok else
                "NOT REPRODUCED: every file not marked identical")
     with open(REPO / REPORT_NAME, "w") as f:
         f.write(f"# reproduce_evidence.py --verify, against "
@@ -645,7 +702,8 @@ def verify(base: dict) -> bool:
     print(f"  {len(base['files'])} committed files under the output folders, {n_inputs} "
           "of them inputs the stages only read")
     for status in ("identical", "identical (build time aside)", "differs (numerically equal)",
-                   "differs (figure)", "differs", "not rewritten", "missing", "new"):
+                   "differs (hashes of numerically equal files)", "differs (figure)",
+                   "differs", "not rewritten", "missing", "new"):
         if counts.get(status):
             print(f"  {status + ':':30s} {counts[status]}")
             if status != "identical":
@@ -864,9 +922,11 @@ def main() -> None:
                          "checksum the manifests and provenance records carry, then run "
                          "the test suite; no stage runs")
     ap.add_argument("--verify", action="store_true",
-                    help="compare every output with the committed one and exit non-zero "
-                         "unless all match; uses only an atlas that is the release file "
-                         "for file")
+                    help="compare every output with the committed one: REPRODUCED if all "
+                         "match byte for byte, REPRODUCED NUMERICALLY if every printed "
+                         "table and figure does and other files differ only in their last "
+                         "digits; exit non-zero otherwise. Uses only an atlas that is the "
+                         "release file for file")
     args = ap.parse_args()
     if args.check:
         sys.exit(0 if check() else 1)

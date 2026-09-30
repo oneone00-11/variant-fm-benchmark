@@ -70,14 +70,22 @@ serve the exact file; the sha256 check is the same whichever source served it.
 files as HEAD has them, and in a release archive, the tree as first unpacked. A
 committed output the run leaves untouched fails too, unless
 `scripts/reproduce_inputs.txt` lists it as an input the stages only read. The run
-ends with `REPRODUCED` or lists what differs, and exits non-zero if anything does. On
-macOS arm64 with Python 3.12.13 every output is byte-identical except the build time
-in `phase1/data/evidence/analysis_set_v1.manifest.json`. On another platform the
-figure files may differ in their bytes where the Arial font differs.
-`.github/workflows/reproduce.yml` runs the same command on a GitHub macOS arm64
-runner on every push to this branch that changes more than documentation and on
-every release tag, and on a Linux runner to record what differs there; each run keeps
-its `reproduce_report.txt`, one line per output, as an artifact.
+ends with one of two verdicts, or lists what differs and exits non-zero:
+`REPRODUCED` when every output matches byte for byte (a manifest's build time aside),
+and `REPRODUCED NUMERICALLY` when every printed table and figure does and other files
+differ only in the last digits of their numbers (relative 1e-9), which the operating
+system's maths library can move: numpy and scipy call Apple's Accelerate on macOS,
+and it differs between chips and macOS releases. On the machine the outputs were made
+on (Apple M5, macOS 26.6, Python 3.12.13) the run ends `REPRODUCED`: every output is
+byte-identical except the build time in
+`phase1/data/evidence/analysis_set_v1.manifest.json`. On a GitHub-hosted M1 (macOS
+14) it ends `REPRODUCED NUMERICALLY`: every printed table and figure matches byte for
+byte, and eight intermediate tables of the elastic-net combination match to 1e-9.
+`.github/workflows/reproduce.yml` runs the same command on that macOS arm64 runner on
+every push to this branch that changes more than documentation and on every release
+tag, and on a Linux runner to record what differs there; each run keeps its
+`reproduce_report.txt`, one line per output, and the files that are not identical as
+artifacts.
 
 **Quick check: five minutes, no data download.** For a reader who does not want the
 full run:

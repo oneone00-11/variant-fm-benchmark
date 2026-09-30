@@ -257,26 +257,66 @@ def _report(repo: Path) -> str:
     return (repo / "reproduce_report.txt").read_text()
 
 
+def _verdict(repo: Path) -> str:
+    return _report(repo).splitlines()[1]
+
+
 def test_verify_passes_only_when_every_output_matches(tmp_path, monkeypatch, capsys):
     repo, out = _outputs_tree(tmp_path, monkeypatch)
     base = E.baseline(tmp_path / "keep")
     _rerun(out)                                             # only the build time moved
     assert E.verify(base)
-    assert "REPRODUCED" in capsys.readouterr().out
+    assert "REPRODUCED: every output matches" in capsys.readouterr().out
     assert "identical (build time aside)\treports/m.manifest.json" in _report(repo)
 
-    base = E.baseline(tmp_path / "keep")                    # same number, other bytes:
-    _rerun(out, csv="a,b\n1.0000000000001,2\n")             # named, and still a fail
-    assert not E.verify(base)
+    base = E.baseline(tmp_path / "keep")                    # same number, other bytes
+    _rerun(out, csv="a,b\n1.0000000000001,2\n")             # in an intermediate table:
+    assert E.verify(base)                                   # the second tier, named
     assert "differs (numerically equal)\treports/t.csv" in _report(repo)
+    assert _verdict(repo).startswith("# REPRODUCED NUMERICALLY")
+
+    base = E.baseline(tmp_path / "keep")                    # a real difference fails
+    _rerun(out, csv="a,b\n1.001,2\n")                       # both tiers
+    assert not E.verify(base)
+    assert _verdict(repo).startswith("# NOT REPRODUCED")
 
 
 def test_verify_holds_manifests_to_their_bytes_bar_the_build_time(tmp_path, monkeypatch):
     repo, out = _outputs_tree(tmp_path, monkeypatch)
     base = E.baseline(tmp_path / "keep")
     _rerun(out, manifest='{\n  "n": 1.0,\n  "built_utc": "2026-09-29"\n}\n')   # 1 -> 1.0
-    assert not E.verify(base)
+    assert E.verify(base)                                   # not byte for byte
     assert "differs (numerically equal)\treports/m.manifest.json" in _report(repo)
+    assert _verdict(repo).startswith("# REPRODUCED NUMERICALLY")
+
+
+def test_a_printed_table_must_match_byte_for_byte(tmp_path, monkeypatch):
+    repo, out = _outputs_tree(tmp_path, monkeypatch)
+    printed = out / "tables"
+    printed.mkdir()
+    (printed / "table1.csv").write_text("x\n0.5\n")
+    monkeypatch.setattr(E, "PRINTED", [printed])
+    base = E.baseline(tmp_path / "keep")
+    _rerun(out)
+    (printed / "table1.csv").write_text("x\n0.50000000000001\n")   # numerically equal
+    assert not E.verify(base)
+    assert _verdict(repo).startswith("# NOT REPRODUCED")
+
+
+def test_a_manifest_may_differ_only_in_the_hash_of_a_numerically_equal_file(
+        tmp_path, monkeypatch):
+    repo, out = _outputs_tree(tmp_path, monkeypatch)
+    (out / "sums.csv").write_text(f"file,sha256\nt.csv,{_sha(out / 't.csv')}\n")
+    base = E.baseline(tmp_path / "keep")
+    _rerun(out, csv="a,b\n1.0000000000001,2\n")
+    (out / "sums.csv").write_text(f"file,sha256\nt.csv,{_sha(out / 't.csv')}\n")
+    assert E.verify(base)
+    assert ("differs (hashes of numerically equal files)\treports/sums.csv"
+            in _report(repo))
+    base = E.baseline(tmp_path / "keep")                    # any other change fails
+    _rerun(out, csv="a,b\n1.0000000000001,2\n")
+    (out / "sums.csv").write_text(f"file,sha256\nt.csv,{_sha(out / 't.csv')}\nx,y\n")
+    assert not E.verify(base)
 
 
 def test_verify_fails_an_output_the_run_did_not_rewrite(tmp_path, monkeypatch):
