@@ -223,11 +223,15 @@ def fmt_dp(x, dp: int = 3) -> str:
 def fmt_lr(x) -> str:
     """Three significant figures, half-up. A ratio of counts that sits exactly on a
     decimal tie can come out of the arithmetic just below it (291/20 = 14.55 is stored
-    as 14.549999999999999), and half-up on the stored value would round it down;
-    rounding to fifteen significant figures first puts it back on the tie."""
+    as 14.549999999999999), and a bootstrap bound interpolated between two such ratios
+    further below (a 97.5% bound of exactly 259/20 = 12.95 is stored as
+    12.949999999999854, 82 units in the last place low); half-up on the stored value
+    would round it down. Rounding to twelve significant figures first puts it back on
+    the tie; of the values printed here that are not ties, the nearest to one is 2.3e-6
+    away."""
     if not _finite(x):
         return ""
-    return fmt_sig(float(f"{float(x):.15g}"), 3)
+    return fmt_sig(float(f"{float(x):.12g}"), 3)
 
 
 _SCORES: dict[str, np.ndarray] = {}

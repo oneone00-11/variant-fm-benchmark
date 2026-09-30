@@ -74,8 +74,9 @@ Definitions, fixed here so that no column can be read two ways:
   * Wilson intervals treat variants as independent. The seven genes are clusters, so
     the intervals understate the spread between genes; the by-gene table shows it.
 
-E3 writes per-fold thresholds for the PP3 side only, so the BP4 kinds have no held-out
-numbers. Their logo rows are written with a status that says so, not dropped.
+E3 writes per-fold thresholds for the PP3 side only (of the BP4 folds it keeps only the
+median held-out ratio), so the BP4 kinds have no held-out sensitivity, specificity or
+coverage. Their logo rows are written with a status that says so, not dropped.
 
 The curves pool the seven genes: a user applies one threshold to every gene, and the
 pooled curve is that use. The gene-pooled AUROC of the study (per-gene AUROCs combined
@@ -777,10 +778,11 @@ SLIDE_DPI = 150
 SLIDE_SIZE = (2000 / SLIDE_DPI, 1125 / SLIDE_DPI)   # inches: 2000 x 1125 pixels, 16:9
 SLIDE_SCALE = 1.8                           # line widths and marker sizes against print
 # the inset is shorter than in print, its top where print has it, so that its tick
-# labels clear the larger AUROC key below it; figure_slides stops if they do not
-SLIDE_INSET_BOUNDS = [0.45, 0.49, 0.52, 0.23]
-SLIDE_CAPTION = ("Curves pool the seven genes; each AUROC is the manuscript's, per-gene "
-                 "AUROCs combined across genes on the logit scale.")
+# labels clear the larger AUROC key below it, with room in Arial and in DejaVu Sans, the
+# fallback where Arial is missing; figure_slides stops if they do not
+SLIDE_INSET_BOUNDS = [0.45, 0.51, 0.52, 0.21]
+SLIDE_CAPTION = ("Curves pool the seven genes; each AUROC is the manuscript's (per-gene "
+                 "AUROCs combined on the logit scale), not the area under these curves.")
 
 
 def slide_key_labels(auc: pd.DataFrame, stratum: str) -> list[str]:
@@ -806,7 +808,9 @@ def figure_slides(roc: pd.DataFrame, pr: pd.DataFrame, auc: pd.DataFrame,
     xmax, ymax = _inset_range(roc, marks)
     unit = [0, 0.25, 0.5, 0.75, 1]
     unit_labels = ["0", "0.25", "0.5", "0.75", "1"]
-    fig, axes = plt.subplots(2, 3, figsize=SLIDE_SIZE,
+    # drawn at the resolution it is saved at, so that the overlap check below measures
+    # the text the PNG holds (hinted text does not scale with the resolution)
+    fig, axes = plt.subplots(2, 3, figsize=SLIDE_SIZE, dpi=SLIDE_DPI,
                              gridspec_kw={"hspace": 0.36, "wspace": 0.30})
 
     def nudged(ax, tool):
@@ -928,6 +932,22 @@ IN_SENTENCE = {"spliceai_walker": "SpliceAI", "pangolin": "Pangolin",
                "avi": "the Atlas combined score"}
 
 
+def _left_out(auc: pd.DataFrame) -> str:
+    """Which genes the manuscript's AUROC leaves out, and where, for the four predictors
+    of the page: ' (BRCA1 at 11–50 bp)', or '' when it leaves none out."""
+    main = auc[auc.tool.isin(MAIN_TOOLS)]
+    where = {}
+    for st in CURVE_STRATA:
+        genes = {g.strip() for v in main[main.stratum == st].genes_not_in_gene_pool.dropna()
+                 for g in str(v).split(";") if g.strip()}
+        if genes:
+            where[st] = sorted(genes)
+    if not where:
+        return ""
+    return " (" + "; ".join(f"{', '.join(g)} at {F.STRATUM_LABEL[st]}"
+                            for st, g in where.items()) + ")"
+
+
 def _two(x) -> str:
     """Two decimals; a proportion within rounding of 1 or 0 is not printed as one."""
     if x is None or not np.isfinite(x):
@@ -1017,17 +1037,18 @@ def _sentences(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
     main = auc[auc.tool.isin(MAIN_TOOLS)]
     out = []
     # 1. the distal band on the ROC; the AUROC is the manuscript's, gene-pooled, as on
-    # the slide figure
+    # the slide figure, and the sentence says it is not the area under the curves
     best_distal = float(main[main.stratum == "s11_50"].auroc_gene_pooled.max())
     low_proximal = float(main[main.stratum == "s3_10"].auroc_gene_pooled.min())
     low, high = _distal_crossings(roc)
     if best_distal < low_proximal and low < 0.01 and high > 0.9:
         out.append("At 11–50 bp each ROC curve lies below the same tool's 3–10 bp curve "
-                   "except near its two ends; the best AUROC there is "
+                   "except near its two ends; by the manuscript's AUROC, per-gene AUROCs "
+                   "combined rather than the area under these curves, the best there is "
                    f"{best_distal:.2f}, below the lowest at 3–10 bp ({low_proximal:.2f}).")
     else:
-        out.append(f"At 11–50 bp the best AUROC is {best_distal:.2f}, against "
-                   f"{low_proximal:.2f} for the lowest at 3–10 bp.")
+        out.append(f"At 11–50 bp the best of the manuscript's AUROCs is {best_distal:.2f}, "
+                   f"against {low_proximal:.2f} for the lowest at 3–10 bp.")
     # 2 and 3. Strong at 3-10 bp, held out, where the table shows a held-out value
     strong = []
     for tool in MAIN_TOOLS:
@@ -1187,7 +1208,9 @@ def summary(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
            "tables; `coverage` there counts every scored variant, labelled or not).",
            "- AUROC (manuscript): per-gene AUROCs combined on the logit scale with "
            "random effects, the estimator of the manuscript's Methods "
-           "(`auroc_gene_pooled`). Pooled AUROC and AUPRC: the seven genes pooled into "
+           "(`auroc_gene_pooled`); it leaves out a gene with fewer than ten damaging or "
+           f"ten normal variants in the band{_left_out(auc)}. Pooled AUROC and AUPRC: "
+           "the seven genes pooled into "
            "one curve, the way one threshold is used across genes, the curves drawn in "
            "the figures; `practical_curve_auc.csv` splits the difference between the two.",
            "- Two decimals; >0.99 marks a value from 0.995 up to, not including, 1.",
@@ -1222,13 +1245,17 @@ def summary(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
            "each ROC panel gives the pooled AUROC; the dashed line in (b) is the band's "
            "prevalence. † The Atlas combined score's model was selected on the BRCA1 and "
            "RAD51C assays, which these curves include.", "",
-           f"`phase1/reports/evidence/figures/{SLIDES}.png` is the same figure at 16:9 "
-           "for slides, with larger type and the inset kept. Its caption: "
+           f"`phase1/reports/evidence/figures/{SLIDES}.png` draws the same curves at "
+           "16:9 for slides, with larger type and a shorter inset. Its keys give the "
+           "manuscript's AUROC, as in the column \"AUROC (manuscript)\", instead of the "
+           "pooled AUROC, and the two can rank the predictors differently. Its caption: "
            f"\"{SLIDE_CAPTION}\"", "",
            "## Known improvements", "",
-           "- The BP4 side has no held-out values: E3 writes per-fold thresholds for the "
-           "PP3 side only. Held-out sensitivity and specificity for BP4 need E3 to store "
-           "its per-fold BP4 thresholds as well.", ""]
+           "- The BP4 side has no held-out sensitivity, specificity or coverage here: E3 "
+           "fits per-fold BP4 thresholds but keeps only the median of their held-out "
+           "likelihood ratios (Supplementary Table S7), and its per-fold file holds the "
+           "PP3 side only. Held-out BP4 sensitivity and specificity need E3 to store its "
+           "per-fold BP4 thresholds as well.", ""]
     return "\n".join(md)
 
 

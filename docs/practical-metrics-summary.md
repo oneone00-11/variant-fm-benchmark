@@ -26,7 +26,7 @@ Each cell gives the held-out value first and the in-sample value in brackets, fo
 - A held-out value is shown when the tier is reached in-sample (the rule E7 applies before carrying a threshold to another gene) and in at least half the held-out folds; otherwise it would rest on one or two genes, and only the fold count is given. A dash in brackets: the tier is not reached in-sample.
 - The Atlas combined score (†): its model was selected on the BRCA1 and RAD51C assays, so its held-out values leave those two genes out. Its in-sample values, in brackets, include them.
 - Sensitivity: the share of damaging variants at or above the threshold. Specificity: the share of normal variants below it. Coverage: the share of labelled variants in the band at or above it, the denominator of the manuscript's '14.8% of the variants' at 0.2 (`coverage_labelled` in the tables; `coverage` there counts every scored variant, labelled or not).
-- AUROC (manuscript): per-gene AUROCs combined on the logit scale with random effects, the estimator of the manuscript's Methods (`auroc_gene_pooled`). Pooled AUROC and AUPRC: the seven genes pooled into one curve, the way one threshold is used across genes, the curves drawn in the figures; `practical_curve_auc.csv` splits the difference between the two.
+- AUROC (manuscript): per-gene AUROCs combined on the logit scale with random effects, the estimator of the manuscript's Methods (`auroc_gene_pooled`); it leaves out a gene with fewer than ten damaging or ten normal variants in the band (BRCA1 at 11–50 bp). Pooled AUROC and AUPRC: the seven genes pooled into one curve, the way one threshold is used across genes, the curves drawn in the figures; `practical_curve_auc.csv` splits the difference between the two.
 - Two decimals; >0.99 marks a value from 0.995 up to, not including, 1.
 - Wilson intervals, the BP4 side, the other ten columns and the fusion are in `practical_metrics_by_threshold.csv`; each fold in `practical_metrics_logo_by_gene.csv`; DDX3X and TP53 in `practical_metrics_external.csv`. The curve tables start at threshold +inf, where nothing is called; the precision-recall table's first row is the conventional (recall 0, precision 1), not an observation.
 
@@ -43,7 +43,7 @@ The seven genes pooled: the most sensitive threshold at which at least 95% of no
 
 ## In five sentences
 
-1. At 11–50 bp each ROC curve lies below the same tool's 3–10 bp curve except near its two ends; the best AUROC there is 0.85, below the lowest at 3–10 bp (0.91).
+1. At 11–50 bp each ROC curve lies below the same tool's 3–10 bp curve except near its two ends; by the manuscript's AUROC, per-gene AUROCs combined rather than the area under these curves, the best there is 0.85, below the lowest at 3–10 bp (0.91).
 2. Held out, a Strong threshold at 3–10 bp catches 21% to 39% of damaging variants, depending on the tool.
 3. The cost is coverage: held out, Strong evidence reaches no more than 8.1% of the labelled variants in that band.
 4. At a specificity of 0.95, the AlphaGenome splice score is the most sensitive, or tied for it, in all three bands, though by no more than 0.01.
@@ -53,8 +53,8 @@ The seven genes pooled: the most sensitive threshold at which at least 95% of no
 
 `phase1/reports/evidence/figures/figure_practical.pdf`. ROC curves (a) and precision-recall curves (b) of four predictors, the seven genes pooled, by distance from the exon boundary. Colours are those of Supplementary Figure S2, and each predictor also has its own line pattern. Filled markers are the fitted in-sample thresholds: circle Supporting, square Moderate, triangle Strong; a tier that is not reached is not drawn, and markers of different predictors are drawn slightly apart so that coinciding ones stay visible. The open diamond is the published cut point, 0.2, on SpliceAI (published basis). Insets in (a) enlarge the high-specificity end, 1 − specificity up to 0.06 against sensitivity, where every fitted threshold lies. The key in each ROC panel gives the pooled AUROC; the dashed line in (b) is the band's prevalence. † The Atlas combined score's model was selected on the BRCA1 and RAD51C assays, which these curves include.
 
-`phase1/reports/evidence/figures/figure_practical_slides.png` is the same figure at 16:9 for slides, with larger type and the inset kept. Its caption: "Curves pool the seven genes; each AUROC is the manuscript's, per-gene AUROCs combined across genes on the logit scale."
+`phase1/reports/evidence/figures/figure_practical_slides.png` draws the same curves at 16:9 for slides, with larger type and a shorter inset. Its keys give the manuscript's AUROC, as in the column "AUROC (manuscript)", instead of the pooled AUROC, and the two can rank the predictors differently. Its caption: "Curves pool the seven genes; each AUROC is the manuscript's (per-gene AUROCs combined on the logit scale), not the area under these curves."
 
 ## Known improvements
 
-- The BP4 side has no held-out values: E3 writes per-fold thresholds for the PP3 side only. Held-out sensitivity and specificity for BP4 need E3 to store its per-fold BP4 thresholds as well.
+- The BP4 side has no held-out sensitivity, specificity or coverage here: E3 fits per-fold BP4 thresholds but keeps only the median of their held-out likelihood ratios (Supplementary Table S7), and its per-fold file holds the PP3 side only. Held-out BP4 sensitivity and specificity need E3 to store its per-fold BP4 thresholds as well.

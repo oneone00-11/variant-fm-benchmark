@@ -3,8 +3,9 @@ threshold selects the variants the fitted one selects.
 
 The defect this exists for: evid_arms read E3's thresholds with pandas' default CSV
 float parser, which is not correctly rounded. It returned the combined Atlas score's
-Moderate threshold at 3-10 bp, written as 1.0710335969924927, one binary digit high,
-and the one damaging PALB2 variant scoring exactly that value fell out of the band
+Moderate threshold at 3-10 bp, written as 1.0710335969924927, one unit in the last
+place high, and the one damaging PALB2 variant scoring exactly that value fell out of the
+band
 "score >= threshold": Supplementary Table S10 printed 340 variants in band,
 sensitivity 0.516 and a band ratio of 28.1 where the fitted threshold selects 341,
 0.518 and 28.2. The same misreading made the supplementary tables choose the digits of
@@ -13,7 +14,6 @@ through evid_common.read_back.
 """
 from __future__ import annotations
 
-import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -41,8 +41,9 @@ need_supp = pytest.mark.skipif(not ((SUPP / "tableS6_thresholds_pathogenic.csv")
                                     and SET.exists()),
                                reason="supplementary tables not built, or no analysis set")
 
-# Every default-parser read left in the evidence stages, and why none carries a
-# threshold. A new read, or a change to one of these, fails the test below until it
+# Every default-parser read left in the evidence stages, and why none of them uses a
+# threshold (several of the tables they load have a threshold column, which these reads
+# leave alone). A new read, or a change to one of these, fails the test below until it
 # is either routed through read_back or added here with its reason.
 DEFAULT_READS = {
     "evid_build_set.py: lab = pd.read_csv(path, sep=None, engine=\"python\")":
@@ -51,6 +52,8 @@ DEFAULT_READS = {
         "the published study's tables (read twice), compared to four decimals",
     "evid_diagnostics.py: c = pd.read_csv(path).dropna(subset=[\"local_lr\"])":
         "local likelihood-ratio curves, for the monotonicity counts",
+    "evid_diagnostics.py: e2 = pd.read_csv(w)":
+        "ratios at Walker's cut points, which come from the configuration",
     "evid_external.py: cls = pd.read_csv(cpath, usecols=[\"hgvs_nt\", \"score\", DDX3X_CLASS_COLUMN])":
         "the DDX3X deposit's classification",
     "evid_fig_data.py: w = pd.read_csv(REPORT_DIR / \"walker_thresholds.csv\")":
@@ -84,11 +87,12 @@ DEFAULT_READS = {
     "evid_supp_tables.py: orient = _csv(REPORTS / \"feature_orientation.csv\").set_index(\"feature\")":
         "orientation correlations",
     "evid_supp_tables.py: cc = _csv(REPORTS / \"column_concordance.csv\")":
-        "column concordance",
+        "column concordance; its cut point is the configuration's 0.2, which any parser "
+        "reads exactly",
     "evid_supp_tables.py: w = _csv(REPORTS / \"walker_thresholds.csv\")":
         "ratios at Walker's cut points, which come from the configuration",
     "evid_supp_tables.py: t = _csv(REPORTS / \"territory_metrics_arms_noBRCA1.csv\",":
-        "AUROCs and ratios at Walker's cut point by arm",
+        "AUROC columns only (usecols)",
     "evid_supp_tables.py: w = _csv(REPORTS / \"arms_within_gene.csv\")":
         "within-gene arm comparisons",
     "evid_supp_tables.py: basis = _csv(bp).set_index(\"tool\")":
@@ -106,24 +110,38 @@ DEFAULT_READS = {
     "evid_tables.py: print(f\"[tables] wrote {f.name} ({len(pd.read_csv(f))} rows)\")":
         "a row count",
     "evid_tp53_extend.py: return pd.read_csv(buf, sep=\"\\t\")":
-        "the TP53 deposit, checked against its manifest",
+        "deliberate: reproduces the TSV write and default-parser read that the frozen "
+        "TP53 spliceai, pangolin and nt values went through (TSV_STORED); read_back "
+        "here would change the stored scores",
 }
 TWICE = {"evid_delta.py: return pd.read_csv(p) if p.exists() else pd.DataFrame()",
          "evid_supp_tables.py: sc = _csv(REPORTS / \"set_counts.csv\")"}
 
 
-def test_every_default_read_is_one_that_carries_no_threshold():
+def test_every_default_read_is_one_that_uses_no_threshold():
     """Each read in the evidence stages that does not go through read_back is on the
     list above, with the reason it needs no exact read; paths held in variables are
-    caught too, because the check is the read itself, not the file name in it."""
+    caught too, because the check is the read itself, not the file name in it. Reads
+    are found in the syntax tree call by call, keyed by the line each call starts on,
+    so a default read beside a read_back, or behind a comment that mentions one, is
+    caught as well."""
+    import ast
     found = Counter()
     for p in sorted((PHASE1 / "src").glob("evid_*.py")):
-        for line in p.read_text().splitlines():
-            code = line.strip()
-            if (re.search(r"\bread_csv\(|\b_csv\(", code) and "read_back" not in code
-                    and "to_csv" not in code and not code.startswith("def ")
-                    and "float_precision=\"round_trip\"" not in code):
-                found[f"{p.name}: {code}"] += 1
+        src = p.read_text()
+        lines = src.splitlines()
+        for node in ast.walk(ast.parse(src)):
+            if not isinstance(node, ast.Call):
+                continue
+            f = node.func
+            name = (f.attr if isinstance(f, ast.Attribute)
+                    else f.id if isinstance(f, ast.Name) else None)
+            if name not in ("read_csv", "read_table", "_csv"):
+                continue
+            if any(k.arg == "float_precision" and isinstance(k.value, ast.Constant)
+                   and k.value.value == "round_trip" for k in node.keywords):
+                continue
+            found[f"{p.name}: {lines[node.lineno - 1].strip()}"] += 1
     expected = Counter({k: (2 if k in TWICE else 1) for k in DEFAULT_READS})
     assert found == expected, (
         "default-parser reads not on the list: "
@@ -200,10 +218,11 @@ def test_the_palb2_variant_on_the_threshold_is_in_its_band():
 
 
 @need_supp
-def test_every_printed_threshold_selects_the_fitted_band():
+def test_every_printed_threshold_selects_the_fitted_band(monkeypatch):
     """S6, S7, S8, S10 and S12: each printed threshold is fmt_thr of the exact value it
     prints, and selects exactly the variants that value selects (at or above it on the
-    PP3 side, at or below it on the BP4 side)."""
+    PP3 side, at or below it on the BP4 side): the analysis set's for S6-S10, and for
+    S12 the external gene's own scored variants in the band."""
     from src import evid_common as K
     from src import evid_supp_tables as S
     df = pd.read_parquet(SET)
@@ -264,31 +283,53 @@ def test_every_printed_threshold_selects_the_fitted_band():
                    & (fitted.clinvar_arm == arm[r["ClinVar record status"]])].iloc[0]
         check(("S10", r["Genes"], tool, st, r["ClinVar record status"]),
               r["Fitted threshold"], float(f.threshold), tool, "upper")
-    ext = {g: K.read_back(EV / f"external_{g.lower()}.csv") for g in ("DDX3X", "TP53")}
-    for _, r in text("tableS12_external_genes.csv").iterrows():
-        tool = tools[r["Tool"]]
-        for tier in ("Supporting", "Moderate", "Strong"):
-            printed = r[f"{tier}: threshold (median of leave-one-gene-out fits)"]
-            if not printed:
-                continue
-            carried = ext[r["Gene"]]
-            carried = carried[carried.tool == tool][f"e3_{tier.lower()}_threshold"].dropna().unique()
-            match = [c for c in carried if S.fmt_thr(float(c), tool, "upper") == printed]
-            checked += 1
-            if len(match) != 1:
-                bad.append(("S12", r["Gene"], tool, tier, printed, list(map(repr, carried))))
+    from src import evid_external as X
+    monkeypatch.chdir(PHASE1)                   # the external tables' paths are phase1's
+    s12 = text("tableS12_external_genes.csv")
+    for gene in ("DDX3X", "TP53"):
+        ext = K.read_back(EV / f"external_{gene.lower()}.csv")
+        scored, _ = X._load_external(gene)
+        band = {S._ext_band(gene, st): st for st in ("s3_10", "s11_50", "s3_50")}
+        for _, r in s12[s12.Gene == gene].iterrows():
+            tool, st = tools[r["Tool"]], band[r["Stratum (intronic offset, bp)"]]
+            lab = [x for x in ext.label_definition.unique()
+                   if S.LABEL_NAME[x] == r["Label definition"]]
+            row = ext[(ext.label_definition == lab[0]) & (ext.stratum == st) & (ext.tool == tool)]
+            assert len(lab) == 1 and len(row) == 1, (gene, r["Label definition"], st, tool)
+            sub = scored[scored.stratum != "pm12"] if st == "s3_50" else scored[scored.stratum == st]
+            s = sub[tool].dropna().to_numpy(dtype=float)
+            for tier in ("Supporting", "Moderate", "Strong"):
+                printed = r[f"{tier}: threshold (median of leave-one-gene-out fits)"]
+                if not printed:
+                    continue
+                c = float(row[f"e3_{tier.lower()}_threshold"].iloc[0])
+                checked += 1
+                if (printed != S.fmt_thr(c, tool, "upper")
+                        or int((s >= float(printed)).sum()) != int((s >= c).sum())):
+                    bad.append(("S12", gene, lab[0], st, tool, tier, printed, repr(c)))
     assert checked > 1000
     assert not bad, bad[:10]
 
 
 def test_printed_ratios_round_exact_ties_half_up():
-    """A ratio of counts on a decimal tie is computed one binary digit off it; the
-    printed value is the tie's half-up rounding, not the stored double's."""
+    """A ratio of counts on a decimal tie, or a bootstrap bound interpolated between two,
+    can be stored below the tie; the printed value is the tie's half-up rounding, not
+    the stored double's."""
     from src import evid_supp_tables as S
-    assert (22 / 88) / (5 / 291) == 14.549999999999999          # 291/20, one digit low
+    assert (22 / 88) / (5 / 291) == 14.549999999999999          # 291/20, one unit low
     assert S.fmt_lr((22 / 88) / (5 / 291)) == "14.6"
     assert S.fmt_lr(14.549) == "14.5" and S.fmt_lr(14.551) == "14.6"
-    assert S.fmt_lr(243 / 4) == "60.8" and S.fmt_lr(float("nan")) == ""
+    assert S.fmt_lr(float("nan")) == ""
+    # the stored values the tables print: 243/4 as S6 holds it, one unit low (243/4
+    # itself is exact in binary and rounds up either way)
+    assert S.fmt_lr((9 / 36) / (3 / 729)) == S.fmt_lr(60.74999999999999) == "60.8"
+    # S12's 97.5% bounds, numpy's percentile interpolated between two ratios of counts:
+    # exactly 441/20 = 22.05, stored 13 units low, and exactly 259/20 = 12.95, stored
+    # 82 units low, beyond the reach of rounding to fifteen figures first
+    assert S.fmt_lr(22.049999999999955) == "22.1"
+    x = np.percentile(np.r_[np.full(1950, 168 / 13), np.full(50, 14.0)], 97.5)
+    assert x == 12.949999999999854 and S.fmt_lr(x) == "13.0"
+    assert S.fmt_lr(12.9499999) == "12.9"
 
 
 def test_read_back_round_trips_what_to_csv_writes(tmp_path):

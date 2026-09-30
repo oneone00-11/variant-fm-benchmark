@@ -28,7 +28,8 @@ def cutpoint_local_vs_band() -> pd.DataFrame | None:
     w, e = REPORT_DIR / "walker_thresholds.csv", REPORT_DIR / "evidence_thresholds.csv"
     if not (w.exists() and e.exists()):
         return None
-    e2, e3 = pd.read_csv(w), K.read_back(e)
+    e2 = pd.read_csv(w)
+    e3 = K.read_back(e)
     if "walker_pp3_local_lr" not in e3.columns:
         return None
     e3 = e3[(e3.status == "ok") & e3["walker_pp3_local_lr"].notna()]

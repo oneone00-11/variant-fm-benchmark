@@ -315,18 +315,20 @@ Archived at Zenodo as version DOI 10.5281/zenodo.23051009 (all versions:
 
 ## After 3.0.1: thresholds read back exactly, and two printing rules (2026-09-30)
 
-- **Cause.** Stages that read a threshold back from a CSV used pandas' default float
-  parser, which is not correctly rounded: it can round the last binary digit the wrong
-  way, and it keeps only sixteen decimal places of a value below one, so a small value
-  loses its last significant digits (`float_precision="high"` is the same parser). A
-  threshold is an observed score, so a threshold read back high leaves the variants that
-  sit exactly on it out of a band that includes its boundary (score >= t), and one read
-  back low leaves them out of score <= t. `evid_arms` read the combined Atlas score's
-  Moderate threshold at 3-10 bp, written as 1.0710335969924927, one unit in the last
-  place high, and the damaging PALB2 variant urn:mavedb:00001259-a-2#9971, which scores
-  exactly the threshold (ClinVar arm: recorded, unclassified), fell out of the band.
-- **The four cells of Supplementary Table S10** (combined Atlas score, 3-10 bp,
-  Moderate threshold; variants in band, sensitivity, band likelihood ratio):
+- **Cause.** Nine of the eleven stages that read a threshold back from a CSV used
+  pandas' default float parser, which is not correctly rounded: it can round the last
+  binary digit the wrong way, and it keeps only sixteen decimal places of a value below
+  one, so a small value loses its last significant digits (`float_precision="high"` is
+  the same parser). A threshold is an observed score, so a threshold read back high
+  leaves the variants that sit exactly on it out of a band that includes its boundary
+  (score >= t), and one read back low leaves them out of score <= t. `evid_arms` read
+  the combined Atlas score's Moderate threshold at 3-10 bp, written as
+  1.0710335969924927, one unit in the last place high, and the damaging PALB2 variant
+  urn:mavedb:00001259-a-2#9971, which scores exactly the threshold (ClinVar arm:
+  recorded, unclassified), fell out of the band.
+- **The four rows of Supplementary Table S10 whose counts change** (combined Atlas
+  score, 3-10 bp, Moderate threshold; variants in band, sensitivity and band likelihood
+  ratio, 12 cells):
 
   | rows | before | after |
   |---|---|---|
@@ -340,16 +342,20 @@ Archived at Zenodo as version DOI 10.5281/zenodo.23051009 (all versions:
   `tables/table4_detail_fitted_threshold_by_arm.csv`, carries the two
   recorded-unclassified ratios above (24.18 to 24.41 and 18.93 to 19.22).
 - **Fix.** `evid_common.read_back` reads a table the pipeline wrote with
-  `float_precision="round_trip"`, and every stage that reads a threshold back from a
-  CSV reads it through it: `evid_arms`, `evid_external`, `evid_territory_metrics`,
-  `evid_diagnostics`, `evid_tier_logo`, `evid_fig_data`, `evid_fusion_stability`,
-  `evid_tables`, `evid_supp_tables`, `evid_figures` and `evid_practical_metrics`; the
-  tests that read thresholds back do the same. `phase1/tests/test_evid_read_back.py`
-  lists every default-parser read that remains, with the reason it carries no
-  threshold, and fails on any other; checks that every printed threshold in S6, S7,
-  S8, S10 and S12 selects exactly the variants its fitted value selects; checks that
-  stored thresholds and their copies read back as written; and holds the PALB2
-  variant in its band.
+  `float_precision="round_trip"`, and every stage that reads a threshold back from a CSV
+  reads it through it: `evid_arms`, `evid_external`, `evid_territory_metrics`,
+  `evid_diagnostics`, `evid_tier_logo`, `evid_fig_data`, `evid_tables`,
+  `evid_supp_tables` and `evid_figures`, and `evid_fusion_stability` and
+  `evid_practical_metrics`, which already read exactly and now share the function (that
+  alone changes nothing they write); the tests that read thresholds back do the same.
+  `phase1/tests/test_evid_read_back.py` lists every default-parser read that remains,
+  call by call, with the reason none of them uses a threshold, and fails on any other;
+  checks that every printed threshold in S6, S7, S8 and S10 selects exactly the
+  analysis-set variants its fitted value selects, and every one in S12 exactly the
+  external gene's variants its carried value selects (Table 3b rounds its thresholds
+  outward by design, and S9's per-fold fusion thresholds are not checked); checks that
+  stored thresholds and their copies read back as written; and holds the PALB2 variant
+  in its band.
 - **Printed thresholds that moved with the fix.** The supplementary tables print a
   threshold with four significant figures, or more where four would move a variant
   across it, and had chosen those digits against the misread values. 39 printed
@@ -358,14 +364,20 @@ Archived at Zenodo as version DOI 10.5281/zenodo.23051009 (all versions:
   rows. Of the 936 thresholds printed in S6, S7, S8 and S10, these 39 and the S8 cell in
   (ii) below were the only ones that selected a different set of variants from their
   fitted values: each left out the one variant that scores exactly its fitted value.
-- **Two printing rules, corrected at the same time** (the user's decision, after the
-  review found them). (i) A ratio of counts that lies exactly on a decimal tie can come
-  out of the arithmetic just below it (243/4 = 60.75 is stored as 60.74999999999999),
-  and half-up rounding of the stored value rounded it down; `fmt_lr` now rounds to
-  fifteen significant figures first. Three printed ratios change: S6, combined Atlas
-  score, 11-50 bp, Moderate, the held-out maximum and the RAD51C fold, 60.7 to 60.8
-  (243/4); S12, TP53 under the median-split label, 3-10 bp, Atlas splice junctions, the
-  Supporting ratio's upper 95% bound, 22.0 to 22.1 (441/20 = 22.05). Two ratios of 14.55
+- **Two printing rules, corrected at the same time** (the user's decisions, after review
+  found them). (i) A ratio of counts that lies exactly on a decimal tie can come out of
+  the arithmetic one unit in the last place below it (243/4 = 60.75 is stored as
+  60.74999999999999), and a bootstrap bound that numpy's percentile interpolates between
+  two such ratios further below it (exactly 441/20 = 22.05, stored 13 units low; exactly
+  259/20 = 12.95, stored 82 units low); half-up rounding of the stored value rounded it
+  down. `fmt_lr` now rounds to twelve significant figures first, which puts each such
+  value back on its tie; of the 2,955 values the supplementary tables format this way,
+  the nearest to a tie that is not one is 2.3e-6 away (relative). Four printed ratios
+  change: S6, combined Atlas score, 11-50 bp, Moderate, the held-out maximum and the
+  RAD51C fold, 60.7 to 60.8 (243/4); S12, TP53 under the median-split label, 3-10 bp,
+  Atlas splice junctions, the Supporting ratio's upper 95% bound, 22.0 to 22.1; and S12,
+  TP53 under the mid-band-excluded label, 3-10 bp, SpliceAI (published basis), the upper
+  95% bound of the ratio at the published cut point, 12.9 to 13.0. Two ratios of 14.55
   (291/20) in S6 and S8 print 14.6 as before: the default parser had read them back one
   unit up, and the exact read-back alone would have printed 14.5. (ii) `fmt_thr`
   searched four to eleven significant figures and then returned twelve unchecked; it now
@@ -379,34 +391,67 @@ Archived at Zenodo as version DOI 10.5281/zenodo.23051009 (all versions:
   `external_ddx3x.csv`, `external_tp53.csv` and `practical_metrics_external.csv`. Beyond
   these, the files change only in the S10 rows above (12 cells of
   `arms_at_tool_threshold.csv`: count, sensitivity and ratio in four rows) and the two
-  Table 4 detail ratios. Reads of tables that carry no threshold still use the default
-  parser, so some copied ratios keep their old last digits (6 of the 36 ratios in fig1's
-  seven-gene rows, for example).
+  Table 4 detail ratios.
+- **Left as they are** (the user's decision: recorded here, not changed). Reads that use
+  no threshold still use the default parser, several of them of tables that have a
+  threshold column they leave alone (`territory_metrics.csv` for fig3's AUROCs,
+  `threshold_dilution_summary.csv` for the shares in Supplementary Figure S2, and others
+  read for other columns or a row count), so some copied values keep the default
+  parser's digits: in fig1, 27 of the 72 ratios in its twelve pooled seven-gene rows (6
+  of 36 at the PP3 cut point, 21 of 36 at the BP4 cut point, where a value below one
+  loses its seventeenth significant digit; up to 7 units in the last place) and 7 of the
+  18 in its nine rows without BRCA1; 79 of the 560 AUROC and PR-AUC values in
+  `fig_data/fig3_evidence_by_territory.csv` (1 or 2 units), and 26 of the 168 that
+  `practical_curve_auc.csv` copies from it; and in `fig_data/fig2_interval_lr.csv`
+  59,632 of 138,661 scores (up to 8.4e-13 relative; the PALB2 variant's score,
+  1.0710335969924927, is held there as 1.071033596992493) and 104,023 of 415,983 ratios.
+  No printed table reads the three fig_data files, and the AUROCs that the
+  practical-metrics page and its slide figure print from fig3 are the same either way.
 - **Scope.** E4.1 asked that only the S10 files change. With the complete fix the user
   chose, 15 outputs changed: S6, S7, S8, S10 and S12, `supplement_tables_manifest.csv`,
   the Table 4 detail file, `arms_at_tool_threshold.csv` and the seven other copies
   above. No other output changed. The manuscript's text cites none of the changed
   values.
+- **Review.** An independent review of the first commit found these, now fixed: the
+  allow-list test skipped every line that also called read_back, and so missed the
+  default read beside one in `evid_diagnostics` (it reads Walker's ratios, not a
+  threshold); it now finds reads in the syntax tree, call by call, and three of its
+  reasons are corrected (the read in `evid_tp53_extend` keeps the default parser on
+  purpose, so that new TP53 scores are stored the way the frozen ones were); the S12
+  check compared printed thresholds on the seven genes' scores only; one case of the tie
+  test (243/4, exact in binary) passed on the old code as well, and none covered the
+  bootstrap bounds; it now asserts on the stored values; rounding to fifteen significant
+  figures reaches a tie only from within 5e-14 at these magnitudes (14 to 28 units in
+  the last place), so the 12.95 above, 82 units low, still printed as 12.9; and the
+  slide figure's overlap check measured the key at 100 dpi, while the PNG is written at
+  150, where DejaVu Sans, the fallback without Arial, overlapped the inset's tick labels
+  by a point.
 
 ## After 3.0.1: the practical metrics for slides (2026-09-30)
 
-- `figures/figure_practical_slides.png`: the practical-metrics figure at 16:9 (2000 x
+- `figures/figure_practical_slides.png`: the practical-metrics curves at 16:9 (2000 x
   1125 pixels) with larger type and the inset kept (shorter than in print, so that the
-  key below it leaves its tick labels clear; the stage stops if it does not); each ROC
-  panel's key gives the manuscript's AUROC (per-gene AUROCs combined on the logit scale)
-  instead of the pooled curve's, and a caption on the figure says the curves pool the
-  seven genes and the AUROC is the manuscript's.
+  key below it leaves its tick labels clear in Arial and in DejaVu Sans; the stage
+  measures this at the resolution it saves and stops if they touch); each ROC panel's
+  key gives the manuscript's AUROC (per-gene AUROCs combined on the logit scale) instead
+  of the pooled curve's, and the caption on the figure says the curves pool the seven
+  genes and that each AUROC is the manuscript's, not the area under these curves (the
+  two can rank the predictors differently; at 11-50 bp the manuscript's AUROC also
+  leaves out BRCA1, with fewer than ten damaging variants there).
 - `docs/practical-metrics-summary.md`: coverage is now the share of labelled variants,
   the denominator of the manuscript's shares ("14.8% of the variants" at 0.2), which
   changes five printed cells (SpliceAI 3-10 bp Supporting 0.15 (0.16) to 0.15 (0.17);
   Pangolin 3-10 bp Moderate 0.12 (0.13) to 0.12 (0.14) and Strong 0.07 (0.07) to 0.08
-  (0.08); combined Atlas score 3-10 bp Supporting 0.14 (0.17) to 0.15 (0.17) and
-  11-50 bp Supporting 0.05 (0.04) to 0.04 (0.04)); a column gives the manuscript's AUROC
-  beside the pooled curve's; a table gives the four predictors' sensitivity at a
-  specificity of 0.95 in the three bands; the first sentence quotes the manuscript's
-  AUROC (0.85 against 0.91, where it quoted the pooled 0.81 against 0.90), and the third
-  says "held out, ... no more than 8.1% of the labelled variants" (was 8% of all
+  (0.08); combined Atlas score 3-10 bp Supporting 0.14 (0.17) to 0.15 (0.17) and 11-50
+  bp Supporting 0.05 (0.04) to 0.04 (0.04)); a column gives the manuscript's AUROC
+  beside the pooled curve's, and its note says which genes it leaves out; a table gives
+  the four predictors' sensitivity at a specificity of 0.95 in the three bands; the
+  first sentence quotes the manuscript's AUROC and says it is not the area under the
+  curves (0.85 against 0.91, where it quoted the pooled 0.81 against 0.90), and the
+  third says "held out, ... no more than 8.1% of the labelled variants" (was 8% of all
   variants).
 - **Known improvement**, recorded on the summary page: the BP4 side has no held-out
-  values, because E3 writes per-fold thresholds for the PP3 side only; held-out BP4
-  sensitivity and specificity need E3 to store its per-fold BP4 thresholds.
+  sensitivity, specificity or coverage, because E3 keeps only the median held-out
+  likelihood ratio of its per-fold BP4 thresholds (Supplementary Table S7) and writes
+  per-fold thresholds for the PP3 side only; held-out BP4 sensitivity and specificity
+  need E3 to store its per-fold BP4 thresholds as well.
