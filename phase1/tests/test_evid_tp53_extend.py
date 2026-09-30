@@ -156,13 +156,26 @@ def test_score_files_are_the_ones_the_manifest_records(manifest):
 
 
 def test_rebuild_from_cached_scores_is_byte_identical(tmp_path, monkeypatch):
-    """No network and no model: the table is a function of the cached score files."""
+    """No network and no model: the table is a function of the cached score files.
+    Two rebuilds are byte-identical. The rebuilt table matches the one on disk to the
+    relative 1e-9 of `reproduce_evidence.py --verify`'s numerical tier: the stored
+    scores are read back through pandas' default CSV parser, which can differ in the
+    last binary digit on another CPU architecture (the full run checks the table
+    byte for byte on the machine that wrote it)."""
+    import importlib.util
     monkeypatch.chdir(PHASE1)
     from src import evid_tp53_extend as T
-    table, _, _ = T.assemble()
-    out = tmp_path / "rebuilt.parquet"
-    table.to_parquet(out, index=False)
-    assert _sha(out) == _sha(TABLE)
+    outs = []
+    for i in range(2):
+        table, _, _ = T.assemble()
+        outs.append(tmp_path / f"rebuilt{i}.parquet")
+        table.to_parquet(outs[-1], index=False)
+    assert _sha(outs[0]) == _sha(outs[1])
+    spec = importlib.util.spec_from_file_location(
+        "reproduce_evidence", REPO / "scripts" / "reproduce_evidence.py")
+    E = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(E)
+    assert _sha(outs[0]) == _sha(TABLE) or E._numerically_equal(TABLE, outs[0])
 
 
 def test_inframe_subset_extends_the_frozen_one(manifest):

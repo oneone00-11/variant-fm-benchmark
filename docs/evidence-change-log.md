@@ -247,3 +247,17 @@ in it changes a number of the study; the rounds above record what was reworked.
   ("variant-fm-benchmark: evidence strength of splice-region variant effect predictors
   against saturation genome editing functional assays"); the earlier title described
   the calibration and fusion study of 2.0.0.
+
+## After 3.0.0
+
+- **The guardrail suite on Linux.** With `main` fast-forwarded to the release, the
+  pytest workflow ran on Ubuntu (x86_64) and three tests failed that compared a
+  rebuild with the committed files byte for byte: the elastic-net refit against E3's
+  score grid and against its coefficient table, and the TP53 table rebuilt from its
+  cached scores. Both reach the last binary digit through the machine (the operating
+  system's maths library; pandas' default CSV parser). The tests now require two
+  rebuilds on one machine to be byte-identical, the printed S9 table to match byte
+  for byte, and the rest to agree with the committed files to the relative 1e-9 of
+  `--verify`'s numerical tier. The full run still checks every file byte for byte on
+  the machine that wrote it. Release 3.0.0 is unchanged; on x86_64 Linux its three
+  strict tests fail as described here.

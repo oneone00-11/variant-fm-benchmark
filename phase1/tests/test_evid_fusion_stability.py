@@ -80,7 +80,11 @@ def test_the_refit_is_logo_fusion_bit_for_bit(df, refit):
 
 def test_the_refit_reproduces_the_fusion_score_grid_e3_wrote(df, refit):
     """E3's curve files list every distinct fusion score in a stratum. The refit
-    must land on exactly those values, not on values close to them."""
+    must land on those values: the same number of them, each within the relative
+    1e-9 of `reproduce_evidence.py --verify`'s numerical tier. The elastic net runs
+    on the operating system's maths library, which can move the last digits on
+    another machine (an M1 runner, x86_64 Linux); on the machine that wrote the
+    files the full run checks them byte for byte."""
     _, oof, _ = refit
     d = df.assign(**{K.FUSION: oof})
     seen = 0
@@ -90,7 +94,8 @@ def test_the_refit_reproduces_the_fusion_score_grid_e3_wrote(df, refit):
             continue
         grid = pd.read_csv(path, float_precision="round_trip")["score"].to_numpy()
         sub = K.stratum_frame(d, stratum).dropna(subset=["y_assay", K.FUSION])
-        assert np.array_equal(np.unique(sub[K.FUSION].to_numpy()), grid), stratum
+        got = np.unique(sub[K.FUSION].to_numpy())
+        assert len(got) == len(grid) and np.allclose(got, grid, rtol=1e-9, atol=0), stratum
         seen += 1
     if not seen:
         pytest.skip("E3 curve files not present in this checkout")
@@ -217,15 +222,33 @@ def test_block_c_is_the_coefficient_file_rounded_for_print(built):
     assert list(c["rank_mean_abs"]) == sorted(c["rank_mean_abs"])
 
 
+def _numerically_equal(a: Path, b: Path) -> bool:
+    """reproduce_evidence.py's own comparison, so the tests and --verify agree."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "reproduce_evidence", Path(__file__).resolve().parents[2] / "scripts" / "reproduce_evidence.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod._numerically_equal(a, b)
+
+
 # ------------------------------------------------------------- reproducibility
-def test_a_rebuild_is_byte_identical_and_matches_the_files_on_disk(df, built):
+def test_a_rebuild_is_byte_identical_and_matches_the_files_on_disk(df, built, tmp_path):
+    """Two rebuilds on one machine are byte-identical. Against the files on disk the
+    printed S9 table must match byte for byte, and the coefficient table, whose last
+    digits the operating system's maths library can move on another machine, to
+    the relative 1e-9 of `reproduce_evidence.py --verify`'s numerical tier."""
     again = M.build(df, REPORTS)
     for first, second in zip(built, again):
         assert M.csv_text(first) == M.csv_text(second)
-    for d, path in ((built[0], REPORTS / M.COEF_OUT.name),
-                    (M.printed_s9(built[1]), REPORTS / "supplement" / M.TABLE_OUT.name)):
-        if path.exists():
-            assert path.read_text() == M.csv_text(d), f"{path.name} is stale"
+    s9 = REPORTS / "supplement" / M.TABLE_OUT.name
+    if s9.exists():
+        assert s9.read_text() == M.csv_text(M.printed_s9(built[1])), f"{s9.name} is stale"
+    coef = REPORTS / M.COEF_OUT.name
+    if coef.exists():
+        rebuilt = tmp_path / coef.name
+        rebuilt.write_text(M.csv_text(built[0]))
+        assert _numerically_equal(coef, rebuilt), f"{coef.name} is stale"
 
 
 def test_the_fit_does_not_depend_on_the_blas_thread_count(refit):
