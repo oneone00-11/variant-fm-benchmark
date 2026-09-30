@@ -216,3 +216,11 @@ other three depended on the machine that wrote them, and every result was unchan
   through pandas' default CSV parser, which is not correctly rounded and can differ in
   the last binary digit across CPU architectures; that check now allows a difference
   below 1e-12 and still records the exact counts.
+- **What the Linux runner showed.** On x86_64 Linux every number agreed with the
+  committed one to a relative 1e-9. Two printed supplementary tables (S6 and S8)
+  showed the AlphaGenome splice score's 3–10 bp thresholds to fewer significant
+  figures (2.199883 against 2.19988276958): the printer adds figures until the printed
+  value selects the same variants as the fitted one, and that fitted threshold lies
+  within floating-point precision of an observed score, so a last-digit difference
+  decides how many figures it takes. The figures differed in their bytes where Linux
+  lacks the Arial font. `--verify` now also reads a text report number by number.

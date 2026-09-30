@@ -500,3 +500,12 @@ def test_the_quick_check_waits_for_an_absent_clinvar(tmp_path, monkeypatch):
     rows, absent = E.recorded_checksums()
     assert "the ClinVar release" in absent
     assert not any(t == tmp_path / "not-downloaded.vcf.gz" for _, t, _, _ in rows)
+
+
+def test_a_text_report_is_read_number_by_number(tmp_path):
+    a, b = tmp_path / "a.txt", tmp_path / "b.txt"
+    a.write_text("interval_lr_x 720 102 0.142 1.9469957902793724\n")
+    b.write_text("interval_lr_x 720 102 0.142 1.946995790279372\n")
+    assert E._numerically_equal(a, b)
+    b.write_text("interval_lr_y 720 102 0.142 1.946995790279372\n")
+    assert not E._numerically_equal(a, b)

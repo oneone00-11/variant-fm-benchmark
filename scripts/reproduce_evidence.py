@@ -429,7 +429,7 @@ def choose_atlas(release_only: bool, fetch: bool) -> Path:
 # are named as such. Neither refinement changes the verdict: REPRODUCED means every
 # output is byte-identical, a manifest's build time aside, and was rewritten by the run.
 TABLE_DELIMITERS = {".csv": ",", ".tsv": "\t"}
-COPY_SUFFIXES = {".csv", ".tsv", ".json", ".parquet"}
+COPY_SUFFIXES = {".csv", ".tsv", ".json", ".parquet", ".txt"}
 FIGURE_SUFFIXES = {".png", ".pdf", ".svg", ".tif", ".tiff"}
 RTOL = 1e-9
 REPORT_NAME = "reproduce_report.txt"      # at the repository root, gitignored
@@ -582,6 +582,9 @@ def _numerically_equal(before: Path, after: Path) -> bool:
                 for r, t in zip(x, y))
         if after.suffix == ".json":
             return _json_equal(_without_wall_clock(before), _without_wall_clock(after))
+        if after.suffix == ".txt":                # a text report, word by word
+            x, y = before.read_text().split(), after.read_text().split()
+            return len(x) == len(y) and all(_equal(u, v) for u, v in zip(x, y))
         if after.suffix == ".parquet":
             import pandas as pd
             x, y = pd.read_parquet(before), pd.read_parquet(after)
