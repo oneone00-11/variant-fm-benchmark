@@ -9,7 +9,7 @@ on:
   push:
     branches: [evidence/rework]
     tags: ["v*"]
-    # Skip pushes that change only documentation, but not the two Markdown files the
+    # Skip pushes that change only documentation, but not the Markdown files the
     # pipeline writes or reads; a later pattern overrides an earlier one. Path filters
     # are not evaluated for tag pushes, which always run.
     paths:
@@ -17,6 +17,7 @@ on:
       - "!**.md"
       - "!CITATION.cff"
       - "docs/evidence-delta.md"
+      - "docs/practical-metrics-summary.md"
       - "docs/column-provenance.md"
   workflow_dispatch:
 
@@ -25,7 +26,7 @@ jobs:
     # The platform the committed outputs were made on (macOS arm64, Python 3.12). It
     # must end REPRODUCED or REPRODUCED NUMERICALLY: every printed table and figure
     # byte for byte, other files at most in the last digits, which the runner's
-    # Accelerate library (an M1 on macOS 14) can move.
+    # maths libraries (an M1 on macOS 14) can move.
     runs-on: macos-14
     timeout-minutes: 300          # the ClinVar download alone has taken an hour
     steps:

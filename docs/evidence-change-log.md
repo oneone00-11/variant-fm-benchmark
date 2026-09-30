@@ -276,3 +276,39 @@ Archived at Zenodo as version DOI 10.5281/zenodo.23051009 (all versions:
 - **The ClinVar mirror** now points at this release's record, which holds the same
   file (NCBI's `clinvar_20260615.vcf.gz`, unchanged); the 3.0.0 record keeps its copy.
 - **Nothing else:** the pipeline code and every output are those of 3.0.0.
+
+## After 3.0.1: practical metrics (stage E15, 2026-09-30)
+
+- **Why.** A reader of the manuscript pointed out that the likelihood ratio compares
+  predictors well but does not tell a user what to expect in classical terms,
+  sensitivity and specificity at a threshold, or across thresholds (ROC). The study
+  reported AUROC only in the ClinVar-arm comparison and no sensitivity or specificity
+  at any fitted threshold.
+- **What.** A new stage, `src/evid_practical_metrics.py` ("E15 practical metrics",
+  stage 22, after E14 and before `evid_delta`), reads the thresholds the study already
+  uses and fits none: Walker's cut points, and E3's thresholds from Supporting to Very
+  strong on the PP3 side and Supporting and Moderate on the BP4 side, in-sample, and
+  held out on the PP3 side (E3 keeps per-fold thresholds for that side only). At each
+  it gives sensitivity and specificity with Wilson 95% intervals, coverage (the share
+  of all scored variants in the band that receive the evidence, and the same among
+  labelled variants), prevalence, the observed PPV, the band likelihood ratio, the
+  posterior at a prior of 0.10, and the tier by E3's interval rule beside the tier by
+  the band ratio. Held-out rows apply each fold's threshold to its held-out gene and
+  add the counts over the folds that reached the tier. It also writes ROC and
+  precision-recall curves with the seven genes pooled, at every distinct score; their
+  AUROC and AUPRC beside the gene-pooled AUROC the study reports, with the difference
+  split into same-gene pairs, cross-gene pairs and the genes that pool leaves out; the
+  same metrics for DDX3X and TP53 at the thresholds E7 carried over; a two-row figure;
+  and a one-page summary. The columns are E3's thirteen plus the fusion;
+  alphagenome_v061 has no E3 threshold and is left out, as in E2-E14.
+- **New files.** Under `phase1/reports/evidence/`: `practical_metrics_by_threshold.csv`,
+  `practical_metrics_logo_by_gene.csv`, `practical_metrics_external.csv`,
+  `practical_roc_curves.csv`, `practical_pr_curves.csv`, `practical_curve_auc.csv`,
+  `figures/figure_practical.pdf` and `.png`; and `docs/practical-metrics-summary.md`,
+  which `--verify` now compares as well. Tests: `phase1/tests/test_evid_practical_metrics.py`.
+- **Reading thresholds back.** The stage reads every table with pandas'
+  `float_precision="round_trip"`: the default parser can land one binary digit away
+  from a written threshold, and a threshold is an observed score, so the variants on it
+  can fall out of a band that includes its boundary.
+- **Unchanged:** every output of E1-E14, byte for byte. The manuscript and the
+  supplement do not use these numbers.

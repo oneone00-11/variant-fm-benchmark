@@ -26,7 +26,8 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   matrix (release v2.5.0) and the ClinVar GRCh38 release of 15 June 2026.
 - **External genes:** DDX3X (1,857 intron-side SNVs to 25 nt; labelled by the
   deposit's own classification) and TP53 (288 SNVs to 12 nt).
-- **Entry point:** `python scripts/reproduce_evidence.py` (22 stages). Outputs:
+- **Entry point:** `python scripts/reproduce_evidence.py` (23 stages; 22 in release
+  3.0.1). Outputs:
   `phase1/reports/evidence/`, with the analysis set and the external-gene tables
   under `phase1/data/evidence/`.
 - **Companion atlas:** release v2.5.0 (Zenodo 10.5281/zenodo.22751081), found through
@@ -77,13 +78,14 @@ ends with one of two verdicts, or lists what differs and exits non-zero:
 `REPRODUCED` when every output matches byte for byte (a manifest's build time aside),
 and `REPRODUCED NUMERICALLY` when every printed table and figure does and other files
 differ only in the last digits of their numbers (relative 1e-9), which the operating
-system's maths library can move: numpy and scipy call Apple's Accelerate on macOS,
-and it differs between chips and macOS releases. On the machine the outputs were made
+system's maths libraries can move: numpy calls Apple's Accelerate on macOS,
+scikit-learn's coordinate descent calls the OpenBLAS that scipy bundles, and both
+differ between chips and macOS releases. On the machine the outputs were made
 on (Apple M5, macOS 26.6, Python 3.12.13) the run ends `REPRODUCED`: every output is
 byte-identical except the build time in
 `phase1/data/evidence/analysis_set_v1.manifest.json`. On a GitHub-hosted M1 (macOS
 14) it ends `REPRODUCED NUMERICALLY`: every printed table and figure matches byte for
-byte, and eight intermediate tables of the elastic-net combination match to 1e-9.
+byte, and the tables that carry the elastic-net combination's scores match to 1e-9.
 `.github/workflows/reproduce.yml` runs the same command on that macOS arm64 runner on
 every push to this branch that changes more than documentation and on every release
 tag, and on a Linux runner to record what differs there; each run keeps its
@@ -283,7 +285,9 @@ genes. Writes `phase1/reports/evidence/`. It leaves `phase1/reports/phase1/`
 untouched, so the published tables stay beside it as the control. Five kinds of
 input are downloads or model re-scores rather than analysis steps and are tracked
 with checksums or provenance records instead of rebuilt (see the section above).
-The stages also write the printed main and supplementary tables and the figures. It
+The stages also write the printed main and supplementary tables and the figures, and,
+after release 3.0.1, sensitivity, specificity, coverage and ROC curves at the evidence
+thresholds (`docs/practical-metrics-summary.md`). It
 ran under Python 3.12 with the exact package set in `requirements-evidence.lock.txt`;
 the companion atlas repository is found through `EVID_ATLAS_REPO`, or as a checkout
 named `functional-standard-atlas` beside this one.

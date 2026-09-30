@@ -58,9 +58,11 @@ Stages
  19  evid_tables             the four main tables as printed (E12)
  20  evid_supp_tables        the supplementary tables as printed (E13)
  21  evid_figures            main and supplementary figures, PDF and PNG (E14)
- 22  evid_delta              every published quantity with a counterpart (E8)
+ 22  evid_practical_metrics  sensitivity, specificity and ROC at the evidence thresholds (E15)
+ 23  evid_delta              every published quantity with a counterpart (E8)
 
-Outputs land in `phase1/reports/evidence/`.
+Outputs land in `phase1/reports/evidence/`; stages 22 and 23 also write a page under
+`docs/`.
 
     bash reproduce.sh                                       # from a fresh clone: everything
     bash reproduce.sh --check                               # five minutes, no download
@@ -120,7 +122,8 @@ ATLAS_ARCHIVE = {
 # Fetched inputs are left out; manifests may differ only in their wall-clock fields,
 # the set evid_supp_tables also leaves out when it hashes them.
 OUTPUT_ROOTS = [PHASE1 / "reports" / "evidence", PHASE1 / "data" / "evidence",
-                REPO / "docs" / "evidence-delta.md"]
+                REPO / "docs" / "evidence-delta.md",
+                REPO / "docs" / "practical-metrics-summary.md"]
 NOT_OUTPUTS = [PHASE1 / "data" / "evidence" / "clinvar",
                PHASE1 / "data" / "evidence" / "companion_atlas"]
 WALL_CLOCK_KEYS = {"built_utc", "scored_utc", "retrieved_utc", "run_at"}
@@ -161,12 +164,17 @@ STAGES = [
     ("src.evid_tables",             "E12 the four main tables, as printed", []),
     ("src.evid_supp_tables",        "E13 the supplementary tables, as printed", []),
     ("src.evid_figures",            "E14 main and supplementary figures", []),
+    ("src.evid_practical_metrics",  "E15 practical metrics", []),
     ("src.evid_delta",              "E8  old/new quantity list -> docs/evidence-delta.md", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.
 NEEDS = {
     "src.evid_tier_logo": [
+        ("phase1/reports/evidence/evidence_thresholds_logo_folds.csv",
+         "python -m src.evid_interval_lr (stage 3)"),
+    ],
+    "src.evid_practical_metrics": [
         ("phase1/reports/evidence/evidence_thresholds_logo_folds.csv",
          "python -m src.evid_interval_lr (stage 3)"),
     ],
@@ -434,10 +442,11 @@ FIGURE_SUFFIXES = {".png", ".pdf", ".svg", ".tif", ".tiff"}
 RTOL = 1e-9
 REPORT_NAME = "reproduce_report.txt"      # at the repository root, gitignored
 OK_STATUSES = ("identical", "identical (build time aside)")
-# The second tier. On another machine the operating system's maths library (Apple's
-# Accelerate, which numpy and scipy call on macOS) can move a float's last digits:
-# on a GitHub M1 runner every printed table and figure matched byte for byte, while
-# eight intermediate tables of the elastic-net combination agreed only to 1e-9.
+# The second tier. On another machine the maths libraries (Apple's Accelerate, which
+# numpy calls on macOS, and the OpenBLAS scipy bundles, which scikit-learn's coordinate
+# descent calls) can move a float's last digits: on a GitHub M1 runner every printed
+# table and figure matched byte for byte, while the tables that carry the elastic-net
+# combination's scores agreed only to 1e-9.
 # REPRODUCED NUMERICALLY allows exactly that: files outside the printed tables and
 # figures may differ within RTOL, and a manifest may differ only in the hashes of such
 # files. A printed table or figure, or any other difference, still fails.
