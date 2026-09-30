@@ -16,6 +16,7 @@ Three things worth a test rather than a glance:
 """
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -24,6 +25,9 @@ import pytest
 import yaml
 
 PHASE1 = Path(__file__).resolve().parents[1]
+if str(PHASE1) not in sys.path:
+    sys.path.insert(0, str(PHASE1))
+from src import evid_common as K  # noqa: E402
 REPORTS = PHASE1 / "reports/evidence"
 CONFIG = PHASE1 / "config/walker2023.yaml"
 WALKER = REPORTS / "walker_thresholds.csv"
@@ -155,7 +159,7 @@ def test_the_cut_point_sits_where_the_local_ratio_is_uninformative():
 @pytest.mark.skipif(not EVIDENCE.exists(), reason="E3 not run")
 def test_evidence_thresholds_are_ordered_by_tier():
     """A stricter tier cannot have a looser threshold."""
-    d = pd.read_csv(EVIDENCE)
+    d = K.read_back(EVIDENCE)
     order = ["supporting", "moderate", "strong", "very_strong"]
     bad = []
     for (tool, stratum), g in d[d.status == "ok"].groupby(["tool", "stratum"]):

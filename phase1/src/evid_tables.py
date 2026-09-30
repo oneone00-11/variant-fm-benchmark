@@ -227,9 +227,9 @@ def _folds_excluding(t: pd.DataFrame, folds: pd.DataFrame, tool: str, stratum: s
 
 
 def table3() -> pd.DataFrame:
-    ev = pd.read_csv(REPORT_DIR / "evidence_thresholds.csv")
-    t = pd.read_csv(REPORT_DIR / "tier_logo_table.csv")
-    folds = pd.read_csv(REPORT_DIR / "evidence_thresholds_logo_folds.csv")
+    ev = K.read_back(REPORT_DIR / "evidence_thresholds.csv")
+    t = K.read_back(REPORT_DIR / "tier_logo_table.csv")
+    folds = K.read_back(REPORT_DIR / "evidence_thresholds_logo_folds.csv")
     rows = []
     for c in COLUMNS:
         r = {"Predictor": NAME[c] + ("\u00a0†" if c == "avi" else "")}
@@ -260,7 +260,7 @@ def _conservative(x: float, side: str, sig: int = 3) -> str:
 
 
 def table3b() -> pd.DataFrame:
-    ev = pd.read_csv(REPORT_DIR / "evidence_thresholds.csv")
+    ev = K.read_back(REPORT_DIR / "evidence_thresholds.csv")
     ev = ev[ev.status == "ok"]
     rows = []
     for c in THRESHOLD_TOOLS:
@@ -283,8 +283,8 @@ def table3b() -> pd.DataFrame:
 
 def table3_counts() -> pd.DataFrame:
     """Counts the text states in words, derived from the same file as Table 3."""
-    ev = pd.read_csv(REPORT_DIR / "evidence_thresholds.csv")
-    t = pd.read_csv(REPORT_DIR / "tier_logo_table.csv")
+    ev = K.read_back(REPORT_DIR / "evidence_thresholds.csv")
+    t = K.read_back(REPORT_DIR / "tier_logo_table.csv")
     rows = []
     for st in STRATA:
         for tier in ("moderate", "strong"):
@@ -307,7 +307,7 @@ def table3_counts() -> pd.DataFrame:
 # Table 4
 # ---------------------------------------------------------------------------
 def table4() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    at = pd.read_csv(REPORT_DIR / "arms_at_tool_threshold.csv")
+    at = K.read_back(REPORT_DIR / "arms_at_tool_threshold.csv")
     ok = at[at.status == "ok"]
 
     # (a) SpliceAI, published basis, at the published cut point

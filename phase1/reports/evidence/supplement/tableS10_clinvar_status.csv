@@ -8,7 +8,7 @@ Seven genes,3–10,All variants,phastCons,Supporting (Moderate not reached),1.00
 Seven genes,3–10,All variants,GPN-MSA,Moderate,9.010,7,570,2505,151,0.179,0.980,9.15,,,
 Seven genes,3–10,All variants,Nucleotide Transformer,Supporting (Moderate not reached),3.26899,7,570,2505,241,0.221,0.954,4.82,,,
 Seven genes,3–10,All variants,SpliceAI (published basis),Moderate,0.5386,7,570,2505,404,0.570,0.968,18.1,5.14,,
-Seven genes,3–10,All variants,Atlas combined score,Moderate,1.071034,7,570,2505,340,0.516,0.982,28.1,,,
+Seven genes,3–10,All variants,Atlas combined score,Moderate,1.071,7,570,2505,341,0.518,0.982,28.2,,,
 Seven genes,3–10,All variants,Atlas splice sites,Moderate,0.4648,7,570,2505,386,0.567,0.975,22.5,,,
 Seven genes,3–10,All variants,Atlas splice-site usage,Moderate,0.6787,7,570,2505,396,0.593,0.977,25.6,,,
 Seven genes,3–10,All variants,Atlas splice junctions,Moderate,5.41796875,7,570,2505,272,0.407,0.984,25.5,,,
@@ -21,7 +21,7 @@ Seven genes,3–10,Classified (P/LP or B/LB),phastCons,Supporting (Moderate not 
 Seven genes,3–10,Classified (P/LP or B/LB),GPN-MSA,Moderate,9.010,7,95,578,21,0.211,0.998,122,,0.872 (0.798–0.921),5
 Seven genes,3–10,Classified (P/LP or B/LB),Nucleotide Transformer,Supporting (Moderate not reached),3.26899,7,95,578,24,0.116,0.978,5.15,,0.653 (0.548–0.744),5
 Seven genes,3–10,Classified (P/LP or B/LB),SpliceAI (published basis),Moderate,0.5386,7,95,578,69,0.663,0.990,63.9,14.6,0.888 (0.798–0.941),5
-Seven genes,3–10,Classified (P/LP or B/LB),Atlas combined score,Moderate,1.071034,7,95,578,62,0.642,0.998,371,,0.896 (0.778–0.955),5
+Seven genes,3–10,Classified (P/LP or B/LB),Atlas combined score,Moderate,1.071,7,95,578,62,0.642,0.998,371,,0.896 (0.778–0.955),5
 Seven genes,3–10,Classified (P/LP or B/LB),Atlas splice sites,Moderate,0.4648,7,95,578,72,0.695,0.990,66.9,,0.879 (0.739–0.949),5
 Seven genes,3–10,Classified (P/LP or B/LB),Atlas splice-site usage,Moderate,0.6787,7,95,578,67,0.695,0.998,402,,0.876 (0.745–0.945),5
 Seven genes,3–10,Classified (P/LP or B/LB),Atlas splice junctions,Moderate,5.41796875,7,95,578,48,0.495,0.998,286,,0.889 (0.784–0.946),5
@@ -34,7 +34,7 @@ Seven genes,3–10,"Recorded, unclassified",phastCons,Supporting (Moderate not r
 Seven genes,3–10,"Recorded, unclassified",GPN-MSA,Moderate,9.010,7,201,596,40,0.109,0.970,3.62,,0.771 (0.721–0.814),6
 Seven genes,3–10,"Recorded, unclassified",Nucleotide Transformer,Supporting (Moderate not reached),3.26899,7,201,596,66,0.189,0.953,4.02,,0.695 (0.606–0.770),6
 Seven genes,3–10,"Recorded, unclassified",SpliceAI (published basis),Moderate,0.5386,7,201,596,152,0.642,0.961,16.6,4.12,0.897 (0.844–0.934),6
-Seven genes,3–10,"Recorded, unclassified",Atlas combined score,Moderate,1.071034,7,201,596,119,0.527,0.978,24.2,,0.905 (0.845–0.943),6
+Seven genes,3–10,"Recorded, unclassified",Atlas combined score,Moderate,1.071,7,201,596,120,0.532,0.978,24.4,,0.905 (0.845–0.943),6
 Seven genes,3–10,"Recorded, unclassified",Atlas splice sites,Moderate,0.4648,7,201,596,145,0.632,0.970,20.9,,0.896 (0.840–0.933),6
 Seven genes,3–10,"Recorded, unclassified",Atlas splice-site usage,Moderate,0.6787,7,201,596,153,0.667,0.968,20.9,,0.916 (0.853–0.953),6
 Seven genes,3–10,"Recorded, unclassified",Atlas splice junctions,Moderate,5.41796875,7,201,596,103,0.458,0.982,24.8,,0.902 (0.842–0.941),6
@@ -47,7 +47,7 @@ Seven genes,3–10,Unrecorded,phastCons,Supporting (Moderate not reached),1.000,
 Seven genes,3–10,Unrecorded,GPN-MSA,Moderate,9.010,6,274,1331,90,0.219,0.977,9.72,,0.766 (0.729–0.800),5
 Seven genes,3–10,Unrecorded,Nucleotide Transformer,Supporting (Moderate not reached),3.26899,6,274,1331,151,0.281,0.944,5.05,,0.694 (0.647–0.738),5
 Seven genes,3–10,Unrecorded,SpliceAI (published basis),Moderate,0.5386,6,274,1331,183,0.485,0.962,12.9,4.33,0.886 (0.820–0.930),5
-Seven genes,3–10,Unrecorded,Atlas combined score,Moderate,1.071034,6,274,1331,159,0.464,0.976,19.3,,0.887 (0.809–0.935),5
+Seven genes,3–10,Unrecorded,Atlas combined score,Moderate,1.071,6,274,1331,159,0.464,0.976,19.3,,0.887 (0.809–0.935),5
 Seven genes,3–10,Unrecorded,Atlas splice sites,Moderate,0.4648,6,274,1331,169,0.474,0.971,16.2,,0.878 (0.799–0.929),5
 Seven genes,3–10,Unrecorded,Atlas splice-site usage,Moderate,0.6787,6,274,1331,176,0.504,0.971,17.6,,0.888 (0.820–0.933),5
 Seven genes,3–10,Unrecorded,Atlas splice junctions,Moderate,5.41796875,6,274,1331,121,0.339,0.979,16.1,,0.893 (0.815–0.941),5
@@ -203,7 +203,7 @@ Without BRCA1,3–10,All variants,phastCons,Supporting (Moderate not reached),1.
 Without BRCA1,3–10,All variants,GPN-MSA,Moderate,9.010,6,466,2119,134,0.195,0.980,9.62,,,
 Without BRCA1,3–10,All variants,Nucleotide Transformer,Supporting (Moderate not reached),3.26899,6,466,2119,222,0.260,0.952,5.45,,,
 Without BRCA1,3–10,All variants,SpliceAI (published basis),Moderate,0.5386,6,466,2119,311,0.515,0.966,15.4,4.79,,
-Without BRCA1,3–10,All variants,Atlas combined score,Moderate,1.071034,6,466,2119,262,0.476,0.981,25.2,,,
+Without BRCA1,3–10,All variants,Atlas combined score,Moderate,1.071,6,466,2119,263,0.479,0.981,25.4,,,
 Without BRCA1,3–10,All variants,Atlas splice sites,Moderate,0.4648,6,466,2119,301,0.524,0.973,19.5,,,
 Without BRCA1,3–10,All variants,Atlas splice-site usage,Moderate,0.6787,6,466,2119,305,0.547,0.976,23.2,,,
 Without BRCA1,3–10,All variants,Atlas splice junctions,Moderate,5.41796875,6,466,2119,218,0.391,0.983,23.0,,,
@@ -216,7 +216,7 @@ Without BRCA1,3–10,Classified (P/LP or B/LB),phastCons,Supporting (Moderate no
 Without BRCA1,3–10,Classified (P/LP or B/LB),GPN-MSA,Moderate,9.010,6,54,476,12,0.204,0.998,97.0,,0.841 (0.756–0.901),4
 Without BRCA1,3–10,Classified (P/LP or B/LB),Nucleotide Transformer,Supporting (Moderate not reached),3.26899,6,54,476,19,0.167,0.979,7.93,,0.652 (0.499–0.779),4
 Without BRCA1,3–10,Classified (P/LP or B/LB),SpliceAI (published basis),Moderate,0.5386,6,54,476,30,0.463,0.989,44.1,12.3,0.852 (0.769–0.908),4
-Without BRCA1,3–10,Classified (P/LP or B/LB),Atlas combined score,Moderate,1.071034,6,54,476,28,0.519,1.000,247,,0.862 (0.764–0.923),4
+Without BRCA1,3–10,Classified (P/LP or B/LB),Atlas combined score,Moderate,1.071,6,54,476,28,0.519,1.000,247,,0.862 (0.764–0.923),4
 Without BRCA1,3–10,Classified (P/LP or B/LB),Atlas splice sites,Moderate,0.4648,6,54,476,36,0.574,0.989,54.7,,0.826 (0.702–0.906),4
 Without BRCA1,3–10,Classified (P/LP or B/LB),Atlas splice-site usage,Moderate,0.6787,6,54,476,29,0.537,1.000,256,,0.820 (0.719–0.890),4
 Without BRCA1,3–10,Classified (P/LP or B/LB),Atlas splice junctions,Moderate,5.41796875,6,54,476,23,0.426,1.000,203,,0.844 (0.759–0.903),4
@@ -229,7 +229,7 @@ Without BRCA1,3–10,"Recorded, unclassified",phastCons,Supporting (Moderate not
 Without BRCA1,3–10,"Recorded, unclassified",GPN-MSA,Moderate,9.010,6,138,312,32,0.145,0.962,3.77,,0.760 (0.695–0.814),5
 Without BRCA1,3–10,"Recorded, unclassified",Nucleotide Transformer,Supporting (Moderate not reached),3.26899,6,138,312,52,0.254,0.946,4.65,,0.715 (0.610–0.802),5
 Without BRCA1,3–10,"Recorded, unclassified",SpliceAI (published basis),Moderate,0.5386,6,138,312,98,0.594,0.949,11.6,3.18,0.881 (0.821–0.923),5
-Without BRCA1,3–10,"Recorded, unclassified",Atlas combined score,Moderate,1.071034,6,138,312,75,0.486,0.974,18.9,,0.892 (0.821–0.937),5
+Without BRCA1,3–10,"Recorded, unclassified",Atlas combined score,Moderate,1.071,6,138,312,76,0.493,0.974,19.2,,0.892 (0.821–0.937),5
 Without BRCA1,3–10,"Recorded, unclassified",Atlas splice sites,Moderate,0.4648,6,138,312,96,0.601,0.958,14.4,,0.876 (0.818–0.917),5
 Without BRCA1,3–10,"Recorded, unclassified",Atlas splice-site usage,Moderate,0.6787,6,138,312,100,0.638,0.962,16.6,,0.898 (0.828–0.942),5
 Without BRCA1,3–10,"Recorded, unclassified",Atlas splice junctions,Moderate,5.41796875,6,138,312,74,0.478,0.974,18.7,,0.891 (0.818–0.937),5
@@ -242,7 +242,7 @@ Without BRCA1,3–10,Unrecorded,phastCons,Supporting (Moderate not reached),1.00
 Without BRCA1,3–10,Unrecorded,GPN-MSA,Moderate,9.010,6,274,1331,90,0.219,0.977,9.72,,0.766 (0.729–0.800),5
 Without BRCA1,3–10,Unrecorded,Nucleotide Transformer,Supporting (Moderate not reached),3.26899,6,274,1331,151,0.281,0.944,5.05,,0.694 (0.647–0.738),5
 Without BRCA1,3–10,Unrecorded,SpliceAI (published basis),Moderate,0.5386,6,274,1331,183,0.485,0.962,12.9,4.33,0.886 (0.820–0.930),5
-Without BRCA1,3–10,Unrecorded,Atlas combined score,Moderate,1.071034,6,274,1331,159,0.464,0.976,19.3,,0.887 (0.809–0.935),5
+Without BRCA1,3–10,Unrecorded,Atlas combined score,Moderate,1.071,6,274,1331,159,0.464,0.976,19.3,,0.887 (0.809–0.935),5
 Without BRCA1,3–10,Unrecorded,Atlas splice sites,Moderate,0.4648,6,274,1331,169,0.474,0.971,16.2,,0.878 (0.799–0.929),5
 Without BRCA1,3–10,Unrecorded,Atlas splice-site usage,Moderate,0.6787,6,274,1331,176,0.504,0.971,17.6,,0.888 (0.820–0.933),5
 Without BRCA1,3–10,Unrecorded,Atlas splice junctions,Moderate,5.41796875,6,274,1331,121,0.339,0.979,16.1,,0.893 (0.815–0.941),5

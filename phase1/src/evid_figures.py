@@ -42,6 +42,8 @@ import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 
+from . import evid_common as K  # noqa: E402
+
 REPORT_DIR = Path("reports/evidence")
 FIG_DATA = REPORT_DIR / "fig_data"
 OUT = REPORT_DIR / "figures"
@@ -281,7 +283,7 @@ def _curve(tool: str, stratum: str) -> pd.DataFrame | None:
 
 
 def _thresholds() -> pd.DataFrame:
-    e = pd.read_csv(REPORT_DIR / "evidence_thresholds.csv")
+    e = K.read_back(REPORT_DIR / "evidence_thresholds.csv")
     return e[(e.status == "ok") & e.pp3_threshold_reachable.astype(bool)]
 
 
@@ -371,7 +373,7 @@ def figure_s1() -> None:
 # Figure 3 -- held-out likelihood ratios, one point per held-out gene
 # ---------------------------------------------------------------------------
 def figure3() -> None:
-    f = pd.read_csv(REPORT_DIR / "evidence_thresholds_logo_folds.csv")
+    f = K.read_back(REPORT_DIR / "evidence_thresholds_logo_folds.csv")
     f = f[(f.side == "pp3") & f.stratum.isin(STRATA) & f.tool.isin(COLUMNS)]
     thr = _thresholds()
     tiers = [("moderate", "Moderate", 4.33), ("strong", "Strong", 18.7)]
@@ -452,7 +454,7 @@ def figure3() -> None:
 # Figure 4 -- thresholds carried to genes outside the seven
 # ---------------------------------------------------------------------------
 def figure4() -> None:
-    d = pd.read_csv(FIG_DATA / "fig4_external.csv")
+    d = K.read_back(FIG_DATA / "fig4_external.csv")
     basis = {g: pd.read_csv(REPORT_DIR / f"external_{g.lower()}_column_basis.csv")
              for g in ("DDX3X", "TP53")}
     marks = {"walker": ("o", "Published cut point, 0.2 (SpliceAI, published basis)"),

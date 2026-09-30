@@ -572,7 +572,7 @@ def apply_thresholds(gene: str) -> None:
 
     df, label_cols = _load_external(gene)
     ev_path = REPORT_DIR / "evidence_thresholds.csv"
-    ev = pd.read_csv(ev_path) if ev_path.exists() else None
+    ev = K.read_back(ev_path) if ev_path.exists() else None
 
     rows = []
     tools = [t for t in K.PANEL + K.OPTIONAL if t in df.columns]

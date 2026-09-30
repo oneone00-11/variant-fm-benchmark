@@ -103,6 +103,24 @@ def load_set(path: Path | str = SET_PATH) -> pd.DataFrame:
     return pd.read_parquet(path)
 
 
+def read_back(path: Path | str, **kw) -> pd.DataFrame:
+    """A table this pipeline wrote, read back float for float.
+
+    pandas' default CSV float parser (the same as float_precision="high") is not
+    correctly rounded. It can round the last binary digit the wrong way, and it cuts a
+    small value's decimals off after the sixteenth place: 0.0003352165222167969 comes
+    back 1,787 units in the last place low. A threshold is an observed score, so a
+    threshold read back high leaves the variants that sit exactly on it out of a band
+    that includes its boundary (score >= t), and one read back low leaves them out of
+    score <= t. It happened: evid_arms read E3's Moderate threshold for the combined
+    Atlas score at 3-10 bp one digit high and counted one damaging PALB2 variant out of
+    its band (Supplementary Table S10), and the supplementary tables chose the digits
+    they print for several thresholds against misread values. Every stage that reads a
+    threshold back from a CSV reads it through here.
+    """
+    return pd.read_csv(path, float_precision="round_trip", **kw)
+
+
 def panel_of(df: pd.DataFrame) -> list[str]:
     """Panel columns actually present, in a fixed order."""
     return [c for c in PANEL + OPTIONAL if c in df.columns]

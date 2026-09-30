@@ -117,7 +117,7 @@ def arms_at_tool_threshold(df: pd.DataFrame, tools: list[str], pp3: float) -> pd
     question is whether one fixed threshold yields a different ratio depending on
     which variants it is evaluated on, not what threshold each arm would choose.
     """
-    ev = pd.read_csv(REPORT_DIR / "evidence_thresholds.csv")
+    ev = K.read_back(REPORT_DIR / "evidence_thresholds.csv")
     ev = ev[(ev.status == "ok") & ev.pp3_threshold_reachable.astype(bool)]
     rows = []
     for tool in tools:

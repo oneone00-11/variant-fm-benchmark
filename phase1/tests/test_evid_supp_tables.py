@@ -31,6 +31,7 @@ if str(PHASE1) not in sys.path:
     sys.path.insert(0, str(PHASE1))
 
 from src import config as C                    # noqa: E402
+from src import evid_common as K              # noqa: E402
 from src import evid_supp_tables as S          # noqa: E402
 
 REPORTS = PHASE1 / "reports/evidence"
@@ -121,7 +122,7 @@ def test_s10_published_cut_point_only_for_the_spliceai_columns():
     assert (band[pub[0]] != "").all()
     # nothing from territory_metrics' walker_* columns: every published-cut value
     # is one of arms_at_tool_threshold's
-    a = pd.read_csv(REPORTS / "arms_at_tool_threshold.csv")
+    a = K.read_back(REPORTS / "arms_at_tool_threshold.csv")
     allowed = {S.fmt_lr(v) for v in a.loc[a.threshold_basis == "published cut point",
                                           "band_lr"]} | {"not evaluable"}
     assert set(band[pub[0]]) <= allowed
@@ -130,7 +131,7 @@ def test_s10_published_cut_point_only_for_the_spliceai_columns():
 
 def test_s6_per_fold_ratios_rebuild_the_fold_file():
     s6 = _read("tableS6_thresholds_pathogenic.csv")
-    folds = pd.read_csv(REPORTS / "evidence_thresholds_logo_folds.csv")
+    folds = K.read_back(REPORTS / "evidence_thresholds_logo_folds.csv")
     labels = {v: k for k, v in S.tool_labels().items()}
     strata = {v: k for k, v in S.STRATUM_LABEL.items()}
     checked = 0
@@ -181,7 +182,7 @@ def test_s1_counts_and_publication_names():
             assert r["Assay publication"].split(" (")[0] == \
                 f"{m.group(1).capitalize()} {m.group(2)}"
     assert set(s1.index) == set(S.SEVEN) | {"DDX3X", "TP53"}
-    ext = pd.read_csv(REPORTS / "external_tp53.csv")
+    ext = K.read_back(REPORTS / "external_tp53.csv")
     t = ext[(ext.label_definition == "y_control_anchored") & (ext.stratum == "all_1_50")]
     assert int(s1.loc["TP53", "Damaging"]) == int(t.n_pos.iloc[0])
     assert int(s1.loc["TP53", "Normal"]) == int(t.n_neg.iloc[0])
@@ -205,7 +206,7 @@ def test_s12_external_rows_follow_the_basis_check():
     assert len(no) and (no["Why not comparable"] != "").all()
     assert (no[thr] == "").all().all()
     # the Walker-basis ratio at the published cut point is the external table's
-    e = pd.read_csv(REPORTS / "external_ddx3x.csv")
+    e = K.read_back(REPORTS / "external_ddx3x.csv")
     e = e[(e.tool == "spliceai_walker") & (e.stratum == "s3_50")
           & (e.label_definition == "y_control_anchored")].iloc[0]
     row = s12[(s12.Gene == "DDX3X") & (s12["Label definition"] == "Control-anchored")
@@ -268,7 +269,7 @@ def test_rerun_is_byte_identical_and_matches_the_tables_on_disk(tmp_path):
 def test_s8_counts_are_the_dilution_summary():
     """S8 is the dilution summary in print form: every count it prints is the
     summary's."""
-    summ = pd.read_csv(REPORTS / "threshold_dilution_summary.csv")
+    summ = K.read_back(REPORTS / "threshold_dilution_summary.csv")
     s8 = pd.read_csv(SUPP / "tableS8_dilution.csv", dtype=str)
     assert len(s8) == len(summ)
     reached = s8["Subsets reaching the tier"].str.split(" ").str[0].astype(int)
@@ -279,7 +280,7 @@ def test_printed_thresholds_select_the_same_variants():
     """A printed threshold must select exactly the variants the fitted value
     selects. At four significant figures AlphaGenome's 2.19988 prints as 2.200,
     above every score in the set, which would empty the band."""
-    ev = pd.read_csv(REPORTS / "evidence_thresholds.csv")
+    ev = K.read_back(REPORTS / "evidence_thresholds.csv")
     ev = ev[(ev.status == "ok") & ev.pp3_threshold_reachable.astype(bool)
             & ev.tool.isin(S.TOOLS)]
     df = pd.read_parquet(PHASE1 / "data/evidence/analysis_set_v1.parquet")

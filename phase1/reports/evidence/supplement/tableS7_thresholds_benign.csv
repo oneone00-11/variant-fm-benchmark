@@ -1,20 +1,20 @@
 Tool,"Stratum (intronic offset, bp)",Tier,Benign tier LR cut,Reached in-sample,In-sample threshold (gene-clustered bootstrap),In-sample threshold (variant-level bootstrap),"Held-out LR, median over folds"
-SpliceAI (distance 50),3–10,Supporting,0.481,Yes,0.0068527,0.009981,0.0466
-SpliceAI (distance 50),3–10,Moderate,0.231,Yes,0.0009788777679,0.000823855,0.0571
+SpliceAI (distance 50),3–10,Supporting,0.481,Yes,0.006853,0.0099815,0.0466
+SpliceAI (distance 50),3–10,Moderate,0.231,Yes,0.0009789,0.0008239,0.0571
 SpliceAI (distance 50),3–10,Strong,0.0535,No,,,
 SpliceAI (distance 50),11–50,Supporting,0.481,No,,,
 SpliceAI (distance 50),11–50,Moderate,0.231,No,,,
 SpliceAI (distance 50),11–50,Strong,0.0535,No,,,
-SpliceAI (distance 50),3–50,Supporting,0.481,Yes,0.0003459,0.0003352,0
+SpliceAI (distance 50),3–50,Supporting,0.481,Yes,0.00034595,0.00033522,0
 SpliceAI (distance 50),3–50,Moderate,0.231,No,,,
 SpliceAI (distance 50),3–50,Strong,0.0535,No,,,
-Pangolin,3–10,Supporting,0.481,Yes,0.003778,0.0040245,0.0424
-Pangolin,3–10,Moderate,0.231,Yes,0.0015617,0.002310,0
+Pangolin,3–10,Supporting,0.481,Yes,0.0037785,0.004025,0.0424
+Pangolin,3–10,Moderate,0.231,Yes,0.001562,0.00231024,0
 Pangolin,3–10,Strong,0.0535,No,,,
 Pangolin,11–50,Supporting,0.481,No,,,
 Pangolin,11–50,Moderate,0.231,No,,,
 Pangolin,11–50,Strong,0.0535,No,,,
-Pangolin,3–50,Supporting,0.481,Yes,0.0007956,0.0007733,0.0183
+Pangolin,3–50,Supporting,0.481,Yes,0.000795624,0.0007733044331,0.0183
 Pangolin,3–50,Moderate,0.231,No,,,
 Pangolin,3–50,Strong,0.0535,No,,,
 AlphaGenome splice score,3–10,Supporting,0.481,Yes,2.1433,1.98015,0.0919
@@ -71,16 +71,16 @@ Nucleotide Transformer,11–50,Strong,0.0535,No,,,
 Nucleotide Transformer,3–50,Supporting,0.481,Yes,-1.76287,-1.76287,0.452
 Nucleotide Transformer,3–50,Moderate,0.231,No,,,
 Nucleotide Transformer,3–50,Strong,0.0535,No,,,
-SpliceAI (published basis),3–10,Supporting,0.481,Yes,0.02634668,0.024793578,0.0927
-SpliceAI (published basis),3–10,Moderate,0.231,Yes,0.002829,0.002829,0
+SpliceAI (published basis),3–10,Supporting,0.481,Yes,0.02635,0.024794,0.0927
+SpliceAI (published basis),3–10,Moderate,0.231,Yes,0.00282902,0.00282902,0
 SpliceAI (published basis),3–10,Strong,0.0535,No,,,
-SpliceAI (published basis),11–50,Supporting,0.481,Yes,0.001270,,0
+SpliceAI (published basis),11–50,Supporting,0.481,Yes,0.0012704134,,0
 SpliceAI (published basis),11–50,Moderate,0.231,No,,,
 SpliceAI (published basis),11–50,Strong,0.0535,No,,,
-SpliceAI (published basis),3–50,Supporting,0.481,Yes,0.003406,0.003408968,0.106
+SpliceAI (published basis),3–50,Supporting,0.481,Yes,0.0034061,0.003409,0.106
 SpliceAI (published basis),3–50,Moderate,0.231,No,,,
 SpliceAI (published basis),3–50,Strong,0.0535,No,,,
-Atlas combined score,3–10,Supporting,0.481,Yes,0.041665,0.15959,0.0321
+Atlas combined score,3–10,Supporting,0.481,Yes,0.04167,0.1596,0.0321
 Atlas combined score,3–10,Moderate,0.231,Yes,-0.09308,-0.077236,0.124
 Atlas combined score,3–10,Strong,0.0535,No,,,
 Atlas combined score,11–50,Supporting,0.481,No,,,
@@ -101,7 +101,7 @@ Atlas splice sites,3–50,Strong,0.0535,No,,,
 Atlas splice-site usage,3–10,Supporting,0.481,Yes,0.01758,0.01758,0.0525
 Atlas splice-site usage,3–10,Moderate,0.231,Yes,0.013672,0.0107422,0.166
 Atlas splice-site usage,3–10,Strong,0.0535,No,,,
-Atlas splice-site usage,11–50,Supporting,0.481,Yes,0.0096817,,0.329
+Atlas splice-site usage,11–50,Supporting,0.481,Yes,0.009682,,0.329
 Atlas splice-site usage,11–50,Moderate,0.231,No,,,
 Atlas splice-site usage,11–50,Strong,0.0535,No,,,
 Atlas splice-site usage,3–50,Supporting,0.481,Yes,0.009766,0.01758,0.0406

@@ -92,10 +92,10 @@ def test_the_stage_writes_only_its_own_files():
     module writes through exactly these three calls."""
     from src import evid_practical_metrics as P
     targets = [P.OUT_TABLE, P.OUT_BY_GENE, P.OUT_EXTERNAL, P.OUT_ROC, P.OUT_PR,
-               P.OUT_AUC, P.OUT_MD, Path(P.FIGURE)]
+               P.OUT_AUC, P.OUT_MD, Path(P.FIGURE), Path(P.SLIDES)]
     assert all("practical" in t.name for t in targets)
     src = (PHASE1 / "src/evid_practical_metrics.py").read_text()
-    assert len(re.findall(r"\.to_csv\(|write_text\(|_save\(", src)) == 3
+    assert len(re.findall(r"\.to_csv\(|write_text\(|_save\(|savefig\(", src)) == 4
 
 
 @need
@@ -431,7 +431,15 @@ def test_the_summary_is_written_from_the_tables(table, auc, curves):
                      & (table.threshold_source == source)].iloc[0]
     assert cells[8] == f"{pick('logo').sensitivity:.2f} ({pick('in_sample').sensitivity:.2f})"
     a = auc[(auc.tool == "pangolin") & (auc.stratum == "s3_10")].iloc[0]
+    # coverage on labelled variants, as the manuscript's shares; the manuscript's AUROC
+    # (gene-pooled) beside the pooled curve's
+    assert cells[10] == (f"{pick('logo').coverage_labelled:.2f} "
+                         f"({pick('in_sample').coverage_labelled:.2f})")
+    assert cells[-3] == f"{a.auroc_gene_pooled:.2f}"
     assert cells[-2] == f"{a.auroc_pooled_curve:.2f}"
+    spec = next(line for line in md.splitlines() if line.startswith("| Pangolin | 0."))
+    assert spec.split(" | ")[1] == f"{a['sensitivity_at_specificity_0.95']:.2f}"
+    assert "E3 to store its per-fold BP4 thresholds" in md          # known improvement
     sentences = re.findall(r"^\d\. (.+)$", md, re.M)
     assert len(sentences) == 5
     for sentence in sentences:
@@ -496,4 +504,27 @@ def test_the_figure_carries_no_timestamp():
     pdf = (FIGURE.with_suffix(".pdf")).read_bytes()
     assert b"/CreationDate" not in pdf and b"/ModDate" not in pdf
     png = (FIGURE.with_suffix(".png")).read_bytes()
+    assert b"Software" not in png[:4096]
+
+
+@need
+def test_the_slide_keys_give_the_manuscripts_auroc(auc):
+    """The slide's AUROC keys are the gene-pooled estimate the manuscript reports, which
+    differs from the pooled curve's in every band."""
+    from src import evid_practical_metrics as P
+    for st in P.CURVE_STRATA:
+        a = auc[auc.stratum == st].set_index("tool")
+        labels = P.slide_key_labels(auc, st)
+        assert labels == [f"{P.SHORT[t]}  {a.loc[t, 'auroc_gene_pooled']:.2f}"
+                          for t in P.MAIN_TOOLS]
+        assert labels != [f"{P.SHORT[t]}  {a.loc[t, 'auroc_pooled_curve']:.2f}"
+                          for t in P.MAIN_TOOLS]
+
+
+@need
+def test_the_slide_figure_is_16_by_9():
+    import struct
+    png = (EV / "figures/figure_practical_slides.png").read_bytes()
+    width, height = struct.unpack(">II", png[16:24])
+    assert (width, height) == (2000, 1125) and width * 9 == height * 16
     assert b"Software" not in png[:4096]

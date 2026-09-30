@@ -22,6 +22,7 @@ REPORTS = PHASE1 / "reports/evidence"
 if str(PHASE1) not in sys.path:
     sys.path.insert(0, str(PHASE1))
 from src.evid_common import ATLAS_REPO  # noqa: E402  the stages' own resolution
+from src import evid_common as K  # noqa: E402
 SET = DATA / "analysis_set_v1.parquet"
 
 AVI_COLS = ["avi", "avi_splice_sites", "avi_splice_site_usage", "avi_splice_junctions"]
@@ -75,7 +76,7 @@ def test_the_avi_licence_is_declared_per_column():
 # ------------------------------------------------------------- tier table
 @pytest.mark.skipif(not (REPORTS / "tier_logo_table.csv").exists(), reason="E2.2 not run")
 def test_the_tier_table_keeps_the_two_quantities_apart():
-    d = pd.read_csv(REPORTS / "tier_logo_table.csv")
+    d = K.read_back(REPORTS / "tier_logo_table.csv")
     ok = d[d.status == "ok"]
     assert {"in_sample_tier_reached", "heldout_lr_median", "folds_reached",
             "folds_heldout_lr_above_cut"} <= set(d.columns)
@@ -95,8 +96,8 @@ def test_the_tier_table_keeps_the_two_quantities_apart():
 @pytest.mark.skipif(not (REPORTS / "tier_logo_table.csv").exists(), reason="E2.2 not run")
 def test_the_tier_table_is_derived_from_the_threshold_tables():
     """It is a view, not a retyping: every row must match evidence_thresholds.csv."""
-    d = pd.read_csv(REPORTS / "tier_logo_table.csv")
-    ev = pd.read_csv(REPORTS / "evidence_thresholds.csv")
+    d = K.read_back(REPORTS / "tier_logo_table.csv")
+    ev = K.read_back(REPORTS / "evidence_thresholds.csv")
     ok = d[d.status == "ok"]
     m = ok.merge(ev, on=["tool", "stratum", "tier"], suffixes=("", "_ev"))
     assert len(m) == len(ok)
@@ -181,7 +182,7 @@ def test_every_evaluated_column_has_a_training_provenance_row():
     column that is evaluated anywhere and missing here is the failure mode."""
     t = pd.read_csv(REPORTS / "predictor_training_provenance.csv")
     have = set(t.score_column)
-    evaluated = set(pd.read_csv(REPORTS / "evidence_thresholds.csv").tool)
+    evaluated = set(K.read_back(REPORTS / "evidence_thresholds.csv").tool)
     missing = evaluated - have
     assert not missing, f"evaluated but no training provenance row: {sorted(missing)}"
 

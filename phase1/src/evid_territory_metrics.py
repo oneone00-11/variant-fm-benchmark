@@ -106,7 +106,7 @@ def attach_best_tier(out: pd.DataFrame) -> pd.DataFrame:
     if not path.exists():
         out["e3_best_tier_pp3"] = "E3 not run"
         return out
-    ev = pd.read_csv(path)
+    ev = K.read_back(path)
     ev = ev[(ev.get("status") == "ok") & ev["pp3_threshold_reachable"].fillna(False)]
     order = {"supporting": 1, "moderate": 2, "strong": 3, "very_strong": 4}
     ev["rank"] = ev["tier"].map(order)

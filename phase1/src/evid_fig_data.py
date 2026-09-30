@@ -64,7 +64,7 @@ def fig1() -> pd.DataFrame:
         f = REPORT_DIR / f"external_{gene}.csv"
         if not f.exists():
             continue
-        e = pd.read_csv(f)
+        e = K.read_back(f)
         e = e[(e.status == "ok") & (e.tool == col) & (e.stratum.isin(IN_SCOPE))
               & e.walker_lr_pp3.notna()]
         for r in e.itertuples():
@@ -117,7 +117,7 @@ def fig3() -> pd.DataFrame:
     beside the threshold-free metrics on the same cells."""
     tm = pd.read_csv(REPORT_DIR / "territory_metrics.csv")
     tm = tm[(tm.status == "ok") & tm.stratum.isin(IN_SCOPE)]
-    tier = pd.read_csv(REPORT_DIR / "tier_logo_table.csv")
+    tier = K.read_back(REPORT_DIR / "tier_logo_table.csv")
     tier = tier[tier.status == "ok"]
     order = {"supporting": 1, "moderate": 2, "strong": 3}
     tier["rank"] = tier.tier.map(order)
@@ -148,7 +148,7 @@ def fig4() -> pd.DataFrame:
         f = REPORT_DIR / f"external_{gene}.csv"
         if not f.exists():
             continue
-        e = pd.read_csv(f)
+        e = K.read_back(f)
         e = e[(e.status == "ok") & e.stratum.isin(IN_SCOPE)]
         for r in e.itertuples():
             for tier in ("supporting", "moderate", "strong"):

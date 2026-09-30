@@ -166,14 +166,6 @@ PP3_METRICS = ["n_scored_in_band", "coverage", "coverage_labelled", "n_pos_above
 N_COLUMNS = ["n_scored", "n", "n_pos", "n_neg", "prevalence"]
 
 
-def _read(path: Path) -> pd.DataFrame:
-    """A table as written. pandas' default float parser can land one binary digit away
-    from the value written, which moves a threshold enough to drop the variants that
-    sit exactly on it (every threshold here is an observed score) from a band that
-    includes its boundary."""
-    return pd.read_csv(path, float_precision="round_trip")
-
-
 # ---------------------------------------------------------------------------
 # counts and the quantities read off them
 # ---------------------------------------------------------------------------
@@ -438,9 +430,9 @@ def external(table: pd.DataFrame, cfg: dict, tools: list[str]) -> pd.DataFrame:
     rows = []
     for gene, label in EXTERNAL:
         data, _ = X._load_external(gene)
-        ext = _read(REPORT_DIR / f"external_{gene.lower()}.csv")
+        ext = K.read_back(REPORT_DIR / f"external_{gene.lower()}.csv")
         ext = ext[ext.label_definition == label]
-        basis = _read(REPORT_DIR / f"external_{gene.lower()}_column_basis.csv")
+        basis = K.read_back(REPORT_DIR / f"external_{gene.lower()}_column_basis.csv")
         basis = basis.set_index("tool")
         for tool in [t for t in tools if t in set(ext.tool)]:
             for stratum in TABLE_STRATA:
@@ -533,7 +525,7 @@ def _sens_at_specificity(y: np.ndarray, s: np.ndarray, q: Fraction) -> tuple[flo
 
 
 def curves(df: pd.DataFrame, tools: list[str]) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    pooled = _read(GENE_POOLED)
+    pooled = K.read_back(GENE_POOLED)
     pooled = pooled[pooled.arm == "all"].set_index(["tool", "stratum"])
     roc_rows, pr_rows, auc_rows = [], [], []
     for tool in tools:
@@ -777,6 +769,156 @@ def figure(roc: pd.DataFrame, pr: pd.DataFrame, auc: pd.DataFrame,
     F._save(fig, FIGURE)
 
 
+# The same two rows at slide size, 16:9 with larger type, for presenting the stage. Its
+# AUROC key gives the manuscript's estimator, the gene-pooled AUROC, and the caption
+# says so, because a slide carries no legend.
+SLIDES = "figure_practical_slides"
+SLIDE_DPI = 150
+SLIDE_SIZE = (2000 / SLIDE_DPI, 1125 / SLIDE_DPI)   # inches: 2000 x 1125 pixels, 16:9
+SLIDE_SCALE = 1.8                           # line widths and marker sizes against print
+# the inset is shorter than in print, its top where print has it, so that its tick
+# labels clear the larger AUROC key below it; figure_slides stops if they do not
+SLIDE_INSET_BOUNDS = [0.45, 0.49, 0.52, 0.23]
+SLIDE_CAPTION = ("Curves pool the seven genes; each AUROC is the manuscript's, per-gene "
+                 "AUROCs combined across genes on the logit scale.")
+
+
+def slide_key_labels(auc: pd.DataFrame, stratum: str) -> list[str]:
+    """The AUROC key of one slide panel: the manuscript's gene-pooled estimate."""
+    a = auc[auc.stratum == stratum].set_index("tool")
+    return [f"{SHORT[t]}  {a.loc[t, 'auroc_gene_pooled']:.2f}" for t in MAIN_TOOLS]
+
+
+def figure_slides(roc: pd.DataFrame, pr: pd.DataFrame, auc: pd.DataFrame,
+                  table: pd.DataFrame, cfg: dict) -> None:
+    import matplotlib.pyplot as plt
+    import matplotlib.transforms as mtransforms
+    from matplotlib.lines import Line2D
+    F._style()
+    plt.rcParams.update({"font.size": 13, "axes.titlesize": 15, "axes.labelsize": 13,
+                         "xtick.labelsize": 11, "ytick.labelsize": 11,
+                         "legend.fontsize": 11.5, "axes.linewidth": 1.0,
+                         "xtick.major.width": 1.0, "ytick.major.width": 1.0,
+                         "xtick.major.size": 4, "ytick.major.size": 4})
+    k = SLIDE_SCALE
+    pp3_cut = float(cfg["thresholds"]["pp3"]["value"])
+    marks = _tier_marks(table)
+    xmax, ymax = _inset_range(roc, marks)
+    unit = [0, 0.25, 0.5, 0.75, 1]
+    unit_labels = ["0", "0.25", "0.5", "0.75", "1"]
+    fig, axes = plt.subplots(2, 3, figsize=SLIDE_SIZE,
+                             gridspec_kw={"hspace": 0.36, "wspace": 0.30})
+
+    def nudged(ax, tool):
+        dx, dy = MARKER_NUDGE[tool]
+        return mtransforms.offset_copy(ax.transData, fig=fig, x=k * dx, y=k * dy,
+                                       units="points")
+
+    keys = []
+    for j, st in enumerate(CURVE_STRATA):
+        top, bottom = axes[0, j], axes[1, j]
+        inset = top.inset_axes(SLIDE_INSET_BOUNDS)
+        top.plot([0, 1], [0, 1], color=F.GRID, lw=0.6 * k, ls=(0, (1.5, 1.5)), zorder=0)
+        a = auc[auc.stratum == st].set_index("tool")
+        prevalence = float(a["prevalence"].iloc[0])
+        bottom.axhline(prevalence, color=F.INK2, lw=0.7 * k, ls=(0, (3, 1.5)), zorder=0)
+        bottom.text(0.04, prevalence, f"prevalence {prevalence:.2f}", fontsize=11,
+                    color=F.INK2, ha="left", va="bottom")
+        handles = []
+        labels = slide_key_labels(auc, st)
+        for tool, label in zip(MAIN_TOOLS, labels):
+            colour, dash = TOOL_COLOUR[tool], TOOL_DASH[tool]
+            r = roc[(roc.tool == tool) & (roc.stratum == st)]
+            p = pr[(pr.tool == tool) & (pr.stratum == st)]
+            top.plot(r.fpr, r.tpr, color=colour, lw=1.0 * k, ls=dash, zorder=2)
+            inset.plot(r.fpr, r.tpr, color=colour, lw=0.8 * k, ls=dash, zorder=2)
+            bottom.plot(p.recall.iloc[1:], p.precision.iloc[1:], color=colour,
+                        lw=1.0 * k, ls=dash, drawstyle="steps-pre", zorder=2)
+            for m in marks[(marks.tool == tool) & (marks.stratum == st)].itertuples():
+                x, yv, rc, pc = _point(roc, pr, tool, st, m.threshold)
+                shape, size = TIER_MARKER[m.threshold_kind]
+                style = dict(marker=shape, ms=size * k, color=colour, mec="white",
+                             mew=0.4 * k, ls="", zorder=4, clip_on=False)
+                top.plot(x, yv, transform=nudged(top, tool), **style)
+                inset.plot(x, yv, transform=nudged(inset, tool), **style)
+                bottom.plot(rc, pc, transform=nudged(bottom, tool), **style)
+            if tool == "spliceai_walker":
+                x, yv, rc, pc = _point(roc, pr, tool, st, pp3_cut)
+                style = dict(marker="D", ms=3.8 * k, mfc="white", mec=colour,
+                             mew=0.9 * k, ls="", zorder=5)
+                top.plot(x, yv, **style)
+                if x <= xmax:
+                    inset.plot(x, yv, **style)
+                bottom.plot(rc, pc, **style)
+            handles.append(Line2D([], [], color=colour, lw=1.0 * k, ls=dash,
+                                  label=label))
+        # an opaque frame without an edge, so the chance diagonal passes behind the key
+        key = top.legend(handles=handles, loc="lower right", title="AUROC",
+                         alignment="left", fontsize=11.5, title_fontsize=11.5,
+                         handlelength=2.0, handletextpad=0.4, borderaxespad=0.1,
+                         labelspacing=0.2, frameon=True, framealpha=1.0,
+                         borderpad=0.3)
+        key.get_frame().set_facecolor("white")
+        key.get_frame().set_edgecolor("none")
+        keys.append((st, key, inset))
+        inset.set_xlim(0, xmax)
+        inset.set_ylim(0, ymax)
+        xt = [round(v, 10) for v in np.arange(0, xmax + INSET_X_STEP / 2, INSET_X_STEP)]
+        inset.set_xticks(xt)
+        inset.set_xticklabels([f"{v:g}" for v in xt], fontsize=10)
+        yt = [0, round(ymax / 2, 10), ymax]
+        inset.set_yticks(yt)
+        inset.set_yticklabels([f"{v:g}" for v in yt], fontsize=10)
+        inset.tick_params(length=2.5, pad=1.5)
+        for spine in inset.spines.values():
+            spine.set_visible(True)
+            spine.set_color(F.MUTED)
+            spine.set_linewidth(0.8)
+        for ax in (top, bottom):
+            ax.set_xlim(-0.01, 1.01)
+            ax.set_ylim(-0.01, 1.01)
+            ax.set_xticks(unit)
+            ax.set_yticks(unit)
+            ax.set_xticklabels(unit_labels)
+            ax.set_yticklabels(unit_labels)
+            ax.set_aspect("equal")
+        top.set_title(F.STRATUM_LABEL[st], fontweight="bold")
+        top.set_xlabel("1 − specificity")
+        bottom.set_xlabel("Sensitivity (recall)")
+        if j == 0:
+            top.set_ylabel("Sensitivity")
+            bottom.set_ylabel("Precision")
+    handles = [Line2D([], [], color=TOOL_COLOUR[t], lw=1.0 * k, ls=TOOL_DASH[t],
+                      label=F.NAME[t] + ("\u00a0†" if t == "avi" else ""))
+               for t in MAIN_TOOLS]
+    handles += [Line2D([], [], marker=TIER_MARKER[t][0], ms=TIER_MARKER[t][1] * k, ls="",
+                       color=F.INK2, mec="white", mew=0.4 * k,
+                       label=f"Fitted {TIER_NAME[t]} threshold")
+                for t in ("supporting", "moderate", "strong")]
+    handles += [Line2D([], [], marker="D", ms=3.8 * k, ls="", mfc="white", mec=F.INK2,
+                       mew=0.9 * k, label=f"Published cut point, {pp3_cut:g}"),
+                Line2D([], [], color=F.INK2, lw=0.7 * k, ls=(0, (3, 1.5)),
+                       label="Prevalence")]
+    fig.legend(handles=handles, loc="center left", bbox_to_anchor=(0.785, 0.52),
+               handlelength=2.6, handletextpad=0.6, labelspacing=0.7)
+    fig.text(0.05, 0.047, SLIDE_CAPTION, fontsize=11, color=F.INK2, ha="left",
+             va="bottom")
+    fig.text(0.05, 0.015, "† The Atlas combined score's model was selected on the BRCA1 "
+             "and RAD51C assays.", fontsize=11, color=F.INK2, ha="left", va="bottom")
+    fig.subplots_adjust(left=0.05, right=0.77, top=0.93, bottom=0.15)
+    # the key's frame is opaque: it must not reach the inset's tick labels
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    for st, key, inset in keys:
+        if key.get_window_extent(renderer).y1 >= inset.get_tightbbox(renderer).y0:
+            raise SystemExit(f"[practical] the AUROC key covers the inset's tick labels "
+                             f"at {F.STRATUM_LABEL[st]}")
+    F.OUT.mkdir(parents=True, exist_ok=True)
+    fig.savefig(F.OUT / f"{SLIDES}.png", dpi=SLIDE_DPI, metadata={"Software": None})
+    plt.close(fig)
+    print(f"[figures] wrote {SLIDES}.png")
+
+
 # ---------------------------------------------------------------------------
 # E4.6: the one-page summary, written from the tables above
 # ---------------------------------------------------------------------------
@@ -874,16 +1016,17 @@ def _sentences(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
     its wording."""
     main = auc[auc.tool.isin(MAIN_TOOLS)]
     out = []
-    # 1. the distal band on the ROC
-    best_distal = float(main[main.stratum == "s11_50"].auroc_pooled_curve.max())
-    low_proximal = float(main[main.stratum == "s3_10"].auroc_pooled_curve.min())
+    # 1. the distal band on the ROC; the AUROC is the manuscript's, gene-pooled, as on
+    # the slide figure
+    best_distal = float(main[main.stratum == "s11_50"].auroc_gene_pooled.max())
+    low_proximal = float(main[main.stratum == "s3_10"].auroc_gene_pooled.min())
     low, high = _distal_crossings(roc)
     if best_distal < low_proximal and low < 0.01 and high > 0.9:
         out.append("At 11–50 bp each ROC curve lies below the same tool's 3–10 bp curve "
-                   "except near its two ends; the best pooled AUROC there is "
+                   "except near its two ends; the best AUROC there is "
                    f"{best_distal:.2f}, below the lowest at 3–10 bp ({low_proximal:.2f}).")
     else:
-        out.append(f"At 11–50 bp the best pooled AUROC is {best_distal:.2f}, against "
+        out.append(f"At 11–50 bp the best AUROC is {best_distal:.2f}, against "
                    f"{low_proximal:.2f} for the lowest at 3–10 bp.")
     # 2 and 3. Strong at 3-10 bp, held out, where the table shows a held-out value
     strong = []
@@ -895,9 +1038,9 @@ def _sentences(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
         sens = [float(r.sensitivity) for r in strong]
         out.append(f"Held out, a Strong threshold at 3–10 bp catches {_pct(min(sens))} to "
                    f"{_pct(max(sens))} of damaging variants, depending on the tool.")
-        cover = max(float(r.coverage) for r in strong)
-        out.append("The cost is coverage: Strong evidence reaches no more than "
-                   f"{_pct(_up(cover))} of the variants in that band.")
+        cover = max(float(r.coverage_labelled) for r in strong)
+        out.append("The cost is coverage: held out, Strong evidence reaches no more than "
+                   f"{100 * _up(cover, 3):.1f}% of the labelled variants in that band.")
     else:
         out.append("Held out, no tool's Strong threshold at 3–10 bp holds in most genes.")
     # 4. matched specificity
@@ -979,10 +1122,13 @@ def _sentence_external(ext: pd.DataFrame) -> str:
 def summary(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
             roc: pd.DataFrame, xmax: float) -> str:
     tiers = ("supporting", "moderate", "strong")
-    metrics = ("sensitivity", "specificity", "coverage")
+    # coverage on labelled variants, the denominator the manuscript's shares use
+    metrics = {"sensitivity": "sensitivity", "specificity": "specificity",
+               "coverage_labelled": "coverage"}
     head = (["Predictor", "Band"]
-            + [f"{TIER_NAME[t]}: {m}" for t in tiers for m in metrics]
-            + ["Held-out folds reaching S, M, St", "Pooled AUROC", "Pooled AUPRC"])
+            + [f"{TIER_NAME[t]}: {m}" for t in tiers for m in metrics.values()]
+            + ["Held-out folds reaching S, M, St", "AUROC (manuscript)", "Pooled AUROC",
+               "Pooled AUPRC"])
     body = []
     au = auc.set_index(["tool", "stratum"])
     for tool in MAIN_TOOLS:
@@ -1001,6 +1147,7 @@ def summary(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
                 folds.append(str(int(lg.folds_used)) if lg is not None
                              and np.isfinite(lg.folds_used) else "–")
             cells.append(", ".join(folds) + (f" of {held_out}" if held_out else ""))
+            cells.append(_two(au.loc[(tool, st), "auroc_gene_pooled"]))
             cells.append(_two(au.loc[(tool, st), "auroc_pooled_curve"]))
             cells.append(_two(au.loc[(tool, st), "auprc_pooled_curve"]))
             body.append(cells)
@@ -1035,16 +1182,14 @@ def summary(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
            "values, in brackets, include them.",
            "- Sensitivity: the share of damaging variants at or above the threshold. "
            "Specificity: the share of normal variants below it. Coverage: the share of "
-           "all scored variants in the band, labelled or not, at or above it; these are "
-           "the variants a user would get the evidence for. The share among labelled "
-           "variants only, the denominator of the manuscript's '14.8% of the variants' at "
-           "0.2, is `coverage_labelled`.",
-           "- Pooled AUROC and AUPRC: the seven genes pooled into one curve, the way one "
-           "threshold is used across genes. The manuscript's AUROC (Methods) is "
-           "gene-pooled instead: per-gene AUROCs combined on the logit scale with "
-           "random effects. For all variants it is `auroc_gene_pooled` in "
-           "`practical_curve_auc.csv`, beside the pooled value and a split of the "
-           "difference.",
+           "labelled variants in the band at or above it, the denominator of the "
+           "manuscript's '14.8% of the variants' at 0.2 (`coverage_labelled` in the "
+           "tables; `coverage` there counts every scored variant, labelled or not).",
+           "- AUROC (manuscript): per-gene AUROCs combined on the logit scale with "
+           "random effects, the estimator of the manuscript's Methods "
+           "(`auroc_gene_pooled`). Pooled AUROC and AUPRC: the seven genes pooled into "
+           "one curve, the way one threshold is used across genes, the curves drawn in "
+           "the figures; `practical_curve_auc.csv` splits the difference between the two.",
            "- Two decimals; >0.99 marks a value from 0.995 up to, not including, 1.",
            "- Wilson intervals, the BP4 side, the other ten columns and the fusion are "
            "in `practical_metrics_by_threshold.csv`; each fold in "
@@ -1052,7 +1197,16 @@ def summary(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
            "`practical_metrics_external.csv`. The curve tables start at threshold "
            "+inf, where nothing is called; the precision-recall table's first row is "
            "the conventional (recall 0, precision 1), not an observation.",
-           "", "## In five sentences", ""]
+           "", "## Sensitivity at a specificity of 0.95", "",
+           "The seven genes pooled: the most sensitive threshold at which at least 95% of "
+           "normal variants fall below it.", ""]
+    spec = auc.set_index(["tool", "stratum"])["sensitivity_at_specificity_0.95"]
+    md += ["| Predictor | " + " | ".join(F.STRATUM_LABEL[st] for st in CURVE_STRATA) + " |",
+           "|---|" + "---|" * len(CURVE_STRATA)]
+    md += ["| " + F.NAME[tool] + (" †" if tool == "avi" else "") + " | "
+           + " | ".join(_two(spec.loc[(tool, st)]) for st in CURVE_STRATA) + " |"
+           for tool in MAIN_TOOLS]
+    md += ["", "## In five sentences", ""]
     md += [f"{i}. {s}" for i, s in enumerate(_sentences(table, auc, ext, roc), 1)]
     md += ["", "## Figure legend", "",
            f"`phase1/reports/evidence/figures/{FIGURE}.pdf`. ROC curves (a) and "
@@ -1067,7 +1221,14 @@ def summary(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
            f"{xmax:g} against sensitivity, where every fitted threshold lies. The key in "
            "each ROC panel gives the pooled AUROC; the dashed line in (b) is the band's "
            "prevalence. † The Atlas combined score's model was selected on the BRCA1 and "
-           "RAD51C assays, which these curves include.", ""]
+           "RAD51C assays, which these curves include.", "",
+           f"`phase1/reports/evidence/figures/{SLIDES}.png` is the same figure at 16:9 "
+           "for slides, with larger type and the inset kept. Its caption: "
+           f"\"{SLIDE_CAPTION}\"", "",
+           "## Known improvements", "",
+           "- The BP4 side has no held-out values: E3 writes per-fold thresholds for the "
+           "PP3 side only. Held-out sensitivity and specificity for BP4 need E3 to store "
+           "its per-fold BP4 thresholds as well.", ""]
     return "\n".join(md)
 
 
@@ -1076,8 +1237,8 @@ def summary(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
 # ---------------------------------------------------------------------------
 def load() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, dict, list[str]]:
     cfg = yaml.safe_load(CONFIG_PATH.read_text())
-    ev = _read(REPORT_DIR / "evidence_thresholds.csv")
-    folds = _read(REPORT_DIR / "evidence_thresholds_logo_folds.csv")
+    ev = K.read_back(REPORT_DIR / "evidence_thresholds.csv")
+    folds = K.read_back(REPORT_DIR / "evidence_thresholds_logo_folds.csv")
     df = K.load_set()
     have = set(ev["tool"])
     tools = [c for c in F.COLUMNS if c in have] + ([K.FUSION] if K.FUSION in have else [])
@@ -1102,6 +1263,7 @@ def main() -> None:
         d.to_csv(path, index=False)
         print(f"[E15] wrote {path} ({len(d):,} rows)")
     figure(roc, pr, auc, table, cfg)
+    figure_slides(roc, pr, auc, table, cfg)
     xmax, _ = _inset_range(roc, _tier_marks(table))
     OUT_MD.write_text(summary(table, auc, ext, roc, xmax), encoding="utf-8")
     print(f"[E15] wrote {OUT_MD}")

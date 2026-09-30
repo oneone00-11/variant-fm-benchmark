@@ -145,8 +145,8 @@ def fusion_features(df: pd.DataFrame) -> list[str]:
 
 
 def read_e3(report_dir: Path, name: str) -> pd.DataFrame:
-    # round_trip so a stored threshold equals the score it was read off, bit for bit
-    return pd.read_csv(Path(report_dir) / name, float_precision="round_trip")
+    # read_back, so a stored threshold equals the score it was read off, bit for bit
+    return K.read_back(Path(report_dir) / name)
 
 
 # One set of writer options for the files and for csv_text, so the text a test

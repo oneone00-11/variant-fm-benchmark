@@ -40,8 +40,8 @@ STRATA = ["s3_10", "s11_50", "s3_50"]
 
 
 def build() -> pd.DataFrame:
-    ev = pd.read_csv(REPORT_DIR / "evidence_thresholds.csv")
-    folds = pd.read_csv(REPORT_DIR / "evidence_thresholds_logo_folds.csv")
+    ev = K.read_back(REPORT_DIR / "evidence_thresholds.csv")
+    folds = K.read_back(REPORT_DIR / "evidence_thresholds_logo_folds.csv")
     ev = ev[ev["tool"] != K.FUSION]
     folds = folds[folds["tool"] != K.FUSION]
 

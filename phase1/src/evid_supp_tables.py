@@ -221,7 +221,13 @@ def fmt_dp(x, dp: int = 3) -> str:
 
 
 def fmt_lr(x) -> str:
-    return fmt_sig(x, 3)
+    """Three significant figures, half-up. A ratio of counts that sits exactly on a
+    decimal tie can come out of the arithmetic just below it (291/20 = 14.55 is stored
+    as 14.549999999999999), and half-up on the stored value would round it down;
+    rounding to fifteen significant figures first puts it back on the tie."""
+    if not _finite(x):
+        return ""
+    return fmt_sig(float(f"{float(x):.15g}"), 3)
 
 
 _SCORES: dict[str, np.ndarray] = {}
@@ -239,11 +245,14 @@ def fmt_thr(x, tool: str | None = None, side: str = "upper") -> str:
     """Four significant figures, or more where four would move a variant across
     the threshold. AlphaGenome's thresholds sit just under its ceiling of 2.2, and
     at four figures a printed 2.200 selects no variant at all; the printed value
-    must select exactly the band the fitted value selects."""
+    must select exactly the band the fitted value selects. The search runs to
+    seventeen figures, where the printed value is the fitted one; an earlier version
+    stopped at eleven and returned twelve unchecked, which dropped from one S8 band
+    the variant scoring its threshold exactly."""
     if not _finite(x):
         return ""
     s = _scores(tool) if tool else np.array([])
-    for sig in range(4, 12):
+    for sig in range(4, 18):
         txt = fmt_sig(x, sig)
         if not len(s):
             return txt
@@ -254,7 +263,7 @@ def fmt_thr(x, tool: str | None = None, side: str = "upper") -> str:
             same = int((s <= v).sum()) == int((s <= float(x)).sum())
         if same:
             return txt
-    return fmt_sig(x, 12)
+    return repr(float(x))
 
 
 def fmt_int(x) -> str:
@@ -936,7 +945,7 @@ def s5() -> tuple[pd.DataFrame, list[Path]]:
 # S6 / S7 -- interval-calibration thresholds
 # ---------------------------------------------------------------------------
 def _evidence() -> pd.DataFrame:
-    ev = _csv(REPORTS / "evidence_thresholds.csv")
+    ev = K.read_back(_need(REPORTS / "evidence_thresholds.csv"))
     return ev[(ev.tool != K.FUSION) & ev.stratum.isin(IN_SCOPE) & ev.tier.isin(TIERS)]
 
 
@@ -954,8 +963,8 @@ def _fold_string(f: pd.DataFrame) -> str:
 
 def s6() -> tuple[pd.DataFrame, list[Path]]:
     ev = _evidence().set_index(["tool", "stratum", "tier"])
-    tl = _csv(REPORTS / "tier_logo_table.csv").set_index(["tool", "stratum", "tier"])
-    folds = _csv(REPORTS / "evidence_thresholds_logo_folds.csv")
+    tl = K.read_back(_need(REPORTS / "tier_logo_table.csv")).set_index(["tool", "stratum", "tier"])
+    folds = K.read_back(_need(REPORTS / "evidence_thresholds_logo_folds.csv"))
     folds = folds[folds.side == "pp3"]
     rows = []
     for tool in TOOLS:
@@ -1049,7 +1058,7 @@ def _pct(x) -> str:
 
 def s8() -> tuple[pd.DataFrame, list[Path]]:
     src = REPORTS / "threshold_dilution_summary.csv"
-    d = _csv(src)
+    d = K.read_back(_need(src))
     rows = []
     order = {t: i for i, t in enumerate(TOOLS)}
     d = d.assign(_t=d.tool.map(order), _s=d.stratum.map({s_: i for i, s_ in enumerate(IN_SCOPE)}),
@@ -1082,7 +1091,7 @@ def s8() -> tuple[pd.DataFrame, list[Path]]:
 # ---------------------------------------------------------------------------
 def s10() -> tuple[pd.DataFrame, list[Path]]:
     pp3 = fmt_const(_walker_cfg()["thresholds"]["pp3"]["value"])
-    a = _csv(REPORTS / "arms_at_tool_threshold.csv")
+    a = K.read_back(_need(REPORTS / "arms_at_tool_threshold.csv"))
     pub = a[a.threshold_basis == "published cut point"]
     if set(pub.tool) - set(WALKER_TOOLS):
         raise SystemExit("[supp] a published-cut-point row for a non-SpliceAI column")
@@ -1276,13 +1285,13 @@ def _counts_band(pos, neg) -> str:
 
 def s12() -> tuple[pd.DataFrame, list[Path]]:
     pp3 = fmt_const(_walker_cfg()["thresholds"]["pp3"]["value"])
-    fig = _csv(REPORTS / "fig_data/fig4_external.csv")
+    fig = K.read_back(_need(REPORTS / "fig_data/fig4_external.csv"))
     rows, srcs = [], []
     for gene in EXTERNAL:
         ep = REPORTS / f"external_{gene.lower()}.csv"
         bp = REPORTS / f"external_{gene.lower()}_column_basis.csv"
         srcs += [ep, bp]
-        e = _csv(ep)
+        e = K.read_back(_need(ep))
         basis = _csv(bp).set_index("tool")
         e = e[e.stratum.isin(IN_SCOPE) & (e.n > 0)]
         labels = list(dict.fromkeys(e.label_definition))

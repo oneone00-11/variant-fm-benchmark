@@ -18,6 +18,7 @@ PHASE1 = Path(__file__).resolve().parents[1]
 if str(PHASE1) not in sys.path:
     sys.path.insert(0, str(PHASE1))
 EV = PHASE1 / "reports/evidence"
+from src import evid_common as K  # noqa: E402
 TABLES = EV / "tables"
 FIGS = EV / "figures"
 
@@ -29,7 +30,7 @@ need = pytest.mark.skipif(not (TABLES / "table3_evidence_tiers.csv").exists(),
 def test_table3_fold_counts_match_the_tier_table():
     """Every 'k/n' cell of Table 3 is folds clearing over folds, as tier_logo_table says."""
     t3 = pd.read_csv(TABLES / "table3_evidence_tiers.csv", dtype=str).set_index("Predictor")
-    t = pd.read_csv(EV / "tier_logo_table.csv")
+    t = K.read_back(EV / "tier_logo_table.csv")
     from src.evid_figures import NAME
     band = {"s3_10": "3–10 bp", "s11_50": "11–50 bp", "s3_50": "3–50 bp"}
     checked = 0
@@ -54,7 +55,7 @@ def test_the_atlas_combined_score_is_counted_over_its_unseen_genes():
     from src.evid_tables import AVI_SEEN_IN_TRAINING
     t3 = pd.read_csv(TABLES / "table3_evidence_tiers.csv", dtype=str).set_index("Predictor")
     row = t3.loc["Atlas combined score\u00a0†"]
-    folds = pd.read_csv(EV / "evidence_thresholds_logo_folds.csv")
+    folds = K.read_back(EV / "evidence_thresholds_logo_folds.csv")
     band = {"s3_10": "3–10 bp", "s11_50": "11–50 bp", "s3_50": "3–50 bp"}
     for st, lab in band.items():
         f = folds[(folds.tool == "avi") & (folds.stratum == st) & (folds.tier == "moderate")
@@ -75,7 +76,7 @@ def test_table1_totals_add_up_to_the_count_table():
 
 @need
 def test_the_published_cut_point_is_only_applied_to_spliceai():
-    a = pd.read_csv(EV / "arms_at_tool_threshold.csv")
+    a = K.read_back(EV / "arms_at_tool_threshold.csv")
     pub = a[a.threshold_basis == "published cut point"]
     assert set(pub.tool) <= {"spliceai", "spliceai_walker"}
 
@@ -83,7 +84,7 @@ def test_the_published_cut_point_is_only_applied_to_spliceai():
 @need
 def test_table4a_matches_the_arm_file():
     t = pd.read_csv(TABLES / "table4a_spliceai_published_cut_by_arm.csv", dtype=str)
-    a = pd.read_csv(EV / "arms_at_tool_threshold.csv")
+    a = K.read_back(EV / "arms_at_tool_threshold.csv")
     r = a[(a.tool == "spliceai_walker") & (a.threshold_basis == "published cut point")
           & (a.gene_set == "all_genes") & (a.stratum == "s3_50")
           & (a.clinvar_arm == "classified")].iloc[0]
