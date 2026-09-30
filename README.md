@@ -45,6 +45,9 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
 - **Environment:** Python 3.12 with the package set in
   `requirements-evidence.lock.txt`. Changes between rounds are recorded in
   `docs/evidence-change-log.md`; data terms per column in `LICENSE-DATA`.
+- **Archive:** release 3.0.0, tag `v3.0.0-submission`, on Zenodo as version DOI
+  10.5281/zenodo.23043214 (all versions: 10.5281/zenodo.22674887), which also holds
+  the ClinVar file.
 
 **Reproducing from a fresh clone: one command** (about 25 minutes of computation;
 on first use about 370 MB of downloads, 120 MB of Python packages and 240 MB of data,

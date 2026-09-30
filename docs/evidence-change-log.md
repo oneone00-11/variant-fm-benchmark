@@ -224,3 +224,26 @@ other three depended on the machine that wrote them, and every result was unchan
   within floating-point precision of an observed score, so a last-digit difference
   decides how many figures it takes. The figures differed in their bytes where Linux
   lacks the Arial font. `--verify` now also reads a text report number by number.
+
+## Release 3.0.0 (2026-09-30): `v3.0.0-submission`
+
+The evidence-strength study with its one-command reproduction, archived at Zenodo as
+version DOI 10.5281/zenodo.23043214 (all versions: 10.5281/zenodo.22674887). Nothing
+in it changes a number of the study; the rounds above record what was reworked.
+
+- **What changed since 2.0.0:** the evidence-strength analysis (rounds 2 to 5 above)
+  and `bash reproduce.sh`, which fetches the two public inputs, rebuilds every output
+  and checks it against the committed one, and its five-minute `--check`.
+- **Where it reproduces:** byte for byte on the machine the outputs were made on
+  (macOS arm64, Python 3.12.13), the analysis-set manifest's build time aside. On a
+  GitHub-hosted M1 (macOS 14) every printed table and figure byte for byte, and the
+  elastic-net combination's intermediate tables to a relative 1e-9
+  (`REPRODUCED NUMERICALLY`). On x86_64 Linux every computed value to 1e-9; the
+  figures differ in their bytes without the Arial font, and S6 and S8 print two
+  AlphaGenome thresholds to fewer significant figures (see above).
+- **The ClinVar mirror:** the Zenodo record carries NCBI's `clinvar_20260615.vcf.gz`
+  unchanged, the third source `--fetch-inputs` tries.
+- **Title:** `CITATION.cff` now names the release for the evidence-strength study
+  ("variant-fm-benchmark: evidence strength of splice-region variant effect predictors
+  against saturation genome editing functional assays"); the earlier title described
+  the calibration and fusion study of 2.0.0.
