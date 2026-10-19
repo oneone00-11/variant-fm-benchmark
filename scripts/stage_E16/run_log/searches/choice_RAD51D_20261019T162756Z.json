@@ -1,0 +1,108 @@
+{
+ "gene": "RAD51D",
+ "chosen": "urn:mavedb:00001260-a-2",
+ "how": "rule: only target is the gene; short description names saturation genome editing and HAP1; not superseded",
+ "candidates": [
+  {
+   "urn": "urn:mavedb:00001260-a-2",
+   "title": "Saturation Genome Editing of RAD51D scores",
+   "short_description": "We used saturation genome editing to measure the effect of SNVs and 3-base pair deletions on RAD51D-dependent HAP1 cell survival.",
+   "targets": [
+    "RAD51D"
+   ],
+   "num_variants": 5410,
+   "published_date": "2026-06-08",
+   "superseding_score_set": null,
+   "kept": true,
+   "excluded_because": []
+  },
+  {
+   "urn": "urn:mavedb:00001237-a-1",
+   "title": "VarChAMP_Imaging_Localization_May_2025",
+   "short_description": "Protein localization from images of cells.",
+   "targets": [
+    "F9",
+    "BRCA1",
+    "KRAS",
+    "FLCN",
+    "CTCF",
+    "G6PD",
+    "BCL10",
+    "MSH2",
+    "BRAF",
+    "SDHD",
+    "BRIP1",
+    "FH",
+    "SHOC2",
+    "FANCC",
+    "NF2",
+    "RAD51D",
+    "RHO",
+    "FARS2",
+    "PTPN11",
+    "ZC4H2",
+    "RET",
+    "BAP1",
+    "SOS2",
+    "RAF1",
+    "ABCD1",
+    "RPS19",
+    "LMNA",
+    "CCM2"
+   ],
+   "num_variants": 430,
+   "published_date": "2025-05-16",
+   "superseding_score_set": null,
+   "kept": false,
+   "excluded_because": [
+    "targets are ['F9', 'BRCA1', 'KRAS', 'FLCN', 'CTCF', 'G6PD', 'BCL10', 'MSH2', 'BRAF', 'SDHD', 'BRIP1', 'FH', 'SHOC2', 'FANCC', 'NF2', 'RAD51D', 'RHO', 'FARS2', 'PTPN11', 'ZC4H2', 'RET', 'BAP1', 'SOS2', 'RAF1', 'ABCD1', 'RPS19', 'LMNA', 'CCM2'], not only RAD51D",
+    "short description does not name saturation genome editing",
+    "short description does not name HAP1"
+   ]
+  },
+  {
+   "urn": "urn:mavedb:00001237-a-2",
+   "title": "VarChAMP_Imaging_Morphological_Change_May_2025",
+   "short_description": "Cell morphological changes from images of cells.",
+   "targets": [
+    "G6PD",
+    "FARS2",
+    "CTCF",
+    "ABCD1",
+    "F9",
+    "FANCC",
+    "RAF1",
+    "BRAF",
+    "FH",
+    "PTPN11",
+    "SDHD",
+    "NF2",
+    "CCM2",
+    "KRAS",
+    "BRIP1",
+    "ZC4H2",
+    "RAD51D",
+    "LMNA",
+    "RPS19",
+    "MSH2",
+    "RHO",
+    "BCL10",
+    "SOS2",
+    "SHOC2",
+    "BRCA1",
+    "RET",
+    "BAP1",
+    "FLCN"
+   ],
+   "num_variants": 430,
+   "published_date": "2025-05-16",
+   "superseding_score_set": null,
+   "kept": false,
+   "excluded_because": [
+    "targets are ['G6PD', 'FARS2', 'CTCF', 'ABCD1', 'F9', 'FANCC', 'RAF1', 'BRAF', 'FH', 'PTPN11', 'SDHD', 'NF2', 'CCM2', 'KRAS', 'BRIP1', 'ZC4H2', 'RAD51D', 'LMNA', 'RPS19', 'MSH2', 'RHO', 'BCL10', 'SOS2', 'SHOC2', 'BRCA1', 'RET', 'BAP1', 'FLCN'], not only RAD51D",
+    "short description does not name saturation genome editing",
+    "short description does not name HAP1"
+   ]
+  }
+ ]
+}

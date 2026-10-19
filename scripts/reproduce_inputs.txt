@@ -5,9 +5,19 @@
 # to be rewritten by a full run, and fails on one that is not (a stale output).
 # Taken from a clean-room run of the full pipeline (2026-09-29): exactly the files it
 # left untouched.
+# E16 (2026-10-20) added the four further external genes' deposits as fetched,
+# their transcript models and sequence slices, and the recorded reference-base check.
 phase1/data/evidence/avi.parquet
 phase1/data/evidence/avi.parquet.provenance.json
 phase1/data/evidence/avi_scorers_20260920.json
+phase1/data/evidence/external/ctcf_raw/experiment_meta.json
+phase1/data/evidence/external/ctcf_raw/manifest.json
+phase1/data/evidence/external/ctcf_raw/score_ranges.json
+phase1/data/evidence/external/ctcf_raw/scoreset_meta.json
+phase1/data/evidence/external/ctcf_raw/scoreset_meta_00001262-a-1.json
+phase1/data/evidence/external/ctcf_raw/scoreset_meta_00001262-a-2.json
+phase1/data/evidence/external/ctcf_raw/urn_mavedb_00001262-a-3.csv
+phase1/data/evidence/external/ctcf_raw/variant_details.ndjson
 phase1/data/evidence/external/ddx3x_cadd.parquet
 phase1/data/evidence/external/ddx3x_gpn_msa.parquet
 phase1/data/evidence/external/ddx3x_inframe_events.parquet
@@ -58,6 +68,21 @@ phase1/data/evidence/external/ddx3x_splice.parquet
 phase1/data/evidence/external/ddx3x_spliceai_walker.parquet
 phase1/data/evidence/external/ddx3x_spliceai_walker.parquet.provenance.json
 phase1/data/evidence/external/ddx3x_variants.parquet
+phase1/data/evidence/external/newgenes_reference_check.json
+phase1/data/evidence/external/rad51d_raw/experiment_meta.json
+phase1/data/evidence/external/rad51d_raw/manifest.json
+phase1/data/evidence/external/rad51d_raw/score_ranges.json
+phase1/data/evidence/external/rad51d_raw/scoreset_meta.json
+phase1/data/evidence/external/rad51d_raw/scoreset_meta_00001260-a-1.json
+phase1/data/evidence/external/rad51d_raw/urn_mavedb_00001260-a-2.csv
+phase1/data/evidence/external/rad51d_raw/variant_details.ndjson
+phase1/data/evidence/external/sfpq_raw/experiment_meta.json
+phase1/data/evidence/external/sfpq_raw/manifest.json
+phase1/data/evidence/external/sfpq_raw/score_ranges.json
+phase1/data/evidence/external/sfpq_raw/scoreset_meta.json
+phase1/data/evidence/external/sfpq_raw/scoreset_meta_00001265-a-1.json
+phase1/data/evidence/external/sfpq_raw/urn_mavedb_00001265-a-2.csv
+phase1/data/evidence/external/sfpq_raw/variant_details.ndjson
 phase1/data/evidence/external/tp53_12nt_alphagenome_v061.parquet
 phase1/data/evidence/external/tp53_12nt_alphagenome_v061.parquet.environment.json
 phase1/data/evidence/external/tp53_12nt_alphagenome_v061.parquet.provenance.json
@@ -97,6 +122,13 @@ phase1/data/evidence/external/tp53_inframe_subset.parquet
 phase1/data/evidence/external/tp53_spliceai_walker.parquet
 phase1/data/evidence/external/tp53_spliceai_walker.parquet.provenance.json
 phase1/data/evidence/external/tp53_variants.parquet
+phase1/data/evidence/external/xrcc2_raw/experiment_meta.json
+phase1/data/evidence/external/xrcc2_raw/manifest.json
+phase1/data/evidence/external/xrcc2_raw/score_ranges.json
+phase1/data/evidence/external/xrcc2_raw/scoreset_meta.json
+phase1/data/evidence/external/xrcc2_raw/scoreset_meta_00001264-a-1.json
+phase1/data/evidence/external/xrcc2_raw/urn_mavedb_00001264-a-2.csv
+phase1/data/evidence/external/xrcc2_raw/variant_details.ndjson
 phase1/data/evidence/inframe_events.parquet
 phase1/data/evidence/inframe_events.parquet.provenance.json
 phase1/data/evidence/inframe_events_pangolin.parquet
@@ -123,20 +155,28 @@ phase1/data/evidence/reference_cache/MANIFEST.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000256474.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000260947.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000261584.json
+phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000264010.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000269305.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000337432.json
+phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000345365.json
+phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000357214.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000357654.json
+phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000359321.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000380152.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000460680.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000644876.json
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr13_32310508_32405268.fa
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr16_23598165_23646310.fa
+phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr16_67557526_67644177.fa
+phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr17_35087221_35124860.fa
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr17_43039295_43130483.fa
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr17_58687602_58740611.fa
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr17_7663421_7692490.fa
+phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr1_35177936_35198145.fa
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr2_214720646_214814683.fa
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr3_10136778_10158667.fa
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr3_52396008_52415008.fa
+phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr7_152639776_152681141.fa
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chrX_41329162_41355274.fa
 phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_ENST00000256474.3.json
@@ -145,7 +185,11 @@ phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_000465.4.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_000546.6.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_000551.4.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_001356.5.json
+phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_002878.4.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_004656.4.json
+phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_005066.3.json
+phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_005431.2.json
+phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_006565.4.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_007294.3.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_007294.4.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_024675.4.json

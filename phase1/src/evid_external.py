@@ -104,7 +104,14 @@ DDX3X_LABELS = ["y_deposit", "y_control_anchored_gated", "y_control_anchored", "
 N_BOOT = 2000
 MAVEDB_API = "https://api.mavedb.org/api/v1/score-sets"
 
-_SPLICE = re.compile(r"(ENST[\d.]+):(c\.[-*]?\d+[+-](\d+)[ACGT]>[ACGT])$")
+def intronic_snv_regex(transcript: str = r"ENST[\d.]+") -> re.Pattern:
+    """A transcript-level HGVS of an intron-side SNV. Groups: the transcript, the c.
+    string, the distance into the intron. DDX3X's hgvs_splice column names Ensembl
+    transcripts; evid_newgenes reads RefSeq ones from hgvs_nt with the same pattern."""
+    return re.compile(rf"({transcript}):(c\.[-*]?\d+[+-](\d+)[ACGT]>[ACGT])$")
+
+
+_SPLICE = intronic_snv_regex()
 _PRO_SYN = re.compile(r"p\.[A-Za-z]{3}\d+=")
 _PRO_NON = re.compile(r"p\.[A-Za-z]{3}\d+(Ter|\*)")
 

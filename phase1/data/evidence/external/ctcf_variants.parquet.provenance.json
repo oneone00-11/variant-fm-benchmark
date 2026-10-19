@@ -1,0 +1,181 @@
+{
+ "gene": "CTCF",
+ "urn": "urn:mavedb:00001262-a-3",
+ "source": "MaveDB",
+ "license": {
+  "shortName": "CC0",
+  "longName": "CC0 (Public domain)",
+  "version": "1.0",
+  "link": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "readout": "fitness only (the score table has no rna_score column)",
+ "inputs": {
+  "phase1/data/evidence/external/ctcf_raw/scoreset_meta.json": "e76b023a5a180ec8d14821d57aeabd9711876a0e539629d6da5d6cd0af74f78d",
+  "phase1/data/evidence/external/ctcf_raw/scoreset_meta_00001262-a-2.json": "e78c0be169c8d6a0c9b1cc9a339df8a9f639667b7aa5c63c7ac76b23aefcf3fc",
+  "phase1/data/evidence/external/ctcf_raw/scoreset_meta_00001262-a-1.json": "749a0dce2617b11e58bb0d2082c7f6f5e1ea75f1a9ac897ef07fbad681f6f5c3",
+  "phase1/data/evidence/external/ctcf_raw/experiment_meta.json": "1a8914ce857b23e4f757561ac9993ca836b60a92f857b1b1c3d00ae7decaa047",
+  "phase1/data/evidence/external/ctcf_raw/urn_mavedb_00001262-a-3.csv": "15fb39c473892348e0e3e8e4eb497b45a7db41685ceec18fbea3b63099a1e364",
+  "phase1/data/evidence/external/ctcf_raw/score_ranges.json": "db0af94dc2f94aa142b2aa283ca3c4dcd24a888f335d4653b3bf03549007e383",
+  "phase1/data/evidence/external/ctcf_raw/variant_details.ndjson": "b3463ff58f8a7127f8146e921398aafcb8ebc84cfaed4fdb522dcd210c73fe0a"
+ },
+ "coordinates": {
+  "source": "atlas mapping module, as for DDX3X: Mutalyzer transcript model anchored to GRCh38 by the Ensembl lookup of the MANE Select partner; not MaveDB postMapped",
+  "mane_select": {
+   "symbol": "CTCF",
+   "refseq_nuc": "NM_006565.4",
+   "ensembl_nuc": "ENST00000264010.10",
+   "grch38_chr_accession": "NC_000016.10",
+   "chr_name": "16",
+   "strand": "+"
+  },
+  "transcript_map": {
+   "assay_accession": "NM_006565.4",
+   "mutalyzer_model_accession": "NM_006565.4",
+   "mutalyzer_model": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_006565.4",
+   "ensembl_anchor": "ENST00000264010",
+   "ensembl_lookup": "https://rest.ensembl.org/lookup/id/ENST00000264010?expand=1",
+   "n_exons": 12,
+   "cds_t_offsets": [
+    325,
+    2509
+   ],
+   "exon_anchor_adjustments": []
+  },
+  "region": {
+   "chrom": "16",
+   "start": 67557526,
+   "end": 67644177,
+   "pad": 5000
+  },
+  "cache_files": {
+   "mane_summary": {
+    "path": "phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz",
+    "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c"
+   },
+   "mutalyzer_model": {
+    "path": "phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_006565.4.json",
+    "sha256": "16f4ccaff869735be0766473cdb0e808f7f21af55e84df5e8058ebae4883fed2"
+   },
+   "ensembl_lookup": {
+    "path": "phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000264010.json",
+    "sha256": "cd4e40e0a797d5c02e50a9524a3c4972b3a8d9e61f26dd0ec45d348bd18c80c9"
+   },
+   "region": {
+    "path": "phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr16_67557526_67644177.fa",
+    "sha256": "212f8fc191ab40fb34c453d0fab1cc34359c893b6e639b3311b8013ef6442ef7"
+   }
+  },
+  "mavedb_postMapped": "none for any intron-side SNV of this score set; used only as the exonic anchors of the check"
+ },
+ "score_ranges": {
+  "title": "Investigator-provided functional classes",
+  "researchUseOnly": false,
+  "baselineScore": 0.01,
+  "functionalClassifications": [
+   {
+    "label": "Functionally Abnormal",
+    "functionalClassification": "abnormal",
+    "range": [
+     null,
+     -0.062162
+    ],
+    "inclusiveLowerBound": false,
+    "inclusiveUpperBound": true,
+    "id": 7105,
+    "recordType": "FunctionalClassification",
+    "variantCount": 0
+   },
+   {
+    "label": "Indeterminate",
+    "functionalClassification": "not_specified",
+    "range": [
+     -0.062162,
+     -0.026247
+    ],
+    "inclusiveLowerBound": false,
+    "inclusiveUpperBound": true,
+    "id": 7106,
+    "recordType": "FunctionalClassification",
+    "variantCount": 0
+   },
+   {
+    "label": "Functionally Normal",
+    "functionalClassification": "normal",
+    "range": [
+     -0.026247,
+     null
+    ],
+    "inclusiveLowerBound": true,
+    "inclusiveUpperBound": false,
+    "id": 7107,
+    "recordType": "FunctionalClassification",
+    "variantCount": 0
+   }
+  ],
+  "thresholdSources": [],
+  "evidenceSources": [],
+  "methodSources": [],
+  "recordType": "ScoreCalibration",
+  "id": 2406,
+  "urn": "urn:mavedb:calibration-38616475-ec89-446d-8f50-776ec5aa2c08",
+  "scoreSetId": 4650,
+  "investigatorProvided": true,
+  "primary": false,
+  "private": false,
+  "controlsCount": 0,
+  "disease": {
+   "type": "MappableConcept",
+   "name": "disease or disorder",
+   "conceptType": "Disease",
+   "primaryCoding": {
+    "system": "https://purl.obolibrary.org/obo/mondo.owl",
+    "code": "MONDO:0000001",
+    "iris": [
+     "https://purl.obolibrary.org/obo/MONDO_0000001"
+    ]
+   }
+  },
+  "createdBy": {
+   "orcidId": "0000-0002-7565-2463",
+   "firstName": "Jeremy",
+   "lastName": "Stone",
+   "recordType": "User"
+  },
+  "modifiedBy": {
+   "orcidId": "0000-0002-7565-2463",
+   "firstName": "Jeremy",
+   "lastName": "Stone",
+   "recordType": "User"
+  },
+  "creationDate": "2026-06-17",
+  "modificationDate": "2026-06-17",
+  "controls": []
+ },
+ "range_class": "the label of the one range the score falls in, in the deposit's own wording; 'unassigned' for no score, a score outside every range, or a score on a point two ranges share (author's rule, 2026-10-20)",
+ "shared_points": [
+  {
+   "classes": [
+    "Indeterminate",
+    "Functionally Normal"
+   ],
+   "point": -0.026247
+  }
+ ],
+ "label_map": {
+  "functionalClassification abnormal": 1,
+  "functionalClassification normal": 0,
+  "any other class, and unassigned": null
+ },
+ "scope": {
+  "pvs1_pm12": "|offset| 1-2, kept and flagged",
+  "in_scope": "|offset| 3-50",
+  "out_of_scope_deep": "|offset| > 50, kept and flagged"
+ },
+ "n_score_rows": 7766,
+ "n_intronic_snv": 1535,
+ "n_duplicates_dropped": 0,
+ "n_rows_written": 1535,
+ "deepest_offset": 68,
+ "sha256": "e565e144697a535aedc0fdaf8e8e8de44a4c805ba1901d2d60da01ad37e8c45d",
+ "built_utc": "2026-10-19T17:03:00+00:00"
+}

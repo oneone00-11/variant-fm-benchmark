@@ -1,0 +1,57 @@
+{
+ "script": "scripts/stage_E16/check_reference.py",
+ "argv": [
+  "scripts/stage_E16/check_reference.py"
+ ],
+ "git_commit": "73a8e42116d315944404a6b6023805a722fa403a",
+ "git_worktree_clean": false,
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-19T16:48:50+00:00",
+ "end_utc": "2026-10-19T16:48:51+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/external/ctcf_variants.parquet",
+   "bytes": 84301,
+   "sha256": "e565e144697a535aedc0fdaf8e8e8de44a4c805ba1901d2d60da01ad37e8c45d"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_variants.parquet",
+   "bytes": 64775,
+   "sha256": "e52d293ccf76693a0dce570adfd58163488752c32de924804e578d100b53b670"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_variants.parquet",
+   "bytes": 80758,
+   "sha256": "7837a3e13ba15c811cf09d89baabc97551905c0cc0b5bc04b35c804e39038135"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_variants.parquet",
+   "bytes": 35801,
+   "sha256": "c12b4dcaacd7da7ba484b21887870f75d773615b9518d687b4fd53dd0217e5b1"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/external/newgenes_reference_check.json",
+   "bytes": 2674,
+   "sha256": "ad77322629a6bd308b8379629d437564b21c4a2c12b8697138ed675bdaf03752"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "summary": {
+   "CTCF": "1535/1535",
+   "SFPQ": "1121/1121",
+   "RAD51D": "1464/1464",
+   "XRCC2": "468/468"
+  }
+ }
+}

@@ -1,0 +1,6 @@
+{
+ "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001262-a-3/mapped-variants",
+ "status": 410,
+ "body": "{\"detail\":\"GET /score-sets/urn:mavedb:00001262-a-3/mapped-variants has been removed. Use GET /score-sets/urn:mavedb:00001262-a-3/variant-details instead.\"}",
+ "fetched_utc": "2026-10-19T16:27:57+00:00"
+}

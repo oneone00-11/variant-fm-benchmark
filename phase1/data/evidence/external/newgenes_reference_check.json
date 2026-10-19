@@ -1,0 +1,70 @@
+{
+ "checked_utc": "2026-10-19T18:23:52+00:00",
+ "rule": "every ref equals the FASTA base at its 1-based position; 100% required (E16.3)",
+ "genes": [
+  {
+   "gene": "CTCF",
+   "chrom": "16",
+   "fasta": {
+    "url": "https://ftp.ensembl.org/pub/release-112/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.16.fa.gz",
+    "ensembl_release": 112,
+    "sha256_fa": "f9ef134fab289c5d6d157704d94cf51393a62bb75b012b70511f7ee9cb82ffc4",
+    "sha256_gz": "de40c8d4482fc843d35949adf40644f43feefef37769c9391507920c85613339"
+   },
+   "variants_file": "phase1/data/evidence/external/ctcf_variants.parquet",
+   "variants_sha256": "e565e144697a535aedc0fdaf8e8e8de44a4c805ba1901d2d60da01ad37e8c45d",
+   "n": 1535,
+   "matches": 1535,
+   "mismatches": 0,
+   "mismatch_examples": []
+  },
+  {
+   "gene": "SFPQ",
+   "chrom": "1",
+   "fasta": {
+    "url": "https://ftp.ensembl.org/pub/release-112/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.1.fa.gz",
+    "ensembl_release": 112,
+    "sha256_fa": "69d1b92c83b9390b26e34986e92afb24680cdc2b44866a0cb356b2087f5841c1",
+    "sha256_gz": "05d4d42ed292962055afb9774a1a29a691d7b285fd85dbf9069c050a273e0d3c"
+   },
+   "variants_file": "phase1/data/evidence/external/sfpq_variants.parquet",
+   "variants_sha256": "e52d293ccf76693a0dce570adfd58163488752c32de924804e578d100b53b670",
+   "n": 1121,
+   "matches": 1121,
+   "mismatches": 0,
+   "mismatch_examples": []
+  },
+  {
+   "gene": "RAD51D",
+   "chrom": "17",
+   "fasta": {
+    "url": "https://ftp.ensembl.org/pub/release-112/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.17.fa.gz",
+    "ensembl_release": 112,
+    "sha256_fa": "ff5549a89f339629fbd3a61209446bea70577b0123f0d8aba37df0bafb18cef7",
+    "sha256_gz": "8ce6afd82a59f7621e1358ffc7bdb5aa0352f08eed9faa1c88110d9fafcc7994"
+   },
+   "variants_file": "phase1/data/evidence/external/rad51d_variants.parquet",
+   "variants_sha256": "7837a3e13ba15c811cf09d89baabc97551905c0cc0b5bc04b35c804e39038135",
+   "n": 1464,
+   "matches": 1464,
+   "mismatches": 0,
+   "mismatch_examples": []
+  },
+  {
+   "gene": "XRCC2",
+   "chrom": "7",
+   "fasta": {
+    "url": "https://ftp.ensembl.org/pub/release-112/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.7.fa.gz",
+    "ensembl_release": 112,
+    "sha256_fa": "71b9f38d87ecb8db7067498602e5ae44bc09a6080e276c11a24a3d2933b1ed93",
+    "sha256_gz": "d20985eabdf27638b81067c94189acc3e330730ba23f77c8ffa15576a590ad4a"
+   },
+   "variants_file": "phase1/data/evidence/external/xrcc2_variants.parquet",
+   "variants_sha256": "c12b4dcaacd7da7ba484b21887870f75d773615b9518d687b4fd53dd0217e5b1",
+   "n": 468,
+   "matches": 468,
+   "mismatches": 0,
+   "mismatch_examples": []
+  }
+ ]
+}

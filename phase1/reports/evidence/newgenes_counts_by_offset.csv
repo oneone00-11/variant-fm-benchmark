@@ -1,0 +1,897 @@
+gene,scheme,bin,range_class,n
+CTCF,per_nt,1,Functionally Abnormal,36
+CTCF,per_nt,1,Indeterminate,3
+CTCF,per_nt,1,Functionally Normal,6
+CTCF,per_nt,1,unassigned,0
+CTCF,per_nt,2,Functionally Abnormal,32
+CTCF,per_nt,2,Indeterminate,6
+CTCF,per_nt,2,Functionally Normal,7
+CTCF,per_nt,2,unassigned,0
+CTCF,per_nt,3,Functionally Abnormal,11
+CTCF,per_nt,3,Indeterminate,5
+CTCF,per_nt,3,Functionally Normal,29
+CTCF,per_nt,3,unassigned,0
+CTCF,per_nt,4,Functionally Abnormal,1
+CTCF,per_nt,4,Indeterminate,1
+CTCF,per_nt,4,Functionally Normal,43
+CTCF,per_nt,4,unassigned,0
+CTCF,per_nt,5,Functionally Abnormal,8
+CTCF,per_nt,5,Indeterminate,1
+CTCF,per_nt,5,Functionally Normal,36
+CTCF,per_nt,5,unassigned,0
+CTCF,per_nt,6,Functionally Abnormal,6
+CTCF,per_nt,6,Indeterminate,3
+CTCF,per_nt,6,Functionally Normal,36
+CTCF,per_nt,6,unassigned,0
+CTCF,per_nt,7,Functionally Abnormal,3
+CTCF,per_nt,7,Indeterminate,1
+CTCF,per_nt,7,Functionally Normal,41
+CTCF,per_nt,7,unassigned,0
+CTCF,per_nt,8,Functionally Abnormal,4
+CTCF,per_nt,8,Indeterminate,1
+CTCF,per_nt,8,Functionally Normal,40
+CTCF,per_nt,8,unassigned,0
+CTCF,per_nt,9,Functionally Abnormal,5
+CTCF,per_nt,9,Indeterminate,0
+CTCF,per_nt,9,Functionally Normal,40
+CTCF,per_nt,9,unassigned,0
+CTCF,per_nt,10,Functionally Abnormal,4
+CTCF,per_nt,10,Indeterminate,1
+CTCF,per_nt,10,Functionally Normal,40
+CTCF,per_nt,10,unassigned,0
+CTCF,per_nt,11,Functionally Abnormal,6
+CTCF,per_nt,11,Indeterminate,1
+CTCF,per_nt,11,Functionally Normal,38
+CTCF,per_nt,11,unassigned,0
+CTCF,per_nt,12,Functionally Abnormal,4
+CTCF,per_nt,12,Indeterminate,2
+CTCF,per_nt,12,Functionally Normal,39
+CTCF,per_nt,12,unassigned,0
+CTCF,per_nt,13,Functionally Abnormal,3
+CTCF,per_nt,13,Indeterminate,1
+CTCF,per_nt,13,Functionally Normal,41
+CTCF,per_nt,13,unassigned,0
+CTCF,per_nt,14,Functionally Abnormal,2
+CTCF,per_nt,14,Indeterminate,0
+CTCF,per_nt,14,Functionally Normal,43
+CTCF,per_nt,14,unassigned,0
+CTCF,per_nt,15,Functionally Abnormal,2
+CTCF,per_nt,15,Indeterminate,2
+CTCF,per_nt,15,Functionally Normal,41
+CTCF,per_nt,15,unassigned,0
+CTCF,per_nt,16,Functionally Abnormal,5
+CTCF,per_nt,16,Indeterminate,2
+CTCF,per_nt,16,Functionally Normal,38
+CTCF,per_nt,16,unassigned,0
+CTCF,per_nt,17,Functionally Abnormal,3
+CTCF,per_nt,17,Indeterminate,4
+CTCF,per_nt,17,Functionally Normal,38
+CTCF,per_nt,17,unassigned,0
+CTCF,per_nt,18,Functionally Abnormal,2
+CTCF,per_nt,18,Indeterminate,1
+CTCF,per_nt,18,Functionally Normal,39
+CTCF,per_nt,18,unassigned,0
+CTCF,per_nt,19,Functionally Abnormal,3
+CTCF,per_nt,19,Indeterminate,2
+CTCF,per_nt,19,Functionally Normal,40
+CTCF,per_nt,19,unassigned,0
+CTCF,per_nt,20,Functionally Abnormal,3
+CTCF,per_nt,20,Indeterminate,0
+CTCF,per_nt,20,Functionally Normal,42
+CTCF,per_nt,20,unassigned,0
+CTCF,per_nt,21,Functionally Abnormal,0
+CTCF,per_nt,21,Indeterminate,2
+CTCF,per_nt,21,Functionally Normal,40
+CTCF,per_nt,21,unassigned,0
+CTCF,per_nt,22,Functionally Abnormal,1
+CTCF,per_nt,22,Indeterminate,0
+CTCF,per_nt,22,Functionally Normal,35
+CTCF,per_nt,22,unassigned,0
+CTCF,per_nt,23,Functionally Abnormal,0
+CTCF,per_nt,23,Indeterminate,0
+CTCF,per_nt,23,Functionally Normal,39
+CTCF,per_nt,23,unassigned,0
+CTCF,per_nt,24,Functionally Abnormal,0
+CTCF,per_nt,24,Indeterminate,1
+CTCF,per_nt,24,Functionally Normal,35
+CTCF,per_nt,24,unassigned,0
+CTCF,per_nt,25,Functionally Abnormal,0
+CTCF,per_nt,25,Indeterminate,0
+CTCF,per_nt,25,Functionally Normal,33
+CTCF,per_nt,25,unassigned,0
+CTCF,per_nt,26,Functionally Abnormal,0
+CTCF,per_nt,26,Indeterminate,0
+CTCF,per_nt,26,Functionally Normal,28
+CTCF,per_nt,26,unassigned,0
+CTCF,per_nt,27,Functionally Abnormal,0
+CTCF,per_nt,27,Indeterminate,0
+CTCF,per_nt,27,Functionally Normal,25
+CTCF,per_nt,27,unassigned,0
+CTCF,per_nt,28,Functionally Abnormal,0
+CTCF,per_nt,28,Indeterminate,0
+CTCF,per_nt,28,Functionally Normal,24
+CTCF,per_nt,28,unassigned,0
+CTCF,per_nt,29,Functionally Abnormal,0
+CTCF,per_nt,29,Indeterminate,2
+CTCF,per_nt,29,Functionally Normal,22
+CTCF,per_nt,29,unassigned,0
+CTCF,per_nt,30,Functionally Abnormal,0
+CTCF,per_nt,30,Indeterminate,0
+CTCF,per_nt,30,Functionally Normal,24
+CTCF,per_nt,30,unassigned,0
+CTCF,per_nt,31,Functionally Abnormal,0
+CTCF,per_nt,31,Indeterminate,0
+CTCF,per_nt,31,Functionally Normal,24
+CTCF,per_nt,31,unassigned,0
+CTCF,per_nt,32,Functionally Abnormal,0
+CTCF,per_nt,32,Indeterminate,0
+CTCF,per_nt,32,Functionally Normal,15
+CTCF,per_nt,32,unassigned,0
+CTCF,per_nt,33,Functionally Abnormal,0
+CTCF,per_nt,33,Indeterminate,0
+CTCF,per_nt,33,Functionally Normal,21
+CTCF,per_nt,33,unassigned,0
+CTCF,per_nt,34,Functionally Abnormal,0
+CTCF,per_nt,34,Indeterminate,0
+CTCF,per_nt,34,Functionally Normal,15
+CTCF,per_nt,34,unassigned,0
+CTCF,per_nt,35,Functionally Abnormal,0
+CTCF,per_nt,35,Indeterminate,0
+CTCF,per_nt,35,Functionally Normal,15
+CTCF,per_nt,35,unassigned,0
+CTCF,per_nt,36,Functionally Abnormal,0
+CTCF,per_nt,36,Indeterminate,0
+CTCF,per_nt,36,Functionally Normal,15
+CTCF,per_nt,36,unassigned,0
+CTCF,per_nt,37,Functionally Abnormal,0
+CTCF,per_nt,37,Indeterminate,0
+CTCF,per_nt,37,Functionally Normal,12
+CTCF,per_nt,37,unassigned,0
+CTCF,per_nt,38,Functionally Abnormal,0
+CTCF,per_nt,38,Indeterminate,0
+CTCF,per_nt,38,Functionally Normal,12
+CTCF,per_nt,38,unassigned,0
+CTCF,per_nt,39,Functionally Abnormal,0
+CTCF,per_nt,39,Indeterminate,1
+CTCF,per_nt,39,Functionally Normal,11
+CTCF,per_nt,39,unassigned,0
+CTCF,per_nt,40,Functionally Abnormal,0
+CTCF,per_nt,40,Indeterminate,0
+CTCF,per_nt,40,Functionally Normal,12
+CTCF,per_nt,40,unassigned,0
+CTCF,per_nt,41,Functionally Abnormal,0
+CTCF,per_nt,41,Indeterminate,0
+CTCF,per_nt,41,Functionally Normal,12
+CTCF,per_nt,41,unassigned,0
+CTCF,per_nt,42,Functionally Abnormal,0
+CTCF,per_nt,42,Indeterminate,1
+CTCF,per_nt,42,Functionally Normal,11
+CTCF,per_nt,42,unassigned,0
+CTCF,per_nt,43,Functionally Abnormal,0
+CTCF,per_nt,43,Indeterminate,2
+CTCF,per_nt,43,Functionally Normal,10
+CTCF,per_nt,43,unassigned,0
+CTCF,per_nt,44,Functionally Abnormal,0
+CTCF,per_nt,44,Indeterminate,0
+CTCF,per_nt,44,Functionally Normal,9
+CTCF,per_nt,44,unassigned,0
+CTCF,per_nt,45,Functionally Abnormal,0
+CTCF,per_nt,45,Indeterminate,0
+CTCF,per_nt,45,Functionally Normal,9
+CTCF,per_nt,45,unassigned,0
+CTCF,per_nt,46,Functionally Abnormal,0
+CTCF,per_nt,46,Indeterminate,0
+CTCF,per_nt,46,Functionally Normal,9
+CTCF,per_nt,46,unassigned,0
+CTCF,per_nt,47,Functionally Abnormal,0
+CTCF,per_nt,47,Indeterminate,0
+CTCF,per_nt,47,Functionally Normal,9
+CTCF,per_nt,47,unassigned,0
+CTCF,per_nt,48,Functionally Abnormal,0
+CTCF,per_nt,48,Indeterminate,0
+CTCF,per_nt,48,Functionally Normal,9
+CTCF,per_nt,48,unassigned,0
+CTCF,per_nt,49,Functionally Abnormal,0
+CTCF,per_nt,49,Indeterminate,0
+CTCF,per_nt,49,Functionally Normal,9
+CTCF,per_nt,49,unassigned,0
+CTCF,per_nt,50,Functionally Abnormal,0
+CTCF,per_nt,50,Indeterminate,0
+CTCF,per_nt,50,Functionally Normal,9
+CTCF,per_nt,50,unassigned,0
+CTCF,per_nt,>50,Functionally Abnormal,0
+CTCF,per_nt,>50,Indeterminate,1
+CTCF,per_nt,>50,Functionally Normal,74
+CTCF,per_nt,>50,unassigned,0
+CTCF,stratum,pm12,Functionally Abnormal,68
+CTCF,stratum,pm12,Indeterminate,9
+CTCF,stratum,pm12,Functionally Normal,13
+CTCF,stratum,pm12,unassigned,0
+CTCF,stratum,s3_10,Functionally Abnormal,42
+CTCF,stratum,s3_10,Indeterminate,13
+CTCF,stratum,s3_10,Functionally Normal,305
+CTCF,stratum,s3_10,unassigned,0
+CTCF,stratum,s11_50,Functionally Abnormal,34
+CTCF,stratum,s11_50,Indeterminate,24
+CTCF,stratum,s11_50,Functionally Normal,952
+CTCF,stratum,s11_50,unassigned,0
+CTCF,stratum,s3_50,Functionally Abnormal,76
+CTCF,stratum,s3_50,Indeterminate,37
+CTCF,stratum,s3_50,Functionally Normal,1257
+CTCF,stratum,s3_50,unassigned,0
+CTCF,stratum,out_of_scope_deep,Functionally Abnormal,0
+CTCF,stratum,out_of_scope_deep,Indeterminate,1
+CTCF,stratum,out_of_scope_deep,Functionally Normal,74
+CTCF,stratum,out_of_scope_deep,unassigned,0
+SFPQ,per_nt,1,Functionally Abnormal,47
+SFPQ,per_nt,1,Indeterminate,1
+SFPQ,per_nt,1,Functionally Normal,3
+SFPQ,per_nt,1,unassigned,0
+SFPQ,per_nt,2,Functionally Abnormal,44
+SFPQ,per_nt,2,Indeterminate,3
+SFPQ,per_nt,2,Functionally Normal,4
+SFPQ,per_nt,2,unassigned,0
+SFPQ,per_nt,3,Functionally Abnormal,18
+SFPQ,per_nt,3,Indeterminate,5
+SFPQ,per_nt,3,Functionally Normal,28
+SFPQ,per_nt,3,unassigned,0
+SFPQ,per_nt,4,Functionally Abnormal,7
+SFPQ,per_nt,4,Indeterminate,4
+SFPQ,per_nt,4,Functionally Normal,40
+SFPQ,per_nt,4,unassigned,0
+SFPQ,per_nt,5,Functionally Abnormal,9
+SFPQ,per_nt,5,Indeterminate,4
+SFPQ,per_nt,5,Functionally Normal,38
+SFPQ,per_nt,5,unassigned,0
+SFPQ,per_nt,6,Functionally Abnormal,5
+SFPQ,per_nt,6,Indeterminate,2
+SFPQ,per_nt,6,Functionally Normal,44
+SFPQ,per_nt,6,unassigned,0
+SFPQ,per_nt,7,Functionally Abnormal,4
+SFPQ,per_nt,7,Indeterminate,3
+SFPQ,per_nt,7,Functionally Normal,41
+SFPQ,per_nt,7,unassigned,0
+SFPQ,per_nt,8,Functionally Abnormal,1
+SFPQ,per_nt,8,Indeterminate,4
+SFPQ,per_nt,8,Functionally Normal,43
+SFPQ,per_nt,8,unassigned,0
+SFPQ,per_nt,9,Functionally Abnormal,2
+SFPQ,per_nt,9,Indeterminate,0
+SFPQ,per_nt,9,Functionally Normal,46
+SFPQ,per_nt,9,unassigned,0
+SFPQ,per_nt,10,Functionally Abnormal,2
+SFPQ,per_nt,10,Indeterminate,2
+SFPQ,per_nt,10,Functionally Normal,44
+SFPQ,per_nt,10,unassigned,0
+SFPQ,per_nt,11,Functionally Abnormal,3
+SFPQ,per_nt,11,Indeterminate,2
+SFPQ,per_nt,11,Functionally Normal,43
+SFPQ,per_nt,11,unassigned,0
+SFPQ,per_nt,12,Functionally Abnormal,10
+SFPQ,per_nt,12,Indeterminate,1
+SFPQ,per_nt,12,Functionally Normal,37
+SFPQ,per_nt,12,unassigned,0
+SFPQ,per_nt,13,Functionally Abnormal,6
+SFPQ,per_nt,13,Indeterminate,1
+SFPQ,per_nt,13,Functionally Normal,41
+SFPQ,per_nt,13,unassigned,0
+SFPQ,per_nt,14,Functionally Abnormal,3
+SFPQ,per_nt,14,Indeterminate,1
+SFPQ,per_nt,14,Functionally Normal,41
+SFPQ,per_nt,14,unassigned,0
+SFPQ,per_nt,15,Functionally Abnormal,4
+SFPQ,per_nt,15,Indeterminate,2
+SFPQ,per_nt,15,Functionally Normal,39
+SFPQ,per_nt,15,unassigned,0
+SFPQ,per_nt,16,Functionally Abnormal,2
+SFPQ,per_nt,16,Indeterminate,0
+SFPQ,per_nt,16,Functionally Normal,37
+SFPQ,per_nt,16,unassigned,0
+SFPQ,per_nt,17,Functionally Abnormal,3
+SFPQ,per_nt,17,Indeterminate,2
+SFPQ,per_nt,17,Functionally Normal,28
+SFPQ,per_nt,17,unassigned,0
+SFPQ,per_nt,18,Functionally Abnormal,0
+SFPQ,per_nt,18,Indeterminate,0
+SFPQ,per_nt,18,Functionally Normal,26
+SFPQ,per_nt,18,unassigned,0
+SFPQ,per_nt,19,Functionally Abnormal,2
+SFPQ,per_nt,19,Indeterminate,1
+SFPQ,per_nt,19,Functionally Normal,21
+SFPQ,per_nt,19,unassigned,0
+SFPQ,per_nt,20,Functionally Abnormal,2
+SFPQ,per_nt,20,Indeterminate,0
+SFPQ,per_nt,20,Functionally Normal,22
+SFPQ,per_nt,20,unassigned,0
+SFPQ,per_nt,21,Functionally Abnormal,2
+SFPQ,per_nt,21,Indeterminate,0
+SFPQ,per_nt,21,Functionally Normal,19
+SFPQ,per_nt,21,unassigned,0
+SFPQ,per_nt,22,Functionally Abnormal,1
+SFPQ,per_nt,22,Indeterminate,0
+SFPQ,per_nt,22,Functionally Normal,20
+SFPQ,per_nt,22,unassigned,0
+SFPQ,per_nt,23,Functionally Abnormal,1
+SFPQ,per_nt,23,Indeterminate,0
+SFPQ,per_nt,23,Functionally Normal,17
+SFPQ,per_nt,23,unassigned,0
+SFPQ,per_nt,24,Functionally Abnormal,4
+SFPQ,per_nt,24,Indeterminate,0
+SFPQ,per_nt,24,Functionally Normal,14
+SFPQ,per_nt,24,unassigned,0
+SFPQ,per_nt,25,Functionally Abnormal,1
+SFPQ,per_nt,25,Indeterminate,1
+SFPQ,per_nt,25,Functionally Normal,16
+SFPQ,per_nt,25,unassigned,0
+SFPQ,per_nt,26,Functionally Abnormal,4
+SFPQ,per_nt,26,Indeterminate,0
+SFPQ,per_nt,26,Functionally Normal,14
+SFPQ,per_nt,26,unassigned,0
+SFPQ,per_nt,27,Functionally Abnormal,2
+SFPQ,per_nt,27,Indeterminate,1
+SFPQ,per_nt,27,Functionally Normal,9
+SFPQ,per_nt,27,unassigned,0
+SFPQ,per_nt,28,Functionally Abnormal,1
+SFPQ,per_nt,28,Indeterminate,1
+SFPQ,per_nt,28,Functionally Normal,13
+SFPQ,per_nt,28,unassigned,0
+SFPQ,per_nt,29,Functionally Abnormal,0
+SFPQ,per_nt,29,Indeterminate,0
+SFPQ,per_nt,29,Functionally Normal,15
+SFPQ,per_nt,29,unassigned,0
+SFPQ,per_nt,30,Functionally Abnormal,0
+SFPQ,per_nt,30,Indeterminate,1
+SFPQ,per_nt,30,Functionally Normal,14
+SFPQ,per_nt,30,unassigned,0
+SFPQ,per_nt,31,Functionally Abnormal,0
+SFPQ,per_nt,31,Indeterminate,2
+SFPQ,per_nt,31,Functionally Normal,10
+SFPQ,per_nt,31,unassigned,0
+SFPQ,per_nt,32,Functionally Abnormal,0
+SFPQ,per_nt,32,Indeterminate,0
+SFPQ,per_nt,32,Functionally Normal,9
+SFPQ,per_nt,32,unassigned,0
+SFPQ,per_nt,33,Functionally Abnormal,0
+SFPQ,per_nt,33,Indeterminate,0
+SFPQ,per_nt,33,Functionally Normal,9
+SFPQ,per_nt,33,unassigned,0
+SFPQ,per_nt,34,Functionally Abnormal,0
+SFPQ,per_nt,34,Indeterminate,0
+SFPQ,per_nt,34,Functionally Normal,6
+SFPQ,per_nt,34,unassigned,0
+SFPQ,per_nt,35,Functionally Abnormal,0
+SFPQ,per_nt,35,Indeterminate,1
+SFPQ,per_nt,35,Functionally Normal,5
+SFPQ,per_nt,35,unassigned,0
+SFPQ,per_nt,36,Functionally Abnormal,0
+SFPQ,per_nt,36,Indeterminate,0
+SFPQ,per_nt,36,Functionally Normal,6
+SFPQ,per_nt,36,unassigned,0
+SFPQ,per_nt,37,Functionally Abnormal,0
+SFPQ,per_nt,37,Indeterminate,0
+SFPQ,per_nt,37,Functionally Normal,3
+SFPQ,per_nt,37,unassigned,0
+SFPQ,per_nt,38,Functionally Abnormal,0
+SFPQ,per_nt,38,Indeterminate,0
+SFPQ,per_nt,38,Functionally Normal,3
+SFPQ,per_nt,38,unassigned,0
+SFPQ,per_nt,39,Functionally Abnormal,0
+SFPQ,per_nt,39,Indeterminate,2
+SFPQ,per_nt,39,Functionally Normal,1
+SFPQ,per_nt,39,unassigned,0
+SFPQ,per_nt,40,Functionally Abnormal,0
+SFPQ,per_nt,40,Indeterminate,1
+SFPQ,per_nt,40,Functionally Normal,2
+SFPQ,per_nt,40,unassigned,0
+SFPQ,per_nt,41,Functionally Abnormal,0
+SFPQ,per_nt,41,Indeterminate,0
+SFPQ,per_nt,41,Functionally Normal,3
+SFPQ,per_nt,41,unassigned,0
+SFPQ,per_nt,42,Functionally Abnormal,0
+SFPQ,per_nt,42,Indeterminate,1
+SFPQ,per_nt,42,Functionally Normal,2
+SFPQ,per_nt,42,unassigned,0
+SFPQ,per_nt,43,Functionally Abnormal,1
+SFPQ,per_nt,43,Indeterminate,0
+SFPQ,per_nt,43,Functionally Normal,2
+SFPQ,per_nt,43,unassigned,0
+SFPQ,per_nt,44,Functionally Abnormal,0
+SFPQ,per_nt,44,Indeterminate,0
+SFPQ,per_nt,44,Functionally Normal,3
+SFPQ,per_nt,44,unassigned,0
+SFPQ,per_nt,45,Functionally Abnormal,0
+SFPQ,per_nt,45,Indeterminate,0
+SFPQ,per_nt,45,Functionally Normal,0
+SFPQ,per_nt,45,unassigned,0
+SFPQ,per_nt,46,Functionally Abnormal,0
+SFPQ,per_nt,46,Indeterminate,0
+SFPQ,per_nt,46,Functionally Normal,0
+SFPQ,per_nt,46,unassigned,0
+SFPQ,per_nt,47,Functionally Abnormal,0
+SFPQ,per_nt,47,Indeterminate,0
+SFPQ,per_nt,47,Functionally Normal,0
+SFPQ,per_nt,47,unassigned,0
+SFPQ,per_nt,48,Functionally Abnormal,0
+SFPQ,per_nt,48,Indeterminate,0
+SFPQ,per_nt,48,Functionally Normal,0
+SFPQ,per_nt,48,unassigned,0
+SFPQ,per_nt,49,Functionally Abnormal,0
+SFPQ,per_nt,49,Indeterminate,0
+SFPQ,per_nt,49,Functionally Normal,0
+SFPQ,per_nt,49,unassigned,0
+SFPQ,per_nt,50,Functionally Abnormal,0
+SFPQ,per_nt,50,Indeterminate,0
+SFPQ,per_nt,50,Functionally Normal,0
+SFPQ,per_nt,50,unassigned,0
+SFPQ,per_nt,>50,Functionally Abnormal,0
+SFPQ,per_nt,>50,Indeterminate,0
+SFPQ,per_nt,>50,Functionally Normal,0
+SFPQ,per_nt,>50,unassigned,0
+SFPQ,stratum,pm12,Functionally Abnormal,91
+SFPQ,stratum,pm12,Indeterminate,4
+SFPQ,stratum,pm12,Functionally Normal,7
+SFPQ,stratum,pm12,unassigned,0
+SFPQ,stratum,s3_10,Functionally Abnormal,48
+SFPQ,stratum,s3_10,Indeterminate,24
+SFPQ,stratum,s3_10,Functionally Normal,324
+SFPQ,stratum,s3_10,unassigned,0
+SFPQ,stratum,s11_50,Functionally Abnormal,52
+SFPQ,stratum,s11_50,Indeterminate,21
+SFPQ,stratum,s11_50,Functionally Normal,550
+SFPQ,stratum,s11_50,unassigned,0
+SFPQ,stratum,s3_50,Functionally Abnormal,100
+SFPQ,stratum,s3_50,Indeterminate,45
+SFPQ,stratum,s3_50,Functionally Normal,874
+SFPQ,stratum,s3_50,unassigned,0
+SFPQ,stratum,out_of_scope_deep,Functionally Abnormal,0
+SFPQ,stratum,out_of_scope_deep,Indeterminate,0
+SFPQ,stratum,out_of_scope_deep,Functionally Normal,0
+SFPQ,stratum,out_of_scope_deep,unassigned,0
+RAD51D,per_nt,1,Functionally Abnormal,49
+RAD51D,per_nt,1,Indeterminate,1
+RAD51D,per_nt,1,Functionally Normal,4
+RAD51D,per_nt,1,unassigned,0
+RAD51D,per_nt,2,Functionally Abnormal,48
+RAD51D,per_nt,2,Indeterminate,1
+RAD51D,per_nt,2,Functionally Normal,5
+RAD51D,per_nt,2,unassigned,0
+RAD51D,per_nt,3,Functionally Abnormal,22
+RAD51D,per_nt,3,Indeterminate,3
+RAD51D,per_nt,3,Functionally Normal,29
+RAD51D,per_nt,3,unassigned,0
+RAD51D,per_nt,4,Functionally Abnormal,7
+RAD51D,per_nt,4,Indeterminate,0
+RAD51D,per_nt,4,Functionally Normal,47
+RAD51D,per_nt,4,unassigned,0
+RAD51D,per_nt,5,Functionally Abnormal,8
+RAD51D,per_nt,5,Indeterminate,1
+RAD51D,per_nt,5,Functionally Normal,45
+RAD51D,per_nt,5,unassigned,0
+RAD51D,per_nt,6,Functionally Abnormal,8
+RAD51D,per_nt,6,Indeterminate,1
+RAD51D,per_nt,6,Functionally Normal,45
+RAD51D,per_nt,6,unassigned,0
+RAD51D,per_nt,7,Functionally Abnormal,5
+RAD51D,per_nt,7,Indeterminate,1
+RAD51D,per_nt,7,Functionally Normal,48
+RAD51D,per_nt,7,unassigned,0
+RAD51D,per_nt,8,Functionally Abnormal,1
+RAD51D,per_nt,8,Indeterminate,1
+RAD51D,per_nt,8,Functionally Normal,52
+RAD51D,per_nt,8,unassigned,0
+RAD51D,per_nt,9,Functionally Abnormal,4
+RAD51D,per_nt,9,Indeterminate,1
+RAD51D,per_nt,9,Functionally Normal,49
+RAD51D,per_nt,9,unassigned,0
+RAD51D,per_nt,10,Functionally Abnormal,0
+RAD51D,per_nt,10,Indeterminate,1
+RAD51D,per_nt,10,Functionally Normal,50
+RAD51D,per_nt,10,unassigned,0
+RAD51D,per_nt,11,Functionally Abnormal,3
+RAD51D,per_nt,11,Indeterminate,0
+RAD51D,per_nt,11,Functionally Normal,45
+RAD51D,per_nt,11,unassigned,0
+RAD51D,per_nt,12,Functionally Abnormal,1
+RAD51D,per_nt,12,Indeterminate,1
+RAD51D,per_nt,12,Functionally Normal,46
+RAD51D,per_nt,12,unassigned,0
+RAD51D,per_nt,13,Functionally Abnormal,1
+RAD51D,per_nt,13,Indeterminate,1
+RAD51D,per_nt,13,Functionally Normal,46
+RAD51D,per_nt,13,unassigned,0
+RAD51D,per_nt,14,Functionally Abnormal,3
+RAD51D,per_nt,14,Indeterminate,0
+RAD51D,per_nt,14,Functionally Normal,45
+RAD51D,per_nt,14,unassigned,0
+RAD51D,per_nt,15,Functionally Abnormal,0
+RAD51D,per_nt,15,Indeterminate,1
+RAD51D,per_nt,15,Functionally Normal,44
+RAD51D,per_nt,15,unassigned,0
+RAD51D,per_nt,16,Functionally Abnormal,2
+RAD51D,per_nt,16,Indeterminate,0
+RAD51D,per_nt,16,Functionally Normal,37
+RAD51D,per_nt,16,unassigned,0
+RAD51D,per_nt,17,Functionally Abnormal,1
+RAD51D,per_nt,17,Indeterminate,0
+RAD51D,per_nt,17,Functionally Normal,38
+RAD51D,per_nt,17,unassigned,0
+RAD51D,per_nt,18,Functionally Abnormal,1
+RAD51D,per_nt,18,Indeterminate,0
+RAD51D,per_nt,18,Functionally Normal,35
+RAD51D,per_nt,18,unassigned,0
+RAD51D,per_nt,19,Functionally Abnormal,2
+RAD51D,per_nt,19,Indeterminate,0
+RAD51D,per_nt,19,Functionally Normal,34
+RAD51D,per_nt,19,unassigned,0
+RAD51D,per_nt,20,Functionally Abnormal,0
+RAD51D,per_nt,20,Indeterminate,0
+RAD51D,per_nt,20,Functionally Normal,36
+RAD51D,per_nt,20,unassigned,0
+RAD51D,per_nt,21,Functionally Abnormal,0
+RAD51D,per_nt,21,Indeterminate,0
+RAD51D,per_nt,21,Functionally Normal,36
+RAD51D,per_nt,21,unassigned,0
+RAD51D,per_nt,22,Functionally Abnormal,0
+RAD51D,per_nt,22,Indeterminate,0
+RAD51D,per_nt,22,Functionally Normal,33
+RAD51D,per_nt,22,unassigned,0
+RAD51D,per_nt,23,Functionally Abnormal,3
+RAD51D,per_nt,23,Indeterminate,0
+RAD51D,per_nt,23,Functionally Normal,24
+RAD51D,per_nt,23,unassigned,0
+RAD51D,per_nt,24,Functionally Abnormal,0
+RAD51D,per_nt,24,Indeterminate,0
+RAD51D,per_nt,24,Functionally Normal,27
+RAD51D,per_nt,24,unassigned,0
+RAD51D,per_nt,25,Functionally Abnormal,2
+RAD51D,per_nt,25,Indeterminate,0
+RAD51D,per_nt,25,Functionally Normal,22
+RAD51D,per_nt,25,unassigned,0
+RAD51D,per_nt,26,Functionally Abnormal,0
+RAD51D,per_nt,26,Indeterminate,1
+RAD51D,per_nt,26,Functionally Normal,23
+RAD51D,per_nt,26,unassigned,0
+RAD51D,per_nt,27,Functionally Abnormal,0
+RAD51D,per_nt,27,Indeterminate,0
+RAD51D,per_nt,27,Functionally Normal,21
+RAD51D,per_nt,27,unassigned,0
+RAD51D,per_nt,28,Functionally Abnormal,0
+RAD51D,per_nt,28,Indeterminate,0
+RAD51D,per_nt,28,Functionally Normal,21
+RAD51D,per_nt,28,unassigned,0
+RAD51D,per_nt,29,Functionally Abnormal,0
+RAD51D,per_nt,29,Indeterminate,0
+RAD51D,per_nt,29,Functionally Normal,18
+RAD51D,per_nt,29,unassigned,0
+RAD51D,per_nt,30,Functionally Abnormal,0
+RAD51D,per_nt,30,Indeterminate,0
+RAD51D,per_nt,30,Functionally Normal,18
+RAD51D,per_nt,30,unassigned,0
+RAD51D,per_nt,31,Functionally Abnormal,0
+RAD51D,per_nt,31,Indeterminate,0
+RAD51D,per_nt,31,Functionally Normal,15
+RAD51D,per_nt,31,unassigned,0
+RAD51D,per_nt,32,Functionally Abnormal,0
+RAD51D,per_nt,32,Indeterminate,0
+RAD51D,per_nt,32,Functionally Normal,15
+RAD51D,per_nt,32,unassigned,0
+RAD51D,per_nt,33,Functionally Abnormal,0
+RAD51D,per_nt,33,Indeterminate,0
+RAD51D,per_nt,33,Functionally Normal,15
+RAD51D,per_nt,33,unassigned,0
+RAD51D,per_nt,34,Functionally Abnormal,0
+RAD51D,per_nt,34,Indeterminate,0
+RAD51D,per_nt,34,Functionally Normal,15
+RAD51D,per_nt,34,unassigned,0
+RAD51D,per_nt,35,Functionally Abnormal,0
+RAD51D,per_nt,35,Indeterminate,0
+RAD51D,per_nt,35,Functionally Normal,15
+RAD51D,per_nt,35,unassigned,0
+RAD51D,per_nt,36,Functionally Abnormal,0
+RAD51D,per_nt,36,Indeterminate,0
+RAD51D,per_nt,36,Functionally Normal,15
+RAD51D,per_nt,36,unassigned,0
+RAD51D,per_nt,37,Functionally Abnormal,0
+RAD51D,per_nt,37,Indeterminate,0
+RAD51D,per_nt,37,Functionally Normal,15
+RAD51D,per_nt,37,unassigned,0
+RAD51D,per_nt,38,Functionally Abnormal,0
+RAD51D,per_nt,38,Indeterminate,0
+RAD51D,per_nt,38,Functionally Normal,12
+RAD51D,per_nt,38,unassigned,0
+RAD51D,per_nt,39,Functionally Abnormal,0
+RAD51D,per_nt,39,Indeterminate,0
+RAD51D,per_nt,39,Functionally Normal,12
+RAD51D,per_nt,39,unassigned,0
+RAD51D,per_nt,40,Functionally Abnormal,0
+RAD51D,per_nt,40,Indeterminate,0
+RAD51D,per_nt,40,Functionally Normal,9
+RAD51D,per_nt,40,unassigned,0
+RAD51D,per_nt,41,Functionally Abnormal,0
+RAD51D,per_nt,41,Indeterminate,0
+RAD51D,per_nt,41,Functionally Normal,6
+RAD51D,per_nt,41,unassigned,0
+RAD51D,per_nt,42,Functionally Abnormal,0
+RAD51D,per_nt,42,Indeterminate,0
+RAD51D,per_nt,42,Functionally Normal,6
+RAD51D,per_nt,42,unassigned,0
+RAD51D,per_nt,43,Functionally Abnormal,0
+RAD51D,per_nt,43,Indeterminate,0
+RAD51D,per_nt,43,Functionally Normal,6
+RAD51D,per_nt,43,unassigned,0
+RAD51D,per_nt,44,Functionally Abnormal,0
+RAD51D,per_nt,44,Indeterminate,0
+RAD51D,per_nt,44,Functionally Normal,6
+RAD51D,per_nt,44,unassigned,0
+RAD51D,per_nt,45,Functionally Abnormal,0
+RAD51D,per_nt,45,Indeterminate,0
+RAD51D,per_nt,45,Functionally Normal,6
+RAD51D,per_nt,45,unassigned,0
+RAD51D,per_nt,46,Functionally Abnormal,0
+RAD51D,per_nt,46,Indeterminate,0
+RAD51D,per_nt,46,Functionally Normal,6
+RAD51D,per_nt,46,unassigned,0
+RAD51D,per_nt,47,Functionally Abnormal,0
+RAD51D,per_nt,47,Indeterminate,0
+RAD51D,per_nt,47,Functionally Normal,6
+RAD51D,per_nt,47,unassigned,0
+RAD51D,per_nt,48,Functionally Abnormal,0
+RAD51D,per_nt,48,Indeterminate,0
+RAD51D,per_nt,48,Functionally Normal,6
+RAD51D,per_nt,48,unassigned,0
+RAD51D,per_nt,49,Functionally Abnormal,0
+RAD51D,per_nt,49,Indeterminate,0
+RAD51D,per_nt,49,Functionally Normal,6
+RAD51D,per_nt,49,unassigned,0
+RAD51D,per_nt,50,Functionally Abnormal,0
+RAD51D,per_nt,50,Indeterminate,0
+RAD51D,per_nt,50,Functionally Normal,3
+RAD51D,per_nt,50,unassigned,0
+RAD51D,per_nt,>50,Functionally Abnormal,0
+RAD51D,per_nt,>50,Indeterminate,0
+RAD51D,per_nt,>50,Functionally Normal,60
+RAD51D,per_nt,>50,unassigned,0
+RAD51D,stratum,pm12,Functionally Abnormal,97
+RAD51D,stratum,pm12,Indeterminate,2
+RAD51D,stratum,pm12,Functionally Normal,9
+RAD51D,stratum,pm12,unassigned,0
+RAD51D,stratum,s3_10,Functionally Abnormal,55
+RAD51D,stratum,s3_10,Indeterminate,9
+RAD51D,stratum,s3_10,Functionally Normal,365
+RAD51D,stratum,s3_10,unassigned,0
+RAD51D,stratum,s11_50,Functionally Abnormal,19
+RAD51D,stratum,s11_50,Indeterminate,4
+RAD51D,stratum,s11_50,Functionally Normal,844
+RAD51D,stratum,s11_50,unassigned,0
+RAD51D,stratum,s3_50,Functionally Abnormal,74
+RAD51D,stratum,s3_50,Indeterminate,13
+RAD51D,stratum,s3_50,Functionally Normal,1209
+RAD51D,stratum,s3_50,unassigned,0
+RAD51D,stratum,out_of_scope_deep,Functionally Abnormal,0
+RAD51D,stratum,out_of_scope_deep,Indeterminate,0
+RAD51D,stratum,out_of_scope_deep,Functionally Normal,60
+RAD51D,stratum,out_of_scope_deep,unassigned,0
+XRCC2,per_nt,1,Functionally Abnormal,12
+XRCC2,per_nt,1,Indeterminate,0
+XRCC2,per_nt,1,Functionally Normal,0
+XRCC2,per_nt,1,unassigned,0
+XRCC2,per_nt,2,Functionally Abnormal,12
+XRCC2,per_nt,2,Indeterminate,0
+XRCC2,per_nt,2,Functionally Normal,0
+XRCC2,per_nt,2,unassigned,0
+XRCC2,per_nt,3,Functionally Abnormal,4
+XRCC2,per_nt,3,Indeterminate,0
+XRCC2,per_nt,3,Functionally Normal,8
+XRCC2,per_nt,3,unassigned,0
+XRCC2,per_nt,4,Functionally Abnormal,0
+XRCC2,per_nt,4,Indeterminate,0
+XRCC2,per_nt,4,Functionally Normal,12
+XRCC2,per_nt,4,unassigned,0
+XRCC2,per_nt,5,Functionally Abnormal,2
+XRCC2,per_nt,5,Indeterminate,0
+XRCC2,per_nt,5,Functionally Normal,10
+XRCC2,per_nt,5,unassigned,0
+XRCC2,per_nt,6,Functionally Abnormal,0
+XRCC2,per_nt,6,Indeterminate,0
+XRCC2,per_nt,6,Functionally Normal,12
+XRCC2,per_nt,6,unassigned,0
+XRCC2,per_nt,7,Functionally Abnormal,0
+XRCC2,per_nt,7,Indeterminate,0
+XRCC2,per_nt,7,Functionally Normal,12
+XRCC2,per_nt,7,unassigned,0
+XRCC2,per_nt,8,Functionally Abnormal,0
+XRCC2,per_nt,8,Indeterminate,0
+XRCC2,per_nt,8,Functionally Normal,12
+XRCC2,per_nt,8,unassigned,0
+XRCC2,per_nt,9,Functionally Abnormal,0
+XRCC2,per_nt,9,Indeterminate,0
+XRCC2,per_nt,9,Functionally Normal,12
+XRCC2,per_nt,9,unassigned,0
+XRCC2,per_nt,10,Functionally Abnormal,1
+XRCC2,per_nt,10,Indeterminate,0
+XRCC2,per_nt,10,Functionally Normal,11
+XRCC2,per_nt,10,unassigned,0
+XRCC2,per_nt,11,Functionally Abnormal,1
+XRCC2,per_nt,11,Indeterminate,0
+XRCC2,per_nt,11,Functionally Normal,11
+XRCC2,per_nt,11,unassigned,0
+XRCC2,per_nt,12,Functionally Abnormal,1
+XRCC2,per_nt,12,Indeterminate,0
+XRCC2,per_nt,12,Functionally Normal,11
+XRCC2,per_nt,12,unassigned,0
+XRCC2,per_nt,13,Functionally Abnormal,0
+XRCC2,per_nt,13,Indeterminate,0
+XRCC2,per_nt,13,Functionally Normal,12
+XRCC2,per_nt,13,unassigned,0
+XRCC2,per_nt,14,Functionally Abnormal,0
+XRCC2,per_nt,14,Indeterminate,0
+XRCC2,per_nt,14,Functionally Normal,12
+XRCC2,per_nt,14,unassigned,0
+XRCC2,per_nt,15,Functionally Abnormal,0
+XRCC2,per_nt,15,Indeterminate,0
+XRCC2,per_nt,15,Functionally Normal,12
+XRCC2,per_nt,15,unassigned,0
+XRCC2,per_nt,16,Functionally Abnormal,0
+XRCC2,per_nt,16,Indeterminate,0
+XRCC2,per_nt,16,Functionally Normal,9
+XRCC2,per_nt,16,unassigned,0
+XRCC2,per_nt,17,Functionally Abnormal,0
+XRCC2,per_nt,17,Indeterminate,0
+XRCC2,per_nt,17,Functionally Normal,12
+XRCC2,per_nt,17,unassigned,0
+XRCC2,per_nt,18,Functionally Abnormal,0
+XRCC2,per_nt,18,Indeterminate,0
+XRCC2,per_nt,18,Functionally Normal,12
+XRCC2,per_nt,18,unassigned,0
+XRCC2,per_nt,19,Functionally Abnormal,0
+XRCC2,per_nt,19,Indeterminate,0
+XRCC2,per_nt,19,Functionally Normal,12
+XRCC2,per_nt,19,unassigned,0
+XRCC2,per_nt,20,Functionally Abnormal,0
+XRCC2,per_nt,20,Indeterminate,0
+XRCC2,per_nt,20,Functionally Normal,9
+XRCC2,per_nt,20,unassigned,0
+XRCC2,per_nt,21,Functionally Abnormal,0
+XRCC2,per_nt,21,Indeterminate,0
+XRCC2,per_nt,21,Functionally Normal,9
+XRCC2,per_nt,21,unassigned,0
+XRCC2,per_nt,22,Functionally Abnormal,0
+XRCC2,per_nt,22,Indeterminate,0
+XRCC2,per_nt,22,Functionally Normal,9
+XRCC2,per_nt,22,unassigned,0
+XRCC2,per_nt,23,Functionally Abnormal,0
+XRCC2,per_nt,23,Indeterminate,0
+XRCC2,per_nt,23,Functionally Normal,6
+XRCC2,per_nt,23,unassigned,0
+XRCC2,per_nt,24,Functionally Abnormal,0
+XRCC2,per_nt,24,Indeterminate,0
+XRCC2,per_nt,24,Functionally Normal,9
+XRCC2,per_nt,24,unassigned,0
+XRCC2,per_nt,25,Functionally Abnormal,1
+XRCC2,per_nt,25,Indeterminate,0
+XRCC2,per_nt,25,Functionally Normal,8
+XRCC2,per_nt,25,unassigned,0
+XRCC2,per_nt,26,Functionally Abnormal,0
+XRCC2,per_nt,26,Indeterminate,0
+XRCC2,per_nt,26,Functionally Normal,6
+XRCC2,per_nt,26,unassigned,0
+XRCC2,per_nt,27,Functionally Abnormal,0
+XRCC2,per_nt,27,Indeterminate,0
+XRCC2,per_nt,27,Functionally Normal,6
+XRCC2,per_nt,27,unassigned,0
+XRCC2,per_nt,28,Functionally Abnormal,0
+XRCC2,per_nt,28,Indeterminate,0
+XRCC2,per_nt,28,Functionally Normal,6
+XRCC2,per_nt,28,unassigned,0
+XRCC2,per_nt,29,Functionally Abnormal,0
+XRCC2,per_nt,29,Indeterminate,0
+XRCC2,per_nt,29,Functionally Normal,6
+XRCC2,per_nt,29,unassigned,0
+XRCC2,per_nt,30,Functionally Abnormal,0
+XRCC2,per_nt,30,Indeterminate,0
+XRCC2,per_nt,30,Functionally Normal,6
+XRCC2,per_nt,30,unassigned,0
+XRCC2,per_nt,31,Functionally Abnormal,0
+XRCC2,per_nt,31,Indeterminate,0
+XRCC2,per_nt,31,Functionally Normal,6
+XRCC2,per_nt,31,unassigned,0
+XRCC2,per_nt,32,Functionally Abnormal,0
+XRCC2,per_nt,32,Indeterminate,0
+XRCC2,per_nt,32,Functionally Normal,6
+XRCC2,per_nt,32,unassigned,0
+XRCC2,per_nt,33,Functionally Abnormal,0
+XRCC2,per_nt,33,Indeterminate,0
+XRCC2,per_nt,33,Functionally Normal,6
+XRCC2,per_nt,33,unassigned,0
+XRCC2,per_nt,34,Functionally Abnormal,0
+XRCC2,per_nt,34,Indeterminate,0
+XRCC2,per_nt,34,Functionally Normal,6
+XRCC2,per_nt,34,unassigned,0
+XRCC2,per_nt,35,Functionally Abnormal,0
+XRCC2,per_nt,35,Indeterminate,0
+XRCC2,per_nt,35,Functionally Normal,6
+XRCC2,per_nt,35,unassigned,0
+XRCC2,per_nt,36,Functionally Abnormal,0
+XRCC2,per_nt,36,Indeterminate,0
+XRCC2,per_nt,36,Functionally Normal,6
+XRCC2,per_nt,36,unassigned,0
+XRCC2,per_nt,37,Functionally Abnormal,0
+XRCC2,per_nt,37,Indeterminate,0
+XRCC2,per_nt,37,Functionally Normal,6
+XRCC2,per_nt,37,unassigned,0
+XRCC2,per_nt,38,Functionally Abnormal,0
+XRCC2,per_nt,38,Indeterminate,0
+XRCC2,per_nt,38,Functionally Normal,6
+XRCC2,per_nt,38,unassigned,0
+XRCC2,per_nt,39,Functionally Abnormal,0
+XRCC2,per_nt,39,Indeterminate,0
+XRCC2,per_nt,39,Functionally Normal,6
+XRCC2,per_nt,39,unassigned,0
+XRCC2,per_nt,40,Functionally Abnormal,0
+XRCC2,per_nt,40,Indeterminate,0
+XRCC2,per_nt,40,Functionally Normal,6
+XRCC2,per_nt,40,unassigned,0
+XRCC2,per_nt,41,Functionally Abnormal,0
+XRCC2,per_nt,41,Indeterminate,0
+XRCC2,per_nt,41,Functionally Normal,6
+XRCC2,per_nt,41,unassigned,0
+XRCC2,per_nt,42,Functionally Abnormal,0
+XRCC2,per_nt,42,Indeterminate,0
+XRCC2,per_nt,42,Functionally Normal,6
+XRCC2,per_nt,42,unassigned,0
+XRCC2,per_nt,43,Functionally Abnormal,0
+XRCC2,per_nt,43,Indeterminate,0
+XRCC2,per_nt,43,Functionally Normal,6
+XRCC2,per_nt,43,unassigned,0
+XRCC2,per_nt,44,Functionally Abnormal,0
+XRCC2,per_nt,44,Indeterminate,0
+XRCC2,per_nt,44,Functionally Normal,6
+XRCC2,per_nt,44,unassigned,0
+XRCC2,per_nt,45,Functionally Abnormal,0
+XRCC2,per_nt,45,Indeterminate,0
+XRCC2,per_nt,45,Functionally Normal,6
+XRCC2,per_nt,45,unassigned,0
+XRCC2,per_nt,46,Functionally Abnormal,0
+XRCC2,per_nt,46,Indeterminate,0
+XRCC2,per_nt,46,Functionally Normal,6
+XRCC2,per_nt,46,unassigned,0
+XRCC2,per_nt,47,Functionally Abnormal,0
+XRCC2,per_nt,47,Indeterminate,0
+XRCC2,per_nt,47,Functionally Normal,3
+XRCC2,per_nt,47,unassigned,0
+XRCC2,per_nt,48,Functionally Abnormal,0
+XRCC2,per_nt,48,Indeterminate,0
+XRCC2,per_nt,48,Functionally Normal,3
+XRCC2,per_nt,48,unassigned,0
+XRCC2,per_nt,49,Functionally Abnormal,0
+XRCC2,per_nt,49,Indeterminate,0
+XRCC2,per_nt,49,Functionally Normal,3
+XRCC2,per_nt,49,unassigned,0
+XRCC2,per_nt,50,Functionally Abnormal,0
+XRCC2,per_nt,50,Indeterminate,0
+XRCC2,per_nt,50,Functionally Normal,3
+XRCC2,per_nt,50,unassigned,0
+XRCC2,per_nt,>50,Functionally Abnormal,0
+XRCC2,per_nt,>50,Indeterminate,0
+XRCC2,per_nt,>50,Functionally Normal,54
+XRCC2,per_nt,>50,unassigned,0
+XRCC2,stratum,pm12,Functionally Abnormal,24
+XRCC2,stratum,pm12,Indeterminate,0
+XRCC2,stratum,pm12,Functionally Normal,0
+XRCC2,stratum,pm12,unassigned,0
+XRCC2,stratum,s3_10,Functionally Abnormal,7
+XRCC2,stratum,s3_10,Indeterminate,0
+XRCC2,stratum,s3_10,Functionally Normal,89
+XRCC2,stratum,s3_10,unassigned,0
+XRCC2,stratum,s11_50,Functionally Abnormal,3
+XRCC2,stratum,s11_50,Indeterminate,0
+XRCC2,stratum,s11_50,Functionally Normal,291
+XRCC2,stratum,s11_50,unassigned,0
+XRCC2,stratum,s3_50,Functionally Abnormal,10
+XRCC2,stratum,s3_50,Indeterminate,0
+XRCC2,stratum,s3_50,Functionally Normal,380
+XRCC2,stratum,s3_50,unassigned,0
+XRCC2,stratum,out_of_scope_deep,Functionally Abnormal,0
+XRCC2,stratum,out_of_scope_deep,Indeterminate,0
+XRCC2,stratum,out_of_scope_deep,Functionally Normal,54
+XRCC2,stratum,out_of_scope_deep,unassigned,0

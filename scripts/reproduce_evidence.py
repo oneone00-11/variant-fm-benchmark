@@ -10,7 +10,7 @@ one, or the release archive that --fetch-inputs downloads from Zenodo
 (10.5281/zenodo.22751081, md5 checked) and unpacks under phase1/data/evidence/
 (gitignored). The atlas's results/ files ship in that archive and not in its git
 repository, so a bare clone of the atlas is not enough; the entry point checks for
-every atlas file the stages read before it starts. Five kinds of input are NOT
+every atlas file the stages read before it starts. Six kinds of input are NOT
 rebuilt here, because they are third-party downloads or model re-scores that need
 their own environments; each is pinned by sha256 in a manifest or provenance file:
 
@@ -28,7 +28,13 @@ their own environments; each is pinned by sha256 in a manifest or provenance fil
     are cached; the stage below reruns it offline from that cache);
   * the AlphaGenome Atlas columns (`src/evid_score_avi.py`), which need an API key
     outside the tree and a separate venv carrying alphagenome>=0.9.0 -- the pinned
-    .venv keeps 0.7.0 because that is the provenance of the alphagenome column.
+    .venv keeps 0.7.0 because that is the provenance of the alphagenome column;
+  * the MaveDB deposits of the four further external genes and their transcript
+    models and sequence slices (`scripts/stage_E16/fetch_mavedb.py` and
+    `fetch_reference.py`), pinned in each gene's `<gene>_raw/manifest.json`; their
+    stage reads them offline. --fetch-inputs also fetches the four Ensembl
+    chromosomes those manifests name, which only the reference-base check reads
+    (`scripts/stage_E16/check_reference.py` and the tests), never a stage.
 
 Each is tracked with a checksum or a provenance record, except four DDX3X score
 lookups (CADD, GPN-MSA, phyloP, phastCons). The ClinVar VCF and the SpliceAI event
@@ -59,9 +65,10 @@ Stages
  20  evid_supp_tables        the supplementary tables as printed (E13)
  21  evid_figures            main and supplementary figures, PDF and PNG (E14)
  22  evid_practical_metrics  sensitivity, specificity and ROC at the evidence thresholds (E15)
- 23  evid_delta              every published quantity with a counterpart (E8)
+ 23  evid_newgenes           four further external genes: records, coordinates, labels (E16)
+ 24  evid_delta              every published quantity with a counterpart (E8)
 
-Outputs land in `phase1/reports/evidence/`; stages 22 and 23 also write a page under
+Outputs land in `phase1/reports/evidence/`; stages 22 to 24 also write a page under
 `docs/`.
 
     bash reproduce.sh                                       # from a fresh clone: everything
@@ -74,6 +81,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import gzip
 import hashlib
 import http.client
 import json
@@ -88,6 +96,7 @@ import time
 import urllib.error
 import urllib.request
 import zipfile
+import zlib
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
@@ -118,14 +127,22 @@ ATLAS_ARCHIVE = {
             "functional-standard-atlas-v2.5.0.zip/content"),
     "md5": "0858fe136346428b764e8b1c3c35b223",      # Zenodo's checksum of the file
 }
+# The four further external genes (E16): each raw manifest pins the gene's deposit,
+# transcript model and sequence slice, and names the Ensembl chromosome that
+# --fetch-inputs fetches for the reference-base check. A test keeps this list equal
+# to the stage's.
+NEWGENE_RAW = [PHASE1 / "data" / "evidence" / "external" / f"{g}_raw"
+               for g in ("ctcf", "sfpq", "rad51d", "xrcc2")]
 # What --verify compares: every file the stages write, as it stood before the run.
 # Fetched inputs are left out; manifests may differ only in their wall-clock fields,
 # the set evid_supp_tables also leaves out when it hashes them.
 OUTPUT_ROOTS = [PHASE1 / "reports" / "evidence", PHASE1 / "data" / "evidence",
                 REPO / "docs" / "evidence-delta.md",
-                REPO / "docs" / "practical-metrics-summary.md"]
+                REPO / "docs" / "practical-metrics-summary.md",
+                REPO / "docs" / "newgenes-record-check.md"]
 NOT_OUTPUTS = [PHASE1 / "data" / "evidence" / "clinvar",
-               PHASE1 / "data" / "evidence" / "companion_atlas"]
+               PHASE1 / "data" / "evidence" / "companion_atlas",
+               PHASE1 / "data" / "evidence" / "refs"]
 WALL_CLOCK_KEYS = {"built_utc", "scored_utc", "retrieved_utc", "run_at"}
 # Tracked files under the output folders that the stages only read; every other
 # tracked file there must be rewritten by a full run.
@@ -165,6 +182,7 @@ STAGES = [
     ("src.evid_supp_tables",        "E13 the supplementary tables, as printed", []),
     ("src.evid_figures",            "E14 main and supplementary figures", []),
     ("src.evid_practical_metrics",  "E15 practical metrics", []),
+    ("src.evid_newgenes",           "E16 new external genes: records, coordinates and labels", []),
     ("src.evid_delta",              "E8  old/new quantity list -> docs/evidence-delta.md", []),
 ]
 
@@ -338,6 +356,47 @@ def fetch_atlas() -> None:
                 sys.exit(f"unexpected path in the atlas archive: {name}")
         z.extractall(root)
     print(f"  md5 matches Zenodo's; unpacked to {ATLAS_FETCHED.relative_to(REPO)}")
+
+
+def fetch_reference_chromosomes(attempts: int = 3) -> None:
+    """The Ensembl chromosome each new external gene's raw manifest names, packed and
+    unpacked into phase1/data/evidence/refs/ (gitignored), each checked against the
+    sha256 the manifest records. No stage reads them, only the reference-base check,
+    so a chromosome that cannot be fetched is reported and the run goes on, after a
+    few attempts rather than ClinVar's thirty; the tests then hold the variant tables
+    to the recorded check (phase1/data/evidence/external/newgenes_reference_check.json)
+    alone. A file that fails its sha256 is removed, and the unpacked chromosome is
+    written through a .part file, so no half-written or wrong chromosome is left for
+    the tests to read."""
+    for raw in NEWGENE_RAW:
+        ref = json.loads((raw / "manifest.json").read_text())["reference_fasta"]
+        fa, gz = REPO / ref["file_fa"], REPO / ref["file_gz"]
+        if fa.exists():
+            if _digest(fa, "sha256") == ref["sha256_fa"]:
+                print(f"chromosome {ref['chrom']} present, sha256 checked: {ref['file_fa']}")
+                continue
+            fa.unlink()
+            print(f"  removed {ref['file_fa']}: not the file the manifest records (sha256)")
+        part = fa.with_name(fa.name + ".part")
+        try:
+            if not (gz.exists() and _digest(gz, "sha256") == ref["sha256_gz"]):
+                print(f"downloading {ref['url']} ({ref['bytes_gz'] / 1e6:.0f} MB)", flush=True)
+                gz.unlink(missing_ok=True)
+                _download(ref["url"], gz, attempts=attempts)
+                if _digest(gz, "sha256") != ref["sha256_gz"]:
+                    gz.unlink()
+                    raise OSError("its sha256 differs from the manifest's; removed")
+            with gzip.open(gz, "rb") as src, open(part, "wb") as dst:   # gzip checks its CRC
+                shutil.copyfileobj(src, dst, 1 << 20)
+            if _digest(part, "sha256") != ref["sha256_fa"]:
+                raise OSError("the unpacked file's sha256 differs from the manifest's")
+            part.replace(fa)
+        except (OSError, EOFError, zlib.error, http.client.HTTPException) as e:
+            print(f"  chromosome {ref['chrom']} not fetched ({e}); no stage reads it")
+            continue
+        finally:
+            part.unlink(missing_ok=True)
+        print(f"  sha256 matches the manifest: {ref['file_fa']}")
 
 
 # --------------------------------------------------------------------------
@@ -749,11 +808,12 @@ def _source_sha256(path: Path) -> str:
 def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
     """(record, file, expected, how) for every checksum a tracked manifest or
     provenance record carries about a file in this repository, and about the ClinVar
-    release and the atlas when they are here; and the names of those two when they are
-    not. `how` is "file" (sha256 of the bytes), "content" (the row-order-free hash of a
-    table) or "source" (evid_supp_tables' hash of a source). Hashes of files that only
-    existed where the model scores were made (reference FASTAs, scorer modules,
-    interpreters) are left out: nothing here can check them."""
+    release, the atlas and the E16 genes' chromosomes when they are here; and the
+    names of those inputs when they are not. `how` is "file" (sha256 of the bytes),
+    "content" (the row-order-free hash of a table) or "source" (evid_supp_tables' hash
+    of a source). Hashes of files that only existed where the model scores were made
+    (the scorers' reference FASTAs, scorer modules, interpreters) are left out: nothing
+    here can check them."""
     ev, out, absent = PHASE1 / "data" / "evidence", [], []
     atlas, atlas_missing = resolve_atlas()
     if atlas_missing:
@@ -828,6 +888,24 @@ def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
     add(rec, rec.with_name("tp53_splice_scored_v2.parquet"), d["sha256"], "content")
     for model, sha in d["inputs"].items():
         add(rec, REPO / "data" / "tp53" / f"{model}_tp53.tsv", sha)
+    # the four further external genes (E16): each deposit as fetched, its transcript
+    # model and sequence slice, the chromosome when it is here, and the variant tables
+    # the recorded reference-base check ran on (their own sidecars carry their hashes)
+    for raw in NEWGENE_RAW:
+        rec = raw / "manifest.json"
+        d = json.loads(rec.read_text())
+        for entry in d["files"]:
+            add(rec, REPO / entry["path"], entry["sha256"])
+        for item in d["transcript_model"]["cache_files"].values():
+            add(rec, REPO / item["path"], item["sha256"])
+        ref = d["reference_fasta"]
+        if (REPO / ref["file_fa"]).exists():
+            add(rec, REPO / ref["file_fa"], ref["sha256_fa"])
+        else:
+            absent.append(f"chromosome {ref['chrom']} of the E16 reference-base check")
+    rec = ev / "external" / "newgenes_reference_check.json"
+    for g in json.loads(rec.read_text())["genes"]:
+        add(rec, REPO / g["variants_file"], g["variants_sha256"])
 
     # the frozen matrices the set joins to, and the rescored columns of the second
     frozen = PHASE1 / "data" / "frozen"
@@ -928,7 +1006,9 @@ def main() -> None:
     ap.add_argument("--from", dest="start", type=int, default=1)
     ap.add_argument("--fetch-inputs", action="store_true",
                     help="download the ClinVar release and the atlas release archive "
-                         "when they are missing, and check their checksums")
+                         "when they are missing, and check their checksums; also the "
+                         "four chromosomes of the E16 genes' reference-base check, "
+                         "whose failure does not stop the run")
     ap.add_argument("--check", action="store_true",
                     help="quick path, about five minutes, no data download: check every "
                          "checksum the manifests and provenance records carry, then run "
@@ -946,6 +1026,7 @@ def main() -> None:
         sys.exit("--verify needs the full run (no --from)")
     if args.fetch_inputs:
         fetch_clinvar()
+        fetch_reference_chromosomes()
     atlas = choose_atlas(release_only=args.verify, fetch=args.fetch_inputs)
     os.environ["EVID_ATLAS_REPO"] = str(atlas)    # every stage reads this one atlas
     version = atlas_version(atlas)

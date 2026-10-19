@@ -455,3 +455,81 @@ Archived at Zenodo as version DOI 10.5281/zenodo.23051009 (all versions:
   likelihood ratio of its per-fold BP4 thresholds (Supplementary Table S7) and writes
   per-fold thresholds for the PP3 side only; held-out BP4 sensitivity and specificity
   need E3 to store its per-fold BP4 thresholds as well.
+
+## After 3.0.1: four further external genes, not yet scored (stage E16, 2026-10-20)
+
+Why: the external genes go from two (DDX3X, TP53) to six. CTCF, SFPQ, RAD51D and XRCC2
+have HAP1 saturation genome editing deposits in MaveDB (CC0), scored for cell fitness
+like the seven genes; they are added for a purely prospective test. This round only
+records them: nothing is fitted, the seven genes' thresholds as archived with 3.0.1
+are untouched, and no predictor is scored on them yet (no score column, likelihood
+ratio, ROC or figure).
+
+- Stage 23, `src/evid_newgenes.py`, offline, between E15 and `evid_delta` (now 24):
+  each deposit's record (`newgenes_record_check.csv`, `docs/newgenes-record-check.md`,
+  every fact with the file it was read from and when that file was fetched), a variant
+  table per gene (`<gene>_variants.parquet` and its provenance: GRCh38 position,
+  signed offset, side, stratum, score, range class, label), counts by offset and by
+  stratum (`newgenes_counts_by_offset.csv`, `newgenes_label_summary.csv`) and three
+  check tables (`newgenes_coordinate_check.csv`, `newgenes_offset_sample.csv`,
+  `newgenes_controls.csv`, whose synonymous and nonsense counts keep SNVs apart from
+  3-bp deletions that MaveDB projects to a stop). For CTCF and SFPQ the record is
+  checked against the author's of 2026-10-19 (URN, licence, publication status,
+  first-published month); the stage stops on any difference, and on ranges that
+  overlap beyond a shared end point (E16.10).
+- Inputs, fetched once by `scripts/stage_E16/` (one script per purpose, each writing
+  a run record under `scripts/stage_E16/run_log/`): each score set's metadata, its
+  superseded versions, its experiment, the score table as served, the
+  investigator-provided ranges, and MaveDB's variant-details stream, under
+  `phase1/data/evidence/external/<gene>_raw/` with a manifest (path, bytes, sha256,
+  source URL, fetch time, API version); and each gene's transcript model and Ensembl
+  sequence slice, in the reference cache. RAD51D's and XRCC2's URNs were found with
+  MaveDB's search; the requests, candidates and reasons are in the run records.
+- Labels: the deposit's own investigator-provided ranges, applied mechanically:
+  abnormal 1, normal 0, Indeterminate NA, as `config.ASSAY_LABELS` treats intermediate
+  classes; a score outside every range, or on a point two ranges share, is
+  `unassigned`. CTCF's Indeterminate and Functionally Normal ranges share one end point;
+  the author's rule (2026-10-20) makes a score there `unassigned`. No intron-side SNV
+  is scored on it.
+- Coordinates: MaveDB served no GRCh38 postMapped record for any intron-side SNV of
+  the four score sets (mapping state `incomplete`), and its mapped-variants endpoint
+  is gone (HTTP 410; replaced by variant-details). By the author's decision
+  (2026-10-20) the coordinates are made as DDX3X's were, through the atlas mapping
+  module and the MANE Select transcript. Checks, all 100% on 4,588 SNVs: every
+  reference base against the Ensembl release-112 chromosome
+  (`scripts/stage_E16/check_reference.py`, recorded in
+  `external/newgenes_reference_check.json`) and against the tracked slice; every
+  position against MaveDB's own GRCh38 position of the exonic base its c. position
+  names, plus the signed offset, which is independent of the mapping; and, as a check
+  of the transcript model against itself, every offset against its exon structure,
+  on the nearer side.
+- Counts, as the literature check found them: 3-10 bp 360 / 396 / 429 / 96 SNVs (42 /
+  48 / 55 / 7 damaging), 11-50 bp 1,010 / 623 / 867 / 294 (34 / 52 / 19 / 3), for CTCF /
+  SFPQ / RAD51D / XRCC2. The four genes add 108 damaging variants at 11-50 bp, where
+  the seven genes have 225. XRCC2 has fewer than ten damaging variants in either band.
+- The entry point: the docs page is an output; `phase1/data/evidence/refs/` is a
+  fetched-input folder, like `clinvar/`; `--fetch-inputs` also fetches the four
+  chromosomes (165 MB; sha256 against each raw manifest), which only the
+  reference-base check reads, trying each three times and going on without it if that
+  fails, with no wrong or half-unpacked file left behind; `--check` checks every raw
+  manifest. `evid_external` gains `intronic_snv_regex`, the DDX3X pattern made
+  reusable on RefSeq transcripts (DDX3X's own pattern is unchanged).
+- `.gitattributes` keeps `external/*_raw/` byte for byte (no line-end conversion):
+  MaveDB serves its score tables with CRLF line ends, and the repository's rules for
+  `*.csv` and `* text=auto` would otherwise normalise them to LF when they are
+  committed, so that the stored file, and every checkout of it, would differ from the
+  sha256 each manifest pins. The DDX3X deposits there are LF already and do not change.
+- `tests/_checkout.py` leaves `refs/` out of a release archive's file list; the README
+  (stage count, the chromosome download, the build-time sentence), the `reproduce.sh`
+  header and the CI workflow (its header, and its path filter, which now includes the
+  docs page) describe the branch.
+- Run records of `scripts/stage_E16/`: each logs the sha256 of its script and of
+  `_runlog.py` as they ran (the commit it logs predates them), hashes an input when it
+  is read, and writes a path outside the repository from `~/`. The first records of
+  `fetch_reference.py` and `check_reference.py` (2026-10-19, 16:44 and 16:48 UTC) leave
+  some inputs out; both scripts were rerun offline from the cache at 18:23 UTC with
+  complete records, and `probe_raw.py` once it used the stage's own layers. The
+  earlier records are kept.
+- E15's stage-order test now asks that E15 run after the figures and before the
+  delta, rather than next to it, since E16 sits between.
+- Every output of E1-E15 is unchanged.

@@ -1,0 +1,147 @@
+{
+ "gene": "RAD51D",
+ "urn": "urn:mavedb:00001260-a-2",
+ "experiment_urn": "urn:mavedb:00001260-a",
+ "superseded_versions": [
+  "urn:mavedb:00001260-a-1"
+ ],
+ "license": {
+  "shortName": "CC0",
+  "longName": "CC0 (Public domain)",
+  "version": "1.0",
+  "link": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "n_rows": 5410,
+ "api": {
+  "base": "https://api.mavedb.org/api/v1",
+  "version": "2026.3.0"
+ },
+ "selection": {
+  "how": "rule: only target is the gene; short description names saturation genome editing and HAP1; not superseded",
+  "record": "scripts/stage_E16/run_log/searches/choice_RAD51D_20261019T162756Z.json"
+ },
+ "files": [
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/scoreset_meta.json",
+   "bytes": 8082,
+   "sha256": "8d1b5c1a645e83a69cb4ba584311b0056182c66c9046f511a31b5cb5dccd2249",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001260-a-2",
+   "fetched_utc": "2026-10-19T16:28:23+00:00",
+   "api_version": "2026.3.0",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/scoreset_meta_00001260-a-1.json",
+   "bytes": 24767,
+   "sha256": "a02b16c2fcabcb5d2e606c4ddb9fa593488c70d45ebc6e77addf3c16bf374c3b",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001260-a-1",
+   "fetched_utc": "2026-10-19T16:28:24+00:00",
+   "api_version": "2026.3.0",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/experiment_meta.json",
+   "bytes": 3893,
+   "sha256": "cb0bf929157e227dedad47420b078d74b77d35b4d679406efac3e69928586700",
+   "source_url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00001260-a",
+   "fetched_utc": "2026-10-19T16:28:24+00:00",
+   "api_version": "2026.3.0",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/urn_mavedb_00001260-a-2.csv",
+   "bytes": 687454,
+   "sha256": "734b3d47d488ed18389c5525d86a79d3fd16906cac07ff9378921d011bcb1842",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001260-a-2/scores",
+   "fetched_utc": "2026-10-19T16:28:25+00:00",
+   "api_version": "2026.3.0",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/score_ranges.json",
+   "bytes": 2394,
+   "sha256": "7b23053d70f360d112b453d6bd3998469928fd3e1572d61564f79e1793d58d72",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001260-a-2",
+   "derived_from": "phase1/data/evidence/external/rad51d_raw/scoreset_meta.json",
+   "note": "extract of scoreCalibrations, entries unchanged"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/variant_details.ndjson",
+   "bytes": 16326855,
+   "sha256": "29101da33239f8a8726349efcbb5d438603b8c79ca4da818cfcc8088f9db765f",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001260-a-2/variant-details",
+   "fetched_utc": "2026-10-19T16:28:33+00:00",
+   "api_version": "2026.3.0",
+   "http_status": 200,
+   "response_headers": {
+    "X-As-Of": "current",
+    "X-Total-Count": "3598",
+    "X-Stream-Type": "variant-detail",
+    "X-Processing-Started": "2026-10-19T16:28:25.538035"
+   }
+  }
+ ],
+ "transcript_model": {
+  "route": "atlas mapping module, as for DDX3X: Mutalyzer transcript model anchored to GRCh38 by the Ensembl lookup of the MANE Select partner; not MaveDB postMapped",
+  "mane_select": {
+   "symbol": "RAD51D",
+   "refseq_nuc": "NM_002878.4",
+   "ensembl_nuc": "ENST00000345365.11",
+   "grch38_chr_accession": "NC_000017.11",
+   "chr_name": "17",
+   "strand": "-"
+  },
+  "deposit_target_accession": "NM_002878.4",
+  "deposit_target_is_mane_select_refseq": true,
+  "provenance": {
+   "assay_accession": "NM_002878.4",
+   "mutalyzer_model_accession": "NM_002878.4",
+   "mutalyzer_model": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_002878.4",
+   "ensembl_anchor": "ENST00000345365",
+   "ensembl_lookup": "https://rest.ensembl.org/lookup/id/ENST00000345365?expand=1",
+   "n_exons": 10,
+   "cds_t_offsets": [
+    247,
+    1234
+   ],
+   "exon_anchor_adjustments": []
+  },
+  "region": {
+   "chrom": "17",
+   "start": 35087221,
+   "end": 35124860,
+   "pad": 5000
+  },
+  "cache_files": {
+   "mane_summary": {
+    "path": "phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz",
+    "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c"
+   },
+   "mutalyzer_model": {
+    "path": "phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_002878.4.json",
+    "sha256": "68d2000ed49a26a99e221cf39d84f3bad0f7dabee8300691eb71553d986262f8"
+   },
+   "ensembl_lookup": {
+    "path": "phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000345365.json",
+    "sha256": "975446e8501d44cac3b6d0b1c83d58b6f96fd1257f2c667043c229be65358e0f"
+   },
+   "region": {
+    "path": "phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr17_35087221_35124860.fa",
+    "sha256": "4d85a8cbbd1f67ae6a257fd48bc4922c25cd6e638e73cfffc5453d45be7652d8"
+   }
+  }
+ },
+ "reference_fasta": {
+  "chrom": "17",
+  "ensembl_release": 112,
+  "url": "https://ftp.ensembl.org/pub/release-112/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.17.fa.gz",
+  "file_gz": "phase1/data/evidence/refs/Homo_sapiens.GRCh38.dna.chromosome.17.fa.gz",
+  "sha256_gz": "8ce6afd82a59f7621e1358ffc7bdb5aa0352f08eed9faa1c88110d9fafcc7994",
+  "bytes_gz": 24104573,
+  "file_fa": "phase1/data/evidence/refs/chr17.fa",
+  "sha256_fa": "ff5549a89f339629fbd3a61209446bea70577b0123f0d8aba37df0bafb18cef7",
+  "bytes_fa": 84645123,
+  "tracked": false,
+  "note": "phase1/data/evidence/refs/ is gitignored; reproduce_evidence.py --fetch-inputs fetches it"
+ }
+}

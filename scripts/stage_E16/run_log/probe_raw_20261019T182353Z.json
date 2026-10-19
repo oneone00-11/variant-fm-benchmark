@@ -1,0 +1,492 @@
+{
+ "script": "scripts/stage_E16/probe_raw.py",
+ "argv": [
+  "scripts/stage_E16/probe_raw.py"
+ ],
+ "git_commit": "117d482a8e32c114702b3a4e27a96c1f54e32a90",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E16/probe_raw.py": "7060b68ed4ca7e8542ff371593a70ef2639c54bd8406932711ad6f61fe6f75a1",
+  "scripts/stage_E16/_runlog.py": "0c8bc6cfcc52f174dcf15fc78781b82aaaf45113a362dc5590614d206efb6af9"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-19T18:23:52+00:00",
+ "end_utc": "2026-10-19T18:23:53+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/experiment_meta.json",
+   "bytes": 4009,
+   "sha256": "1a8914ce857b23e4f757561ac9993ca836b60a92f857b1b1c3d00ae7decaa047"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/manifest.json",
+   "bytes": 5945,
+   "sha256": "a319124ba7c18a8ba76db2d781887b71fe2a8fab61c6e3885a6ead02d736eebe"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/score_ranges.json",
+   "bytes": 2384,
+   "sha256": "db0af94dc2f94aa142b2aa283ca3c4dcd24a888f335d4653b3bf03549007e383"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/scoreset_meta.json",
+   "bytes": 8344,
+   "sha256": "e76b023a5a180ec8d14821d57aeabd9711876a0e539629d6da5d6cd0af74f78d"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/scoreset_meta_00001262-a-1.json",
+   "bytes": 23686,
+   "sha256": "749a0dce2617b11e58bb0d2082c7f6f5e1ea75f1a9ac897ef07fbad681f6f5c3"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/scoreset_meta_00001262-a-2.json",
+   "bytes": 8391,
+   "sha256": "e78c0be169c8d6a0c9b1cc9a339df8a9f639667b7aa5c63c7ac76b23aefcf3fc"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/urn_mavedb_00001262-a-3.csv",
+   "bytes": 930260,
+   "sha256": "15fb39c473892348e0e3e8e4eb497b45a7db41685ceec18fbea3b63099a1e364"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/variant_details.ndjson",
+   "bytes": 22218171,
+   "sha256": "b3463ff58f8a7127f8146e921398aafcb8ebc84cfaed4fdb522dcd210c73fe0a"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/experiment_meta.json",
+   "bytes": 4113,
+   "sha256": "13e5ec01a536e2fefabf7e29ce765add358b44fb6578859d458e12c488a35fb7"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/manifest.json",
+   "bytes": 5530,
+   "sha256": "e43f829c8421626ea57337cd2bef78e9a2dcf9c701d0f5400f7cc58c4d00e472"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/score_ranges.json",
+   "bytes": 2393,
+   "sha256": "0226b5ea84eee1eb26883a74edc282fb202b98fb7bcade36871adf3f9cef39c5"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/scoreset_meta.json",
+   "bytes": 8348,
+   "sha256": "e8cd64169bb68277a6f2cc53f470efafb2d133e8cc354fc4e9699a8d17b6b682"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/scoreset_meta_00001265-a-1.json",
+   "bytes": 8836,
+   "sha256": "efc78392d7ea9709d6e48897d32bad4b906972dee3c14b259e7cba33da2fd2a9"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/urn_mavedb_00001265-a-2.csv",
+   "bytes": 708781,
+   "sha256": "cde777132e0fed6e380c1871a22df4353be2d4c62371b847618ae9c20b2df4c4"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/variant_details.ndjson",
+   "bytes": 18622613,
+   "sha256": "b773cbbeec859475c6ebfa62aa287ba5dbee38edfd7b724f9990e2857c413db4"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/experiment_meta.json",
+   "bytes": 3893,
+   "sha256": "cb0bf929157e227dedad47420b078d74b77d35b4d679406efac3e69928586700"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/manifest.json",
+   "bytes": 5619,
+   "sha256": "3664d13dc4de6f458afe4118bb2f9849e31b9df402856df60f2118a8e82c2d04"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/score_ranges.json",
+   "bytes": 2394,
+   "sha256": "7b23053d70f360d112b453d6bd3998469928fd3e1572d61564f79e1793d58d72"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/scoreset_meta.json",
+   "bytes": 8082,
+   "sha256": "8d1b5c1a645e83a69cb4ba584311b0056182c66c9046f511a31b5cb5dccd2249"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/scoreset_meta_00001260-a-1.json",
+   "bytes": 24767,
+   "sha256": "a02b16c2fcabcb5d2e606c4ddb9fa593488c70d45ebc6e77addf3c16bf374c3b"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/urn_mavedb_00001260-a-2.csv",
+   "bytes": 687454,
+   "sha256": "734b3d47d488ed18389c5525d86a79d3fd16906cac07ff9378921d011bcb1842"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/variant_details.ndjson",
+   "bytes": 16326855,
+   "sha256": "29101da33239f8a8726349efcbb5d438603b8c79ca4da818cfcc8088f9db765f"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/experiment_meta.json",
+   "bytes": 3700,
+   "sha256": "9fa283ffb95ef7fcd0e4b2134b4d8d56bef4d3dc0347a529ad5f4cc377ba6c42"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/manifest.json",
+   "bytes": 5603,
+   "sha256": "ce6ae7c5e4ff195d7e3f12e726442fd34912b8fa1df1e56736dc826494568c1e"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/score_ranges.json",
+   "bytes": 2392,
+   "sha256": "33c0b27797734c670ce3e2b764b9f2e6ff9fd90fed6512c73fff6bbf97a4d6a9"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/scoreset_meta.json",
+   "bytes": 7846,
+   "sha256": "30e226885fba7a1774d14ba79b849dd78efa509ca815e40fe6d7f378068a7114"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/scoreset_meta_00001264-a-1.json",
+   "bytes": 27447,
+   "sha256": "ee95d897062ceb9312fb36a1abacec3ac1cf687ac7ba5c2bf5675b749c6f7352"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/urn_mavedb_00001264-a-2.csv",
+   "bytes": 472773,
+   "sha256": "71f737a6ec66bc74139160000c98ac89e4da795333cced406f5f8fe64c2ce694"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/variant_details.ndjson",
+   "bytes": 13760402,
+   "sha256": "de2bcfac413e743a3dc9bf19351ebd73183d6581a4f0d4b5202b36e6cb98f734"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "per_gene": {
+   "CTCF": {
+    "urn": "urn:mavedb:00001262-a-3",
+    "n_rows": 7766,
+    "n_variant_details": 5864,
+    "target_accession": "NM_006565.4",
+    "n_investigator_calibrations": 1,
+    "n_intronic_snv": 1535,
+    "n_intronic_on_other_transcript": 0,
+    "deepest_offset": 68,
+    "intronic_by_depth": {
+     "s11_50": 1010,
+     "s3_10": 360,
+     "pm12": 90,
+     "out_of_scope_deep": 75
+    },
+    "intronic_with_postMapped": 0,
+    "intronic_without_postMapped": 1535,
+    "rows_without_a_variant_details_record": {
+     "intronic SNV": 1535,
+     "deletion": 367
+    },
+    "postMapped_reference_accessions": {
+     "NC_000016.10": 5864
+    },
+    "intronic_missing_score": 0,
+    "intronic_with_rna_score": "no rna_score column",
+    "classes": [
+     {
+      "label": "Functionally Abnormal",
+      "functionalClassification": "abnormal",
+      "range": [
+       null,
+       -0.062162
+      ],
+      "inclusiveLowerBound": false,
+      "inclusiveUpperBound": true
+     },
+     {
+      "label": "Indeterminate",
+      "functionalClassification": "not_specified",
+      "range": [
+       -0.062162,
+       -0.026247
+      ],
+      "inclusiveLowerBound": false,
+      "inclusiveUpperBound": true
+     },
+     {
+      "label": "Functionally Normal",
+      "functionalClassification": "normal",
+      "range": [
+       -0.026247,
+       null
+      ],
+      "inclusiveLowerBound": true,
+      "inclusiveUpperBound": false
+     }
+    ],
+    "range_structure": {
+     "overlaps": [
+      {
+       "classes": [
+        "Indeterminate",
+        "Functionally Normal"
+       ],
+       "at": -0.026247,
+       "upper_inclusive": true,
+       "lower_inclusive": true
+      }
+     ],
+     "gaps": [],
+     "unbounded_ends": []
+    },
+    "intronic_scores_exactly_on_a_boundary": {},
+    "intronic_in_more_than_one_class": 0,
+    "intronic_in_no_class": 0,
+    "intronic_by_class": {
+     "Functionally Normal": 1344,
+     "Functionally Abnormal": 144,
+     "Indeterminate": 47
+    },
+    "intronic_abnormal_by_depth": {
+     "s3_10": 42,
+     "pm12": 68,
+     "s11_50": 34
+    }
+   },
+   "SFPQ": {
+    "urn": "urn:mavedb:00001265-a-2",
+    "n_rows": 5861,
+    "n_variant_details": 4476,
+    "target_accession": "NM_005066.3",
+    "n_investigator_calibrations": 1,
+    "n_intronic_snv": 1121,
+    "n_intronic_on_other_transcript": 0,
+    "deepest_offset": 44,
+    "intronic_by_depth": {
+     "pm12": 102,
+     "s3_10": 396,
+     "s11_50": 623
+    },
+    "intronic_with_postMapped": 0,
+    "intronic_without_postMapped": 1121,
+    "rows_without_a_variant_details_record": {
+     "intronic SNV": 1121,
+     "deletion": 264
+    },
+    "postMapped_reference_accessions": {
+     "NC_000001.11": 4476
+    },
+    "intronic_missing_score": 0,
+    "intronic_with_rna_score": "no rna_score column",
+    "classes": [
+     {
+      "label": "Functionally Abnormal",
+      "functionalClassification": "abnormal",
+      "range": [
+       null,
+       -0.036581
+      ],
+      "inclusiveLowerBound": false,
+      "inclusiveUpperBound": true
+     },
+     {
+      "label": "Indeterminate",
+      "functionalClassification": "not_specified",
+      "range": [
+       -0.036581,
+       -0.018565
+      ],
+      "inclusiveLowerBound": false,
+      "inclusiveUpperBound": true
+     },
+     {
+      "label": "Functionally Normal",
+      "functionalClassification": "normal",
+      "range": [
+       -0.018565,
+       null
+      ],
+      "inclusiveLowerBound": false,
+      "inclusiveUpperBound": false
+     }
+    ],
+    "range_structure": {
+     "overlaps": [],
+     "gaps": [],
+     "unbounded_ends": []
+    },
+    "intronic_scores_exactly_on_a_boundary": {},
+    "intronic_in_more_than_one_class": 0,
+    "intronic_in_no_class": 0,
+    "intronic_by_class": {
+     "Functionally Abnormal": 191,
+     "Functionally Normal": 881,
+     "Indeterminate": 49
+    },
+    "intronic_abnormal_by_depth": {
+     "pm12": 91,
+     "s11_50": 52,
+     "s3_10": 48
+    }
+   },
+   "RAD51D": {
+    "urn": "urn:mavedb:00001260-a-2",
+    "n_rows": 5410,
+    "n_variant_details": 3598,
+    "target_accession": "NM_002878.4",
+    "n_investigator_calibrations": 1,
+    "n_intronic_snv": 1464,
+    "n_intronic_on_other_transcript": 0,
+    "deepest_offset": 70,
+    "intronic_by_depth": {
+     "pm12": 108,
+     "s3_10": 429,
+     "s11_50": 867,
+     "out_of_scope_deep": 60
+    },
+    "intronic_with_postMapped": 0,
+    "intronic_without_postMapped": 1464,
+    "rows_without_a_variant_details_record": {
+     "intronic SNV": 1464,
+     "deletion": 348
+    },
+    "postMapped_reference_accessions": {
+     "NC_000017.11": 3598
+    },
+    "intronic_missing_score": 0,
+    "intronic_with_rna_score": 0,
+    "classes": [
+     {
+      "label": "Functionally Abnormal",
+      "functionalClassification": "abnormal",
+      "range": [
+       null,
+       -0.048743
+      ],
+      "inclusiveLowerBound": false,
+      "inclusiveUpperBound": true
+     },
+     {
+      "label": "Indeterminate",
+      "functionalClassification": "not_specified",
+      "range": [
+       -0.048743,
+       -0.030404
+      ],
+      "inclusiveLowerBound": false,
+      "inclusiveUpperBound": true
+     },
+     {
+      "label": "Functionally Normal",
+      "functionalClassification": "normal",
+      "range": [
+       -0.030404,
+       null
+      ],
+      "inclusiveLowerBound": false,
+      "inclusiveUpperBound": false
+     }
+    ],
+    "range_structure": {
+     "overlaps": [],
+     "gaps": [],
+     "unbounded_ends": []
+    },
+    "intronic_scores_exactly_on_a_boundary": {},
+    "intronic_in_more_than_one_class": 0,
+    "intronic_in_no_class": 0,
+    "intronic_by_class": {
+     "Functionally Normal": 1278,
+     "Indeterminate": 15,
+     "Functionally Abnormal": 171
+    },
+    "intronic_abnormal_by_depth": {
+     "pm12": 97,
+     "s3_10": 55,
+     "s11_50": 19
+    }
+   },
+   "XRCC2": {
+    "urn": "urn:mavedb:00001264-a-2",
+    "n_rows": 3733,
+    "n_variant_details": 3159,
+    "target_accession": "NM_005431.2",
+    "n_investigator_calibrations": 1,
+    "n_intronic_snv": 468,
+    "n_intronic_on_other_transcript": 0,
+    "deepest_offset": 68,
+    "intronic_by_depth": {
+     "pm12": 24,
+     "s3_10": 96,
+     "s11_50": 294,
+     "out_of_scope_deep": 54
+    },
+    "intronic_with_postMapped": 0,
+    "intronic_without_postMapped": 468,
+    "rows_without_a_variant_details_record": {
+     "intronic SNV": 468,
+     "deletion": 106
+    },
+    "postMapped_reference_accessions": {
+     "NC_000007.14": 3159
+    },
+    "intronic_missing_score": 0,
+    "intronic_with_rna_score": 0,
+    "classes": [
+     {
+      "label": "Functionally Abnormal",
+      "functionalClassification": "abnormal",
+      "range": [
+       null,
+       -0.051781
+      ],
+      "inclusiveLowerBound": false,
+      "inclusiveUpperBound": true
+     },
+     {
+      "label": "Indeterminate",
+      "functionalClassification": "not_specified",
+      "range": [
+       -0.051781,
+       -0.036314
+      ],
+      "inclusiveLowerBound": false,
+      "inclusiveUpperBound": true
+     },
+     {
+      "label": "Functionally Normal",
+      "functionalClassification": "normal",
+      "range": [
+       -0.036314,
+       null
+      ],
+      "inclusiveLowerBound": false,
+      "inclusiveUpperBound": false
+     }
+    ],
+    "range_structure": {
+     "overlaps": [],
+     "gaps": [],
+     "unbounded_ends": []
+    },
+    "intronic_scores_exactly_on_a_boundary": {},
+    "intronic_in_more_than_one_class": 0,
+    "intronic_in_no_class": 0,
+    "intronic_by_class": {
+     "Functionally Abnormal": 34,
+     "Functionally Normal": 434
+    },
+    "intronic_abnormal_by_depth": {
+     "pm12": 24,
+     "s3_10": 7,
+     "s11_50": 3
+    }
+   }
+  }
+ }
+}

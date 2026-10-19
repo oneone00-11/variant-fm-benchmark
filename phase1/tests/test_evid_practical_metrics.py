@@ -83,7 +83,7 @@ def test_the_stage_runs_after_the_figures_and_before_the_delta():
     mods = re.findall(r'\(\s*"src\.([a-z_0-9]+)"', re.search(r"STAGES\s*=\s*\[(.*?)\n\]",
                                                             text, re.S).group(1))
     i = mods.index("evid_practical_metrics")
-    assert mods[i - 1] == "evid_figures" and mods[i + 1] == "evid_delta"
+    assert mods[i - 1] == "evid_figures" and i < mods.index("evid_delta")   # E16 between
     assert "practical-metrics-summary.md" in text        # compared by --verify
 
 

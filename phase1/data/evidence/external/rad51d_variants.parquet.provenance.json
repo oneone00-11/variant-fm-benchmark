@@ -1,0 +1,172 @@
+{
+ "gene": "RAD51D",
+ "urn": "urn:mavedb:00001260-a-2",
+ "source": "MaveDB",
+ "license": {
+  "shortName": "CC0",
+  "longName": "CC0 (Public domain)",
+  "version": "1.0",
+  "link": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "readout": "fitness only (the score table has an rna_score column, but no intron-side row carries a value)",
+ "inputs": {
+  "phase1/data/evidence/external/rad51d_raw/scoreset_meta.json": "8d1b5c1a645e83a69cb4ba584311b0056182c66c9046f511a31b5cb5dccd2249",
+  "phase1/data/evidence/external/rad51d_raw/scoreset_meta_00001260-a-1.json": "a02b16c2fcabcb5d2e606c4ddb9fa593488c70d45ebc6e77addf3c16bf374c3b",
+  "phase1/data/evidence/external/rad51d_raw/experiment_meta.json": "cb0bf929157e227dedad47420b078d74b77d35b4d679406efac3e69928586700",
+  "phase1/data/evidence/external/rad51d_raw/urn_mavedb_00001260-a-2.csv": "734b3d47d488ed18389c5525d86a79d3fd16906cac07ff9378921d011bcb1842",
+  "phase1/data/evidence/external/rad51d_raw/score_ranges.json": "7b23053d70f360d112b453d6bd3998469928fd3e1572d61564f79e1793d58d72",
+  "phase1/data/evidence/external/rad51d_raw/variant_details.ndjson": "29101da33239f8a8726349efcbb5d438603b8c79ca4da818cfcc8088f9db765f"
+ },
+ "coordinates": {
+  "source": "atlas mapping module, as for DDX3X: Mutalyzer transcript model anchored to GRCh38 by the Ensembl lookup of the MANE Select partner; not MaveDB postMapped",
+  "mane_select": {
+   "symbol": "RAD51D",
+   "refseq_nuc": "NM_002878.4",
+   "ensembl_nuc": "ENST00000345365.11",
+   "grch38_chr_accession": "NC_000017.11",
+   "chr_name": "17",
+   "strand": "-"
+  },
+  "transcript_map": {
+   "assay_accession": "NM_002878.4",
+   "mutalyzer_model_accession": "NM_002878.4",
+   "mutalyzer_model": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_002878.4",
+   "ensembl_anchor": "ENST00000345365",
+   "ensembl_lookup": "https://rest.ensembl.org/lookup/id/ENST00000345365?expand=1",
+   "n_exons": 10,
+   "cds_t_offsets": [
+    247,
+    1234
+   ],
+   "exon_anchor_adjustments": []
+  },
+  "region": {
+   "chrom": "17",
+   "start": 35087221,
+   "end": 35124860,
+   "pad": 5000
+  },
+  "cache_files": {
+   "mane_summary": {
+    "path": "phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz",
+    "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c"
+   },
+   "mutalyzer_model": {
+    "path": "phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_002878.4.json",
+    "sha256": "68d2000ed49a26a99e221cf39d84f3bad0f7dabee8300691eb71553d986262f8"
+   },
+   "ensembl_lookup": {
+    "path": "phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000345365.json",
+    "sha256": "975446e8501d44cac3b6d0b1c83d58b6f96fd1257f2c667043c229be65358e0f"
+   },
+   "region": {
+    "path": "phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr17_35087221_35124860.fa",
+    "sha256": "4d85a8cbbd1f67ae6a257fd48bc4922c25cd6e638e73cfffc5453d45be7652d8"
+   }
+  },
+  "mavedb_postMapped": "none for any intron-side SNV of this score set; used only as the exonic anchors of the check"
+ },
+ "score_ranges": {
+  "title": "Investigator-provided functional classes",
+  "researchUseOnly": false,
+  "baselineScore": 0.01,
+  "functionalClassifications": [
+   {
+    "label": "Functionally Abnormal",
+    "functionalClassification": "abnormal",
+    "range": [
+     null,
+     -0.048743
+    ],
+    "inclusiveLowerBound": false,
+    "inclusiveUpperBound": true,
+    "id": 7077,
+    "recordType": "FunctionalClassification",
+    "variantCount": 902
+   },
+   {
+    "label": "Indeterminate",
+    "functionalClassification": "not_specified",
+    "range": [
+     -0.048743,
+     -0.030404
+    ],
+    "inclusiveLowerBound": false,
+    "inclusiveUpperBound": true,
+    "id": 7078,
+    "recordType": "FunctionalClassification",
+    "variantCount": 121
+   },
+   {
+    "label": "Functionally Normal",
+    "functionalClassification": "normal",
+    "range": [
+     -0.030404,
+     null
+    ],
+    "inclusiveLowerBound": false,
+    "inclusiveUpperBound": false,
+    "id": 7079,
+    "recordType": "FunctionalClassification",
+    "variantCount": 4387
+   }
+  ],
+  "thresholdSources": [],
+  "evidenceSources": [],
+  "methodSources": [],
+  "recordType": "ScoreCalibration",
+  "id": 2399,
+  "urn": "urn:mavedb:calibration-adedd919-0005-4599-afeb-16a8ff382e37",
+  "scoreSetId": 4641,
+  "investigatorProvided": true,
+  "primary": false,
+  "private": false,
+  "controlsCount": 0,
+  "disease": {
+   "type": "MappableConcept",
+   "name": "disease or disorder",
+   "conceptType": "Disease",
+   "primaryCoding": {
+    "system": "https://purl.obolibrary.org/obo/mondo.owl",
+    "code": "MONDO:0000001",
+    "iris": [
+     "https://purl.obolibrary.org/obo/MONDO_0000001"
+    ]
+   }
+  },
+  "createdBy": {
+   "orcidId": "0000-0002-7565-2463",
+   "firstName": "Jeremy",
+   "lastName": "Stone",
+   "recordType": "User"
+  },
+  "modifiedBy": {
+   "orcidId": "0000-0002-7565-2463",
+   "firstName": "Jeremy",
+   "lastName": "Stone",
+   "recordType": "User"
+  },
+  "creationDate": "2026-06-08",
+  "modificationDate": "2026-06-08",
+  "controls": []
+ },
+ "range_class": "the label of the one range the score falls in, in the deposit's own wording; 'unassigned' for no score, a score outside every range, or a score on a point two ranges share (author's rule, 2026-10-20)",
+ "shared_points": [],
+ "label_map": {
+  "functionalClassification abnormal": 1,
+  "functionalClassification normal": 0,
+  "any other class, and unassigned": null
+ },
+ "scope": {
+  "pvs1_pm12": "|offset| 1-2, kept and flagged",
+  "in_scope": "|offset| 3-50",
+  "out_of_scope_deep": "|offset| > 50, kept and flagged"
+ },
+ "n_score_rows": 5410,
+ "n_intronic_snv": 1464,
+ "n_duplicates_dropped": 0,
+ "n_rows_written": 1464,
+ "deepest_offset": 70,
+ "sha256": "7837a3e13ba15c811cf09d89baabc97551905c0cc0b5bc04b35c804e39038135",
+ "built_utc": "2026-10-19T17:03:00+00:00"
+}

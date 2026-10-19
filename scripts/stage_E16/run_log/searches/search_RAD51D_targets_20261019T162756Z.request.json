@@ -1,0 +1,11 @@
+{
+ "method": "POST",
+ "url": "https://api.mavedb.org/api/v1/score-sets/search",
+ "body": {
+  "targets": [
+   "RAD51D"
+  ]
+ },
+ "status": 200,
+ "fetched_utc": "2026-10-19T16:28:23+00:00"
+}

@@ -1,0 +1,5 @@
+gene,chrom,strand,n_intronic_snv,n_mapped,n_duplicates_dropped,n_anchor_checked,n_anchor_agree,n_no_mavedb_anchor,n_exon_distance_checked,n_exon_distance_equals_offset,n_offset_side_is_nearest,anchor_reference_accessions,grch38_chr_accession
+CTCF,16,+,1535,1535,0,1535,1535,0,1535,1535,1535,NC_000016.10 (4692),NC_000016.10
+SFPQ,1,-,1121,1121,0,1121,1121,0,1121,1121,1121,NC_000001.11 (3609),NC_000001.11
+RAD51D,17,-,1464,1464,0,1464,1464,0,1464,1464,1464,NC_000017.11 (2876),NC_000017.11
+XRCC2,7,-,468,468,0,468,468,0,468,468,468,NC_000007.14 (2549),NC_000007.14

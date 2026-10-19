@@ -9,7 +9,8 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 _SKIP_DIRS = {".git", ".venv", "ag-env", "__pycache__", ".pytest_cache", ".reproduce_baseline"}
-_SKIP_PATHS = ("phase1/data/evidence/companion_atlas/", "phase1/data/evidence/clinvar/")
+_SKIP_PATHS = ("phase1/data/evidence/companion_atlas/", "phase1/data/evidence/clinvar/",
+               "phase1/data/evidence/refs/")
 _SKIP_FILES = {"reproduce_report.txt"}
 
 

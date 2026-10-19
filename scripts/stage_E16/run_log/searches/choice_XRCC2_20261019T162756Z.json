@@ -1,0 +1,20 @@
+{
+ "gene": "XRCC2",
+ "chosen": "urn:mavedb:00001264-a-2",
+ "how": "rule: only target is the gene; short description names saturation genome editing and HAP1; not superseded",
+ "candidates": [
+  {
+   "urn": "urn:mavedb:00001264-a-2",
+   "title": "Saturation genome editing of XRCC2 scores",
+   "short_description": "We used saturation genome editing to measure the effect of SNVs and 3-base pair deletions on XRCC2-dependent HAP1 cell survival",
+   "targets": [
+    "XRCC2"
+   ],
+   "num_variants": 3733,
+   "published_date": "2026-06-08",
+   "superseding_score_set": null,
+   "kept": true,
+   "excluded_because": []
+  }
+ ]
+}

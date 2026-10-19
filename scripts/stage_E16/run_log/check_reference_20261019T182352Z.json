@@ -1,0 +1,101 @@
+{
+ "script": "scripts/stage_E16/check_reference.py",
+ "argv": [
+  "scripts/stage_E16/check_reference.py"
+ ],
+ "git_commit": "117d482a8e32c114702b3a4e27a96c1f54e32a90",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E16/check_reference.py": "7cecd069d163cc36988849f4747010e8cdc17b04c939d880ee3d3fece2e96f66",
+  "scripts/stage_E16/_runlog.py": "0c8bc6cfcc52f174dcf15fc78781b82aaaf45113a362dc5590614d206efb6af9"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-19T18:23:51+00:00",
+ "end_utc": "2026-10-19T18:23:52+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/manifest.json",
+   "bytes": 5945,
+   "sha256": "a319124ba7c18a8ba76db2d781887b71fe2a8fab61c6e3885a6ead02d736eebe"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr16.fa",
+   "bytes": 91844042,
+   "sha256": "f9ef134fab289c5d6d157704d94cf51393a62bb75b012b70511f7ee9cb82ffc4"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_variants.parquet",
+   "bytes": 84301,
+   "sha256": "e565e144697a535aedc0fdaf8e8e8de44a4c805ba1901d2d60da01ad37e8c45d"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/manifest.json",
+   "bytes": 5530,
+   "sha256": "e43f829c8421626ea57337cd2bef78e9a2dcf9c701d0f5400f7cc58c4d00e472"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr1.fa",
+   "bytes": 253105752,
+   "sha256": "69d1b92c83b9390b26e34986e92afb24680cdc2b44866a0cb356b2087f5841c1"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_variants.parquet",
+   "bytes": 64775,
+   "sha256": "e52d293ccf76693a0dce570adfd58163488752c32de924804e578d100b53b670"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/manifest.json",
+   "bytes": 5619,
+   "sha256": "3664d13dc4de6f458afe4118bb2f9849e31b9df402856df60f2118a8e82c2d04"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr17.fa",
+   "bytes": 84645123,
+   "sha256": "ff5549a89f339629fbd3a61209446bea70577b0123f0d8aba37df0bafb18cef7"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_variants.parquet",
+   "bytes": 80758,
+   "sha256": "7837a3e13ba15c811cf09d89baabc97551905c0cc0b5bc04b35c804e39038135"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/manifest.json",
+   "bytes": 5603,
+   "sha256": "ce6ae7c5e4ff195d7e3f12e726442fd34912b8fa1df1e56736dc826494568c1e"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr7.fa",
+   "bytes": 162001796,
+   "sha256": "71b9f38d87ecb8db7067498602e5ae44bc09a6080e276c11a24a3d2933b1ed93"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_variants.parquet",
+   "bytes": 35801,
+   "sha256": "c12b4dcaacd7da7ba484b21887870f75d773615b9518d687b4fd53dd0217e5b1"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/external/newgenes_reference_check.json",
+   "bytes": 2674,
+   "sha256": "92002164f0e9e60ea08744658ac7082dc52822e2502ea64376b417435a4618d4"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "summary": {
+   "CTCF": "1535/1535",
+   "SFPQ": "1121/1121",
+   "RAD51D": "1464/1464",
+   "XRCC2": "468/468"
+  }
+ }
+}

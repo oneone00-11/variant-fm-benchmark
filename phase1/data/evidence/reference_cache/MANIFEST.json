@@ -27,6 +27,15 @@
       "source": "Ensembl REST /lookup/id (GRCh38)",
       "source_url": "https://rest.ensembl.org/lookup/id/ENST00000261584?expand=1;content-type=application/json"
     },
+    "ensembl/lookup_ENST00000264010.json": {
+      "accession": "ENST00000264010",
+      "bytes": 2925,
+      "fetched_at": "2026-10-19T16:43:06+00:00",
+      "registered_at": "2026-10-19T16:43:06.822455+00:00",
+      "sha256": "cd4e40e0a797d5c02e50a9524a3c4972b3a8d9e61f26dd0ec45d348bd18c80c9",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000264010?expand=1;content-type=application/json"
+    },
     "ensembl/lookup_ENST00000269305.json": {
       "accession": "ENST00000269305",
       "bytes": 2692,
@@ -45,6 +54,24 @@
       "source": "Ensembl REST /lookup/id (GRCh38)",
       "source_url": "https://rest.ensembl.org/lookup/id/ENST00000337432?expand=1;content-type=application/json"
     },
+    "ensembl/lookup_ENST00000345365.json": {
+      "accession": "ENST00000345365",
+      "bytes": 2556,
+      "fetched_at": "2026-10-19T16:43:36+00:00",
+      "registered_at": "2026-10-19T16:43:36.923555+00:00",
+      "sha256": "975446e8501d44cac3b6d0b1c83d58b6f96fd1257f2c667043c229be65358e0f",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000345365?expand=1;content-type=application/json"
+    },
+    "ensembl/lookup_ENST00000357214.json": {
+      "accession": "ENST00000357214",
+      "bytes": 2542,
+      "fetched_at": "2026-10-19T16:43:19+00:00",
+      "registered_at": "2026-10-19T16:43:19.680615+00:00",
+      "sha256": "0b8c70a350bdfe5f4d95c9e3fbf0c50a9647af6a0b0a3e8eb1d6711548cd6877",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000357214?expand=1;content-type=application/json"
+    },
     "ensembl/lookup_ENST00000357654.json": {
       "accession": "ENST00000357654",
       "bytes": 5051,
@@ -53,6 +80,15 @@
       "sha256": "0001a054fa42db7e74ff06aa4d530437bcf4d082c765f613fff18cc60ec68a5a",
       "source": "Ensembl REST /lookup/id (GRCh38)",
       "source_url": "https://rest.ensembl.org/lookup/id/ENST00000357654?expand=1;content-type=application/json"
+    },
+    "ensembl/lookup_ENST00000359321.json": {
+      "accession": "ENST00000359321",
+      "bytes": 1216,
+      "fetched_at": "2026-10-19T16:43:56+00:00",
+      "registered_at": "2026-10-19T16:43:56.036496+00:00",
+      "sha256": "ad1542e1cf04dbeb1c247c44c6cc4ca54a73840a0f0c90c90a1c880e678c363a",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000359321?expand=1;content-type=application/json"
     },
     "ensembl/lookup_ENST00000380152.json": {
       "accession": "ENST00000380152",
@@ -99,6 +135,24 @@
       "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
       "source_url": "https://rest.ensembl.org/sequence/region/human/16:23598165..23646310:1?content-type=text/plain"
     },
+    "ensembl/seq_GRCh38_chr16_67557526_67644177.fa": {
+      "bytes": 86652,
+      "chrom": "16",
+      "fetched_at": "2026-10-19T16:43:09+00:00",
+      "registered_at": "2026-10-19T16:43:09.660017+00:00",
+      "sha256": "212f8fc191ab40fb34c453d0fab1cc34359c893b6e639b3311b8013ef6442ef7",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/16:67557526..67644177:1?content-type=text/plain"
+    },
+    "ensembl/seq_GRCh38_chr17_35087221_35124860.fa": {
+      "bytes": 37640,
+      "chrom": "17",
+      "fetched_at": "2026-10-19T16:43:50+00:00",
+      "registered_at": "2026-10-19T16:43:50.651196+00:00",
+      "sha256": "4d85a8cbbd1f67ae6a257fd48bc4922c25cd6e638e73cfffc5453d45be7652d8",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/17:35087221..35124860:1?content-type=text/plain"
+    },
     "ensembl/seq_GRCh38_chr17_43039295_43130483.fa": {
       "bytes": 91189,
       "chrom": "17",
@@ -126,6 +180,15 @@
       "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
       "source_url": "https://rest.ensembl.org/sequence/region/human/17:7663421..7692490:1?content-type=text/plain"
     },
+    "ensembl/seq_GRCh38_chr1_35177936_35198145.fa": {
+      "bytes": 20210,
+      "chrom": "1",
+      "fetched_at": "2026-10-19T16:43:20+00:00",
+      "registered_at": "2026-10-19T16:43:20.711368+00:00",
+      "sha256": "47400bf118868cd6869aacf90c01435972dbec73eece2368366532c3fcd965f4",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/1:35177936..35198145:1?content-type=text/plain"
+    },
     "ensembl/seq_GRCh38_chr2_214720646_214814683.fa": {
       "bytes": 94038,
       "chrom": "2",
@@ -152,6 +215,15 @@
       "sha256": "91fa49831df5f44b82295baea50b8b7ed3e8503a5b54f292ed4be7a693e31848",
       "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
       "source_url": "https://rest.ensembl.org/sequence/region/human/3:52396008..52415008:1?content-type=text/plain"
+    },
+    "ensembl/seq_GRCh38_chr7_152639776_152681141.fa": {
+      "bytes": 41366,
+      "chrom": "7",
+      "fetched_at": "2026-10-19T16:43:57+00:00",
+      "registered_at": "2026-10-19T16:43:57.089607+00:00",
+      "sha256": "93040ff599d41050fe66fdfc829a9f8f58f2674f6925516885ebad36f81f1fef",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/7:152639776..152681141:1?content-type=text/plain"
     },
     "ensembl/seq_GRCh38_chrX_41329162_41355274.fa": {
       "bytes": 26113,
@@ -225,6 +297,15 @@
       "source": "Mutalyzer3 /api/reference_model",
       "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_001356.5"
     },
+    "mutalyzer/reference_model_NM_002878.4.json": {
+      "accession": "NM_002878.4",
+      "bytes": 12644,
+      "fetched_at": "2026-10-19T16:43:36+00:00",
+      "registered_at": "2026-10-19T16:43:36.016921+00:00",
+      "sha256": "68d2000ed49a26a99e221cf39d84f3bad0f7dabee8300691eb71553d986262f8",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_002878.4"
+    },
     "mutalyzer/reference_model_NM_004656.4.json": {
       "accession": "NM_004656.4",
       "bytes": 7473,
@@ -233,6 +314,33 @@
       "sha256": "501674c4d5ab294e1e199d83afacba43e5f317c36fbd3ed588166efd3509dea0",
       "source": "Mutalyzer3 /api/reference_model",
       "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_004656.4"
+    },
+    "mutalyzer/reference_model_NM_005066.3.json": {
+      "accession": "NM_005066.3",
+      "bytes": 6398,
+      "fetched_at": "2026-10-19T16:43:18+00:00",
+      "registered_at": "2026-10-19T16:43:18.851696+00:00",
+      "sha256": "6b63de55cd6de364a5f0bfde0173b252d91242e1c79060d4c046d98fd8a2e530",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_005066.3"
+    },
+    "mutalyzer/reference_model_NM_005431.2.json": {
+      "accession": "NM_005431.2",
+      "bytes": 6231,
+      "fetched_at": "2026-10-19T16:43:55+00:00",
+      "registered_at": "2026-10-19T16:43:55.221813+00:00",
+      "sha256": "ecd1199d6f5ef91fbd66a7281b75d80d73478bd2f688dad0e8d6931ac5712332",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_005431.2"
+    },
+    "mutalyzer/reference_model_NM_006565.4.json": {
+      "accession": "NM_006565.4",
+      "bytes": 6818,
+      "fetched_at": "2026-10-19T16:43:05+00:00",
+      "registered_at": "2026-10-19T16:43:05.602162+00:00",
+      "sha256": "16f4ccaff869735be0766473cdb0e808f7f21af55e84df5e8058ebae4883fed2",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_006565.4"
     },
     "mutalyzer/reference_model_NM_007294.3.json": {
       "accession": "NM_007294.3",

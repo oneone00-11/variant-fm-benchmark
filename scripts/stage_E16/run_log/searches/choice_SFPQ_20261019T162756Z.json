@@ -1,0 +1,19 @@
+{
+ "gene": "SFPQ",
+ "chosen": "urn:mavedb:00001265-a-2",
+ "how": "URN given by the author (verified 2026-10-19)",
+ "given_urn_in_search_results": true,
+ "candidates": [
+  {
+   "urn": "urn:mavedb:00001265-a-2",
+   "title": "Saturation Genome Editing of SFPQ scores",
+   "short_description": "We used saturation genome editing to measure the effect of SNVs and 3-base pair deletions on SFPQ-dependent HAP1 cell survival",
+   "targets": [
+    "SFPQ"
+   ],
+   "num_variants": 5861,
+   "published_date": "2026-06-08",
+   "superseding_score_set": null
+  }
+ ]
+}

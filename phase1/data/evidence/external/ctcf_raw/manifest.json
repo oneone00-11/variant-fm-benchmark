@@ -1,0 +1,157 @@
+{
+ "gene": "CTCF",
+ "urn": "urn:mavedb:00001262-a-3",
+ "experiment_urn": "urn:mavedb:00001262-a",
+ "superseded_versions": [
+  "urn:mavedb:00001262-a-2",
+  "urn:mavedb:00001262-a-1"
+ ],
+ "license": {
+  "shortName": "CC0",
+  "longName": "CC0 (Public domain)",
+  "version": "1.0",
+  "link": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "n_rows": 7766,
+ "api": {
+  "base": "https://api.mavedb.org/api/v1",
+  "version": "2026.3.0"
+ },
+ "selection": {
+  "how": "URN given by the author (verified 2026-10-19)",
+  "record": "scripts/stage_E16/run_log/searches/choice_CTCF_20261019T162756Z.json"
+ },
+ "files": [
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/scoreset_meta.json",
+   "bytes": 8344,
+   "sha256": "e76b023a5a180ec8d14821d57aeabd9711876a0e539629d6da5d6cd0af74f78d",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001262-a-3",
+   "fetched_utc": "2026-10-19T16:27:59+00:00",
+   "api_version": "2026.3.0",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/scoreset_meta_00001262-a-2.json",
+   "bytes": 8391,
+   "sha256": "e78c0be169c8d6a0c9b1cc9a339df8a9f639667b7aa5c63c7ac76b23aefcf3fc",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001262-a-2",
+   "fetched_utc": "2026-10-19T16:28:00+00:00",
+   "api_version": "2026.3.0",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/scoreset_meta_00001262-a-1.json",
+   "bytes": 23686,
+   "sha256": "749a0dce2617b11e58bb0d2082c7f6f5e1ea75f1a9ac897ef07fbad681f6f5c3",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001262-a-1",
+   "fetched_utc": "2026-10-19T16:28:00+00:00",
+   "api_version": "2026.3.0",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/experiment_meta.json",
+   "bytes": 4009,
+   "sha256": "1a8914ce857b23e4f757561ac9993ca836b60a92f857b1b1c3d00ae7decaa047",
+   "source_url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00001262-a",
+   "fetched_utc": "2026-10-19T16:28:00+00:00",
+   "api_version": "2026.3.0",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/urn_mavedb_00001262-a-3.csv",
+   "bytes": 930260,
+   "sha256": "15fb39c473892348e0e3e8e4eb497b45a7db41685ceec18fbea3b63099a1e364",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001262-a-3/scores",
+   "fetched_utc": "2026-10-19T16:28:06+00:00",
+   "api_version": "2026.3.0",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/score_ranges.json",
+   "bytes": 2384,
+   "sha256": "db0af94dc2f94aa142b2aa283ca3c4dcd24a888f335d4653b3bf03549007e383",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001262-a-3",
+   "derived_from": "phase1/data/evidence/external/ctcf_raw/scoreset_meta.json",
+   "note": "extract of scoreCalibrations, entries unchanged"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/variant_details.ndjson",
+   "bytes": 22218171,
+   "sha256": "b3463ff58f8a7127f8146e921398aafcb8ebc84cfaed4fdb522dcd210c73fe0a",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001262-a-3/variant-details",
+   "fetched_utc": "2026-10-19T16:28:13+00:00",
+   "api_version": "2026.3.0",
+   "http_status": 200,
+   "response_headers": {
+    "X-As-Of": "current",
+    "X-Total-Count": "5864",
+    "X-Stream-Type": "variant-detail",
+    "X-Processing-Started": "2026-10-19T16:28:07.126500"
+   }
+  }
+ ],
+ "transcript_model": {
+  "route": "atlas mapping module, as for DDX3X: Mutalyzer transcript model anchored to GRCh38 by the Ensembl lookup of the MANE Select partner; not MaveDB postMapped",
+  "mane_select": {
+   "symbol": "CTCF",
+   "refseq_nuc": "NM_006565.4",
+   "ensembl_nuc": "ENST00000264010.10",
+   "grch38_chr_accession": "NC_000016.10",
+   "chr_name": "16",
+   "strand": "+"
+  },
+  "deposit_target_accession": "NM_006565.4",
+  "deposit_target_is_mane_select_refseq": true,
+  "provenance": {
+   "assay_accession": "NM_006565.4",
+   "mutalyzer_model_accession": "NM_006565.4",
+   "mutalyzer_model": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_006565.4",
+   "ensembl_anchor": "ENST00000264010",
+   "ensembl_lookup": "https://rest.ensembl.org/lookup/id/ENST00000264010?expand=1",
+   "n_exons": 12,
+   "cds_t_offsets": [
+    325,
+    2509
+   ],
+   "exon_anchor_adjustments": []
+  },
+  "region": {
+   "chrom": "16",
+   "start": 67557526,
+   "end": 67644177,
+   "pad": 5000
+  },
+  "cache_files": {
+   "mane_summary": {
+    "path": "phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz",
+    "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c"
+   },
+   "mutalyzer_model": {
+    "path": "phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_006565.4.json",
+    "sha256": "16f4ccaff869735be0766473cdb0e808f7f21af55e84df5e8058ebae4883fed2"
+   },
+   "ensembl_lookup": {
+    "path": "phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000264010.json",
+    "sha256": "cd4e40e0a797d5c02e50a9524a3c4972b3a8d9e61f26dd0ec45d348bd18c80c9"
+   },
+   "region": {
+    "path": "phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr16_67557526_67644177.fa",
+    "sha256": "212f8fc191ab40fb34c453d0fab1cc34359c893b6e639b3311b8013ef6442ef7"
+   }
+  }
+ },
+ "reference_fasta": {
+  "chrom": "16",
+  "ensembl_release": 112,
+  "url": "https://ftp.ensembl.org/pub/release-112/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.16.fa.gz",
+  "file_gz": "phase1/data/evidence/refs/Homo_sapiens.GRCh38.dna.chromosome.16.fa.gz",
+  "sha256_gz": "de40c8d4482fc843d35949adf40644f43feefef37769c9391507920c85613339",
+  "bytes_gz": 24238195,
+  "file_fa": "phase1/data/evidence/refs/chr16.fa",
+  "sha256_fa": "f9ef134fab289c5d6d157704d94cf51393a62bb75b012b70511f7ee9cb82ffc4",
+  "bytes_fa": 91844042,
+  "tracked": false,
+  "note": "phase1/data/evidence/refs/ is gitignored; reproduce_evidence.py --fetch-inputs fetches it"
+ }
+}

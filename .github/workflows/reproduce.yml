@@ -2,8 +2,9 @@ name: reproduce
 
 # The one command a reader runs, on machines other than the author's: a fresh
 # checkout, then `bash reproduce.sh`, which builds the pinned environment, fetches
-# the two public inputs (ClinVar from NCBI, the atlas release archive from Zenodo),
-# rebuilds every output of the evidence-strength study and fails unless each one
+# the two public inputs (ClinVar from NCBI, the atlas release archive from Zenodo)
+# and, after release 3.0.1, the four Ensembl chromosomes of the E16 reference-base
+# check, rebuilds every output of the evidence-strength study and fails unless each one
 # matches the committed file. A tag push runs it on exactly the tagged tree.
 on:
   push:
@@ -18,6 +19,7 @@ on:
       - "!CITATION.cff"
       - "docs/evidence-delta.md"
       - "docs/practical-metrics-summary.md"
+      - "docs/newgenes-record-check.md"
       - "docs/column-provenance.md"
   workflow_dispatch:
 

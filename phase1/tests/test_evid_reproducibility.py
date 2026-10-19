@@ -483,6 +483,46 @@ def test_clinvar_moves_on_from_a_source_that_serves_the_wrong_file(tmp_path, mon
         server.shutdown()
 
 
+def test_the_e16_chromosomes_are_checked_and_never_left_half_written(tmp_path, monkeypatch):
+    """Optional inputs: a failure is reported and the run goes on, but no wrong,
+    stale or half-unpacked chromosome may be left where the tests would read it."""
+    import gzip
+    seq = b">7 test\nACGTACGT\n"
+    good, other = gzip.compress(seq), gzip.compress(b">7 test\nTTTTTTTT\n")
+    server, base, seen = _serve({"/good.fa.gz": good, "/other.fa.gz": other,
+                                 "/notgz.fa.gz": b"not a gzip stream"})
+    monkeypatch.setattr(E.time, "sleep", lambda s: None)
+    monkeypatch.setattr(E, "REPO", tmp_path)
+    (tmp_path / "refs").mkdir()
+
+    def raw(name, path, gz_sha):
+        d = tmp_path / f"{name}_raw"
+        d.mkdir()
+        (d / "manifest.json").write_text(json.dumps({"reference_fasta": {
+            "chrom": name, "url": base + path, "bytes_gz": len(good),
+            "file_gz": f"refs/{name}.fa.gz", "sha256_gz": gz_sha,
+            "file_fa": f"refs/{name}.fa", "sha256_fa": hashlib.sha256(seq).hexdigest()}}))
+        return d
+    ok = hashlib.sha256(good).hexdigest()
+    monkeypatch.setattr(E, "NEWGENE_RAW", [
+        raw("a", "/good.fa.gz", ok),                                   # fetched
+        raw("b", "/other.fa.gz", ok),                                  # wrong file served
+        raw("c", "/gone.fa.gz", ok),                                   # 404
+        raw("d", "/notgz.fa.gz", hashlib.sha256(b"not a gzip stream").hexdigest())])
+    (tmp_path / "refs/a.fa").write_bytes(b"stale")                     # replaced
+    (tmp_path / "refs/c.fa").write_bytes(b"stale")                     # removed
+    try:
+        E.fetch_reference_chromosomes()
+    finally:
+        server.shutdown()
+    refs = tmp_path / "refs"
+    assert (refs / "a.fa").read_bytes() == seq
+    assert not (refs / "b.fa").exists() and not (refs / "b.fa.gz").exists()
+    assert not (refs / "c.fa").exists() and not (refs / "d.fa").exists()
+    assert not list(refs.glob("*.part"))
+    assert sum(p == "/gone.fa.gz" for p, _ in seen) == 1                # a 404 is final
+
+
 # --------------------------------------------------------------------------
 # --check: the quick path
 # --------------------------------------------------------------------------

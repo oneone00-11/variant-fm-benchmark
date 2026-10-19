@@ -1,0 +1,95 @@
+{
+ "extracted_from": "phase1/data/evidence/external/ctcf_raw/scoreset_meta.json",
+ "key": "scoreCalibrations",
+ "selection": "investigatorProvided is true",
+ "all_calibration_titles": [
+  "Investigator-provided functional classes"
+ ],
+ "legacy_scoreRanges_key_present": false,
+ "investigator_provided": [
+  {
+   "title": "Investigator-provided functional classes",
+   "researchUseOnly": false,
+   "baselineScore": 0.01,
+   "functionalClassifications": [
+    {
+     "label": "Functionally Abnormal",
+     "functionalClassification": "abnormal",
+     "range": [
+      null,
+      -0.062162
+     ],
+     "inclusiveLowerBound": false,
+     "inclusiveUpperBound": true,
+     "id": 7105,
+     "recordType": "FunctionalClassification",
+     "variantCount": 0
+    },
+    {
+     "label": "Indeterminate",
+     "functionalClassification": "not_specified",
+     "range": [
+      -0.062162,
+      -0.026247
+     ],
+     "inclusiveLowerBound": false,
+     "inclusiveUpperBound": true,
+     "id": 7106,
+     "recordType": "FunctionalClassification",
+     "variantCount": 0
+    },
+    {
+     "label": "Functionally Normal",
+     "functionalClassification": "normal",
+     "range": [
+      -0.026247,
+      null
+     ],
+     "inclusiveLowerBound": true,
+     "inclusiveUpperBound": false,
+     "id": 7107,
+     "recordType": "FunctionalClassification",
+     "variantCount": 0
+    }
+   ],
+   "thresholdSources": [],
+   "evidenceSources": [],
+   "methodSources": [],
+   "recordType": "ScoreCalibration",
+   "id": 2406,
+   "urn": "urn:mavedb:calibration-38616475-ec89-446d-8f50-776ec5aa2c08",
+   "scoreSetId": 4650,
+   "investigatorProvided": true,
+   "primary": false,
+   "private": false,
+   "controlsCount": 0,
+   "disease": {
+    "type": "MappableConcept",
+    "name": "disease or disorder",
+    "conceptType": "Disease",
+    "primaryCoding": {
+     "system": "https://purl.obolibrary.org/obo/mondo.owl",
+     "code": "MONDO:0000001",
+     "iris": [
+      "https://purl.obolibrary.org/obo/MONDO_0000001"
+     ]
+    }
+   },
+   "createdBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "modifiedBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "creationDate": "2026-06-17",
+   "modificationDate": "2026-06-17",
+   "controls": []
+  }
+ ]
+}

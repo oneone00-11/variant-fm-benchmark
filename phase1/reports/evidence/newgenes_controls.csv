@@ -1,0 +1,97 @@
+gene,control,variant_type,range_class,n,score_table_rows_with_hgvs_pro,variant_details_with_protein_projection
+CTCF,synonymous,snv,Functionally Abnormal,43,0,5864
+CTCF,synonymous,snv,Indeterminate,59,0,5864
+CTCF,synonymous,snv,Functionally Normal,850,0,5864
+CTCF,synonymous,snv,unassigned,0,0,5864
+CTCF,synonymous,deletion,Functionally Abnormal,0,0,5864
+CTCF,synonymous,deletion,Indeterminate,0,0,5864
+CTCF,synonymous,deletion,Functionally Normal,0,0,5864
+CTCF,synonymous,deletion,unassigned,0,0,5864
+CTCF,synonymous,other,Functionally Abnormal,0,0,5864
+CTCF,synonymous,other,Indeterminate,0,0,5864
+CTCF,synonymous,other,Functionally Normal,0,0,5864
+CTCF,synonymous,other,unassigned,0,0,5864
+CTCF,nonsense,snv,Functionally Abnormal,188,0,5864
+CTCF,nonsense,snv,Indeterminate,19,0,5864
+CTCF,nonsense,snv,Functionally Normal,15,0,5864
+CTCF,nonsense,snv,unassigned,0,0,5864
+CTCF,nonsense,deletion,Functionally Abnormal,25,0,5864
+CTCF,nonsense,deletion,Indeterminate,0,0,5864
+CTCF,nonsense,deletion,Functionally Normal,0,0,5864
+CTCF,nonsense,deletion,unassigned,0,0,5864
+CTCF,nonsense,other,Functionally Abnormal,0,0,5864
+CTCF,nonsense,other,Indeterminate,0,0,5864
+CTCF,nonsense,other,Functionally Normal,0,0,5864
+CTCF,nonsense,other,unassigned,0,0,5864
+SFPQ,synonymous,snv,Functionally Abnormal,10,0,4474
+SFPQ,synonymous,snv,Indeterminate,8,0,4474
+SFPQ,synonymous,snv,Functionally Normal,745,0,4474
+SFPQ,synonymous,snv,unassigned,0,0,4474
+SFPQ,synonymous,deletion,Functionally Abnormal,0,0,4474
+SFPQ,synonymous,deletion,Indeterminate,0,0,4474
+SFPQ,synonymous,deletion,Functionally Normal,0,0,4474
+SFPQ,synonymous,deletion,unassigned,0,0,4474
+SFPQ,synonymous,other,Functionally Abnormal,0,0,4474
+SFPQ,synonymous,other,Indeterminate,0,0,4474
+SFPQ,synonymous,other,Functionally Normal,0,0,4474
+SFPQ,synonymous,other,unassigned,0,0,4474
+SFPQ,nonsense,snv,Functionally Abnormal,164,0,4474
+SFPQ,nonsense,snv,Indeterminate,6,0,4474
+SFPQ,nonsense,snv,Functionally Normal,12,0,4474
+SFPQ,nonsense,snv,unassigned,0,0,4474
+SFPQ,nonsense,deletion,Functionally Abnormal,18,0,4474
+SFPQ,nonsense,deletion,Indeterminate,0,0,4474
+SFPQ,nonsense,deletion,Functionally Normal,4,0,4474
+SFPQ,nonsense,deletion,unassigned,0,0,4474
+SFPQ,nonsense,other,Functionally Abnormal,0,0,4474
+SFPQ,nonsense,other,Indeterminate,0,0,4474
+SFPQ,nonsense,other,Functionally Normal,0,0,4474
+SFPQ,nonsense,other,unassigned,0,0,4474
+RAD51D,synonymous,snv,Functionally Abnormal,28,0,3324
+RAD51D,synonymous,snv,Indeterminate,9,0,3324
+RAD51D,synonymous,snv,Functionally Normal,641,0,3324
+RAD51D,synonymous,snv,unassigned,0,0,3324
+RAD51D,synonymous,deletion,Functionally Abnormal,0,0,3324
+RAD51D,synonymous,deletion,Indeterminate,0,0,3324
+RAD51D,synonymous,deletion,Functionally Normal,0,0,3324
+RAD51D,synonymous,deletion,unassigned,0,0,3324
+RAD51D,synonymous,other,Functionally Abnormal,0,0,3324
+RAD51D,synonymous,other,Indeterminate,0,0,3324
+RAD51D,synonymous,other,Functionally Normal,0,0,3324
+RAD51D,synonymous,other,unassigned,0,0,3324
+RAD51D,nonsense,snv,Functionally Abnormal,76,0,3324
+RAD51D,nonsense,snv,Indeterminate,1,0,3324
+RAD51D,nonsense,snv,Functionally Normal,9,0,3324
+RAD51D,nonsense,snv,unassigned,0,0,3324
+RAD51D,nonsense,deletion,Functionally Abnormal,6,0,3324
+RAD51D,nonsense,deletion,Indeterminate,1,0,3324
+RAD51D,nonsense,deletion,Functionally Normal,4,0,3324
+RAD51D,nonsense,deletion,unassigned,0,0,3324
+RAD51D,nonsense,other,Functionally Abnormal,0,0,3324
+RAD51D,nonsense,other,Indeterminate,0,0,3324
+RAD51D,nonsense,other,Functionally Normal,0,0,3324
+RAD51D,nonsense,other,unassigned,0,0,3324
+XRCC2,synonymous,snv,Functionally Abnormal,1,0,2871
+XRCC2,synonymous,snv,Indeterminate,0,0,2871
+XRCC2,synonymous,snv,Functionally Normal,480,0,2871
+XRCC2,synonymous,snv,unassigned,0,0,2871
+XRCC2,synonymous,deletion,Functionally Abnormal,0,0,2871
+XRCC2,synonymous,deletion,Indeterminate,0,0,2871
+XRCC2,synonymous,deletion,Functionally Normal,0,0,2871
+XRCC2,synonymous,deletion,unassigned,0,0,2871
+XRCC2,synonymous,other,Functionally Abnormal,0,0,2871
+XRCC2,synonymous,other,Indeterminate,0,0,2871
+XRCC2,synonymous,other,Functionally Normal,0,0,2871
+XRCC2,synonymous,other,unassigned,0,0,2871
+XRCC2,nonsense,snv,Functionally Abnormal,120,0,2871
+XRCC2,nonsense,snv,Indeterminate,0,0,2871
+XRCC2,nonsense,snv,Functionally Normal,1,0,2871
+XRCC2,nonsense,snv,unassigned,0,0,2871
+XRCC2,nonsense,deletion,Functionally Abnormal,23,0,2871
+XRCC2,nonsense,deletion,Indeterminate,0,0,2871
+XRCC2,nonsense,deletion,Functionally Normal,1,0,2871
+XRCC2,nonsense,deletion,unassigned,0,0,2871
+XRCC2,nonsense,other,Functionally Abnormal,0,0,2871
+XRCC2,nonsense,other,Indeterminate,0,0,2871
+XRCC2,nonsense,other,Functionally Normal,0,0,2871
+XRCC2,nonsense,other,unassigned,0,0,2871

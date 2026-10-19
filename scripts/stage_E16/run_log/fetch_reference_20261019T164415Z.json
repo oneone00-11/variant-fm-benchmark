@@ -1,0 +1,209 @@
+{
+ "script": "scripts/stage_E16/fetch_reference.py",
+ "argv": [
+  "scripts/stage_E16/fetch_reference.py"
+ ],
+ "git_commit": "73a8e42116d315944404a6b6023805a722fa403a",
+ "git_worktree_clean": false,
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-19T16:43:04+00:00",
+ "end_utc": "2026-10-19T16:44:15+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz",
+   "bytes": 1115288,
+   "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_006565.4.json",
+   "bytes": 6818,
+   "sha256": "16f4ccaff869735be0766473cdb0e808f7f21af55e84df5e8058ebae4883fed2"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000264010.json",
+   "bytes": 2925,
+   "sha256": "cd4e40e0a797d5c02e50a9524a3c4972b3a8d9e61f26dd0ec45d348bd18c80c9"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr16_67557526_67644177.fa",
+   "bytes": 86652,
+   "sha256": "212f8fc191ab40fb34c453d0fab1cc34359c893b6e639b3311b8013ef6442ef7"
+  },
+  {
+   "path": "phase1/data/evidence/refs/Homo_sapiens.GRCh38.dna.chromosome.16.fa.gz",
+   "bytes": 24238195,
+   "sha256": "de40c8d4482fc843d35949adf40644f43feefef37769c9391507920c85613339"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr16.fa",
+   "bytes": 91844042,
+   "sha256": "f9ef134fab289c5d6d157704d94cf51393a62bb75b012b70511f7ee9cb82ffc4"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/manifest.json",
+   "bytes": 5945,
+   "sha256": "a319124ba7c18a8ba76db2d781887b71fe2a8fab61c6e3885a6ead02d736eebe"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz",
+   "bytes": 1115288,
+   "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_005066.3.json",
+   "bytes": 6398,
+   "sha256": "6b63de55cd6de364a5f0bfde0173b252d91242e1c79060d4c046d98fd8a2e530"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000357214.json",
+   "bytes": 2542,
+   "sha256": "0b8c70a350bdfe5f4d95c9e3fbf0c50a9647af6a0b0a3e8eb1d6711548cd6877"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr1_35177936_35198145.fa",
+   "bytes": 20210,
+   "sha256": "47400bf118868cd6869aacf90c01435972dbec73eece2368366532c3fcd965f4"
+  },
+  {
+   "path": "phase1/data/evidence/refs/Homo_sapiens.GRCh38.dna.chromosome.1.fa.gz",
+   "bytes": 69273468,
+   "sha256": "05d4d42ed292962055afb9774a1a29a691d7b285fd85dbf9069c050a273e0d3c"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr1.fa",
+   "bytes": 253105752,
+   "sha256": "69d1b92c83b9390b26e34986e92afb24680cdc2b44866a0cb356b2087f5841c1"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/manifest.json",
+   "bytes": 5530,
+   "sha256": "e43f829c8421626ea57337cd2bef78e9a2dcf9c701d0f5400f7cc58c4d00e472"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz",
+   "bytes": 1115288,
+   "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_002878.4.json",
+   "bytes": 12644,
+   "sha256": "68d2000ed49a26a99e221cf39d84f3bad0f7dabee8300691eb71553d986262f8"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000345365.json",
+   "bytes": 2556,
+   "sha256": "975446e8501d44cac3b6d0b1c83d58b6f96fd1257f2c667043c229be65358e0f"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr17_35087221_35124860.fa",
+   "bytes": 37640,
+   "sha256": "4d85a8cbbd1f67ae6a257fd48bc4922c25cd6e638e73cfffc5453d45be7652d8"
+  },
+  {
+   "path": "phase1/data/evidence/refs/Homo_sapiens.GRCh38.dna.chromosome.17.fa.gz",
+   "bytes": 24104573,
+   "sha256": "8ce6afd82a59f7621e1358ffc7bdb5aa0352f08eed9faa1c88110d9fafcc7994"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr17.fa",
+   "bytes": 84645123,
+   "sha256": "ff5549a89f339629fbd3a61209446bea70577b0123f0d8aba37df0bafb18cef7"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/manifest.json",
+   "bytes": 5619,
+   "sha256": "3664d13dc4de6f458afe4118bb2f9849e31b9df402856df60f2118a8e82c2d04"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz",
+   "bytes": 1115288,
+   "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_005431.2.json",
+   "bytes": 6231,
+   "sha256": "ecd1199d6f5ef91fbd66a7281b75d80d73478bd2f688dad0e8d6931ac5712332"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000359321.json",
+   "bytes": 1216,
+   "sha256": "ad1542e1cf04dbeb1c247c44c6cc4ca54a73840a0f0c90c90a1c880e678c363a"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr7_152639776_152681141.fa",
+   "bytes": 41366,
+   "sha256": "93040ff599d41050fe66fdfc829a9f8f58f2674f6925516885ebad36f81f1fef"
+  },
+  {
+   "path": "phase1/data/evidence/refs/Homo_sapiens.GRCh38.dna.chromosome.7.fa.gz",
+   "bytes": 47416846,
+   "sha256": "d20985eabdf27638b81067c94189acc3e330730ba23f77c8ffa15576a590ad4a"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr7.fa",
+   "bytes": 162001796,
+   "sha256": "71b9f38d87ecb8db7067498602e5ae44bc09a6080e276c11a24a3d2933b1ed93"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/manifest.json",
+   "bytes": 5603,
+   "sha256": "ce6ae7c5e4ff195d7e3f12e726442fd34912b8fa1df1e56736dc826494568c1e"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/MANIFEST.json",
+   "bytes": 19527,
+   "sha256": "a31bdb22dcdd4e5b1084acda3b4853612817be8439d29720f8aa3cd335be72a4"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "atlas": "/Users/cliffzhang/work/functional-standard-atlas",
+  "genes": {
+   "CTCF": {
+    "target": "NM_006565.4",
+    "mane_refseq": "NM_006565.4",
+    "mane_ensembl": "ENST00000264010.10",
+    "chrom": "16",
+    "strand": "+",
+    "n_exons": 12,
+    "exon_anchor_adjustments": []
+   },
+   "SFPQ": {
+    "target": "NM_005066.3",
+    "mane_refseq": "NM_005066.3",
+    "mane_ensembl": "ENST00000357214.6",
+    "chrom": "1",
+    "strand": "-",
+    "n_exons": 10,
+    "exon_anchor_adjustments": []
+   },
+   "RAD51D": {
+    "target": "NM_002878.4",
+    "mane_refseq": "NM_002878.4",
+    "mane_ensembl": "ENST00000345365.11",
+    "chrom": "17",
+    "strand": "-",
+    "n_exons": 10,
+    "exon_anchor_adjustments": []
+   },
+   "XRCC2": {
+    "target": "NM_005431.2",
+    "mane_refseq": "NM_005431.2",
+    "mane_ensembl": "ENST00000359321.2",
+    "chrom": "7",
+    "strand": "-",
+    "n_exons": 3,
+    "exon_anchor_adjustments": []
+   }
+  }
+ }
+}
