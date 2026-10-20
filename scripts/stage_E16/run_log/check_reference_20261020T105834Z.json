@@ -1,0 +1,55 @@
+{
+ "script": "scripts/stage_E16/check_reference.py",
+ "argv": [
+  "scripts/stage_E16/check_reference.py",
+  "--gene",
+  "SBDS"
+ ],
+ "git_commit": "a35ec6d9d7be1574f58191495e71dd1995f7ab3b",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E16/check_reference.py": "62d2c86bb4ec82a68adfdf40feb3bcd5c9fa20a412cf42af0160d059196d2572",
+  "scripts/stage_E16/_runlog.py": "0c8bc6cfcc52f174dcf15fc78781b82aaaf45113a362dc5590614d206efb6af9"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-20T10:58:34+00:00",
+ "end_utc": "2026-10-20T10:58:34+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/external/sbds_raw/manifest.json",
+   "bytes": 5141,
+   "sha256": "5f33d086659433468bce758d44486e0e6c2e4ab413d58921715e08729d2d80df"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr7.fa",
+   "bytes": 162001796,
+   "sha256": "71b9f38d87ecb8db7067498602e5ae44bc09a6080e276c11a24a3d2933b1ed93"
+  },
+  {
+   "path": "phase1/data/evidence/external/sbds_variants.parquet",
+   "bytes": 37413,
+   "sha256": "dbee75889e97a69e6e3fee3b1bdb02173010e37b3efd8ab063e1a2a7f3d53a47"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/external/sbds_reference_check.json",
+   "bytes": 780,
+   "sha256": "7c28c8281914eba60fa6d734a9325bc6111c01a5078ae6b32dfc767821948ee8"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "summary": {
+   "SBDS": "507/507"
+  }
+ }
+}

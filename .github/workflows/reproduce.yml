@@ -20,6 +20,7 @@ on:
       - "docs/evidence-delta.md"
       - "docs/practical-metrics-summary.md"
       - "docs/newgenes-record-check.md"
+      - "docs/sbds-record-check.md"
       - "docs/column-provenance.md"
   workflow_dispatch:
 

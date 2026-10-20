@@ -13,10 +13,12 @@ by phase1/tests/test_evid_newgenes.py, which also repeats the check wherever the
 FASTA is present. Exits non-zero, after writing the record, if any base differs.
 
 Run from the repository root, after the stage has written the variant tables:
-    .venv/bin/python scripts/stage_E16/check_reference.py
+    .venv/bin/python scripts/stage_E16/check_reference.py               # E16: newgenes_reference_check.json
+    .venv/bin/python scripts/stage_E16/check_reference.py --gene SBDS   # E16b: sbds_reference_check.json
 """
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -29,7 +31,6 @@ from _runlog import REPO, RunLog, rel, sha256_of, utc_now  # noqa: E402
 
 EXT = REPO / "phase1" / "data" / "evidence" / "external"
 GENES = ["CTCF", "SFPQ", "RAD51D", "XRCC2"]
-OUT = EXT / "newgenes_reference_check.json"
 
 
 def check_gene(gene: str, log: RunLog) -> dict:
@@ -61,12 +62,16 @@ def check_gene(gene: str, log: RunLog) -> dict:
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--gene", nargs="+")
+    genes = ap.parse_args().gene
+    out = EXT / (f"{genes[0].lower()}_reference_check.json" if genes else "newgenes_reference_check.json")
     with RunLog(__file__) as log:
-        results = [check_gene(g, log) for g in GENES]
+        results = [check_gene(g, log) for g in (genes or GENES)]
         record = {"checked_utc": utc_now(), "rule": "every ref equals the FASTA base "
                   "at its 1-based position; 100% required (E16.3)", "genes": results}
-        OUT.write_text(json.dumps(record, indent=1, ensure_ascii=False) + "\n")
-        log.output(OUT)
+        out.write_text(json.dumps(record, indent=1, ensure_ascii=False) + "\n")
+        log.output(out)
         log.note("summary", {r["gene"]: f"{r['matches']}/{r['n']}" for r in results})
         for r in results:
             print(f"{r['gene']:7s} chr{r['chrom']}: {r['matches']:,}/{r['n']:,} reference "

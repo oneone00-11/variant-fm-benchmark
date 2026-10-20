@@ -1,0 +1,8 @@
+{
+ "extracted_from": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-3.json",
+ "key": "scoreCalibrations",
+ "selection": "investigatorProvided is true",
+ "all_calibration_titles": [],
+ "legacy_scoreRanges_key_present": false,
+ "investigator_provided": []
+}

@@ -29,12 +29,16 @@ their own environments; each is pinned by sha256 in a manifest or provenance fil
   * the AlphaGenome Atlas columns (`src/evid_score_avi.py`), which need an API key
     outside the tree and a separate venv carrying alphagenome>=0.9.0 -- the pinned
     .venv keeps 0.7.0 because that is the provenance of the alphagenome column;
-  * the MaveDB deposits of the four further external genes and their transcript
-    models and sequence slices (`scripts/stage_E16/fetch_mavedb.py` and
-    `fetch_reference.py`), pinned in each gene's `<gene>_raw/manifest.json`; their
-    stage reads them offline. --fetch-inputs also fetches the four Ensembl
-    chromosomes those manifests name, which only the reference-base check reads
-    (`scripts/stage_E16/check_reference.py` and the tests), never a stage.
+  * the MaveDB deposits of the five further external genes (four in E16, SBDS in
+    E16b) and their transcript models and sequence slices
+    (`scripts/stage_E16/fetch_mavedb.py` and `fetch_reference.py`), pinned in each
+    gene's `<gene>_raw/manifest.json`; the IGVF copy of the SBDS scores
+    (`fetch_igvf.py`) and the archived versions of the BARD1 and PALB2 score sets
+    (`fetch_mavedb.py --label-versions`), each pinned in its own manifest; their
+    stages read them offline. --fetch-inputs also fetches the four Ensembl
+    chromosomes those manifests name (SBDS shares XRCC2's), which only the
+    reference-base checks read (`scripts/stage_E16/check_reference.py` and the
+    tests), never a stage.
 
 Each is tracked with a checksum or a provenance record, except four DDX3X score
 lookups (CADD, GPN-MSA, phyloP, phastCons). The ClinVar VCF and the SpliceAI event
@@ -66,9 +70,10 @@ Stages
  21  evid_figures            main and supplementary figures, PDF and PNG (E14)
  22  evid_practical_metrics  sensitivity, specificity and ROC at the evidence thresholds (E15)
  23  evid_newgenes           four further external genes: records, coordinates, labels (E16)
- 24  evid_delta              every published quantity with a counterpart (E8)
+ 24  evid_newgenes SBDS      a fifth one, and the training genes' label versions (E16b)
+ 25  evid_delta              every published quantity with a counterpart (E8)
 
-Outputs land in `phase1/reports/evidence/`; stages 22 to 24 also write a page under
+Outputs land in `phase1/reports/evidence/`; stages 22 to 25 also write a page under
 `docs/`.
 
     bash reproduce.sh                                       # from a fresh clone: everything
@@ -127,19 +132,20 @@ ATLAS_ARCHIVE = {
             "functional-standard-atlas-v2.5.0.zip/content"),
     "md5": "0858fe136346428b764e8b1c3c35b223",      # Zenodo's checksum of the file
 }
-# The four further external genes (E16): each raw manifest pins the gene's deposit,
-# transcript model and sequence slice, and names the Ensembl chromosome that
-# --fetch-inputs fetches for the reference-base check. A test keeps this list equal
-# to the stage's.
+# The further external genes (four in E16, SBDS in E16b): each raw manifest pins the
+# gene's deposit, transcript model and sequence slice, and names the Ensembl
+# chromosome that --fetch-inputs fetches for the reference-base check. A test keeps
+# this list equal to the stage's.
 NEWGENE_RAW = [PHASE1 / "data" / "evidence" / "external" / f"{g}_raw"
-               for g in ("ctcf", "sfpq", "rad51d", "xrcc2")]
+               for g in ("ctcf", "sfpq", "rad51d", "xrcc2", "sbds")]
 # What --verify compares: every file the stages write, as it stood before the run.
 # Fetched inputs are left out; manifests may differ only in their wall-clock fields,
 # the set evid_supp_tables also leaves out when it hashes them.
 OUTPUT_ROOTS = [PHASE1 / "reports" / "evidence", PHASE1 / "data" / "evidence",
                 REPO / "docs" / "evidence-delta.md",
                 REPO / "docs" / "practical-metrics-summary.md",
-                REPO / "docs" / "newgenes-record-check.md"]
+                REPO / "docs" / "newgenes-record-check.md",
+                REPO / "docs" / "sbds-record-check.md"]
 NOT_OUTPUTS = [PHASE1 / "data" / "evidence" / "clinvar",
                PHASE1 / "data" / "evidence" / "companion_atlas",
                PHASE1 / "data" / "evidence" / "refs"]
@@ -183,7 +189,9 @@ STAGES = [
     ("src.evid_figures",            "E14 main and supplementary figures", []),
     ("src.evid_practical_metrics",  "E15 practical metrics", []),
     ("src.evid_newgenes",           "E16 new external genes: records, coordinates and labels", []),
-    ("src.evid_delta",              "E8  old/new quantity list -> docs/evidence-delta.md", []),
+    ("src.evid_newgenes",           "E16b new external gene SBDS; label-version check",
+     ["--gene", "SBDS"]),
+    ("src.evid_delta",             "E8  old/new quantity list -> docs/evidence-delta.md", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.
@@ -364,10 +372,11 @@ def fetch_reference_chromosomes(attempts: int = 3) -> None:
     sha256 the manifest records. No stage reads them, only the reference-base check,
     so a chromosome that cannot be fetched is reported and the run goes on, after a
     few attempts rather than ClinVar's thirty; the tests then hold the variant tables
-    to the recorded check (phase1/data/evidence/external/newgenes_reference_check.json)
-    alone. A file that fails its sha256 is removed, and the unpacked chromosome is
-    written through a .part file, so no half-written or wrong chromosome is left for
-    the tests to read."""
+    to the recorded checks (phase1/data/evidence/external/newgenes_reference_check.json
+    and sbds_reference_check.json) alone. A file that fails its sha256 is removed,
+    and the unpacked chromosome is written through a .part file, so no half-written
+    or wrong chromosome is left for the tests to read. SBDS names the same chromosome
+    as XRCC2; once fetched, it is only checked again."""
     for raw in NEWGENE_RAW:
         ref = json.loads((raw / "manifest.json").read_text())["reference_fasta"]
         fa, gz = REPO / ref["file_fa"], REPO / ref["file_gz"]
@@ -808,7 +817,7 @@ def _source_sha256(path: Path) -> str:
 def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
     """(record, file, expected, how) for every checksum a tracked manifest or
     provenance record carries about a file in this repository, and about the ClinVar
-    release, the atlas and the E16 genes' chromosomes when they are here; and the
+    release, the atlas and the new external genes' chromosomes when they are here; and the
     names of those inputs when they are not. `how` is "file" (sha256 of the bytes),
     "content" (the row-order-free hash of a table) or "source" (evid_supp_tables' hash
     of a source). Hashes of files that only existed where the model scores were made
@@ -888,9 +897,9 @@ def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
     add(rec, rec.with_name("tp53_splice_scored_v2.parquet"), d["sha256"], "content")
     for model, sha in d["inputs"].items():
         add(rec, REPO / "data" / "tp53" / f"{model}_tp53.tsv", sha)
-    # the four further external genes (E16): each deposit as fetched, its transcript
+    # the further external genes (E16, E16b): each deposit as fetched, its transcript
     # model and sequence slice, the chromosome when it is here, and the variant tables
-    # the recorded reference-base check ran on (their own sidecars carry their hashes)
+    # the recorded reference-base checks ran on (their own sidecars carry their hashes)
     for raw in NEWGENE_RAW:
         rec = raw / "manifest.json"
         d = json.loads(rec.read_text())
@@ -899,13 +908,22 @@ def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
         for item in d["transcript_model"]["cache_files"].values():
             add(rec, REPO / item["path"], item["sha256"])
         ref = d["reference_fasta"]
+        name = f"chromosome {ref['chrom']} of the E16 reference-base check"
         if (REPO / ref["file_fa"]).exists():
             add(rec, REPO / ref["file_fa"], ref["sha256_fa"])
-        else:
-            absent.append(f"chromosome {ref['chrom']} of the E16 reference-base check")
-    rec = ev / "external" / "newgenes_reference_check.json"
-    for g in json.loads(rec.read_text())["genes"]:
-        add(rec, REPO / g["variants_file"], g["variants_sha256"])
+        elif name not in absent:                     # SBDS shares XRCC2's chromosome
+            absent.append(name)
+    for name in ("newgenes_reference_check.json", "sbds_reference_check.json"):
+        rec = ev / "external" / name
+        for g in json.loads(rec.read_text())["genes"]:
+            add(rec, REPO / g["variants_file"], g["variants_sha256"])
+    # E16b's cross-checks: the IGVF copy of the SBDS scores and the archived versions of
+    # the BARD1 and PALB2 score sets, as fetched
+    for rec in (ev / "external" / "igvf_sbds" / "manifest.json",
+                *(ev / "external" / "label_versions" / f"{g}_raw" / "manifest.json"
+                  for g in ("bard1", "palb2"))):
+        for entry in json.loads(rec.read_text())["files"]:
+            add(rec, REPO / entry["path"], entry["sha256"])
 
     # the frozen matrices the set joins to, and the rescored columns of the second
     frozen = PHASE1 / "data" / "frozen"
@@ -1007,7 +1025,7 @@ def main() -> None:
     ap.add_argument("--fetch-inputs", action="store_true",
                     help="download the ClinVar release and the atlas release archive "
                          "when they are missing, and check their checksums; also the "
-                         "four chromosomes of the E16 genes' reference-base check, "
+                         "four chromosomes of the E16 and E16b genes' reference-base checks, "
                          "whose failure does not stop the run")
     ap.add_argument("--check", action="store_true",
                     help="quick path, about five minutes, no data download: check every "

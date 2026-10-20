@@ -1,0 +1,96 @@
+{
+ "extracted_from": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-1.json",
+ "key": "scoreCalibrations",
+ "selection": "investigatorProvided is true",
+ "all_calibration_titles": [
+  "ExCALIBR calibration",
+  "Investigator-provided functional classes"
+ ],
+ "legacy_scoreRanges_key_present": false,
+ "investigator_provided": [
+  {
+   "title": "Investigator-provided functional classes",
+   "researchUseOnly": false,
+   "baselineScore": 0.007451,
+   "functionalClassifications": [
+    {
+     "label": "Functionally Normal",
+     "functionalClassification": "normal",
+     "range": [
+      -0.040588,
+      null
+     ],
+     "inclusiveLowerBound": false,
+     "inclusiveUpperBound": false,
+     "id": 267,
+     "recordType": "FunctionalClassification",
+     "variantCount": 9193
+    },
+    {
+     "label": "Functionally Abnormal",
+     "functionalClassification": "abnormal",
+     "range": [
+      null,
+      -0.0615
+     ],
+     "inclusiveLowerBound": false,
+     "inclusiveUpperBound": true,
+     "id": 268,
+     "recordType": "FunctionalClassification",
+     "variantCount": 1872
+    },
+    {
+     "label": "Indeterminate",
+     "functionalClassification": "not_specified",
+     "range": [
+      -0.0615,
+      -0.040588
+     ],
+     "inclusiveLowerBound": false,
+     "inclusiveUpperBound": false,
+     "id": 269,
+     "recordType": "FunctionalClassification",
+     "variantCount": 253
+    }
+   ],
+   "thresholdSources": [],
+   "evidenceSources": [],
+   "methodSources": [],
+   "recordType": "ScoreCalibration",
+   "id": 157,
+   "urn": "urn:mavedb:calibration-eb09d6cd-4834-4a70-a970-1f74f8bc6e2b",
+   "scoreSetId": 4357,
+   "investigatorProvided": true,
+   "primary": true,
+   "private": false,
+   "controlsCount": 0,
+   "disease": {
+    "type": "MappableConcept",
+    "name": "disease or disorder",
+    "conceptType": "Disease",
+    "primaryCoding": {
+     "system": "https://purl.obolibrary.org/obo/mondo.owl",
+     "code": "MONDO:0000001",
+     "iris": [
+      "https://purl.obolibrary.org/obo/MONDO_0000001"
+     ]
+    }
+   },
+   "createdBy": {
+    "orcidId": "0009-0007-5494-7477",
+    "firstName": "Nahum",
+    "lastName": "Smith",
+    "recordType": "User"
+   },
+   "modifiedBy": {
+    "orcidId": "0009-0007-5494-7477",
+    "firstName": "Nahum",
+    "lastName": "Smith",
+    "recordType": "User"
+   },
+   "creationDate": "2025-11-14",
+   "modificationDate": "2025-11-14",
+   "controls": []
+  }
+ ]
+}

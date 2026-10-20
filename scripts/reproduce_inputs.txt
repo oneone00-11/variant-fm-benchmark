@@ -7,6 +7,9 @@
 # left untouched.
 # E16 (2026-10-20) added the four further external genes' deposits as fetched,
 # their transcript models and sequence slices, and the recorded reference-base check.
+# E16b (2026-10-20) added SBDS's deposit as fetched, its transcript model, sequence
+# slice and reference-base check; the IGVF copy of the SBDS scores; and the archived
+# versions of the BARD1 and PALB2 score sets.
 phase1/data/evidence/avi.parquet
 phase1/data/evidence/avi.parquet.provenance.json
 phase1/data/evidence/avi_scorers_20260920.json
@@ -68,6 +71,27 @@ phase1/data/evidence/external/ddx3x_splice.parquet
 phase1/data/evidence/external/ddx3x_spliceai_walker.parquet
 phase1/data/evidence/external/ddx3x_spliceai_walker.parquet.provenance.json
 phase1/data/evidence/external/ddx3x_variants.parquet
+phase1/data/evidence/external/igvf_sbds/IGVFDS8094DYWC.json
+phase1/data/evidence/external/igvf_sbds/IGVFFI9790OCYB.json
+phase1/data/evidence/external/igvf_sbds/IGVFFI9790OCYB.tsv.gz
+phase1/data/evidence/external/igvf_sbds/manifest.json
+phase1/data/evidence/external/label_versions/bard1_raw/manifest.json
+phase1/data/evidence/external/label_versions/bard1_raw/score_ranges_00001250-a-1.json
+phase1/data/evidence/external/label_versions/bard1_raw/score_ranges_00001250-a-2.json
+phase1/data/evidence/external/label_versions/bard1_raw/score_ranges_00001250-a-3.json
+phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-1.json
+phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-2.json
+phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-3.json
+phase1/data/evidence/external/label_versions/bard1_raw/urn_mavedb_00001250-a-1.csv
+phase1/data/evidence/external/label_versions/bard1_raw/urn_mavedb_00001250-a-2.csv
+phase1/data/evidence/external/label_versions/bard1_raw/urn_mavedb_00001250-a-3.csv
+phase1/data/evidence/external/label_versions/palb2_raw/manifest.json
+phase1/data/evidence/external/label_versions/palb2_raw/score_ranges_00001259-a-1.json
+phase1/data/evidence/external/label_versions/palb2_raw/score_ranges_00001259-a-2.json
+phase1/data/evidence/external/label_versions/palb2_raw/scoreset_meta_00001259-a-1.json
+phase1/data/evidence/external/label_versions/palb2_raw/scoreset_meta_00001259-a-2.json
+phase1/data/evidence/external/label_versions/palb2_raw/urn_mavedb_00001259-a-1.csv
+phase1/data/evidence/external/label_versions/palb2_raw/urn_mavedb_00001259-a-2.csv
 phase1/data/evidence/external/newgenes_reference_check.json
 phase1/data/evidence/external/rad51d_raw/experiment_meta.json
 phase1/data/evidence/external/rad51d_raw/manifest.json
@@ -76,6 +100,13 @@ phase1/data/evidence/external/rad51d_raw/scoreset_meta.json
 phase1/data/evidence/external/rad51d_raw/scoreset_meta_00001260-a-1.json
 phase1/data/evidence/external/rad51d_raw/urn_mavedb_00001260-a-2.csv
 phase1/data/evidence/external/rad51d_raw/variant_details.ndjson
+phase1/data/evidence/external/sbds_raw/experiment_meta.json
+phase1/data/evidence/external/sbds_raw/manifest.json
+phase1/data/evidence/external/sbds_raw/score_ranges.json
+phase1/data/evidence/external/sbds_raw/scoreset_meta.json
+phase1/data/evidence/external/sbds_raw/urn_mavedb_00001284-a-1.csv
+phase1/data/evidence/external/sbds_raw/variant_details.ndjson
+phase1/data/evidence/external/sbds_reference_check.json
 phase1/data/evidence/external/sfpq_raw/experiment_meta.json
 phase1/data/evidence/external/sfpq_raw/manifest.json
 phase1/data/evidence/external/sfpq_raw/score_ranges.json
@@ -152,6 +183,7 @@ phase1/data/evidence/pangolin_events_work/chunks/chunk_04.done
 phase1/data/evidence/pangolin_events_work/chunks/chunk_04.out.csv
 phase1/data/evidence/pangolin_events_work/variants.csv
 phase1/data/evidence/reference_cache/MANIFEST.json
+phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000246868.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000256474.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000260947.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000261584.json
@@ -177,6 +209,7 @@ phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr2_214720646_214814683
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr3_10136778_10158667.fa
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr3_52396008_52415008.fa
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr7_152639776_152681141.fa
+phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr7_66982680_67000586.fa
 phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chrX_41329162_41355274.fa
 phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_ENST00000256474.3.json
@@ -192,6 +225,7 @@ phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_005431.2.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_006565.4.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_007294.3.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_007294.4.json
+phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_016038.4.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_024675.4.json
 phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_058216.3.json
 phase1/data/evidence/spliceai_walker.parquet

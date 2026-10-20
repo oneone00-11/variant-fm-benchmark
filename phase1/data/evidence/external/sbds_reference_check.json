@@ -1,0 +1,22 @@
+{
+ "checked_utc": "2026-10-20T10:58:34+00:00",
+ "rule": "every ref equals the FASTA base at its 1-based position; 100% required (E16.3)",
+ "genes": [
+  {
+   "gene": "SBDS",
+   "chrom": "7",
+   "fasta": {
+    "url": "https://ftp.ensembl.org/pub/release-112/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.7.fa.gz",
+    "ensembl_release": 112,
+    "sha256_fa": "71b9f38d87ecb8db7067498602e5ae44bc09a6080e276c11a24a3d2933b1ed93",
+    "sha256_gz": "d20985eabdf27638b81067c94189acc3e330730ba23f77c8ffa15576a590ad4a"
+   },
+   "variants_file": "phase1/data/evidence/external/sbds_variants.parquet",
+   "variants_sha256": "dbee75889e97a69e6e3fee3b1bdb02173010e37b3efd8ab063e1a2a7f3d53a47",
+   "n": 507,
+   "matches": 507,
+   "mismatches": 0,
+   "mismatch_examples": []
+  }
+ ]
+}

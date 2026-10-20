@@ -533,3 +533,108 @@ ratio, ROC or figure).
 - E15's stage-order test now asks that E15 run after the figures and before the
   delta, rather than next to it, since E16 sits between.
 - Every output of E1-E15 is unchanged.
+
+## After 3.0.1: a fifth new external gene, SBDS, and two checks (stage E16b, 2026-10-20)
+
+Why: the author added SBDS as a fifth further external gene (MaveDB
+urn:mavedb:00001284-a-1, CC0, published 2026-08-24; HAP1 saturation genome editing,
+cell survival, the platform of the E16 genes), for the same prospective test. As in
+E16, nothing is fitted or scored. Two checks come with it, and neither changes a
+label, a threshold or a row of the analysis set: the IGVF copy of the SBDS scores
+against MaveDB's, and the BARD1 and PALB2 label files of the analysis set against
+every archived version of their MaveDB score sets.
+
+- Stage 24, `src/evid_newgenes.py --gene SBDS`, between E16 and `evid_delta` (now 25).
+  The stage's gene list and file names became parameters. Run without the argument it
+  writes E16's 15 files byte for byte as they were committed at E16 (a35ec6d), the
+  provenance build time aside; a test holds them to that commit where the clone has
+  it. With it:
+  `sbds_{record_check,counts_by_offset,label_summary,coordinate_check,offset_sample,
+  controls}.csv`, with E16's columns and strata, SBDS's rows only and no total row;
+  `sbds_variants.parquet` and its provenance; `docs/sbds-record-check.md`. The record
+  is checked against the author's of 2026-10-20 (URN, licence, publication status,
+  first-published month); the current version is -a-1, the only one.
+- Labels. The order of class sources was fixed by the author on 2026-10-20, before
+  any predictor was run on SBDS, and the record page prints it: (a) exactly one set of
+  investigator-provided ranges, checked variant by variant against a class column of
+  the score table if there is one, any disagreement stopping the stage; (b) otherwise
+  the score table's per-variant class column, copied as it stands; (c) otherwise stop.
+  SBDS has no investigator-provided ranges, so (b) applies: the column
+  `functional_consequence`, mapped by wording only (functionally_abnormal 1,
+  functionally_normal 0, indeterminate NA with the row kept; any other value
+  `unassigned` and listed, which stops the stage within 50 nt). No other value occurs.
+  The labels come from MaveDB only; the IGVF copy never gives one.
+- Counts: 507 intron-side SNVs on chromosome 7, minus strand: 1-2 nt 45 (37 abnormal),
+  3-10 nt 189 (10 abnormal, 177 normal, 2 indeterminate), 11-50 nt 258 (all normal),
+  beyond 50 nt 15 (the deepest c.460-55). The 3-10 nt band is evaluable exactly at the
+  threshold of 10 damaging; the 11-50 nt band has no damaging variant, so it can test
+  only the frozen thresholds' false positives among normal variants. The author's
+  survey gave the same counts.
+- Coordinates, made as E16's; chromosome 7, fetched for XRCC2, is reused. All 507
+  reference bases match the Ensembl release-112 chromosome
+  (`external/sbds_reference_check.json`), every position matches MaveDB's exonic
+  anchor plus the offset, and every offset the exon structure. One check more: SBDS's
+  score table carries the authors' own chrom/pos/ref/alt, and all 507 agree with the
+  mapped coordinates. MaveDB gives no postMapped allele for any intron-side SNV.
+- IGVF (`sbds_igvf_crosscheck.csv`): the score file IGVFFI9790OCYB of analysis set
+  IGVFDS8094DYWC, downloaded anonymously by the new `scripts/stage_E16/fetch_igvf.py`
+  into `external/igvf_sbds/` with a manifest. Aligned on the c. HGVS, both sides hold
+  the same 3,315 variants; the class differs on 60, five of them intron-side SNVs
+  within 50 nt, each listed with both sides' scores and classes (the scores differ
+  too). At 3-10 nt MaveDB has 10 abnormal and IGVF 9.
+- Label versions (`label_version_check.csv`, `label_version_diff.csv`): BARD1
+  urn:mavedb:00001250-a-1 to -a-3 and PALB2 urn:mavedb:00001259-a-1 and -a-2, fetched
+  by `fetch_mavedb.py --label-versions` into `external/label_versions/`, compared on
+  the analysis set's intron-side SNVs at 1-50 nt. A version written in c. notation is
+  aligned on the c. HGVS; the two -a-1 versions write only g. notation and are aligned
+  on the g. HGVS built from the set's GRCh38 allele. BARD1's file differs from -a-1
+  and -a-2 on 3 variants, all at 11-50 nt (0.16% of its 1,931 SNVs at 3-50 nt); the
+  current -a-3 has neither ranges nor a class column. PALB2's file differs from the
+  current -a-2 on 47 variants (4.51% of 1,041) and from -a-1 on 49 (4.71%), each
+  intermediate in the file and normal in the archive. That is over 1% for every
+  version, a stop condition of this stage's instructions; by the author's decision of
+  2026-10-20 the outputs are committed as they are, nothing is changed, and where the
+  two label files came from is the next stage's question (E16c).
+- Fetching: `fetch_mavedb.py` gains `--gene`, `--label-versions` and `--a1`;
+  `fetch_reference.py` and `check_reference.py` gain `--gene`. The `--a1` run
+  (2026-10-20, 10:39 UTC, the same run that fetched the label versions) took the -a-1
+  score tables of the four E16 genes for a coordinate check that the author then
+  cancelled: those tables name intron-side variants only in genomic notation, and the
+  two coordinate checks E16 already has (each reference base against GRCh38, each
+  position against MaveDB's exonic anchor, 4,588 of 4,588 each) leave nothing a
+  position-based comparison could add. Its files were deleted, not committed; its run
+  record stays as the record of the attempt. Every new run record logs the sha256 of
+  the script as it ran, and each committed script is that file.
+- The entry point: `sbds_raw/` joins the raw manifests that `--check` checks and
+  `--fetch-inputs` reads (SBDS names XRCC2's chromosome, which, once fetched, is only
+  checked again); `--check` also checks the IGVF and label-version manifests and the
+  SBDS reference-base record; the SBDS page is an output; `reproduce_inputs.txt`
+  lists the 31 new inputs. `.gitattributes` keeps `external/label_versions/*_raw/` and
+  `external/igvf_sbds/` byte for byte, as it keeps `external/*_raw/` (a `*` there does
+  not reach a folder below): MaveDB serves the label versions' score tables with CRLF
+  line ends. The reference cache registers SBDS's transcript model, Ensembl lookup and
+  sequence slice; no earlier entry changes. The README and the CI path filter name the
+  new page.
+- Tests: the E16 checks now run on SBDS as well, with the column's classes in place of
+  ranges; new ones check that no file under `phase1/data` or `phase1/reports` names
+  SBDS, its transcripts or its region apart from E16b's own files and the cache
+  entries its mapping read, and that none of those has a predictor column; that the
+  class source follows the order fixed in advance; that a class outside the table
+  stops the stage; the IGVF and label-version tables, recounted from the raw files;
+  and the no-argument run against E16's commit. Two existing tests changed without
+  changing what they test: E16's stage-order test asks that E16 come after E15 and
+  before the delta rather than next to it, and that the raw-manifest list hold SBDS;
+  the read-back test lists the new label-file read, which reads text only.
+- Every output of E1-E16 is unchanged.
+
+Omitted from the E16 entry above, all in E16's commit (a35ec6d): `reproduce_inputs.txt`
+gained the 42 inputs E16 reads (its deposits, cache files and reference-base record);
+the reference cache's `MANIFEST.json` registered 12 files, changing no earlier entry;
+and `phase1/tests/test_evid_reproducibility.py` gained a test that serves the
+chromosome downloads locally and checks that a wrong sha256, a 404 or a stream that
+does not unpack leaves no wrong or half-written file. `--check` also checks the
+recorded reference-base check, `external/newgenes_reference_check.json` (the sha256
+of each variant table it ran on), not only the raw manifests. And XRCC2's
+`variant_details.ndjson` holds, inside one GA4GH digest, four letters that read, case
+aside, as a journal's abbreviation: a random fragment of the digest, not a mention.
+The file is kept byte for byte as served.

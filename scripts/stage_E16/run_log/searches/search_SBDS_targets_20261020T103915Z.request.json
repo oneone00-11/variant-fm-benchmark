@@ -1,0 +1,11 @@
+{
+ "method": "POST",
+ "url": "https://api.mavedb.org/api/v1/score-sets/search",
+ "body": {
+  "targets": [
+   "SBDS"
+  ]
+ },
+ "status": 200,
+ "fetched_utc": "2026-10-20T10:39:18+00:00"
+}

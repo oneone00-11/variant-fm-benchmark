@@ -1,0 +1,2 @@
+gene,chrom,strand,n_intronic_snv,n_mapped,n_duplicates_dropped,n_anchor_checked,n_anchor_agree,n_no_mavedb_anchor,n_exon_distance_checked,n_exon_distance_equals_offset,n_offset_side_is_nearest,anchor_reference_accessions,grch38_chr_accession
+SBDS,7,-,507,507,0,507,507,0,507,507,507,NC_000007.14 (2168),NC_000007.14

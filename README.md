@@ -28,8 +28,10 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   deposit's own classification) and TP53 (288 SNVs to 12 nt). Four further HAP1
   deposits (CTCF, SFPQ, RAD51D, XRCC2) have their records, GRCh38 coordinates and
   labels from the deposits' own score ranges (stage E16,
-  `docs/newgenes-record-check.md`); they are not scored yet.
-- **Entry point:** `python scripts/reproduce_evidence.py` (24 stages; 22 in release
+  `docs/newgenes-record-check.md`), and a fifth, SBDS, its labels from the score
+  table's per-variant class column, a source fixed before any predictor was run on
+  it (stage E16b, `docs/sbds-record-check.md`); none of the five is scored yet.
+- **Entry point:** `python scripts/reproduce_evidence.py` (25 stages; 22 in release
   3.0.1). Outputs:
   `phase1/reports/evidence/`, with the analysis set and the external-gene tables
   under `phase1/data/evidence/`.
@@ -45,8 +47,9 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   records instead: the published-basis SpliceAI re-score and SpliceAI event records,
   the DDX3X deposit and its panel scores, the TP53 scores for offsets 9-12, the
   AlphaGenome Atlas columns (which need an API key held outside the repository), and
-  the four further deposits with their transcript models (`scripts/stage_E16/`). The
-  entry point's docstring lists how each is produced.
+  the five further deposits with their transcript models, the IGVF copy of the SBDS
+  scores and the archived versions of the BARD1 and PALB2 score sets
+  (`scripts/stage_E16/`). The entry point's docstring lists how each is produced.
 - **Environment:** Python 3.12 with the package set in
   `requirements-evidence.lock.txt`. Changes between rounds are recorded in
   `docs/evidence-change-log.md`; data terms per column in `LICENSE-DATA`.
@@ -73,9 +76,9 @@ md5 against NCBI's file, sha256 against the analysis-set manifest) and the atlas
 release archive (50 MB, from Zenodo; md5 against Zenodo's). Both are gitignored.
 On this branch, after release 3.0.1, it also fetches the four Ensembl release-112
 chromosomes of the E16 genes (165 MB, gitignored; sha256 against each gene's raw
-manifest), which only the reference-base check reads; a chromosome that cannot be
-fetched in three attempts is reported and the run goes on. First use of this branch
-therefore downloads about 530 MB.
+manifest; SBDS, of E16b, shares XRCC2's), which only the reference-base checks
+read; a chromosome that cannot be fetched in three attempts is reported and the run
+goes on. First use of this branch therefore downloads about 530 MB.
 This release's Zenodo record (10.5281/zenodo.23051009) also holds the ClinVar file,
 NCBI's original unchanged, and `--fetch-inputs` falls back to it when NCBI cannot
 serve the exact file; the sha256 check is the same whichever source served it.
@@ -92,8 +95,8 @@ scikit-learn's coordinate descent calls the OpenBLAS that scipy bundles, and bot
 differ between chips and macOS releases. On the machine the outputs were made
 on (Apple M5, macOS 26.6, Python 3.12.13) the run ends `REPRODUCED`: every output is
 byte-identical except the build time in
-`phase1/data/evidence/analysis_set_v1.manifest.json` (on this branch, also in the four
-E16 variant tables' provenance records). On a GitHub-hosted M1 (macOS
+`phase1/data/evidence/analysis_set_v1.manifest.json` (on this branch, also in the five
+E16 and E16b variant tables' provenance records). On a GitHub-hosted M1 (macOS
 14) it ends `REPRODUCED NUMERICALLY`: every printed table and figure matches byte for
 byte, and the tables that carry the elastic-net combination's scores match to 1e-9.
 `.github/workflows/reproduce.yml` runs the same command on that macOS arm64 runner on
@@ -114,8 +117,8 @@ checksum the repository's manifests and provenance records carry about files it
 holds: the analysis set and the sources it was built from, the external-gene tables
 and the model scores they merge, the frozen matrices and their rescored columns, the
 reference cache, and the supplementary tables with their sources (on this branch
-also the E16 deposits). The ClinVar release, the atlas and the E16 chromosomes are
-checked too when they are here. It then runs the test
+also the E16 and E16b deposits). The ClinVar release, the atlas and the E16
+chromosomes are checked too when they are here. It then runs the test
 suite, which checks the printed tables against the files they are drawn from. It
 recomputes nothing, prints how many checksums it checked, and ends with `CHECKED` or
 lists what failed; the full run above is what rebuilds every output.

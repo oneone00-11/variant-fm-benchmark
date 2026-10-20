@@ -1,5 +1,14 @@
 {
   "files": {
+    "ensembl/lookup_ENST00000246868.json": {
+      "accession": "ENST00000246868",
+      "bytes": 1587,
+      "fetched_at": "2026-10-20T10:51:13+00:00",
+      "registered_at": "2026-10-20T10:51:13.239039+00:00",
+      "sha256": "d7d83f53e40d32f6f3d25fdfbef02118a38e46ebf79ac588506df2b5bb43a4b9",
+      "source": "Ensembl REST /lookup/id (GRCh38)",
+      "source_url": "https://rest.ensembl.org/lookup/id/ENST00000246868?expand=1;content-type=application/json"
+    },
     "ensembl/lookup_ENST00000256474.json": {
       "accession": "ENST00000256474",
       "bytes": 1200,
@@ -225,6 +234,15 @@
       "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
       "source_url": "https://rest.ensembl.org/sequence/region/human/7:152639776..152681141:1?content-type=text/plain"
     },
+    "ensembl/seq_GRCh38_chr7_66982680_67000586.fa": {
+      "bytes": 17907,
+      "chrom": "7",
+      "fetched_at": "2026-10-20T10:51:14+00:00",
+      "registered_at": "2026-10-20T10:51:14.215998+00:00",
+      "sha256": "a30fd3a3462923847f9f0c1beee337f8b412a3deaf48d405067a7a11a200149b",
+      "source": "Ensembl REST /sequence/region (GRCh38, + strand)",
+      "source_url": "https://rest.ensembl.org/sequence/region/human/7:66982680..67000586:1?content-type=text/plain"
+    },
     "ensembl/seq_GRCh38_chrX_41329162_41355274.fa": {
       "bytes": 26113,
       "chrom": "X",
@@ -359,6 +377,15 @@
       "sha256": "7d787a236fa3e7ba68d3658d4dc15ed725842ce726236318c278378bd750503a",
       "source": "Mutalyzer3 /api/reference_model",
       "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_007294.4"
+    },
+    "mutalyzer/reference_model_NM_016038.4.json": {
+      "accession": "NM_016038.4",
+      "bytes": 3413,
+      "fetched_at": "2026-10-20T10:51:11+00:00",
+      "registered_at": "2026-10-20T10:51:11.181835+00:00",
+      "sha256": "2d8ec098540e82e7262a5511b05056c0e6f329c40d5fdf541ef9ee7d25cbf594",
+      "source": "Mutalyzer3 /api/reference_model",
+      "source_url": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_016038.4"
     },
     "mutalyzer/reference_model_NM_024675.4.json": {
       "accession": "NM_024675.4",

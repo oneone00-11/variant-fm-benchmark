@@ -1,0 +1,8 @@
+{
+ "extracted_from": "phase1/data/evidence/external/sbds_raw/scoreset_meta.json",
+ "key": "scoreCalibrations",
+ "selection": "investigatorProvided is true",
+ "all_calibration_titles": [],
+ "legacy_scoreRanges_key_present": false,
+ "investigator_provided": []
+}

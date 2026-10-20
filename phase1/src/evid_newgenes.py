@@ -1,12 +1,16 @@
-"""E16 -- four further external genes: records, coordinates and labels.
+"""E16 -- four further external genes: records, coordinates and labels; E16b -- a
+fifth, SBDS, and two checks that change nothing.
 
 CTCF, SFPQ, RAD51D and XRCC2 have HAP1 saturation genome editing deposits in MaveDB
 (CC0), scored for cell fitness like the seven genes and DDX3X. They are added as
 external genes, for a purely prospective test: nothing here is fitted, and no
-threshold, score or likelihood ratio is computed at this stage.
+threshold, score or likelihood ratio is computed at this stage. SBDS (E16b, run with
+--gene SBDS) is a fifth deposit of the same platform and licence; its files carry the
+prefix sbds_ where E16's carry newgenes_, and a run without the argument writes E16's
+files as before.
 
-What it does, offline, from files scripts/stage_E16/fetch_mavedb.py and
-fetch_reference.py put on disk:
+What it does, offline, from files scripts/stage_E16/fetch_mavedb.py,
+fetch_reference.py and (E16b) fetch_igvf.py put on disk:
 
   records   newgenes_record_check.csv and docs/newgenes-record-check.md: each score
             set's URN, title, licence, publication links, dates and versions, target
@@ -21,13 +25,21 @@ fetch_reference.py put on disk:
             range, or on a point two ranges share, is 'unassigned' (NA). The second
             case is the author's rule for CTCF, decided 2026-10-20: its Indeterminate
             and Functionally Normal ranges both include their common end point
-            (docs/newgenes-record-check.md gives it).
+            (docs/newgenes-record-check.md gives it). SBDS has no such ranges: its
+            classes are copied from the score table's per-variant class column,
+            mapped by wording through CLASS_NAME_MAP, by the order of sources the
+            author fixed on 2026-10-20 before any predictor result (label_source).
   counts    newgenes_counts_by_offset.csv, newgenes_label_summary.csv.
   checks    newgenes_coordinate_check.csv, newgenes_offset_sample.csv,
             newgenes_controls.csv.
+  E16b      also sbds_igvf_crosscheck.csv (the MaveDB classes against the IGVF copy
+            of the same experiment, which never gives a label) and
+            label_version_check.csv, label_version_diff.csv (the BARD1 and PALB2
+            label files against every archived version of their score sets). Both
+            are checks only: no label, threshold or analysis-set row changes.
 
 Coordinates. MaveDB holds no GRCh38 postMapped record for any intron-side SNV of
-these four score sets (their mapping state is 'incomplete'), so they are made the
+these five score sets (their mapping state is 'incomplete'), so they are made the
 way the DDX3X deposit's were (evid_external.prepare_ddx3x): the atlas mapping
 module maps each c. description through the Mutalyzer transcript model, anchored to
 GRCh38 by the Ensembl lookup of the MANE Select partner, and checks the stated
@@ -39,10 +51,14 @@ offset. Another only checks the mapping's transcript model against itself: the
 distance to the exon boundary, computed from that model's exon structure, must equal
 |offset|, on the nearer side. It cannot catch a wrongly anchored exon; the MaveDB
 check and the reference bases can. scripts/stage_E16/check_reference.py and the
-tests check every reference base against the Ensembl release-112 chromosome.
+tests check every reference base against the Ensembl release-112 chromosome. Where a
+score table has the authors' own chrom/pos/ref/alt columns (SBDS), or MaveDB a
+postMapped allele for an intron-side SNV, each is compared too
+(extra_coordinate_checks).
 
 Run (PYTHONPATH=phase1, from phase1/):
-    python -m src.evid_newgenes
+    python -m src.evid_newgenes               # E16
+    python -m src.evid_newgenes --gene SBDS   # E16b
 """
 from __future__ import annotations
 
@@ -68,12 +84,21 @@ EXT_DIR = Path("data/evidence/external")
 REF_CACHE = Path("data/evidence/reference_cache")
 REPORT_DIR = Path("reports/evidence")
 DOC_PATH = Path("../docs/newgenes-record-check.md")
-RAW = {g: EXT_DIR / f"{g.lower()}_raw" for g in GENES}
+# E16 (no argument) and E16b (--gene SBDS): the genes, the prefix of the report files,
+# the record page, and whether the summary carries a total row over the genes
+RUNS = {
+    None: {"genes": GENES, "prefix": "newgenes", "doc": DOC_PATH, "total": "ALL4"},
+    "SBDS": {"genes": ["SBDS"], "prefix": "sbds", "doc": Path("../docs/sbds-record-check.md"),
+             "total": None},
+}
+RAW = {g: EXT_DIR / f"{g.lower()}_raw" for g in GENES + ["SBDS"]}
 
-# the DDX3X pattern, on the RefSeq transcripts these deposits write hgvs_nt against
-HGVS_NT = E.intronic_snv_regex(r"N[MR]_[\d.]+")
+# the DDX3X pattern, on the transcripts these deposits write hgvs_nt against (RefSeq,
+# or for SBDS the MANE Select Ensembl transcript)
+TX = r"(?:N[MR]_|ENST)[\d.]+"
+HGVS_NT = E.intronic_snv_regex(TX)
 C_POS = re.compile(r"^c\.([-*]?\d+)([+-]\d+)[ACGT]>[ACGT]$")
-EXONIC_C = re.compile(r"^(N[MR]_[\d.]+):c\.([-*]?\d+)[ACGT]>[ACGT]$")
+EXONIC_C = re.compile(rf"^({TX}):c\.([-*]?\d+)[ACGT]>[ACGT]$")
 G_HGVS = re.compile(r"^(NC_\d+\.\d+):g\.(\d+)([ACGT])>([ACGT])$")
 DEEP = "out_of_scope_deep"
 MAX_DEPTH = 50          # the analysis window, 1 <= |offset| <= 50 (evid_build_set)
@@ -81,11 +106,11 @@ LABEL_OF = {"abnormal": 1.0, "normal": 0.0}       # anything else: NA, as config
 UNASSIGNED = "unassigned"
 ON_SHARED_POINT = "score on a point two ranges share (author's rule, 2026-10-20)"
 N_SAMPLE = 10
-SNV_NT = re.compile(r"^N[MR]_[\d.]+:c\.[-*]?\d+([+-]\d+)?[ACGT]>[ACGT]$")
-# The author's record of 2026-10-19 for the two URNs given in advance (E16.1): URN,
-# licence, publication status (public; no paper or preprint linked to the score set
-# or its experiment) and the month of first publication. The stage stops if the
-# metadata MaveDB served disagrees with any of them.
+SNV_NT = re.compile(rf"^{TX}:c\.[-*]?\d+([+-]\d+)?[ACGT]>[ACGT]$")
+# The author's record for the URNs given in advance (E16.1, E16b.1): URN, licence,
+# publication status (public; no paper or preprint linked to the score set or its
+# experiment) and the month of first publication. The stage stops if the metadata
+# MaveDB served disagrees with any of them.
 _NO_PAPER = {"private": False, "score_set_publications": "not_provided",
              "experiment_publications": "not_provided"}
 AUTHOR_RECORD = {
@@ -93,7 +118,19 @@ AUTHOR_RECORD = {
              "first_published": "2026-01"},
     "SFPQ": {"urn": "urn:mavedb:00001265-a-2", "license": "CC0", **_NO_PAPER,
              "first_published": "2026-01"},
+    "SBDS": {"urn": "urn:mavedb:00001284-a-1", "license": "CC0", **_NO_PAPER,
+             "first_published": "2026-08"},
 }
+AUTHOR_RECORD_DATE = {"CTCF": "2026-10-19", "SFPQ": "2026-10-19", "SBDS": "2026-10-20"}
+# Where a deposit's classes come from (E16b.0, fixed by the author on 2026-10-20,
+# before any predictor result): (a) exactly one investigator-provided set of ranges,
+# checked variant by variant against a class column if the score table has one;
+# (b) else a per-variant class column of the score table, copied as it stands;
+# (c) else stop. The class names of a column map by wording only, through this table;
+# any other value is 'unassigned' and listed.
+CLASS_COLUMNS = ("functional_consequence",)
+CLASS_NAME_MAP = {"functionally_abnormal": "abnormal", "functionally_normal": "normal",
+                  "indeterminate": "not_specified"}
 
 
 # ---------------------------------------------------------------------------
@@ -126,15 +163,6 @@ def load_raw(gene: str) -> dict:
             raise SystemExit(f"[E16] {gene} {key} {item['path']} is missing or differs; "
                              "rerun scripts/stage_E16/fetch_reference.py")
     return man
-
-
-def investigator_ranges(gene: str) -> dict:
-    blob = json.loads((RAW[gene] / "score_ranges.json").read_text())
-    inv = blob["investigator_provided"]
-    if len(inv) != 1:
-        raise SystemExit(f"[E16] {gene}: {len(inv)} investigator-provided calibrations; "
-                         "exactly one is required (E16.4)")
-    return inv[0]
 
 
 def _matches(x: float, c: dict) -> bool:
@@ -181,6 +209,60 @@ def classify(score: str, classes: list[dict]) -> tuple[str, str]:
     if not hit:
         return UNASSIGNED, "score outside every range"
     return UNASSIGNED, ON_SHARED_POINT
+
+
+def column_class(value: str | None) -> tuple[str, str]:
+    """(range_class, why) for a value of a per-variant class column: the deposit's own
+    word if the class-name table knows it, else 'unassigned'."""
+    if value in (None, "", "NA"):
+        return UNASSIGNED, "no class in the column"
+    if value in CLASS_NAME_MAP:
+        return value, ""
+    return UNASSIGNED, f"class value not in the class-name table: {value}"
+
+
+def label_source(gene: str, table: list[dict], ranges_blob: dict) -> dict:
+    """The deposit's classes by the rule fixed before any predictor result (E16b.0):
+    ranges if exactly one investigator-provided set exists (checked against a class
+    column variant by variant), else the class column, else stop."""
+    inv = ranges_blob["investigator_provided"]
+    col = next((c for c in CLASS_COLUMNS if table and c in table[0]), None)
+    if len(inv) > 1:
+        raise SystemExit(f"[E16] {gene}: {len(inv)} investigator-provided calibrations; "
+                         "exactly one is required (E16.4)")
+    if len(inv) == 1:
+        classes = inv[0]["functionalClassifications"]
+        require_mechanical(gene, classes)
+        fc = {c["label"]: c["functionalClassification"] for c in classes}
+        if col:
+            differ = []
+            for r in table:
+                by_range = fc.get(classify(r["score"], classes)[0])
+                by_col = CLASS_NAME_MAP.get(r.get(col))
+                if by_range != by_col:
+                    differ.append((r["accession"], r["score"], r.get(col)))
+            if differ:
+                raise SystemExit(f"[E16] {gene}: the investigator-provided ranges and the "
+                                 f"score-table column {col} disagree on {len(differ)} variants, "
+                                 f"e.g. {differ[:3]} (E16b.11)")
+        return {"kind": "ranges", "calibration": inv[0], "classes": classes, "fc": fc,
+                "column": col}
+    if col:
+        classes = [{"label": v, "functionalClassification": f} for v, f in CLASS_NAME_MAP.items()]
+        return {"kind": "column", "calibration": None, "classes": classes,
+                "fc": dict(CLASS_NAME_MAP), "column": col}
+    raise SystemExit(f"[E16] {gene}: no investigator-provided ranges and no per-variant "
+                     "class column; no labels can be taken (E16b.11)")
+
+
+def require_known_classes(gene: str, df: pd.DataFrame) -> None:
+    """Stop (E16b.11) when an intron-side SNV within 50 nt carries a class-column value
+    outside the class-name table: it would be unassigned, and a count would move."""
+    bad = df[(df["range_class"] == UNASSIGNED) & (df["offset"].abs() <= MAX_DEPTH)
+             & df["range_class_note"].str.startswith("class value not in")]
+    if len(bad):
+        raise SystemExit(f"[E16b] {gene}: {len(bad)} intron-side SNVs carry a class outside "
+                         f"the class-name table, e.g. {bad['range_class_note'].iloc[0]} (E16b.11)")
 
 
 # ---------------------------------------------------------------------------
@@ -237,10 +319,10 @@ def build_gene(gene: str, M) -> tuple[pd.DataFrame, dict]:
     man = load_raw(gene)
     meta = json.loads((RAW[gene] / "scoreset_meta.json").read_text())
     target = meta["targetGenes"][0]["targetAccession"]["accession"]
-    cal = investigator_ranges(gene)
-    classes = cal["functionalClassifications"]
-    fc = {c["label"]: c["functionalClassification"] for c in classes}
-    require_mechanical(gene, classes)
+    csv_entry = next(e for e in man["files"] if e["path"].endswith(".csv"))
+    table = list(csv.DictReader(_here(csv_entry["path"]).open(newline="")))
+    src = label_source(gene, table, json.loads((RAW[gene] / "score_ranges.json").read_text()))
+    cal, classes, fc = src["calibration"], src["classes"], src["fc"]
 
     tm = man["transcript_model"]
     mane = M.load_mane_records([gene])[gene]
@@ -254,8 +336,6 @@ def build_gene(gene: str, M) -> tuple[pd.DataFrame, dict]:
     strand = tmap.strand_sign
     anchors, anchor_refs = anchors_from_mavedb(gene, man)
 
-    csv_entry = next(e for e in man["files"] if e["path"].endswith(".csv"))
-    table = list(csv.DictReader(_here(csv_entry["path"]).open(newline="")))
     rna = "rna_score" in (table[0] if table else {})
     rows, failures = [], {}
     for r in table:
@@ -271,7 +351,8 @@ def build_gene(gene: str, M) -> tuple[pd.DataFrame, dict]:
         except M.MappingFailure as e:
             failures[f"{e.category}: {hgvs}"] = str(e)
             continue
-        range_class, why = classify(r["score"], classes)
+        range_class, why = (classify(r["score"], classes) if src["kind"] == "ranges"
+                            else column_class(r.get(src["column"])))
         anchor_c = "c." + C_POS.match(c).group(1)
         a = anchors.get(anchor_c)
         anchor_pos = next(iter(a)) if a and len(a) == 1 else None
@@ -313,12 +394,57 @@ def build_gene(gene: str, M) -> tuple[pd.DataFrame, dict]:
 
     info = {
         "man": man, "meta": meta, "calibration": cal, "classes": classes,
-        "shared_points": shared_points(classes), "target": target, "mane": mane,
+        "shared_points": shared_points(classes) if src["kind"] == "ranges" else [],
+        "target": target, "mane": mane,
         "provenance": prov, "strand": strand, "anchor_reference_accessions": anchor_refs,
         "n_rows": len(table), "n_intronic": n_before, "n_duplicates": int(dup.sum()),
-        "rna_column": rna, "table": table, "fc": fc,
+        "rna_column": rna, "table": table, "fc": fc, "label_source": src,
+        "extra_coordinate_checks": extra_coordinate_checks(gene, man, table, df),
     }
     return df, info
+
+
+def extra_coordinate_checks(gene: str, man: dict, table: list[dict], df: pd.DataFrame) -> dict:
+    """Two further sources for the coordinates, where a deposit has them (E16b.3): the
+    authors' own chrom/pos/ref/alt columns of the score table, and MaveDB's postMapped
+    GRCh38 allele of an intron-side SNV. Each is compared, variant by variant, with the
+    mapped coordinate; any difference stops the stage. Neither replaces it."""
+    ours = {r.hgvs_nt: (str(r.chrom), int(r.pos), r.ref, r.alt) for r in df.itertuples()}
+    out = {}
+    if table and all(k in table[0] for k in ("chrom", "pos", "ref", "alt")):
+        n, bad = 0, []
+        for r in table:
+            if r["hgvs_nt"] in ours:
+                n += 1
+                theirs = (r["chrom"].removeprefix("chr"), int(r["pos"]), r["ref"], r["alt"])
+                if theirs != ours[r["hgvs_nt"]]:
+                    bad.append({"hgvs_nt": r["hgvs_nt"], "ours": ours[r["hgvs_nt"]], "authors": theirs})
+        out["author_columns"] = {"n_compared": n, "n_agree": n - len(bad), "differ": bad[:20]}
+        if bad:
+            raise SystemExit(f"[E16] {gene}: {len(bad)} intron-side SNVs differ from the "
+                             f"authors' chrom/pos/ref/alt, e.g. {bad[:3]} (E16b.11)")
+    acc = man["transcript_model"]["mane_select"]["grch38_chr_accession"]
+    n, bad = 0, []
+    with (RAW[gene] / "variant_details.ndjson").open() as f:
+        for line in f:
+            if not line.strip():
+                continue
+            r = json.loads(line)
+            th = r.get("targetHgvs") or ""
+            if r.get("isCurrent") is not True or th not in ours or not r.get("postMapped"):
+                continue
+            for e in r["postMapped"].get("expressions", []):
+                g = G_HGVS.match(e.get("value", "")) if e.get("syntax") == "hgvs.g" else None
+                if g and g.group(1) == acc:
+                    n += 1
+                    theirs = (ours[th][0], int(g.group(2)), g.group(3), g.group(4))
+                    if theirs != ours[th]:
+                        bad.append({"hgvs_nt": th, "ours": ours[th], "postMapped": theirs})
+    out["intronic_postmapped"] = {"n_compared": n, "n_agree": n - len(bad), "differ": bad[:20]}
+    if bad:
+        raise SystemExit(f"[E16] {gene}: {len(bad)} intron-side SNVs differ from MaveDB's "
+                         f"postMapped coordinate, e.g. {bad[:3]} (E16b.11)")
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -358,9 +484,9 @@ def record_row(gene: str, info: dict) -> dict:
         "first_published_date": _first_published(gene, meta, man),
         "current_version_date": meta["publishedDate"],
         "target_gene": meta["targetGenes"][0]["name"],
-        "target_accession": acc["accession"], "target_assembly": acc["assembly"],
+        "target_accession": acc["accession"], "target_assembly": acc.get("assembly", "not_provided"),
         "n_variants_total": meta["numVariants"],
-        "score_ranges_present": bool(info["classes"]),
+        "score_ranges_present": info["calibration"] is not None,
         "fetched_utc": entry["fetched_utc"], "source_url": entry["source_url"],
         "raw_sha256": entry["sha256"],
         # beyond the fields E16.1 asks for
@@ -369,7 +495,9 @@ def record_row(gene: str, info: dict) -> dict:
         "superseded_versions": "; ".join(man["superseded_versions"]) or "none",
         "mapping_state": meta.get("mappingState"),
         "n_score_rows": info["n_rows"], "scores_csv_sha256": csv_entry["sha256"],
-        "calibration_title": info["calibration"]["title"],
+        "calibration_title": (info["calibration"]["title"] if info["calibration"] is not None
+                              else f"not_provided (classes from the score-table column "
+                                   f"{info['label_source']['column']})"),
         "api_version": entry["api_version"],
         "mavedb_private": meta["private"], "processing_state": meta["processingState"],
         "selection": man["selection"]["how"],
@@ -406,7 +534,8 @@ def _bins_per_nt(depth: int) -> str:
     return str(depth) if depth <= MAX_DEPTH else f">{MAX_DEPTH}"
 
 
-def counts_tables(frames: dict, infos: dict) -> tuple[pd.DataFrame, pd.DataFrame]:
+def counts_tables(frames: dict, infos: dict, total: str | None = "ALL4"
+                  ) -> tuple[pd.DataFrame, pd.DataFrame]:
     rows, summ = [], []
     per_nt = [str(i) for i in range(1, MAX_DEPTH + 1)] + [f">{MAX_DEPTH}"]
     strata = ["pm12", "s3_10", "s11_50", "s3_50", DEEP]
@@ -438,7 +567,7 @@ def counts_tables(frames: dict, infos: dict) -> tuple[pd.DataFrame, pd.DataFrame
                 "damaging_rate": n_dam / labelled if labelled else np.nan,
                 "evaluable_min10": bool(n_dam >= K.MIN_POS and n_norm >= K.MIN_NEG)}
     allf = pd.concat(frames.values(), ignore_index=True)
-    for gene, df in list(frames.items()) + [("ALL4", allf)]:
+    for gene, df in list(frames.items()) + ([(total, allf)] if total else []):
         for st in strata:
             sub = K.stratum_frame(df[df["stratum"] != DEEP], st) if st != DEEP \
                 else df[df["stratum"] == DEEP]
@@ -447,6 +576,7 @@ def counts_tables(frames: dict, infos: dict) -> tuple[pd.DataFrame, pd.DataFrame
 
 
 def coordinate_tables(frames: dict, infos: dict) -> tuple[pd.DataFrame, pd.DataFrame]:
+    genes = list(frames)
     rows, samples = [], []
     for gene, df in frames.items():
         info = infos[gene]
@@ -468,7 +598,7 @@ def coordinate_tables(frames: dict, infos: dict) -> tuple[pd.DataFrame, pd.DataF
                 f"{k} ({v})" for k, v in sorted(info["anchor_reference_accessions"].items())),
             "grch38_chr_accession": info["mane"].grch38_chr_accession,
         })
-        rng = np.random.default_rng([C.RANDOM_SEED, GENES.index(gene)])
+        rng = np.random.default_rng([C.RANDOM_SEED, genes.index(gene)])
         idx = np.sort(rng.choice(len(df), size=min(N_SAMPLE, len(df)), replace=False))
         s = df.iloc[idx]
         samples += [{
@@ -503,6 +633,9 @@ def controls_table(infos: dict) -> pd.DataFrame:
         score = {r["accession"]: r["score"] for r in info["table"]}
         vtype = {r["accession"]: _variant_type(r["hgvs_nt"]) for r in info["table"]}
         n_pro = sum(1 for r in info["table"] if (r.get("hgvs_pro") or "NA") != "NA")
+        src = info["label_source"]
+        by_column = ({r["accession"]: column_class(r.get(src["column"]))[0] for r in info["table"]}
+                     if src["kind"] == "column" else None)
         counts, n_proj = {}, 0
         with (RAW[gene] / "variant_details.ndjson").open() as f:
             for line in f:
@@ -517,7 +650,8 @@ def controls_table(infos: dict) -> pd.DataFrame:
                         "nonsense" if E._PRO_NON.search(pro) else None)
                 if kind is None:
                     continue
-                cl, _ = classify(score.get(r["urn"]), info["classes"])
+                cl = (by_column.get(r["urn"], UNASSIGNED) if by_column is not None
+                      else classify(score.get(r["urn"]), info["classes"])[0])
                 key = (kind, vtype.get(r["urn"], "other"), cl)
                 counts[key] = counts.get(key, 0) + 1
         for kind in ("synonymous", "nonsense"):
@@ -551,14 +685,16 @@ def _interval(c: dict) -> str:
             + ", " + ("inf)" if hi is None else repr(hi) + ("]" if c["inclusiveUpperBound"] else ")")))
 
 
-def write_doc(records: pd.DataFrame, frames: dict, infos: dict) -> None:
-    lines = ["# Four further external genes: MaveDB records",
+def write_doc(records: pd.DataFrame, frames: dict, infos: dict, doc_path: Path = DOC_PATH,
+              title: str = "Four further external genes: MaveDB records", stage: str = "E16",
+              preface: list[str] | None = None) -> None:
+    lines = [f"# {title}",
              "",
-             "Written by `phase1/src/evid_newgenes.py` (stage E16) from the files "
+             f"Written by `phase1/src/evid_newgenes.py` (stage {stage}) from the files "
              "`scripts/stage_E16/fetch_mavedb.py` saved; do not edit by hand. Each fact "
              "is followed by the file it was read from (under "
              "`phase1/data/evidence/external/`) and the time that file was fetched.",
-             ""]
+             ""] + (preface or [])
     for r in records.itertuples():
         info = infos[r.gene]
         man, meta, df = info["man"], info["meta"], frames[r.gene]
@@ -574,8 +710,9 @@ def write_doc(records: pd.DataFrame, frames: dict, infos: dict) -> None:
                                   for c in m.get("scoreCalibrations") or []
                                   if c.get("investigatorProvided"))
             for m in chain)
-        classes = "; ".join(f"{c['label']} ({c['functionalClassification']}) {_interval(c)}"
-                            for c in info["classes"])
+        src = info["label_source"]
+        classes = ("; ".join(f"{c['label']} ({c['functionalClassification']}) {_interval(c)}"
+                             for c in info["classes"]) if src["kind"] == "ranges" else "")
         shared = "; ".join(
             f"{' and '.join(p['classes'])} share "
             + (f"the point {p['point']!r}" if "point" in p else f"the interval {p['interval']}")
@@ -599,8 +736,9 @@ def write_doc(records: pd.DataFrame, frames: dict, infos: dict) -> None:
                   f"- Versions: {versions} {chain_src}"]
         if r.gene in AUTHOR_RECORD:
             lines.append(
-                f"- Checked against the author's record of 2026-10-19 (URN, licence, "
-                f"publication status, first published 2026-01, the current version dated "
+                f"- Checked against the author's record of {AUTHOR_RECORD_DATE[r.gene]} (URN, "
+                f"licence, publication status, first published "
+                f"{AUTHOR_RECORD[r.gene]['first_published']}, the current version dated "
                 f"separately): {r.author_record_check}; "
                 f"first published {r.first_published_date}, current version published "
                 f"{r.current_version_date} {chain_src}")
@@ -613,40 +751,240 @@ def write_doc(records: pd.DataFrame, frames: dict, infos: dict) -> None:
                   f"{meta_src}",
                   f"- Variants: {r.n_variants_total:,} in the metadata {meta_src}; "
                   f"{r.n_score_rows:,} rows in the score table {_src(r.gene, man, csv_name)}",
-                  f"- Investigator-provided ranges, \"{r.calibration_title}\": {classes} "
-                  f"{_src(r.gene, man, 'score_ranges.json')}",
-                  f"- Shared range ends: {shared}; intron-side SNVs scored there "
-                  f"({UNASSIGNED!r} by the author's rule of 2026-10-20): {on_shared} "
-                  f"{_src(r.gene, man, 'score_ranges.json', csv_name)}",
-                  ""]
-    DOC_PATH.write_text("\n".join(lines))
+                  ]
+        if src["kind"] == "ranges":
+            lines += [f"- Investigator-provided ranges, \"{r.calibration_title}\": {classes} "
+                      f"{_src(r.gene, man, 'score_ranges.json')}",
+                      f"- Shared range ends: {shared}; intron-side SNVs scored there "
+                      f"({UNASSIGNED!r} by the author's rule of 2026-10-20): {on_shared} "
+                      f"{_src(r.gene, man, 'score_ranges.json', csv_name)}"]
+        else:
+            seen = sorted({row.get(src["column"]) or "" for row in info["table"]})
+            lines += [f"- Investigator-provided ranges: none (no scoreCalibrations entry has "
+                      f"investigatorProvided true) {_src(r.gene, man, 'score_ranges.json')}",
+                      f"- Classes: copied from the score-table column `{src['column']}`, mapped "
+                      "by wording only: " + "; ".join(f"{k} -> {v}" for k, v in CLASS_NAME_MAP.items())
+                      + f" (label 1 / 0 / NA); values in the column: {', '.join(seen)} "
+                      f"{_src(r.gene, man, csv_name)}"]
+        lines.append("")
+    doc_path.write_text("\n".join(lines))
 
 
-def main() -> None:
+CANON = {"abnormal": "abnormal", "normal": "normal", "not_specified": "intermediate"}
+IGVF_DIR = EXT_DIR / "igvf_sbds"
+LABEL_DIR = EXT_DIR / "label_versions"
+LABEL_GENES = ["BARD1", "PALB2"]
+
+
+def _check_manifest(path: Path) -> dict:
+    man = json.loads(path.read_text())
+    for e in man["files"]:
+        f = _here(e["path"])
+        if not f.is_file() or _sha256(f) != e["sha256"]:
+            raise SystemExit(f"[E16b] {e['path']} is missing or differs from {path}")
+    return man
+
+
+def igvf_crosscheck(df: pd.DataFrame, info: dict) -> pd.DataFrame:
+    """MaveDB against the IGVF copy of the SBDS scores (E16b.5): aligned on the
+    normalised c. HGVS; counted as same class, different class, or one side only, over
+    all rows and over the intron-side SNVs at 1-50 nt; every difference listed. Labels
+    are not touched: they come from MaveDB only."""
+    import gzip
+    man = _check_manifest(IGVF_DIR / "manifest.json")
+    gz = next(_here(e["path"]) for e in man["files"] if e["path"].endswith(".tsv.gz"))
+    igvf = {}
+    for r in csv.DictReader(gzip.open(gz, "rt", newline=""), delimiter="\t"):
+        igvf[_norm_hgvs(r["hgvs_c"])] = r
+    col = info["label_source"]["column"]
+    mave = {_norm_hgvs(r["hgvs_nt"]): r for r in info["table"]}
+    intronic = {_norm_hgvs(h): (int(o), s) for h, o, s in zip(df["hgvs_nt"], df["offset"], df["stratum"])
+                if abs(int(o)) <= MAX_DEPTH}
+    rows = []
+    for scope, keys in (("all rows", set(mave) | set(igvf)),
+                        ("intron-side SNVs 1-50 nt", set(intronic))):
+        cat = {"same class": 0, "different class": 0, "MaveDB only": 0, "IGVF only": 0}
+        for k in sorted(keys):
+            a, b = mave.get(k), igvf.get(k)
+            if a and b:
+                same = (a.get(col) or "") == (b.get("functional_consequence") or "")
+                cat["same class" if same else "different class"] += 1
+                if not same and scope == "all rows":
+                    off, st = intronic.get(k, (None, "exonic or deeper than 50 nt"))
+                    rows.append({"row_type": "variant", "scope": scope, "category": "different class",
+                                 "n": 1, "hgvs_nt": a["hgvs_nt"], "offset": off, "stratum": st,
+                                 "mavedb_score": a["score"], "mavedb_class": a.get(col),
+                                 "igvf_score": b["score"], "igvf_class": b.get("functional_consequence")})
+            else:
+                cat["MaveDB only" if a else "IGVF only"] += 1
+        rows[0:0] = [{"row_type": "count", "scope": scope, "category": c, "n": n} for c, n in cat.items()]
+    out = pd.DataFrame(rows, columns=["row_type", "scope", "category", "n", "hgvs_nt", "offset",
+                                      "stratum", "mavedb_score", "mavedb_class", "igvf_score",
+                                      "igvf_class"])
+    order = {"count": 0, "variant": 1}
+    out = out.sort_values(["row_type", "scope"], key=lambda s: s.map(order) if s.name == "row_type" else s,
+                          kind="mergesort").reset_index(drop=True)
+    out["offset"] = out["offset"].astype("Int64")
+    return out
+
+
+def _version_classes(table: list[dict], ranges_blob: dict) -> tuple[str, dict]:
+    """Each variant's class in one archived version, by the E16b.0 order: ranges if
+    exactly one investigator set, else the class column, else none."""
+    inv = ranges_blob["investigator_provided"]
+    col = next((c for c in CLASS_COLUMNS if table and c in table[0]), None)
+    out = {}
+    if len(inv) == 1:
+        classes = inv[0]["functionalClassifications"]
+        fc = {c["label"]: c["functionalClassification"] for c in classes}
+        for r in table:
+            cl = classify(r["score"], classes)[0]
+            out[_norm_hgvs(r["hgvs_nt"])] = (CANON.get(fc.get(cl), UNASSIGNED), r["score"])
+        return ("ranges" + (f" (the table also has the column {col})" if col else "")), out
+    if col:
+        for r in table:
+            cl = column_class(r.get(col))[0]
+            out[_norm_hgvs(r["hgvs_nt"])] = (CANON.get(CLASS_NAME_MAP.get(cl), UNASSIGNED), r["score"])
+        return f"class column {col}", out
+    return "no classes", out
+
+
+def label_version_check() -> tuple[pd.DataFrame, pd.DataFrame]:
+    """The training genes' label files against every archived version (E16b.6), on the
+    analysis set's intron-side SNVs (1-50 nt). A version written in c. notation is
+    aligned on the normalised c. HGVS; one written only in genomic notation (the -a-1
+    versions) on the normalised g. HGVS built from the analysis set's GRCh38 allele.
+    A check only: no label, threshold or analysis-set row changes."""
+    aset = pd.read_parquet(K.SET_PATH)
+    checks, diffs = [], []
+    for gene in LABEL_GENES:
+        spec = C.ASSAY_LABELS[gene]
+        lab = pd.read_csv(Path("data/assay_labels") / spec["file"],
+                          sep="\t" if spec["file"].endswith(".tsv") else ",", dtype=str)
+        ours_class = {_norm_hgvs(h): {1.0: "abnormal", 0.0: "normal", None: "intermediate"}
+                      [spec["map"][c]] for h, c in zip(lab[spec["key"]], lab[spec["class_col"]])}
+        v = aset[(aset["gene"] == gene) & (aset["intron_offset_abs"].between(1, MAX_DEPTH))]
+        ours = [{"c": _norm_hgvs(r.hgvs_c), "g": f"g.{r.pos}{r.ref}>{r.alt}".lower(),
+                 "hgvs": r.hgvs_c, "offset": int(r.intron_offset_abs), "stratum": r.stratum,
+                 "cls": ours_class.get(_norm_hgvs(r.hgvs_c))} for r in v.itertuples()]
+        man = _check_manifest(LABEL_DIR / f"{gene.lower()}_raw" / "manifest.json")
+        for ver in man["versions"]:
+            vid = ver["urn"].split(":")[-1]
+            table = list(csv.DictReader((LABEL_DIR / f"{gene.lower()}_raw" / f"urn_mavedb_{vid}.csv")
+                                        .open(newline="")))
+            source, arch = _version_classes(table, json.loads(
+                (LABEL_DIR / f"{gene.lower()}_raw" / f"score_ranges_{vid}.json").read_text()))
+            genomic = all((r["hgvs_nt"] or "").startswith("NC_") for r in table[:50])
+            key = "g" if genomic else "c"
+            members = {_norm_hgvs(r["hgvs_nt"]) for r in table}
+            found = agree = disagree = unclassified = 0
+            for o in ours:
+                if o[key] not in members:
+                    continue
+                found += 1
+                hit = arch.get(o[key])
+                if hit is None or hit[0] == UNASSIGNED or o["cls"] is None:
+                    unclassified += 1
+                elif hit[0] == o["cls"]:
+                    agree += 1
+                else:
+                    disagree += 1
+                    diffs.append({"gene": gene, "version": ver["urn"], "hgvs_nt": o["hgvs"],
+                                  "offset": o["offset"], "stratum": o["stratum"],
+                                  "our_class": o["cls"], "archive_class": hit[0],
+                                  "archive_score": hit[1]})
+            if key == "c":
+                arch_intronic = set()
+                for r in table:
+                    m = HGVS_NT.search(r["hgvs_nt"] or "")
+                    if m and int(m.group(3)) <= MAX_DEPTH:
+                        arch_intronic.add(_norm_hgvs(r["hgvs_nt"]))
+                only_archive = len(arch_intronic - {o["c"] for o in ours})
+            else:
+                only_archive = None              # genomic notation: intron-side not identifiable
+            checks.append({"gene": gene, "version": ver["urn"], "current": ver["superseded_by"] is None,
+                           "class_source": source, "align_key": "c. HGVS" if key == "c" else
+                           "g. HGVS from the analysis set's GRCh38 allele",
+                           "n_ours": len(ours), "n_found": found, "n_compared": agree + disagree,
+                           "n_agree": agree, "n_disagree": disagree,
+                           "n_found_without_class": unclassified,
+                           "n_only_ours": len(ours) - found, "n_only_archive": only_archive})
+    check = pd.DataFrame(checks)
+    check["n_only_archive"] = check["n_only_archive"].astype("Int64")
+    diff = pd.DataFrame(diffs, columns=["gene", "version", "hgvs_nt", "offset", "stratum",
+                                        "our_class", "archive_class", "archive_score"])
+    return check, diff
+
+
+PRESPECIFIED = [
+    "## Pre-specified label source (预先规定)",
+    "",
+    "Fixed by the author on 2026-10-20, before any predictor was run on SBDS, and not to "
+    "be changed afterwards:",
+    "",
+    "- SBDS labels come from MaveDB only, as for every external gene so far (DDX3X, TP53 "
+    "and the four genes of E16). The IGVF copy of the same experiment "
+    "(`igvf_sbds/IGVFFI9790OCYB.tsv.gz`) is used only for a cross-check "
+    "(`phase1/reports/evidence/sbds_igvf_crosscheck.csv`) and never to build a label.",
+    "- Why the source had to be fixed in advance: in the author's SGE survey (2026-10-20) "
+    "the 3-10 nt band holds 10 functionally abnormal SNVs by MaveDB and 9 by IGVF, either "
+    "side of the evaluability threshold (at least 10 damaging), so the choice of source "
+    "could decide whether the band is evaluated at all.",
+    "- Order of class sources: (a) exactly one investigator-provided set of ranges, checked "
+    "variant by variant against a class column if the score table has one; (b) otherwise a "
+    "per-variant class column of the score table, copied as it stands; (c) otherwise stop. "
+    "SBDS has no investigator-provided ranges, so (b) applies: the column "
+    "`functional_consequence`.",
+    "- Class names map by wording only: functionally_abnormal -> 1; functionally_normal -> "
+    "0; indeterminate -> NA (row kept); any other value -> unassigned, listed.",
+    "",
+]
+
+
+def main(argv: list[str] | None = None) -> None:
+    import argparse
+    ap = argparse.ArgumentParser(description="E16 (no argument) or E16b (--gene SBDS)")
+    ap.add_argument("--gene", choices=[k for k in RUNS if k])
+    args = ap.parse_args(argv)
+    run = RUNS[args.gene]
+    genes, pre, stage = run["genes"], run["prefix"], "E16b" if args.gene else "E16"
     M = _atlas_mapping()
     frames, infos = {}, {}
-    for gene in GENES:
+    for gene in genes:
         df, info = build_gene(gene, M)
         frames[gene], infos[gene] = df, info
+        if info["label_source"]["kind"] == "column":
+            require_known_classes(gene, df)
 
-    records = pd.DataFrame([record_row(g, infos[g]) for g in GENES])
-    by_offset, summary = counts_tables(frames, infos)
+    records = pd.DataFrame([record_row(g, infos[g]) for g in genes])
+    by_offset, summary = counts_tables(frames, infos, run["total"])
     coords, samples = coordinate_tables(frames, infos)
     controls = controls_table(infos)
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    records.to_csv(REPORT_DIR / "newgenes_record_check.csv", index=False)
-    by_offset.to_csv(REPORT_DIR / "newgenes_counts_by_offset.csv", index=False)
-    summary.to_csv(REPORT_DIR / "newgenes_label_summary.csv", index=False)
-    coords.to_csv(REPORT_DIR / "newgenes_coordinate_check.csv", index=False)
-    samples.to_csv(REPORT_DIR / "newgenes_offset_sample.csv", index=False)
-    controls.to_csv(REPORT_DIR / "newgenes_controls.csv", index=False)
-    write_doc(records, frames, infos)
+    records.to_csv(REPORT_DIR / f"{pre}_record_check.csv", index=False)
+    by_offset.to_csv(REPORT_DIR / f"{pre}_counts_by_offset.csv", index=False)
+    summary.to_csv(REPORT_DIR / f"{pre}_label_summary.csv", index=False)
+    coords.to_csv(REPORT_DIR / f"{pre}_coordinate_check.csv", index=False)
+    samples.to_csv(REPORT_DIR / f"{pre}_offset_sample.csv", index=False)
+    controls.to_csv(REPORT_DIR / f"{pre}_controls.csv", index=False)
+    if args.gene:
+        write_doc(records, frames, infos, run["doc"],
+                  title=f"{args.gene}: MaveDB record (fifth new external gene)", stage=stage,
+                  preface=PRESPECIFIED)
+        igvf_crosscheck(frames["SBDS"], infos["SBDS"]).to_csv(
+            REPORT_DIR / "sbds_igvf_crosscheck.csv", index=False)
+        check, diff = label_version_check()
+        check.to_csv(REPORT_DIR / "label_version_check.csv", index=False)
+        diff.to_csv(REPORT_DIR / "label_version_diff.csv", index=False)
+    else:
+        write_doc(records, frames, infos)
 
-    for gene in GENES:
+    for gene in genes:
         df, info = frames[gene], infos[gene]
         out = EXT_DIR / f"{gene.lower()}_variants.parquet"
         df.drop(columns=["rna_score_present"]).to_parquet(out, index=False)
         man = info["man"]
+        src = info["label_source"]
         prov = {
             "gene": gene, "urn": man["urn"], "source": "MaveDB",
             "license": man["license"], "readout": _readout(info, df),
@@ -660,15 +998,40 @@ def main() -> None:
                 "mavedb_postMapped": ("none for any intron-side SNV of this score set; "
                                       "used only as the exonic anchors of the check"),
             },
-            "score_ranges": info["calibration"],
-            "range_class": ("the label of the one range the score falls in, in the "
-                            "deposit's own wording; 'unassigned' for no score, a score "
-                            "outside every range, or a score on a point two ranges share "
-                            "(author's rule, 2026-10-20)"),
-            "shared_points": info["shared_points"],
-            "label_map": {"functionalClassification abnormal": 1,
-                          "functionalClassification normal": 0,
-                          "any other class, and unassigned": None},
+        }
+        if src["kind"] == "ranges":
+            prov |= {
+                "score_ranges": info["calibration"],
+                "range_class": ("the label of the one range the score falls in, in the "
+                                "deposit's own wording; 'unassigned' for no score, a score "
+                                "outside every range, or a score on a point two ranges share "
+                                "(author's rule, 2026-10-20)"),
+                "shared_points": info["shared_points"],
+                "label_map": {"functionalClassification abnormal": 1,
+                              "functionalClassification normal": 0,
+                              "any other class, and unassigned": None},
+            }
+        else:
+            extra = info["extra_coordinate_checks"]
+            pm = extra["intronic_postmapped"]
+            prov["coordinates"]["mavedb_postMapped"] = (
+                f"{pm['n_compared']} intron-side SNVs carry a GRCh38 postMapped allele, "
+                f"{pm['n_agree']} equal the mapped one; used as an extra check only")
+            prov["coordinates"]["extra_checks"] = extra
+            values = sorted({r.get(src["column"]) or "" for r in info["table"]})
+            prov |= {
+                "score_ranges": "none: no scoreCalibrations entry has investigatorProvided true",
+                "label_source": (f"the score-table column {src['column']}, not ranges (E16b.0 "
+                                 "rule 2b, fixed by the author on 2026-10-20 before any "
+                                 "predictor result); MaveDB only, IGVF cross-checked only"),
+                "class_name_map": {k: {"class": v, "label": LABEL_OF.get(v)}
+                                   for k, v in CLASS_NAME_MAP.items()},
+                "column_values": values,
+                "unmapped_values": [v for v in values if v not in CLASS_NAME_MAP],
+                "range_class": ("the deposit's own word in the column; 'unassigned' for an "
+                                "empty value or a value outside the class-name table"),
+            }
+        prov |= {
             "scope": {"pvs1_pm12": "|offset| 1-2, kept and flagged",
                       "in_scope": "|offset| 3-50", DEEP: "|offset| > 50, kept and flagged"},
             "n_score_rows": info["n_rows"], "n_intronic_snv": info["n_intronic"],
@@ -681,16 +1044,18 @@ def main() -> None:
             json.dumps(prov, indent=1, ensure_ascii=False, default=str) + "\n")
 
     s = summary.set_index(["gene", "stratum"])
-    print("[E16] four external genes, labelled by the deposits' own ranges")
-    for gene in GENES:
+    print(f"[{stage}] " + ("four external genes, labelled by the deposits' own ranges" if not args.gene
+                          else f"{args.gene}, labelled by the deposit's own class column"))
+    for gene in genes:
         c = coords.set_index("gene").loc[gene]
         print(f"  {gene:7s} {c.n_mapped:>5,} intron-side SNVs mapped "
               f"(chr{c.chrom} {c.strand}); anchor check {c.n_anchor_agree}/"
               f"{c.n_anchor_checked}; 3-10 nt {s.loc[(gene, 's3_10'), 'n_damaging']} "
               f"damaging, 11-50 nt {s.loc[(gene, 's11_50'), 'n_damaging']}")
-    print(f"  distal band (11-50 nt), four genes: "
-          f"{s.loc[('ALL4', 's11_50'), 'n_damaging']} damaging variants added")
-    print(f"  wrote {REPORT_DIR}/newgenes_*.csv, {EXT_DIR}/<gene>_variants.parquet, {DOC_PATH}")
+    if run["total"]:
+        print(f"  distal band (11-50 nt), four genes: "
+              f"{s.loc[(run['total'], 's11_50'), 'n_damaging']} damaging variants added")
+    print(f"  wrote {REPORT_DIR}/{pre}_*.csv, {EXT_DIR}/<gene>_variants.parquet, {run['doc']}")
 
 
 if __name__ == "__main__":

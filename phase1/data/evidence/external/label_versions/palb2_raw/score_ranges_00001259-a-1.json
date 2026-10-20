@@ -1,0 +1,83 @@
+{
+ "extracted_from": "phase1/data/evidence/external/label_versions/palb2_raw/scoreset_meta_00001259-a-1.json",
+ "key": "scoreCalibrations",
+ "selection": "investigatorProvided is true",
+ "all_calibration_titles": [
+  "Investigator-provided functional classes",
+  "ExCALIBR calibration"
+ ],
+ "legacy_scoreRanges_key_present": false,
+ "investigator_provided": [
+  {
+   "title": "Investigator-provided functional classes",
+   "researchUseOnly": false,
+   "baselineScore": 0.003061,
+   "functionalClassifications": [
+    {
+     "label": "Functionall Normal",
+     "functionalClassification": "normal",
+     "range": [
+      -0.020935,
+      null
+     ],
+     "inclusiveLowerBound": true,
+     "inclusiveUpperBound": false,
+     "id": 332,
+     "recordType": "FunctionalClassification",
+     "variantCount": 8155
+    },
+    {
+     "label": "Functionally Abnormal",
+     "functionalClassification": "abnormal",
+     "range": [
+      null,
+      -0.052029
+     ],
+     "inclusiveLowerBound": false,
+     "inclusiveUpperBound": false,
+     "id": 333,
+     "recordType": "FunctionalClassification",
+     "variantCount": 1357
+    }
+   ],
+   "thresholdSources": [],
+   "evidenceSources": [],
+   "methodSources": [],
+   "recordType": "ScoreCalibration",
+   "id": 141,
+   "urn": "urn:mavedb:calibration-6adb8af1-a25b-45bf-aa04-b8c05c657b7e",
+   "scoreSetId": 4376,
+   "investigatorProvided": true,
+   "primary": false,
+   "private": false,
+   "controlsCount": 0,
+   "disease": {
+    "type": "MappableConcept",
+    "name": "disease or disorder",
+    "conceptType": "Disease",
+    "primaryCoding": {
+     "system": "https://purl.obolibrary.org/obo/mondo.owl",
+     "code": "MONDO:0000001",
+     "iris": [
+      "https://purl.obolibrary.org/obo/MONDO_0000001"
+     ]
+    }
+   },
+   "createdBy": {
+    "orcidId": "0009-0007-5494-7477",
+    "firstName": "Nahum",
+    "lastName": "Smith",
+    "recordType": "User"
+   },
+   "modifiedBy": {
+    "orcidId": "0009-0007-5494-7477",
+    "firstName": "Nahum",
+    "lastName": "Smith",
+    "recordType": "User"
+   },
+   "creationDate": "2025-11-14",
+   "modificationDate": "2025-11-14",
+   "controls": []
+  }
+ ]
+}

@@ -1,0 +1,258 @@
+{
+ "script": "scripts/stage_E16/fetch_mavedb.py",
+ "argv": [
+  "scripts/stage_E16/fetch_mavedb.py",
+  "--label-versions",
+  "BARD1",
+  "PALB2",
+  "--a1",
+  "CTCF",
+  "SFPQ",
+  "RAD51D",
+  "XRCC2"
+ ],
+ "git_commit": "a35ec6d9d7be1574f58191495e71dd1995f7ab3b",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E16/fetch_mavedb.py": "8df70a51bd6b3e025105b31688742f01a8e95db6e7d7e737a21f678e4a8b5d9d",
+  "scripts/stage_E16/_runlog.py": "0c8bc6cfcc52f174dcf15fc78781b82aaaf45113a362dc5590614d206efb6af9"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-20T10:39:39+00:00",
+ "end_utc": "2026-10-20T10:39:52+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/manifest.json",
+   "bytes": 5945,
+   "sha256": "a319124ba7c18a8ba76db2d781887b71fe2a8fab61c6e3885a6ead02d736eebe"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/manifest.json",
+   "bytes": 5530,
+   "sha256": "e43f829c8421626ea57337cd2bef78e9a2dcf9c701d0f5400f7cc58c4d00e472"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/manifest.json",
+   "bytes": 5619,
+   "sha256": "3664d13dc4de6f458afe4118bb2f9849e31b9df402856df60f2118a8e82c2d04"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/manifest.json",
+   "bytes": 5603,
+   "sha256": "ce6ae7c5e4ff195d7e3f12e726442fd34912b8fa1df1e56736dc826494568c1e"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-1.json",
+   "bytes": 29429,
+   "sha256": "ba3e4116cb6485947c95a6fa58599c5ca93fec9a75948d16d82466c57bd84f84"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/urn_mavedb_00001250-a-1.csv",
+   "bytes": 2546506,
+   "sha256": "58fe32451da606ea24479b1efe8dc5162664c3785ce7fb400b2e8797ba5bf9a7"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/score_ranges_00001250-a-1.json",
+   "bytes": 2442,
+   "sha256": "0f86bc7452a43f34dd5540b035373b37a6b641d1f94cd482209a5ad3dc4bd051"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-2.json",
+   "bytes": 10476,
+   "sha256": "ceb808416c4d92ba1dd7b3a990bf6d72132ab785c1a846518f7ba57d2f3b0c3a"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/urn_mavedb_00001250-a-2.csv",
+   "bytes": 1398304,
+   "sha256": "15344db4740e7ad105400aeb456c78630f44037c4512f5a80ee1770b4b9a1518"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/score_ranges_00001250-a-2.json",
+   "bytes": 2418,
+   "sha256": "4d4e0f517c12b1c4b28cbea0beef7b3b4bb3fdfea015c2111f39806676e70d52"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-3.json",
+   "bytes": 8898,
+   "sha256": "934c3a750c9017d6f4f2383129454da72ae984170854f25a8c4987e6e44e7eb1"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/urn_mavedb_00001250-a-3.csv",
+   "bytes": 1396113,
+   "sha256": "1b45b260ff6f79967c93846091530802fac84dac7e2f0b2b88f770cc949cd670"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/score_ranges_00001250-a-3.json",
+   "bytes": 290,
+   "sha256": "b76c727d82675f98418b83530f8464264d3f93879016e361ab26dc23279b4699"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/manifest.json",
+   "bytes": 4664,
+   "sha256": "1fb468ced4282a862d85b491339e1aab294e6a4e7abf385e7032b98ee3f09226"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/scoreset_meta_00001259-a-1.json",
+   "bytes": 25364,
+   "sha256": "2a60fea266fbe94a81a8368cef0d9672fba9e726ae76900fe3cb2774dd2d7c9c"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/urn_mavedb_00001259-a-1.csv",
+   "bytes": 2348926,
+   "sha256": "67bd0536702ffab562c693c90858a730c2fe184ed37e9b9370adc04e5a0786fb"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/score_ranges_00001259-a-1.json",
+   "bytes": 2137,
+   "sha256": "0de4135338e0a143e963fc4204a57566ab45177d699cebfb2da76d157fd764e2"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/scoreset_meta_00001259-a-2.json",
+   "bytes": 7853,
+   "sha256": "6b46d6e78933a511dc66054ae904bd65f352cfb653430de61e23055e2093c746"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/urn_mavedb_00001259-a-2.csv",
+   "bytes": 1633971,
+   "sha256": "62a634dfa201283faaf223d8e33e373a528a62aa88d6aa8d5742992b12b34cdb"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/score_ranges_00001259-a-2.json",
+   "bytes": 2423,
+   "sha256": "3a61c3cbd84f54782bdda43464d12f19f7fa5a0189281ce46759062afc6f10dc"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/manifest.json",
+   "bytes": 3184,
+   "sha256": "2ba91f4d1935d256df3245f6c74ce98458fd6042af24c7bf7960896481e86231"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/a1/urn_mavedb_00001262-a-1.csv",
+   "bytes": 1318529,
+   "sha256": "82b521e7e1d3b05c1de53218f9b6ef2055ba9112cd516b6a1a1e2bc35f23588f"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_raw/a1/manifest.json",
+   "bytes": 887,
+   "sha256": "6e09b0b0a0c7cf78761d3364b1b529373eb5d90a225c32285bab6bec2fc32c62"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/a1/urn_mavedb_00001265-a-1.csv",
+   "bytes": 610528,
+   "sha256": "9227363a8dc5ad81f1a402226a8001008bbfaf0df9fa212bc40b5ba83a5bb57b"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_raw/a1/manifest.json",
+   "bytes": 886,
+   "sha256": "8dada58580928f106fd2a4e836af52abd30b9be09bcf1987704ca13984108d3d"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/a1/urn_mavedb_00001260-a-1.csv",
+   "bytes": 1205476,
+   "sha256": "a891b490002f536fd3dd9b59c04a9fbe17471e0c07a8d6e186aad747e28afa5f"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_raw/a1/manifest.json",
+   "bytes": 893,
+   "sha256": "73662a762f1ef8349c483e1172e4c5744f1f5002e43f2c17230d84d537edb19f"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/a1/urn_mavedb_00001264-a-1.csv",
+   "bytes": 825515,
+   "sha256": "634c4ac260028b6ca6ddb7147eed2ada25fb07340db996ee6e3fcec0648a2c76"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_raw/a1/manifest.json",
+   "bytes": 889,
+   "sha256": "0bdec2b9ef247161b696772211866ca128a6ad388e1d7fde95e8969e94778342"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "api_version": "2026.3.1",
+  "label_versions": [
+   {
+    "gene": "BARD1",
+    "versions": [
+     {
+      "urn": "urn:mavedb:00001250-a-1",
+      "published_date": "2025-10-21",
+      "superseded_by": "urn:mavedb:00001250-a-2",
+      "n_rows": 11318,
+      "n_investigator_calibrations": 1,
+      "license": "CC0"
+     },
+     {
+      "urn": "urn:mavedb:00001250-a-2",
+      "published_date": "2026-06-08",
+      "superseded_by": "urn:mavedb:00001250-a-3",
+      "n_rows": 10911,
+      "n_investigator_calibrations": 1,
+      "license": "CC0"
+     },
+     {
+      "urn": "urn:mavedb:00001250-a-3",
+      "published_date": "2026-09-11",
+      "superseded_by": null,
+      "n_rows": 10899,
+      "n_investigator_calibrations": 0,
+      "license": "CC0"
+     }
+    ]
+   },
+   {
+    "gene": "PALB2",
+    "versions": [
+     {
+      "urn": "urn:mavedb:00001259-a-1",
+      "published_date": "2026-01-10",
+      "superseded_by": "urn:mavedb:00001259-a-2",
+      "n_rows": 10513,
+      "n_investigator_calibrations": 1,
+      "license": "CC0"
+     },
+     {
+      "urn": "urn:mavedb:00001259-a-2",
+      "published_date": "2026-06-08",
+      "superseded_by": null,
+      "n_rows": 12851,
+      "n_investigator_calibrations": 1,
+      "license": "CC0"
+     }
+    ]
+   }
+  ],
+  "a1": [
+   {
+    "gene": "CTCF",
+    "urn": "urn:mavedb:00001262-a-1",
+    "n_rows": 5995
+   },
+   {
+    "gene": "SFPQ",
+    "urn": "urn:mavedb:00001265-a-1",
+    "n_rows": 2769
+   },
+   {
+    "gene": "RAD51D",
+    "urn": "urn:mavedb:00001260-a-1",
+    "n_rows": 5410
+   },
+   {
+    "gene": "XRCC2",
+    "urn": "urn:mavedb:00001264-a-1",
+    "n_rows": 3740
+   }
+  ]
+ }
+}

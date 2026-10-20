@@ -1,0 +1,19 @@
+{
+ "gene": "SBDS",
+ "chosen": "urn:mavedb:00001284-a-1",
+ "how": "URN from the author's SGE survey report (2026-10-20)",
+ "given_urn_in_search_results": true,
+ "candidates": [
+  {
+   "urn": "urn:mavedb:00001284-a-1",
+   "title": "Saturation Genome Editing for SBDS Scores",
+   "short_description": "We used Saturation Genome Editing to measure the effect of 2,675 SBDS SNVs and 640 3-base pair deletions on SBDS-dependent HAP1 cell survival.",
+   "targets": [
+    "SBDS"
+   ],
+   "num_variants": 3315,
+   "published_date": "2026-08-24",
+   "superseding_score_set": null
+  }
+ ]
+}

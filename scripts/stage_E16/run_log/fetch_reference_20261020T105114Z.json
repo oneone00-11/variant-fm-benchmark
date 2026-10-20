@@ -1,0 +1,94 @@
+{
+ "script": "scripts/stage_E16/fetch_reference.py",
+ "argv": [
+  "scripts/stage_E16/fetch_reference.py",
+  "--gene",
+  "SBDS"
+ ],
+ "git_commit": "a35ec6d9d7be1574f58191495e71dd1995f7ab3b",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E16/fetch_reference.py": "080f16855d61dd9291644f6ab6e0cef0b173b8ab5e0b59305cf7aceae60bc896",
+  "scripts/stage_E16/_runlog.py": "0c8bc6cfcc52f174dcf15fc78781b82aaaf45113a362dc5590614d206efb6af9"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-20T10:51:09+00:00",
+ "end_utc": "2026-10-20T10:51:14+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/external/sbds_raw/manifest.json",
+   "bytes": 2653,
+   "sha256": "88893bab379e08ce8ae6394f8d8d16012924aefde68733e899c36f56c81257cd"
+  },
+  {
+   "path": "phase1/data/evidence/external/sbds_raw/scoreset_meta.json",
+   "bytes": 9401,
+   "sha256": "26fa6b410211e636c70773175de41a8af2e79d5531bab882680ef0213becd84a"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz",
+   "bytes": 1115288,
+   "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_016038.4.json",
+   "bytes": 3413,
+   "sha256": "2d8ec098540e82e7262a5511b05056c0e6f329c40d5fdf541ef9ee7d25cbf594"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000246868.json",
+   "bytes": 1587,
+   "sha256": "d7d83f53e40d32f6f3d25fdfbef02118a38e46ebf79ac588506df2b5bb43a4b9"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr7_66982680_67000586.fa",
+   "bytes": 17907,
+   "sha256": "a30fd3a3462923847f9f0c1beee337f8b412a3deaf48d405067a7a11a200149b"
+  },
+  {
+   "path": "phase1/data/evidence/refs/Homo_sapiens.GRCh38.dna.chromosome.7.fa.gz",
+   "bytes": 47416846,
+   "sha256": "d20985eabdf27638b81067c94189acc3e330730ba23f77c8ffa15576a590ad4a"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr7.fa",
+   "bytes": 162001796,
+   "sha256": "71b9f38d87ecb8db7067498602e5ae44bc09a6080e276c11a24a3d2933b1ed93"
+  },
+  {
+   "path": "phase1/data/evidence/external/sbds_raw/manifest.json",
+   "bytes": 5141,
+   "sha256": "5f33d086659433468bce758d44486e0e6c2e4ab413d58921715e08729d2d80df"
+  },
+  {
+   "path": "phase1/data/evidence/reference_cache/MANIFEST.json",
+   "bytes": 20919,
+   "sha256": "da0950af9fecafda0b1a56abca3f3cea6b6ff4d5d7523d1e39d25fe681ff99e8"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "atlas": "~/work/functional-standard-atlas",
+  "genes": {
+   "SBDS": {
+    "target": "ENST00000246868.7",
+    "mane_refseq": "NM_016038.4",
+    "mane_ensembl": "ENST00000246868.7",
+    "chrom": "7",
+    "strand": "-",
+    "n_exons": 5,
+    "exon_anchor_adjustments": []
+   }
+  }
+ }
+}

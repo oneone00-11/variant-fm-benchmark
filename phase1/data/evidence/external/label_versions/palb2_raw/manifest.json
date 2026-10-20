@@ -1,0 +1,83 @@
+{
+ "gene": "PALB2",
+ "start_urn": "urn:mavedb:00001259-a-2",
+ "start_urn_source": "the author's SGE survey report (2026-10-20)",
+ "versions": [
+  {
+   "urn": "urn:mavedb:00001259-a-1",
+   "published_date": "2026-01-10",
+   "superseded_by": "urn:mavedb:00001259-a-2",
+   "n_rows": 10513,
+   "n_investigator_calibrations": 1,
+   "license": "CC0"
+  },
+  {
+   "urn": "urn:mavedb:00001259-a-2",
+   "published_date": "2026-06-08",
+   "superseded_by": null,
+   "n_rows": 12851,
+   "n_investigator_calibrations": 1,
+   "license": "CC0"
+  }
+ ],
+ "api": {
+  "base": "https://api.mavedb.org/api/v1",
+  "version": "2026.3.1"
+ },
+ "files": [
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/scoreset_meta_00001259-a-1.json",
+   "bytes": 25364,
+   "sha256": "2a60fea266fbe94a81a8368cef0d9672fba9e726ae76900fe3cb2774dd2d7c9c",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001259-a-1",
+   "fetched_utc": "2026-10-20T10:39:46+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/urn_mavedb_00001259-a-1.csv",
+   "bytes": 2348926,
+   "sha256": "67bd0536702ffab562c693c90858a730c2fe184ed37e9b9370adc04e5a0786fb",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001259-a-1/scores",
+   "fetched_utc": "2026-10-20T10:39:47+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "n_rows": 10513
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/score_ranges_00001259-a-1.json",
+   "bytes": 2137,
+   "sha256": "0de4135338e0a143e963fc4204a57566ab45177d699cebfb2da76d157fd764e2",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001259-a-1",
+   "derived_from": "phase1/data/evidence/external/label_versions/palb2_raw/scoreset_meta_00001259-a-1.json",
+   "note": "extract of scoreCalibrations, entries unchanged"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/scoreset_meta_00001259-a-2.json",
+   "bytes": 7853,
+   "sha256": "6b46d6e78933a511dc66054ae904bd65f352cfb653430de61e23055e2093c746",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001259-a-2",
+   "fetched_utc": "2026-10-20T10:39:47+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/urn_mavedb_00001259-a-2.csv",
+   "bytes": 1633971,
+   "sha256": "62a634dfa201283faaf223d8e33e373a528a62aa88d6aa8d5742992b12b34cdb",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001259-a-2/scores",
+   "fetched_utc": "2026-10-20T10:39:49+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "n_rows": 12851
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/palb2_raw/score_ranges_00001259-a-2.json",
+   "bytes": 2423,
+   "sha256": "3a61c3cbd84f54782bdda43464d12f19f7fa5a0189281ce46759062afc6f10dc",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001259-a-2",
+   "derived_from": "phase1/data/evidence/external/label_versions/palb2_raw/scoreset_meta_00001259-a-2.json",
+   "note": "extract of scoreCalibrations, entries unchanged"
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "use": "cross-check only (E16b.5); never used to build labels (author, 2026-10-20)",
+ "file_accession": "IGVFFI9790OCYB",
+ "analysis_set_accession": "IGVFDS8094DYWC",
+ "file_status": "released",
+ "file_release_timestamp": "2026-08-26T20:15:11.005653+00:00",
+ "file_md5sum": "9c2b8e24182259e65b6acdb9cd367377",
+ "analysis_set_status": "released",
+ "analysis_set_release_timestamp": "2026-08-26T20:14:58.055500+00:00",
+ "files": [
+  {
+   "path": "phase1/data/evidence/external/igvf_sbds/IGVFFI9790OCYB.json",
+   "bytes": 41435,
+   "sha256": "9e56af4e5b08f7d8fbe9149aad7d034ce35b83b3f002dd811c848ccae04e558c",
+   "source_url": "https://api.data.igvf.org/tabular-files/IGVFFI9790OCYB/?format=json",
+   "fetched_utc": "2026-10-20T10:50:20+00:00",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/igvf_sbds/IGVFDS8094DYWC.json",
+   "bytes": 84967,
+   "sha256": "e6ee530d64b5a38b8c52972507dc45635747d80ff9a6f76a10815515c396b9a8",
+   "source_url": "https://api.data.igvf.org/analysis-sets/IGVFDS8094DYWC/?format=json",
+   "fetched_utc": "2026-10-20T10:50:21+00:00",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/igvf_sbds/IGVFFI9790OCYB.tsv.gz",
+   "bytes": 156840,
+   "sha256": "16579b89d6b3ca1e5ff9c802cc490043e1c8b1ce0ff2b6cd6ab313a7f5f78149",
+   "source_url": "https://api.data.igvf.org/tabular-files/IGVFFI9790OCYB/@@download/IGVFFI9790OCYB.tsv.gz",
+   "fetched_utc": "2026-10-20T10:50:23+00:00",
+   "http_status": 200
+  }
+ ],
+ "failures": []
+}

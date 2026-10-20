@@ -1,0 +1,69 @@
+row_type,scope,category,n,hgvs_nt,offset,stratum,mavedb_score,mavedb_class,igvf_score,igvf_class
+count,all rows,same class,3255,,,,,,,
+count,all rows,different class,60,,,,,,,
+count,all rows,MaveDB only,0,,,,,,,
+count,all rows,IGVF only,0,,,,,,,
+count,intron-side SNVs 1-50 nt,same class,487,,,,,,,
+count,intron-side SNVs 1-50 nt,different class,5,,,,,,,
+count,intron-side SNVs 1-50 nt,MaveDB only,0,,,,,,,
+count,intron-side SNVs 1-50 nt,IGVF only,0,,,,,,,
+variant,all rows,different class,1,ENST00000246868.7:c.129-4C>G,-4,s3_10,-0.00715925,functionally_normal,-0.0369841,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.129-8_129-6del,,exonic or deeper than 50 nt,-0.0140106,functionally_normal,-0.0569558,functionally_abnormal
+variant,all rows,different class,1,ENST00000246868.7:c.129-9C>T,-9,s3_10,-0.0316835,indeterminate,-0.0422597,functionally_abnormal
+variant,all rows,different class,1,ENST00000246868.7:c.130G>C,,exonic or deeper than 50 nt,-0.0364035,indeterminate,-0.0262298,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.136G>A,,exonic or deeper than 50 nt,-0.0357513,indeterminate,-0.0504968,functionally_abnormal
+variant,all rows,different class,1,ENST00000246868.7:c.139_141del,,exonic or deeper than 50 nt,-0.0401649,functionally_abnormal,-0.021784,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.152T>A,,exonic or deeper than 50 nt,-0.0480522,functionally_abnormal,-0.0336552,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.166G>C,,exonic or deeper than 50 nt,-0.0154158,functionally_normal,-0.0334008,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.17C>G,,exonic or deeper than 50 nt,-0.0513185,functionally_abnormal,-0.0311946,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.189_191del,,exonic or deeper than 50 nt,-0.0619134,functionally_abnormal,-0.0346949,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.207_209del,,exonic or deeper than 50 nt,-0.0440483,functionally_abnormal,-0.0180796,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.208_210del,,exonic or deeper than 50 nt,-0.0646165,functionally_abnormal,-0.0413194,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.220G>C,,exonic or deeper than 50 nt,-0.0340842,indeterminate,-0.0231305,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.223T>A,,exonic or deeper than 50 nt,-0.0447474,functionally_abnormal,-0.0281755,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.229_231del,,exonic or deeper than 50 nt,-0.0817378,functionally_abnormal,-0.036973,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.22A>G,,exonic or deeper than 50 nt,-0.0407533,functionally_abnormal,-0.0362275,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.230_232del,,exonic or deeper than 50 nt,-0.0500042,functionally_abnormal,-0.0305887,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.241_243del,,exonic or deeper than 50 nt,-0.0534066,functionally_abnormal,-0.030562,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.245_247del,,exonic or deeper than 50 nt,-0.0454073,functionally_abnormal,-0.0287398,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.247A>T,,exonic or deeper than 50 nt,-0.0302951,indeterminate,-0.0216382,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.253A>C,,exonic or deeper than 50 nt,-0.0193516,functionally_normal,-0.0321463,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.299G>T,,exonic or deeper than 50 nt,-0.0326336,indeterminate,-0.0234151,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.352A>G,,exonic or deeper than 50 nt,-0.0576585,functionally_abnormal,-0.036874,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.398T>A,,exonic or deeper than 50 nt,-0.0553429,functionally_abnormal,-0.0360927,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.3G>A,,exonic or deeper than 50 nt,-0.0174545,functionally_normal,-0.0343438,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.407C>A,,exonic or deeper than 50 nt,-0.0299684,indeterminate,-0.0202411,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.40A>C,,exonic or deeper than 50 nt,-0.0559226,functionally_abnormal,-0.0352071,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.41A>G,,exonic or deeper than 50 nt,-0.0558645,functionally_abnormal,-0.0315225,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.428C>G,,exonic or deeper than 50 nt,-0.0723057,functionally_abnormal,-0.0400914,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.42T>A,,exonic or deeper than 50 nt,-0.0560409,functionally_abnormal,-0.0271405,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.42T>G,,exonic or deeper than 50 nt,-0.03866,functionally_abnormal,-0.00248768,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.431_433del,,exonic or deeper than 50 nt,-0.0833205,functionally_abnormal,-0.0398353,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.431T>A,,exonic or deeper than 50 nt,-0.0319785,indeterminate,-0.0148194,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.444G>A,,exonic or deeper than 50 nt,-0.0197691,functionally_normal,-0.0321852,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.447_449del,,exonic or deeper than 50 nt,-0.0752149,functionally_abnormal,-0.03038,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.44T>C,,exonic or deeper than 50 nt,-0.0540932,functionally_abnormal,-0.0334818,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.453A>C,,exonic or deeper than 50 nt,-0.0752794,functionally_abnormal,-0.0380517,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.458A>G,,exonic or deeper than 50 nt,-0.0711961,functionally_abnormal,-0.0301332,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.460-1G>T,-1,pm12,-0.0644697,functionally_abnormal,-0.0276761,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.460-3_460-1del,,exonic or deeper than 50 nt,-0.0695972,functionally_abnormal,-0.0368574,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.473T>G,,exonic or deeper than 50 nt,-0.0383598,functionally_abnormal,-0.0228443,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.510_512del,,exonic or deeper than 50 nt,-0.0348444,indeterminate,-0.00386982,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.511_513del,,exonic or deeper than 50 nt,-0.0338936,indeterminate,-0.0190436,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.515T>A,,exonic or deeper than 50 nt,-0.0605117,functionally_abnormal,-0.0282803,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.521T>C,,exonic or deeper than 50 nt,-0.0338316,indeterminate,-0.00966916,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.529_531del,,exonic or deeper than 50 nt,-0.0902608,functionally_abnormal,-0.0367268,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.531_533del,,exonic or deeper than 50 nt,-0.0811353,functionally_abnormal,-0.038475,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.533_535del,,exonic or deeper than 50 nt,-0.072693,functionally_abnormal,-0.0344551,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.624+3A>T,3,s3_10,-0.0729879,functionally_abnormal,-0.0356376,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.624+5G>C,5,s3_10,-0.053654,functionally_abnormal,-0.0287007,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.626_628del,,exonic or deeper than 50 nt,-0.0546944,functionally_abnormal,-0.028101,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.636_638del,,exonic or deeper than 50 nt,-0.0589052,functionally_abnormal,-0.0304984,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.641_643del,,exonic or deeper than 50 nt,-0.029779,indeterminate,-0.0198036,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.647_649del,,exonic or deeper than 50 nt,-0.0391715,functionally_abnormal,-0.0211199,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.653G>A,,exonic or deeper than 50 nt,-0.0292853,indeterminate,-0.0149991,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.655_657del,,exonic or deeper than 50 nt,-0.0610503,functionally_abnormal,-0.0328412,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.706_708del,,exonic or deeper than 50 nt,-0.0322068,indeterminate,-0.0233882,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.716T>G,,exonic or deeper than 50 nt,-0.0511863,functionally_abnormal,-0.0359092,indeterminate
+variant,all rows,different class,1,ENST00000246868.7:c.80T>C,,exonic or deeper than 50 nt,-0.0386057,functionally_abnormal,-0.0176306,functionally_normal
+variant,all rows,different class,1,ENST00000246868.7:c.9C>A,,exonic or deeper than 50 nt,-0.0152992,functionally_normal,-0.0339884,indeterminate

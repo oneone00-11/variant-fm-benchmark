@@ -1,0 +1,95 @@
+{
+ "script": "scripts/stage_E16/fetch_mavedb.py",
+ "argv": [
+  "scripts/stage_E16/fetch_mavedb.py",
+  "--gene",
+  "SBDS"
+ ],
+ "git_commit": "a35ec6d9d7be1574f58191495e71dd1995f7ab3b",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E16/fetch_mavedb.py": "8df70a51bd6b3e025105b31688742f01a8e95db6e7d7e737a21f678e4a8b5d9d",
+  "scripts/stage_E16/_runlog.py": "0c8bc6cfcc52f174dcf15fc78781b82aaaf45113a362dc5590614d206efb6af9"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-20T10:39:15+00:00",
+ "end_utc": "2026-10-20T10:39:23+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "scripts/stage_E16/run_log/searches/search_SBDS_text_20261020T103915Z.request.json",
+   "bytes": 174,
+   "sha256": "3b8e80c34296d85a66274e5f091309555124b14e5c130caf05a01dd03b2ae154"
+  },
+  {
+   "path": "scripts/stage_E16/run_log/searches/search_SBDS_text_20261020T103915Z.response.json",
+   "bytes": 6404,
+   "sha256": "9d1d7b8c564fe49aa31fe2b977ed2d0e5949adc04f0920ca11e9142cec7c603a"
+  },
+  {
+   "path": "scripts/stage_E16/run_log/searches/search_SBDS_targets_20261020T103915Z.request.json",
+   "bytes": 186,
+   "sha256": "c2265171722144052519e744eb9c2f30e05a934eb0328fc2c80743e152d50615"
+  },
+  {
+   "path": "scripts/stage_E16/run_log/searches/search_SBDS_targets_20261020T103915Z.response.json",
+   "bytes": 6404,
+   "sha256": "9d1d7b8c564fe49aa31fe2b977ed2d0e5949adc04f0920ca11e9142cec7c603a"
+  },
+  {
+   "path": "scripts/stage_E16/run_log/searches/choice_SBDS_20261020T103915Z.json",
+   "bytes": 579,
+   "sha256": "af87d38828251e65ef7dc78354c08dba45009b1fa80b18b0415e22083013aec4"
+  },
+  {
+   "path": "phase1/data/evidence/external/sbds_raw/scoreset_meta.json",
+   "bytes": 9401,
+   "sha256": "26fa6b410211e636c70773175de41a8af2e79d5531bab882680ef0213becd84a"
+  },
+  {
+   "path": "phase1/data/evidence/external/sbds_raw/experiment_meta.json",
+   "bytes": 4828,
+   "sha256": "6758600f6e3307eefb84a9349ebf2d34275c5e4e5b3b46e19d1a847612078a13"
+  },
+  {
+   "path": "phase1/data/evidence/external/sbds_raw/urn_mavedb_00001284-a-1.csv",
+   "bytes": 718103,
+   "sha256": "40f14e21c8b08d3e6ba476fd3ef16711ed6b490a55567bfbebc4428449d8b631"
+  },
+  {
+   "path": "phase1/data/evidence/external/sbds_raw/score_ranges.json",
+   "bytes": 261,
+   "sha256": "851bb0934c80d14fc5cef2f6d8707c4dce13716b2bf11ff1853210550b971659"
+  },
+  {
+   "path": "phase1/data/evidence/external/sbds_raw/variant_details.ndjson",
+   "bytes": 10986946,
+   "sha256": "0175b8afd6961b9302d1e7cd871546bca36cb0ad114fd31bf0ccc0031f20ecfd"
+  },
+  {
+   "path": "phase1/data/evidence/external/sbds_raw/manifest.json",
+   "bytes": 2653,
+   "sha256": "88893bab379e08ce8ae6394f8d8d16012924aefde68733e899c36f56c81257cd"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "api_version": "2026.3.1",
+  "genes": [
+   {
+    "gene": "SBDS",
+    "urn": "urn:mavedb:00001284-a-1",
+    "n_rows": 3315,
+    "superseded_versions": []
+   }
+  ]
+ }
+}

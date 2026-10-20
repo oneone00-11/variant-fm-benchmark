@@ -14,3 +14,7 @@
 # External deposits as the archive served them, byte for byte: their manifests pin
 # the sha256 of those bytes, and MaveDB serves its score tables with CRLF line ends.
 phase1/data/evidence/external/*_raw/** -text
+# The same for the archived versions of the training genes' score sets and the IGVF
+# copy of the SBDS scores (E16b); a * above does not reach below one folder.
+phase1/data/evidence/external/label_versions/*_raw/** -text
+phase1/data/evidence/external/igvf_sbds/** -text

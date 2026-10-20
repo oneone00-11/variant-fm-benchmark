@@ -1,0 +1,115 @@
+{
+ "gene": "SBDS",
+ "urn": "urn:mavedb:00001284-a-1",
+ "source": "MaveDB",
+ "license": {
+  "shortName": "CC0",
+  "longName": "CC0 (Public domain)",
+  "version": "1.0",
+  "link": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "readout": "fitness only (the score table has no rna_score column)",
+ "inputs": {
+  "phase1/data/evidence/external/sbds_raw/scoreset_meta.json": "26fa6b410211e636c70773175de41a8af2e79d5531bab882680ef0213becd84a",
+  "phase1/data/evidence/external/sbds_raw/experiment_meta.json": "6758600f6e3307eefb84a9349ebf2d34275c5e4e5b3b46e19d1a847612078a13",
+  "phase1/data/evidence/external/sbds_raw/urn_mavedb_00001284-a-1.csv": "40f14e21c8b08d3e6ba476fd3ef16711ed6b490a55567bfbebc4428449d8b631",
+  "phase1/data/evidence/external/sbds_raw/score_ranges.json": "851bb0934c80d14fc5cef2f6d8707c4dce13716b2bf11ff1853210550b971659",
+  "phase1/data/evidence/external/sbds_raw/variant_details.ndjson": "0175b8afd6961b9302d1e7cd871546bca36cb0ad114fd31bf0ccc0031f20ecfd"
+ },
+ "coordinates": {
+  "source": "atlas mapping module, as for DDX3X: Mutalyzer transcript model anchored to GRCh38 by the Ensembl lookup of the MANE Select partner; not MaveDB postMapped",
+  "mane_select": {
+   "symbol": "SBDS",
+   "refseq_nuc": "NM_016038.4",
+   "ensembl_nuc": "ENST00000246868.7",
+   "grch38_chr_accession": "NC_000007.14",
+   "chr_name": "7",
+   "strand": "-"
+  },
+  "transcript_map": {
+   "assay_accession": "ENST00000246868.7",
+   "mutalyzer_model_accession": "NM_016038.4",
+   "mutalyzer_model": "https://mutalyzer.nl/api/reference_model/?reference_id=NM_016038.4",
+   "ensembl_anchor": "ENST00000246868",
+   "ensembl_lookup": "https://rest.ensembl.org/lookup/id/ENST00000246868?expand=1",
+   "n_exons": 5,
+   "cds_t_offsets": [
+    169,
+    922
+   ],
+   "exon_anchor_adjustments": []
+  },
+  "region": {
+   "chrom": "7",
+   "start": 66982680,
+   "end": 67000586,
+   "pad": 5000
+  },
+  "cache_files": {
+   "mane_summary": {
+    "path": "phase1/data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz",
+    "sha256": "d10ace2720681a3b2e0eefd9da4f551274a6b4141ac9bfd6a2565dfb6e9ad55c"
+   },
+   "mutalyzer_model": {
+    "path": "phase1/data/evidence/reference_cache/mutalyzer/reference_model_NM_016038.4.json",
+    "sha256": "2d8ec098540e82e7262a5511b05056c0e6f329c40d5fdf541ef9ee7d25cbf594"
+   },
+   "ensembl_lookup": {
+    "path": "phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000246868.json",
+    "sha256": "d7d83f53e40d32f6f3d25fdfbef02118a38e46ebf79ac588506df2b5bb43a4b9"
+   },
+   "region": {
+    "path": "phase1/data/evidence/reference_cache/ensembl/seq_GRCh38_chr7_66982680_67000586.fa",
+    "sha256": "a30fd3a3462923847f9f0c1beee337f8b412a3deaf48d405067a7a11a200149b"
+   }
+  },
+  "mavedb_postMapped": "0 intron-side SNVs carry a GRCh38 postMapped allele, 0 equal the mapped one; used as an extra check only",
+  "extra_checks": {
+   "author_columns": {
+    "n_compared": 507,
+    "n_agree": 507,
+    "differ": []
+   },
+   "intronic_postmapped": {
+    "n_compared": 0,
+    "n_agree": 0,
+    "differ": []
+   }
+  }
+ },
+ "score_ranges": "none: no scoreCalibrations entry has investigatorProvided true",
+ "label_source": "the score-table column functional_consequence, not ranges (E16b.0 rule 2b, fixed by the author on 2026-10-20 before any predictor result); MaveDB only, IGVF cross-checked only",
+ "class_name_map": {
+  "functionally_abnormal": {
+   "class": "abnormal",
+   "label": 1.0
+  },
+  "functionally_normal": {
+   "class": "normal",
+   "label": 0.0
+  },
+  "indeterminate": {
+   "class": "not_specified",
+   "label": null
+  }
+ },
+ "column_values": [
+  "functionally_abnormal",
+  "functionally_normal",
+  "indeterminate"
+ ],
+ "unmapped_values": [],
+ "range_class": "the deposit's own word in the column; 'unassigned' for an empty value or a value outside the class-name table",
+ "scope": {
+  "pvs1_pm12": "|offset| 1-2, kept and flagged",
+  "in_scope": "|offset| 3-50",
+  "out_of_scope_deep": "|offset| > 50, kept and flagged"
+ },
+ "n_score_rows": 3315,
+ "n_intronic_snv": 507,
+ "n_duplicates_dropped": 0,
+ "n_rows_written": 507,
+ "deepest_offset": 55,
+ "sha256": "dbee75889e97a69e6e3fee3b1bdb02173010e37b3efd8ab063e1a2a7f3d53a47",
+ "built_utc": "2026-10-20T10:57:12+00:00"
+}

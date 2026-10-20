@@ -21,10 +21,13 @@ to check every reference base independently of the Ensembl REST slice
 (scripts/stage_E16/check_reference.py and the tests).
 
 Run from the repository root, after fetch_mavedb.py:
-    .venv/bin/python scripts/stage_E16/fetch_reference.py
+    .venv/bin/python scripts/stage_E16/fetch_reference.py               # E16's four genes
+    .venv/bin/python scripts/stage_E16/fetch_reference.py --gene SBDS   # E16b
+A chromosome already fetched for another gene is reused, not downloaded again.
 """
 from __future__ import annotations
 
+import argparse
 import gzip
 import importlib.util
 import json
@@ -85,11 +88,14 @@ def chromosome(chrom: str, log: RunLog) -> dict:
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--gene", nargs="+", default=GENES)
+    genes = ap.parse_args().gene
     with RunLog(__file__) as log:
         log.note("atlas", rel(ATLAS))
-        mane = M.load_mane_records(GENES)
+        mane = M.load_mane_records(genes)
         done = {}
-        for gene in GENES:
+        for gene in genes:
             raw = EXT / f"{gene.lower()}_raw"
             man_path = raw / "manifest.json"
             log.input(man_path)

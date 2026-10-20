@@ -1,0 +1,6 @@
+gene,stratum,n_total,n_damaging,n_normal,n_uncertain,n_unassigned,damaging_rate,evaluable_min10
+SBDS,pm12,45,37,8,0,0,0.8222222222222222,False
+SBDS,s3_10,189,10,177,2,0,0.053475935828877004,True
+SBDS,s11_50,258,0,258,0,0,0.0,False
+SBDS,s3_50,447,10,435,2,0,0.02247191011235955,True
+SBDS,out_of_scope_deep,15,0,15,0,0,0.0,False
