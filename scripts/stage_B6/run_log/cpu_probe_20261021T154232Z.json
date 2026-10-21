@@ -1,0 +1,52 @@
+{
+ "script": "scripts/stage_B6/cpu_probe.py",
+ "argv": [
+  "scripts/stage_B6/cpu_probe.py",
+  "github-linux-pinned"
+ ],
+ "git_commit": "e12220cf2d4a49fd2c3d1ec42846b24e6e3842dc",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_B6/cpu_probe.py": "e007ffd45e5292b8d76a13b1aa5117f1df1f15d13efe0aa0ce8d5955e033334c",
+  "scripts/stage_B6/_runlog.py": "d310fddfe3c56e9d8dbe42f6dc762f6316733c599ad3f397e4caa849daad3680"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "scipy": "1.13.1",
+  "pandas": "2.3.3",
+  "matplotlib": "3.9.4",
+  "threadpoolctl": "3.6.0"
+ },
+ "start_utc": "2026-10-21T15:42:31+00:00",
+ "end_utc": "2026-10-21T15:42:32+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "container/cpu_probe/github-linux-pinned.json",
+   "bytes": 6488,
+   "sha256": "7349dbad6f4782adc042f86aadaaf0153181590ef08de9456e0f95228f1352c9"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "cpu": "AMD EPYC 7763 64-Core Processor",
+  "openblas": [
+   [
+    "libscipy_openblas",
+    "Nehalem"
+   ],
+   [
+    "libopenblas",
+    "Nehalem"
+   ]
+  ],
+  "numpy_dispatch_in_use": [
+   "SSSE3",
+   "SSE41",
+   "POPCNT",
+   "SSE42"
+  ]
+ }
+}

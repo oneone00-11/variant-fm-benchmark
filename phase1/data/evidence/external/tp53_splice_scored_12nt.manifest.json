@@ -202,9 +202,11 @@
       "scorer": "nt",
       "column": "nucleotide_transformer",
       "n_checked": 24,
-      "n_identical": 24,
-      "max_abs_diff": 0.0,
-      "differing": []
+      "n_identical": 23,
+      "max_abs_diff": 4.440892098500626e-16,
+      "differing": [
+        "17-7673696-C-A"
+      ]
     },
     {
       "scorer": "alphagenome",
@@ -619,7 +621,7 @@
     "phase1/data/evidence/external/tp53_12nt_spliceai_walker.parquet.provenance.json": "46853a6730d0eeb4d0c1d231af2cf0f6429254f72db789d67641264925e4e43a",
     "phase1/data/evidence/external/tp53_avi_12nt.parquet.provenance.json": "c32be4d7183b894d6215cd5fbc4fd837a35e938e2e046c595d201925e300f4a8"
   },
-  "sha256": "e12f28b5851529853a3294fe7fbc531486be864e78cb9ff37225aa3ec36cc043",
+  "sha256": "ca0ed6bff618c01c038d96f9c456f111f75c916993b5080cf0a64d37036e0544",
   "sha256_recipe": "rows sorted by variant_id, CSV serialisation (phase1_build_frozen_matrix_v2.canonical_sha256), the same content hash the v2 manifest carries",
-  "parquet_sha256": "5037f972bab8ba1ca2aebe2c1cad0e03546b4d65cdc7a7dabf2647d387066581"
+  "parquet_sha256": "b06dc44d13e8d4e2999d625e3d216c8908adac555c2a348120eaeff260210c89"
 }

@@ -1,0 +1,49 @@
+{
+ "script": "scripts/stage_B6/rebaseline_report.py",
+ "argv": [
+  "scripts/stage_B6/rebaseline_report.py",
+  "--probe",
+  "container/cpu_probe/mac-rosetta-pinned.json"
+ ],
+ "git_commit": "e12220cf2d4a49fd2c3d1ec42846b24e6e3842dc",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_B6/rebaseline_report.py": "4b1aba5e7d077b22d7b2a5362d6bb9590df14f1148ec0ef2fbbb8c154595fa38",
+  "scripts/stage_B6/_runlog.py": "d310fddfe3c56e9d8dbe42f6dc762f6316733c599ad3f397e4caa849daad3680"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "scipy": "1.13.1",
+  "pandas": "2.3.3",
+  "matplotlib": "3.9.4",
+  "threadpoolctl": "3.6.0"
+ },
+ "start_utc": "2026-10-21T16:46:08+00:00",
+ "end_utc": "2026-10-21T16:46:13+00:00",
+ "inputs": [
+  {
+   "path": "reproduce_report.txt",
+   "bytes": 35011,
+   "sha256": "692bea363104ef2c09adf5b5e3557a15db232009248444e4fe481ef91c02aae6"
+  },
+  {
+   "path": "container/cpu_probe/mac-rosetta-pinned.json",
+   "bytes": 5605,
+   "sha256": "fdfc35e1d85e3c0433151b9213a789538937dc5fbfd1f6b047c3e4c8250fa218"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "docs/rebaseline-report.md",
+   "bytes": 13357,
+   "sha256": "0f0293dccaf232b20cc2dc1d7da46f2e5e60a5bf0d348a852857268a5d15ce71"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "verdict": "NOT REPRODUCED: every file not marked identical",
+  "counts": "differs: 2; differs (figure): 13; differs (numerically equal): 21; identical: 429; identical (build time aside): 6"
+ }
+}

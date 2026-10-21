@@ -912,3 +912,38 @@ on every CPU, before the outputs are regenerated in it.
     (`NPY_DISABLE_CPU_FEATURES`: AVX and every target above it).
   - A probe on the Mac under these settings shows both in force. The runner is probed
     again once this commit is pushed.
+
+## After 3.0.1: every output rebaselined in the reference image (stage B6, 2026-10-22)
+
+Why: the reference image is the reference environment (the author's choice of
+2026-10-20), so the committed outputs are now the ones it writes. This commit holds no
+code, configuration or workflow file (`scripts/stage_E16d/check_switch_commit.py`).
+Every output it changes changes because the stages ran in the image rather than on the
+author's Mac.
+
+- The run: the image as built at 9b15c34 (`container/ENVIRONMENT.json`, image), loaded
+  from the build's `docker save` archive and checked against the build's record. It ran
+  the previous commit's code, with `container/run.sh`'s settings, on the Mac under amd64
+  emulation (`container/cpu_probe/mac-rosetta-pinned.json`). The inputs were fetched
+  online; every stage and `--verify` then ran with no network, in 40 minutes.
+- Against the previous commit, the comparator said NOT REPRODUCED, with "differs: 2;
+  differs (figure): 13; differs (numerically equal): 21; identical: 429; identical
+  (build time aside): 6" (`docs/rebaseline-report.md`):
+  - Every printed table is byte for byte the same.
+  - 21 files differ only in the last digits of their numbers; the largest relative
+    difference is 1.6e-13.
+  - The 13 figures that differ are PNGs whose pixels are identical: only the
+    compressed image data differs, as Pillow's zlib writes it on Linux. The 8 PDF
+    figures are byte for byte the same.
+  - Two files the stage's rules did not allow:
+    - The TP53 manifest's reproduction check counts 23 of 24 re-scored Nucleotide
+      Transformer values identical rather than 24 (one, 17-7673696-C-A, is 4.4e-16
+      apart), which the stage attributes to pandas' default CSV float parser on x86_64.
+    - The supplementary-table manifest records that manifest's hash.
+
+    On 2026-10-22 the author accepted both as the image writes them.
+- These outputs replace the committed ones, all but the six manifests that differed in
+  their build time alone, which keep theirs.
+- The runner's CPU, probed again under `run.sh`'s settings, now runs the same OpenBLAS
+  kernels (Nehalem) and the same numpy dispatch (up to SSE4.2) as the Mac's emulated
+  CPU (`container/cpu_probe/github-linux-pinned.json`).
