@@ -1,0 +1,73 @@
+{
+ "script": "scripts/stage_E16c/fetch_sources.py",
+ "argv": [
+  "scripts/stage_E16c/fetch_sources.py",
+  "--gene",
+  "BRCA1"
+ ],
+ "git_commit": "389457ee31918dfccb34be1a62fa69504b51b105",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E16c/fetch_sources.py": "77d8751c4acdc2c17e2f92adfe31c42490e1bd93bc4438b3e3d061eef8f62a8f",
+  "scripts/stage_E16c/_runlog.py": "fec28deff9a1c4ec5a168d5d3f8798f626d134dc09f16ccb30f337967cda47d9"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-20T13:51:06+00:00",
+ "end_utc": "2026-10-20T13:51:09+00:00",
+ "inputs": [
+  {
+   "path": "supplementary/Table_S1.tsv",
+   "bytes": 1023,
+   "sha256": "c1230d0cc94d54778dbb984fc68f6bd402aaf190156b9e0deffa1fb2196c6c9c"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/label_audit/brca1_raw/scoreset_meta_00000097-0-2.json",
+   "bytes": 76971,
+   "sha256": "f37f8a3cb8322c12b61b54319bae421c6e574109412eca9c6b9a86fef3db9933"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca1_raw/urn_mavedb_00000097-0-2.csv",
+   "bytes": 610024,
+   "sha256": "906dc152f28b4c8261e4e532a03c9c42f2e45e211aa3ada12e3c826c151580ec"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca1_raw/score_ranges_00000097-0-2.json",
+   "bytes": 9657,
+   "sha256": "3ddb28f9b21e205ef9ea07b6fc6f4dd3106646f9df9c1d1fc2507111755ef9c1"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca1_raw/experiment_meta.json",
+   "bytes": 4976,
+   "sha256": "cb1bf0239e0529db44f3ab3fd0eefa11a1d045e8d8d11d488bf0907df3d4b683"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca1_raw/manifest.json",
+   "bytes": 4427,
+   "sha256": "116d12c6357c97e3cac277cd61c23d6d1a2e2e1b90733f8f8edfdedbb78a1037"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "api_version": "2026.3.1",
+  "genes": [
+   {
+    "gene": "BRCA1",
+    "cited": "urn:mavedb:00000097-0-2",
+    "versions": [
+     "urn:mavedb:00000097-0-2"
+    ]
+   }
+  ],
+  "failures": []
+ }
+}

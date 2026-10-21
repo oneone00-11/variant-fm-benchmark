@@ -1,0 +1,45 @@
+{
+ "gene": "VHL",
+ "checked_utc": "2026-10-21T04:21:31+00:00",
+ "paper_rule": "phase1/data/evidence/label_audit/vhl_raw/paper_rule.json",
+ "paper_rule_sha256": "7f6c006c9e3cbe198ba47d84236fba63b65ed3b59cd91b75053c53b1f3b2066d",
+ "id_converter": {
+  "url": "https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/?ids=38969834&format=json",
+  "fetched_utc": "2026-10-21T04:21:08+00:00",
+  "pmid": 38969834,
+  "pmcid": "PMC11250436",
+  "doi": "10.1038/s41588-024-01800-z"
+ },
+ "document": {
+  "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11250436/fullTextXML",
+  "fetched_utc": "2026-10-21T04:21:31+00:00",
+  "bytes": 193922,
+  "sha256": "5448383bce60456c261f334fcf6ee5d4da2a5f309ffb7ac2fdbf4086c147d3e2"
+ },
+ "documents_tried": [
+  {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11250436/fullTextXML",
+   "http_status": 200,
+   "bytes": 193922,
+   "fetched_utc": "2026-10-21T04:21:31+00:00"
+  }
+ ],
+ "folding": "block elements read as spaces, inline markup dropped, entities resolved, Unicode NFKC, whitespace collapsed; the same on both sides",
+ "quotes": [
+  {
+   "where": "Methods, 'Defining function classes'",
+   "found": true,
+   "first_words": "We derived four function classes for variants scored"
+  },
+  {
+   "where": "Figure 4 legend",
+   "found": true,
+   "first_words": "Lines correspond to thresholds for distinguishing LOF1 (less"
+  },
+  {
+   "where": "Data availability",
+   "found": true,
+   "first_words": "Function scores are also available for visualization at"
+  }
+ ]
+}

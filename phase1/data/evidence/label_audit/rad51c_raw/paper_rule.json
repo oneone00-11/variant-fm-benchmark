@@ -1,0 +1,140 @@
+{
+ "gene": "RAD51C",
+ "source": {
+  "pmid": "39299233",
+  "pmcid": "PMC12147941",
+  "doi": "10.1016/j.cell.2024.08.039",
+  "citation_ids": "PMID 39299233; PMC12147941; doi:10.1016/j.cell.2024.08.039",
+  "copy_read": "NIH author manuscript NIHMS2073533 (the PMC copy)"
+ },
+ "status": "stated",
+ "quotes": [
+  {
+   "where": "Results, 'Functional classification of variant effect and analysis of depletion kinetics'",
+   "text": "We next used z-scores and FDR values to assign variants into distinct functional classifications. Variants which had an FDR≥0.01 were classified as ‘unchanged’. Variants with an FDR<0.01 and a negative z-score between D4 and D14 were classified as ‘depleted’, and those with an FDR<0.01 and positive z-score between D4 and D14 as ‘enriched’."
+  },
+  {
+   "where": "Results, 'Functional classification of variant effect and analysis of depletion kinetics'",
+   "text": "To capture potentially meaningful kinetics of variant change beyond unchanged, depleted, and enriched, the depleted classification was further refined into ‘slow depleted’ and ‘fast depleted’ classifications by comparing D4 vs D7 and D4 vs D14 z-scores. To do this we used a Gaussian Mixture Model (GMM), using an ‘ellipsoidal, equal volume and equal shape’ (EEV) approach, determined as appropriate through Bayesian information criterion (BIC) analysis, as previously reported<sup>9</sup>."
+  },
+  {
+   "where": "STAR Methods, 'Sequencing data analysis'",
+   "text": "Variants with a FDR<0.01 at D4 vs D14 and a negative z-score was classified as ‘depleted’, and p<0.01 and a positive z-score ‘enriched’. Unchanged variants have FDR≥0.01. Clustering was performed depleted variants. MClust<sup>49</sup> software was used to fit a Gaussian mixture model (EEV), with 2 clusters."
+  },
+  {
+   "where": "STAR Methods, 'Sequencing data analysis'",
+   "text": "Each variant LFC was converted to a z-score by dividing by the standard error value."
+  }
+ ],
+ "rules": [
+  {
+   "name": "Results: FDR and the sign of the D4-D14 z-score",
+   "where": "Results, 'Functional classification of variant effect and analysis of depletion kinetics'",
+   "inputs_note": "the D4 vs D14 z-score is the score table's 'score' column, equal on every row to processed_adj_lfc_D4_D14 / SE_bind_D4_D14 (the paper's definition: LFC divided by its standard error); its FDR is BH_FDR_D4_D14. Fast and slow depleted are separated by a fitted two-cluster model whose parameters the paper does not give, so the rule stops at depleted, which the archive's calibration places with fast and slow depleted (abnormal)",
+   "classes": [
+    {
+     "class": "depleted",
+     "canonical": "abnormal",
+     "conditions": [
+      {
+       "column": "BH_FDR_D4_D14",
+       "op": "<",
+       "value": 0.01
+      },
+      {
+       "column": "score",
+       "op": "<",
+       "value": 0
+      }
+     ]
+    },
+    {
+     "class": "enriched",
+     "canonical": "intermediate",
+     "conditions": [
+      {
+       "column": "BH_FDR_D4_D14",
+       "op": "<",
+       "value": 0.01
+      },
+      {
+       "column": "score",
+       "op": ">",
+       "value": 0
+      }
+     ]
+    },
+    {
+     "class": "unchanged",
+     "canonical": "normal",
+     "conditions": [
+      {
+       "column": "BH_FDR_D4_D14",
+       "op": ">=",
+       "value": 0.01
+      }
+     ]
+    }
+   ],
+   "default": {
+    "class": "unassigned (FDR<0.01 and a z-score of exactly 0)",
+    "canonical": "unassigned"
+   }
+  },
+  {
+   "name": "STAR Methods: as the Results, but p<0.01 for enriched",
+   "where": "STAR Methods, 'Sequencing data analysis'",
+   "inputs_note": "as the Results rule; the enriched condition reads the two-tailed p-value, two_tailed_p_D4_D14",
+   "classes": [
+    {
+     "class": "depleted",
+     "canonical": "abnormal",
+     "conditions": [
+      {
+       "column": "BH_FDR_D4_D14",
+       "op": "<",
+       "value": 0.01
+      },
+      {
+       "column": "score",
+       "op": "<",
+       "value": 0
+      }
+     ]
+    },
+    {
+     "class": "enriched",
+     "canonical": "intermediate",
+     "conditions": [
+      {
+       "column": "two_tailed_p_D4_D14",
+       "op": "<",
+       "value": 0.01
+      },
+      {
+       "column": "score",
+       "op": ">",
+       "value": 0
+      }
+     ]
+    },
+    {
+     "class": "unchanged",
+     "canonical": "normal",
+     "conditions": [
+      {
+       "column": "BH_FDR_D4_D14",
+       "op": ">=",
+       "value": 0.01
+      }
+     ]
+    }
+   ],
+   "default": {
+    "class": "unassigned (no condition holds)",
+    "canonical": "unassigned"
+   }
+  }
+ ],
+ "transcription_note": "Quotes copied verbatim from the paper's full text (PMC JATS XML) on 2026-10-21; <i>, <sub> and <sup> reproduce the source's inline markup; scripts/stage_E16c/check_paper_quotes.py checks every quote against the document as served. The rules below are the quoted sentences typed into machine form by hand; a test checks that every number they use appears in a quote. Canonical classes follow the functionalClassification the archive's investigator calibration gives the same class name."
+}

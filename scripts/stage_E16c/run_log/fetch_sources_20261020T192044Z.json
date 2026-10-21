@@ -1,0 +1,159 @@
+{
+ "script": "scripts/stage_E16c/fetch_sources.py",
+ "argv": [
+  "scripts/stage_E16c/fetch_sources.py",
+  "--gene",
+  "RAD51C",
+  "VHL",
+  "BAP1"
+ ],
+ "git_commit": "389457ee31918dfccb34be1a62fa69504b51b105",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E16c/fetch_sources.py": "038f28c89db4efd6f15b6048708cbc86231adbb0ebff047d526c178c54163a13",
+  "scripts/stage_E16c/_runlog.py": "fec28deff9a1c4ec5a168d5d3f8798f626d134dc09f16ccb30f337967cda47d9"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-20T19:20:26+00:00",
+ "end_utc": "2026-10-20T19:20:44+00:00",
+ "inputs": [
+  {
+   "path": "supplementary/Table_S1.tsv",
+   "bytes": 1023,
+   "sha256": "c1230d0cc94d54778dbb984fc68f6bd402aaf190156b9e0deffa1fb2196c6c9c"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/scoreset_meta_00000673-0-1.json",
+   "bytes": 51201,
+   "sha256": "88bb475bd64c9e90be8c1e75c043c281668d908d98ae7630220c52f7c1518477"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/urn_mavedb_00000673-0-1.csv",
+   "bytes": 3517021,
+   "sha256": "d9bea586b8cf64e20ca9b2c77595fc3c4f7c4483d17f75a43e6bca84d7937ea9"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/score_ranges_00000673-0-1.json",
+   "bytes": 8268,
+   "sha256": "ce22ccf9783ce20d5ae22635e60991af6643e0be4b543ddbbd6f062c835b83d4"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/calibration_variants_755b0203-eb68-48b0-a04d-da90e949e916.json",
+   "bytes": 9192494,
+   "sha256": "071aff64fc3a85dff1a26a73a5515f5bf8dc99175439b3be64ad3b4dee98b194"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/calibration_variants_d44db3f4-c70d-41b9-b45b-81ef2af90b88.json",
+   "bytes": 9192494,
+   "sha256": "ae24074c952c016434bc4179503b7b6a1916de9ecde6c79915d0935eaef4f9e2"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/experiment_meta.json",
+   "bytes": 6009,
+   "sha256": "697879bf8bf9b10cdf1760811382041e966e76ce379efe8076d411b0332d8489"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/manifest.json",
+   "bytes": 5021,
+   "sha256": "b5def2ef5057c6428fac6099bdc0619048c8ac0d6da680c15c7484fd53187997"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/scoreset_meta_00000675-a-1.json",
+   "bytes": 44913,
+   "sha256": "96fad6f966ae4b43c561781ddf032a5fa26a97bc1eb8e958888ff614155f65b3"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/urn_mavedb_00000675-a-1.csv",
+   "bytes": 254856,
+   "sha256": "ae18add4440db00e0c9e94f8924130436307ab7bc4b8bceec091a9a5e87f17b7"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/score_ranges_00000675-a-1.json",
+   "bytes": 2480,
+   "sha256": "4a18e3b1a2a95bc62e983cc34d8706ebe632dab2a2aa9b584c47d6cebba548f7"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/calibration_variants_53062180-5765-4185-8153-5248c62bed9e.json",
+   "bytes": 1431077,
+   "sha256": "f443e0920164731b3f6fc144a78680dee5918f37e79fd241184ecf0802aa35de"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/experiment_meta.json",
+   "bytes": 8085,
+   "sha256": "c340d31d0e047a12f410b2fa9edb00d2550ca128462915280eb8d44b04732047"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/manifest.json",
+   "bytes": 4583,
+   "sha256": "63d023b4a0fb8606e1ae6e250ef20dbb6f34051b6fb1d056915672c483d155b1"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/scoreset_meta_00000662-0-1.json",
+   "bytes": 53984,
+   "sha256": "c9ff79c3b9bf2d12c59300af6e2a2d03cc2bbbde51c5de3d10aeff8061bfad68"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/urn_mavedb_00000662-0-1.csv",
+   "bytes": 5336587,
+   "sha256": "c3db0a827c86ad73967258745dd5d5263227a0c1fff62d243de450408962d20e"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/score_ranges_00000662-0-1.json",
+   "bytes": 11715,
+   "sha256": "cc19804c672cefc84e3b0d5d39925a99316f5a7fb6b6cd8653e80c44f98e7572"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json",
+   "bytes": 17540025,
+   "sha256": "94e614adc28157bfd5b78cbcff11d5cdca609302207ff5d6d60b7c33adb24b16"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/experiment_meta.json",
+   "bytes": 5938,
+   "sha256": "1419fa8d1c57a9200e0ed0360371cea8914f46ab6c5c16d3fc5ed2c45919856f"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/manifest.json",
+   "bytes": 4817,
+   "sha256": "94a4306e3a3f3bcb944c55053ad6746f05a4e8225fd76dcfb588eb203dfab44a"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "api_version": "2026.3.1",
+  "genes": [
+   {
+    "gene": "RAD51C",
+    "cited": "urn:mavedb:00000673-0-1",
+    "versions": [
+     "urn:mavedb:00000673-0-1"
+    ]
+   },
+   {
+    "gene": "VHL",
+    "cited": "urn:mavedb:00000675-a-1",
+    "versions": [
+     "urn:mavedb:00000675-a-1"
+    ]
+   },
+   {
+    "gene": "BAP1",
+    "cited": "urn:mavedb:00000662-0-1",
+    "versions": [
+     "urn:mavedb:00000662-0-1"
+    ]
+   }
+  ],
+  "failures": []
+ }
+}

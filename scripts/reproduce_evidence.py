@@ -38,7 +38,11 @@ their own environments; each is pinned by sha256 in a manifest or provenance fil
     stages read them offline. --fetch-inputs also fetches the four Ensembl
     chromosomes those manifests name (SBDS shares XRCC2's), which only the
     reference-base checks read (`scripts/stage_E16/check_reference.py` and the
-    tests), never a stage.
+    tests), never a stage. The label source audit's sources (`scripts/stage_E16c/`),
+    pinned in each `label_audit/<gene>_raw/manifest.json`; three large calibration
+    memberships and the BRCA2 paper's Supplementary Table 3 are not committed but
+    kept in a gitignored cache that --fetch-inputs fills and checks, and the audit
+    reads the compact extracts committed in their place.
 
 Each is tracked with a checksum or a provenance record, except four DDX3X score
 lookups (CADD, GPN-MSA, phyloP, phastCons). The ClinVar VCF and the SpliceAI event
@@ -71,9 +75,10 @@ Stages
  22  evid_practical_metrics  sensitivity, specificity and ROC at the evidence thresholds (E15)
  23  evid_newgenes           four further external genes: records, coordinates, labels (E16)
  24  evid_newgenes SBDS      a fifth one, and the training genes' label versions (E16b)
- 25  evid_delta              every published quantity with a counterpart (E8)
+ 25  evid_label_audit        the seven label files against their cited sources (E16c)
+ 26  evid_delta              every published quantity with a counterpart (E8)
 
-Outputs land in `phase1/reports/evidence/`; stages 22 to 25 also write a page under
+Outputs land in `phase1/reports/evidence/`; stages 22 to 26 also write a page under
 `docs/`.
 
     bash reproduce.sh                                       # from a fresh clone: everything
@@ -138,6 +143,9 @@ ATLAS_ARCHIVE = {
 # this list equal to the stage's.
 NEWGENE_RAW = [PHASE1 / "data" / "evidence" / "external" / f"{g}_raw"
                for g in ("ctcf", "sfpq", "rad51d", "xrcc2", "sbds")]
+# The label source audit's raw folders (E16c) and the cache of its uncommitted sources.
+LABEL_AUDIT = PHASE1 / "data" / "evidence" / "label_audit"
+LABEL_AUDIT_CACHE = PHASE1 / "data" / "evidence" / "label_audit_cache"
 # What --verify compares: every file the stages write, as it stood before the run.
 # Fetched inputs are left out; manifests may differ only in their wall-clock fields,
 # the set evid_supp_tables also leaves out when it hashes them.
@@ -145,10 +153,12 @@ OUTPUT_ROOTS = [PHASE1 / "reports" / "evidence", PHASE1 / "data" / "evidence",
                 REPO / "docs" / "evidence-delta.md",
                 REPO / "docs" / "practical-metrics-summary.md",
                 REPO / "docs" / "newgenes-record-check.md",
-                REPO / "docs" / "sbds-record-check.md"]
+                REPO / "docs" / "sbds-record-check.md",
+                REPO / "docs" / "label-source-audit.md"]
 NOT_OUTPUTS = [PHASE1 / "data" / "evidence" / "clinvar",
                PHASE1 / "data" / "evidence" / "companion_atlas",
-               PHASE1 / "data" / "evidence" / "refs"]
+               PHASE1 / "data" / "evidence" / "refs",
+               PHASE1 / "data" / "evidence" / "label_audit_cache"]
 WALL_CLOCK_KEYS = {"built_utc", "scored_utc", "retrieved_utc", "run_at"}
 # Tracked files under the output folders that the stages only read; every other
 # tracked file there must be rewritten by a full run.
@@ -191,6 +201,7 @@ STAGES = [
     ("src.evid_newgenes",           "E16 new external genes: records, coordinates and labels", []),
     ("src.evid_newgenes",           "E16b new external gene SBDS; label-version check",
      ["--gene", "SBDS"]),
+    ("src.evid_label_audit",        "E16c label source audit (read-only)", []),
     ("src.evid_delta",             "E8  old/new quantity list -> docs/evidence-delta.md", []),
 ]
 
@@ -406,6 +417,44 @@ def fetch_reference_chromosomes(attempts: int = 3) -> None:
         finally:
             part.unlink(missing_ok=True)
         print(f"  sha256 matches the manifest: {ref['file_fa']}")
+
+
+def fetch_label_audit_cache(attempts: int = 5) -> None:
+    """The label audit's sources that are not committed (E16c; the author's decision of
+    2026-10-21): each file a label_audit manifest lists as cached is fetched where it is
+    missing or differs (a zip member is taken out of the zip served), and checked
+    against the sha256 the manifest records; then every committed compact extract is
+    checked, row for row, against the files it was made from. Any difference, or a
+    file that cannot be fetched, stops the run: after --fetch-inputs nothing may be
+    skipped."""
+    from src import evid_label_sources as LS
+    for man_path in sorted(LABEL_AUDIT.glob("*_raw/manifest.json")):
+        man = json.loads(man_path.read_text())
+        for e in [x for x in man["files"] if x.get("cached")]:
+            path = REPO / e["path"]
+            if path.exists() and _digest(path, "sha256") == e["sha256"]:
+                print(f"label audit source present, sha256 checked: {e['path']}")
+                continue
+            path.unlink(missing_ok=True)
+            print(f"downloading {e['source_url']}", flush=True)
+            if e.get("zip_member"):
+                zpath = path.with_name(path.name + ".zip")
+                _download(e["source_url"], zpath, attempts=attempts)
+                with zipfile.ZipFile(zpath) as z:
+                    path.write_bytes(z.read(e["zip_member"]))
+                zpath.unlink()
+            else:
+                _download(e["source_url"], path, attempts=attempts)
+            if _digest(path, "sha256") != e["sha256"]:
+                path.unlink()
+                sys.exit(f"{e['path']}: the file served differs from the sha256 in "
+                         f"{man_path.relative_to(REPO)}; removed")
+            print(f"  sha256 matches the manifest: {e['path']}")
+        differ, absent = LS.extract_differences(man, REPO)
+        if differ or absent:
+            sys.exit("label audit extracts do not match their sources: "
+                     + "; ".join(differ + [f"{a} (source missing)" for a in absent]))
+    print("label audit: every compact extract matches the files it was made from")
 
 
 # --------------------------------------------------------------------------
@@ -924,6 +973,17 @@ def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
                   for g in ("bard1", "palb2"))):
         for entry in json.loads(rec.read_text())["files"]:
             add(rec, REPO / entry["path"], entry["sha256"])
+    # E16c's label source audit: every source file as fetched (the cached ones when they
+    # are here), and the paper rules the quote check read
+    for rec in sorted((ev / "label_audit").glob("*_raw/manifest.json")):
+        for entry in json.loads(rec.read_text())["files"]:
+            if entry.get("cached") and not (REPO / entry["path"]).exists():
+                absent.append(f"{entry['path']} (the label audit's cache; --fetch-inputs)")
+                continue
+            add(rec, REPO / entry["path"], entry["sha256"])
+    for rec in sorted((ev / "label_audit").glob("*_raw/paper_quote_check.json")):
+        d = json.loads(rec.read_text())
+        add(rec, REPO / d["paper_rule"], d["paper_rule_sha256"])
 
     # the frozen matrices the set joins to, and the rescored columns of the second
     frozen = PHASE1 / "data" / "frozen"
@@ -1026,7 +1086,8 @@ def main() -> None:
                     help="download the ClinVar release and the atlas release archive "
                          "when they are missing, and check their checksums; also the "
                          "four chromosomes of the E16 and E16b genes' reference-base checks, "
-                         "whose failure does not stop the run")
+                         "whose failure does not stop the run, and the label audit's "
+                         "uncommitted sources, whose failure does")
     ap.add_argument("--check", action="store_true",
                     help="quick path, about five minutes, no data download: check every "
                          "checksum the manifests and provenance records carry, then run "
@@ -1045,6 +1106,7 @@ def main() -> None:
     if args.fetch_inputs:
         fetch_clinvar()
         fetch_reference_chromosomes()
+        fetch_label_audit_cache()
     atlas = choose_atlas(release_only=args.verify, fetch=args.fetch_inputs)
     os.environ["EVID_ATLAS_REPO"] = str(atlas)    # every stage reads this one atlas
     version = atlas_version(atlas)

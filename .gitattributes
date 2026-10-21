@@ -18,3 +18,5 @@ phase1/data/evidence/external/*_raw/** -text
 # copy of the SBDS scores (E16b); a * above does not reach below one folder.
 phase1/data/evidence/external/label_versions/*_raw/** -text
 phase1/data/evidence/external/igvf_sbds/** -text
+# And for the label source audit's sources (E16c): MaveDB's score tables are CRLF too.
+phase1/data/evidence/label_audit/*_raw/** -text

@@ -1,0 +1,45 @@
+{
+ "gene": "BRCA2",
+ "checked_utc": "2026-10-21T04:20:58+00:00",
+ "paper_rule": "phase1/data/evidence/label_audit/brca2_raw/paper_rule.json",
+ "paper_rule_sha256": "a08bc3e0652ae98e7c7028a3caca4965222980dcd5d0135e6351f65e92f1545a",
+ "id_converter": {
+  "url": "https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/?ids=39779857&format=json",
+  "fetched_utc": "2026-10-21T04:20:56+00:00",
+  "pmid": 39779857,
+  "pmcid": "PMC11821525",
+  "doi": "10.1038/s41586-024-08388-8"
+ },
+ "document": {
+  "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/fullTextXML",
+  "fetched_utc": "2026-10-21T04:20:58+00:00",
+  "bytes": 157902,
+  "sha256": "c9c11fd2533f2af7857489e8b7d1bdb1f20c700a7ca2da2fc1bf01a2c08a070f"
+ },
+ "documents_tried": [
+  {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/fullTextXML",
+   "http_status": 200,
+   "bytes": 157902,
+   "fetched_utc": "2026-10-21T04:20:58+00:00"
+  }
+ ],
+ "folding": "block elements read as spaces, inline markup dropped, entities resolved, Unicode NFKC, whitespace collapsed; the same on both sides",
+ "quotes": [
+  {
+   "where": "Results, 'Functional analysis of variant effects'",
+   "found": true,
+   "first_words": "A VarCall model<sup>8</sup>, a class of Bayesian hierarchical"
+  },
+  {
+   "where": "Methods, 'VarCall model for assessment of evidence of pathogenicity'",
+   "found": true,
+   "first_words": "A prior probability of pathogenicity of 0.2 for"
+  },
+  {
+   "where": "Results, paragraph beginning 'The combined benign'",
+   "found": true,
+   "first_words": "The combined benign (B<sub>Strong</sub>, B<sub>Moderate</sub> and B<sub>Supporting</sub>) and"
+  }
+ ]
+}

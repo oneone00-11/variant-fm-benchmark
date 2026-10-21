@@ -1,0 +1,92 @@
+{
+ "extracted_from": "phase1/data/evidence/label_audit/vhl_raw/scoreset_meta_00000675-a-1.json",
+ "key": "scoreCalibrations",
+ "selection": "investigatorProvided is true",
+ "all_calibration_titles": [
+  "ExCALIBR calibration (superseded 2026-10-20)",
+  "ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)",
+  "Investigator-provided functional classes",
+  "IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)",
+  "IGVF Coding Variant Focus Group -- Controls: Missense Variants Only (superseded 2026-10-20)"
+ ],
+ "legacy_scoreRanges_key_present": false,
+ "investigator_provided": [
+  {
+   "title": "Investigator-provided functional classes",
+   "researchUseOnly": false,
+   "baselineScore": 1.0,
+   "functionalClassifications": [
+    {
+     "label": "Neutral",
+     "functionalClassification": "normal",
+     "class": "Neutral",
+     "id": 3088,
+     "recordType": "FunctionalClassification",
+     "variantCount": 1700
+    },
+    {
+     "label": "Intermediate",
+     "functionalClassification": "not_specified",
+     "class": "Intermediate",
+     "id": 3089,
+     "recordType": "FunctionalClassification",
+     "variantCount": 173
+    },
+    {
+     "label": "LOF1",
+     "functionalClassification": "abnormal",
+     "class": "LOF1",
+     "id": 3090,
+     "recordType": "FunctionalClassification",
+     "variantCount": 225
+    },
+    {
+     "label": "LOF2",
+     "functionalClassification": "abnormal",
+     "class": "LOF2",
+     "id": 3091,
+     "recordType": "FunctionalClassification",
+     "variantCount": 102
+    }
+   ],
+   "thresholdSources": [],
+   "evidenceSources": [],
+   "methodSources": [],
+   "recordType": "ScoreCalibration",
+   "id": 862,
+   "urn": "urn:mavedb:calibration-53062180-5765-4185-8153-5248c62bed9e",
+   "scoreSetId": 2612,
+   "investigatorProvided": true,
+   "primary": false,
+   "private": false,
+   "controlsCount": 0,
+   "disease": {
+    "type": "MappableConcept",
+    "name": "disease or disorder",
+    "conceptType": "Disease",
+    "primaryCoding": {
+     "system": "https://purl.obolibrary.org/obo/mondo.owl",
+     "code": "MONDO:0000001",
+     "iris": [
+      "https://purl.obolibrary.org/obo/MONDO_0000001"
+     ]
+    }
+   },
+   "createdBy": {
+    "orcidId": "0000-0002-7767-8608",
+    "firstName": "Gregory",
+    "lastName": "Findlay",
+    "recordType": "User"
+   },
+   "modifiedBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "creationDate": "2025-11-14",
+   "modificationDate": "2026-02-13",
+   "controls": []
+  }
+ ]
+}

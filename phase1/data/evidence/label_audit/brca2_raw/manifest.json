@@ -1,0 +1,130 @@
+{
+ "gene": "BRCA2",
+ "label_file": "phase1/data/assay_labels/brca2_huang2025.tsv",
+ "cited": {
+  "urn": "urn:mavedb:00001225-a-1",
+  "where": "supplementary/Table_S1.tsv",
+  "license_in_table_s1": "CC0"
+ },
+ "experiment_urn": "urn:mavedb:00001225-a",
+ "api": {
+  "base": "https://api.mavedb.org/api/v1",
+  "version": "2026.3.1"
+ },
+ "versions": [
+  {
+   "urn": "urn:mavedb:00001225-a-1",
+   "role": "cited",
+   "created": "2025-05-07",
+   "modified": "2025-08-28",
+   "published": "2025-05-08",
+   "supersedes": null,
+   "superseded_by": null,
+   "num_variants_metadata": 6959,
+   "n_rows_score_table": 6959,
+   "license": {
+    "shortName": "CC0",
+    "version": "1.0",
+    "link": "https://creativecommons.org/publicdomain/zero/1.0/"
+   },
+   "private": false,
+   "score_calibrations": []
+  }
+ ],
+ "versions_not_served": [],
+ "cache_dir": "phase1/data/evidence/label_audit_cache/brca2",
+ "files": [
+  {
+   "path": "phase1/data/evidence/label_audit/brca2_raw/scoreset_meta_00001225-a-1.json",
+   "bytes": 13764,
+   "sha256": "bb809126744b526c1a0f2e23e44b9b539de01a86deb2968c0eea0c08736fd80e",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001225-a-1",
+   "fetched_utc": "2026-10-21T04:26:40+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca2_raw/urn_mavedb_00001225-a-1.csv",
+   "bytes": 573836,
+   "sha256": "b799cd0cecb74d391e2e23c07ccf68cbf2512f168e76c2586693cea1a04938b2",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001225-a-1/scores",
+   "fetched_utc": "2026-10-21T04:26:40+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca2_raw/score_ranges_00001225-a-1.json",
+   "bytes": 278,
+   "sha256": "638fa06348a075f9b436a6304e7145e34846b8f1b24b2e2c84dcda7d43442880",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001225-a-1",
+   "derived_from": "phase1/data/evidence/label_audit/brca2_raw/scoreset_meta_00001225-a-1.json",
+   "note": "extract of scoreCalibrations, entries unchanged"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca2_raw/experiment_meta.json",
+   "bytes": 6085,
+   "sha256": "c79940e67a778d3f67231db522dd92c7a55f05e068f08a71feace7dafec2da88",
+   "source_url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00001225-a",
+   "fetched_utc": "2026-10-21T04:26:41+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+   "bytes": 4831484,
+   "sha256": "020f3d7acc04357410c0217447bbfcbc5bd3562e7aead39ae5726d16e8da61c0",
+   "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+   "zip_member": "41586_2024_8388_MOESM3_ESM.xlsx",
+   "zip_bytes": 10004566,
+   "fetched_utc": "2026-10-21T04:27:05+00:00",
+   "http_status": 200,
+   "cached": true,
+   "pmcid": "PMC11821525",
+   "sheet": "Table S3",
+   "title_cell": "Table S3. MAVE functional scores and functional categories of 6959 BRCA2 DBD SNVs",
+   "header_row": {
+    "A": "Exon",
+    "B": "Chrom",
+    "C": "GRCh37Location",
+    "D": "GRCh37annotation",
+    "E": "GRCh38Location",
+    "F": "GRCh38 Annotation",
+    "G": "EventType",
+    "H": "REF",
+    "I": "ALT",
+    "J": "Coding sequence change (c.)",
+    "K": "Amino acid change (p.)",
+    "L": "Subdomain",
+    "M": "DSS1 interacting residues",
+    "N": "Single-stranded DNA (ssDNA) contacting residues",
+    "O": "Average read count at D0*",
+    "P": "Average read count at D14#",
+    "Q": "Model based functional score",
+    "R": "Model based functional score 95% confidence interval lower boundary",
+    "S": "Model based functional score 95% confidence interval upper boundary",
+    "T": "Posterior probability of pathogenicity",
+    "U": "Bayes factor ",
+    "V": "Functional category "
+   }
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca2_raw/supplementary_table3_categories.tsv",
+   "bytes": 274616,
+   "sha256": "419787f007b9531f84bd613704d6a996fc82f67d0f14656c9da0ac71cebfb6be",
+   "compact_of": [
+    "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx"
+   ],
+   "n_rows": 6959,
+   "supplementary": {
+    "pmcid": "PMC11821525",
+    "member": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "sheet": "Table S3",
+    "header_row": 2,
+    "hgvs_column": "Coding sequence change (c.)",
+    "class_column": "Functional category",
+    "score_column": "Model based functional score"
+   },
+   "note": "compact extract: every row of the sheet with a functional category"
+  }
+ ]
+}

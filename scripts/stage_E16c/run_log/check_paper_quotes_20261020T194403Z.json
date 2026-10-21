@@ -1,0 +1,107 @@
+{
+ "script": "scripts/stage_E16c/check_paper_quotes.py",
+ "argv": [
+  "scripts/stage_E16c/check_paper_quotes.py"
+ ],
+ "git_commit": "389457ee31918dfccb34be1a62fa69504b51b105",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E16c/check_paper_quotes.py": "8ccc26746ca357eddbb2d2bd8e68f965a0bb5078cbe88466aeb547753a9b2823",
+  "scripts/stage_E16c/_runlog.py": "fec28deff9a1c4ec5a168d5d3f8798f626d134dc09f16ccb30f337967cda47d9"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-20T19:43:24+00:00",
+ "end_utc": "2026-10-20T19:44:03+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/paper_rule.json",
+   "bytes": 5216,
+   "sha256": "4566de28785bcaa00995464e285295b34fa6280fa163b7e2f0d9c12516d2b079"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca1_raw/paper_rule.json",
+   "bytes": 4119,
+   "sha256": "7a93d68b4020c24633a616ad5c70ab42cf2629561988f91a7caaa7ddfb4cce7b"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca2_raw/paper_rule.json",
+   "bytes": 2851,
+   "sha256": "a28d3ace83f94aa070d853962a766e45c9c0eb1b32989ce32a4951daca66467a"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/paper_rule.json",
+   "bytes": 5086,
+   "sha256": "3355e0bcd7fad30dc264dc364e29d3f06ac6e0250a2de0e26344ed9a52d45932"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/paper_rule.json",
+   "bytes": 3053,
+   "sha256": "7f6c006c9e3cbe198ba47d84236fba63b65ed3b59cd91b75053c53b1f3b2066d"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/paper_quote_check.json",
+   "bytes": 2143,
+   "sha256": "8f9dc1f120d89b1cb63ad3e582c66035317c5a2ee4e0b408ecc720d322e7176b"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca1_raw/paper_quote_check.json",
+   "bytes": 1783,
+   "sha256": "3847a68e2bc3bf41592db9bff38c74410a0d4408ca5a9c03d09d32d443634571"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca2_raw/paper_quote_check.json",
+   "bytes": 1662,
+   "sha256": "616816aa93d7b5ccc89addcdb212b6fbfbdac2cbf41b4c0bfa91ef7c35c9fce0"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/paper_quote_check.json",
+   "bytes": 1987,
+   "sha256": "2765f3a9e2733cc938a8d786197c86c7d8be689bf0f61efca4339926979d1291"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/paper_quote_check.json",
+   "bytes": 1525,
+   "sha256": "29aa8c468e20cd6ed87dd80e12714912a0c38a48ad3632789ad5b8618ca47d80"
+  }
+ ],
+ "exception": "Traceback (most recent call last):\n  File \"/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E16c/check_paper_quotes.py\", line 123, in main\n    raise SystemExit(\"a quote was not found in its paper; fix paper_rule.json\")\nSystemExit: a quote was not found in its paper; fix paper_rule.json\n",
+ "notes": {
+  "papers": [
+   {
+    "gene": "BAP1",
+    "found": 6,
+    "of": 6
+   },
+   {
+    "gene": "BRCA1",
+    "found": 2,
+    "of": 3
+   },
+   {
+    "gene": "BRCA2",
+    "found": 3,
+    "of": 3
+   },
+   {
+    "gene": "RAD51C",
+    "found": 3,
+    "of": 4
+   },
+   {
+    "gene": "VHL",
+    "found": 3,
+    "of": 3
+   }
+  ]
+ }
+}

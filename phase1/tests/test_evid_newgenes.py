@@ -822,7 +822,7 @@ def test_the_entry_point_runs_e16b_right_after_e16_and_before_the_delta():
     rows = [(m, a) for m, _, a in E.STAGES]
     i = rows.index(("src.evid_newgenes", []))
     assert rows[i + 1] == ("src.evid_newgenes", ["--gene", "SBDS"])
-    assert rows[i + 2][0] == "src.evid_delta"
+    assert [m for m, _ in rows].index("src.evid_delta") > i + 1    # E16c between
     assert REPO / "docs" / "sbds-record-check.md" in E.OUTPUT_ROOTS
 
 

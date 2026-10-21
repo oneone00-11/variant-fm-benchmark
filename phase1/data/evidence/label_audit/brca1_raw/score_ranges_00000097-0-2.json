@@ -1,0 +1,237 @@
+{
+ "extracted_from": "phase1/data/evidence/label_audit/brca1_raw/scoreset_meta_00000097-0-2.json",
+ "key": "scoreCalibrations",
+ "selection": "investigatorProvided is true",
+ "all_calibration_titles": [
+  "Investigator-provided functional classes",
+  "IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)",
+  "IGVF Coding Variant Focus Group -- Controls: Missense Variants Only (superseded 2026-10-20)",
+  "ExCALIBR calibration (superseded 2026-10-20)",
+  "ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)",
+  "Fayer calibration"
+ ],
+ "legacy_scoreRanges_key_present": false,
+ "investigator_provided": [
+  {
+   "title": "Investigator-provided functional classes",
+   "researchUseOnly": false,
+   "baselineScore": 0.0,
+   "baselineScoreDescription": "median synonymous value of the 95% of variants around the mean, normalized to 0",
+   "functionalClassifications": [
+    {
+     "label": "Functional",
+     "functionalClassification": "normal",
+     "range": [
+      -0.748,
+      null
+     ],
+     "inclusiveLowerBound": true,
+     "inclusiveUpperBound": false,
+     "id": 221,
+     "recordType": "FunctionalClassification",
+     "variantCount": 2821
+    },
+    {
+     "label": "Intermediate",
+     "functionalClassification": "not_specified",
+     "range": [
+      -1.328,
+      -0.748
+     ],
+     "inclusiveLowerBound": false,
+     "inclusiveUpperBound": false,
+     "id": 222,
+     "recordType": "FunctionalClassification",
+     "variantCount": 249
+    },
+    {
+     "label": "Non-functional",
+     "functionalClassification": "abnormal",
+     "range": [
+      null,
+      -1.328
+     ],
+     "inclusiveLowerBound": false,
+     "inclusiveUpperBound": true,
+     "id": 223,
+     "recordType": "FunctionalClassification",
+     "variantCount": 823
+    }
+   ],
+   "thresholdSources": [
+    {
+     "identifier": "30209399",
+     "dbName": "PubMed",
+     "recordType": "PublicationIdentifier",
+     "title": "Accurate classification of BRCA1 variants with saturation genome editing.",
+     "authors": [
+      {
+       "name": "Findlay, Gregory M",
+       "primary": true
+      },
+      {
+       "name": "Daza, Riza M",
+       "primary": false
+      },
+      {
+       "name": "Martin, Beth",
+       "primary": false
+      },
+      {
+       "name": "Zhang, Melissa D",
+       "primary": false
+      },
+      {
+       "name": "Leith, Anh P",
+       "primary": false
+      },
+      {
+       "name": "Gasperini, Molly",
+       "primary": false
+      },
+      {
+       "name": "Janizek, Joseph D",
+       "primary": false
+      },
+      {
+       "name": "Huang, Xingfan",
+       "primary": false
+      },
+      {
+       "name": "Starita, Lea M",
+       "primary": false
+      },
+      {
+       "name": "Shendure, Jay",
+       "primary": false
+      }
+     ],
+     "abstract": "Variants of uncertain significance fundamentally limit the clinical utility of genetic information. The challenge they pose is epitomized by BRCA1, a tumour suppressor gene in which germline loss-of-function variants predispose women to breast and ovarian cancer. Although BRCA1 has been sequenced in millions of women, the risk associated with most newly observed variants cannot be definitively assigned. Here we use saturation genome editing to assay 96.5% of all possible single-nucleotide variants (SNVs) in 13 exons that encode functionally critical domains of BRCA1. Functional effects for nearly 4,000 SNVs are bimodally distributed and almost perfectly concordant with established assessments of pathogenicity. Over 400 non-functional missense SNVs are identified, as well as around 300 SNVs that disrupt expression. We predict that these results will be immediately useful for the clinical interpretation of BRCA1 variants, and that this approach can be extended to overcome the challenge of variants of uncertain significance in additional clinically actionable genes.",
+     "doi": "10.1038/s41586-018-0461-z",
+     "publicationYear": 2018,
+     "publicationJournal": "Nature",
+     "url": "http://www.ncbi.nlm.nih.gov/pubmed/30209399",
+     "referenceHtml": "Findlay GM, <i>et al</i>. Accurate classification of BRCA1 variants with saturation genome editing. Accurate classification of BRCA1 variants with saturation genome editing. 2018; 562:217-222. doi: 10.1038/s41586-018-0461-z",
+     "id": 75
+    }
+   ],
+   "evidenceSources": [],
+   "methodSources": [
+    {
+     "identifier": "31892348",
+     "dbName": "PubMed",
+     "recordType": "PublicationIdentifier",
+     "title": "Recommendations for application of the functional evidence PS3/BS3 criterion using the ACMG/AMP sequence variant interpretation framework.",
+     "authors": [
+      {
+       "name": "Brnich SE",
+       "primary": true
+      },
+      {
+       "name": "Abou Tayoun AN",
+       "primary": false
+      },
+      {
+       "name": "Couch FJ",
+       "primary": false
+      },
+      {
+       "name": "Cutting GR",
+       "primary": false
+      },
+      {
+       "name": "Greenblatt MS",
+       "primary": false
+      },
+      {
+       "name": "Heinen CD",
+       "primary": false
+      },
+      {
+       "name": "Kanavy DM",
+       "primary": false
+      },
+      {
+       "name": "Luo X",
+       "primary": false
+      },
+      {
+       "name": "McNulty SM",
+       "primary": false
+      },
+      {
+       "name": "Starita LM",
+       "primary": false
+      },
+      {
+       "name": "Tavtigian SV",
+       "primary": false
+      },
+      {
+       "name": "Wright MW",
+       "primary": false
+      },
+      {
+       "name": "Harrison SM",
+       "primary": false
+      },
+      {
+       "name": "Biesecker LG",
+       "primary": false
+      },
+      {
+       "name": "Berg JS",
+       "primary": false
+      },
+      {
+       "name": "Clinical Genome Resource Sequence Variant Interpretation Working Group",
+       "primary": false
+      }
+     ],
+     "abstract": "The American College of Medical Genetics and Genomics (ACMG)/Association for Molecular Pathology (AMP) clinical variant interpretation guidelines established criteria for different types of evidence. This includes the strong evidence codes PS3 and BS3 for \"well-established\" functional assays demonstrating a variant has abnormal or normal gene/protein function, respectively. However, they did not provide detailed guidance on how functional evidence should be evaluated, and differences in the application of the PS3/BS3 codes are a contributor to variant interpretation discordance between laboratories. This recommendation seeks to provide a more structured approach to the assessment of functional assays for variant interpretation and guidance on the use of various levels of strength based on assay validation. The Clinical Genome Resource (ClinGen) Sequence Variant Interpretation (SVI) Working Group used curated functional evidence from ClinGen Variant Curation Expert Panel-developed rule specifications and expert opinions to refine the PS3/BS3 criteria over multiple in-person and virtual meetings. We estimated the odds of pathogenicity for assays using various numbers of variant controls to determine the minimum controls required to reach moderate level evidence. Feedback from the ClinGen Steering Committee and outside experts were incorporated into the recommendations at multiple stages of development. The SVI Working Group developed recommendations for evaluators regarding the assessment of the clinical validity of functional data and a four-step provisional framework to determine the appropriate strength of evidence that can be applied in clinical variant interpretation. These steps are as follows: (1) define the disease mechanism, (2) evaluate the applicability of general classes of assays used in the field, (3) evaluate the validity of specific instances of assays, and (4) apply evidence to individual variant interpretation. We found that a minimum of 11 total pathogenic and benign variant controls are required to reach moderate-level evidence in the absence of rigorous statistical analysis. The recommendations and approach to functional evidence evaluation described here should help clarify the clinical variant interpretation process for functional assays. Further, we hope that these recommendations will help develop productive partnerships with basic scientists who have developed functional assays that are useful for interrogating the function of a variety of genes.",
+     "doi": "10.1186/s13073-019-0690-2",
+     "publicationYear": 2019,
+     "publicationJournal": "Genome Med",
+     "url": "http://www.ncbi.nlm.nih.gov/pubmed/31892348",
+     "referenceHtml": "Brnich SE, <i>et al</i>. Recommendations for application of the functional evidence PS3/BS3 criterion using the ACMG/AMP sequence variant interpretation framework. Genome Med. 2019; 12:3. 10.1186/s13073-019-0690-2",
+     "id": 150
+    }
+   ],
+   "recordType": "ScoreCalibration",
+   "id": 691,
+   "urn": "urn:mavedb:calibration-81193a37-6dc8-4eb4-897d-27e72ffa7426",
+   "scoreSetId": 4295,
+   "investigatorProvided": true,
+   "primary": false,
+   "private": false,
+   "controlsCount": 0,
+   "disease": {
+    "type": "MappableConcept",
+    "name": "disease or disorder",
+    "conceptType": "Disease",
+    "primaryCoding": {
+     "system": "https://purl.obolibrary.org/obo/mondo.owl",
+     "code": "MONDO:0000001",
+     "iris": [
+      "https://purl.obolibrary.org/obo/MONDO_0000001"
+     ]
+    }
+   },
+   "createdBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "modifiedBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "creationDate": "2025-11-14",
+   "modificationDate": "2025-11-14",
+   "controls": []
+  }
+ ]
+}

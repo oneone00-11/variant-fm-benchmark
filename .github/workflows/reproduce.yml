@@ -21,6 +21,7 @@ on:
       - "docs/practical-metrics-summary.md"
       - "docs/newgenes-record-check.md"
       - "docs/sbds-record-check.md"
+      - "docs/label-source-audit.md"
       - "docs/column-provenance.md"
   workflow_dispatch:
 

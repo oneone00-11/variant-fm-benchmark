@@ -1,0 +1,51 @@
+{
+ "gene": "BRCA2",
+ "source": {
+  "pmid": "39779857",
+  "pmcid": "PMC11821525",
+  "doi": "10.1038/s41586-024-08388-8",
+  "citation_ids": "PMID 39779857; PMC11821525; doi:10.1038/s41586-024-08388-8",
+  "copy_read": "publisher version (the PMC copy)"
+ },
+ "status": "not_stated",
+ "not_applicable_because": "the main text, Methods and legends give no cut-off and never define the classes abnormal, intermediate and normal; the paper's own seven evidence categories are cut on the VarCall Bayes factor or posterior probability, which the cited score table does not carry",
+ "quotes": [
+  {
+   "where": "Results, 'Functional analysis of variant effects'",
+   "text": "A VarCall model<sup>8</sup>, a class of Bayesian hierarchical model that embeds a Gaussian two-component mixture model, was applied to the position-adjusted LFC values of D14 and D0 ratios. Each variant was assigned an indicator of pathogenicity status: deterministically if known and probabilistically if unknown. In detail, nonsense variants were assumed to be pathogenic, whereas silent variants, except for variants with known or predicted splice effects, were assumed to be benign."
+  },
+  {
+   "where": "Methods, 'VarCall model for assessment of evidence of pathogenicity'",
+   "text": "A prior probability of pathogenicity of 0.2 for variants in the DNA-binding region was used based on a predicted frequency of 0.23 for pathogenic variants in this region by AlphaMissense. Using the MCMC output, the Bayes factor in favour of pathogenicity for each variant was computed. The thresholds for the Bayes factor based on strength of evidence of pathogenicity or benign level (P<sub>Strong</sub>, P<sub>Moderate</sub> or P<sub>Supporting</sub>, VUS, B<sub>Strong</sub>, B<sub>Moderate</sub> or B<sub>Supporting</sub>) were derived from the Bayesian interpretation of the ACMG–AMP guidelines<sup>23</sup>. Full details of the analysis are available in the Supplementary Methods."
+  },
+  {
+   "where": "Results, paragraph beginning 'The combined benign'",
+   "text": "The combined benign (B<sub>Strong</sub>, B<sub>Moderate</sub> and B<sub>Supporting</sub>) and combined pathogenic (P<sub>Strong</sub>, P<sub>Moderate</sub> and P<sub>Supporting</sub>) categories accounted for 81.6% and 16.6% of variants, respectively, with 1.8% remaining as VUS."
+  }
+ ],
+ "rules": [],
+ "transcription_note": "Quotes copied verbatim from the paper's full text (PMC JATS XML) on 2026-10-21; <i>, <sub> and <sup> reproduce the source's inline markup; scripts/stage_E16c/check_paper_quotes.py checks every quote against the document as served. The rules below are the quoted sentences typed into machine form by hand; a test checks that every number they use appears in a quote. Canonical classes follow the functionalClassification the archive's investigator calibration gives the same class name.",
+ "supplementary_rule": {
+  "rule": "R6",
+  "name": "Supplementary Table 3 'Functional category', grouped as the Results group it",
+  "decided": "the author made this table BRCA2's label source on 2026-10-21 (E16d)",
+  "table": {
+   "pmcid": "PMC11821525",
+   "file": "41586_2024_8388_MOESM3_ESM.xlsx",
+   "sheet": "Table S3",
+   "hgvs_column": "Coding sequence change (c.)",
+   "class_column": "Functional category"
+  },
+  "groups": {
+   "P strong": "abnormal",
+   "P moderate": "abnormal",
+   "P supporting": "abnormal",
+   "VUS": "intermediate",
+   "B supporting": "normal",
+   "B moderate": "normal",
+   "B strong": "normal"
+  },
+  "quote_where": "Results, paragraph beginning 'The combined benign'",
+  "wording_note": "the table writes the seven categories 'P strong', 'B moderate' and so on; the quote writes them P<sub>Strong</sub>, B<sub>Moderate</sub>: the same categories, grouped there as combined pathogenic, combined benign and VUS"
+ }
+}

@@ -10,6 +10,9 @@
 # E16b (2026-10-20) added SBDS's deposit as fetched, its transcript model, sequence
 # slice and reference-base check; the IGVF copy of the SBDS scores; and the archived
 # versions of the BARD1 and PALB2 score sets.
+# E16c (2026-10-21) added the label source audit's committed sources: the cited score
+# sets and their chains, the compact extracts of the sources kept out of git, and the
+# paper rules with their quote checks.
 phase1/data/evidence/avi.parquet
 phase1/data/evidence/avi.parquet.provenance.json
 phase1/data/evidence/avi_scorers_20260920.json
@@ -166,6 +169,51 @@ phase1/data/evidence/inframe_events_pangolin.parquet
 phase1/data/evidence/inframe_events_pangolin.parquet.provenance.json
 phase1/data/evidence/inframe_subset.parquet
 phase1/data/evidence/inframe_subset_pangolin.parquet
+phase1/data/evidence/label_audit/bap1_raw/calibration_classes_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.tsv
+phase1/data/evidence/label_audit/bap1_raw/experiment_meta.json
+phase1/data/evidence/label_audit/bap1_raw/manifest.json
+phase1/data/evidence/label_audit/bap1_raw/paper_quote_check.json
+phase1/data/evidence/label_audit/bap1_raw/paper_rule.json
+phase1/data/evidence/label_audit/bap1_raw/score_ranges_00000662-0-1.json
+phase1/data/evidence/label_audit/bap1_raw/scoreset_meta_00000662-0-1.json
+phase1/data/evidence/label_audit/bap1_raw/urn_mavedb_00000662-0-1.csv
+phase1/data/evidence/label_audit/bard1_raw/experiment_meta.json
+phase1/data/evidence/label_audit/bard1_raw/manifest.json
+phase1/data/evidence/label_audit/brca1_raw/experiment_meta.json
+phase1/data/evidence/label_audit/brca1_raw/manifest.json
+phase1/data/evidence/label_audit/brca1_raw/paper_quote_check.json
+phase1/data/evidence/label_audit/brca1_raw/paper_rule.json
+phase1/data/evidence/label_audit/brca1_raw/score_ranges_00000097-0-2.json
+phase1/data/evidence/label_audit/brca1_raw/scoreset_meta_00000097-0-2.json
+phase1/data/evidence/label_audit/brca1_raw/urn_mavedb_00000097-0-2.csv
+phase1/data/evidence/label_audit/brca2_raw/experiment_meta.json
+phase1/data/evidence/label_audit/brca2_raw/manifest.json
+phase1/data/evidence/label_audit/brca2_raw/paper_quote_check.json
+phase1/data/evidence/label_audit/brca2_raw/paper_rule.json
+phase1/data/evidence/label_audit/brca2_raw/score_ranges_00001225-a-1.json
+phase1/data/evidence/label_audit/brca2_raw/scoreset_meta_00001225-a-1.json
+phase1/data/evidence/label_audit/brca2_raw/supplementary_table3_categories.tsv
+phase1/data/evidence/label_audit/brca2_raw/urn_mavedb_00001225-a-1.csv
+phase1/data/evidence/label_audit/palb2_raw/experiment_meta.json
+phase1/data/evidence/label_audit/palb2_raw/manifest.json
+phase1/data/evidence/label_audit/rad51c_raw/calibration_classes_755b0203-eb68-48b0-a04d-da90e949e916.tsv
+phase1/data/evidence/label_audit/rad51c_raw/calibration_classes_d44db3f4-c70d-41b9-b45b-81ef2af90b88.tsv
+phase1/data/evidence/label_audit/rad51c_raw/experiment_meta.json
+phase1/data/evidence/label_audit/rad51c_raw/manifest.json
+phase1/data/evidence/label_audit/rad51c_raw/paper_quote_check.json
+phase1/data/evidence/label_audit/rad51c_raw/paper_rule.json
+phase1/data/evidence/label_audit/rad51c_raw/score_ranges_00000673-0-1.json
+phase1/data/evidence/label_audit/rad51c_raw/scoreset_meta_00000673-0-1.json
+phase1/data/evidence/label_audit/rad51c_raw/urn_mavedb_00000673-0-1.csv
+phase1/data/evidence/label_audit/vhl_raw/calibration_classes_53062180-5765-4185-8153-5248c62bed9e.tsv
+phase1/data/evidence/label_audit/vhl_raw/calibration_variants_53062180-5765-4185-8153-5248c62bed9e.json
+phase1/data/evidence/label_audit/vhl_raw/experiment_meta.json
+phase1/data/evidence/label_audit/vhl_raw/manifest.json
+phase1/data/evidence/label_audit/vhl_raw/paper_quote_check.json
+phase1/data/evidence/label_audit/vhl_raw/paper_rule.json
+phase1/data/evidence/label_audit/vhl_raw/score_ranges_00000675-a-1.json
+phase1/data/evidence/label_audit/vhl_raw/scoreset_meta_00000675-a-1.json
+phase1/data/evidence/label_audit/vhl_raw/urn_mavedb_00000675-a-1.csv
 phase1/data/evidence/pangolin_events_work/chunks/chunk_00.csv
 phase1/data/evidence/pangolin_events_work/chunks/chunk_00.done
 phase1/data/evidence/pangolin_events_work/chunks/chunk_00.out.csv

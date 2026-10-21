@@ -1,0 +1,60 @@
+{
+ "gene": "BAP1",
+ "checked_utc": "2026-10-21T04:20:53+00:00",
+ "paper_rule": "phase1/data/evidence/label_audit/bap1_raw/paper_rule.json",
+ "paper_rule_sha256": "4566de28785bcaa00995464e285295b34fa6280fa163b7e2f0d9c12516d2b079",
+ "id_converter": {
+  "url": "https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/?ids=38969833&format=json",
+  "fetched_utc": "2026-10-21T04:20:51+00:00",
+  "pmid": 38969833,
+  "pmcid": "PMC11250367",
+  "doi": "10.1038/s41588-024-01799-3"
+ },
+ "document": {
+  "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11250367/fullTextXML",
+  "fetched_utc": "2026-10-21T04:20:53+00:00",
+  "bytes": 221134,
+  "sha256": "7243f3ed70f2c9b0438ec2893935b3c026b462559645a3a9ef0c4dc6e8dde123"
+ },
+ "documents_tried": [
+  {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11250367/fullTextXML",
+   "http_status": 200,
+   "bytes": 221134,
+   "fetched_utc": "2026-10-21T04:20:53+00:00"
+  }
+ ],
+ "folding": "block elements read as spaces, inline markup dropped, entities resolved, Unicode NFKC, whitespace collapsed; the same on both sides",
+ "quotes": [
+  {
+   "where": "Results, 'Functional analysis of gene architecture and conservation'",
+   "found": true,
+   "first_words": "Variants with an FDR ≥0.01 were categorized as"
+  },
+  {
+   "where": "Methods, 'Calculation of variant abundance and functional scores'",
+   "found": true,
+   "first_words": "Variants with an FDR <0.01 and a negative"
+  },
+  {
+   "where": "Methods, 'Calculation of variant abundance and functional scores'",
+   "found": true,
+   "first_words": "To avoid confusion, all ‘functional classifications’ were made"
+  },
+  {
+   "where": "Results, 'BAP1 essentiality permits mutational consequence separation'",
+   "found": true,
+   "first_words": "By combining library A and library B, we"
+  },
+  {
+   "where": "Results, 'Assessment of BAP1 variants in cancer and neurodevelopment'",
+   "found": true,
+   "first_words": "To this end, we ranked the 5,665 depleted"
+  },
+  {
+   "where": "Figure 4 legend, panel e",
+   "found": true,
+   "first_words": "Depleted variants (<i>n</i> = 5,665) categorized into strongly"
+  }
+ ]
+}

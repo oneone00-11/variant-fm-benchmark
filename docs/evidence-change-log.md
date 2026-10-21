@@ -638,3 +638,88 @@ of each variant table it ran on), not only the raw manifests. And XRCC2's
 `variant_details.ndjson` holds, inside one GA4GH digest, four letters that read, case
 aside, as a journal's abbreviation: a random fragment of the digest, not a mention.
 The file is kept byte for byte as served.
+
+## After 3.0.1: the label source audit (stage E16c, 2026-10-21)
+
+Why: E16b found that the PALB2 label file differs from the score set Supplementary Table
+S1 cites, and none of the seven label files had ever been compared, variant by
+variant, with the source it cites. This stage does that, read-only: no label file,
+configuration entry, threshold or analysis-set row changes here.
+
+- Stage 25, `src/evid_label_audit.py`, between E16b and `evid_delta` (now 26). For each
+  gene and each candidate rule a row in `label_audit_summary.csv`:
+  - R1, the cited version's investigator-provided calibration: its score ranges, or,
+    for a class-based calibration, MaveDB's per-variant membership of its classes;
+  - R2, a class column of the score table;
+  - R3, the ranges with the table's 95% interval;
+  - R4, the rule the cited paper states, quoted verbatim, every quote checked against
+    the paper's full text;
+  - R5, R1 and R2 on the other versions of the chain;
+  - R6, a paper supplementary table the author made a source (BRCA2 only).
+
+  Every differing variant goes in `label_audit_diff.csv`. For a gene no rule
+  reproduces, `label_audit_impact.csv` gives the counts the closest rule would give
+  the analysis set. The cited table's variants the label file does not carry go, by
+  stratum, in `label_audit_unclassified.csv`. The record page is
+  `docs/label-source-audit.md`.
+- Findings:
+  - Reproduced:
+    - BRCA1, by R1 and by R4 (the paper's Figure 3a cut-offs);
+    - RAD51C, by R1, R2 and R4;
+    - VHL, by R1, on its 2,200 classed variants. Another 68, all exonic or UTR and
+      none in the analysis set, have no class in the archive.
+    - BAP1, by R1 as abnormal / normal / intermediate, and by R4, the paper's median
+      split, which also gives the sub-class names;
+    - BRCA2, by R6 (Supplementary Table 3, 6,959 of 6,959).
+  - Not reproduced: PALB2 and BARD1. The closest rule, R1 on the cited a-2, differs
+    on 4.51% and 0.16% of the 3-50 nt window. Every one of PALB2's 47 there is
+    intermediate in the file and normal in the archive. R3 differs far more (52.9% and
+    24.0%).
+  - No calibration of a cited version was modified after the label files were
+    committed (2026-07-08).
+- The author's decisions of 2026-10-21, printed in the record page:
+  - relabel PALB2 and BARD1 by R1 and refit (the next commits);
+  - BRCA2's label source is the paper's Supplementary Table 3;
+  - VHL's 68 unclassified variants stay unclassified;
+  - BAP1's sub-class names are kept. They come from the median the paper prints,
+    -0.1260642; c.1132del, which scores exactly that median, is strongly depleted in
+    the file.
+- Sources, in `scripts/stage_E16c/`, each script with a run record:
+  - `fetch_sources.py` fetches each cited score set with its chain and its experiment,
+    and, for a class-based calibration, MaveDB's per-variant membership
+    (`/score-calibrations/{urn}/variants`). BARD1's and PALB2's versions are E16b's,
+    reused.
+  - `check_paper_quotes.py` checks every quote in each `paper_rule.json` against the
+    paper's full text from PMC or Europe PMC, and the IDs against NCBI's converter.
+    The audit refuses a rule file the check has not passed.
+  - Not committed: three memberships (BAP1's and RAD51C's two, 9-18 MB) and the BRCA2
+    xlsx. They sit, as served, in the gitignored
+    `phase1/data/evidence/label_audit_cache/`. A compact extract of each (variant ->
+    class) is committed, and the audit reads the extracts, so it runs offline.
+  - VHL's membership (1.4 MB) is committed as served.
+- The entry point:
+  - `--fetch-inputs` fetches the cached files, checks each against the sha256 in its
+    manifest, and checks every extract row for row against its source. A failure
+    stops the run.
+  - `--check` checks the audit's manifests and quote checks.
+  - The audit's raw folders are kept byte for byte (`.gitattributes`), and their 45
+    files are inputs in `reproduce_inputs.txt`.
+  - The cache is a fetched-input folder (`NOT_OUTPUTS`, `.gitignore`,
+    `tests/_checkout.py`).
+  - The record page is an output, and the CI path filter includes it.
+- Tests (`phase1/tests/test_evid_label_audit.py`):
+  - the stage rerun into a scratch folder leaves the label files, `config.py` and the
+    analysis set unchanged and rewrites its own files byte for byte;
+  - every gene has a row for every rule, and the counts add up;
+  - the diff lists each difference once;
+  - the impact table covers exactly the genes no rule reproduces, starting from the
+    counts files;
+  - the quotes were checked, and every number a rule uses is in a quote;
+  - each extract matches its source; a source not in the cache is skipped, with the
+    reason printed.
+
+  One existing test changed without changing what it tests: E16b's stage-order test
+  asks that E16b come before the delta, rather than right before it.
+- Every output of E1-E16b is unchanged. The README still counts 25 stages: README
+  changes wait for the manuscript's next revision sheet, by the author's decision of
+  2026-10-21.

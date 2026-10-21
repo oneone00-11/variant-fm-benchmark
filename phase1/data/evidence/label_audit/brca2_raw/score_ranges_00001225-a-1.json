@@ -1,0 +1,8 @@
+{
+ "extracted_from": "phase1/data/evidence/label_audit/brca2_raw/scoreset_meta_00001225-a-1.json",
+ "key": "scoreCalibrations",
+ "selection": "investigatorProvided is true",
+ "all_calibration_titles": [],
+ "legacy_scoreRanges_key_present": false,
+ "investigator_provided": []
+}

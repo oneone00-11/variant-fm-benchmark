@@ -1,0 +1,126 @@
+{
+ "gene": "BRCA1",
+ "source": {
+  "pmid": "30209399",
+  "pmcid": "PMC6181777",
+  "doi": "10.1038/s41586-018-0461-z",
+  "citation_ids": "PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z",
+  "copy_read": "NIH author manuscript NIHMS1501643 (the PMC copy)"
+ },
+ "status": "stated",
+ "quotes": [
+  {
+   "where": "Methods, 'SNV functional class assignment'",
+   "text": "The posterior probabilities generated from the model were used as point estimates of the probability of drawing each SNV’s score from the non-functional distribution (<i>P</i><sub>nf</sub>). Functional classifications were made by setting thresholds for <i>P</i><sub>nf</sub> as follows: <i>P</i><sub>nf</sub> > 0.99 = ‘non-functional’, 0.01< <i>P</i><sub>nf</sub> < 0.99 = ‘intermediate’, <i>P</i><sub>nf</sub> <0.01 = ‘functional’."
+  },
+  {
+   "where": "Results, 'Function scores for 3,893 BRCA1 SNVs'",
+   "text": "We classified all SNVs as ‘functional’, ‘non-functional’, or ‘intermediate’ by fitting a two-component Gaussian mixture model (Extended Data Fig. 7). 72.5% of SNVs were categorized as functional, 21.1% as non-functional, and 6.4% as intermediate."
+  },
+  {
+   "where": "Figure 3 legend, panel a",
+   "text": "The dashed lines indicate the functional classification thresholds determined by mixture modeling. Gray divides ‘functional’ and ‘intermediate’ (function score = −0.748), and black divides ‘intermediate’ and ‘non-functional’ (function score = −1.328)."
+  }
+ ],
+ "rules": [
+  {
+   "name": "Methods: cut-offs on the mixture-model posterior P_nf",
+   "where": "Methods, 'SNV functional class assignment'",
+   "inputs_note": "P_nf, the posterior of the paper's two-component mixture model, per SNV",
+   "classes": [
+    {
+     "class": "non-functional",
+     "canonical": "abnormal",
+     "conditions": [
+      {
+       "column": "P_nf",
+       "op": ">",
+       "value": 0.99
+      }
+     ]
+    },
+    {
+     "class": "functional",
+     "canonical": "normal",
+     "conditions": [
+      {
+       "column": "P_nf",
+       "op": "<",
+       "value": 0.01
+      }
+     ]
+    },
+    {
+     "class": "intermediate",
+     "canonical": "intermediate",
+     "conditions": [
+      {
+       "column": "P_nf",
+       "op": ">",
+       "value": 0.01
+      },
+      {
+       "column": "P_nf",
+       "op": "<",
+       "value": 0.99
+      }
+     ]
+    }
+   ],
+   "default": {
+    "class": "unassigned (P_nf on a cut-off: the inequalities are strict)",
+    "canonical": "unassigned"
+   }
+  },
+  {
+   "name": "Figure 3a legend: the same cut-offs on the function score",
+   "where": "Figure 3 legend, panel a",
+   "inputs_note": "the function score averaged across replicates: the score table's 'score' column, equal on every row to the mean of score_rep1 and score_rep2",
+   "classes": [
+    {
+     "class": "non-functional",
+     "canonical": "abnormal",
+     "conditions": [
+      {
+       "column": "score",
+       "op": "<",
+       "value": -1.328
+      }
+     ]
+    },
+    {
+     "class": "functional",
+     "canonical": "normal",
+     "conditions": [
+      {
+       "column": "score",
+       "op": ">",
+       "value": -0.748
+      }
+     ]
+    },
+    {
+     "class": "intermediate",
+     "canonical": "intermediate",
+     "conditions": [
+      {
+       "column": "score",
+       "op": ">",
+       "value": -1.328
+      },
+      {
+       "column": "score",
+       "op": "<",
+       "value": -0.748
+      }
+     ]
+    }
+   ],
+   "default": {
+    "class": "unassigned (a score on a cut-off: the legend does not say which side)",
+    "canonical": "unassigned"
+   }
+  }
+ ],
+ "transcription_note": "Quotes copied verbatim from the paper's full text (PMC JATS XML) on 2026-10-21; <i>, <sub> and <sup> reproduce the source's inline markup; scripts/stage_E16c/check_paper_quotes.py checks every quote against the document as served. The rules below are the quoted sentences typed into machine form by hand; a test checks that every number they use appears in a quote. Canonical classes follow the functionalClassification the archive's investigator calibration gives the same class name."
+}

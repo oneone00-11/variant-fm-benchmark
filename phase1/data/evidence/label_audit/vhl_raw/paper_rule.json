@@ -1,0 +1,82 @@
+{
+ "gene": "VHL",
+ "source": {
+  "pmid": "38969834",
+  "pmcid": "PMC11250436",
+  "doi": "10.1038/s41588-024-01800-z",
+  "citation_ids": "PMID 38969834; PMC11250436; doi:10.1038/s41588-024-01800-z",
+  "copy_read": "publisher version (the PMC copy)"
+ },
+ "status": "stated",
+ "quotes": [
+  {
+   "where": "Methods, 'Defining function classes'",
+   "text": "We derived four function classes for variants scored by SGE. First, variants with <i>q</i> values greater than 0.10 and function scores greater than −0.2188 (that is, greater than the fifth percentile of gold-standard neutral variants) were deemed ‘neutral’. Second, variants with function scores lower than −1.26 (that is, lower than the 95th percentile of gold-standard ccRCC variants) were deemed ‘LOF1’. Third, variants with <i>q</i> values less than 0.01 and function scores less than −0.3875 (the lowest scoring gold-standard neutral variant) were deemed ‘LOF2’. All remaining variants were deemed ‘Intermediate’."
+  },
+  {
+   "where": "Figure 4 legend",
+   "text": "Lines correspond to thresholds for distinguishing LOF1 (less than −1.26), LOF2 (less than −0.39) and neutral (greater than −0.23) classes."
+  },
+  {
+   "where": "Data availability",
+   "text": "Function scores are also available for visualization at https://vhl-board.onrender.com/ and have been deposited to MAVE-DB<sup>62</sup> (urn:mavedb:00000675-a) with RNA scores."
+  }
+ ],
+ "rules": [
+  {
+   "name": "Methods: function score and q value, in the stated order",
+   "where": "Methods, 'Defining function classes'",
+   "inputs_note": "the function score is the score table's 'score' column; the q value (BH-adjusted, per-region null model) is not in the cited score table",
+   "classes": [
+    {
+     "class": "neutral",
+     "canonical": "normal",
+     "conditions": [
+      {
+       "column": "q_value",
+       "op": ">",
+       "value": 0.1
+      },
+      {
+       "column": "score",
+       "op": ">",
+       "value": -0.2188
+      }
+     ]
+    },
+    {
+     "class": "LOF1",
+     "canonical": "abnormal",
+     "conditions": [
+      {
+       "column": "score",
+       "op": "<",
+       "value": -1.26
+      }
+     ]
+    },
+    {
+     "class": "LOF2",
+     "canonical": "abnormal",
+     "conditions": [
+      {
+       "column": "q_value",
+       "op": "<",
+       "value": 0.01
+      },
+      {
+       "column": "score",
+       "op": "<",
+       "value": -0.3875
+      }
+     ]
+    }
+   ],
+   "default": {
+    "class": "Intermediate",
+    "canonical": "intermediate"
+   }
+  }
+ ],
+ "transcription_note": "Quotes copied verbatim from the paper's full text (PMC JATS XML) on 2026-10-21; <i>, <sub> and <sup> reproduce the source's inline markup; scripts/stage_E16c/check_paper_quotes.py checks every quote against the document as served. The rules below are the quoted sentences typed into machine form by hand; a test checks that every number they use appears in a quote. Canonical classes follow the functionalClassification the archive's investigator calibration gives the same class name."
+}

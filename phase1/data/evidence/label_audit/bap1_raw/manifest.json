@@ -1,0 +1,155 @@
+{
+ "gene": "BAP1",
+ "label_file": "phase1/data/assay_labels/bap1_waters2024.tsv",
+ "cited": {
+  "urn": "urn:mavedb:00000662-0-1",
+  "where": "supplementary/Table_S1.tsv",
+  "license_in_table_s1": "CC BY 4.0"
+ },
+ "experiment_urn": "urn:mavedb:00000662-0",
+ "api": {
+  "base": "https://api.mavedb.org/api/v1",
+  "version": "2026.3.1"
+ },
+ "versions": [
+  {
+   "urn": "urn:mavedb:00000662-0-1",
+   "role": "cited",
+   "created": "2026-02-24",
+   "modified": "2026-05-09",
+   "published": "2026-02-24",
+   "supersedes": null,
+   "superseded_by": null,
+   "num_variants_metadata": 18108,
+   "n_rows_score_table": 18108,
+   "license": {
+    "shortName": "CC BY 4.0",
+    "version": "4.0",
+    "link": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "private": false,
+   "score_calibrations": [
+    {
+     "title": "Investigator-provided functional classes",
+     "investigator_provided": true,
+     "research_use_only": false,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 3,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": false,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 3,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "BBI - GMM- ClinVar (Feb 2026, All Variants)",
+     "investigator_provided": false,
+     "research_use_only": true,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 3,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "BBI - GMM - KURIS/NDD",
+     "investigator_provided": true,
+     "research_use_only": true,
+     "created": "2026-04-29",
+     "modified": "2026-04-29",
+     "n_classes": 3,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "ExCALIBR calibration (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": true,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 8,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": true,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 5,
+     "latest_date_inside_its_classes": "2026-02-06"
+    }
+   ]
+  }
+ ],
+ "versions_not_served": [],
+ "cache_dir": "phase1/data/evidence/label_audit_cache/bap1",
+ "files": [
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/scoreset_meta_00000662-0-1.json",
+   "bytes": 54056,
+   "sha256": "3cd83de756150281089cc33e22cbf38f2ec4bc3421770a1fac7cc94d7f0b357d",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000662-0-1",
+   "fetched_utc": "2026-10-21T04:27:15+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/urn_mavedb_00000662-0-1.csv",
+   "bytes": 5336587,
+   "sha256": "c3db0a827c86ad73967258745dd5d5263227a0c1fff62d243de450408962d20e",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000662-0-1/scores",
+   "fetched_utc": "2026-10-21T04:27:19+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/score_ranges_00000662-0-1.json",
+   "bytes": 11787,
+   "sha256": "2d1dd9608d61fdf9a79f8b7da02d8cb4afd9b3e7cb1f94c52e6e453209e4eb6c",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000662-0-1",
+   "derived_from": "phase1/data/evidence/label_audit/bap1_raw/scoreset_meta_00000662-0-1.json",
+   "note": "extract of scoreCalibrations, entries unchanged"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit_cache/bap1/calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json",
+   "bytes": 17540025,
+   "sha256": "94e614adc28157bfd5b78cbcff11d5cdca609302207ff5d6d60b7c33adb24b16",
+   "source_url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3/variants",
+   "fetched_utc": "2026-10-21T04:27:22+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "score_set": "urn:mavedb:00000662-0-1",
+   "calibration_urn": "urn:mavedb:calibration-20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3",
+   "calibration_title": "Investigator-provided functional classes",
+   "functional_classification_id": "all",
+   "cached": true
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/calibration_classes_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.tsv",
+   "bytes": 1361831,
+   "sha256": "338de3c6e0cbec1fe8891ff9f97cc3a9543cee5d9a2aefed72c2274377742160",
+   "score_set": "urn:mavedb:00000662-0-1",
+   "calibration_urn": "urn:mavedb:calibration-20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3",
+   "calibration_title": "Investigator-provided functional classes",
+   "compact_of": [
+    "phase1/data/evidence/label_audit_cache/bap1/calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json"
+   ],
+   "n_rows": 18108,
+   "note": "compact extract of the served membership: variant URN, hgvs_nt, functional classification id and its label"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/bap1_raw/experiment_meta.json",
+   "bytes": 5938,
+   "sha256": "1419fa8d1c57a9200e0ed0360371cea8914f46ab6c5c16d3fc5ed2c45919856f",
+   "source_url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00000662-0",
+   "fetched_utc": "2026-10-21T04:27:22+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  }
+ ]
+}

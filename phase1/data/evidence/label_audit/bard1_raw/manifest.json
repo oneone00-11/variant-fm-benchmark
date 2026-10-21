@@ -1,0 +1,211 @@
+{
+ "gene": "BARD1",
+ "label_file": "phase1/data/assay_labels/bard1_woo2025.tsv",
+ "cited": {
+  "urn": "urn:mavedb:00001250-a-2",
+  "where": "supplementary/Table_S1.tsv",
+  "license_in_table_s1": "CC0"
+ },
+ "experiment_urn": "urn:mavedb:00001250-a",
+ "api": {
+  "base": "https://api.mavedb.org/api/v1",
+  "version": "2026.3.1"
+ },
+ "versions": [
+  {
+   "urn": "urn:mavedb:00001250-a-1",
+   "role": "other version",
+   "created": "2025-10-06",
+   "modified": "2026-05-13",
+   "published": "2025-10-21",
+   "supersedes": null,
+   "superseded_by": "urn:mavedb:00001250-a-2",
+   "num_variants_metadata": 11318,
+   "n_rows_score_table": 11318,
+   "license": {
+    "shortName": "CC0",
+    "version": "1.0",
+    "link": "https://creativecommons.org/publicdomain/zero/1.0/"
+   },
+   "private": false,
+   "score_calibrations": [
+    {
+     "title": "ExCALIBR calibration",
+     "investigator_provided": false,
+     "research_use_only": true,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 14,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "Investigator-provided functional classes",
+     "investigator_provided": true,
+     "research_use_only": false,
+     "created": "2025-11-14",
+     "modified": "2025-11-14",
+     "n_classes": 3,
+     "latest_date_inside_its_classes": "not_provided"
+    }
+   ]
+  },
+  {
+   "urn": "urn:mavedb:00001250-a-2",
+   "role": "cited",
+   "created": "2026-06-02",
+   "modified": "2026-06-08",
+   "published": "2026-06-08",
+   "supersedes": "urn:mavedb:00001250-a-1",
+   "superseded_by": "urn:mavedb:00001250-a-3",
+   "num_variants_metadata": 10911,
+   "n_rows_score_table": 10911,
+   "license": {
+    "shortName": "CC0",
+    "version": "1.0",
+    "link": "https://creativecommons.org/publicdomain/zero/1.0/"
+   },
+   "private": false,
+   "score_calibrations": [
+    {
+     "title": "Investigator-provided functional classes",
+     "investigator_provided": true,
+     "research_use_only": false,
+     "created": "2026-06-08",
+     "modified": "2026-06-15",
+     "n_classes": 3,
+     "latest_date_inside_its_classes": "not_provided"
+    }
+   ]
+  },
+  {
+   "urn": "urn:mavedb:00001250-a-3",
+   "role": "other version",
+   "created": "2026-09-11",
+   "modified": "2026-10-16",
+   "published": "2026-09-11",
+   "supersedes": "urn:mavedb:00001250-a-2",
+   "superseded_by": null,
+   "num_variants_metadata": 10899,
+   "n_rows_score_table": 10899,
+   "license": {
+    "shortName": "CC0",
+    "version": "1.0",
+    "link": "https://creativecommons.org/publicdomain/zero/1.0/"
+   },
+   "private": false,
+   "score_calibrations": []
+  }
+ ],
+ "versions_not_served": [],
+ "cache_dir": "phase1/data/evidence/label_audit_cache/bard1",
+ "files": [
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-1.json",
+   "bytes": 29429,
+   "sha256": "ba3e4116cb6485947c95a6fa58599c5ca93fec9a75948d16d82466c57bd84f84",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001250-a-1",
+   "fetched_utc": "2026-10-20T10:39:41+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "reused_from": "E16b",
+   "e16b_manifest": "phase1/data/evidence/external/label_versions/bard1_raw/manifest.json"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/urn_mavedb_00001250-a-1.csv",
+   "bytes": 2546506,
+   "sha256": "58fe32451da606ea24479b1efe8dc5162664c3785ce7fb400b2e8797ba5bf9a7",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001250-a-1/scores",
+   "fetched_utc": "2026-10-20T10:39:43+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "n_rows": 11318,
+   "reused_from": "E16b",
+   "e16b_manifest": "phase1/data/evidence/external/label_versions/bard1_raw/manifest.json"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/score_ranges_00001250-a-1.json",
+   "bytes": 2442,
+   "sha256": "0f86bc7452a43f34dd5540b035373b37a6b641d1f94cd482209a5ad3dc4bd051",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001250-a-1",
+   "derived_from": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-1.json",
+   "note": "extract of scoreCalibrations, entries unchanged",
+   "reused_from": "E16b",
+   "e16b_manifest": "phase1/data/evidence/external/label_versions/bard1_raw/manifest.json"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-2.json",
+   "bytes": 10476,
+   "sha256": "ceb808416c4d92ba1dd7b3a990bf6d72132ab785c1a846518f7ba57d2f3b0c3a",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001250-a-2",
+   "fetched_utc": "2026-10-20T10:39:43+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "reused_from": "E16b",
+   "e16b_manifest": "phase1/data/evidence/external/label_versions/bard1_raw/manifest.json"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/urn_mavedb_00001250-a-2.csv",
+   "bytes": 1398304,
+   "sha256": "15344db4740e7ad105400aeb456c78630f44037c4512f5a80ee1770b4b9a1518",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001250-a-2/scores",
+   "fetched_utc": "2026-10-20T10:39:44+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "n_rows": 10911,
+   "reused_from": "E16b",
+   "e16b_manifest": "phase1/data/evidence/external/label_versions/bard1_raw/manifest.json"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/score_ranges_00001250-a-2.json",
+   "bytes": 2418,
+   "sha256": "4d4e0f517c12b1c4b28cbea0beef7b3b4bb3fdfea015c2111f39806676e70d52",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001250-a-2",
+   "derived_from": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-2.json",
+   "note": "extract of scoreCalibrations, entries unchanged",
+   "reused_from": "E16b",
+   "e16b_manifest": "phase1/data/evidence/external/label_versions/bard1_raw/manifest.json"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-3.json",
+   "bytes": 8898,
+   "sha256": "934c3a750c9017d6f4f2383129454da72ae984170854f25a8c4987e6e44e7eb1",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001250-a-3",
+   "fetched_utc": "2026-10-20T10:39:44+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "reused_from": "E16b",
+   "e16b_manifest": "phase1/data/evidence/external/label_versions/bard1_raw/manifest.json"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/urn_mavedb_00001250-a-3.csv",
+   "bytes": 1396113,
+   "sha256": "1b45b260ff6f79967c93846091530802fac84dac7e2f0b2b88f770cc949cd670",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001250-a-3/scores",
+   "fetched_utc": "2026-10-20T10:39:45+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "n_rows": 10899,
+   "reused_from": "E16b",
+   "e16b_manifest": "phase1/data/evidence/external/label_versions/bard1_raw/manifest.json"
+  },
+  {
+   "path": "phase1/data/evidence/external/label_versions/bard1_raw/score_ranges_00001250-a-3.json",
+   "bytes": 290,
+   "sha256": "b76c727d82675f98418b83530f8464264d3f93879016e361ab26dc23279b4699",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001250-a-3",
+   "derived_from": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-3.json",
+   "note": "extract of scoreCalibrations, entries unchanged",
+   "reused_from": "E16b",
+   "e16b_manifest": "phase1/data/evidence/external/label_versions/bard1_raw/manifest.json"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/bard1_raw/experiment_meta.json",
+   "bytes": 5042,
+   "sha256": "78e9b7ed7cda8e1f6c4709004a2dce82a5c8d07b822e78f791b4b7e3da1a2aee",
+   "source_url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00001250-a",
+   "fetched_utc": "2026-10-21T04:27:05+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  }
+ ]
+}

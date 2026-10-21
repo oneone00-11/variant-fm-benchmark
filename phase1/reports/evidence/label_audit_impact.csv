@@ -1,0 +1,9 @@
+gene,stratum,closest_rule,version,rule_detail,pct_differ_3_50nt,n_variants,n_labelled_now,n_labelled_rule,n_damaging_now,n_damaging_rule,n_normal_now,n_normal_rule,n_excluded_now,n_excluded_rule
+BARD1,pm12,R1,urn:mavedb:00001250-a-2,"ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate",0.15535991714137753,119,119,119,119,119,0,0,0,0
+BARD1,s3_10,R1,urn:mavedb:00001250-a-2,"ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate",0.15535991714137753,473,459,459,66,66,393,393,14,14
+BARD1,s11_50,R1,urn:mavedb:00001250-a-2,"ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate",0.15535991714137753,1458,1435,1436,21,19,1414,1417,23,22
+BARD1,s3_50,R1,urn:mavedb:00001250-a-2,"ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate",0.15535991714137753,1931,1894,1895,87,85,1807,1810,37,36
+PALB2,pm12,R1,urn:mavedb:00001259-a-2,"ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate",4.514889529298751,144,141,141,139,139,2,2,3,3
+PALB2,s3_10,R1,urn:mavedb:00001259-a-2,"ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate",4.514889529298751,501,411,445,87,87,324,358,90,56
+PALB2,s11_50,R1,urn:mavedb:00001259-a-2,"ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate",4.514889529298751,540,464,477,15,15,449,462,76,63
+PALB2,s3_50,R1,urn:mavedb:00001259-a-2,"ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate",4.514889529298751,1041,875,922,102,102,773,820,166,119

@@ -1,0 +1,166 @@
+# Label source audit: the seven training genes
+
+Written by `phase1/src/evid_label_audit.py` (stage E16c) from the files `scripts/stage_E16c/fetch_sources.py` saved under `phase1/data/evidence/label_audit/`; do not edit by hand. A read-only audit: no label file, configuration entry, threshold or analysis-set row is changed. Each label file in `phase1/data/assay_labels/` is compared, variant by variant, with what the score set Supplementary Table S1 cites gives under each candidate rule (R1 investigator-provided calibration; R2 score-table class column; R3 ranges with the 95% interval; R4 the cited paper's stated rule; R5 R1 and R2 on the other versions of the chain; R6 a paper supplementary table the author made a source, for BRCA2 only). Classes are compared as abnormal / normal / intermediate; a variant the source leaves without a class counts as different. Where no rule reproduces a file, its source is written as not established; no reason is offered.
+
+The full rows are in `phase1/reports/evidence/label_audit_summary.csv`, every differing variant in `label_audit_diff.csv`, and the counts each closest rule would give the analysis set in `label_audit_impact.csv`.
+
+## BRCA1
+
+- Label file: `phase1/data/assay_labels/brca1_findlay2018.tsv`, 3,893 rows, classes functional, intermediate, non-functional (sha256 e2c37073a255a469...)
+- Cited: urn:mavedb:00000097-0-2 (Table S1, licence there CC0); paper: Findlay et al. 2018
+- urn:mavedb:00000097-0-2 (cited): score set created 2025-05-12, modified 2026-10-20, published 2025-05-12; 3,893 variants, 3,893 score-table rows; licence CC0; calibrations: 'Investigator-provided functional classes' (investigator True, created 2025-11-14, modified 2025-11-14); 'IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)' (investigator False, created 2025-11-14, modified 2025-11-14); 'IGVF Coding Variant Focus Group -- Controls: Missense Variants Only (superseded 2026-10-20)' (investigator False, created 2025-11-14, modified 2025-11-14); 'ExCALIBR calibration (superseded 2026-10-20)' (investigator False, created 2026-02-24, modified 2026-02-24); 'ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)' (investigator False, created 2026-02-24, modified 2026-02-24); 'Fayer calibration' (investigator False, created 2025-11-14, modified 2025-11-14)
+- urn:mavedb:00000097-0-1: linked from the chain, not served by MaveDB (HTTP 404, 2026-10-21T04:26:38+00:00)
+
+| rule | version | detail | compared | differ | differ, all | differ, 3-50 nt | only in the file | only in the source | reproduced |
+|---|---|---|---|---|---|---|---|---|---|
+| R1 | 00000097-0-2 | ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate | 3,893 | 0 | 0.00% | 0.00% | 0 | 0 | yes |
+| R2 | 00000097-0-2 | no class column in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R3 | 00000097-0-2 | no 95% interval columns in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R4 | 00000097-0-2 | paper rule 'Methods: cut-offs on the mixture-model posterior P_nf' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Methods, 'SNV functional class assignment') reads columns the score table does not have: P_nf | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R4 | 00000097-0-2 | paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a) | 3,893 | 0 | 0.00% | 0.00% | 0 | 0 | yes |
+| R6 | 00000097-0-2 | a paper supplementary table is a candidate for BRCA2 only (the author's decision of 2026-10-21) | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R5 | 00000097-0-1 | version not served by MaveDB (HTTP 404) | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+
+- Reproduced by: R1 (ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate, urn:mavedb:00000097-0-2; class names identical as written, case and separators folded: 3,893 of 3,893); R4 (paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a), urn:mavedb:00000097-0-2; class names identical as written, case and separators folded: 3,893 of 3,893)
+- Class names of the label file in the archive (case and separators folded): 'functional' yes; 'intermediate' yes; 'non-functional' yes
+- Paper (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z): stated; "The posterior probabilities generated from the model were used as point estimates of the probability of drawing each SNV’s score from the non-functional distribution (<i>P</i><sub>nf</sub>). Functional classifications were made by setting thresholds for <i>P</i><sub>nf</sub> as follows: <i>P</i><sub>nf</sub> > 0.99 = ‘non-functional’, 0.01< <i>P</i><sub>nf</sub> < 0.99 = ‘intermediate’, <i>P</i><sub>nf</sub> <0.01 = ‘functional’." (Methods, 'SNV functional class assignment'); "We classified all SNVs as ‘functional’, ‘non-functional’, or ‘intermediate’ by fitting a two-component Gaussian mixture model (Extended Data Fig. 7). 72.5% of SNVs were categorized as functional, 21.1% as non-functional, and 6.4% as intermediate." (Results, 'Function scores for 3,893 BRCA1 SNVs'); "The dashed lines indicate the functional classification thresholds determined by mixture modeling. Gray divides ‘functional’ and ‘intermediate’ (function score = −0.748), and black divides ‘intermediate’ and ‘non-functional’ (function score = −1.328)." (Figure 3 legend, panel a)
+
+## BRCA2
+
+- Label file: `phase1/data/assay_labels/brca2_huang2025.tsv`, 6,959 rows, classes abnormal, intermediate, normal (sha256 0ad4225ace8230e1...)
+- Cited: urn:mavedb:00001225-a-1 (Table S1, licence there CC0); paper: Huang et al. 2025
+- urn:mavedb:00001225-a-1 (cited): score set created 2025-05-07, modified 2025-08-28, published 2025-05-08; 6,959 variants, 6,959 score-table rows; licence CC0; calibrations: none
+
+| rule | version | detail | compared | differ | differ, all | differ, 3-50 nt | only in the file | only in the source | reproduced |
+|---|---|---|---|---|---|---|---|---|---|
+| R1 | 00001225-a-1 | no investigator-provided calibration | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R2 | 00001225-a-1 | no class column in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R3 | 00001225-a-1 | no 95% interval columns in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R4 | 00001225-a-1 | paper rule not_stated (PMID 39779857; PMC11821525; doi:10.1038/s41586-024-08388-8): the main text, Methods and legends give no cut-off and never define the classes abnormal, intermediate and normal; the paper's own seven evidence categories are cut on the VarCall Bayes factor or posterior probability, which the cited score table does not carry | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R6 | PMC11821525 41586_2024_8388_MOESM3_ESM.xlsx sheet 'Table S3' | supplementary table: Supplementary Table 3 'Functional category', grouped as the Results group it (Results, paragraph beginning 'The combined benign') | 6,959 | 0 | 0.00% | 0.00% | 0 | 0 | yes |
+| R5 | 00001225-a-1 | no other version in the chain | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+
+- Reproduced by: R6 (supplementary table: Supplementary Table 3 'Functional category', grouped as the Results group it (Results, paragraph beginning 'The combined benign'), PMC11821525 41586_2024_8388_MOESM3_ESM.xlsx sheet 'Table S3'; class names identical as written, case and separators folded: 0 of 6,959)
+- Class names of the label file in the archive (case and separators folded): 'abnormal' NO; 'intermediate' NO; 'normal' NO
+- Paper (PMID 39779857; PMC11821525; doi:10.1038/s41586-024-08388-8): not_stated; "A VarCall model<sup>8</sup>, a class of Bayesian hierarchical model that embeds a Gaussian two-component mixture model, was applied to the position-adjusted LFC values of D14 and D0 ratios. Each variant was assigned an indicator of pathogenicity status: deterministically if known and probabilistically if unknown. In detail, nonsense variants were assumed to be pathogenic, whereas silent variants, except for variants with known or predicted splice effects, were assumed to be benign." (Results, 'Functional analysis of variant effects'); "A prior probability of pathogenicity of 0.2 for variants in the DNA-binding region was used based on a predicted frequency of 0.23 for pathogenic variants in this region by AlphaMissense. Using the MCMC output, the Bayes factor in favour of pathogenicity for each variant was computed. The thresholds for the Bayes factor based on strength of evidence of pathogenicity or benign level (P<sub>Strong</sub>, P<sub>Moderate</sub> or P<sub>Supporting</sub>, VUS, B<sub>Strong</sub>, B<sub>Moderate</sub> or B<sub>Supporting</sub>) were derived from the Bayesian interpretation of the ACMG–AMP guidelines<sup>23</sup>. Full details of the analysis are available in the Supplementary Methods." (Methods, 'VarCall model for assessment of evidence of pathogenicity'); "The combined benign (B<sub>Strong</sub>, B<sub>Moderate</sub> and B<sub>Supporting</sub>) and combined pathogenic (P<sub>Strong</sub>, P<sub>Moderate</sub> and P<sub>Supporting</sub>) categories accounted for 81.6% and 16.6% of variants, respectively, with 1.8% remaining as VUS." (Results, paragraph beginning 'The combined benign')
+- **Condition for the author (E16c.7):** class name 'abnormal' appears nowhere in the archive's records of this score set (any version, any calibration or class column)
+- **Condition for the author (E16c.7):** class name 'intermediate' appears nowhere in the archive's records of this score set (any version, any calibration or class column)
+- **Condition for the author (E16c.7):** class name 'normal' appears nowhere in the archive's records of this score set (any version, any calibration or class column)
+- **Decided by the author (2026-10-21):** the paper's Supplementary Table 3 is BRCA2's label source (rule R6)
+
+## BARD1
+
+- Label file: `phase1/data/assay_labels/bard1_woo2025.tsv`, 10,911 rows, classes functionally abnormal, indeterminate, normal (sha256 aa3b5b57d8e41912...)
+- Cited: urn:mavedb:00001250-a-2 (Table S1, licence there CC0); paper: none cited (the score set alone)
+- urn:mavedb:00001250-a-1 (other version): score set created 2025-10-06, modified 2026-05-13, published 2025-10-21; 11,318 variants, 11,318 score-table rows; licence CC0; calibrations: 'ExCALIBR calibration' (investigator False, created 2026-02-24, modified 2026-02-24); 'Investigator-provided functional classes' (investigator True, created 2025-11-14, modified 2025-11-14)
+- urn:mavedb:00001250-a-2 (cited): score set created 2026-06-02, modified 2026-06-08, published 2026-06-08; 10,911 variants, 10,911 score-table rows; licence CC0; calibrations: 'Investigator-provided functional classes' (investigator True, created 2026-06-08, modified 2026-06-15)
+- urn:mavedb:00001250-a-3 (other version): score set created 2026-09-11, modified 2026-10-16, published 2026-09-11; 10,899 variants, 10,899 score-table rows; licence CC0; calibrations: none
+
+| rule | version | detail | compared | differ | differ, all | differ, 3-50 nt | only in the file | only in the source | reproduced |
+|---|---|---|---|---|---|---|---|---|---|
+| R1 | 00001250-a-2 | ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate | 10,911 | 13 | 0.12% | 0.16% | 0 | 0 | no |
+| R2 | 00001250-a-2 | no class column in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R3 | 00001250-a-2 | ranges of calibration 'Investigator-provided functional classes' with the score table's 95_ci_lower / 95_ci_upper | 10,911 | 2,794 | 25.61% | 24.03% | 0 | 0 | no |
+| R4 | 00001250-a-2 | Table S1 cites no paper: not applicable | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R6 | 00001250-a-2 | a paper supplementary table is a candidate for BRCA2 only (the author's decision of 2026-10-21) | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R5 | 00001250-a-1 | R1 on another version: ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,904 | 13 | 0.12% | 0.16% | 7 | 414 | no |
+| R5 | 00001250-a-1 | R2 on another version: score-table column 'functional_consequence'; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,904 | 13 | 0.12% | 0.16% | 7 | 414 | no |
+| R5 | 00001250-a-3 | R1 on another version: no investigator-provided calibration | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R5 | 00001250-a-3 | R2 on another version: no class column in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+
+- Reproduced by: no rule. Source not established.
+- Class names of the label file in the archive (case and separators folded): 'functionally abnormal' yes; 'indeterminate' yes; 'normal' yes
+- Class column urn:mavedb:00001250-a-1 functional_consequence: functionally_abnormal -> abnormal (wording table COLUMN_WORDS); functionally_normal -> normal (wording table COLUMN_WORDS); indeterminate -> intermediate (wording table COLUMN_WORDS)
+- **Decided by the author (2026-10-21):** relabel by R1, the cited a-2's investigator-provided ranges, and refit (stage E16d)
+- Counts in the analysis set under the closest rule (labelled / damaging / normal / excluded, now -> rule): pm12 119/119/0/0 -> 119/119/0/0; s3_10 459/66/393/14 -> 459/66/393/14; s11_50 1435/21/1414/23 -> 1436/19/1417/22; s3_50 1894/87/1807/37 -> 1895/85/1810/36
+
+## PALB2
+
+- Label file: `phase1/data/assay_labels/palb2_mavedb.csv`, 12,851 rows, classes abnormal, indeterminate, normal (sha256 b8fb5a7d380b386b...)
+- Cited: urn:mavedb:00001259-a-2 (Table S1, licence there CC0); paper: none cited (the score set alone)
+- urn:mavedb:00001259-a-1 (other version): score set created 2025-11-03, modified 2026-05-29, published 2026-01-10; 10,513 variants, 10,513 score-table rows; licence CC0; calibrations: 'Investigator-provided functional classes' (investigator True, created 2025-11-14, modified 2025-11-14); 'ExCALIBR calibration' (investigator False, created 2026-02-24, modified 2026-02-24)
+- urn:mavedb:00001259-a-2 (cited): score set created 2026-06-02, modified 2026-06-08, published 2026-06-08; 12,851 variants, 12,851 score-table rows; licence CC0; calibrations: 'Investigator-provided functional classes' (investigator True, created 2026-06-08, modified 2026-06-08)
+
+| rule | version | detail | compared | differ | differ, all | differ, 3-50 nt | only in the file | only in the source | reproduced |
+|---|---|---|---|---|---|---|---|---|---|
+| R1 | 00001259-a-2 | ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate | 12,851 | 359 | 2.79% | 4.51% | 0 | 0 | no |
+| R2 | 00001259-a-2 | no class column in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R3 | 00001259-a-2 | ranges of calibration 'Investigator-provided functional classes' with the score table's 95_ci_lower / 95_ci_upper | 12,851 | 7,125 | 55.44% | 52.93% | 0 | 0 | no |
+| R4 | 00001259-a-2 | Table S1 cites no paper: not applicable | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R6 | 00001259-a-2 | a paper supplementary table is a candidate for BRCA2 only (the author's decision of 2026-10-21) | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R5 | 00001259-a-1 | R1 on another version: ranges of calibration 'Investigator-provided functional classes' (2 classes), point estimate; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,509 | 1,364 | 12.98% | 17.79% | 2,342 | 4 | no |
+| R5 | 00001259-a-1 | R2 on another version: score-table column 'functional_consequence'; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,509 | 503 | 4.79% | 5.59% | 2,342 | 4 | no |
+
+- Reproduced by: no rule. Source not established.
+- Class names of the label file in the archive (case and separators folded): 'abnormal' yes; 'indeterminate' yes; 'normal' yes
+- Class column urn:mavedb:00001259-a-1 functional_consequence: functionally_abnormal -> abnormal (wording table COLUMN_WORDS); functionally_normal -> normal (wording table COLUMN_WORDS); indeterminate -> intermediate (wording table COLUMN_WORDS)
+- **Condition for the author (E16c.7):** no rule reproduces the file; the closest (R1, ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate) differs on 4.51% at 3-50 nt
+- **Decided by the author (2026-10-21):** relabel by R1, the cited a-2's investigator-provided ranges, and refit (stage E16d)
+- Counts in the analysis set under the closest rule (labelled / damaging / normal / excluded, now -> rule): pm12 141/139/2/3 -> 141/139/2/3; s3_10 411/87/324/90 -> 445/87/358/56; s11_50 464/15/449/76 -> 477/15/462/63; s3_50 875/102/773/166 -> 922/102/820/119
+
+## RAD51C
+
+- Label file: `phase1/data/assay_labels/rad51c_mavedb.csv`, 9,188 rows, classes Enriched, Fast depleted, Slow depleted, Unchanged (sha256 c1494e560531d60a...)
+- Cited: urn:mavedb:00000673-0-1 (Table S1, licence there CC BY 4.0); paper: Olvera-León et al. 2024
+- urn:mavedb:00000673-0-1 (cited): score set created 2025-12-26, modified 2026-06-01, published 2026-02-13; 9,188 variants, 9,188 score-table rows; licence CC BY 4.0; calibrations: 'ExCALIBR calibration (superseded 2026-10-20)' (investigator False, created 2026-02-24, modified 2026-02-24); 'ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)' (investigator False, created 2026-02-24, modified 2026-02-24); 'Investigator-provided functional classes' (investigator True, created 2026-02-13, modified 2026-02-13); 'IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)' (investigator True, created 2026-02-22, modified 2026-02-22)
+
+| rule | version | detail | compared | differ | differ, all | differ, 3-50 nt | only in the file | only in the source | reproduced |
+|---|---|---|---|---|---|---|---|---|---|
+| R1 | 00000673-0-1 | membership of class-based calibration 'Investigator-provided functional classes' (4 classes) served by MaveDB | 9,188 | 0 | 0.00% | 0.00% | 0 | 0 | yes |
+| R1 | 00000673-0-1 | membership of class-based calibration 'IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)' (4 classes) served by MaveDB | 9,188 | 0 | 0.00% | 0.00% | 0 | 0 | yes |
+| R2 | 00000673-0-1 | score-table column 'functional_classification' | 9,188 | 0 | 0.00% | 0.00% | 0 | 0 | yes |
+| R3 | 00000673-0-1 | no 95% interval columns in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R4 | 00000673-0-1 | paper rule 'Results: FDR and the sign of the D4-D14 z-score' (PMID 39299233; PMC12147941; doi:10.1016/j.cell.2024.08.039; Results, 'Functional classification of variant effect and analysis of depletion kinetics') | 9,188 | 0 | 0.00% | 0.00% | 0 | 0 | yes |
+| R4 | 00000673-0-1 | paper rule 'STAR Methods: as the Results, but p<0.01 for enriched' (PMID 39299233; PMC12147941; doi:10.1016/j.cell.2024.08.039; STAR Methods, 'Sequencing data analysis') | 9,188 | 44 | 0.48% | 0.61% | 0 | 0 | no |
+| R6 | 00000673-0-1 | a paper supplementary table is a candidate for BRCA2 only (the author's decision of 2026-10-21) | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R5 | 00000673-0-1 | no other version in the chain | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+
+- Reproduced by: R1 (membership of class-based calibration 'Investigator-provided functional classes' (4 classes) served by MaveDB, urn:mavedb:00000673-0-1; class names identical as written, case and separators folded: 9,188 of 9,188); R1 (membership of class-based calibration 'IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)' (4 classes) served by MaveDB, urn:mavedb:00000673-0-1; class names identical as written, case and separators folded: 9,188 of 9,188); R2 (score-table column 'functional_classification', urn:mavedb:00000673-0-1; class names identical as written, case and separators folded: 9,188 of 9,188); R4 (paper rule 'Results: FDR and the sign of the D4-D14 z-score' (PMID 39299233; PMC12147941; doi:10.1016/j.cell.2024.08.039; Results, 'Functional classification of variant effect and analysis of depletion kinetics'), urn:mavedb:00000673-0-1; class names identical as written, case and separators folded: 6,094 of 9,188)
+- Class names of the label file in the archive (case and separators folded): 'Enriched' yes; 'Fast depleted' yes; 'Slow depleted' yes; 'Unchanged' yes
+- Class column urn:mavedb:00000673-0-1 functional_classification: enriched -> intermediate (calibration 'Investigator-provided functional classes'); fast depleted -> abnormal (calibration 'Investigator-provided functional classes'); slow depleted -> abnormal (calibration 'Investigator-provided functional classes'); unchanged -> normal (calibration 'Investigator-provided functional classes')
+- Paper (PMID 39299233; PMC12147941; doi:10.1016/j.cell.2024.08.039): stated; "We next used z-scores and FDR values to assign variants into distinct functional classifications. Variants which had an FDR≥0.01 were classified as ‘unchanged’. Variants with an FDR<0.01 and a negative z-score between D4 and D14 were classified as ‘depleted’, and those with an FDR<0.01 and positive z-score between D4 and D14 as ‘enriched’." (Results, 'Functional classification of variant effect and analysis of depletion kinetics'); "To capture potentially meaningful kinetics of variant change beyond unchanged, depleted, and enriched, the depleted classification was further refined into ‘slow depleted’ and ‘fast depleted’ classifications by comparing D4 vs D7 and D4 vs D14 z-scores. To do this we used a Gaussian Mixture Model (GMM), using an ‘ellipsoidal, equal volume and equal shape’ (EEV) approach, determined as appropriate through Bayesian information criterion (BIC) analysis, as previously reported<sup>9</sup>." (Results, 'Functional classification of variant effect and analysis of depletion kinetics'); "Variants with a FDR<0.01 at D4 vs D14 and a negative z-score was classified as ‘depleted’, and p<0.01 and a positive z-score ‘enriched’. Unchanged variants have FDR≥0.01. Clustering was performed depleted variants. MClust<sup>49</sup> software was used to fit a Gaussian mixture model (EEV), with 2 clusters." (STAR Methods, 'Sequencing data analysis'); "Each variant LFC was converted to a z-score by dividing by the standard error value." (STAR Methods, 'Sequencing data analysis')
+
+## VHL
+
+- Label file: `phase1/data/assay_labels/vhl_buckley2024.tsv`, 2,200 rows, classes LOF1, LOF2, intermediate, neutral (sha256 7dec7190e1fd454d...)
+- Cited: urn:mavedb:00000675-a-1 (Table S1, licence there CC BY 4.0); paper: Buckley et al. 2024
+- urn:mavedb:00000675-a-1 (cited): score set created 2024-04-25, modified 2026-06-04, published 2024-04-25; 2,268 variants, 2,268 score-table rows; licence CC BY 4.0; calibrations: 'ExCALIBR calibration (superseded 2026-10-20)' (investigator False, created 2026-02-24, modified 2026-02-24); 'ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)' (investigator False, created 2026-02-24, modified 2026-02-24); 'Investigator-provided functional classes' (investigator True, created 2025-11-14, modified 2026-02-13); 'IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)' (investigator False, created 2025-11-14, modified 2025-11-14); 'IGVF Coding Variant Focus Group -- Controls: Missense Variants Only (superseded 2026-10-20)' (investigator False, created 2025-11-14, modified 2025-11-14)
+
+| rule | version | detail | compared | differ | differ, all | differ, 3-50 nt | only in the file | only in the source | reproduced |
+|---|---|---|---|---|---|---|---|---|---|
+| R1 | 00000675-a-1 | membership of class-based calibration 'Investigator-provided functional classes' (4 classes) served by MaveDB | 2,200 | 0 | 0.00% | 0.00% | 0 | 68 | yes |
+| R2 | 00000675-a-1 | no class column in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R3 | 00000675-a-1 | no 95% interval columns in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R4 | 00000675-a-1 | paper rule 'Methods: function score and q value, in the stated order' (PMID 38969834; PMC11250436; doi:10.1038/s41588-024-01800-z; Methods, 'Defining function classes') reads columns the score table does not have: q_value | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R6 | 00000675-a-1 | a paper supplementary table is a candidate for BRCA2 only (the author's decision of 2026-10-21) | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R5 | 00000675-a-1 | no other version in the chain | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+
+- Reproduced by: R1 (membership of class-based calibration 'Investigator-provided functional classes' (4 classes) served by MaveDB, urn:mavedb:00000675-a-1; class names identical as written, case and separators folded: 2,200 of 2,200)
+- Class names of the label file in the archive (case and separators folded): 'LOF1' yes; 'LOF2' yes; 'intermediate' yes; 'neutral' yes
+- Paper (PMID 38969834; PMC11250436; doi:10.1038/s41588-024-01800-z): stated; "We derived four function classes for variants scored by SGE. First, variants with <i>q</i> values greater than 0.10 and function scores greater than −0.2188 (that is, greater than the fifth percentile of gold-standard neutral variants) were deemed ‘neutral’. Second, variants with function scores lower than −1.26 (that is, lower than the 95th percentile of gold-standard ccRCC variants) were deemed ‘LOF1’. Third, variants with <i>q</i> values less than 0.01 and function scores less than −0.3875 (the lowest scoring gold-standard neutral variant) were deemed ‘LOF2’. All remaining variants were deemed ‘Intermediate’." (Methods, 'Defining function classes'); "Lines correspond to thresholds for distinguishing LOF1 (less than −1.26), LOF2 (less than −0.39) and neutral (greater than −0.23) classes." (Figure 4 legend); "Function scores are also available for visualization at https://vhl-board.onrender.com/ and have been deposited to MAVE-DB<sup>62</sup> (urn:mavedb:00000675-a) with RNA scores." (Data availability)
+- **Condition for the author (E16c.7):** variant count: the cited urn:mavedb:00000675-a-1 has 2,268 variants in its metadata and 2,268 score-table rows; the label file has 2,200 rows
+- **Decided by the author (2026-10-21):** the score-table variants in no class of the investigator calibration stay unclassified, as in the label file, and the Methods say so
+- Variants of the cited score table that the label file does not carry, by stratum (n, of which in the analysis set): pm12 0 (0); s3_10 0 (0); s11_50 0 (0); deep 0 (0); exonic_or_utr 68 (0)
+
+## BAP1
+
+- Label file: `phase1/data/assay_labels/bap1_waters2024.tsv`, 18,108 rows, classes enriched, strongly depleted, unchanged, weakly depleted (sha256 76e4c51977e8b9bd...)
+- Cited: urn:mavedb:00000662-0-1 (Table S1, licence there CC BY 4.0); paper: Waters et al. 2024
+- urn:mavedb:00000662-0-1 (cited): score set created 2026-02-24, modified 2026-05-09, published 2026-02-24; 18,108 variants, 18,108 score-table rows; licence CC BY 4.0; calibrations: 'Investigator-provided functional classes' (investigator True, created 2026-02-24, modified 2026-02-24); 'IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)' (investigator False, created 2026-02-24, modified 2026-02-24); 'BBI - GMM- ClinVar (Feb 2026, All Variants)' (investigator False, created 2026-02-24, modified 2026-02-24); 'BBI - GMM - KURIS/NDD' (investigator True, created 2026-04-29, modified 2026-04-29); 'ExCALIBR calibration (superseded 2026-10-20)' (investigator False, created 2026-02-24, modified 2026-02-24); 'ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)' (investigator False, created 2026-02-24, modified 2026-02-24)
+
+| rule | version | detail | compared | differ | differ, all | differ, 3-50 nt | only in the file | only in the source | reproduced |
+|---|---|---|---|---|---|---|---|---|---|
+| R1 | 00000662-0-1 | membership of class-based calibration 'Investigator-provided functional classes' (3 classes) served by MaveDB | 18,108 | 0 | 0.00% | 0.00% | 0 | 0 | yes |
+| R1 | 00000662-0-1 | ranges of calibration 'BBI - GMM - KURIS/NDD' (3 classes), point estimate | 18,108 | 1,659 | 9.16% | 8.73% | 0 | 0 | no |
+| R2 | 00000662-0-1 | no class column in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R3 | 00000662-0-1 | no 95% interval columns in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R4 | 00000662-0-1 | paper rule 'Results and Methods: FDR and sign, depleted split at the printed median' (PMID 38969833; PMC11250367; doi:10.1038/s41588-024-01799-3; Results and Methods; Figure 4e legend) | 18,108 | 0 | 0.00% | 0.00% | 0 | 0 | yes |
+| R6 | 00000662-0-1 | a paper supplementary table is a candidate for BRCA2 only (the author's decision of 2026-10-21) | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+| R5 | 00000662-0-1 | no other version in the chain | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
+
+- Reproduced by: R1 (membership of class-based calibration 'Investigator-provided functional classes' (3 classes) served by MaveDB, urn:mavedb:00000662-0-1; class names identical as written, case and separators folded: 12,443 of 18,108); R4 (paper rule 'Results and Methods: FDR and sign, depleted split at the printed median' (PMID 38969833; PMC11250367; doi:10.1038/s41588-024-01799-3; Results and Methods; Figure 4e legend), urn:mavedb:00000662-0-1; class names identical as written, case and separators folded: 18,107 of 18,108)
+- Class names of the label file in the archive (case and separators folded): 'enriched' yes; 'strongly depleted' NO; 'unchanged' yes; 'weakly depleted' NO
+- Paper (PMID 38969833; PMC11250367; doi:10.1038/s41588-024-01799-3): stated; "Variants with an FDR ≥0.01 were categorized as ‘unchanged’, those with an FDR <0.01 and a negative functional score were categorized as ‘depleted’ and those with an FDR <0.01 and a positive functional score were categorized as ‘enriched’. Data for 18,108 unique variants were collected after filtering steps with variants categorized as follows: 11,912 unchanged, 5,665 depleted and 531 enriched (Supplementary Table 2)." (Results, 'Functional analysis of gene architecture and conservation'); "Variants with an FDR <0.01 and a negative functional score were classified as ‘depleted’ and those with an FDR <0.01 and a positive functional score were classified as ‘enriched’. Variants with an FDR ≥0.01 were classified as ‘unchanged’." (Methods, 'Calculation of variant abundance and functional scores'); "To avoid confusion, all ‘functional classifications’ were made using the ‘functional score’ and its corresponding FDR." (Methods, 'Calculation of variant abundance and functional scores'); "By combining library A and library B, we calculated a single ‘functional score’ for each variant (Methods). This is the apparent growth rate across D4, D7, D10, D14 and D21 computed by log-linear regression in DESeq2 (ref. <sup>14</sup>) and represents log<sub>2</sub>-transformed fold change (LFC) per unit time (Methods)." (Results, 'BAP1 essentiality permits mutational consequence separation'); "To this end, we ranked the 5,665 depleted variants (we excluded enriched variants) by categorizing them on either side of the median, defining them as strongly depleted (<i>n</i> = 2,833) or weakly depleted (<i>n</i> = 2,832) (Fig. 4e)." (Results, 'Assessment of BAP1 variants in cancer and neurodevelopment'); "Depleted variants (<i>n</i> = 5,665) categorized into strongly depleted (lower 50%, dark blue) and weakly depleted (upper 50%, light blue) variants, either side of the median functional score (−0.1260642)." (Figure 4 legend, panel e)
+- **Condition for the author (E16c.7):** class name 'strongly depleted' appears nowhere in the archive's records of this score set (any version, any calibration or class column)
+- **Condition for the author (E16c.7):** class name 'weakly depleted' appears nowhere in the archive's records of this score set (any version, any calibration or class column)
+- **Decided by the author (2026-10-21):** the sub-class names strongly / weakly depleted are accepted: they split the depleted variants at the median the paper's Figure 4e legend prints, -0.1260642; c.1132del scores exactly that median, the label file calls it strongly depleted and the paper does not say on which side it falls; both sub-classes are damaging, so the analysis does not depend on it

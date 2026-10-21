@@ -1,0 +1,136 @@
+{
+ "gene": "BAP1",
+ "source": {
+  "pmid": "38969833",
+  "pmcid": "PMC11250367",
+  "doi": "10.1038/s41588-024-01799-3",
+  "citation_ids": "PMID 38969833; PMC11250367; doi:10.1038/s41588-024-01799-3",
+  "copy_read": "publisher version (the PMC copy)"
+ },
+ "status": "stated",
+ "quotes": [
+  {
+   "where": "Results, 'Functional analysis of gene architecture and conservation'",
+   "text": "Variants with an FDR ≥0.01 were categorized as ‘unchanged’, those with an FDR <0.01 and a negative functional score were categorized as ‘depleted’ and those with an FDR <0.01 and a positive functional score were categorized as ‘enriched’. Data for 18,108 unique variants were collected after filtering steps with variants categorized as follows: 11,912 unchanged, 5,665 depleted and 531 enriched (Supplementary Table 2)."
+  },
+  {
+   "where": "Methods, 'Calculation of variant abundance and functional scores'",
+   "text": "Variants with an FDR <0.01 and a negative functional score were classified as ‘depleted’ and those with an FDR <0.01 and a positive functional score were classified as ‘enriched’. Variants with an FDR ≥0.01 were classified as ‘unchanged’."
+  },
+  {
+   "where": "Methods, 'Calculation of variant abundance and functional scores'",
+   "text": "To avoid confusion, all ‘functional classifications’ were made using the ‘functional score’ and its corresponding FDR."
+  },
+  {
+   "where": "Results, 'BAP1 essentiality permits mutational consequence separation'",
+   "text": "By combining library A and library B, we calculated a single ‘functional score’ for each variant (Methods). This is the apparent growth rate across D4, D7, D10, D14 and D21 computed by log-linear regression in DESeq2 (ref. <sup>14</sup>) and represents log<sub>2</sub>-transformed fold change (LFC) per unit time (Methods)."
+  },
+  {
+   "where": "Results, 'Assessment of BAP1 variants in cancer and neurodevelopment'",
+   "text": "To this end, we ranked the 5,665 depleted variants (we excluded enriched variants) by categorizing them on either side of the median, defining them as strongly depleted (<i>n</i> = 2,833) or weakly depleted (<i>n</i> = 2,832) (Fig. 4e)."
+  },
+  {
+   "where": "Figure 4 legend, panel e",
+   "text": "Depleted variants (<i>n</i> = 5,665) categorized into strongly depleted (lower 50%, dark blue) and weakly depleted (upper 50%, light blue) variants, either side of the median functional score (−0.1260642)."
+  }
+ ],
+ "rules": [
+  {
+   "name": "Results and Methods: FDR and sign, depleted split at the printed median",
+   "where": "Results and Methods; Figure 4e legend",
+   "inputs_note": "the functional score (log-linear regression across D4-D21) is the score table's 'score' column, equal on every row to processed_LFC_continuous; its corresponding FDR is processed_BH_FDR_continuous. The paper does not say on which side of the median a variant scoring exactly the printed median falls; such a variant is depleted, without a side",
+   "classes": [
+    {
+     "class": "strongly depleted",
+     "canonical": "abnormal",
+     "conditions": [
+      {
+       "column": "processed_BH_FDR_continuous",
+       "op": "<",
+       "value": 0.01
+      },
+      {
+       "column": "score",
+       "op": "<",
+       "value": -0.1260642
+      }
+     ]
+    },
+    {
+     "class": "weakly depleted",
+     "canonical": "abnormal",
+     "conditions": [
+      {
+       "column": "processed_BH_FDR_continuous",
+       "op": "<",
+       "value": 0.01
+      },
+      {
+       "column": "score",
+       "op": "<",
+       "value": 0
+      },
+      {
+       "column": "score",
+       "op": ">",
+       "value": -0.1260642
+      }
+     ]
+    },
+    {
+     "class": "depleted (on the printed median; side not stated)",
+     "canonical": "abnormal",
+     "conditions": [
+      {
+       "column": "processed_BH_FDR_continuous",
+       "op": "<",
+       "value": 0.01
+      },
+      {
+       "column": "score",
+       "op": "<=",
+       "value": -0.1260642
+      },
+      {
+       "column": "score",
+       "op": ">=",
+       "value": -0.1260642
+      }
+     ]
+    },
+    {
+     "class": "enriched",
+     "canonical": "intermediate",
+     "conditions": [
+      {
+       "column": "processed_BH_FDR_continuous",
+       "op": "<",
+       "value": 0.01
+      },
+      {
+       "column": "score",
+       "op": ">",
+       "value": 0
+      }
+     ]
+    },
+    {
+     "class": "unchanged",
+     "canonical": "normal",
+     "conditions": [
+      {
+       "column": "processed_BH_FDR_continuous",
+       "op": ">=",
+       "value": 0.01
+      }
+     ]
+    }
+   ],
+   "default": {
+    "class": "unassigned (FDR<0.01 and a score of exactly 0)",
+    "canonical": "unassigned"
+   }
+  }
+ ],
+ "transcription_note": "Quotes copied verbatim from the paper's full text (PMC JATS XML) on 2026-10-21; <i>, <sub> and <sup> reproduce the source's inline markup; scripts/stage_E16c/check_paper_quotes.py checks every quote against the document as served. The rules below are the quoted sentences typed into machine form by hand; a test checks that every number they use appears in a quote. Canonical classes follow the functionalClassification the archive's investigator calibration gives the same class name."
+}

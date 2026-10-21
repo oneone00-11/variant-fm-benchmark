@@ -1,0 +1,286 @@
+{
+ "extracted_from": "phase1/data/evidence/label_audit/rad51c_raw/scoreset_meta_00000673-0-1.json",
+ "key": "scoreCalibrations",
+ "selection": "investigatorProvided is true",
+ "all_calibration_titles": [
+  "ExCALIBR calibration (superseded 2026-10-20)",
+  "ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)",
+  "Investigator-provided functional classes",
+  "IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)"
+ ],
+ "legacy_scoreRanges_key_present": false,
+ "investigator_provided": [
+  {
+   "title": "Investigator-provided functional classes",
+   "researchUseOnly": false,
+   "functionalClassifications": [
+    {
+     "label": "Fast depleted",
+     "functionalClassification": "abnormal",
+     "class": "fast depleted",
+     "id": 3063,
+     "recordType": "FunctionalClassification",
+     "variantCount": 2254
+    },
+    {
+     "label": "Slow depleted",
+     "functionalClassification": "abnormal",
+     "class": "slow depleted",
+     "id": 3064,
+     "recordType": "FunctionalClassification",
+     "variantCount": 840
+    },
+    {
+     "label": "Unchanged",
+     "functionalClassification": "normal",
+     "class": "unchanged",
+     "id": 3065,
+     "recordType": "FunctionalClassification",
+     "variantCount": 6045
+    },
+    {
+     "label": "Enriched",
+     "functionalClassification": "not_specified",
+     "class": "enriched",
+     "id": 3066,
+     "recordType": "FunctionalClassification",
+     "variantCount": 49
+    }
+   ],
+   "thresholdSources": [],
+   "evidenceSources": [],
+   "methodSources": [],
+   "recordType": "ScoreCalibration",
+   "id": 1923,
+   "urn": "urn:mavedb:calibration-755b0203-eb68-48b0-a04d-da90e949e916",
+   "scoreSetId": 4440,
+   "investigatorProvided": true,
+   "primary": false,
+   "private": false,
+   "controlsCount": 0,
+   "disease": {
+    "type": "MappableConcept",
+    "name": "disease or disorder",
+    "conceptType": "Disease",
+    "primaryCoding": {
+     "system": "https://purl.obolibrary.org/obo/mondo.owl",
+     "code": "MONDO:0000001",
+     "iris": [
+      "https://purl.obolibrary.org/obo/MONDO_0000001"
+     ]
+    }
+   },
+   "createdBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "modifiedBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "creationDate": "2026-02-13",
+   "modificationDate": "2026-02-13",
+   "controls": []
+  },
+  {
+   "title": "IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)",
+   "researchUseOnly": false,
+   "functionalClassifications": [
+    {
+     "label": "Enriched",
+     "functionalClassification": "not_specified",
+     "class": "enriched",
+     "id": 5009,
+     "recordType": "FunctionalClassification",
+     "variantCount": 49
+    },
+    {
+     "label": "Fast depleted",
+     "functionalClassification": "abnormal",
+     "class": "fast depleted",
+     "acmgClassification": {
+      "criterion": "PS3",
+      "evidenceStrength": "STRONG",
+      "recordType": "ACMGClassification",
+      "creationDate": "2026-02-06",
+      "modificationDate": "2026-02-06"
+     },
+     "oddspathsRatio": 35.5656,
+     "id": 5010,
+     "recordType": "FunctionalClassification",
+     "variantCount": 2254
+    },
+    {
+     "label": "Slow depleted",
+     "functionalClassification": "abnormal",
+     "class": "slow depleted",
+     "acmgClassification": {
+      "criterion": "PS3",
+      "evidenceStrength": "STRONG",
+      "recordType": "ACMGClassification",
+      "creationDate": "2026-02-06",
+      "modificationDate": "2026-02-06"
+     },
+     "oddspathsRatio": 35.5656,
+     "id": 5011,
+     "recordType": "FunctionalClassification",
+     "variantCount": 840
+    },
+    {
+     "label": "Unchanged",
+     "functionalClassification": "normal",
+     "class": "unchanged",
+     "acmgClassification": {
+      "criterion": "BS3",
+      "evidenceStrength": "STRONG",
+      "recordType": "ACMGClassification",
+      "creationDate": "2026-02-06",
+      "modificationDate": "2026-02-06"
+     },
+     "oddspathsRatio": 0.0104,
+     "id": 5012,
+     "recordType": "FunctionalClassification",
+     "variantCount": 6045
+    }
+   ],
+   "thresholdSources": [
+    {
+     "identifier": "39299233",
+     "dbName": "PubMed",
+     "recordType": "PublicationIdentifier",
+     "title": "High-resolution functional mapping of RAD51C by saturation genome editing.",
+     "authors": [
+      {
+       "name": "Olvera-León R",
+       "primary": true
+      },
+      {
+       "name": "Zhang F",
+       "primary": false
+      },
+      {
+       "name": "Offord V",
+       "primary": false
+      },
+      {
+       "name": "Zhao Y",
+       "primary": false
+      },
+      {
+       "name": "Tan HK",
+       "primary": false
+      },
+      {
+       "name": "Gupta P",
+       "primary": false
+      },
+      {
+       "name": "Pal T",
+       "primary": false
+      },
+      {
+       "name": "Robles-Espinoza CD",
+       "primary": false
+      },
+      {
+       "name": "Arriaga-González FG",
+       "primary": false
+      },
+      {
+       "name": "Matsuyama LSAS",
+       "primary": false
+      },
+      {
+       "name": "Delage E",
+       "primary": false
+      },
+      {
+       "name": "Dicks E",
+       "primary": false
+      },
+      {
+       "name": "Ezquina S",
+       "primary": false
+      },
+      {
+       "name": "Rowlands CF",
+       "primary": false
+      },
+      {
+       "name": "Turnbull C",
+       "primary": false
+      },
+      {
+       "name": "Pharoah P",
+       "primary": false
+      },
+      {
+       "name": "Perry JRB",
+       "primary": false
+      },
+      {
+       "name": "Jasin M",
+       "primary": false
+      },
+      {
+       "name": "Waters AJ",
+       "primary": false
+      },
+      {
+       "name": "Adams DJ",
+       "primary": false
+      }
+     ],
+     "abstract": "Pathogenic variants in RAD51C confer an elevated risk of breast and ovarian cancer, while individuals homozygous for specific RAD51C alleles may develop Fanconi anemia. Using saturation genome editing (SGE), we functionally assess 9,188 unique variants, including >99.5% of all possible coding sequence single-nucleotide alterations. By computing changes in variant abundance and Gaussian mixture modeling (GMM), we functionally classify 3,094 variants to be disruptive and use clinical truth sets to reveal an accuracy/concordance of variant classification >99.9%. Cell fitness was the primary assay readout allowing us to observe a phenomenon where specific missense variants exhibit distinct depletion kinetics potentially suggesting that they represent hypomorphic alleles. We further explored our exhaustive functional map, revealing critical residues on the RAD51C structure and resolving variants found in cancer-segregating kindred. Furthermore, through interrogation of UK Biobank and a large multi-center ovarian cancer cohort, we find significant associations between SGE-depleted variants and cancer diagnoses.",
+     "doi": "10.1016/j.cell.2024.08.039",
+     "publicationYear": 2024,
+     "publicationJournal": "Cell",
+     "url": "http://www.ncbi.nlm.nih.gov/pubmed/39299233",
+     "referenceHtml": "Olvera-León R, <i>et al</i>. High-resolution functional mapping of RAD51C by saturation genome editing. Cell. 2024; 187:5719-5734.e19. 10.1016/j.cell.2024.08.039",
+     "id": 122
+    }
+   ],
+   "evidenceSources": [],
+   "methodSources": [],
+   "recordType": "ScoreCalibration",
+   "id": 2146,
+   "urn": "urn:mavedb:calibration-d44db3f4-c70d-41b9-b45b-81ef2af90b88",
+   "scoreSetId": 4440,
+   "investigatorProvided": true,
+   "primary": true,
+   "private": false,
+   "controlsCount": 0,
+   "disease": {
+    "type": "MappableConcept",
+    "name": "disease or disorder",
+    "conceptType": "Disease",
+    "primaryCoding": {
+     "system": "https://purl.obolibrary.org/obo/mondo.owl",
+     "code": "MONDO:0000001",
+     "iris": [
+      "https://purl.obolibrary.org/obo/MONDO_0000001"
+     ]
+    }
+   },
+   "createdBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "modifiedBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "creationDate": "2026-02-22",
+   "modificationDate": "2026-02-22",
+   "controls": []
+  }
+ ]
+}

@@ -1,0 +1,146 @@
+{
+ "gene": "VHL",
+ "label_file": "phase1/data/assay_labels/vhl_buckley2024.tsv",
+ "cited": {
+  "urn": "urn:mavedb:00000675-a-1",
+  "where": "supplementary/Table_S1.tsv",
+  "license_in_table_s1": "CC BY 4.0"
+ },
+ "experiment_urn": "urn:mavedb:00000675-a",
+ "api": {
+  "base": "https://api.mavedb.org/api/v1",
+  "version": "2026.3.1"
+ },
+ "versions": [
+  {
+   "urn": "urn:mavedb:00000675-a-1",
+   "role": "cited",
+   "created": "2024-04-25",
+   "modified": "2026-06-04",
+   "published": "2024-04-25",
+   "supersedes": null,
+   "superseded_by": null,
+   "num_variants_metadata": 2268,
+   "n_rows_score_table": 2268,
+   "license": {
+    "shortName": "CC BY 4.0",
+    "version": "4.0",
+    "link": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "private": false,
+   "score_calibrations": [
+    {
+     "title": "ExCALIBR calibration (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": true,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 5,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": true,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 7,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "Investigator-provided functional classes",
+     "investigator_provided": true,
+     "research_use_only": false,
+     "created": "2025-11-14",
+     "modified": "2026-02-13",
+     "n_classes": 4,
+     "latest_date_inside_its_classes": "not_provided"
+    },
+    {
+     "title": "IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": false,
+     "created": "2025-11-14",
+     "modified": "2025-11-14",
+     "n_classes": 0,
+     "latest_date_inside_its_classes": "not_provided"
+    },
+    {
+     "title": "IGVF Coding Variant Focus Group -- Controls: Missense Variants Only (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": false,
+     "created": "2025-11-14",
+     "modified": "2025-11-14",
+     "n_classes": 0,
+     "latest_date_inside_its_classes": "not_provided"
+    }
+   ]
+  }
+ ],
+ "versions_not_served": [],
+ "cache_dir": "phase1/data/evidence/label_audit_cache/vhl",
+ "files": [
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/scoreset_meta_00000675-a-1.json",
+   "bytes": 45009,
+   "sha256": "f29cbfc96363919c7503ad1475dfc7cbca2e0fc5cff58c7159151fbeae3d8788",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000675-a-1",
+   "fetched_utc": "2026-10-21T04:27:13+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/urn_mavedb_00000675-a-1.csv",
+   "bytes": 254856,
+   "sha256": "ae18add4440db00e0c9e94f8924130436307ab7bc4b8bceec091a9a5e87f17b7",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000675-a-1/scores",
+   "fetched_utc": "2026-10-21T04:27:14+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/score_ranges_00000675-a-1.json",
+   "bytes": 2576,
+   "sha256": "d8a3ce4643352fc90134da968b07587163b0dcdcbadafe1d6ea1cf70f29cfe57",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000675-a-1",
+   "derived_from": "phase1/data/evidence/label_audit/vhl_raw/scoreset_meta_00000675-a-1.json",
+   "note": "extract of scoreCalibrations, entries unchanged"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/calibration_variants_53062180-5765-4185-8153-5248c62bed9e.json",
+   "bytes": 1431077,
+   "sha256": "f443e0920164731b3f6fc144a78680dee5918f37e79fd241184ecf0802aa35de",
+   "source_url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-53062180-5765-4185-8153-5248c62bed9e/variants",
+   "fetched_utc": "2026-10-21T04:27:14+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "score_set": "urn:mavedb:00000675-a-1",
+   "calibration_urn": "urn:mavedb:calibration-53062180-5765-4185-8153-5248c62bed9e",
+   "calibration_title": "Investigator-provided functional classes",
+   "functional_classification_id": "all",
+   "cached": false
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/calibration_classes_53062180-5765-4185-8153-5248c62bed9e.tsv",
+   "bytes": 152613,
+   "sha256": "1fae5babbd4f20490efdc3c64511647fad5397865f21aace964c3cfee9be185c",
+   "score_set": "urn:mavedb:00000675-a-1",
+   "calibration_urn": "urn:mavedb:calibration-53062180-5765-4185-8153-5248c62bed9e",
+   "calibration_title": "Investigator-provided functional classes",
+   "compact_of": [
+    "phase1/data/evidence/label_audit/vhl_raw/calibration_variants_53062180-5765-4185-8153-5248c62bed9e.json"
+   ],
+   "n_rows": 2200,
+   "note": "compact extract of the served membership: variant URN, hgvs_nt, functional classification id and its label"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/vhl_raw/experiment_meta.json",
+   "bytes": 8085,
+   "sha256": "c340d31d0e047a12f410b2fa9edb00d2550ca128462915280eb8d44b04732047",
+   "source_url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00000675-a",
+   "fetched_utc": "2026-10-21T04:27:14+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  }
+ ]
+}

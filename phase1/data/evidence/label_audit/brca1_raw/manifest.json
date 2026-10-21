@@ -1,0 +1,136 @@
+{
+ "gene": "BRCA1",
+ "label_file": "phase1/data/assay_labels/brca1_findlay2018.tsv",
+ "cited": {
+  "urn": "urn:mavedb:00000097-0-2",
+  "where": "supplementary/Table_S1.tsv",
+  "license_in_table_s1": "CC0"
+ },
+ "experiment_urn": "urn:mavedb:00000097-0",
+ "api": {
+  "base": "https://api.mavedb.org/api/v1",
+  "version": "2026.3.1"
+ },
+ "versions": [
+  {
+   "urn": "urn:mavedb:00000097-0-2",
+   "role": "cited",
+   "created": "2025-05-12",
+   "modified": "2026-10-20",
+   "published": "2025-05-12",
+   "supersedes": "urn:mavedb:00000097-0-1",
+   "superseded_by": null,
+   "num_variants_metadata": 3893,
+   "n_rows_score_table": 3893,
+   "license": {
+    "shortName": "CC0",
+    "version": "1.0",
+    "link": "https://creativecommons.org/publicdomain/zero/1.0/"
+   },
+   "private": false,
+   "score_calibrations": [
+    {
+     "title": "Investigator-provided functional classes",
+     "investigator_provided": true,
+     "research_use_only": false,
+     "created": "2025-11-14",
+     "modified": "2025-11-14",
+     "n_classes": 3,
+     "latest_date_inside_its_classes": "not_provided"
+    },
+    {
+     "title": "IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": false,
+     "created": "2025-11-14",
+     "modified": "2025-11-14",
+     "n_classes": 3,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "IGVF Coding Variant Focus Group -- Controls: Missense Variants Only (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": false,
+     "created": "2025-11-14",
+     "modified": "2025-11-14",
+     "n_classes": 3,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "ExCALIBR calibration (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": true,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 13,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": true,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 10,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "Fayer calibration",
+     "investigator_provided": false,
+     "research_use_only": false,
+     "created": "2025-11-14",
+     "modified": "2025-11-14",
+     "n_classes": 3,
+     "latest_date_inside_its_classes": "2026-02-06"
+    }
+   ]
+  }
+ ],
+ "versions_not_served": [
+  {
+   "urn": "urn:mavedb:00000097-0-1",
+   "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000097-0-1",
+   "http_status": 404,
+   "body": "{\"detail\":\"score set with URN 'urn:mavedb:00000097-0-1' not found\"}",
+   "at_utc": "2026-10-21T04:26:38+00:00"
+  }
+ ],
+ "cache_dir": "phase1/data/evidence/label_audit_cache/brca1",
+ "files": [
+  {
+   "path": "phase1/data/evidence/label_audit/brca1_raw/scoreset_meta_00000097-0-2.json",
+   "bytes": 77106,
+   "sha256": "4342a07f0e4a5cf152dc5b5caeaf3429b012449a4b16f4200a086be04aea73f4",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000097-0-2",
+   "fetched_utc": "2026-10-21T04:26:38+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca1_raw/urn_mavedb_00000097-0-2.csv",
+   "bytes": 610024,
+   "sha256": "906dc152f28b4c8261e4e532a03c9c42f2e45e211aa3ada12e3c826c151580ec",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000097-0-2/scores",
+   "fetched_utc": "2026-10-21T04:26:39+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca1_raw/score_ranges_00000097-0-2.json",
+   "bytes": 9753,
+   "sha256": "cbd5e9660b31722e30577aa6f180c5962a4cc3da42e3a09022c874eb4a242c2f",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000097-0-2",
+   "derived_from": "phase1/data/evidence/label_audit/brca1_raw/scoreset_meta_00000097-0-2.json",
+   "note": "extract of scoreCalibrations, entries unchanged"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/brca1_raw/experiment_meta.json",
+   "bytes": 4976,
+   "sha256": "cb1bf0239e0529db44f3ab3fd0eefa11a1d045e8d8d11d488bf0907df3d4b683",
+   "source_url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00000097-0",
+   "fetched_utc": "2026-10-21T04:26:39+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  }
+ ]
+}

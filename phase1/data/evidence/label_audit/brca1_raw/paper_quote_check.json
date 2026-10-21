@@ -1,0 +1,51 @@
+{
+ "gene": "BRCA1",
+ "checked_utc": "2026-10-21T04:20:55+00:00",
+ "paper_rule": "phase1/data/evidence/label_audit/brca1_raw/paper_rule.json",
+ "paper_rule_sha256": "7a93d68b4020c24633a616ad5c70ab42cf2629561988f91a7caaa7ddfb4cce7b",
+ "id_converter": {
+  "url": "https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/?ids=30209399&format=json",
+  "fetched_utc": "2026-10-21T04:20:54+00:00",
+  "pmid": 30209399,
+  "pmcid": "PMC6181777",
+  "doi": "10.1038/s41586-018-0461-z"
+ },
+ "document": {
+  "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=6181777",
+  "fetched_utc": "2026-10-21T04:20:55+00:00",
+  "bytes": 129760,
+  "sha256": "42573ca26a4bef1a2b6d6da94b56d3e6b123cc1b89beb2e0585847a985a34f24"
+ },
+ "documents_tried": [
+  {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6181777/fullTextXML",
+   "http_status": 500,
+   "bytes": 150,
+   "fetched_utc": "2026-10-21T04:20:54+00:00"
+  },
+  {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=6181777",
+   "http_status": 200,
+   "bytes": 129760,
+   "fetched_utc": "2026-10-21T04:20:55+00:00"
+  }
+ ],
+ "folding": "block elements read as spaces, inline markup dropped, entities resolved, Unicode NFKC, whitespace collapsed; the same on both sides",
+ "quotes": [
+  {
+   "where": "Methods, 'SNV functional class assignment'",
+   "found": true,
+   "first_words": "The posterior probabilities generated from the model were"
+  },
+  {
+   "where": "Results, 'Function scores for 3,893 BRCA1 SNVs'",
+   "found": true,
+   "first_words": "We classified all SNVs as ‘functional’, ‘non-functional’, or"
+  },
+  {
+   "where": "Figure 3 legend, panel a",
+   "found": true,
+   "first_words": "The dashed lines indicate the functional classification thresholds"
+  }
+ ]
+}

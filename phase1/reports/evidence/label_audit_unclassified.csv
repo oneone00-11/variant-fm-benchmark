@@ -1,0 +1,6 @@
+gene,version,stratum,n,n_in_analysis_set
+VHL,urn:mavedb:00000675-a-1,pm12,0,0
+VHL,urn:mavedb:00000675-a-1,s3_10,0,0
+VHL,urn:mavedb:00000675-a-1,s11_50,0,0
+VHL,urn:mavedb:00000675-a-1,deep,0,0
+VHL,urn:mavedb:00000675-a-1,exonic_or_utr,68,0

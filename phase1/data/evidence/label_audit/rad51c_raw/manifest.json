@@ -1,0 +1,164 @@
+{
+ "gene": "RAD51C",
+ "label_file": "phase1/data/assay_labels/rad51c_mavedb.csv",
+ "cited": {
+  "urn": "urn:mavedb:00000673-0-1",
+  "where": "supplementary/Table_S1.tsv",
+  "license_in_table_s1": "CC BY 4.0"
+ },
+ "experiment_urn": "urn:mavedb:00000673-0",
+ "api": {
+  "base": "https://api.mavedb.org/api/v1",
+  "version": "2026.3.1"
+ },
+ "versions": [
+  {
+   "urn": "urn:mavedb:00000673-0-1",
+   "role": "cited",
+   "created": "2025-12-26",
+   "modified": "2026-06-01",
+   "published": "2026-02-13",
+   "supersedes": null,
+   "superseded_by": null,
+   "num_variants_metadata": 9188,
+   "n_rows_score_table": 9188,
+   "license": {
+    "shortName": "CC BY 4.0",
+    "version": "4.0",
+    "link": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "private": false,
+   "score_calibrations": [
+    {
+     "title": "ExCALIBR calibration (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": true,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 13,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)",
+     "investigator_provided": false,
+     "research_use_only": true,
+     "created": "2026-02-24",
+     "modified": "2026-02-24",
+     "n_classes": 13,
+     "latest_date_inside_its_classes": "2026-02-06"
+    },
+    {
+     "title": "Investigator-provided functional classes",
+     "investigator_provided": true,
+     "research_use_only": false,
+     "created": "2026-02-13",
+     "modified": "2026-02-13",
+     "n_classes": 4,
+     "latest_date_inside_its_classes": "not_provided"
+    },
+    {
+     "title": "IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)",
+     "investigator_provided": true,
+     "research_use_only": false,
+     "created": "2026-02-22",
+     "modified": "2026-02-22",
+     "n_classes": 4,
+     "latest_date_inside_its_classes": "2026-02-06"
+    }
+   ]
+  }
+ ],
+ "versions_not_served": [],
+ "cache_dir": "phase1/data/evidence/label_audit_cache/rad51c",
+ "files": [
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/scoreset_meta_00000673-0-1.json",
+   "bytes": 51273,
+   "sha256": "ab8538a76f5f0220cf0e44f3387a464dabe4c4ed774411430b800a8a4a8941d3",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000673-0-1",
+   "fetched_utc": "2026-10-21T04:27:06+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/urn_mavedb_00000673-0-1.csv",
+   "bytes": 3517021,
+   "sha256": "d9bea586b8cf64e20ca9b2c77595fc3c4f7c4483d17f75a43e6bca84d7937ea9",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000673-0-1/scores",
+   "fetched_utc": "2026-10-21T04:27:08+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/score_ranges_00000673-0-1.json",
+   "bytes": 8364,
+   "sha256": "fdca9baa25908fccd44ae7e557dd143bdf3d958df32b9b823f51088437dcb89d",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000673-0-1",
+   "derived_from": "phase1/data/evidence/label_audit/rad51c_raw/scoreset_meta_00000673-0-1.json",
+   "note": "extract of scoreCalibrations, entries unchanged"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_755b0203-eb68-48b0-a04d-da90e949e916.json",
+   "bytes": 9192494,
+   "sha256": "071aff64fc3a85dff1a26a73a5515f5bf8dc99175439b3be64ad3b4dee98b194",
+   "source_url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-755b0203-eb68-48b0-a04d-da90e949e916/variants",
+   "fetched_utc": "2026-10-21T04:27:10+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "score_set": "urn:mavedb:00000673-0-1",
+   "calibration_urn": "urn:mavedb:calibration-755b0203-eb68-48b0-a04d-da90e949e916",
+   "calibration_title": "Investigator-provided functional classes",
+   "functional_classification_id": "all",
+   "cached": true
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/calibration_classes_755b0203-eb68-48b0-a04d-da90e949e916.tsv",
+   "bytes": 698257,
+   "sha256": "306c8d5f4de1e9535b4889585aad067277dada39c698dd0247ddac457768a6da",
+   "score_set": "urn:mavedb:00000673-0-1",
+   "calibration_urn": "urn:mavedb:calibration-755b0203-eb68-48b0-a04d-da90e949e916",
+   "calibration_title": "Investigator-provided functional classes",
+   "compact_of": [
+    "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_755b0203-eb68-48b0-a04d-da90e949e916.json"
+   ],
+   "n_rows": 9188,
+   "note": "compact extract of the served membership: variant URN, hgvs_nt, functional classification id and its label"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_d44db3f4-c70d-41b9-b45b-81ef2af90b88.json",
+   "bytes": 9192494,
+   "sha256": "ae24074c952c016434bc4179503b7b6a1916de9ecde6c79915d0935eaef4f9e2",
+   "source_url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-d44db3f4-c70d-41b9-b45b-81ef2af90b88/variants",
+   "fetched_utc": "2026-10-21T04:27:13+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200,
+   "score_set": "urn:mavedb:00000673-0-1",
+   "calibration_urn": "urn:mavedb:calibration-d44db3f4-c70d-41b9-b45b-81ef2af90b88",
+   "calibration_title": "IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)",
+   "functional_classification_id": "all",
+   "cached": true
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/calibration_classes_d44db3f4-c70d-41b9-b45b-81ef2af90b88.tsv",
+   "bytes": 698257,
+   "sha256": "906e1b4c4f4e8c3018998b0333e7d2d420d8c2c08597675b6034becc78d5af2b",
+   "score_set": "urn:mavedb:00000673-0-1",
+   "calibration_urn": "urn:mavedb:calibration-d44db3f4-c70d-41b9-b45b-81ef2af90b88",
+   "calibration_title": "IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)",
+   "compact_of": [
+    "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_d44db3f4-c70d-41b9-b45b-81ef2af90b88.json"
+   ],
+   "n_rows": 9188,
+   "note": "compact extract of the served membership: variant URN, hgvs_nt, functional classification id and its label"
+  },
+  {
+   "path": "phase1/data/evidence/label_audit/rad51c_raw/experiment_meta.json",
+   "bytes": 6009,
+   "sha256": "697879bf8bf9b10cdf1760811382041e966e76ce379efe8076d411b0332d8489",
+   "source_url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00000673-0",
+   "fetched_utc": "2026-10-21T04:27:13+00:00",
+   "api_version": "2026.3.1",
+   "http_status": 200
+  }
+ ]
+}

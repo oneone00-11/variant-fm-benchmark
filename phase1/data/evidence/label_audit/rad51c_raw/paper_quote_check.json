@@ -1,0 +1,56 @@
+{
+ "gene": "RAD51C",
+ "checked_utc": "2026-10-21T04:21:07+00:00",
+ "paper_rule": "phase1/data/evidence/label_audit/rad51c_raw/paper_rule.json",
+ "paper_rule_sha256": "3355e0bcd7fad30dc264dc364e29d3f06ac6e0250a2de0e26344ed9a52d45932",
+ "id_converter": {
+  "url": "https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/?ids=39299233&format=json",
+  "fetched_utc": "2026-10-21T04:20:58+00:00",
+  "pmid": 39299233,
+  "pmcid": "PMC12147941",
+  "doi": "10.1016/j.cell.2024.08.039"
+ },
+ "document": {
+  "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=12147941",
+  "fetched_utc": "2026-10-21T04:21:07+00:00",
+  "bytes": 214385,
+  "sha256": "1723f629a53b137005a01b41e99596e4dc2e5a1413856ae24a938c2e76f666a1"
+ },
+ "documents_tried": [
+  {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12147941/fullTextXML",
+   "http_status": 500,
+   "bytes": 151,
+   "fetched_utc": "2026-10-21T04:21:06+00:00"
+  },
+  {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=12147941",
+   "http_status": 200,
+   "bytes": 214385,
+   "fetched_utc": "2026-10-21T04:21:07+00:00"
+  }
+ ],
+ "folding": "block elements read as spaces, inline markup dropped, entities resolved, Unicode NFKC, whitespace collapsed; the same on both sides",
+ "quotes": [
+  {
+   "where": "Results, 'Functional classification of variant effect and analysis of depletion kinetics'",
+   "found": true,
+   "first_words": "We next used z-scores and FDR values to"
+  },
+  {
+   "where": "Results, 'Functional classification of variant effect and analysis of depletion kinetics'",
+   "found": true,
+   "first_words": "To capture potentially meaningful kinetics of variant change"
+  },
+  {
+   "where": "STAR Methods, 'Sequencing data analysis'",
+   "found": true,
+   "first_words": "Variants with a FDR<0.01 at D4 vs D14"
+  },
+  {
+   "where": "STAR Methods, 'Sequencing data analysis'",
+   "found": true,
+   "first_words": "Each variant LFC was converted to a z-score"
+  }
+ ]
+}

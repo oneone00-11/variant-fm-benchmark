@@ -1,0 +1,399 @@
+{
+ "extracted_from": "phase1/data/evidence/label_audit/bap1_raw/scoreset_meta_00000662-0-1.json",
+ "key": "scoreCalibrations",
+ "selection": "investigatorProvided is true",
+ "all_calibration_titles": [
+  "Investigator-provided functional classes",
+  "IGVF Coding Variant Focus Group -- Controls: All Variants (superseded 2026-10-20)",
+  "BBI - GMM- ClinVar (Feb 2026, All Variants)",
+  "BBI - GMM - KURIS/NDD",
+  "ExCALIBR calibration (superseded 2026-10-20)",
+  "ExCALIBR calibration (ClinVar 2018) (superseded 2026-10-20)"
+ ],
+ "legacy_scoreRanges_key_present": false,
+ "investigator_provided": [
+  {
+   "title": "Investigator-provided functional classes",
+   "researchUseOnly": false,
+   "functionalClassifications": [
+    {
+     "label": "depleted",
+     "functionalClassification": "abnormal",
+     "class": "depleted",
+     "acmgClassification": {
+      "criterion": "PS3",
+      "evidenceStrength": "STRONG",
+      "recordType": "ACMGClassification",
+      "creationDate": "2026-02-06",
+      "modificationDate": "2026-02-06"
+     },
+     "oddspathsRatio": 27.6,
+     "id": 5998,
+     "recordType": "FunctionalClassification",
+     "variantCount": 5665
+    },
+    {
+     "label": "unchanged",
+     "functionalClassification": "normal",
+     "class": "unchanged",
+     "acmgClassification": {
+      "criterion": "BS3",
+      "evidenceStrength": "STRONG",
+      "recordType": "ACMGClassification",
+      "creationDate": "2026-02-06",
+      "modificationDate": "2026-02-06"
+     },
+     "oddspathsRatio": 0.002125,
+     "id": 5999,
+     "recordType": "FunctionalClassification",
+     "variantCount": 11912
+    },
+    {
+     "label": "enriched",
+     "functionalClassification": "not_specified",
+     "class": "enriched",
+     "id": 6000,
+     "recordType": "FunctionalClassification",
+     "variantCount": 531
+    }
+   ],
+   "thresholdSources": [
+    {
+     "identifier": "38969833",
+     "dbName": "PubMed",
+     "recordType": "PublicationIdentifier",
+     "title": "Saturation genome editing of BAP1 functionally classifies somatic and germline variants.",
+     "authors": [
+      {
+       "name": "Waters AJ",
+       "primary": true
+      },
+      {
+       "name": "Brendler-Spaeth T",
+       "primary": false
+      },
+      {
+       "name": "Smith D",
+       "primary": false
+      },
+      {
+       "name": "Offord V",
+       "primary": false
+      },
+      {
+       "name": "Tan HK",
+       "primary": false
+      },
+      {
+       "name": "Zhao Y",
+       "primary": false
+      },
+      {
+       "name": "Obolenski S",
+       "primary": false
+      },
+      {
+       "name": "Nielsen M",
+       "primary": false
+      },
+      {
+       "name": "van Doorn R",
+       "primary": false
+      },
+      {
+       "name": "Murphy JE",
+       "primary": false
+      },
+      {
+       "name": "Gupta P",
+       "primary": false
+      },
+      {
+       "name": "Rowlands CF",
+       "primary": false
+      },
+      {
+       "name": "Hanson H",
+       "primary": false
+      },
+      {
+       "name": "Delage E",
+       "primary": false
+      },
+      {
+       "name": "Thomas M",
+       "primary": false
+      },
+      {
+       "name": "Radford EJ",
+       "primary": false
+      },
+      {
+       "name": "Gerety SS",
+       "primary": false
+      },
+      {
+       "name": "Turnbull C",
+       "primary": false
+      },
+      {
+       "name": "Perry JRB",
+       "primary": false
+      },
+      {
+       "name": "Hurles ME",
+       "primary": false
+      },
+      {
+       "name": "Adams DJ",
+       "primary": false
+      }
+     ],
+     "abstract": "Many variants that we inherit from our parents or acquire de novo or somatically are rare, limiting the precision with which we can associate them with disease. We performed exhaustive saturation genome editing (SGE) of BAP1, the disruption of which is linked to tumorigenesis and altered neurodevelopment. We experimentally characterized 18,108 unique variants, of which 6,196 were found to have abnormal functions, and then used these data to evaluate phenotypic associations in the UK Biobank. We also characterized variants in a large population-ascertained tumor collection, in cancer pedigrees and ClinVar, and explored the behavior of cancer-associated variants compared to that of variants linked to neurodevelopmental phenotypes. Our analyses demonstrated that disruptive germline BAP1 variants were significantly associated with higher circulating levels of the mitogen IGF-1, suggesting a possible pathological mechanism and therapeutic target. Furthermore, we built a variant classifier with >98% sensitivity and specificity and quantify evidence strengths to aid precision variant interpretation.",
+     "doi": "10.1038/s41588-024-01799-3",
+     "publicationYear": 2024,
+     "publicationJournal": "Nat Genet",
+     "url": "http://www.ncbi.nlm.nih.gov/pubmed/38969833",
+     "referenceHtml": "Waters AJ, <i>et al</i>. Saturation genome editing of BAP1 functionally classifies somatic and germline variants. Nat Genet. 2024; 56:1434-1445. 10.1038/s41588-024-01799-3",
+     "id": 151
+    }
+   ],
+   "evidenceSources": [
+    {
+     "identifier": "38969833",
+     "dbName": "PubMed",
+     "recordType": "PublicationIdentifier",
+     "title": "Saturation genome editing of BAP1 functionally classifies somatic and germline variants.",
+     "authors": [
+      {
+       "name": "Waters AJ",
+       "primary": true
+      },
+      {
+       "name": "Brendler-Spaeth T",
+       "primary": false
+      },
+      {
+       "name": "Smith D",
+       "primary": false
+      },
+      {
+       "name": "Offord V",
+       "primary": false
+      },
+      {
+       "name": "Tan HK",
+       "primary": false
+      },
+      {
+       "name": "Zhao Y",
+       "primary": false
+      },
+      {
+       "name": "Obolenski S",
+       "primary": false
+      },
+      {
+       "name": "Nielsen M",
+       "primary": false
+      },
+      {
+       "name": "van Doorn R",
+       "primary": false
+      },
+      {
+       "name": "Murphy JE",
+       "primary": false
+      },
+      {
+       "name": "Gupta P",
+       "primary": false
+      },
+      {
+       "name": "Rowlands CF",
+       "primary": false
+      },
+      {
+       "name": "Hanson H",
+       "primary": false
+      },
+      {
+       "name": "Delage E",
+       "primary": false
+      },
+      {
+       "name": "Thomas M",
+       "primary": false
+      },
+      {
+       "name": "Radford EJ",
+       "primary": false
+      },
+      {
+       "name": "Gerety SS",
+       "primary": false
+      },
+      {
+       "name": "Turnbull C",
+       "primary": false
+      },
+      {
+       "name": "Perry JRB",
+       "primary": false
+      },
+      {
+       "name": "Hurles ME",
+       "primary": false
+      },
+      {
+       "name": "Adams DJ",
+       "primary": false
+      }
+     ],
+     "abstract": "Many variants that we inherit from our parents or acquire de novo or somatically are rare, limiting the precision with which we can associate them with disease. We performed exhaustive saturation genome editing (SGE) of BAP1, the disruption of which is linked to tumorigenesis and altered neurodevelopment. We experimentally characterized 18,108 unique variants, of which 6,196 were found to have abnormal functions, and then used these data to evaluate phenotypic associations in the UK Biobank. We also characterized variants in a large population-ascertained tumor collection, in cancer pedigrees and ClinVar, and explored the behavior of cancer-associated variants compared to that of variants linked to neurodevelopmental phenotypes. Our analyses demonstrated that disruptive germline BAP1 variants were significantly associated with higher circulating levels of the mitogen IGF-1, suggesting a possible pathological mechanism and therapeutic target. Furthermore, we built a variant classifier with >98% sensitivity and specificity and quantify evidence strengths to aid precision variant interpretation.",
+     "doi": "10.1038/s41588-024-01799-3",
+     "publicationYear": 2024,
+     "publicationJournal": "Nat Genet",
+     "url": "http://www.ncbi.nlm.nih.gov/pubmed/38969833",
+     "referenceHtml": "Waters AJ, <i>et al</i>. Saturation genome editing of BAP1 functionally classifies somatic and germline variants. Nat Genet. 2024; 56:1434-1445. 10.1038/s41588-024-01799-3",
+     "id": 151
+    }
+   ],
+   "methodSources": [],
+   "recordType": "ScoreCalibration",
+   "id": 2261,
+   "urn": "urn:mavedb:calibration-20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3",
+   "scoreSetId": 4469,
+   "investigatorProvided": true,
+   "primary": false,
+   "private": false,
+   "controlsCount": 0,
+   "disease": {
+    "type": "MappableConcept",
+    "name": "disease or disorder",
+    "conceptType": "Disease",
+    "primaryCoding": {
+     "system": "https://purl.obolibrary.org/obo/mondo.owl",
+     "code": "MONDO:0000001",
+     "iris": [
+      "https://purl.obolibrary.org/obo/MONDO_0000001"
+     ]
+    }
+   },
+   "createdBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "modifiedBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "creationDate": "2026-02-24",
+   "modificationDate": "2026-02-24",
+   "controls": []
+  },
+  {
+   "title": "BBI - GMM - KURIS/NDD",
+   "researchUseOnly": true,
+   "functionalClassifications": [
+    {
+     "label": "functionally_abnormal",
+     "functionalClassification": "abnormal",
+     "range": [
+      null,
+      -0.026891
+     ],
+     "inclusiveLowerBound": false,
+     "inclusiveUpperBound": true,
+     "acmgClassification": {
+      "criterion": "PS3",
+      "evidenceStrength": "STRONG",
+      "recordType": "ACMGClassification",
+      "creationDate": "2026-02-06",
+      "modificationDate": "2026-02-06"
+     },
+     "oddspathsRatio": 47.23,
+     "id": 6989,
+     "recordType": "FunctionalClassification",
+     "variantCount": 4592
+    },
+    {
+     "label": "indeterminate",
+     "functionalClassification": "not_specified",
+     "range": [
+      -0.026891,
+      -0.018367
+     ],
+     "inclusiveLowerBound": false,
+     "inclusiveUpperBound": false,
+     "id": 6990,
+     "recordType": "FunctionalClassification",
+     "variantCount": 450
+    },
+    {
+     "label": "functionally_normal",
+     "functionalClassification": "normal",
+     "range": [
+      -0.018367,
+      null
+     ],
+     "inclusiveLowerBound": true,
+     "inclusiveUpperBound": false,
+     "acmgClassification": {
+      "criterion": "BS3",
+      "evidenceStrength": "MODERATE",
+      "recordType": "ACMGClassification",
+      "creationDate": "2026-02-06",
+      "modificationDate": "2026-02-06"
+     },
+     "oddspathsRatio": 0.2,
+     "id": 6991,
+     "recordType": "FunctionalClassification",
+     "variantCount": 13066
+    }
+   ],
+   "thresholdSources": [],
+   "evidenceSources": [],
+   "methodSources": [],
+   "recordType": "ScoreCalibration",
+   "id": 2387,
+   "urn": "urn:mavedb:calibration-7be00aa0-377f-40e8-8d86-d64221f2e2ff",
+   "scoreSetId": 4469,
+   "investigatorProvided": true,
+   "primary": false,
+   "private": false,
+   "controlsCount": 0,
+   "disease": {
+    "type": "MappableConcept",
+    "name": "disease or disorder",
+    "conceptType": "Disease",
+    "primaryCoding": {
+     "system": "https://purl.obolibrary.org/obo/mondo.owl",
+     "code": "MONDO:0000001",
+     "iris": [
+      "https://purl.obolibrary.org/obo/MONDO_0000001"
+     ]
+    }
+   },
+   "createdBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "modifiedBy": {
+    "orcidId": "0000-0002-7565-2463",
+    "firstName": "Jeremy",
+    "lastName": "Stone",
+    "recordType": "User"
+   },
+   "creationDate": "2026-04-29",
+   "modificationDate": "2026-04-29",
+   "controls": []
+  }
+ ]
+}
