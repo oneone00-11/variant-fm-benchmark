@@ -1,0 +1,222 @@
+name: container
+
+# The reference image of the evidence-strength study (stage B6). Manual only:
+#   build      build container/Dockerfile for linux/amd64 and push it, privately, to
+#              GitHub's container registry; report its manifest digest and image ID
+#              (config digest), and keep `docker save`'s archive as this run's artifact
+#   probe      in the image, given by digest: record this runner's CPU and what the
+#              maths libraries choose on it (container/run.sh probe)
+#   reproduce  in the image, given by digest: fetch the inputs online, then run every
+#              stage and --verify with no network (container/run.sh fetch, verify)
+# The push trigger only registers the workflow: GitHub dispatches a workflow that is
+# not on the default branch only after it has run once, so a push that changes this
+# file starts a run in which every job is skipped.
+on:
+  push:
+    branches: [evidence/rework]
+    paths: [".github/workflows/container.yml"]
+  workflow_dispatch:
+    inputs:
+      task:
+        description: "build, probe or reproduce"
+        type: choice
+        options: [build, probe, reproduce]
+        default: build
+      image:
+        description: "probe, reproduce: the image by digest (ghcr.io/OWNER/NAME@sha256:...)"
+        type: string
+        default: ""
+      probe_name:
+        description: "probe: the record's name, container/cpu_probe/NAME.json"
+        type: string
+        default: github-linux
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash        # -eo pipefail: a failed command in a pipe fails the step
+
+jobs:
+  build:
+    if: github.event_name == 'workflow_dispatch' && inputs.task == 'build'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Name the image after the repository's owner, as GitHub reports it
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          owner="$(gh repo view "$GITHUB_REPOSITORY" --json owner --jq .owner.login)"
+          echo "IMAGE=ghcr.io/${owner,,}/variant-fm-benchmark-reference" >> "$GITHUB_ENV"
+          echo "TAG=b6-${GITHUB_SHA::12}" >> "$GITHUB_ENV"
+      - name: Build for linux/amd64
+        run: |
+          docker version
+          docker buildx build --platform linux/amd64 --load --provenance=false --sbom=false \
+            --label "org.opencontainers.image.source=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" \
+            --label "org.opencontainers.image.revision=$GITHUB_SHA" \
+            --label "org.opencontainers.image.licenses=MIT" \
+            -t "$IMAGE:$TAG" -f container/Dockerfile container
+      - name: Push
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          echo "$TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker push "$IMAGE:$TAG" | tee push.txt
+      - name: Record the pushed image, check who can read it, and save it
+        run: |
+          docker buildx imagetools inspect --raw "$IMAGE:$TAG" > manifest.json
+          docker image inspect "$IMAGE:$TAG" > inspect.json
+          docker save "$IMAGE:$TAG" -o image.tar
+          # without credentials a private package refuses even the manifest
+          name="${IMAGE#ghcr.io/}"
+          anon_token="$(curl -s "https://ghcr.io/token?scope=repository:$name:pull" \
+                        | python3 -c 'import json,sys; print(json.load(sys.stdin).get("token", ""))' \
+                        || true)"
+          anon_status="$(curl -s -o /dev/null -w '%{http_code}' \
+            -H "Authorization: Bearer $anon_token" \
+            -H "Accept: application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json" \
+            "https://ghcr.io/v2/$name/manifests/$TAG")"
+          python3 - "$anon_status" > image.json <<'PY'
+          import hashlib, json, os, re, sys
+          manifest = open("manifest.json", "rb").read()
+          inspect = json.load(open("inspect.json"))[0]
+          pushed = re.findall(r"digest: (sha256:[0-9a-f]{64})", open("push.txt").read())
+          sha = hashlib.sha256()
+          with open("image.tar", "rb") as f:
+              for block in iter(lambda: f.read(1 << 20), b""):
+                  sha.update(block)
+          m = json.loads(manifest)
+          print(json.dumps({
+              "name": os.environ["IMAGE"], "tag": os.environ["TAG"],
+              "manifest_digest": "sha256:" + hashlib.sha256(manifest).hexdigest(),
+              "manifest_digest_push_reported": pushed[-1] if pushed else None,
+              "manifest_media_type": m.get("mediaType"),
+              "config_digest": m["config"]["digest"],
+              "image_id_on_runner": inspect["Id"],
+              "repo_digests_on_runner": inspect.get("RepoDigests"),
+              "architecture": inspect.get("Architecture"), "os": inspect.get("Os"),
+              "labels": inspect.get("Config", {}).get("Labels"),
+              "size_bytes": inspect.get("Size"),
+              "layers": [l["digest"] for l in m.get("layers", [])],
+              "docker_save_file": "image.tar",
+              "docker_save_bytes": os.path.getsize("image.tar"),
+              "docker_save_sha256": sha.hexdigest(),
+              "anonymous_manifest_request_http_status": sys.argv[1],
+              "built_at_commit": os.environ["GITHUB_SHA"],
+              "run_url": f"{os.environ['GITHUB_SERVER_URL']}/{os.environ['GITHUB_REPOSITORY']}"
+                         f"/actions/runs/{os.environ['GITHUB_RUN_ID']}",
+          }, indent=1))
+          PY
+          cat image.json
+          {
+            echo "### Reference image"
+            echo
+            echo '```'
+            cat image.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep the record
+        uses: actions/upload-artifact@v4
+        with:
+          name: reference-image-record
+          path: |
+            image.json
+            manifest.json
+            inspect.json
+            push.txt
+      - name: Keep the image, as docker save wrote it
+        uses: actions/upload-artifact@v4
+        with:
+          name: reference-image
+          path: image.tar
+
+  probe:
+    if: github.event_name == 'workflow_dispatch' && inputs.task == 'probe'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: read
+    env:
+      IMAGE: ${{ inputs.image }}
+      PROBE_NAME: ${{ inputs.probe_name }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pull the image by digest
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          case "$IMAGE" in ghcr.io/*@sha256:*) ;; *) echo "give the image by digest" >&2; exit 1 ;; esac
+          echo "$TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker pull "$IMAGE"
+      - name: Probe
+        run: |
+          docker run --rm --platform linux/amd64 --network none --user "$(id -u):$(id -g)" \
+            -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh probe "$PROBE_NAME"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cpu-probe-${{ inputs.probe_name }}
+          path: |
+            container/cpu_probe/
+            scripts/stage_B6/run_log/cpu_probe_*.json
+
+  reproduce:
+    if: github.event_name == 'workflow_dispatch' && inputs.task == 'reproduce'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    permissions:
+      contents: read
+      packages: read
+    env:
+      IMAGE: ${{ inputs.image }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pull the image by digest
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          case "$IMAGE" in ghcr.io/*@sha256:*) ;; *) echo "give the image by digest" >&2; exit 1 ;; esac
+          echo "$TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker pull "$IMAGE"
+          grep -m1 "model name" /proc/cpuinfo
+      - name: Fetch the inputs (online)
+        run: |
+          docker run --rm --platform linux/amd64 --user "$(id -u):$(id -g)" \
+            -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh fetch
+      - name: Run every stage and compare (no network)
+        run: |
+          start=$(date +%s)
+          docker run --rm --platform linux/amd64 --network none --user "$(id -u):$(id -g)" \
+            -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh verify
+          echo "seconds: $(( $(date +%s) - start ))"
+      - name: Upload the per-file comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reproduce-report-image
+          path: reproduce_report.txt
+          if-no-files-found: warn
+      - name: Collect the files that are not identical
+        if: always()
+        run: |
+          mkdir -p not-identical
+          if [ -f reproduce_report.txt ]; then
+            grep -E '^(differs|not rewritten|new)' reproduce_report.txt | cut -f2 |
+              while read -r f; do
+                [ -f "$f" ] && mkdir -p "not-identical/$(dirname "$f")" && cp "$f" "not-identical/$f"
+              done || true
+          fi
+      - name: Upload the files that are not identical
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reproduce-not-identical-image
+          path: not-identical
+          if-no-files-found: ignore

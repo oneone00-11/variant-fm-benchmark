@@ -1,0 +1,61 @@
+{
+ "script": "scripts/stage_B6/base_image.py",
+ "argv": [
+  "scripts/stage_B6/base_image.py"
+ ],
+ "git_commit": "0161aadf6f88a95b9bb42b47ade0e23e7a981cb1",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_B6/base_image.py": "280c94c02232034db992bd1813b6f0b933154e73c44e6e9d10d0633b58a80707",
+  "scripts/stage_B6/_runlog.py": "d310fddfe3c56e9d8dbe42f6dc762f6316733c599ad3f397e4caa849daad3680"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "scipy": "1.13.1",
+  "pandas": "2.3.3",
+  "matplotlib": "3.9.4",
+  "threadpoolctl": "3.6.0"
+ },
+ "start_utc": "2026-10-21T13:38:19+00:00",
+ "end_utc": "2026-10-21T13:38:23+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "container/ENVIRONMENT.json",
+   "bytes": 1257,
+   "sha256": "d585bdc7886ccc935cccb487a0f630a39f1ff1cec3eb5fe7f2c9cc90bbb85185"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "base_image": {
+   "registry": "registry-1.docker.io",
+   "repository": "library/python",
+   "tag": "3.12.13-slim-bookworm",
+   "reference": "python:3.12.13-slim-bookworm@sha256:6e13e65c55e33adf203d77ee371cf8bf5d81bd4902ef07565721f46bf44917af",
+   "index_digest": "sha256:4766d8b510c428e595d74b9cc5bbb2fae8e26316fffb4adc89908d79aacd58a2",
+   "index_media_type": "application/vnd.oci.image.index.v1+json",
+   "platforms_in_index": [
+    "linux/386",
+    "linux/amd64",
+    "linux/arm/v7",
+    "linux/arm64/v8",
+    "linux/ppc64le"
+   ],
+   "linux_amd64_manifest_digest": "sha256:6e13e65c55e33adf203d77ee371cf8bf5d81bd4902ef07565721f46bf44917af",
+   "linux_amd64_manifest_media_type": "application/vnd.oci.image.manifest.v1+json",
+   "linux_amd64_config_digest": "sha256:64d91f7b885eed272bba87909446b12ff408d4aaa5f1a0e9ca787bbea1a020b9",
+   "config_created": "2026-08-05T01:14:10.835354632Z",
+   "config_architecture": "amd64",
+   "config_os": "linux",
+   "config_env": {
+    "GPG_KEY": "7169605F62C751356D054A26A821E680E5FA6305",
+    "LANG": "C.UTF-8",
+    "PYTHON_SHA256": "c08bc65a81971c1dd5783182826503369466c7e67374d1646519adf05207b684",
+    "PYTHON_VERSION": "3.12.13"
+   }
+  }
+ }
+}

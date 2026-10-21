@@ -86,6 +86,8 @@ Outputs land in `phase1/reports/evidence/`; stages 22 to 26 also write a page un
     python scripts/reproduce_evidence.py --fetch-inputs --verify
     python scripts/reproduce_evidence.py
     python scripts/reproduce_evidence.py --from 3      # resume at a stage
+    python scripts/reproduce_evidence.py --fetch-only  # the inputs alone, no stage (B6:
+                                                       # container/run.sh fetch, online)
 """
 from __future__ import annotations
 
@@ -1094,6 +1096,11 @@ def main() -> None:
                          "four chromosomes of the E16 and E16b genes' reference-base checks, "
                          "whose failure does not stop the run, and the label audit's "
                          "uncommitted sources, whose failure does")
+    ap.add_argument("--fetch-only", action="store_true",
+                    help="what --fetch-inputs fetches and checks, the atlas release "
+                         "archive included, and nothing else: no stage runs. The online "
+                         "first step of a run in the reference image, whose stages then "
+                         "run with no network (container/run.sh)")
     ap.add_argument("--check", action="store_true",
                     help="quick path, about five minutes, no data download: check every "
                          "checksum the manifests and provenance records carry, then run "
@@ -1109,6 +1116,16 @@ def main() -> None:
         sys.exit(0 if check() else 1)
     if args.verify and args.start != 1:
         sys.exit("--verify needs the full run (no --from)")
+    if args.fetch_only:
+        if args.verify or args.start != 1:
+            sys.exit("--fetch-only runs no stage; give it alone")
+        fetch_clinvar()
+        fetch_reference_chromosomes()
+        fetch_label_audit_cache()
+        atlas = choose_atlas(release_only=True, fetch=True)
+        print(f"companion atlas: {atlas} (release {atlas_version(atlas)}, matches the "
+              "release file for file)\nthe inputs are fetched and checked; no stage ran")
+        return
     if args.fetch_inputs:
         fetch_clinvar()
         fetch_reference_chromosomes()

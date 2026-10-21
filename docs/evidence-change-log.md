@@ -829,3 +829,43 @@ refit shows stands.
 - The label source audit now reproduces all seven files.
 - The manuscript draft prints four counts that no longer match their named file:
   7,612, 8,453, 224 and 225. Neither the manuscript nor the README is changed here.
+
+## After 3.0.1: the reference image, defined (stage B6, 2026-10-21)
+
+Why: the committed outputs were made on the author's macOS arm64. CI on another Mac
+reproduces them numerically; CI on Linux does not (the figures ask for Arial, which
+Linux lacks, and numpy and scipy run another BLAS). On 2026-10-20 the author chose one
+Docker image as the reference environment, every output to be regenerated in it as the
+new committed baseline. This commit defines the image; no output changes.
+
+- `container/Dockerfile`: `python:3.12.13-slim-bookworm` pinned by its linux/amd64
+  manifest digest; `git` (which `--verify` calls) pinned to the version apt offers in
+  that image; the packages of `requirements-evidence.lock.txt`, from wheels only, each
+  checked against its hash in `container/requirements.linux-amd64.txt`, then `pip
+  check` and the lock compared with `pip freeze`. No data and no repository code go
+  into the image: the repository is mounted when it runs.
+- The pins come from command output, not by hand: `scripts/stage_B6/base_image.py`
+  read the digests from the registry, and `scripts/stage_B6/pin_versions.py`, in the
+  pinned base image, asked apt for git's version and downloaded and hashed every
+  wheel. Both write `container/ENVIRONMENT.json`; a test holds the Dockerfile to it.
+- `container/run.sh` runs in the image as the host user, with `reproduce.sh`'s thread
+  settings, `PYTHONHASHSEED=0`, `TZ=UTC` and `LC_ALL=C.UTF-8`, in two steps:
+  `fetch`, online, and `verify`, with no network. The OpenBLAS kernel type and numpy's
+  dispatch are left empty, to be set from probes of two CPUs before the rebaseline.
+- `scripts/reproduce_evidence.py --fetch-only` fetches and checks what `--fetch-inputs`
+  does, the atlas archive included, and runs no stage: the online first step in the
+  image. Nothing else in the entry point changes, and the native run here stays
+  REPRODUCED.
+- `.github/workflows/container.yml`, started by hand only: build and push the image
+  (privately), or, given it by digest, probe the runner's CPU or run the whole
+  reproduction in it. Its push trigger only registers it, because GitHub dispatches a
+  workflow that is not on the default branch only after it has run once; every job is
+  skipped on a push.
+- A trial in an image built here from this Dockerfile (not the reference image, which
+  CI builds): every stage ran with no network, in 34 minutes under amd64 emulation.
+  Against 0161aad the comparator said NOT REPRODUCED, listing exactly the files CI's
+  native Linux run lists: 21 figures, 21 numerically equal files, and 2 that differ.
+  The TP53 manifest's reproduction check counts 23 of 24 re-scored Nucleotide
+  Transformer values identical rather than 24, one being 4.4e-16 apart, which the
+  stage attributes to pandas' default CSV float parser on x86_64. The
+  supplementary-table manifest records that manifest's hash.

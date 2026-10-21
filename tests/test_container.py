@@ -1,0 +1,158 @@
+"""The reference image (stage B6) is defined by files that hold each other to account.
+
+The image's lock has the evidence lock's packages at the same versions, each with the
+sha256 of one wheel; container/Dockerfile pins what container/ENVIRONMENT.json recorded
+from the registry and from the base image, and copies nothing of the repository but
+that lock; container/run.sh runs with reproduce.sh's settings and fixes the rest; the
+build workflow does nothing unless started by hand; and the entry point's --fetch-only
+fetches and runs no stage.
+"""
+from __future__ import annotations
+
+import importlib.util
+import json
+import re
+import sys
+from pathlib import Path
+
+import pytest
+
+REPO = Path(__file__).resolve().parents[1]
+LOCK = REPO / "requirements-evidence.lock.txt"
+IMAGE_LOCK = REPO / "container" / "requirements.linux-amd64.txt"
+DOCKERFILE = REPO / "container" / "Dockerfile"
+RUN_SH = REPO / "container" / "run.sh"
+ENVIRONMENT = REPO / "container" / "ENVIRONMENT.json"
+WORKFLOW = REPO / ".github" / "workflows" / "container.yml"
+THREADS = re.compile(r"\b([A-Z_]+_(?:NUM_THREADS|MAXIMUM_THREADS))=(\d+)")
+
+
+def _lines(path: Path) -> list[str]:
+    return [line for line in path.read_text().splitlines()
+            if line.strip() and not line.startswith("#")]
+
+
+def _entry_point():
+    spec = importlib.util.spec_from_file_location(
+        "reproduce_evidence", REPO / "scripts" / "reproduce_evidence.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+# --------------------------------------------------------------------------
+# the lock
+# --------------------------------------------------------------------------
+def test_the_image_lock_has_the_evidence_locks_packages_at_the_same_versions():
+    assert {line.split()[0] for line in _lines(IMAGE_LOCK)} == set(_lines(LOCK))
+
+
+def test_every_package_of_the_image_lock_carries_the_sha256_of_one_wheel():
+    for line in _lines(IMAGE_LOCK):
+        assert re.fullmatch(r"[A-Za-z0-9_.\-]+==\S+ --hash=sha256:[0-9a-f]{64}", line), line
+
+
+# --------------------------------------------------------------------------
+# the Dockerfile and the record it is pinned to
+# --------------------------------------------------------------------------
+def test_the_base_image_is_the_recorded_python_3_12_13_by_digest():
+    base = json.loads(ENVIRONMENT.read_text())["base_image"]
+    assert base["config_env"]["PYTHON_VERSION"] == "3.12.13"
+    assert (base["config_architecture"], base["config_os"]) == ("amd64", "linux")
+    assert base["reference"] == f"python:{base['tag']}@{base['linux_amd64_manifest_digest']}"
+    assert re.findall(r"^FROM\s+(\S+)", DOCKERFILE.read_text(), re.M) == [base["reference"]]
+
+
+def test_every_debian_package_is_pinned_to_the_recorded_version():
+    pins = json.loads(ENVIRONMENT.read_text())["apt_pins"]["packages"]
+    installed = dict(re.findall(r"^\s+([a-z0-9.+-]+)=(\S+) \\$", DOCKERFILE.read_text(), re.M))
+    assert installed == {pkg: p["version"] for pkg, p in pins.items()}
+    assert "git" in installed                     # --verify reads HEAD with git
+
+
+def test_the_image_installs_wheels_by_hash_and_copies_nothing_else():
+    text = DOCKERFILE.read_text()
+    assert "--require-hashes --no-deps --only-binary=:all:" in text
+    assert "pip check" in text and "pip freeze" in text
+    assert re.findall(r"^(?:COPY|ADD)\s+(.+)$", text, re.M) == [
+        "requirements.linux-amd64.txt /opt/reference/requirements.linux-amd64.txt"]
+
+
+def test_each_section_of_the_record_names_a_script_that_exists():
+    for name, section in json.loads(ENVIRONMENT.read_text()).items():
+        assert (REPO / section["written_by"]).is_file(), name
+
+
+# --------------------------------------------------------------------------
+# container/run.sh
+# --------------------------------------------------------------------------
+def test_run_sh_keeps_reproduce_sh_settings_and_fixes_the_rest():
+    threads = set(THREADS.findall((REPO / "reproduce.sh").read_text()))
+    run = RUN_SH.read_text()
+    assert threads and {v for _, v in threads} == {"1"}
+    assert set(THREADS.findall(run)) == threads
+    for setting in ("PYTHONHASHSEED=0", "TZ=UTC", "LC_ALL=C.UTF-8", "unset MATPLOTLIBRC",
+                    'git config --global --add safe.directory "$PWD"'):
+        assert setting in run, setting
+    assert "scripts/reproduce_evidence.py --fetch-only" in run
+    assert "scripts/reproduce_evidence.py --verify" in run
+
+
+def test_run_sh_holds_the_cpu_settings_in_one_place():
+    """B6.4's interface: the two values, and the variables exported only from them."""
+    run = RUN_SH.read_text()
+    for var in ("OPENBLAS_CORETYPE", "NPY_DISABLE_CPU_FEATURES"):
+        assert len(re.findall(rf"^{var}_PIN=", run, re.M)) == 1, var
+        assert f'export {var}="${var}_PIN"' in run, var
+
+
+# --------------------------------------------------------------------------
+# the build workflow
+# --------------------------------------------------------------------------
+def test_the_container_workflow_does_nothing_unless_started_by_hand():
+    import yaml
+    wf = yaml.safe_load(WORKFLOW.read_text())
+    on = wf[True]                       # YAML 1.1 reads the key "on" as true
+    assert set(on) == {"push", "workflow_dispatch"}
+    # the push only registers the workflow, and only a change to it starts one
+    assert on["push"] == {"branches": ["evidence/rework"],
+                          "paths": [".github/workflows/container.yml"]}
+    for name, job in wf["jobs"].items():
+        assert job["if"].startswith("github.event_name == 'workflow_dispatch' && "), name
+    assert wf["permissions"] == {"contents": "read"}
+    assert wf["jobs"]["build"]["permissions"] == {"contents": "read", "packages": "write"}
+
+
+def test_the_image_is_named_after_the_owner_github_reports():
+    text = WORKFLOW.read_text()
+    assert 'gh repo view "$GITHUB_REPOSITORY" --json owner --jq .owner.login' in text
+    assert "--platform linux/amd64" in text and "docker save" in text
+
+
+# --------------------------------------------------------------------------
+# --fetch-only
+# --------------------------------------------------------------------------
+def test_fetch_only_fetches_every_input_and_runs_no_stage(monkeypatch, capsys):
+    E = _entry_point()
+    calls = []
+    for name in ("fetch_clinvar", "fetch_reference_chromosomes", "fetch_label_audit_cache"):
+        monkeypatch.setattr(E, name, lambda name=name: calls.append(name))
+    monkeypatch.setattr(E, "choose_atlas", lambda release_only, fetch: (
+        calls.append(("atlas", release_only, fetch)), Path("/atlas"))[1])
+    monkeypatch.setattr(E, "atlas_version", lambda atlas: "2.5.0")
+    monkeypatch.setattr(E, "run_stage", lambda *a, **k: pytest.fail("a stage ran"))
+    monkeypatch.setattr(E, "baseline", lambda *a, **k: pytest.fail("a baseline was taken"))
+    monkeypatch.setattr(sys, "argv", ["reproduce_evidence.py", "--fetch-only"])
+    E.main()
+    assert calls == ["fetch_clinvar", "fetch_reference_chromosomes",
+                     "fetch_label_audit_cache", ("atlas", True, True)]
+    assert "no stage ran" in capsys.readouterr().out
+
+
+@pytest.mark.parametrize("extra", [["--verify"], ["--from", "3"]])
+def test_fetch_only_refuses_a_stage_option(monkeypatch, extra):
+    E = _entry_point()
+    monkeypatch.setattr(sys, "argv", ["reproduce_evidence.py", "--fetch-only", *extra])
+    monkeypatch.setattr(E, "fetch_clinvar", lambda: pytest.fail("fetched"))
+    with pytest.raises(SystemExit):
+        E.main()
