@@ -115,7 +115,8 @@ def test_impact_rows_only_for_genes_no_rule_reproduces(summary):
     impact = pd.read_csv(REPORTS / "label_audit_impact.csv")
     reproduced = set(summary.loc[summary["exact_match"] == "yes", "gene"])
     assert set(impact["gene"]) == set(GENES) - reproduced
-    assert set(impact["stratum"]) == set(A.STRATA)
+    for gene, sub in impact.groupby("gene"):            # each listed gene, every stratum
+        assert set(sub["stratum"]) == set(A.STRATA), gene
 
 
 def test_the_impact_table_starts_from_the_counts_files_and_adds_up(monkeypatch):

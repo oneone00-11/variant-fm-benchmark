@@ -1,0 +1,288 @@
+{
+ "written_by": "scripts/stage_E16d/build_labels.py",
+ "generator_sha256": "b3c24a5a7629023f9880bbc5332adb377a9921919ceb37bc60173e48fbb390ae",
+ "rules_fixed_by": "the author, 2026-10-21 (stage E16d)",
+ "in_use": "true when the label file config.ASSAY_LABELS names is, byte for byte, the generated file",
+ "genes": {
+  "BRCA1": {
+   "label_file": "phase1/data/assay_labels/brca1_findlay2018.tsv",
+   "generated": {
+    "path": "phase1/data/assay_labels/_generated/brca1_findlay2018.tsv",
+    "sha256": "e2c37073a255a4691a0dac54155401251bd855c1fd0884542a7e91978bd082fb",
+    "rows": 3893
+   },
+   "source": {
+    "type": "MaveDB score set version",
+    "urn": "urn:mavedb:00000097-0-2",
+    "calibration": {
+     "title": "Investigator-provided functional classes",
+     "urn": "urn:mavedb:calibration-81193a37-6dc8-4eb4-897d-27e72ffa7426",
+     "id": 691,
+     "created": "2025-11-14",
+     "modified": "2025-11-14"
+    },
+    "rule": "R1: the score placed in the investigator-provided ranges",
+    "files": [
+     {
+      "path": "phase1/data/evidence/label_audit/brca1_raw/urn_mavedb_00000097-0-2.csv",
+      "sha256": "906dc152f28b4c8261e4e532a03c9c42f2e45e211aa3ada12e3c826c151580ec",
+      "committed": true
+     },
+     {
+      "path": "phase1/data/evidence/label_audit/brca1_raw/scoreset_meta_00000097-0-2.json",
+      "sha256": "4342a07f0e4a5cf152dc5b5caeaf3429b012449a4b16f4200a086be04aea73f4",
+      "committed": true
+     }
+    ],
+    "wording": {
+     "Functional": "functional",
+     "Intermediate": "intermediate",
+     "Non-functional": "non-functional"
+    },
+    "format": {
+     "hgvs": "without transcript",
+     "order": "c. position"
+    }
+   },
+   "in_use": true
+  },
+  "BRCA2": {
+   "label_file": "phase1/data/assay_labels/brca2_huang2025.tsv",
+   "generated": {
+    "path": "phase1/data/assay_labels/_generated/brca2_huang2025.tsv",
+    "sha256": "0ad4225ace8230e1c5e5410f6aa46fb8978f0380ae98b3de66e3a80335116a7b",
+    "rows": 6959
+   },
+   "source": {
+    "type": "paper supplementary table",
+    "pmcid": "PMC11821525",
+    "file": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "sheet": "Table S3",
+    "title_cell": "Table S3. MAVE functional scores and functional categories of 6959 BRCA2 DBD SNVs",
+    "files": [
+     {
+      "path": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+      "sha256": "020f3d7acc04357410c0217447bbfcbc5bd3562e7aead39ae5726d16e8da61c0",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+      "committed": false
+     }
+    ],
+    "rule": "R6: the table's 'Functional category' of each variant, grouped as the paper's Results group it (label_audit/brca2_raw/paper_rule.json)",
+    "wording": {
+     "P strong": "abnormal",
+     "P moderate": "abnormal",
+     "P supporting": "abnormal",
+     "VUS": "intermediate",
+     "B supporting": "normal",
+     "B moderate": "normal",
+     "B strong": "normal"
+    },
+    "format": {
+     "hgvs": "as the source writes it",
+     "order": "source"
+    }
+   },
+   "in_use": true
+  },
+  "BARD1": {
+   "label_file": "phase1/data/assay_labels/bard1_woo2025.tsv",
+   "generated": {
+    "path": "phase1/data/assay_labels/_generated/bard1_woo2025.tsv",
+    "sha256": "5d12163bf7dc8ce454c98c77ee2386ea15e3865a34884e4bc9185770c45b504d",
+    "rows": 10911
+   },
+   "source": {
+    "type": "MaveDB score set version",
+    "urn": "urn:mavedb:00001250-a-2",
+    "calibration": {
+     "title": "Investigator-provided functional classes",
+     "urn": "urn:mavedb:calibration-6dea5234-5e56-4e61-a5d2-3b871890f631",
+     "id": 2396,
+     "created": "2026-06-08",
+     "modified": "2026-06-15"
+    },
+    "rule": "R1: the score placed in the investigator-provided ranges",
+    "files": [
+     {
+      "path": "phase1/data/evidence/external/label_versions/bard1_raw/urn_mavedb_00001250-a-2.csv",
+      "sha256": "15344db4740e7ad105400aeb456c78630f44037c4512f5a80ee1770b4b9a1518",
+      "committed": true
+     },
+     {
+      "path": "phase1/data/evidence/external/label_versions/bard1_raw/scoreset_meta_00001250-a-2.json",
+      "sha256": "ceb808416c4d92ba1dd7b3a990bf6d72132ab785c1a846518f7ba57d2f3b0c3a",
+      "committed": true
+     }
+    ],
+    "wording": {
+     "Functionally Abnormal": "functionally abnormal",
+     "Indeterminate": "indeterminate",
+     "Functionally Normal": "normal"
+    },
+    "format": {
+     "hgvs": "as the source writes it",
+     "order": "source"
+    }
+   },
+   "in_use": false
+  },
+  "PALB2": {
+   "label_file": "phase1/data/assay_labels/palb2_mavedb.csv",
+   "generated": {
+    "path": "phase1/data/assay_labels/_generated/palb2_mavedb.csv",
+    "sha256": "1a51d05e3b14e39ccbb475db3e76d33e712bb2b92e3e2e2cb030592289f09b8c",
+    "rows": 12851
+   },
+   "source": {
+    "type": "MaveDB score set version",
+    "urn": "urn:mavedb:00001259-a-2",
+    "calibration": {
+     "title": "Investigator-provided functional classes",
+     "urn": "urn:mavedb:calibration-3e02bc3a-065a-4b51-a8c1-fd17ad38617f",
+     "id": 2398,
+     "created": "2026-06-08",
+     "modified": "2026-06-08"
+    },
+    "rule": "R1: the score placed in the investigator-provided ranges",
+    "files": [
+     {
+      "path": "phase1/data/evidence/external/label_versions/palb2_raw/urn_mavedb_00001259-a-2.csv",
+      "sha256": "62a634dfa201283faaf223d8e33e373a528a62aa88d6aa8d5742992b12b34cdb",
+      "committed": true
+     },
+     {
+      "path": "phase1/data/evidence/external/label_versions/palb2_raw/scoreset_meta_00001259-a-2.json",
+      "sha256": "6b46d6e78933a511dc66054ae904bd65f352cfb653430de61e23055e2093c746",
+      "committed": true
+     }
+    ],
+    "wording": {
+     "Functionally Abnormal": "abnormal",
+     "Indeterminate": "indeterminate",
+     "Functionally Normal": "normal"
+    },
+    "format": {
+     "hgvs": "as the source writes it",
+     "order": "source"
+    }
+   },
+   "in_use": false
+  },
+  "RAD51C": {
+   "label_file": "phase1/data/assay_labels/rad51c_mavedb.csv",
+   "generated": {
+    "path": "phase1/data/assay_labels/_generated/rad51c_mavedb.csv",
+    "sha256": "c1494e560531d60ac3c10858624aa0159b9f328997bd7af4346aca6ffa1c74da",
+    "rows": 9188
+   },
+   "source": {
+    "type": "MaveDB score set version",
+    "urn": "urn:mavedb:00000673-0-1",
+    "rule": "R2: the score table's column functional_classification",
+    "files": [
+     {
+      "path": "phase1/data/evidence/label_audit/rad51c_raw/urn_mavedb_00000673-0-1.csv",
+      "sha256": "d9bea586b8cf64e20ca9b2c77595fc3c4f7c4483d17f75a43e6bca84d7937ea9",
+      "committed": true
+     }
+    ],
+    "wording": {
+     "fast depleted": "Fast depleted",
+     "slow depleted": "Slow depleted",
+     "unchanged": "Unchanged",
+     "enriched": "Enriched"
+    },
+    "format": {
+     "hgvs": "as the source writes it",
+     "order": "source"
+    }
+   },
+   "in_use": true
+  },
+  "VHL": {
+   "label_file": "phase1/data/assay_labels/vhl_buckley2024.tsv",
+   "generated": {
+    "path": "phase1/data/assay_labels/_generated/vhl_buckley2024.tsv",
+    "sha256": "7dec7190e1fd454d1eb75757121830baeb4af063a92e43ef5e3727f9284488a1",
+    "rows": 2200
+   },
+   "source": {
+    "type": "MaveDB score set version",
+    "urn": "urn:mavedb:00000675-a-1",
+    "calibration": {
+     "title": "Investigator-provided functional classes",
+     "urn": "urn:mavedb:calibration-53062180-5765-4185-8153-5248c62bed9e",
+     "id": 862,
+     "created": "2025-11-14",
+     "modified": "2026-02-13"
+    },
+    "rule": "R1: MaveDB's membership of the class-based calibration; the 68 score-table variants in no class are left out (the author's decision of 2026-10-21)",
+    "files": [
+     {
+      "path": "phase1/data/evidence/label_audit/vhl_raw/urn_mavedb_00000675-a-1.csv",
+      "sha256": "ae18add4440db00e0c9e94f8924130436307ab7bc4b8bceec091a9a5e87f17b7",
+      "committed": true
+     },
+     {
+      "path": "phase1/data/evidence/label_audit/vhl_raw/scoreset_meta_00000675-a-1.json",
+      "sha256": "f29cbfc96363919c7503ad1475dfc7cbca2e0fc5cff58c7159151fbeae3d8788",
+      "committed": true
+     },
+     {
+      "path": "phase1/data/evidence/label_audit/vhl_raw/calibration_classes_53062180-5765-4185-8153-5248c62bed9e.tsv",
+      "sha256": "1fae5babbd4f20490efdc3c64511647fad5397865f21aace964c3cfee9be185c",
+      "committed": true
+     }
+    ],
+    "wording": {
+     "Neutral": "neutral",
+     "Intermediate": "intermediate",
+     "LOF1": "LOF1",
+     "LOF2": "LOF2"
+    },
+    "format": {
+     "hgvs": "without transcript",
+     "order": "source"
+    }
+   },
+   "in_use": true
+  },
+  "BAP1": {
+   "label_file": "phase1/data/assay_labels/bap1_waters2024.tsv",
+   "generated": {
+    "path": "phase1/data/assay_labels/_generated/bap1_waters2024.tsv",
+    "sha256": "76e4c51977e8b9bda82e4576be2b1a40822ba36237b70fae3e8305530648a3c7",
+    "rows": 18108
+   },
+   "source": {
+    "type": "MaveDB score set version",
+    "urn": "urn:mavedb:00000662-0-1",
+    "rule": "R4: the paper's rule 'Results and Methods: FDR and sign, depleted split at the printed median' (PMID 38969833; PMC11250367; doi:10.1038/s41588-024-01799-3)",
+    "files": [
+     {
+      "path": "phase1/data/evidence/label_audit/bap1_raw/urn_mavedb_00000662-0-1.csv",
+      "sha256": "c3db0a827c86ad73967258745dd5d5263227a0c1fff62d243de450408962d20e",
+      "committed": true
+     },
+     {
+      "path": "phase1/data/evidence/label_audit/bap1_raw/paper_rule.json",
+      "sha256": "4566de28785bcaa00995464e285295b34fa6280fa163b7e2f0d9c12516d2b079",
+      "committed": true
+     }
+    ],
+    "wording": {
+     "strongly depleted": "strongly depleted",
+     "weakly depleted": "weakly depleted",
+     "depleted (on the printed median; side not stated)": "strongly depleted",
+     "unchanged": "unchanged",
+     "enriched": "enriched"
+    },
+    "format": {
+     "hgvs": "as the source writes it",
+     "order": "source"
+    }
+   },
+   "in_use": true
+  }
+ }
+}

@@ -723,3 +723,71 @@ configuration entry, threshold or analysis-set row changes here.
 - Every output of E1-E16b is unchanged. The README still counts 25 stages: README
   changes wait for the manuscript's next revision sheet, by the author's decision of
   2026-10-21.
+
+## After 3.0.1: the seven label files built from their sources (stage E16d, 2026-10-21)
+
+Why: no script in the repository produced the label files in
+`phase1/data/assay_labels/`; they entered on 2026-07-08 (commit 10d94bb) with no record
+of how. This commit adds the script and runs it into a staging folder. No label file in
+use changes here; the next commit replaces two of them.
+
+- `scripts/stage_E16d/build_labels.py` builds each file from the source the label
+  source audit pinned, by the rule the author fixed on 2026-10-21:
+  - BRCA1, BARD1 and PALB2: the cited version's investigator-provided ranges (R1);
+  - BRCA2: the paper's Supplementary Table 3 (R6);
+  - RAD51C: the score table's class column (R2);
+  - VHL: MaveDB's membership of the class-based calibration, the 2,200 classed
+    variants (R1);
+  - BAP1: the paper's rule, with the depleted variants split at the printed median.
+    The one variant on it is strongly depleted, as the author decided (R4).
+
+  The classes take the wording of the files in use, through an explicit table. The
+  columns, delimiter, form of the HGVS and row order follow the files in use too.
+  BRCA1's file is ordered by c. position, intron offset and alternative base; the
+  others keep the source's order.
+- It writes `phase1/data/assay_labels/_generated/` and
+  `phase1/data/assay_labels/PROVENANCE.json`. For each gene the record gives:
+  - the source and its files with their sha256;
+  - the calibration, with its id and dates;
+  - the rule and the wording;
+  - the script's and the output's sha256;
+  - `in_use`: whether the label file in use is, byte for byte, the output.
+- Result:
+  - BRCA1, BRCA2, RAD51C, VHL and BAP1 are rebuilt byte for byte.
+  - PALB2 and BARD1 are the cited a-2's ranges, variant by variant. They differ from
+    the files in use on exactly the 359 and 13 variants the audit listed.
+  - No score of a ranged source is unassigned or sits on a point two ranges share.
+- `scripts/stage_E16d/compare_runs.py`, added here and not run, compares the evidence
+  outputs of two commits:
+  - for every predictor x stratum x tier x side, the threshold, the interval LR there
+    and the held-out folds reaching it, before and after;
+  - the count changes;
+  - the audit's predicted counts, cell by cell; any difference stops it.
+
+  The next commit runs it.
+- `scripts/stage_E16d/check_switch_commit.py` checks that a commit changes no code,
+  configuration or workflow file.
+- `scripts/reproduce_evidence.py`: `--verify` does not expect a run to rewrite
+  `phase1/reports/evidence/label_change_effect.csv`, which that comparison writes once
+  (`COMPARISON_REPORTS`, guarded by a test).
+- Tests (`phase1/tests/test_label_build.py`):
+  - the record matches the generated files and their sources;
+  - the script rebuilds its committed outputs. A gene whose source is not in the
+    cache is skipped, with the reason.
+  - the five files are rebuilt byte for byte;
+  - PALB2 and BARD1 are the cited ranges, and differ from the July files on exactly
+    the audit's variants, compared with the audit's own list at commit 76ed7c2;
+  - after the switch: the switch commit holds no code, and the July files are kept
+    in `superseded/`.
+- Two existing tests changed so that the next commit, which may change only data,
+  passes them. What they test does not change.
+  - `test_evid_read_back.py` held Table S10's band LR at the fitted Atlas threshold
+    (3-10 nt) to the printed 28.2. It now holds it to that row of
+    `arms_at_tool_threshold.csv`, formatted as the table formats it. The band LR
+    moves with the number of normal variants.
+  - `test_evid_label_audit.py` asked every stratum of an empty impact table. It now
+    asks every stratum of each gene listed.
+
+  A dry run of the next commit in a separate worktree, with the two files replaced
+  and nothing else, passed the whole suite with these changes.
+- Every output is unchanged.

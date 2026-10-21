@@ -1,0 +1,107 @@
+{
+ "script": "scripts/stage_E16d/build_labels.py",
+ "argv": [
+  "scripts/stage_E16d/build_labels.py",
+  "--require-all"
+ ],
+ "git_commit": "76ed7c22d28a0a38503038d248563715e3fcac32",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E16d/build_labels.py": "b3c24a5a7629023f9880bbc5332adb377a9921919ceb37bc60173e48fbb390ae",
+  "scripts/stage_E16d/_runlog.py": "42afefdf7e8099bebb924095d74dc54b3e654527ca42e7658060be97ae42bb61"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-21T04:33:56+00:00",
+ "end_utc": "2026-10-21T04:33:57+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/assay_labels/brca1_findlay2018.tsv",
+   "bytes": 86428,
+   "sha256": "e2c37073a255a4691a0dac54155401251bd855c1fd0884542a7e91978bd082fb"
+  },
+  {
+   "path": "phase1/data/assay_labels/brca2_huang2025.tsv",
+   "bytes": 122814,
+   "sha256": "0ad4225ace8230e1c5e5410f6aa46fb8978f0380ae98b3de66e3a80335116a7b"
+  },
+  {
+   "path": "phase1/data/assay_labels/bard1_woo2025.tsv",
+   "bytes": 359211,
+   "sha256": "aa3b5b57d8e4191271f72001863f5f1c32143ebac897c5513ef9ce4833d01b99"
+  },
+  {
+   "path": "phase1/data/assay_labels/palb2_mavedb.csv",
+   "bytes": 397626,
+   "sha256": "b8fb5a7d380b386bce886c505099f96dd12793e40abfc31a348a3204e88a3323"
+  },
+  {
+   "path": "phase1/data/assay_labels/rad51c_mavedb.csv",
+   "bytes": 386951,
+   "sha256": "c1494e560531d60ac3c10858624aa0159b9f328997bd7af4346aca6ffa1c74da"
+  },
+  {
+   "path": "phase1/data/assay_labels/vhl_buckley2024.tsv",
+   "bytes": 39279,
+   "sha256": "7dec7190e1fd454d1eb75757121830baeb4af063a92e43ef5e3727f9284488a1"
+  },
+  {
+   "path": "phase1/data/assay_labels/bap1_waters2024.tsv",
+   "bytes": 784437,
+   "sha256": "76e4c51977e8b9bda82e4576be2b1a40822ba36237b70fae3e8305530648a3c7"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/assay_labels/_generated/brca1_findlay2018.tsv",
+   "bytes": 86428,
+   "sha256": "e2c37073a255a4691a0dac54155401251bd855c1fd0884542a7e91978bd082fb"
+  },
+  {
+   "path": "phase1/data/assay_labels/_generated/brca2_huang2025.tsv",
+   "bytes": 122814,
+   "sha256": "0ad4225ace8230e1c5e5410f6aa46fb8978f0380ae98b3de66e3a80335116a7b"
+  },
+  {
+   "path": "phase1/data/assay_labels/_generated/bard1_woo2025.tsv",
+   "bytes": 359088,
+   "sha256": "5d12163bf7dc8ce454c98c77ee2386ea15e3865a34884e4bc9185770c45b504d"
+  },
+  {
+   "path": "phase1/data/assay_labels/_generated/palb2_mavedb.csv",
+   "bytes": 395233,
+   "sha256": "1a51d05e3b14e39ccbb475db3e76d33e712bb2b92e3e2e2cb030592289f09b8c"
+  },
+  {
+   "path": "phase1/data/assay_labels/_generated/rad51c_mavedb.csv",
+   "bytes": 386951,
+   "sha256": "c1494e560531d60ac3c10858624aa0159b9f328997bd7af4346aca6ffa1c74da"
+  },
+  {
+   "path": "phase1/data/assay_labels/_generated/vhl_buckley2024.tsv",
+   "bytes": 39279,
+   "sha256": "7dec7190e1fd454d1eb75757121830baeb4af063a92e43ef5e3727f9284488a1"
+  },
+  {
+   "path": "phase1/data/assay_labels/_generated/bap1_waters2024.tsv",
+   "bytes": 784437,
+   "sha256": "76e4c51977e8b9bda82e4576be2b1a40822ba36237b70fae3e8305530648a3c7"
+  },
+  {
+   "path": "phase1/data/assay_labels/PROVENANCE.json",
+   "bytes": 9829,
+   "sha256": "c46b67983c4d91a382c6ab9cbec22ecc8e55c062883dab50a0c08940e9dad208"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "skipped": {}
+ }
+}

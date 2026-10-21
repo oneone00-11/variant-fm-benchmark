@@ -163,6 +163,10 @@ WALL_CLOCK_KEYS = {"built_utc", "scored_utc", "retrieved_utc", "run_at"}
 # Tracked files under the output folders that the stages only read; every other
 # tracked file there must be rewritten by a full run.
 RUN_INPUTS = REPO / "scripts" / "reproduce_inputs.txt"
+# Written once, by a one-off comparison of two commits rather than by a stage
+# (scripts/stage_E16d/compare_runs.py, E16d): --verify does not expect a run to
+# rewrite it, and compares it with the committed file like any other.
+COMPARISON_REPORTS = ["phase1/reports/evidence/label_change_effect.csv"]   # repository paths
 # The sha256 of every atlas file the stages read, as the release has them.
 ATLAS_PINS = REPO / "scripts" / f"atlas_release_v{ATLAS_ARCHIVE['version']}.sha256"
 # In a tree without .git (a release archive), where --verify keeps the tree as first
@@ -788,11 +792,13 @@ def verify(base: dict) -> bool:
     untouched fails as "not rewritten", unless scripts/reproduce_inputs.txt lists it
     as an input the stages only read."""
     inputs, start = _run_inputs(), base["start"]
+    once = set(COMPARISON_REPORTS)
     rows = []
     for rel, b in sorted(base["files"].items()):
         p = REPO / rel
         status = _status(p, b)
-        if status in OK_STATUSES and rel not in inputs and p.stat().st_mtime < start:
+        if (status in OK_STATUSES and rel not in inputs and rel not in once
+                and p.stat().st_mtime < start):
             status = "not rewritten"
         rows.append((status, rel))
     if base["git"]:
