@@ -8,18 +8,18 @@ Each cell gives the held-out value first and the in-sample value in brackets, fo
 
 | Predictor | Band | Supporting: sensitivity | Supporting: specificity | Supporting: coverage | Moderate: sensitivity | Moderate: specificity | Moderate: coverage | Strong: sensitivity | Strong: specificity | Strong: coverage | Held-out folds reaching S, M, St | AUROC (manuscript) | Pooled AUROC | Pooled AUPRC |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| SpliceAI (published basis) | 3–10 bp | 0.61 (0.67) | 0.95 (0.95) | 0.15 (0.17) | 0.56 (0.57) | 0.97 (0.97) | 0.13 (0.13) | 0.21 (0.08) | 0.99 (>0.99) | 0.04 (0.02) | 7, 7, 7 of 7 | 0.91 | 0.90 | 0.73 |
-| SpliceAI (published basis) | 11–50 bp | 0.40 (0.41) | 0.97 (0.97) | 0.05 (0.05) | 0.35 (0.37) | 0.98 (0.98) | 0.04 (0.04) | – (–) | – (–) | – (–) | 6, 6, 1 of 6 | 0.85 | 0.79 | 0.36 |
-| SpliceAI (published basis) | 3–50 bp | 0.61 (0.63) | 0.96 (0.95) | 0.10 (0.11) | 0.54 (0.55) | 0.97 (0.97) | 0.08 (0.08) | 0.19 (0.20) | >0.99 (>0.99) | 0.02 (0.02) | 7, 7, 7 of 7 | 0.91 | 0.88 | 0.63 |
-| Pangolin | 3–10 bp | 0.67 (0.69) | 0.95 (0.95) | 0.16 (0.17) | 0.54 (0.58) | 0.97 (0.97) | 0.12 (0.14) | 0.38 (0.39) | 0.99 (0.99) | 0.08 (0.08) | 7, 7, 7 of 7 | 0.92 | 0.91 | 0.76 |
+| SpliceAI (published basis) | 3–10 bp | 0.61 (0.67) | 0.95 (0.95) | 0.15 (0.16) | 0.56 (0.58) | 0.97 (0.97) | 0.13 (0.13) | 0.22 (0.08) | 0.99 (>0.99) | 0.05 (0.02) | 7, 7, 7 of 7 | 0.91 | 0.90 | 0.73 |
+| SpliceAI (published basis) | 11–50 bp | 0.41 (0.41) | 0.97 (0.97) | 0.05 (0.05) | 0.35 (0.38) | 0.98 (0.98) | 0.04 (0.04) | – (–) | – (–) | – (–) | 6, 6, 1 of 6 | 0.86 | 0.79 | 0.37 |
+| SpliceAI (published basis) | 3–50 bp | 0.62 (0.64) | 0.96 (0.96) | 0.10 (0.11) | 0.55 (0.55) | 0.97 (0.97) | 0.08 (0.08) | 0.20 (0.20) | >0.99 (>0.99) | 0.02 (0.02) | 7, 7, 7 of 7 | 0.91 | 0.88 | 0.63 |
+| Pangolin | 3–10 bp | 0.66 (0.69) | 0.95 (0.95) | 0.16 (0.17) | 0.55 (0.58) | 0.97 (0.97) | 0.12 (0.13) | 0.38 (0.39) | 0.99 (0.99) | 0.07 (0.08) | 7, 7, 7 of 7 | 0.92 | 0.91 | 0.75 |
 | Pangolin | 11–50 bp | 0.41 (0.39) | 0.96 (0.97) | 0.06 (0.05) | 0.27 (0.26) | 0.99 (0.99) | 0.02 (0.02) | – (–) | – (–) | – (–) | 6, 6, 0 of 6 | 0.85 | 0.81 | 0.39 |
-| Pangolin | 3–50 bp | 0.59 (0.60) | 0.97 (0.97) | 0.09 (0.09) | 0.55 (0.56) | 0.98 (0.98) | 0.08 (0.08) | 0.34 (0.33) | >0.99 (>0.99) | 0.04 (0.04) | 7, 7, 7 of 7 | 0.92 | 0.89 | 0.66 |
-| AlphaGenome splice score | 3–10 bp | 0.67 (0.68) | 0.95 (0.95) | 0.16 (0.16) | 0.59 (0.59) | 0.97 (0.97) | 0.13 (0.13) | 0.39 (0.41) | 0.99 (0.99) | 0.08 (0.08) | 7, 7, 7 of 7 | 0.91 | 0.90 | 0.75 |
-| AlphaGenome splice score | 11–50 bp | 0.37 (0.41) | 0.97 (0.97) | 0.04 (0.05) | 0.36 (0.31) | 0.98 (0.99) | 0.04 (0.03) | – (0.25) | – (>0.99) | – (0.02) | 6, 6, 1 of 6 | 0.83 | 0.81 | 0.41 |
-| AlphaGenome splice score | 3–50 bp | 0.58 (0.59) | 0.97 (0.97) | 0.09 (0.09) | 0.54 (0.53) | 0.98 (0.98) | 0.07 (0.07) | 0.35 (0.35) | 0.99 (0.99) | 0.04 (0.04) | 7, 7, 7 of 7 | 0.91 | 0.89 | 0.66 |
-| Atlas combined score † | 3–10 bp | 0.61 (0.68) | 0.95 (0.95) | 0.15 (0.17) | 0.46 (0.52) | 0.98 (0.98) | 0.09 (0.11) | 0.24 (0.27) | >0.99 (>0.99) | 0.04 (0.05) | 5, 5, 5 of 5 | 0.92 | 0.91 | 0.79 |
-| Atlas combined score † | 11–50 bp | 0.36 (0.35) | 0.97 (0.98) | 0.04 (0.04) | 0.29 (0.28) | 0.98 (0.99) | 0.03 (0.03) | – (0.11) | – (>0.99) | – (0.01) | 4, 4, 1 of 4 | 0.80 | 0.79 | 0.37 |
-| Atlas combined score † | 3–50 bp | 0.55 (0.62) | 0.97 (0.96) | 0.09 (0.10) | 0.48 (0.55) | 0.98 (0.98) | 0.07 (0.08) | 0.28 (0.35) | >0.99 (>0.99) | 0.03 (0.04) | 5, 5, 5 of 5 | 0.91 | 0.88 | 0.68 |
+| Pangolin | 3–50 bp | 0.59 (0.60) | 0.97 (0.97) | 0.09 (0.09) | 0.55 (0.56) | 0.98 (0.98) | 0.08 (0.08) | 0.34 (0.34) | >0.99 (>0.99) | 0.04 (0.04) | 7, 7, 7 of 7 | 0.92 | 0.89 | 0.66 |
+| AlphaGenome splice score | 3–10 bp | 0.67 (0.68) | 0.95 (0.95) | 0.16 (0.16) | 0.59 (0.58) | 0.97 (0.97) | 0.13 (0.13) | 0.39 (0.41) | 0.99 (0.99) | 0.08 (0.08) | 7, 7, 7 of 7 | 0.91 | 0.90 | 0.75 |
+| AlphaGenome splice score | 11–50 bp | 0.37 (0.42) | 0.97 (0.97) | 0.04 (0.05) | 0.36 (0.31) | 0.98 (0.99) | 0.04 (0.03) | – (0.25) | – (>0.99) | – (0.02) | 6, 6, 1 of 6 | 0.84 | 0.82 | 0.41 |
+| AlphaGenome splice score | 3–50 bp | 0.59 (0.60) | 0.97 (0.97) | 0.09 (0.09) | 0.55 (0.54) | 0.98 (0.98) | 0.07 (0.07) | 0.35 (0.35) | 0.99 (0.99) | 0.04 (0.04) | 7, 7, 7 of 7 | 0.91 | 0.89 | 0.66 |
+| Atlas combined score † | 3–10 bp | 0.62 (0.68) | 0.95 (0.95) | 0.14 (0.17) | 0.46 (0.52) | 0.98 (0.98) | 0.09 (0.11) | 0.24 (0.27) | >0.99 (>0.99) | 0.04 (0.05) | 5, 5, 5 of 5 | 0.92 | 0.91 | 0.79 |
+| Atlas combined score † | 11–50 bp | 0.37 (0.35) | 0.97 (0.98) | 0.05 (0.04) | 0.29 (0.29) | 0.98 (0.99) | 0.03 (0.03) | – (0.11) | – (>0.99) | – (0.01) | 4, 4, 1 of 4 | 0.82 | 0.80 | 0.37 |
+| Atlas combined score † | 3–50 bp | 0.56 (0.62) | 0.97 (0.96) | 0.09 (0.10) | 0.49 (0.52) | 0.98 (0.98) | 0.07 (0.07) | 0.28 (0.35) | >0.99 (>0.99) | 0.03 (0.04) | 5, 5, 5 of 5 | 0.92 | 0.89 | 0.69 |
 
 - Held out: each fold's threshold, fitted on the other genes (six, or five at 11–50 bp, where BRCA2 has no variant), applied to the gene left out; the counts are added over the folds whose threshold reached the tier, not averaged. In brackets: the threshold fitted on all the genes, applied to them.
 - Held-out folds reaching S, M, St: for each tier, the folds whose threshold reached it, of the genes held out. Those folds include ones whose band holds too few variants for a likelihood ratio, which Table 3 counts as not evaluable, so the count is not Table 3's k/n.
@@ -37,17 +37,17 @@ The seven genes pooled: the most sensitive threshold at which at least 95% of no
 | Predictor | 3–10 bp | 11–50 bp | 3–50 bp |
 |---|---|---|---|
 | SpliceAI (published basis) | 0.66 | 0.46 | 0.65 |
-| Pangolin | 0.69 | 0.45 | 0.65 |
-| AlphaGenome splice score | 0.69 | 0.46 | 0.65 |
+| Pangolin | 0.69 | 0.46 | 0.65 |
+| AlphaGenome splice score | 0.69 | 0.47 | 0.65 |
 | Atlas combined score † | 0.69 | 0.43 | 0.65 |
 
 ## In five sentences
 
-1. At 11–50 bp each ROC curve lies below the same tool's 3–10 bp curve except near its two ends; by the manuscript's AUROC, per-gene AUROCs combined rather than the area under these curves, the best there is 0.85, below the lowest at 3–10 bp (0.91).
-2. Held out, a Strong threshold at 3–10 bp catches 21% to 39% of damaging variants, depending on the tool.
+1. At 11–50 bp each ROC curve lies below the same tool's 3–10 bp curve except near its two ends; by the manuscript's AUROC, per-gene AUROCs combined rather than the area under these curves, the best there is 0.86, below the lowest at 3–10 bp (0.91).
+2. Held out, a Strong threshold at 3–10 bp catches 22% to 39% of damaging variants, depending on the tool.
 3. The cost is coverage: held out, Strong evidence reaches no more than 8.1% of the labelled variants in that band.
 4. At a specificity of 0.95, the AlphaGenome splice score is the most sensitive, or tied for it, in all three bands, though by no more than 0.01.
-5. Carried to DDX3X, the fitted thresholds are more sensitive than in the held-out seven genes, by as much as 0.38, and less specific, by as much as 0.05; on TP53 sensitivity rises too, except for the Atlas combined score's Moderate and Strong.
+5. Carried to DDX3X, the fitted thresholds are more sensitive than in the held-out seven genes, by as much as 0.37, and less specific, by as much as 0.05; on TP53 sensitivity rises too, except for the Atlas combined score's Moderate and Strong.
 
 ## Figure legend
 

@@ -50,7 +50,7 @@ The full rows are in `phase1/reports/evidence/label_audit_summary.csv`, every di
 
 ## BARD1
 
-- Label file: `phase1/data/assay_labels/bard1_woo2025.tsv`, 10,911 rows, classes functionally abnormal, indeterminate, normal (sha256 aa3b5b57d8e41912...)
+- Label file: `phase1/data/assay_labels/bard1_woo2025.tsv`, 10,911 rows, classes functionally abnormal, indeterminate, normal (sha256 5d12163bf7dc8ce4...)
 - Cited: urn:mavedb:00001250-a-2 (Table S1, licence there CC0); paper: none cited (the score set alone)
 - urn:mavedb:00001250-a-1 (other version): score set created 2025-10-06, modified 2026-05-13, published 2025-10-21; 11,318 variants, 11,318 score-table rows; licence CC0; calibrations: 'ExCALIBR calibration' (investigator False, created 2026-02-24, modified 2026-02-24); 'Investigator-provided functional classes' (investigator True, created 2025-11-14, modified 2025-11-14)
 - urn:mavedb:00001250-a-2 (cited): score set created 2026-06-02, modified 2026-06-08, published 2026-06-08; 10,911 variants, 10,911 score-table rows; licence CC0; calibrations: 'Investigator-provided functional classes' (investigator True, created 2026-06-08, modified 2026-06-15)
@@ -58,45 +58,42 @@ The full rows are in `phase1/reports/evidence/label_audit_summary.csv`, every di
 
 | rule | version | detail | compared | differ | differ, all | differ, 3-50 nt | only in the file | only in the source | reproduced |
 |---|---|---|---|---|---|---|---|---|---|
-| R1 | 00001250-a-2 | ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate | 10,911 | 13 | 0.12% | 0.16% | 0 | 0 | no |
+| R1 | 00001250-a-2 | ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate | 10,911 | 0 | 0.00% | 0.00% | 0 | 0 | yes |
 | R2 | 00001250-a-2 | no class column in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
-| R3 | 00001250-a-2 | ranges of calibration 'Investigator-provided functional classes' with the score table's 95_ci_lower / 95_ci_upper | 10,911 | 2,794 | 25.61% | 24.03% | 0 | 0 | no |
+| R3 | 00001250-a-2 | ranges of calibration 'Investigator-provided functional classes' with the score table's 95_ci_lower / 95_ci_upper | 10,911 | 2,781 | 25.49% | 23.87% | 0 | 0 | no |
 | R4 | 00001250-a-2 | Table S1 cites no paper: not applicable | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
 | R6 | 00001250-a-2 | a paper supplementary table is a candidate for BRCA2 only (the author's decision of 2026-10-21) | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
-| R5 | 00001250-a-1 | R1 on another version: ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,904 | 13 | 0.12% | 0.16% | 7 | 414 | no |
-| R5 | 00001250-a-1 | R2 on another version: score-table column 'functional_consequence'; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,904 | 13 | 0.12% | 0.16% | 7 | 414 | no |
+| R5 | 00001250-a-1 | R1 on another version: ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,904 | 0 | 0.00% | 0.00% | 7 | 414 | yes |
+| R5 | 00001250-a-1 | R2 on another version: score-table column 'functional_consequence'; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,904 | 0 | 0.00% | 0.00% | 7 | 414 | yes |
 | R5 | 00001250-a-3 | R1 on another version: no investigator-provided calibration | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
 | R5 | 00001250-a-3 | R2 on another version: no class column in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
 
-- Reproduced by: no rule. Source not established.
+- Reproduced by: R1 (ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate, urn:mavedb:00001250-a-2; class names identical as written, case and separators folded: 2,041 of 10,911); R5 (R1 on another version: ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped), urn:mavedb:00001250-a-1; class names identical as written, case and separators folded: 2,041 of 10,904); R5 (R2 on another version: score-table column 'functional_consequence'; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped), urn:mavedb:00001250-a-1; class names identical as written, case and separators folded: 2,041 of 10,904)
 - Class names of the label file in the archive (case and separators folded): 'functionally abnormal' yes; 'indeterminate' yes; 'normal' yes
 - Class column urn:mavedb:00001250-a-1 functional_consequence: functionally_abnormal -> abnormal (wording table COLUMN_WORDS); functionally_normal -> normal (wording table COLUMN_WORDS); indeterminate -> intermediate (wording table COLUMN_WORDS)
 - **Decided by the author (2026-10-21):** relabel by R1, the cited a-2's investigator-provided ranges, and refit (stage E16d)
-- Counts in the analysis set under the closest rule (labelled / damaging / normal / excluded, now -> rule): pm12 119/119/0/0 -> 119/119/0/0; s3_10 459/66/393/14 -> 459/66/393/14; s11_50 1435/21/1414/23 -> 1436/19/1417/22; s3_50 1894/87/1807/37 -> 1895/85/1810/36
 
 ## PALB2
 
-- Label file: `phase1/data/assay_labels/palb2_mavedb.csv`, 12,851 rows, classes abnormal, indeterminate, normal (sha256 b8fb5a7d380b386b...)
+- Label file: `phase1/data/assay_labels/palb2_mavedb.csv`, 12,851 rows, classes abnormal, indeterminate, normal (sha256 1a51d05e3b14e39c...)
 - Cited: urn:mavedb:00001259-a-2 (Table S1, licence there CC0); paper: none cited (the score set alone)
 - urn:mavedb:00001259-a-1 (other version): score set created 2025-11-03, modified 2026-05-29, published 2026-01-10; 10,513 variants, 10,513 score-table rows; licence CC0; calibrations: 'Investigator-provided functional classes' (investigator True, created 2025-11-14, modified 2025-11-14); 'ExCALIBR calibration' (investigator False, created 2026-02-24, modified 2026-02-24)
 - urn:mavedb:00001259-a-2 (cited): score set created 2026-06-02, modified 2026-06-08, published 2026-06-08; 12,851 variants, 12,851 score-table rows; licence CC0; calibrations: 'Investigator-provided functional classes' (investigator True, created 2026-06-08, modified 2026-06-08)
 
 | rule | version | detail | compared | differ | differ, all | differ, 3-50 nt | only in the file | only in the source | reproduced |
 |---|---|---|---|---|---|---|---|---|---|
-| R1 | 00001259-a-2 | ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate | 12,851 | 359 | 2.79% | 4.51% | 0 | 0 | no |
+| R1 | 00001259-a-2 | ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate | 12,851 | 0 | 0.00% | 0.00% | 0 | 0 | yes |
 | R2 | 00001259-a-2 | no class column in the score table | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
-| R3 | 00001259-a-2 | ranges of calibration 'Investigator-provided functional classes' with the score table's 95_ci_lower / 95_ci_upper | 12,851 | 7,125 | 55.44% | 52.93% | 0 | 0 | no |
+| R3 | 00001259-a-2 | ranges of calibration 'Investigator-provided functional classes' with the score table's 95_ci_lower / 95_ci_upper | 12,851 | 6,859 | 53.37% | 49.57% | 0 | 0 | no |
 | R4 | 00001259-a-2 | Table S1 cites no paper: not applicable | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
 | R6 | 00001259-a-2 | a paper supplementary table is a candidate for BRCA2 only (the author's decision of 2026-10-21) | 0 | 0 | n/a | n/a | n/a | n/a | not applicable |
-| R5 | 00001259-a-1 | R1 on another version: ranges of calibration 'Investigator-provided functional classes' (2 classes), point estimate; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,509 | 1,364 | 12.98% | 17.79% | 2,342 | 4 | no |
-| R5 | 00001259-a-1 | R2 on another version: score-table column 'functional_consequence'; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,509 | 503 | 4.79% | 5.59% | 2,342 | 4 | no |
+| R5 | 00001259-a-1 | R1 on another version: ranges of calibration 'Investigator-provided functional classes' (2 classes), point estimate; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,509 | 1,064 | 10.12% | 12.86% | 2,342 | 4 | no |
+| R5 | 00001259-a-1 | R2 on another version: score-table column 'functional_consequence'; aligned on GRCh38 (the version writes only g. HGVS; 0 label-file variants unmapped) | 10,509 | 203 | 1.93% | 0.67% | 2,342 | 4 | no |
 
-- Reproduced by: no rule. Source not established.
+- Reproduced by: R1 (ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate, urn:mavedb:00001259-a-2; class names identical as written, case and separators folded: 1,157 of 12,851)
 - Class names of the label file in the archive (case and separators folded): 'abnormal' yes; 'indeterminate' yes; 'normal' yes
 - Class column urn:mavedb:00001259-a-1 functional_consequence: functionally_abnormal -> abnormal (wording table COLUMN_WORDS); functionally_normal -> normal (wording table COLUMN_WORDS); indeterminate -> intermediate (wording table COLUMN_WORDS)
-- **Condition for the author (E16c.7):** no rule reproduces the file; the closest (R1, ranges of calibration 'Investigator-provided functional classes' (3 classes), point estimate) differs on 4.51% at 3-50 nt
 - **Decided by the author (2026-10-21):** relabel by R1, the cited a-2's investigator-provided ranges, and refit (stage E16d)
-- Counts in the analysis set under the closest rule (labelled / damaging / normal / excluded, now -> rule): pm12 141/139/2/3 -> 141/139/2/3; s3_10 411/87/324/90 -> 445/87/358/56; s11_50 464/15/449/76 -> 477/15/462/63; s3_50 875/102/773/166 -> 922/102/820/119
 
 ## RAD51C
 

@@ -51,19 +51,19 @@
 3–10,BRCA2,Atlas splice sites,16/91,0.914,26/73,0.891,27/296,0.735,Classified (P/LP or B/LB)
 3–10,BRCA2,Atlas splice-site usage,16/91,0.922,26/73,0.912,27/296,0.797,Classified (P/LP or B/LB)
 3–10,BRCA2,Atlas splice junctions,16/91,0.915,26/73,0.940,27/296,0.766,"Recorded, unclassified"
-3–10,PALB2,SpliceAI (distance 50),12/61,0.754,23/54,0.841,52/209,0.896,Unrecorded
-3–10,PALB2,Pangolin,12/61,0.803,23/54,0.841,52/209,0.915,Unrecorded
-3–10,PALB2,AlphaGenome splice score,12/61,0.704,23/54,0.889,52/209,0.929,Unrecorded
-3–10,PALB2,CADD,12/61,0.754,23/54,0.759,52/209,0.818,Unrecorded
-3–10,PALB2,phyloP,12/61,0.761,23/54,0.651,52/209,0.736,Classified (P/LP or B/LB)
-3–10,PALB2,phastCons,12/61,0.733,23/54,0.681,52/209,0.663,Classified (P/LP or B/LB)
-3–10,PALB2,GPN-MSA,12/61,0.865,23/54,0.820,52/209,0.720,Classified (P/LP or B/LB)
-3–10,PALB2,Nucleotide Transformer,12/61,0.444,23/54,0.532,52/209,0.609,Unrecorded
-3–10,PALB2,SpliceAI (published basis),12/61,0.788,23/54,0.868,52/209,0.933,Unrecorded
-3–10,PALB2,Atlas combined score,12/61,0.783,23/54,0.869,52/209,0.912,Unrecorded
-3–10,PALB2,Atlas splice sites,12/61,0.684,23/54,0.839,52/209,0.924,Unrecorded
-3–10,PALB2,Atlas splice-site usage,12/61,0.762,23/54,0.869,52/209,0.901,Unrecorded
-3–10,PALB2,Atlas splice junctions,12/61,0.772,23/54,0.871,52/209,0.940,Unrecorded
+3–10,PALB2,SpliceAI (distance 50),12/73,0.733,23/61,0.842,52/224,0.896,Unrecorded
+3–10,PALB2,Pangolin,12/73,0.795,23/61,0.828,52/224,0.916,Unrecorded
+3–10,PALB2,AlphaGenome splice score,12/73,0.695,23/61,0.886,52/224,0.932,Unrecorded
+3–10,PALB2,CADD,12/73,0.751,23/61,0.768,52/224,0.821,Unrecorded
+3–10,PALB2,phyloP,12/73,0.769,23/61,0.624,52/224,0.744,Classified (P/LP or B/LB)
+3–10,PALB2,phastCons,12/73,0.744,23/61,0.673,52/224,0.670,Classified (P/LP or B/LB)
+3–10,PALB2,GPN-MSA,12/73,0.870,23/61,0.806,52/224,0.727,Classified (P/LP or B/LB)
+3–10,PALB2,Nucleotide Transformer,12/73,0.422,23/61,0.522,52/224,0.619,Unrecorded
+3–10,PALB2,SpliceAI (published basis),12/73,0.780,23/61,0.870,52/224,0.934,Unrecorded
+3–10,PALB2,Atlas combined score,12/73,0.777,23/61,0.867,52/224,0.915,Unrecorded
+3–10,PALB2,Atlas splice sites,12/73,0.680,23/61,0.833,52/224,0.926,Unrecorded
+3–10,PALB2,Atlas splice-site usage,12/73,0.769,23/61,0.868,52/224,0.905,Unrecorded
+3–10,PALB2,Atlas splice junctions,12/73,0.766,23/61,0.866,52/224,0.941,Unrecorded
 3–10,RAD51C,SpliceAI (distance 50),11/74,0.899,27/35,0.938,50/182,0.896,"Recorded, unclassified"
 3–10,RAD51C,Pangolin,11/74,0.880,27/35,0.941,50/182,0.904,"Recorded, unclassified"
 3–10,RAD51C,AlphaGenome splice score,11/74,0.844,27/35,0.942,50/182,0.922,"Recorded, unclassified"
@@ -103,19 +103,19 @@
 3–50,BAP1,Atlas splice sites,32/371,0.688,38/87,0.806,213/1449,0.799,"Recorded, unclassified"
 3–50,BAP1,Atlas splice-site usage,32/371,0.602,38/87,0.799,213/1449,0.814,Unrecorded
 3–50,BAP1,Atlas splice junctions,32/371,0.679,38/87,0.787,213/1449,0.791,Unrecorded
-3–50,BARD1,SpliceAI (distance 50),4/251,not evaluable,29/78,0.927,54/1478,0.944,
-3–50,BARD1,Pangolin,4/251,not evaluable,29/78,0.935,54/1478,0.951,
-3–50,BARD1,AlphaGenome splice score,4/251,not evaluable,29/78,0.942,54/1478,0.948,
-3–50,BARD1,CADD,4/251,not evaluable,29/78,0.661,54/1478,0.746,
-3–50,BARD1,phyloP,4/251,not evaluable,29/78,0.562,54/1478,0.706,
-3–50,BARD1,phastCons,4/251,not evaluable,29/78,0.672,54/1478,0.699,
-3–50,BARD1,GPN-MSA,4/251,not evaluable,29/78,0.666,54/1478,0.764,
-3–50,BARD1,Nucleotide Transformer,4/251,not evaluable,29/78,0.678,54/1478,0.752,
-3–50,BARD1,SpliceAI (published basis),4/251,not evaluable,29/78,0.933,54/1478,0.942,
-3–50,BARD1,Atlas combined score,4/251,not evaluable,29/78,0.947,54/1478,0.937,
-3–50,BARD1,Atlas splice sites,4/251,not evaluable,29/78,0.943,54/1478,0.940,
-3–50,BARD1,Atlas splice-site usage,4/251,not evaluable,29/78,0.973,54/1478,0.949,
-3–50,BARD1,Atlas splice junctions,4/251,not evaluable,29/78,0.927,54/1478,0.930,
+3–50,BARD1,SpliceAI (distance 50),4/252,not evaluable,29/78,0.927,52/1480,0.958,
+3–50,BARD1,Pangolin,4/252,not evaluable,29/78,0.935,52/1480,0.961,
+3–50,BARD1,AlphaGenome splice score,4/252,not evaluable,29/78,0.942,52/1480,0.962,
+3–50,BARD1,CADD,4/252,not evaluable,29/78,0.661,52/1480,0.766,
+3–50,BARD1,phyloP,4/252,not evaluable,29/78,0.562,52/1480,0.731,
+3–50,BARD1,phastCons,4/252,not evaluable,29/78,0.672,52/1480,0.715,
+3–50,BARD1,GPN-MSA,4/252,not evaluable,29/78,0.666,52/1480,0.788,
+3–50,BARD1,Nucleotide Transformer,4/252,not evaluable,29/78,0.678,52/1480,0.763,
+3–50,BARD1,SpliceAI (published basis),4/252,not evaluable,29/78,0.933,52/1480,0.956,
+3–50,BARD1,Atlas combined score,4/252,not evaluable,29/78,0.947,52/1480,0.970,
+3–50,BARD1,Atlas splice sites,4/252,not evaluable,29/78,0.943,52/1480,0.964,
+3–50,BARD1,Atlas splice-site usage,4/252,not evaluable,29/78,0.973,52/1480,0.964,
+3–50,BARD1,Atlas splice junctions,4/252,not evaluable,29/78,0.927,52/1480,0.957,
 3–50,BRCA1,SpliceAI (distance 50),41/198,0.972,66/530,0.948,0/0,not evaluable,
 3–50,BRCA1,Pangolin,41/198,0.988,66/530,0.960,0/0,not evaluable,
 3–50,BRCA1,AlphaGenome splice score,41/198,0.988,66/530,0.959,0/0,not evaluable,
@@ -142,19 +142,19 @@
 3–50,BRCA2,Atlas splice sites,16/91,0.914,26/73,0.891,27/296,0.735,Classified (P/LP or B/LB)
 3–50,BRCA2,Atlas splice-site usage,16/91,0.922,26/73,0.912,27/296,0.797,Classified (P/LP or B/LB)
 3–50,BRCA2,Atlas splice junctions,16/91,0.915,26/73,0.940,27/296,0.766,"Recorded, unclassified"
-3–50,PALB2,SpliceAI (distance 50),14/137,0.689,26/64,0.837,62/572,0.933,Unrecorded
-3–50,PALB2,Pangolin,14/137,0.739,26/64,0.841,62/572,0.937,Unrecorded
-3–50,PALB2,AlphaGenome splice score,14/137,0.631,26/64,0.884,62/572,0.939,Unrecorded
-3–50,PALB2,CADD,14/137,0.612,26/64,0.739,62/572,0.814,Unrecorded
-3–50,PALB2,phyloP,14/137,0.658,26/64,0.651,62/572,0.770,Unrecorded
-3–50,PALB2,phastCons,14/137,0.686,26/64,0.649,62/572,0.739,Unrecorded
-3–50,PALB2,GPN-MSA,14/137,0.747,26/64,0.775,62/572,0.783,Unrecorded
-3–50,PALB2,Nucleotide Transformer,14/137,0.361,26/64,0.553,62/572,0.593,Unrecorded
-3–50,PALB2,SpliceAI (published basis),14/137,0.734,26/64,0.861,62/572,0.955,Unrecorded
-3–50,PALB2,Atlas combined score,14/137,0.685,26/64,0.864,62/572,0.922,Unrecorded
-3–50,PALB2,Atlas splice sites,14/137,0.624,26/64,0.831,62/572,0.938,Unrecorded
-3–50,PALB2,Atlas splice-site usage,14/137,0.710,26/64,0.871,62/572,0.933,Unrecorded
-3–50,PALB2,Atlas splice junctions,14/137,0.675,26/64,0.874,62/572,0.951,Unrecorded
+3–50,PALB2,SpliceAI (distance 50),14/153,0.678,26/71,0.839,62/596,0.932,Unrecorded
+3–50,PALB2,Pangolin,14/153,0.736,26/71,0.830,62/596,0.937,Unrecorded
+3–50,PALB2,AlphaGenome splice score,14/153,0.626,26/71,0.882,62/596,0.940,Unrecorded
+3–50,PALB2,CADD,14/153,0.611,26/71,0.750,62/596,0.815,Unrecorded
+3–50,PALB2,phyloP,14/153,0.664,26/71,0.627,62/596,0.773,Unrecorded
+3–50,PALB2,phastCons,14/153,0.685,26/71,0.641,62/596,0.740,Unrecorded
+3–50,PALB2,GPN-MSA,14/153,0.747,26/71,0.765,62/596,0.783,Unrecorded
+3–50,PALB2,Nucleotide Transformer,14/153,0.357,26/71,0.547,62/596,0.601,Unrecorded
+3–50,PALB2,SpliceAI (published basis),14/153,0.727,26/71,0.863,62/596,0.955,Unrecorded
+3–50,PALB2,Atlas combined score,14/153,0.683,26/71,0.863,62/596,0.923,Unrecorded
+3–50,PALB2,Atlas splice sites,14/153,0.621,26/71,0.826,62/596,0.938,Unrecorded
+3–50,PALB2,Atlas splice-site usage,14/153,0.713,26/71,0.871,62/596,0.934,Unrecorded
+3–50,PALB2,Atlas splice junctions,14/153,0.671,26/71,0.870,62/596,0.951,Unrecorded
 3–50,RAD51C,SpliceAI (distance 50),16/200,0.846,30/45,0.901,78/775,0.923,Unrecorded
 3–50,RAD51C,Pangolin,16/200,0.848,30/45,0.913,78/775,0.917,Unrecorded
 3–50,RAD51C,AlphaGenome splice score,16/200,0.859,30/45,0.896,78/775,0.929,Unrecorded

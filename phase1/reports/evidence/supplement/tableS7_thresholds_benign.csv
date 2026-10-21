@@ -1,5 +1,5 @@
 Tool,"Stratum (intronic offset, bp)",Tier,Benign tier LR cut,Reached in-sample,In-sample threshold (gene-clustered bootstrap),In-sample threshold (variant-level bootstrap),"Held-out LR, median over folds"
-SpliceAI (distance 50),3–10,Supporting,0.481,Yes,0.006853,0.0099815,0.0466
+SpliceAI (distance 50),3–10,Supporting,0.481,Yes,0.006782,0.0099815,0.0466
 SpliceAI (distance 50),3–10,Moderate,0.231,Yes,0.0009789,0.0008239,0.0571
 SpliceAI (distance 50),3–10,Strong,0.0535,No,,,
 SpliceAI (distance 50),11–50,Supporting,0.481,No,,,
@@ -14,16 +14,16 @@ Pangolin,3–10,Strong,0.0535,No,,,
 Pangolin,11–50,Supporting,0.481,No,,,
 Pangolin,11–50,Moderate,0.231,No,,,
 Pangolin,11–50,Strong,0.0535,No,,,
-Pangolin,3–50,Supporting,0.481,Yes,0.000795624,0.0007733044331,0.0183
+Pangolin,3–50,Supporting,0.481,Yes,0.000795624,0.0007733044331,0.0187
 Pangolin,3–50,Moderate,0.231,No,,,
 Pangolin,3–50,Strong,0.0535,No,,,
-AlphaGenome splice score,3–10,Supporting,0.481,Yes,2.1433,1.98015,0.0919
-AlphaGenome splice score,3–10,Moderate,0.231,Yes,1.2452,1.25542,0.476
+AlphaGenome splice score,3–10,Supporting,0.481,Yes,2.1433,1.982,0.0919
+AlphaGenome splice score,3–10,Moderate,0.231,Yes,1.2469,1.25542,0.476
 AlphaGenome splice score,3–10,Strong,0.0535,No,,,
 AlphaGenome splice score,11–50,Supporting,0.481,No,,,
 AlphaGenome splice score,11–50,Moderate,0.231,No,,,
 AlphaGenome splice score,11–50,Strong,0.0535,No,,,
-AlphaGenome splice score,3–50,Supporting,0.481,Yes,1.245151,1.2585,0
+AlphaGenome splice score,3–50,Supporting,0.481,Yes,1.247,1.2585,0
 AlphaGenome splice score,3–50,Moderate,0.231,No,,,
 AlphaGenome splice score,3–50,Strong,0.0535,No,,,
 CADD,3–10,Supporting,0.481,Yes,0.7070,0.5940,0.286
@@ -35,7 +35,7 @@ CADD,11–50,Strong,0.0535,No,,,
 CADD,3–50,Supporting,0.481,Yes,0.2860,0.2860,0
 CADD,3–50,Moderate,0.231,No,,,
 CADD,3–50,Strong,0.0535,No,,,
-phyloP,3–10,Supporting,0.481,Yes,-0.8509,-0.9730,0
+phyloP,3–10,Supporting,0.481,Yes,-0.8509,-0.9580,0
 phyloP,3–10,Moderate,0.231,Yes,-1.327,-1.327,0
 phyloP,3–10,Strong,0.0535,No,,,
 phyloP,11–50,Supporting,0.481,No,,,
@@ -53,66 +53,66 @@ phastCons,11–50,Strong,0.0535,No,,,
 phastCons,3–50,Supporting,0.481,No,,0,
 phastCons,3–50,Moderate,0.231,No,,,
 phastCons,3–50,Strong,0.0535,No,,,
-GPN-MSA,3–10,Supporting,0.481,Yes,1.640,1.530,0.118
-GPN-MSA,3–10,Moderate,0.231,Yes,-3.250,,0
+GPN-MSA,3–10,Supporting,0.481,Yes,1.630,1.530,0.118
+GPN-MSA,3–10,Moderate,0.231,Yes,-3.150,,0
 GPN-MSA,3–10,Strong,0.0535,No,,,
 GPN-MSA,11–50,Supporting,0.481,No,,,
 GPN-MSA,11–50,Moderate,0.231,No,,,
 GPN-MSA,11–50,Strong,0.0535,No,,,
-GPN-MSA,3–50,Supporting,0.481,Yes,-2.590,-2.830,0
+GPN-MSA,3–50,Supporting,0.481,Yes,-2.590,-2.770,0
 GPN-MSA,3–50,Moderate,0.231,No,,,
 GPN-MSA,3–50,Strong,0.0535,No,,,
-Nucleotide Transformer,3–10,Supporting,0.481,Yes,-1.264777,-1.3678,0.116
+Nucleotide Transformer,3–10,Supporting,0.481,Yes,-1.2618,-1.348,0.114
 Nucleotide Transformer,3–10,Moderate,0.231,No,,,
 Nucleotide Transformer,3–10,Strong,0.0535,No,,,
 Nucleotide Transformer,11–50,Supporting,0.481,Yes,-2.141,,0
 Nucleotide Transformer,11–50,Moderate,0.231,No,,,
 Nucleotide Transformer,11–50,Strong,0.0535,No,,,
-Nucleotide Transformer,3–50,Supporting,0.481,Yes,-1.76287,-1.76287,0.452
+Nucleotide Transformer,3–50,Supporting,0.481,Yes,-1.76287,-1.76287,0.665
 Nucleotide Transformer,3–50,Moderate,0.231,No,,,
 Nucleotide Transformer,3–50,Strong,0.0535,No,,,
-SpliceAI (published basis),3–10,Supporting,0.481,Yes,0.02635,0.024794,0.0927
+SpliceAI (published basis),3–10,Supporting,0.481,Yes,0.02607,0.024794,0.0923
 SpliceAI (published basis),3–10,Moderate,0.231,Yes,0.00282902,0.00282902,0
 SpliceAI (published basis),3–10,Strong,0.0535,No,,,
 SpliceAI (published basis),11–50,Supporting,0.481,Yes,0.0012704134,,0
 SpliceAI (published basis),11–50,Moderate,0.231,No,,,
 SpliceAI (published basis),11–50,Strong,0.0535,No,,,
-SpliceAI (published basis),3–50,Supporting,0.481,Yes,0.0034061,0.003409,0.106
+SpliceAI (published basis),3–50,Supporting,0.481,Yes,0.003409,0.003409,0.109
 SpliceAI (published basis),3–50,Moderate,0.231,No,,,
 SpliceAI (published basis),3–50,Strong,0.0535,No,,,
-Atlas combined score,3–10,Supporting,0.481,Yes,0.04167,0.1596,0.0321
-Atlas combined score,3–10,Moderate,0.231,Yes,-0.09308,-0.077236,0.124
+Atlas combined score,3–10,Supporting,0.481,Yes,0.1919,0.1596,0.0321
+Atlas combined score,3–10,Moderate,0.231,Yes,-0.09194656,-0.077236,0.114
 Atlas combined score,3–10,Strong,0.0535,No,,,
 Atlas combined score,11–50,Supporting,0.481,No,,,
 Atlas combined score,11–50,Moderate,0.231,No,,,
 Atlas combined score,11–50,Strong,0.0535,No,,,
-Atlas combined score,3–50,Supporting,0.481,Yes,-0.06695,-0.08720,0.140
+Atlas combined score,3–50,Supporting,0.481,Yes,-0.051729,-0.083998,0.0766
 Atlas combined score,3–50,Moderate,0.231,No,,,
 Atlas combined score,3–50,Strong,0.0535,No,,,
-Atlas splice sites,3–10,Supporting,0.481,Yes,0.01520,0.018372,0.0886
+Atlas splice sites,3–10,Supporting,0.481,Yes,0.01520,0.018372,0.0908
 Atlas splice sites,3–10,Moderate,0.231,No,,,
 Atlas splice sites,3–10,Strong,0.0535,No,,,
-Atlas splice sites,11–50,Supporting,0.481,Yes,0.0053711,0.0053711,0.377
+Atlas splice sites,11–50,Supporting,0.481,Yes,0.0053711,0.0053711,0.280
 Atlas splice sites,11–50,Moderate,0.231,No,,,
 Atlas splice sites,11–50,Strong,0.0535,No,,,
-Atlas splice sites,3–50,Supporting,0.481,No,,,
+Atlas splice sites,3–50,Supporting,0.481,Yes,0.010254,,0.0490
 Atlas splice sites,3–50,Moderate,0.231,No,,,
 Atlas splice sites,3–50,Strong,0.0535,No,,,
 Atlas splice-site usage,3–10,Supporting,0.481,Yes,0.01758,0.01758,0.0525
-Atlas splice-site usage,3–10,Moderate,0.231,Yes,0.013672,0.0107422,0.166
+Atlas splice-site usage,3–10,Moderate,0.231,No,,0.0107422,
 Atlas splice-site usage,3–10,Strong,0.0535,No,,,
-Atlas splice-site usage,11–50,Supporting,0.481,Yes,0.009682,,0.329
+Atlas splice-site usage,11–50,Supporting,0.481,Yes,0.009682,,0.380
 Atlas splice-site usage,11–50,Moderate,0.231,No,,,
 Atlas splice-site usage,11–50,Strong,0.0535,No,,,
-Atlas splice-site usage,3–50,Supporting,0.481,Yes,0.009766,0.01758,0.0406
+Atlas splice-site usage,3–50,Supporting,0.481,Yes,0.009766,0.01758,0.0416
 Atlas splice-site usage,3–50,Moderate,0.231,No,,,
 Atlas splice-site usage,3–50,Strong,0.0535,No,,,
-Atlas splice junctions,3–10,Supporting,0.481,Yes,0.38672,0.3845215,0.0727
+Atlas splice junctions,3–10,Supporting,0.481,Yes,0.3845215,0.3845215,0.0727
 Atlas splice junctions,3–10,Moderate,0.231,Yes,0.06229,0.06229,0
 Atlas splice junctions,3–10,Strong,0.0535,No,,,
 Atlas splice junctions,11–50,Supporting,0.481,No,,,
 Atlas splice junctions,11–50,Moderate,0.231,No,,,
 Atlas splice junctions,11–50,Strong,0.0535,No,,,
-Atlas splice junctions,3–50,Supporting,0.481,Yes,0.07593,0.06238,0.117
+Atlas splice junctions,3–50,Supporting,0.481,Yes,0.07593,0.06244,0.119
 Atlas splice junctions,3–50,Moderate,0.231,No,,,
 Atlas splice junctions,3–50,Strong,0.0535,No,,,

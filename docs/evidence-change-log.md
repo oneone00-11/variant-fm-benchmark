@@ -791,3 +791,41 @@ use changes here; the next commit replaces two of them.
   A dry run of the next commit in a separate worktree, with the two files replaced
   and nothing else, passed the whole suite with these changes.
 - Every output is unchanged.
+
+## After 3.0.1: PALB2 and BARD1 relabelled from their cited sources, and refitted (stage E16d, 2026-10-21)
+
+Why: the label source audit (stage E16c) could not reproduce the PALB2 and BARD1 label
+files from the score sets Supplementary Table S1 cites. Under the cited a-2 versions'
+investigator-provided ranges they differ on 359 and 13 variants; 47 and 3 of those
+fall in the analysis window. On 2026-10-21 the author decided to relabel both by those
+ranges and refit. The decision was made before any refit was seen, so whatever the
+refit shows stands.
+
+- This commit holds no code, configuration or workflow file
+  (`scripts/stage_E16d/check_switch_commit.py`, and a test). Every output it changes
+  changes because of the two label files.
+- `phase1/data/assay_labels/palb2_mavedb.csv` and `bard1_woo2025.tsv` are now the files
+  `scripts/stage_E16d/build_labels.py` built from the cited ranges (the previous
+  commit's `_generated/`, unchanged).
+- The files of 2026-07-08 moved, unchanged, to `phase1/data/assay_labels/superseded/`,
+  with a README, for the sensitivity comparison; no stage reads them.
+- `PROVENANCE.json` marks both new files as in use.
+- The whole pipeline was rerun. The counts moved as the audit predicted, in every cell
+  of `label_audit_impact.csv` (44 of 44, `docs/label-change-effect.md`):
+  - PALB2: no damaging count changes; normal 324 -> 358 at 3-10 nt and 449 -> 462 at
+    11-50 nt.
+  - BARD1: only 11-50 nt changes; damaging 21 -> 19, normal 1,414 -> 1,417.
+  - The seven genes at 3-50 nt: labelled 7,612 -> 7,660, excluded 385 -> 337, damaging
+    795 -> 793. At 3-10 nt damaging stays 570; at 11-50 nt it is 225 -> 223.
+- `scripts/stage_E16d/compare_runs.py`, run against the previous commit, wrote
+  `phase1/reports/evidence/label_change_effect.csv` and `docs/label-change-effect.md`.
+  In sample, 3 of 560 predictor x stratum x tier x side cells changed tier:
+  - CADD lost PP3 Supporting at 11-50 nt;
+  - the Atlas splice-site score gained BP4 Supporting at 3-50 nt;
+  - the Atlas splice-site usage score lost BP4 Moderate at 3-10 nt.
+
+  Held out, one cell changed the number of folds reaching its tier: the Nucleotide
+  Transformer, PP3 Supporting at 3-50 nt, 0 -> 1.
+- The label source audit now reproduces all seven files.
+- The manuscript draft prints four counts that no longer match their named file:
+  7,612, 8,453, 224 and 225. Neither the manuscript nor the README is changed here.

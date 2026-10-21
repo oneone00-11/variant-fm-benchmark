@@ -1,0 +1,45 @@
+{
+ "script": "scripts/stage_E16d/compare_runs.py",
+ "argv": [
+  "scripts/stage_E16d/compare_runs.py",
+  "--old",
+  "aab88bc"
+ ],
+ "git_commit": "aab88bc7238e04cec58f5d44cd491f857aba6717",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E16d/compare_runs.py": "401cbfcfadd5381b38e66c666ac1be036af8b95cdbecdbfb0b699c4033a25e78",
+  "scripts/stage_E16d/_runlog.py": "42afefdf7e8099bebb924095d74dc54b3e654527ca42e7658060be97ae42bb61"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "requests": "2.32.5",
+  "pysam": "0.24.1"
+ },
+ "start_utc": "2026-10-21T05:54:00+00:00",
+ "end_utc": "2026-10-21T05:54:04+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "phase1/reports/evidence/label_change_effect.csv",
+   "bytes": 72163,
+   "sha256": "a9dd5c59434703a990e73e9ccd80c3b87630b8686877c5e82cd603b4564949da"
+  },
+  {
+   "path": "docs/label-change-effect.md",
+   "bytes": 5847,
+   "sha256": "5e965f94335e758a892a07ea39612b8b9aac62925bfe74e5c1f6096f19e4e396"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "old": "aab88bc7238e04cec58f5d44cd491f857aba6717",
+  "new": "working tree",
+  "prediction_cells_met": "44/44",
+  "tier_changes": 3
+ }
+}

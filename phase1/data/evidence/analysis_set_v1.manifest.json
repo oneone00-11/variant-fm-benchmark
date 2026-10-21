@@ -1,8 +1,8 @@
 {
   "product": "evidence analysis_set_v1",
-  "built_utc": "2026-09-29T13:08:50+00:00",
+  "built_utc": "2026-10-21T05:30:16+00:00",
   "n_rows": 8853,
-  "sha256": "388eebc387fbe010849943b14c521e00b033c6df78ec13e75bcdd621a8026e6d",
+  "sha256": "eb3c0af7abf1141a7643c7af7514f0f4b7659b213aa520d212fa32c53095c23d",
   "selection": {
     "variant_type": "SNV",
     "region": "intron-side splice, 1 <= |intron_offset| <= 50",
@@ -42,11 +42,11 @@
       },
       "BARD1": {
         "file": "bard1_woo2025.tsv",
-        "sha256": "aa3b5b57d8e4191271f72001863f5f1c32143ebac897c5513ef9ce4833d01b99"
+        "sha256": "5d12163bf7dc8ce454c98c77ee2386ea15e3865a34884e4bc9185770c45b504d"
       },
       "PALB2": {
         "file": "palb2_mavedb.csv",
-        "sha256": "b8fb5a7d380b386bce886c505099f96dd12793e40abfc31a348a3204e88a3323"
+        "sha256": "1a51d05e3b14e39ccbb475db3e76d33e712bb2b92e3e2e2cb030592289f09b8c"
       },
       "RAD51C": {
         "file": "rad51c_mavedb.csv",

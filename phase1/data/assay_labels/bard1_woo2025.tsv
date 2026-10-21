@@ -4118,7 +4118,7 @@ NM_000465.4:c.1395+65T>C	normal
 NM_000465.4:c.1395+65T>A	normal
 NM_000465.4:c.1395+63T>G	normal
 NM_000465.4:c.1395+63T>C	normal
-NM_000465.4:c.1395+63T>A	indeterminate
+NM_000465.4:c.1395+63T>A	normal
 NM_000465.4:c.1395+62A>T	normal
 NM_000465.4:c.1395+62A>G	normal
 NM_000465.4:c.1395+62A>C	normal
@@ -7180,7 +7180,7 @@ NM_000465.4:c.423T>G	normal
 NM_000465.4:c.423T>C	normal
 NM_000465.4:c.423T>A	normal
 NM_000465.4:c.422A>T	normal
-NM_000465.4:c.422A>G	indeterminate
+NM_000465.4:c.422A>G	normal
 NM_000465.4:c.422A>C	normal
 NM_000465.4:c.421A>T	normal
 NM_000465.4:c.421A>G	normal
@@ -7934,7 +7934,7 @@ NM_000465.4:c.216-11T>C	normal
 NM_000465.4:c.216-11T>A	indeterminate
 NM_000465.4:c.216-12A>T	normal
 NM_000465.4:c.216-12A>G	functionally abnormal
-NM_000465.4:c.216-12A>C	indeterminate
+NM_000465.4:c.216-12A>C	normal
 NM_000465.4:c.216-14T>G	normal
 NM_000465.4:c.216-14T>C	normal
 NM_000465.4:c.216-14T>A	normal
@@ -8284,7 +8284,7 @@ NM_000465.4:c.158+19G>T	normal
 NM_000465.4:c.158+19G>C	normal
 NM_000465.4:c.158+19G>A	normal
 NM_000465.4:c.158+18T>G	normal
-NM_000465.4:c.158+18T>C	functionally abnormal
+NM_000465.4:c.158+18T>C	normal
 NM_000465.4:c.158+18T>A	normal
 NM_000465.4:c.158+17T>G	normal
 NM_000465.4:c.158+17T>C	normal
@@ -8301,7 +8301,7 @@ NM_000465.4:c.158+14T>A	normal
 NM_000465.4:c.158+13C>T	normal
 NM_000465.4:c.158+13C>G	normal
 NM_000465.4:c.158+13C>A	normal
-NM_000465.4:c.158+12G>T	functionally abnormal
+NM_000465.4:c.158+12G>T	normal
 NM_000465.4:c.158+12G>C	normal
 NM_000465.4:c.158+12G>A	normal
 NM_000465.4:c.158+11A>T	normal
@@ -8337,7 +8337,7 @@ NM_000465.4:c.158+2T>A	functionally abnormal
 NM_000465.4:c.158+1G>T	functionally abnormal
 NM_000465.4:c.158+1G>C	functionally abnormal
 NM_000465.4:c.158+1G>A	functionally abnormal
-NM_000465.4:c.158G>T	functionally abnormal
+NM_000465.4:c.158G>T	normal
 NM_000465.4:c.158G>C	functionally abnormal
 NM_000465.4:c.158G>A	functionally abnormal
 NM_000465.4:c.157T>G	functionally abnormal
@@ -9091,9 +9091,9 @@ NM_000465.4:c.2002_2004del	normal
 NM_000465.4:c.2002-2_2002del	functionally abnormal
 NM_000465.4:c.2002-3_2002-1del	functionally abnormal
 NM_000465.4:c.2002-4_2002-2del	functionally abnormal
-NM_000465.4:c.2002-5_2002-3del	functionally abnormal
-NM_000465.4:c.2002-6_2002-4del	indeterminate
-NM_000465.4:c.2002-7_2002-5del	indeterminate
+NM_000465.4:c.2002-5_2002-3del	normal
+NM_000465.4:c.2002-6_2002-4del	normal
+NM_000465.4:c.2002-7_2002-5del	normal
 NM_000465.4:c.2001+58_2001+60del	normal
 NM_000465.4:c.2001+55_2001+57del	normal
 NM_000465.4:c.2001+53_2001+55del	normal
@@ -10714,9 +10714,9 @@ NM_000465.4:c.216-6_216-4del	normal
 NM_000465.4:c.216-7_216-5del	normal
 NM_000465.4:c.216-9_216-7del	normal
 NM_000465.4:c.216-13_216-11del	normal
-NM_000465.4:c.216-16_216-14del	indeterminate
-NM_000465.4:c.215+9_215+11del	indeterminate
-NM_000465.4:c.215+7_215+9del	indeterminate
+NM_000465.4:c.216-16_216-14del	normal
+NM_000465.4:c.215+9_215+11del	normal
+NM_000465.4:c.215+7_215+9del	normal
 NM_000465.4:c.215+5_215+7del	normal
 NM_000465.4:c.215+3_215+5del	normal
 NM_000465.4:c.215+2_215+4del	functionally abnormal
@@ -10836,7 +10836,7 @@ NM_000465.4:c.101_103del	functionally abnormal
 NM_000465.4:c.100_102del	functionally abnormal
 NM_000465.4:c.99_101del	functionally abnormal
 NM_000465.4:c.98_100del	functionally abnormal
-NM_000465.4:c.97_99del	indeterminate
+NM_000465.4:c.97_99del	normal
 NM_000465.4:c.96_98del	normal
 NM_000465.4:c.95_97del	normal
 NM_000465.4:c.93_95del	normal

@@ -124,7 +124,7 @@
      "order": "source"
     }
    },
-   "in_use": false
+   "in_use": true
   },
   "PALB2": {
    "label_file": "phase1/data/assay_labels/palb2_mavedb.csv",
@@ -166,7 +166,7 @@
      "order": "source"
     }
    },
-   "in_use": false
+   "in_use": true
   },
   "RAD51C": {
    "label_file": "phase1/data/assay_labels/rad51c_mavedb.csv",

@@ -3,10 +3,10 @@ s3_10,moderate,10.0,alphagenome; avi; avi_splice_junctions; avi_splice_site_usag
 s3_10,moderate,,,alphagenome,7.0,6.0,6.0
 s3_10,moderate,,,avi,7.0,6.0,6.0
 s3_10,moderate,,,avi_splice_junctions,7.0,6.0,6.0
-s3_10,moderate,,,avi_splice_site_usage,7.0,6.0,6.0
+s3_10,moderate,,,avi_splice_site_usage,7.0,7.0,7.0
 s3_10,moderate,,,avi_splice_sites,7.0,6.0,6.0
 s3_10,moderate,,,cadd,7.0,0.0,0.0
-s3_10,moderate,,,gpn_msa,7.0,5.0,5.0
+s3_10,moderate,,,gpn_msa,7.0,6.0,6.0
 s3_10,moderate,,,nt,7.0,0.0,0.0
 s3_10,moderate,,,pangolin,7.0,6.0,6.0
 s3_10,moderate,,,phastcons,7.0,0.0,0.0
