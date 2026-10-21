@@ -1,6 +1,7 @@
 """E2.9 -- one tidy table per figure, plus a rough PNG to look at the data.
 
-The tables are the deliverable. The PNGs are matplotlib defaults and exist only so
+The tables are the deliverable. The PNGs are matplotlib defaults, in the figures'
+typeface (Liberation Sans from phase1/assets/fonts/), and exist only so
 the shape of each figure can be checked before anyone spends time on styling; they
 are not the figures.
 
@@ -21,6 +22,7 @@ import pandas as pd                       # noqa: E402
 import yaml                               # noqa: E402
 
 from . import evid_common as K            # noqa: E402
+from . import evid_figures as F           # noqa: E402  (the typeface)
 
 REPORT_DIR = Path("reports/evidence")
 FIG_DIR = REPORT_DIR / "fig_data"
@@ -176,6 +178,7 @@ def fig4() -> pd.DataFrame:
 
 # ---------------------------------------------------------------- drafts
 def draft_pngs(f1, f2c, f2l, f3, f4) -> None:
+    F._use_font()
     if len(f1):
         d = f1[(f1.source == "seven_genes") & (f1.gene == "seven_genes")]
         fig, ax = plt.subplots(figsize=(9, 4))

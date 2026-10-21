@@ -42,11 +42,18 @@ unset MATPLOTLIBRC EVID_ATLAS_REPO
 export PYTHONHASHSEED=0 TZ=UTC LC_ALL=C.UTF-8
 
 # B6.4: the OpenBLAS kernel type and the numpy dispatch every CPU is held to, so that
-# two machines run the same instructions. Empty: each library chooses for the CPU it
-# finds. The values, and the probe records they rest on (container/cpu_probe/), are
-# set before the outputs are rebaselined in the image.
-OPENBLAS_CORETYPE_PIN=""
-NPY_DISABLE_CPU_FEATURES_PIN=""
+# two machines run the same instructions. Left to themselves, the two OpenBLAS copies
+# (numpy's and scipy's) chose Zen on GitHub's AMD EPYC 7763 and Nehalem on the Mac's
+# emulated VirtualApple CPU, whose vendor OpenBLAS does not know; numpy dispatched up to
+# AVX2 on both (container/cpu_probe/github-linux.json, mac-rosetta.json). Both CPUs
+# report sse4_2 and popcnt, Nehalem's instruction set (cpuinfo.flags), so Nehalem is
+# the kernel type: both also report avx, avx2 and fma, but Nehalem's plain SSE kernels
+# need no translation of AVX or FMA on the emulated CPU. numpy is held to the same
+# level: every dispatch target above SSE4.2 is disabled, those both CPUs have (AVX F16C
+# FMA3 AVX2, numpy_cpu.found) and the AVX-512 family neither has, so that a runner that
+# has it does not use it.
+OPENBLAS_CORETYPE_PIN="Nehalem"
+NPY_DISABLE_CPU_FEATURES_PIN="AVX F16C FMA3 AVX2 AVX512F AVX512CD AVX512_KNL AVX512_KNM AVX512_SKX AVX512_CLX AVX512_CNL AVX512_ICL"
 unset OPENBLAS_CORETYPE NPY_DISABLE_CPU_FEATURES NPY_ENABLE_CPU_FEATURES
 if [ -n "$OPENBLAS_CORETYPE_PIN" ]; then
     export OPENBLAS_CORETYPE="$OPENBLAS_CORETYPE_PIN"

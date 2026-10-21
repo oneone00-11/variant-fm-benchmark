@@ -1,0 +1,131 @@
+{
+ "script": "scripts/stage_B6/contact_sheet.py",
+ "argv": [
+  "scripts/stage_B6/contact_sheet.py",
+  "--old",
+  "9b15c34",
+  "--out",
+  "/Users/cliffzhang/Desktop/整理文件/B6_图对照/commit2"
+ ],
+ "git_commit": "9b15c3478dd991839c133b7d94f6766fa5aa95dd",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_B6/contact_sheet.py": "57b0c3591951c0345e433640dcd2d088d04b03a37b3e1977380919acf6f5f2e3",
+  "scripts/stage_B6/_runlog.py": "d310fddfe3c56e9d8dbe42f6dc762f6316733c599ad3f397e4caa849daad3680"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "scipy": "1.13.1",
+  "pandas": "2.3.3",
+  "matplotlib": "3.9.4",
+  "threadpoolctl": "3.6.0"
+ },
+ "start_utc": "2026-10-21T15:40:33+00:00",
+ "end_utc": "2026-10-21T15:40:36+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/fig1_draft.png",
+   "bytes": 82468,
+   "sha256": "1e52125137d6ecb54223a1d6964f5cea27fe52e94cc6815b9712c9850771fc20"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/fig2_draft.png",
+   "bytes": 166902,
+   "sha256": "651dacd8fea8eaafe1927b0b51071dddcf845809bd3017c1661670618da6374f"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/fig3_draft.png",
+   "bytes": 102391,
+   "sha256": "49315cb9da86f682b768ed5d69936de453af8d8f68fa171bfc462ad290297595"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/fig4_draft.png",
+   "bytes": 103463,
+   "sha256": "a0fbc339a81b238e50e4ad10b4c8319f70c15eb0a27f924885db7a8783aabe64"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/figure1.png",
+   "bytes": 355776,
+   "sha256": "39d717c2660a6c53a5d96a04d53e93ee3dec49d546c5d662ad2b457a311b5ab4"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/figure2.png",
+   "bytes": 558148,
+   "sha256": "cce1b0f4e64a67e967789cee2531758700a36d6c54595c02f691fc847de1d782"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/figure3.png",
+   "bytes": 648611,
+   "sha256": "169ec75b00c90b459fae17f48aeaa6e8dcc405d75683dab92c404ab29d69dbc1"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/figure4.png",
+   "bytes": 478838,
+   "sha256": "99ba12b08385d076b6806288673a0340f1afdb6f39d5fc0677f0fb841ed8365c"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/figureS1.png",
+   "bytes": 806090,
+   "sha256": "326b23881d200180046a63ac8463d6464240ed065a1c5335f132e96360969a73"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/figureS2.png",
+   "bytes": 290358,
+   "sha256": "dc5b15e6e5697de551e25a679c6f78d41613fd52b58e2703350b10c252aea7df"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/figureS3.png",
+   "bytes": 295030,
+   "sha256": "554c91d4c2a67b42d6d9543384154e5764904a6a2adc6373a0f771e65b636992"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/figure_practical.png",
+   "bytes": 487503,
+   "sha256": "4a9c38c3839617b6093f9b53c37df5de922ffab7db4605852fce9c9ded9071d3"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/figure_practical_slides.png",
+   "bytes": 479541,
+   "sha256": "79a2ef3cde07aa44feef9ce0f6739502104ed83f6150f62e5954ea6559943546"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/contact_sheet.pdf",
+   "bytes": 3664912,
+   "sha256": "61c0f293c9b1d9a847b7e824f5abc65f218387f65bc0002d3db137f6b83d7355"
+  },
+  {
+   "path": "~/Desktop/整理文件/B6_图对照/commit2/README.txt",
+   "bytes": 2345,
+   "sha256": "98592d645ea408329ac5dd005bdd8945bd6f8a9e806aeb15f302775d92bf4926"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "pairs": [
+   "phase1/reports/evidence/fig_data/fig1_draft.png: 8.30% of pixels differ, within (16, 17, 977, 425) -> fig1_draft.png",
+   "phase1/reports/evidence/fig_data/fig2_draft.png: 12.37% of pixels differ, within (16, 8, 1416, 376) -> fig2_draft.png",
+   "phase1/reports/evidence/fig_data/fig3_draft.png: 6.75% of pixels differ, within (17, 17, 976, 423) -> fig3_draft.png",
+   "phase1/reports/evidence/fig_data/fig4_draft.png: 7.41% of pixels differ, within (16, 17, 976, 421) -> fig4_draft.png",
+   "phase1/reports/evidence/figures/figure1.png: 2.10% of pixels differ, within (142, 13, 2064, 1371) -> figure1.png",
+   "phase1/reports/evidence/figures/figure2.png: 1.88% of pixels differ, within (53, 32, 2087, 1747) -> figure2.png",
+   "phase1/reports/evidence/figures/figure3.png: 3.81% of pixels differ, within (55, 23, 2148, 1747) -> figure3.png",
+   "phase1/reports/evidence/figures/figure4.png: 2.67% of pixels differ, within (18, 62, 2105, 1840) -> figure4.png",
+   "phase1/reports/evidence/figures/figureS1.png: 1.48% of pixels differ, within (28, 41, 2133, 2944) -> figureS1.png",
+   "phase1/reports/evidence/figures/figureS2.png: 1.38% of pixels differ, within (108, 39, 2087, 1216) -> figureS2.png",
+   "phase1/reports/evidence/figures/figureS3.png: 2.43% of pixels differ, within (72, 33, 2136, 1097) -> figureS3.png",
+   "phase1/reports/evidence/figures/figure_practical.png: 2.99% of pixels differ, within (65, 28, 2111, 1487) -> figure_practical.png",
+   "phase1/reports/evidence/figures/figure_practical_slides.png: 4.58% of pixels differ, within (20, 43, 1955, 1108) -> figure_practical_slides.png",
+   "phase1/reports/evidence/figures/figure1.pdf: differs (drawn from the same figure as its PNG)",
+   "phase1/reports/evidence/figures/figure2.pdf: differs (drawn from the same figure as its PNG)",
+   "phase1/reports/evidence/figures/figure3.pdf: differs (drawn from the same figure as its PNG)",
+   "phase1/reports/evidence/figures/figure4.pdf: differs (drawn from the same figure as its PNG)",
+   "phase1/reports/evidence/figures/figureS1.pdf: differs (drawn from the same figure as its PNG)",
+   "phase1/reports/evidence/figures/figureS2.pdf: differs (drawn from the same figure as its PNG)",
+   "phase1/reports/evidence/figures/figureS3.pdf: differs (drawn from the same figure as its PNG)",
+   "phase1/reports/evidence/figures/figure_practical.pdf: differs (drawn from the same figure as its PNG)"
+  ]
+ }
+}

@@ -1,0 +1,56 @@
+{
+ "script": "scripts/stage_B6/cpu_probe.py",
+ "argv": [
+  "scripts/stage_B6/cpu_probe.py",
+  "mac-rosetta"
+ ],
+ "git_commit": "9b15c3478dd991839c133b7d94f6766fa5aa95dd",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_B6/cpu_probe.py": "e007ffd45e5292b8d76a13b1aa5117f1df1f15d13efe0aa0ce8d5955e033334c",
+  "scripts/stage_B6/_runlog.py": "d310fddfe3c56e9d8dbe42f6dc762f6316733c599ad3f397e4caa849daad3680"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "scipy": "1.13.1",
+  "pandas": "2.3.3",
+  "matplotlib": "3.9.4",
+  "threadpoolctl": "3.6.0"
+ },
+ "start_utc": "2026-10-21T15:13:00+00:00",
+ "end_utc": "2026-10-21T15:13:02+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "container/cpu_probe/mac-rosetta.json",
+   "bytes": 5663,
+   "sha256": "7c55137f9604e3b6e5057a394a0320019d38ad1a63cb5a721d72d81909f0ffc2"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "cpu": "VirtualApple @ 2.50GHz",
+  "openblas": [
+   [
+    "libscipy_openblas",
+    "Nehalem"
+   ],
+   [
+    "libopenblas",
+    "Nehalem"
+   ]
+  ],
+  "numpy_dispatch_in_use": [
+   "SSSE3",
+   "SSE41",
+   "POPCNT",
+   "SSE42",
+   "AVX",
+   "F16C",
+   "FMA3",
+   "AVX2"
+  ]
+ }
+}

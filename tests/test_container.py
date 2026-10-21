@@ -156,3 +156,44 @@ def test_fetch_only_refuses_a_stage_option(monkeypatch, extra):
     monkeypatch.setattr(E, "fetch_clinvar", lambda: pytest.fail("fetched"))
     with pytest.raises(SystemExit):
         E.main()
+
+
+# --------------------------------------------------------------------------
+# B6.4: the CPU settings and the probe records they rest on
+# --------------------------------------------------------------------------
+PROBES = REPO / "container" / "cpu_probe"
+KERNEL_FLAGS = {"Nehalem": {"sse4_2", "popcnt"}}      # what the kernel type needs
+
+
+def _pin(var: str) -> str:
+    return re.search(rf'^{var}_PIN="([^"]*)"', RUN_SH.read_text(), re.M).group(1)
+
+
+def test_the_cpu_settings_rest_on_the_probes_of_both_machines():
+    core, disabled = _pin("OPENBLAS_CORETYPE"), _pin("NPY_DISABLE_CPU_FEATURES").split()
+    probes = [json.loads((PROBES / f"{n}.json").read_text())
+              for n in ("github-linux", "mac-rosetta")]
+    assert {p["settings"]["OPENBLAS_CORETYPE"] for p in probes} == {None}   # before
+    assert core in KERNEL_FLAGS
+    for p in probes:
+        assert KERNEL_FLAGS[core] <= set(p["cpuinfo"]["flags"]), p["name"]
+        assert set(disabled) <= set(p["numpy_cpu"]["dispatch"]), p["name"]
+        kept = [d for d in p["numpy_cpu"]["dispatch"] if d not in disabled]
+        assert set(kept) <= set(p["numpy_cpu"]["found"]), p["name"]
+
+
+@pytest.mark.parametrize("name", ["github-linux-pinned", "mac-rosetta-pinned"])
+def test_the_pinned_probes_show_the_settings_in_force(name):
+    """B6.4 step 3, once each machine has been probed again under the settings."""
+    path = PROBES / f"{name}.json"
+    if not path.exists():
+        pytest.skip(f"{path.name} is written by the probe after the settings are pushed")
+    p = json.loads(path.read_text())
+    core, disabled = _pin("OPENBLAS_CORETYPE"), _pin("NPY_DISABLE_CPU_FEATURES")
+    assert p["settings"]["OPENBLAS_CORETYPE"] == core
+    assert p["settings"]["NPY_DISABLE_CPU_FEATURES"] == disabled
+    blas = [t["architecture"] for t in p["threadpool_info"] if t.get("internal_api") == "openblas"]
+    assert len(blas) == 2 and set(blas) == {core}
+    assert p["numpy_cpu"]["dispatch_in_use"] == [
+        d for d in p["numpy_cpu"]["dispatch"] if d not in disabled.split()
+        and d in p["numpy_cpu"]["found"]]

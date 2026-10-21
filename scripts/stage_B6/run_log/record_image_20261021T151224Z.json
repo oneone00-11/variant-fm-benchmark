@@ -1,0 +1,103 @@
+{
+ "script": "scripts/stage_B6/record_image.py",
+ "argv": [
+  "scripts/stage_B6/record_image.py",
+  "--record",
+  "/private/tmp/claude-501/-Users-cliffzhang/fdf067ac-c1e3-4904-8f08-1098ff13d1b6/scratchpad/b6/build_39621528080/record",
+  "--archive",
+  "/private/tmp/claude-501/-Users-cliffzhang/fdf067ac-c1e3-4904-8f08-1098ff13d1b6/scratchpad/b6/build_39621528080/archive/image.tar",
+  "--load"
+ ],
+ "git_commit": "9b15c3478dd991839c133b7d94f6766fa5aa95dd",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_B6/record_image.py": "60c395667ed8725515809c7ca9def696cc90c64124b3c72952fa49917162b080",
+  "scripts/stage_B6/_runlog.py": "d310fddfe3c56e9d8dbe42f6dc762f6316733c599ad3f397e4caa849daad3680"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "scipy": "1.13.1",
+  "pandas": "2.3.3",
+  "matplotlib": "3.9.4",
+  "threadpoolctl": "3.6.0"
+ },
+ "start_utc": "2026-10-21T15:12:18+00:00",
+ "end_utc": "2026-10-21T15:12:24+00:00",
+ "inputs": [
+  {
+   "path": "/private/tmp/claude-501/-Users-cliffzhang/fdf067ac-c1e3-4904-8f08-1098ff13d1b6/scratchpad/b6/build_39621528080/record/image.json",
+   "bytes": 1952,
+   "sha256": "0fa79e0467a3269d8af20667d74a403a1fac0982706ebe067ab19654d2b8235f"
+  },
+  {
+   "path": "/private/tmp/claude-501/-Users-cliffzhang/fdf067ac-c1e3-4904-8f08-1098ff13d1b6/scratchpad/b6/build_39621528080/record/manifest.json",
+   "bytes": 1792,
+   "sha256": "0dc03436cd94cf46effe25160efa3015ab9808852179d58908c72e16e0537776"
+  },
+  {
+   "path": "/private/tmp/claude-501/-Users-cliffzhang/fdf067ac-c1e3-4904-8f08-1098ff13d1b6/scratchpad/b6/build_39621528080/archive/image.tar",
+   "bytes": 879031296,
+   "sha256": "e46e2e95a9752e9dd6d82556af7aa2f355b471d75d20c8aed773fe9a6ef51d0d"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "container/ENVIRONMENT.json",
+   "bytes": 4193,
+   "sha256": "f0082fc17436dd2038984664c97bc7f880123f1e004701aaf4b721317aff1466"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "image": {
+   "name": "ghcr.io/oneone00-11/variant-fm-benchmark-reference",
+   "tag": "b6-9b15c3478dd9",
+   "reference": "ghcr.io/oneone00-11/variant-fm-benchmark-reference@sha256:0dc03436cd94cf46effe25160efa3015ab9808852179d58908c72e16e0537776",
+   "manifest_digest": "sha256:0dc03436cd94cf46effe25160efa3015ab9808852179d58908c72e16e0537776",
+   "manifest_media_type": "application/vnd.docker.distribution.manifest.v2+json",
+   "config_digest": "sha256:8ecf15fc8944ac940876fa1a9a5820767753b6342b40dc4c6ec064a70444c78a",
+   "image_id_on_runner": "sha256:8ecf15fc8944ac940876fa1a9a5820767753b6342b40dc4c6ec064a70444c78a",
+   "architecture": "amd64",
+   "os": "linux",
+   "labels": {
+    "org.opencontainers.image.licenses": "MIT",
+    "org.opencontainers.image.revision": "9b15c3478dd991839c133b7d94f6766fa5aa95dd",
+    "org.opencontainers.image.source": "https://github.com/oneone00-11/variant-fm-benchmark"
+   },
+   "size_bytes": 859934988,
+   "built_at_commit": "9b15c3478dd991839c133b7d94f6766fa5aa95dd",
+   "build_run": "https://github.com/oneone00-11/variant-fm-benchmark/actions/runs/39621528080",
+   "docker_save_sha256": "e46e2e95a9752e9dd6d82556af7aa2f355b471d75d20c8aed773fe9a6ef51d0d",
+   "docker_save_bytes": 879031296,
+   "docker_save_config_digest": "sha256:8ecf15fc8944ac940876fa1a9a5820767753b6342b40dc4c6ec064a70444c78a",
+   "docker_save_manifests": [
+    "sha256:daa6ce67933f12efd13ca8ffb7df35ce5d7a0e88e81c9054b7a7f124f0a7a3c1"
+   ],
+   "docker_save_tags": [
+    "ghcr.io/oneone00-11/variant-fm-benchmark-reference:b6-9b15c3478dd9"
+   ],
+   "anonymous_manifest_request_from_runner": "200",
+   "anonymous_manifest_request_from_here": {
+    "token_http_status": 200,
+    "manifest_http_status": 200,
+    "anyone_can_pull": true
+   },
+   "loaded_here": {
+    "docker_load": "Loaded image: ghcr.io/oneone00-11/variant-fm-benchmark-reference:b6-9b15c3478dd9",
+    "image": "ghcr.io/oneone00-11/variant-fm-benchmark-reference:b6-9b15c3478dd9",
+    "inspect_id": "sha256:daa6ce67933f12efd13ca8ffb7df35ce5d7a0e88e81c9054b7a7f124f0a7a3c1",
+    "id_is": "the archive's own manifest digest",
+    "architecture": "amd64",
+    "os": "linux",
+    "labels": {
+     "org.opencontainers.image.licenses": "MIT",
+     "org.opencontainers.image.revision": "9b15c3478dd991839c133b7d94f6766fa5aa95dd",
+     "org.opencontainers.image.source": "https://github.com/oneone00-11/variant-fm-benchmark"
+    },
+    "docker_server": "29.5.2 linux/arm64"
+   }
+  }
+ }
+}

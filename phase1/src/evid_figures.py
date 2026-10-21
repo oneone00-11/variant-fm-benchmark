@@ -25,8 +25,9 @@ for accidents:
 
 Output is deterministic: PDF and PNG metadata that would carry a timestamp or a
 software version are cleared, so a rerun on the same machine writes identical
-files. Font rendering depends on the fonts installed, so byte identity across
-machines is not claimed; the content is.
+files. The typeface does not depend on the machine: it is Liberation Sans, metrically
+compatible with Arial, loaded from the files in phase1/assets/fonts/ (with their
+source and licence), never from the fonts installed.
 
 Run (PYTHONPATH=phase1):  python -m src.evid_figures
 """
@@ -39,6 +40,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
+from matplotlib import font_manager  # noqa: E402
 import pandas as pd  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 
@@ -120,10 +122,24 @@ def _band_label(gene: str, stratum: str) -> str:
     return f"{lo}–{hi} bp"
 
 
+# The figures' typeface, from files shipped with the repository, never a system font.
+FONT = "Liberation Sans"
+FONT_DIR = Path(__file__).resolve().parents[1] / "assets" / "fonts"
+
+
+def _use_font() -> None:
+    """FONT from FONT_DIR as the only sans-serif face. A copy of the family installed
+    on the machine is dropped first, so that the name can only find these files."""
+    fm = font_manager.fontManager
+    fm.ttflist = [f for f in fm.ttflist if f.name != FONT]
+    for path in sorted(FONT_DIR.glob("*.ttf")):
+        fm.addfont(path)                       # each call clears the lookup cache
+    plt.rcParams.update({"font.family": "sans-serif", "font.sans-serif": [FONT]})
+
+
 def _style() -> None:
+    _use_font()
     plt.rcParams.update({
-        "font.family": "sans-serif",
-        "font.sans-serif": ["Arial", "Helvetica", "Liberation Sans", "DejaVu Sans"],
         "font.size": 7, "axes.titlesize": 7.5, "axes.labelsize": 7,
         "xtick.labelsize": 6.5, "ytick.labelsize": 6.5, "legend.fontsize": 6.5,
         "axes.edgecolor": INK2, "axes.linewidth": 0.6, "axes.labelcolor": INK,
@@ -133,9 +149,12 @@ def _style() -> None:
         "pdf.fonttype": 42, "svg.hashsalt": "evidence",
         "legend.frameon": False,
         # mathtext is used only for italic gene symbols, whose digits mathtext
-        # sets in its roman face; that face is therefore Arial italic too
-        "mathtext.fontset": "custom", "mathtext.rm": "Arial:italic",
-        "mathtext.it": "Arial:italic", "mathtext.bf": "Arial:bold",
+        # sets in its roman face; that face is therefore the italic too. Its other
+        # faces are FONT as well, with no fallback, so mathtext reaches no other font
+        "mathtext.fontset": "custom", "mathtext.rm": f"{FONT}:italic",
+        "mathtext.it": f"{FONT}:italic", "mathtext.bf": f"{FONT}:bold",
+        "mathtext.bfit": f"{FONT}:italic:bold", "mathtext.sf": FONT,
+        "mathtext.tt": FONT, "mathtext.cal": FONT, "mathtext.fallback": None,
     })
 
 

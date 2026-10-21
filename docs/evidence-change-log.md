@@ -869,3 +869,46 @@ new committed baseline. This commit defines the image; no output changes.
   Transformer values identical rather than 24, one being 4.4e-16 apart, which the
   stage attributes to pandas' default CSV float parser on x86_64. The
   supplementary-table manifest records that manifest's hash.
+
+## After 3.0.1: the figures' typeface from the repository, and the image's CPU settings (stage B6, 2026-10-21)
+
+Why: the figures asked for Arial, which only some machines have, and matplotlib falls
+back to another font without an error where it is missing, so a figure's typeface
+depended on the machine. They now load Liberation Sans, metrically compatible with
+Arial, from files shipped with the repository. And the reference image, built from the
+previous commit, is recorded, and its maths libraries are held to the same instructions
+on every CPU, before the outputs are regenerated in it.
+
+- `phase1/assets/fonts/`: Liberation Sans regular, bold, italic and bold italic, and the
+  SIL Open Font License 1.1 they are released under, unchanged from the project's 2.1.5
+  release (`scripts/stage_B6/fetch_fonts.py`; `SOURCE.json` records the archive's URL
+  and sha256 and each file's). The figures open the regular, bold and italic faces.
+- The figure modules change in their font settings only:
+  - `evid_figures.py` loads these files by path (matplotlib's `addfont`) and drops any
+    copy of the family installed on the machine. It names Liberation Sans alone,
+    mathtext's faces included, with no fallback.
+  - `evid_fig_data.py`'s draft PNGs use the same.
+  - `evid_practical_metrics.py`'s note on the slide's label check names the new face.
+- `phase1/tests/test_evid_figure_fonts.py` draws every figure again. It holds every font
+  file matplotlib opens to that folder, and checks that no glyph is missing.
+- Run here (macOS) against the previous commit, the comparator says NOT REPRODUCED with
+  "differs (figure): 21; identical: 444; identical (build time aside): 6". Only the 21
+  figures changed: every table, `fig_data/` included, is byte for byte the same, and no
+  manifest records a figure's hash. The figures in this commit are that run's.
+- The reference image was built by `.github/workflows/container.yml` at 9b15c34 (run
+  39621528080): `ghcr.io/oneone00-11/variant-fm-benchmark-reference@sha256:0dc03436...`,
+  image ID (config digest) `sha256:8ecf15fc...`.
+  - Anyone can pull it: the registry answers an anonymous request for its manifest. The
+    stage meant to keep it private; on 2026-10-21 the author accepted it as public.
+  - `container/ENVIRONMENT.json` records the image as built and as loaded here
+    (`scripts/stage_B6/record_image.py`), and what is inside it
+    (`record_environment.py`: Python 3.12.13, the 37 packages of both locks, git
+    1:2.39.5-0+deb12u3) and the font files.
+- CPU settings in `container/run.sh` (B6.4):
+  - Probes in the image (`container/cpu_probe/`): both OpenBLAS copies chose Zen on
+    GitHub's AMD EPYC 7763 and Nehalem on the Mac's emulated CPU; numpy dispatched up
+    to AVX2 on both.
+  - Now `OPENBLAS_CORETYPE=Nehalem`, and numpy's dispatch is held to SSE4.2
+    (`NPY_DISABLE_CPU_FEATURES`: AVX and every target above it).
+  - A probe on the Mac under these settings shows both in force. The runner is probed
+    again once this commit is pushed.

@@ -778,8 +778,8 @@ SLIDE_DPI = 150
 SLIDE_SIZE = (2000 / SLIDE_DPI, 1125 / SLIDE_DPI)   # inches: 2000 x 1125 pixels, 16:9
 SLIDE_SCALE = 1.8                           # line widths and marker sizes against print
 # the inset is shorter than in print, its top where print has it, so that its tick
-# labels clear the larger AUROC key below it, with room in Arial and in DejaVu Sans, the
-# fallback where Arial is missing; figure_slides stops if they do not
+# labels clear the larger AUROC key below it, with room in the figures' Liberation Sans
+# (evid_figures.FONT, from the repository); figure_slides stops if they do not
 SLIDE_INSET_BOUNDS = [0.45, 0.51, 0.52, 0.21]
 SLIDE_CAPTION = ("Curves pool the seven genes; each AUROC is the manuscript's (per-gene "
                  "AUROCs combined on the logit scale), not the area under these curves.")

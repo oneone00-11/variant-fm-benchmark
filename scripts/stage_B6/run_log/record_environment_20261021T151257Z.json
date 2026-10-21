@@ -1,0 +1,82 @@
+{
+ "script": "scripts/stage_B6/record_environment.py",
+ "argv": [
+  "scripts/stage_B6/record_environment.py"
+ ],
+ "git_commit": "9b15c3478dd991839c133b7d94f6766fa5aa95dd",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_B6/record_environment.py": "53961a8c974471ad10231f0057fed80cd242239f853071a975991d03704cf3c9",
+  "scripts/stage_B6/_runlog.py": "d310fddfe3c56e9d8dbe42f6dc762f6316733c599ad3f397e4caa849daad3680"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "scipy": "1.13.1",
+  "pandas": "2.3.3",
+  "matplotlib": "3.9.4",
+  "threadpoolctl": "3.6.0"
+ },
+ "start_utc": "2026-10-21T15:12:56+00:00",
+ "end_utc": "2026-10-21T15:12:57+00:00",
+ "inputs": [
+  {
+   "path": "requirements-evidence.lock.txt",
+   "bytes": 962,
+   "sha256": "884af3815d337349e253e2b156b0666c45c3e5947871f23f3029d696c4cfa95f"
+  },
+  {
+   "path": "container/requirements.linux-amd64.txt",
+   "bytes": 4012,
+   "sha256": "8dab18f20d7f386b1515ed842ee762352b02bd0f30ebe59b1a72d4de5a79c0eb"
+  },
+  {
+   "path": "phase1/assets/fonts/LiberationSans-Bold.ttf",
+   "bytes": 414456,
+   "sha256": "788abee4c806d660e8aee46689dd8540cd4bb98da03dcc9d171ce3efd99a9173"
+  },
+  {
+   "path": "phase1/assets/fonts/LiberationSans-BoldItalic.ttf",
+   "bytes": 408996,
+   "sha256": "698da70fc191cc5f33ad4d6d3fe830fe4624b898ea2e3169955928b7c491f1ee"
+  },
+  {
+   "path": "phase1/assets/fonts/LiberationSans-Italic.ttf",
+   "bytes": 415816,
+   "sha256": "e5bae5c4cde31f22142753855f4f8fb86da6ff39955ed3c0a11248b0d16948b0"
+  },
+  {
+   "path": "phase1/assets/fonts/LiberationSans-Regular.ttf",
+   "bytes": 410712,
+   "sha256": "76d04c18ea243f426b7de1f3ad208e927008f961dc5945e5aad352d0dfde8ee8"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "container/ENVIRONMENT.json",
+   "bytes": 10460,
+   "sha256": "8c7cc816449fc651315a61ee8bbd209ac83310da76c76c2841f6e0d41bbe571c"
+  },
+  {
+   "path": "container/ENVIRONMENT.json",
+   "bytes": 10460,
+   "sha256": "8c7cc816449fc651315a61ee8bbd209ac83310da76c76c2841f6e0d41bbe571c"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "locks": {
+   "requirements-evidence.lock.txt": {
+    "same_set": true,
+    "only_installed": [],
+    "only_in_lock": []
+   },
+   "container/requirements.linux-amd64.txt": {
+    "same_set": true,
+    "only_installed": [],
+    "only_in_lock": []
+   }
+  }
+ }
+}

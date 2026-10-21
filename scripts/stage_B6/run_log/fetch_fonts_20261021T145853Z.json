@@ -1,0 +1,109 @@
+{
+ "script": "scripts/stage_B6/fetch_fonts.py",
+ "argv": [
+  "scripts/stage_B6/fetch_fonts.py"
+ ],
+ "git_commit": "9b15c3478dd991839c133b7d94f6766fa5aa95dd",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_B6/fetch_fonts.py": "89c8512f9a2cdcee99d961fdf77876c773f1e36f8853ce7b2b474d1a03f691c0",
+  "scripts/stage_B6/_runlog.py": "d310fddfe3c56e9d8dbe42f6dc762f6316733c599ad3f397e4caa849daad3680"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "scipy": "1.13.1",
+  "pandas": "2.3.3",
+  "matplotlib": "3.9.4",
+  "threadpoolctl": "3.6.0"
+ },
+ "start_utc": "2026-10-21T14:58:51+00:00",
+ "end_utc": "2026-10-21T14:58:53+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "phase1/assets/fonts/LiberationSans-Regular.ttf",
+   "bytes": 410712,
+   "sha256": "76d04c18ea243f426b7de1f3ad208e927008f961dc5945e5aad352d0dfde8ee8"
+  },
+  {
+   "path": "phase1/assets/fonts/LiberationSans-Bold.ttf",
+   "bytes": 414456,
+   "sha256": "788abee4c806d660e8aee46689dd8540cd4bb98da03dcc9d171ce3efd99a9173"
+  },
+  {
+   "path": "phase1/assets/fonts/LiberationSans-Italic.ttf",
+   "bytes": 415816,
+   "sha256": "e5bae5c4cde31f22142753855f4f8fb86da6ff39955ed3c0a11248b0d16948b0"
+  },
+  {
+   "path": "phase1/assets/fonts/LiberationSans-BoldItalic.ttf",
+   "bytes": 408996,
+   "sha256": "698da70fc191cc5f33ad4d6d3fe830fe4624b898ea2e3169955928b7c491f1ee"
+  },
+  {
+   "path": "phase1/assets/fonts/LICENSE",
+   "bytes": 4414,
+   "sha256": "93fed46019c38bbe566b479d22148e2e8a1e85ada614accb0211c37b2c61c19b"
+  },
+  {
+   "path": "phase1/assets/fonts/SOURCE.json",
+   "bytes": 1867,
+   "sha256": "8d45baf9602148e2d0dc96c7069226a1e2314c3e6cf2537f3867dce52428b1e8"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "source": {
+   "family": "Liberation Sans",
+   "project": "https://github.com/liberationfonts/liberation-fonts",
+   "release": "https://github.com/liberationfonts/liberation-fonts/releases/tag/2.1.5",
+   "version": "2.1.5",
+   "published": "2021-09-30T17:44:17Z",
+   "archive": {
+    "url": "https://github.com/liberationfonts/liberation-fonts/files/7261482/liberation-fonts-ttf-2.1.5.tar.gz",
+    "bytes": 2385008,
+    "sha256": "7191c669bf38899f73a2094ed00f7b800553364f90e2637010a69c0e268f25d0"
+   },
+   "licence": {
+    "file": "LICENSE",
+    "name": "SIL Open Font License 1.1",
+    "note": "the archive's licence file, unchanged"
+   },
+   "files": {
+    "LiberationSans-Regular.ttf": {
+     "member": "liberation-fonts-ttf-2.1.5/LiberationSans-Regular.ttf",
+     "bytes": 410712,
+     "sha256": "76d04c18ea243f426b7de1f3ad208e927008f961dc5945e5aad352d0dfde8ee8",
+     "version_string": "Version 2.1.5"
+    },
+    "LiberationSans-Bold.ttf": {
+     "member": "liberation-fonts-ttf-2.1.5/LiberationSans-Bold.ttf",
+     "bytes": 414456,
+     "sha256": "788abee4c806d660e8aee46689dd8540cd4bb98da03dcc9d171ce3efd99a9173",
+     "version_string": "Version 2.1.5"
+    },
+    "LiberationSans-Italic.ttf": {
+     "member": "liberation-fonts-ttf-2.1.5/LiberationSans-Italic.ttf",
+     "bytes": 415816,
+     "sha256": "e5bae5c4cde31f22142753855f4f8fb86da6ff39955ed3c0a11248b0d16948b0",
+     "version_string": "Version 2.1.5"
+    },
+    "LiberationSans-BoldItalic.ttf": {
+     "member": "liberation-fonts-ttf-2.1.5/LiberationSans-BoldItalic.ttf",
+     "bytes": 408996,
+     "sha256": "698da70fc191cc5f33ad4d6d3fe830fe4624b898ea2e3169955928b7c491f1ee",
+     "version_string": "Version 2.1.5"
+    },
+    "LICENSE": {
+     "member": "liberation-fonts-ttf-2.1.5/LICENSE",
+     "bytes": 4414,
+     "sha256": "93fed46019c38bbe566b479d22148e2e8a1e85ada614accb0211c37b2c61c19b"
+    }
+   },
+   "fetched_utc": "2026-10-21T14:58:53+00:00",
+   "written_by": "scripts/stage_B6/fetch_fonts.py"
+  }
+ }
+}
