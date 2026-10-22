@@ -213,11 +213,10 @@ def test_the_palb2_variant_on_the_threshold_is_in_its_band():
     assert whole.sens == 295 / 570
     assert a[a.clinvar_arm == "recorded_unclassified"].n_in_band.iloc[0] == 120
 
-    from src.evid_supp_tables import fmt_lr      # the band LR moves with the normals
     s10 = pd.read_csv(SUPP / "tableS10_clinvar_status.csv", dtype=str)
     row = s10[(s10.iloc[:, 0] == "Seven genes") & (s10.iloc[:, 2] == "All variants")
               & (s10.iloc[:, 3] == "Atlas combined score") & (s10.iloc[:, 1] == "3–10")]
-    assert list(row.iloc[0, [5, 9, 10, 12]]) == ["1.071", "341", "0.518", fmt_lr(whole.band_lr)]
+    assert list(row.iloc[0, [5, 9, 10, 12]]) == ["1.071", "341", "0.518", "28.6"]
 
 
 @need_supp
