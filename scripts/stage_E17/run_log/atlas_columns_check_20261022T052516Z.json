@@ -1,0 +1,42 @@
+{
+ "script": "scripts/stage_E17/atlas_columns_check.py",
+ "argv": [
+  "scripts/stage_E17/atlas_columns_check.py"
+ ],
+ "git_commit": "866ca33b76cff15e4b70ca324eaa8c6418530349",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E17/atlas_columns_check.py": "9471158ab58836b124b8c137d3645a39946c39dd426c717f0e02dea6014388bd",
+  "scripts/stage_E17/_runlog.py": "1cd6d51c9b1471958c2acbe56a7392043ca70641c641e6259a4da247ce50e032"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "0.10.0",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "anndata": "0.13.4",
+  "grpcio": "1.84.0",
+  "protobuf": "7.36.2"
+ },
+ "start_utc": "2026-10-22T05:25:15+00:00",
+ "end_utc": "2026-10-22T05:25:16+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/avi.parquet.provenance.json",
+   "bytes": 1629,
+   "sha256": "a4695978837725b720a031ccad727bde2aa359f0a5d35ebf1c44319fb3f0751b"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json",
+   "bytes": 1772,
+   "sha256": "c31edcdd2ec3e339ddf5e62aa509712fc1ed6f58a43cc07a689be12dcf63a449"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "answer": "raw: each column is the maximum, over tracks and rows, of X, which client 0.9.0 fills with the service's scores; the calibrated scores (quantiles) sit in the 'quantiles' layer, which the columns do not read"
+ }
+}

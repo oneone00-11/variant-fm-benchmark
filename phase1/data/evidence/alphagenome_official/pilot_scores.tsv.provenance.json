@@ -1,0 +1,68 @@
+{
+ "written_by": "scripts/stage_E17/score_official.py",
+ "mode": "pilot",
+ "definition": "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json",
+ "definition_sha256": "8f050e9b0c224e0cdfce46a9d61f3c9c567123f7521085032391ee1b395c4e80",
+ "code_run": {
+  "cells_as_written": [
+   5,
+   9,
+   13,
+   "15 (the lines scoring one variant, out of the loop)"
+  ],
+  "cell_7": "dna_client.create(read_key()): the key aside, as written",
+  "per_variant_lines": "  interval = variant.reference_interval.resize(dna_client.SEQUENCE_LENGTH_1MB)\n  scores = dna_model.score_variant(\n      interval=interval,\n      variant=variant,\n      variant_scorers=splicing_scorers,\n      organism=dna_client.Organism.HOMO_SAPIENS,\n  )"
+ },
+ "client_version": "0.10.0",
+ "model_version_requested": null,
+ "model_version_in_response": "not_provided",
+ "start_utc": "2026-10-22T05:22:47+00:00",
+ "end_utc": "2026-10-22T05:24:02+00:00",
+ "seconds_scoring": 74.5,
+ "n_variants": 120,
+ "n_scored_this_run": 120,
+ "n_from_cache": 0,
+ "retries": 0,
+ "failures": [],
+ "workers": 2,
+ "sample": {
+  "seed": 20260708,
+  "pilot_n": 120,
+  "repeat_n": 10,
+  "share": {
+   "BAP1/pm12": 6,
+   "BAP1/s3_10": 6,
+   "BAP1/s11_50": 6,
+   "BARD1/pm12": 6,
+   "BARD1/s3_10": 6,
+   "BARD1/s11_50": 6,
+   "BRCA1/pm12": 6,
+   "BRCA1/s3_10": 6,
+   "BRCA1/s11_50": 6,
+   "BRCA2/pm12": 6,
+   "BRCA2/s3_10": 6,
+   "PALB2/pm12": 6,
+   "PALB2/s3_10": 6,
+   "PALB2/s11_50": 6,
+   "RAD51C/pm12": 6,
+   "RAD51C/s3_10": 6,
+   "RAD51C/s11_50": 6,
+   "VHL/pm12": 6,
+   "VHL/s3_10": 6,
+   "VHL/s11_50": 6
+  }
+ },
+ "genes": [
+  "BAP1",
+  "BARD1",
+  "BRCA1",
+  "BRCA2",
+  "PALB2",
+  "RAD51C",
+  "VHL"
+ ],
+ "output": "phase1/data/evidence/alphagenome_official/pilot_scores.tsv",
+ "output_sha256": "7747b65602f27266e14dfce8c3c7916d7f7626f038c4eec5d6cb664c097f3e39",
+ "api_key_present": true,
+ "api_key_source": "~/.config/alphagenome/key"
+}

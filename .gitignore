@@ -34,6 +34,8 @@ refs/*.log
 
 # --- Python ------------------------------------------------------------------
 .venv/
+# E17: the AlphaGenome scoring environment, built from scripts/stage_E17/requirements.txt
+.venv-ag-official/
 venv/
 __pycache__/
 *.pyc
@@ -62,6 +64,8 @@ phase1/data/evidence/refs/
 # served; scripts/reproduce_evidence.py --fetch-inputs fetches them and checks each
 # against the sha256 its label_audit manifest records.
 phase1/data/evidence/label_audit_cache/
+# E17: the AlphaGenome scoring cache (scripts/stage_E17/score_official.py)
+phase1/data/alphagenome_official_cache/
 
 # Transient scoring checkpoints (removed automatically when a scorer finishes).
 *.partial.parquet

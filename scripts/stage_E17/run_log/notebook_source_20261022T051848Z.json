@@ -1,0 +1,59 @@
+{
+ "script": "scripts/stage_E17/notebook_source.py",
+ "argv": [
+  "scripts/stage_E17/notebook_source.py"
+ ],
+ "git_commit": "866ca33b76cff15e4b70ca324eaa8c6418530349",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E17/notebook_source.py": "d65b70dcfcfad4ba30e8d07f60a5346a7cdb1ac94db41685c05e8afe1cd7d1eb",
+  "scripts/stage_E17/_runlog.py": "1cd6d51c9b1471958c2acbe56a7392043ca70641c641e6259a4da247ce50e032"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "0.10.0",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "anndata": "0.13.4",
+  "grpcio": "1.84.0",
+  "protobuf": "7.36.2"
+ },
+ "start_utc": "2026-10-22T05:18:47+00:00",
+ "end_utc": "2026-10-22T05:18:48+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json",
+   "bytes": 11530,
+   "sha256": "8f050e9b0c224e0cdfce46a9d61f3c9c567123f7521085032391ee1b395c4e80"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "sha256": "c39e6a6a09bc62512107c106cd43cabf7a016cbd073474ff872c669a1ad838df",
+  "client": {
+   "package": "alphagenome",
+   "version": "0.10.0",
+   "SEQUENCE_LENGTH_1MB": 1048576,
+   "organism": "Organism.HOMO_SAPIENS",
+   "scorers": [
+    {
+     "repr": "GeneMaskSplicingScorer(requested_output=SPLICE_SITES, width=None)",
+     "name": "GeneMaskSplicingScorer(requested_output=SPLICE_SITES, width=None)",
+     "is_signed": false
+    },
+    {
+     "repr": "GeneMaskSplicingScorer(requested_output=SPLICE_SITE_USAGE, width=None)",
+     "name": "GeneMaskSplicingScorer(requested_output=SPLICE_SITE_USAGE, width=None)",
+     "is_signed": false
+    },
+    {
+     "repr": "SpliceJunctionScorer()",
+     "name": "SpliceJunctionScorer()",
+     "is_signed": false
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "written_by": "scripts/stage_E17/atlas_columns_check.py",
+ "columns": [
+  "avi",
+  "avi_splice_sites",
+  "avi_splice_site_usage",
+  "avi_splice_junctions"
+ ],
+ "provenance": "phase1/data/evidence/avi.parquet.provenance.json",
+ "client_version": "0.9.0",
+ "scorers_requested": [
+  "AVI_SCORE",
+  "SPLICE_SITES",
+  "SPLICE_SITE_USAGE",
+  "SPLICE_JUNCTIONS"
+ ],
+ "aggregation_recorded": "per variant, the maximum over tracks and over rows; SPLICE_JUNCTIONS returns one row per junction",
+ "our_code": {
+  "file": "phase1/src/evid_score_avi.py",
+  "function": "_aggregate",
+  "reads": "ad.X",
+  "sha256": "89333947ff7d1a39c64914b6fbf12bd6af8045456a1aaa04cb24c46217ab857e"
+ },
+ "client_source": {
+  "wheel": "alphagenome-0.9.0-py3-none-any.whl",
+  "wheel_sha256": "a4f35884341ae85b5d2cf088dfe0304961de7ae4a590d4538653069673de32f4",
+  "file": "alphagenome/atlas/atlas.py",
+  "sha256": "d6584b9757bed70bb4117770a9ad6e716c1e615797718a13a72bb006b35e7925",
+  "lines": [
+   {
+    "shows": "the service's scores, as float32",
+    "line": 174,
+    "text": "x = np.frombuffer(score.scores, dtype=np.float32).reshape(score.shape)"
+   },
+   {
+    "shows": "its calibrated scores",
+    "line": 181,
+    "text": "score.calibrated_scores, dtype=np.float32"
+   },
+   {
+    "shows": "the calibrated scores go to a layer named 'quantiles'",
+    "line": 219,
+    "text": "layers = {'quantiles': np.concatenate(calibrated_scores)}"
+   },
+   {
+    "shows": "X is the service's scores",
+    "line": 223,
+    "text": "X=scores, obs=obs, var=var, layers=layers"
+   }
+  ]
+ },
+ "answer": "raw: each column is the maximum, over tracks and rows, of X, which client 0.9.0 fills with the service's scores; the calibrated scores (quantiles) sit in the 'quantiles' layer, which the columns do not read"
+}

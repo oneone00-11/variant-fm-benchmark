@@ -13,6 +13,18 @@
 # E16c (2026-10-21) added the label source audit's committed sources: the cited score
 # sets and their chains, the compact extracts of the sources kept out of git, and the
 # paper rules with their quote checks.
+# E17 (2026-10-22) added the official AlphaGenome definition's record, the scoring
+# environment's record, the read-only check of the Atlas columns and the scores of
+# the pilot (alphagenome_official/).
+phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json
+phase1/data/evidence/alphagenome_official/ENVIRONMENT.json
+phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json
+phase1/data/evidence/alphagenome_official/examples_scores.tsv
+phase1/data/evidence/alphagenome_official/examples_scores.tsv.provenance.json
+phase1/data/evidence/alphagenome_official/pilot_scores.tsv
+phase1/data/evidence/alphagenome_official/pilot_scores.tsv.provenance.json
+phase1/data/evidence/alphagenome_official/repeat_scores.tsv
+phase1/data/evidence/alphagenome_official/repeat_scores.tsv.provenance.json
 phase1/data/evidence/avi.parquet
 phase1/data/evidence/avi.parquet.provenance.json
 phase1/data/evidence/avi_scorers_20260920.json

@@ -1,0 +1,34 @@
+{
+ "written_by": "scripts/stage_E17/score_official.py",
+ "mode": "examples",
+ "definition": "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json",
+ "definition_sha256": "8f050e9b0c224e0cdfce46a9d61f3c9c567123f7521085032391ee1b395c4e80",
+ "code_run": {
+  "cells_as_written": [
+   5,
+   9,
+   13,
+   "15 (the lines scoring one variant, out of the loop)"
+  ],
+  "cell_7": "dna_client.create(read_key()): the key aside, as written",
+  "per_variant_lines": "  interval = variant.reference_interval.resize(dna_client.SEQUENCE_LENGTH_1MB)\n  scores = dna_model.score_variant(\n      interval=interval,\n      variant=variant,\n      variant_scorers=splicing_scorers,\n      organism=dna_client.Organism.HOMO_SAPIENS,\n  )"
+ },
+ "client_version": "0.10.0",
+ "model_version_requested": null,
+ "model_version_in_response": "not_provided",
+ "start_utc": "2026-10-22T05:22:24+00:00",
+ "end_utc": "2026-10-22T05:22:28+00:00",
+ "seconds_scoring": 3.7,
+ "n_variants": 3,
+ "n_scored_this_run": 3,
+ "n_from_cache": 0,
+ "retries": 0,
+ "failures": [],
+ "workers": 2,
+ "sample": null,
+ "genes": [],
+ "output": "phase1/data/evidence/alphagenome_official/examples_scores.tsv",
+ "output_sha256": "e8c7e3298c943b97fb40e1f1c03101a2946ad3db3dc91f66e6c76ad1830b9a62",
+ "api_key_present": true,
+ "api_key_source": "~/.config/alphagenome/key"
+}
