@@ -178,8 +178,8 @@ DEFINITIONS = {
                     "scripts/phase4a_ag_drift_check.py::build_scorer/score_one, the "
                     "verbatim copy of scripts/91_score_alphagenome.py::score_one that "
                     "scored the frozen rows (phase4a_tp53_external.py). A different "
-                    "variable from the analysis set's client 0.7.0 column "
-                    "(evid_external.DECLARED_MISMATCH)"),
+                    "variable from the analysis set's column, AlphaGenome's own "
+                    "merged splicing score (evid_external.DECLARED_MISMATCH)"),
     "gpn_msa": ("GPN-MSA precomputed hg38 scores (songlab/gpn-msa-hg38-scores at pinned "
                 "revision cf1718a9), raw sign convention (config.REVERSED_FEATURES); "
                 "scripts/phase4a_score_tp53.py::_score_gpn"),

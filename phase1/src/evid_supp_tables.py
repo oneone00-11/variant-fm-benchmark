@@ -94,6 +94,8 @@ TP53_DEPOSIT = REPO / "data/external/tp53_mavedb_scores.tsv"
 WALKER_CFG = PHASE1 / "config/walker2023.yaml"
 WALKER_PROV = PHASE1 / "data/evidence/spliceai_walker.parquet.provenance.json"
 AVI_PROV = PHASE1 / "data/evidence/avi.parquet.provenance.json"
+AG_SOURCE = PHASE1 / "data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json"
+AG_PROV = PHASE1 / "data/evidence/alphagenome_official/all_scores.tsv.provenance.json"
 LICENSE_DATA = REPO / "LICENSE-DATA"
 COLUMN_PROV = REPO / "docs/column-provenance.md"
 ATLAS_COMPOSITION = ATLAS_REPO / "results/table1_atlas_composition.tsv"
@@ -169,8 +171,7 @@ WHAT = {
                        "cut points are applied to",
     "pangolin": "Pangolin's largest predicted change in splice-site usage, gain or "
                 "loss",
-    "alphagenome": "AlphaGenome splice score, merged-quantile definition, computed "
-                   "by the model at query time",
+    # alphagenome: from E17's records, see _alphagenome_official
     "cadd": "CADD deleteriousness score, PHRED-scaled",
     "phylop": "Cross-species conservation at the variant base (phyloP)",
     "phastcons": "Conserved-element posterior probability at the variant base "
@@ -247,9 +248,10 @@ def _scores(tool: str) -> np.ndarray:
 
 def fmt_thr(x, tool: str | None = None, side: str = "upper") -> str:
     """Four significant figures, or more where four would move a variant across
-    the threshold. AlphaGenome's thresholds sit just under its ceiling of 2.2, and
-    at four figures a printed 2.200 selects no variant at all; the printed value
-    must select exactly the band the fitted value selects. The search runs to
+    the threshold. The atlas's AlphaGenome composite, the study's `alphagenome` until
+    E17, had its thresholds just under its ceiling of 2.2, where at four figures a
+    printed 2.200 selected no variant at all; the printed value must select exactly
+    the band the fitted value selects. The search runs to
     seventeen figures, where the printed value is the fitted one; an earlier version
     stopped at eleven and returned twelve unchecked, which dropped from one S8 band
     the variant scoring its threshold exactly."""
@@ -745,6 +747,25 @@ def _avi_definitions() -> dict:
     return out
 
 
+def _alphagenome_official() -> tuple[str, str, str]:
+    """S3's What, Version and Accessed for `alphagenome`, from E17's records: the
+    definition quoted from AlphaGenome's splicing notebook (NOTEBOOK_SOURCE.json), and
+    the full run's provenance."""
+    src, prov = _json(AG_SOURCE), _json(AG_PROV)
+    item = {d["item"]: d["value"] for d in src["definition"]}
+    scorers = re.findall(r"'([A-Z_]+)'", item["scorers"])
+    window = int(src["client"]["SEQUENCE_LENGTH_1MB"])
+    default = prov["model_version_default"]["text"].split("=")[0].strip()
+    what = ("AlphaGenome merged splicing score as AlphaGenome's splicing notebook defines "
+            f"it, {item['combination']}, each the largest raw score over genes and "
+            "tracks; computed by the model at query time")
+    version = (f"API client {prov['client_version']}; {', '.join(scorers[:-1])} and "
+               f"{scorers[-1]} scorers, raw scores; {window // 2 ** 20}-Mb window "
+               f"({window:,} nt); no model version named, so the client's default "
+               f"({default}); notebook {src['path']} at {src['commit'][:8]}")
+    return what, version, prov["end_utc"][:10]
+
+
 def _pangolin_distance() -> int:
     for ln in _need(COLUMN_PROV).read_text().splitlines():
         if ln.startswith("| pangolin |"):
@@ -792,7 +813,7 @@ def s3() -> tuple[pd.DataFrame, list[Path]]:
             audit = f"LICENSE-DATA section {avi_sec[0]} (this repository)"
         else:
             r = rows_by[FROM_ATLAS[col]]
-            what = WHAT[col]
+            what = None if col == "alphagenome" else WHAT[col]
             source, licence, lic_src = r["source"], r["licence"], r["licence_source"]
             audit = (f"Companion atlas licence audit, to which LICENSE-DATA "
                      f"section {set_sec[0]} defers")
@@ -801,7 +822,11 @@ def s3() -> tuple[pd.DataFrame, list[Path]]:
                 # same LICENSE-DATA section
                 licence = AG_TERMS
                 audit = f"LICENSE-DATA section {avi_sec[0]} (this repository)"
-            if col == "spliceai_walker":
+                # AlphaGenome's own definition (E17): what the column is, how it was
+                # scored and when come from E17's records, not from the atlas's
+                # resource row, which describes the composite it replaced
+                what, version, accessed = _alphagenome_official()
+            elif col == "spliceai_walker":
                 version = (f"{walker['package_version']}; {walker['statistic']}; "
                            f"distance {walker['distance']}; "
                            f"{'masked' if walker['mask'] else 'unmasked'}; "
@@ -843,7 +868,7 @@ def s3() -> tuple[pd.DataFrame, list[Path]]:
     srcs = [ATLAS_RESOURCES, WALKER_PROV, AVI_PROV, WALKER_CFG, LICENSE_DATA,
             COLUMN_PROV, REPORTS / "feature_orientation.csv", SET_PATH,
             REPORTS / "predictor_training_provenance.csv",
-            PHASE1 / "src/evid_common.py"]
+            PHASE1 / "src/evid_common.py", AG_SOURCE, AG_PROV]
     return pd.DataFrame(rows), srcs
 
 
@@ -1494,8 +1519,7 @@ TABLES = [
      "did not reach the tier, fewer than ten of the held-out gene's variants scored "
      "above the threshold, or the held-out gene had fewer than ten damaging or ten "
      "normal variants. Thresholds are printed at four significant figures, or more "
-     "where four would move a variant across the threshold; AlphaGenome's lie just "
-     "below its ceiling of 2.2. The fusion is excluded."),
+     "where four would move a variant across the threshold. The fusion is excluded."),
     ("S7", "tableS7_thresholds_benign.csv", s7,
      "Interval-calibration thresholds, benign side",
      "A held-out likelihood ratio of 0 means the band held no damaging variant in "

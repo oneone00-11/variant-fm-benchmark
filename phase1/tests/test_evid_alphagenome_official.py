@@ -9,7 +9,10 @@ scored before the thresholds are frozen (E17.0 rule 10); the pilot is the seeded
 says it is, and its variants scored again (ten of them twice after the pilot, once after
 the full run) agree to the last bit; no record holds the API key; the scoring stops
 when it should; and no AlphaGenome column enters the fusion model (the AlphaGenome
-terms; E17.0 rule 5).
+terms; E17.0 rule 5). Since the switch (E17.5): the analysis set reads the new scores
+bit for bit, oriented as they come; the old composite stays beside them, outside every
+model; the comparison of the two definitions holds only the study's own quantities;
+and Supplementary Table S3 and LICENSE-DATA describe the new definition.
 """
 from __future__ import annotations
 
@@ -377,6 +380,114 @@ def test_failures_not_in_a_row_do_not_stop_the_run():
     assert [f["variant_id"] for f in state["failures"]] == sorted(bad)
     assert kept == [f"v{i}" for i in range(12) if f"v{i}" not in bad]
     assert state["retries"] == len(bad) and state["calls"] == 2 * len(bad) + len(kept)
+
+
+# --------------------------------------------------------------------------
+# the pipeline reads the new scores (E17.5)
+# --------------------------------------------------------------------------
+OLD = "alphagenome_atlas_quantile"
+COMPARISON = PHASE1 / "reports/evidence/alphagenome_definition_comparison.csv"
+SUPP = PHASE1 / "reports/evidence/supplement"
+
+
+def test_the_analysis_set_reads_the_new_scores_bit_for_bit():
+    """N1: the analysis set's `alphagenome` is all_scores.tsv's composite, read back
+    exactly."""
+    import numpy as np
+    aset = pd.read_parquet(SET, columns=["variant_id", "alphagenome"])
+    full = _scores(FULL).set_index("variant_id")[COMPOSITE]
+    a = aset["alphagenome"].to_numpy(dtype=float)
+    b = full.loc[aset["variant_id"]].to_numpy(dtype=float)
+    assert np.array_equal(a.view(np.int64), b.view(np.int64))
+
+
+def test_the_old_composite_is_kept_beside_it_and_outside_every_model():
+    from src import evid_common as K
+    aset = pd.read_parquet(SET)
+    cols = list(aset.columns)
+    assert cols.index(OLD) == cols.index("alphagenome") + 1
+    assert OLD not in K.PANEL + K.OPTIONAL + K.FUSION_FEATURES
+
+
+def test_the_old_composite_is_the_atlas_column():
+    import numpy as np
+    from src import evid_build_set as B
+    if not B.ATLAS_MATRIX.exists():
+        pytest.skip("the companion atlas release is not here")
+    atlas = (pd.read_parquet(B.ATLAS_MATRIX, columns=["variant_id", "alphagenome"])
+             .drop_duplicates("variant_id").set_index("variant_id")["alphagenome"])
+    aset = pd.read_parquet(SET, columns=["variant_id", OLD])
+    assert np.array_equal(aset[OLD].to_numpy(dtype=float),
+                          atlas.loc[aset["variant_id"]].to_numpy(dtype=float), equal_nan=True)
+
+
+def test_the_new_column_is_larger_is_damaging():
+    """E17.5: measured, not assumed; no sign is flipped."""
+    o = pd.read_csv(PHASE1 / "reports/evidence/feature_orientation.csv").set_index("feature")
+    assert o.loc["alphagenome", "spearman_vs_pathogenicity"] > 0
+    assert bool(o.loc["alphagenome", "oriented_larger_is_damaging"])
+
+
+def test_the_comparison_table_holds_only_the_studys_own_quantities():
+    """Three strata x three tiers x two sides. Held out: Table 3's k/n on the PP3 side;
+    none on the BP4 side, which carries E3's median held-out ratio and says why."""
+    from src import evid_practical_metrics as P
+    t = pd.read_csv(COMPARISON, dtype=str, keep_default_na=False)
+    assert len(t) == 18 and not t.duplicated(["stratum", "tier", "side"]).any()
+    assert set(t.stratum) == {"s3_10", "s11_50", "s3_50"} and set(t.side) == {"PP3", "BP4"}
+    pp3, bp4 = t[t.side == "PP3"], t[t.side == "BP4"]
+    for n in ("alphagenome", OLD):
+        assert (bp4[f"{n}_heldout_k_of_n"] == "").all() and (pp3[f"{n}_heldout_lr_median"] == "").all()
+        assert (pp3[f"{n}_heldout_k_of_n"] != "").all()
+    assert (bp4["note"] == P.BP4_NO_LOGO).all() and (pp3["note"] == "").all()
+
+
+def test_the_comparison_tables_new_definition_is_the_studys():
+    """Float for float what E3, E2.2 and E4 wrote for `alphagenome` (the stage checks
+    E15's band ratios as well)."""
+    from src import evid_common as K
+    t = K.read_back(COMPARISON, keep_default_na=False)
+    ev = K.read_back(PHASE1 / "reports/evidence/evidence_thresholds.csv")
+    tm = K.read_back(PHASE1 / "reports/evidence/territory_metrics.csv")
+    for r in t.itertuples():
+        side = r.side.lower()
+        e = ev[(ev.tool == "alphagenome") & (ev.stratum == r.stratum) & (ev.tier == r.tier)].iloc[0]
+        got = getattr(r, "alphagenome_in_sample_threshold")
+        want = e[f"{side}_threshold_insample"]
+        assert (got == "" and pd.isna(want)) or float(got) == want, (r.stratum, r.tier, side)
+        a = tm[(tm.tool == "alphagenome") & (tm.stratum == r.stratum) & (tm.clinvar_arm == "all")]
+        assert float(r.alphagenome_pooled_auroc) == a["auroc"].iloc[0]
+
+
+def test_s3_describes_the_new_definition():
+    """The new column's row comes from E17's records, not from the atlas's resource
+    row; the old composite has no row."""
+    s3 = pd.read_csv(SUPP / "tableS3_predictor_columns.csv", dtype=str, keep_default_na=False)
+    r = s3[s3["Score column"] == "alphagenome"].iloc[0]
+    text = " ".join(r.to_numpy())
+    for old in ("merged-quantile", "16-kb", "0.7.0"):
+        assert old not in text, old
+    src = json.loads(SOURCE.read_text())
+    assert f"API client {src['client']['version']}" in r["Version, resource and scoring configuration"]
+    assert src["commit"][:8] in r["Version, resource and scoring configuration"]
+    assert OLD not in set(s3["Score column"])
+
+
+def test_licence_data_section_2_names_every_alphagenome_output():
+    """Gate 1 review R5 and the author's decision of 2026-10-22: one section for every
+    AlphaGenome value, with the anchors the supplementary tables read it by."""
+    text = (REPO / "LICENSE-DATA").read_text()
+    head = next(l for l in text.splitlines() if l.startswith("2. "))
+    flat = " ".join(text.split())
+    sec2 = flat.split(" 2. AlphaGenome outputs")[1].split(" 3. What a reuser")[0]
+    assert "AVI" in head and "NON-COMMERCIAL" in sec2
+    for col in ["avi", "avi_splice_sites", "avi_splice_site_usage", "avi_splice_junctions",
+                "alphagenome", OLD, "alphagenome_v061", *COMPONENTS, COMPOSITE]:
+        assert f"`{col}`" in sec2, col
+    for s in ["phase1/data/evidence/alphagenome_official/", "docs/alphagenome-official-pilot.md",
+              "client 0.10.0", "dna_client.score_variant", "client 0.7.0", "client 0.6.1",
+              "alphagenome_definition_comparison.csv"]:
+        assert s in sec2, s
 
 
 # --------------------------------------------------------------------------

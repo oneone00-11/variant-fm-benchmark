@@ -14,7 +14,7 @@ s3_10,moderate,,,phylop,7.0,2.0,2.0
 s3_10,moderate,,,spliceai,7.0,6.0,6.0
 s3_10,moderate,,,spliceai_walker,7.0,6.0,6.0
 s3_10,strong,7.0,alphagenome; avi; avi_splice_junctions; avi_splice_site_usage; pangolin; spliceai; spliceai_walker,,,,
-s3_10,strong,,,alphagenome,7.0,6.0,5.0
+s3_10,strong,,,alphagenome,7.0,6.0,6.0
 s3_10,strong,,,avi,7.0,5.0,5.0
 s3_10,strong,,,avi_splice_junctions,7.0,5.0,5.0
 s3_10,strong,,,avi_splice_site_usage,7.0,5.0,5.0
@@ -28,7 +28,7 @@ s3_10,strong,,,phylop,7.0,0.0,0.0
 s3_10,strong,,,spliceai,7.0,6.0,4.0
 s3_10,strong,,,spliceai_walker,7.0,6.0,4.0
 s11_50,moderate,8.0,alphagenome; avi; avi_splice_junctions; avi_splice_site_usage; avi_splice_sites; pangolin; spliceai; spliceai_walker,,,,
-s11_50,moderate,,,alphagenome,6.0,3.0,3.0
+s11_50,moderate,,,alphagenome,6.0,4.0,4.0
 s11_50,moderate,,,avi,6.0,4.0,4.0
 s11_50,moderate,,,avi_splice_junctions,6.0,2.0,2.0
 s11_50,moderate,,,avi_splice_site_usage,6.0,4.0,4.0
@@ -42,7 +42,7 @@ s11_50,moderate,,,phylop,6.0,0.0,0.0
 s11_50,moderate,,,spliceai,6.0,4.0,4.0
 s11_50,moderate,,,spliceai_walker,6.0,4.0,4.0
 s11_50,strong,3.0,alphagenome; avi; avi_splice_site_usage,,,,
-s11_50,strong,,,alphagenome,6.0,0.0,0.0
+s11_50,strong,,,alphagenome,6.0,1.0,0.0
 s11_50,strong,,,avi,6.0,0.0,0.0
 s11_50,strong,,,avi_splice_junctions,6.0,0.0,0.0
 s11_50,strong,,,avi_splice_site_usage,6.0,0.0,0.0
@@ -70,7 +70,7 @@ s3_50,moderate,,,phylop,7.0,3.0,3.0
 s3_50,moderate,,,spliceai,7.0,7.0,7.0
 s3_50,moderate,,,spliceai_walker,7.0,7.0,7.0
 s3_50,strong,8.0,alphagenome; avi; avi_splice_junctions; avi_splice_site_usage; avi_splice_sites; pangolin; spliceai; spliceai_walker,,,,
-s3_50,strong,,,alphagenome,7.0,6.0,6.0
+s3_50,strong,,,alphagenome,7.0,6.0,5.0
 s3_50,strong,,,avi,7.0,7.0,7.0
 s3_50,strong,,,avi_splice_junctions,7.0,5.0,5.0
 s3_50,strong,,,avi_splice_site_usage,7.0,5.0,5.0

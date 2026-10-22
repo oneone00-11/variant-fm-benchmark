@@ -214,8 +214,8 @@ def main() -> None:
         lambda v: K.tier_of(v, path_bands, "pathogenic"))
     # The published cut points are defined on SpliceAI's delta score and on nothing
     # else. The walker_* columns above apply 0.2 / 0.1 to every column's raw scale so
-    # that the table is rectangular, which for AlphaGenome (range about 0.8 to 2.2),
-    # CADD or phyloP produces a number with no meaning. The flag says which rows are
+    # that the table is rectangular, which for AlphaGenome, CADD or phyloP, each on
+    # its own scale, produces a number with no meaning. The flag says which rows are
     # the recommendation's own quantity; arms_at_tool_threshold.csv is the version
     # of this comparison that holds for every column.
     arms_pooled["walker_cut_applicable"] = arms_pooled["tool"].isin(WALKER_TOOLS)

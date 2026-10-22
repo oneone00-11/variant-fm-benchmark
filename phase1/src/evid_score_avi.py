@@ -182,7 +182,7 @@ def _aggregate(ad, variants_order: list[str]) -> np.ndarray:
 
     The maximum is the atlas's own aggregation over splice tracks, so the columns
     are comparable in construction even though the score type is not the same one
-    the v0.7.0 column was built on.
+    the v0.7.0 composite was built on (`alphagenome_atlas_quantile` since E17).
     """
     import pandas as _pd
     x = np.asarray(ad.X, dtype=float)

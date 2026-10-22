@@ -1033,3 +1033,61 @@ output is unchanged.
   not depend on AlphaGenome". That cell is the AlphaGenome Atlas AVI score (`avi`). It
   does not depend on the `alphagenome` column this stage replaces, and this stage does
   not change the four Atlas columns.
+
+## After 3.0.1: the pipeline reads AlphaGenome by its own definition, and refits its thresholds (stage E17, 2026-10-22)
+
+Why: the switch the previous commit prepared. The definition comes from AlphaGenome's
+notebook for scoring variants on their splicing effect
+(`colabs/v1/splicing_variant_scoring.ipynb` in google-deepmind/alphagenome at
+55943112, sha256 c39e6a6a), quoted item by item in
+`phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json`: the largest raw
+score of each of three splicing scorers over genes and tracks, in a 1 Mb window,
+combined as sites + usage + junctions / 5; client 0.10.0.
+
+- `src/evid_build_set.py`: the analysis set's `alphagenome` is now that score, read
+  back exactly from `alphagenome_official/all_scores.tsv` (equal to it bit for bit). The
+  companion atlas's merged-quantile composite (client 0.7.0, a 16-kb window), which the
+  column held until now, stays beside it as `alphagenome_atlas_quantile`, outside the
+  panel. `alphagenome_v061` is unchanged, and no AlphaGenome column enters the fusion.
+  The new column is larger-is-damaging (Spearman rho 0.388 with functional
+  pathogenicity), so nothing is flipped.
+- A new stage, 27, `src/evid_alphagenome_definitions.py`, writes
+  `reports/evidence/alphagenome_definition_comparison.csv`, the one place the old
+  composite appears: for each stratum, tier and side, both definitions' in-sample
+  threshold, band ratio at it, held-out k/n (PP3, as Table 3 counts it; BP4 has none,
+  since E3 writes per-fold thresholds for the PP3 side only, and gives E3's median
+  held-out ratio instead) and pooled AUROC, from the functions that report them
+  elsewhere. Its new-definition numbers are checked in the stage against E3, E2.2, E4
+  and E15's files; its old-definition numbers equal the previous commit's, float for
+  float and as Table 3, S6 and S7 print them.
+- What moved for AlphaGenome, as the study prints it: Strong is still reached
+  in-sample in all three strata. Held out, Strong is cleared in 6/7 (1) genes at
+  3–10 bp (was 5/7 (1)), 0/6 (5) at 11–50 bp (was 0/6 (6)) and 5/7 (1) at 3–50 bp
+  (was 6/7 (1)); Moderate in 4/6 (2) at 11–50 bp (was 3/6 (3)). Pooled AUROC 0.922,
+  0.851 and 0.923 (was 0.915, 0.837 and 0.913). The thresholds sit on the new score's
+  own scale: Table S6 prints the Strong threshold at 3–10 bp as 2.673, where it printed
+  2.19988276958.
+- Supplementary Table S3's AlphaGenome row takes what the column is, its scoring
+  configuration and its date from E17's records, not from the atlas's resource row.
+  Table S6's note no longer says AlphaGenome's thresholds lie below a ceiling of 2.2.
+  The TP53 mismatch (`evid_external.DECLARED_MISMATCH`, and the TP53 manifest's
+  definition) names the new analysis-set column; TP53 stays not comparable.
+- LICENSE-DATA section 2 is rewritten to name every AlphaGenome value: the four Atlas
+  columns, the new `alphagenome` with `alphagenome_official/` and its four score
+  columns, `alphagenome_atlas_quantile`, `alphagenome_v061`; section 3's list follows.
+  `docs/column-provenance.md` gains a section on the new definition, and its Atlas
+  section's comparison now names the old composite. Four comments or docstrings that
+  described the old composite as the current column say what it was.
+- Outputs were written in the reference image. Against the previous commit,
+  `scripts/stage_E17/check_alphagenome_only.py` finds 61 changed and 425 identical,
+  every change explained by AlphaGenome: its rows and columns, its curves, the seven
+  figures that draw it (PDF and PNG; the slide figure as PNG only) and two draft PNGs,
+  the analysis set and the manifests that record it, two pages, and two summaries
+  whose counts or ranges take
+  AlphaGenome in (Table S11's per-gene summary, three statements of the practical
+  metrics page). The fusion's outputs, `alphagenome_v061`'s, and figures 1 and 4 are
+  unchanged.
+- The manuscript, checked with `scripts/check_evidence_manuscript_numbers.py`: no
+  number moves from matched to unmatched (62 matched; the same four unmatched since
+  E16d). Three sentences and Supplementary Note 2 describe the old composite or its
+  results; the stage report lists them. The manuscript is not changed.

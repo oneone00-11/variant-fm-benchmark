@@ -460,11 +460,12 @@ def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
 # per external gene and per column, with the source of the claim.
 DECLARED_MISMATCH = {
     ("TP53", "alphagenome"): (
-        "the TP53 column was scored with AlphaGenome client v0.6.1 as a maximum "
+        "the TP53 column was scored with AlphaGenome client v0.6.1 as a single maximum "
         "absolute raw score, while the analysis-set column the thresholds are fitted "
-        "on is the client v0.7.0 merged-quantile score, bounded at 2.2. They are "
-        "different variables, so a threshold fitted on one does not apply to the "
-        "other."),
+        "on is AlphaGenome's own merged splicing score (client 0.10.0: the largest raw "
+        "score of each of three splicing scorers, combined as sites + usage + "
+        "junctions / 5). They are different variables, so a threshold fitted on one "
+        "does not apply to the other."),
 }
 
 
@@ -476,9 +477,10 @@ def column_basis_check(df: pd.DataFrame, tools: list[str],
     TP53's columns come from the published study's frozen matrix, not from the
     atlas, and two of them are genuinely different variables: its `gpn_msa` is on
     the raw anti-correlated convention (config.REVERSED_FEATURES) while the atlas
-    column is already oriented, and its `alphagenome` is the v0.6.1 definition,
-    which is bounded differently from the v0.7.0 column E3 fits on. Carrying an
-    E3 threshold onto either publishes a tier that describes a different variable.
+    column is already oriented, and its `alphagenome` is the v0.6.1 definition, a
+    single maximum absolute raw score, not the merged splicing score E3 fits on
+    (AlphaGenome's own definition, since E17). Carrying an E3 threshold onto either
+    publishes a tier that describes a different variable.
     """
     base = K.load_set()
     rows = []

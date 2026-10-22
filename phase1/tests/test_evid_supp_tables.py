@@ -278,8 +278,9 @@ def test_s8_counts_are_the_dilution_summary():
 
 def test_printed_thresholds_select_the_same_variants():
     """A printed threshold must select exactly the variants the fitted value
-    selects. At four significant figures AlphaGenome's 2.19988 prints as 2.200,
-    above every score in the set, which would empty the band."""
+    selects. At four significant figures the atlas's AlphaGenome composite (the
+    study's alphagenome until E17) printed 2.19988 as 2.200, above every score in
+    the set, which would have emptied the band."""
     ev = K.read_back(REPORTS / "evidence_thresholds.csv")
     ev = ev[(ev.status == "ok") & ev.pp3_threshold_reachable.astype(bool)
             & ev.tool.isin(S.TOOLS)]

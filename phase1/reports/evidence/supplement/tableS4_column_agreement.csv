@@ -1,6 +1,6 @@
 Column A,Column B,Variants compared,Spearman rho,Cut point,"Below the cut on A, at or above it on B","At or above the cut on A, below it on B"
 SpliceAI (distance 50),SpliceAI (published basis),8853,0.914,0.2,144,0
-Atlas combined score,AlphaGenome splice score,8853,0.729,,,
-Atlas splice sites,AlphaGenome splice score,8853,0.871,,,
-Atlas splice-site usage,AlphaGenome splice score,8853,0.786,,,
-Atlas splice junctions,AlphaGenome splice score,8853,0.814,,,
+Atlas combined score,AlphaGenome splice score,8853,0.767,,,
+Atlas splice sites,AlphaGenome splice score,8853,0.827,,,
+Atlas splice-site usage,AlphaGenome splice score,8853,0.841,,,
+Atlas splice junctions,AlphaGenome splice score,8853,0.965,,,

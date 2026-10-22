@@ -77,6 +77,7 @@ Stages
  24  evid_newgenes SBDS      a fifth one, and the training genes' label versions (E16b)
  25  evid_label_audit        the seven label files against their cited sources (E16c)
  26  evid_delta              every published quantity with a counterpart (E8)
+ 27  evid_alphagenome_definitions  AlphaGenome's two definitions side by side (E17)
 
 Outputs land in `phase1/reports/evidence/`; stages 22 to 26 also write a page under
 `docs/`.
@@ -209,6 +210,7 @@ STAGES = [
      ["--gene", "SBDS"]),
     ("src.evid_label_audit",        "E16c label source audit (read-only)", []),
     ("src.evid_delta",             "E8  old/new quantity list -> docs/evidence-delta.md", []),
+    ("src.evid_alphagenome_definitions", "E17 the two AlphaGenome definitions side by side", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.

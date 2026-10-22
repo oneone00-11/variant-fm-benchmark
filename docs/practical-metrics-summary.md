@@ -14,9 +14,9 @@ Each cell gives the held-out value first and the in-sample value in brackets, fo
 | Pangolin | 3–10 bp | 0.66 (0.69) | 0.95 (0.95) | 0.16 (0.17) | 0.55 (0.58) | 0.97 (0.97) | 0.12 (0.13) | 0.38 (0.39) | 0.99 (0.99) | 0.07 (0.08) | 7, 7, 7 of 7 | 0.92 | 0.91 | 0.75 |
 | Pangolin | 11–50 bp | 0.41 (0.39) | 0.96 (0.97) | 0.06 (0.05) | 0.27 (0.26) | 0.99 (0.99) | 0.02 (0.02) | – (–) | – (–) | – (–) | 6, 6, 0 of 6 | 0.85 | 0.81 | 0.39 |
 | Pangolin | 3–50 bp | 0.59 (0.60) | 0.97 (0.97) | 0.09 (0.09) | 0.55 (0.56) | 0.98 (0.98) | 0.08 (0.08) | 0.34 (0.34) | >0.99 (>0.99) | 0.04 (0.04) | 7, 7, 7 of 7 | 0.92 | 0.89 | 0.66 |
-| AlphaGenome splice score | 3–10 bp | 0.67 (0.68) | 0.95 (0.95) | 0.16 (0.16) | 0.59 (0.58) | 0.97 (0.97) | 0.13 (0.13) | 0.39 (0.41) | 0.99 (0.99) | 0.08 (0.08) | 7, 7, 7 of 7 | 0.91 | 0.90 | 0.75 |
-| AlphaGenome splice score | 11–50 bp | 0.37 (0.42) | 0.97 (0.97) | 0.04 (0.05) | 0.36 (0.31) | 0.98 (0.99) | 0.04 (0.03) | – (0.25) | – (>0.99) | – (0.02) | 6, 6, 1 of 6 | 0.84 | 0.82 | 0.41 |
-| AlphaGenome splice score | 3–50 bp | 0.59 (0.60) | 0.97 (0.97) | 0.09 (0.09) | 0.55 (0.54) | 0.98 (0.98) | 0.07 (0.07) | 0.35 (0.35) | 0.99 (0.99) | 0.04 (0.04) | 7, 7, 7 of 7 | 0.91 | 0.89 | 0.66 |
+| AlphaGenome splice score | 3–10 bp | 0.64 (0.64) | 0.97 (0.97) | 0.14 (0.14) | 0.59 (0.61) | 0.97 (0.98) | 0.13 (0.13) | 0.34 (0.40) | 0.99 (0.99) | 0.07 (0.08) | 7, 7, 7 of 7 | 0.92 | 0.91 | 0.78 |
+| AlphaGenome splice score | 11–50 bp | 0.40 (0.39) | 0.96 (0.97) | 0.06 (0.05) | 0.28 (0.35) | 0.98 (0.98) | 0.03 (0.04) | – (0.15) | – (>0.99) | – (0.01) | 6, 6, 1 of 6 | 0.85 | 0.81 | 0.38 |
+| AlphaGenome splice score | 3–50 bp | 0.54 (0.56) | 0.98 (0.98) | 0.07 (0.08) | 0.51 (0.52) | 0.98 (0.99) | 0.07 (0.07) | 0.36 (0.36) | 0.99 (>0.99) | 0.04 (0.04) | 7, 7, 7 of 7 | 0.92 | 0.89 | 0.68 |
 | Atlas combined score † | 3–10 bp | 0.62 (0.68) | 0.95 (0.95) | 0.14 (0.17) | 0.46 (0.52) | 0.98 (0.98) | 0.09 (0.11) | 0.24 (0.27) | >0.99 (>0.99) | 0.04 (0.05) | 5, 5, 5 of 5 | 0.92 | 0.91 | 0.79 |
 | Atlas combined score † | 11–50 bp | 0.37 (0.35) | 0.97 (0.98) | 0.05 (0.04) | 0.29 (0.29) | 0.98 (0.99) | 0.03 (0.03) | – (0.11) | – (>0.99) | – (0.01) | 4, 4, 1 of 4 | 0.82 | 0.80 | 0.37 |
 | Atlas combined score † | 3–50 bp | 0.56 (0.62) | 0.97 (0.96) | 0.09 (0.10) | 0.49 (0.52) | 0.98 (0.98) | 0.07 (0.07) | 0.28 (0.35) | >0.99 (>0.99) | 0.03 (0.04) | 5, 5, 5 of 5 | 0.92 | 0.89 | 0.69 |
@@ -38,15 +38,15 @@ The seven genes pooled: the most sensitive threshold at which at least 95% of no
 |---|---|---|---|
 | SpliceAI (published basis) | 0.66 | 0.46 | 0.65 |
 | Pangolin | 0.69 | 0.46 | 0.65 |
-| AlphaGenome splice score | 0.69 | 0.47 | 0.65 |
+| AlphaGenome splice score | 0.69 | 0.45 | 0.64 |
 | Atlas combined score † | 0.69 | 0.43 | 0.65 |
 
 ## In five sentences
 
 1. At 11–50 bp each ROC curve lies below the same tool's 3–10 bp curve except near its two ends; by the manuscript's AUROC, per-gene AUROCs combined rather than the area under these curves, the best there is 0.86, below the lowest at 3–10 bp (0.91).
-2. Held out, a Strong threshold at 3–10 bp catches 22% to 39% of damaging variants, depending on the tool.
-3. The cost is coverage: held out, Strong evidence reaches no more than 8.1% of the labelled variants in that band.
-4. At a specificity of 0.95, the AlphaGenome splice score is the most sensitive, or tied for it, in all three bands, though by no more than 0.01.
+2. Held out, a Strong threshold at 3–10 bp catches 22% to 38% of damaging variants, depending on the tool.
+3. The cost is coverage: held out, Strong evidence reaches no more than 7.5% of the labelled variants in that band.
+4. At a specificity of 0.95 no tool is the most sensitive in every band, and the four are never more than 0.04 apart.
 5. Carried to DDX3X, the fitted thresholds are more sensitive than in the held-out seven genes, by as much as 0.37, and less specific, by as much as 0.05; on TP53 sensitivity rises too, except for the Atlas combined score's Moderate and Strong.
 
 ## Figure legend

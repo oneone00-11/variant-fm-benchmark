@@ -1,0 +1,282 @@
+{
+ "script": "scripts/stage_E17/check_alphagenome_only.py",
+ "argv": [
+  "scripts/stage_E17/check_alphagenome_only.py"
+ ],
+ "git_commit": "34a6c8c7b03eadd0b1cae5f6774f5bc37caf1294",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E17/check_alphagenome_only.py": "2ee7fb0791deb5f3145bcef4194f9fc61e1171b24daa5c1fcc113785979e547a",
+  "scripts/stage_E17/_runlog.py": "1cd6d51c9b1471958c2acbe56a7392043ca70641c641e6259a4da247ce50e032"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-22T14:43:11+00:00",
+ "end_utc": "2026-10-22T14:43:14+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "base": "34a6c8c7b03eadd0b1cae5f6774f5bc37caf1294",
+  "counts": {
+   "identical": 425,
+   "ok": 61
+  },
+  "changed": {
+   "phase1/reports/evidence/alphagenome_definition_comparison.csv": [
+    "ok",
+    "new: E17's comparison of the two definitions (src.evid_alphagenome_definitions)"
+   ],
+   "docs/evidence-delta.md": [
+    "ok",
+    "AlphaGenome's lines only"
+   ],
+   "docs/practical-metrics-summary.md": [
+    "ok",
+    "AlphaGenome's lines only; besides, 5 other change(s) (- 2. Held out, a Strong threshold at 3–10 bp catches 22% to 39% of damaging variants, depending on the tool.; - 3. The cost is coverage: held out, Strong evidence reaches no more than 8.1% of the labelled variants in that band.; + 2. Held out, a Strong threshold at 3–10 bp catches 22% to 38% of dama): numbered statements 2 to 4 are taken over the four main predictors, AlphaGenome among them: held out, the highest Strong sensitivity at 3-10 bp (39%) and the highest Strong coverage there (8.1%) were AlphaGenome's and are now Pangolin's (38%, 7.5%); at a specificity of 0.95 AlphaGenome was the most sensitive, or tied for it, in all three bands, and now no predictor is"
+   ],
+   "phase1/data/evidence/analysis_set_v1.manifest.json": [
+    "ok",
+    "built_utc: build time; sha256: the analysis set's AlphaGenome columns (checked above); columns: alphagenome_atlas_quantile, after alphagenome; sources.alphagenome_official: the score file the AlphaGenome column now comes from"
+   ],
+   "phase1/data/evidence/analysis_set_v1.parquet": [
+    "ok",
+    "AlphaGenome's columns only: the official scores in its place, the composite beside it"
+   ],
+   "phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json": [
+    "ok",
+    "columns.alphagenome.definition: names the analysis-set column the TP53 column is not comparable with, AlphaGenome's own definition; inputs_sha256.phase1/src/evid_tp53_extend.py: the AlphaGenome wording E17 corrected (src.evid_tp53_extend, src.evid_score_avi); the manifest hashes its code; inputs_sha256.phase1/src/evid_score_avi.py: the AlphaGenome wording E17 corrected (src.evid_tp53_extend, src.evid_score_avi); the manifest hashes its code"
+   ],
+   "phase1/reports/evidence/arms_at_tool_threshold.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/arms_within_gene.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/column_concordance.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/evid_delta.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/evidence_thresholds.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/evidence_thresholds_logo_folds.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/external_tp53_column_basis.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/feature_orientation.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/fig_data/fig2_draft.png": [
+    "ok",
+    "draws AlphaGenome: the draft of figure 2, AlphaGenome's curve among four"
+   ],
+   "phase1/reports/evidence/fig_data/fig2_interval_lr.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/fig_data/fig3_draft.png": [
+    "ok",
+    "draws AlphaGenome: pooled AUROC of every column by territory"
+   ],
+   "phase1/reports/evidence/fig_data/fig3_evidence_by_territory.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/figures/figure2.pdf": [
+    "ok",
+    "draws AlphaGenome: interval curves of four predictors, AlphaGenome's panel among them"
+   ],
+   "phase1/reports/evidence/figures/figure2.png": [
+    "ok",
+    "draws AlphaGenome: the same figure as a PNG"
+   ],
+   "phase1/reports/evidence/figures/figure3.pdf": [
+    "ok",
+    "draws AlphaGenome: held-out ratios, a row per column, AlphaGenome's among them"
+   ],
+   "phase1/reports/evidence/figures/figure3.png": [
+    "ok",
+    "draws AlphaGenome: the same figure as a PNG"
+   ],
+   "phase1/reports/evidence/figures/figureS1.pdf": [
+    "ok",
+    "draws AlphaGenome: interval curves of every column (src.evid_figures.COLUMNS)"
+   ],
+   "phase1/reports/evidence/figures/figureS1.png": [
+    "ok",
+    "draws AlphaGenome: the same figure as a PNG"
+   ],
+   "phase1/reports/evidence/figures/figureS2.pdf": [
+    "ok",
+    "draws AlphaGenome: thresholds refitted on subsets of genes, an AlphaGenome line"
+   ],
+   "phase1/reports/evidence/figures/figureS2.png": [
+    "ok",
+    "draws AlphaGenome: the same figure as a PNG"
+   ],
+   "phase1/reports/evidence/figures/figureS3.pdf": [
+    "ok",
+    "draws AlphaGenome: a row per column, AlphaGenome's among them"
+   ],
+   "phase1/reports/evidence/figures/figureS3.png": [
+    "ok",
+    "draws AlphaGenome: the same figure as a PNG"
+   ],
+   "phase1/reports/evidence/figures/figure_practical.pdf": [
+    "ok",
+    "draws AlphaGenome: ROC curves and tier marks of the four main predictors (src.evid_practical_metrics.MAIN_TOOLS)"
+   ],
+   "phase1/reports/evidence/figures/figure_practical.png": [
+    "ok",
+    "draws AlphaGenome: the same figure as a PNG"
+   ],
+   "phase1/reports/evidence/figures/figure_practical_slides.png": [
+    "ok",
+    "draws AlphaGenome: the slide version, the four main predictors (src.evid_practical_metrics.MAIN_TOOLS)"
+   ],
+   "phase1/reports/evidence/interval_lr_alphagenome_all_1_50.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/interval_lr_alphagenome_pm12.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/interval_lr_alphagenome_s11_50.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/interval_lr_alphagenome_s3_10.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/interval_lr_alphagenome_s3_50.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/local_lr_monotonicity.txt": [
+    "ok",
+    "AlphaGenome's lines only"
+   ],
+   "phase1/reports/evidence/practical_curve_auc.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/practical_metrics_by_threshold.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/practical_metrics_external.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/practical_metrics_logo_by_gene.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/practical_pr_curves.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/practical_roc_curves.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/supplement/tableS10_clinvar_status.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/supplement/tableS11_within_gene_arms.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/supplement/tableS11_within_gene_arms_summary.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only; besides, 2 other change(s) (line 7: Highest in: Recorded, unclassified: '1' -> '2', Highest in: Unrecorded: '12' -> '11'; line 11: Highest in: Recorded, unclassified: '9' -> '10', Highest in: Unrecorded: '35' -> '34'): counts, per gene, of the columns whose AUROC is highest in each ClinVar arm; at 3-50 bp in BAP1 the AlphaGenome splice score's highest arm moved from unrecorded (0.818) to recorded unclassified (0.811, a margin below the printed precision), so one column moves from one count to the other, in the BAP1 row and in the row of the four genes"
+   ],
+   "phase1/reports/evidence/supplement/tableS12_external_genes.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/supplement/tableS3_predictor_columns.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/supplement/tableS4_column_agreement.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/supplement/tableS6_thresholds_pathogenic.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/supplement/tableS7_thresholds_benign.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/supplement/tableS8_dilution.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/tables/table3_counts.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/tables/table3_evidence_tiers.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/tables/table4_detail_fitted_threshold_by_arm.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/territory_metrics.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/territory_metrics_arms_noBRCA1.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/threshold_dilution.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/threshold_dilution_summary.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/tier_logo_table.csv": [
+    "ok",
+    "AlphaGenome's rows or columns only"
+   ],
+   "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": [
+    "ok",
+    "only the tables and sources that changed for AlphaGenome: tableS1_functional_standards.csv: Source sha256; sources: phase1/data/evidence/analysis_set_v1.parquet, phase1/data/evidence/analysis_set_v1.manifest.json, phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json | tableS2_analysis_set.csv: Source sha256; sources: phase1/data/evidence/analysis_set_v1.parquet | tableS3_predictor_columns.csv: Source files, Source sha256, File sha256; sources: LICENSE-DATA, docs/column-provenance.md, phase1/reports/evidence/feature_orientation.csv, phase1/data/evidence/analysis_set_v1.parquet, phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json, phase1/data/evidence/alphagenome_official/all_scores.tsv.provenance.json | tableS4_column_agreement.csv: Source sha256, File sha256; sources: phase1/reports/evidence/column_concordance.csv | tableS6_thresholds_pathogenic.csv: Source sha256, File sha256, Notes; sources: phase1/reports/evidence/evidence_thresholds.csv, phase1/reports/evidence/tier_logo_table.csv, phase1/reports/evidence/evidence_thresholds_logo_folds.csv | tableS7_thresholds_benign.csv: Source sha256, File sha256; sources: phase1/reports/evidence/evidence_thresholds.csv | tableS8_dilution.csv: Source sha256, File sha256; sources: phase1/reports/evidence/threshold_dilution_summary.csv | tableS10_clinvar_status.csv: Source sha256, File sha256; sources: phase1/reports/evidence/arms_at_tool_threshold.csv, phase1/reports/evidence/territory_metrics_arms_noBRCA1.csv | tableS11_within_gene_arms.csv: Source sha256, File sha256; sources: phase1/reports/evidence/arms_within_gene.csv | tableS11_within_gene_arms_summary.csv: Source sha256, File sha256; sources: phase1/reports/evidence/arms_within_gene.csv | tableS12_external_genes.csv: Source sha256, File sha256; sources: phase1/reports/evidence/external_tp53_column_basis.csv"
+   ]
+  },
+  "old_definition_disagreements": [],
+  "failed": []
+ }
+}

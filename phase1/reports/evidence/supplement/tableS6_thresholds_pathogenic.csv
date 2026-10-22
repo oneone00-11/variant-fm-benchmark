@@ -17,15 +17,15 @@ Pangolin,11–50,Strong,18.7,No,,0.6368,6,0,0,0,,,,BAP1=no threshold; BARD1=no t
 Pangolin,3–50,Supporting,2.08,Yes,0.3605,0.352165,7,7,7,7,20.3,13.5,45.2,BAP1=13.5; BARD1=45.2; BRCA1=27.5; BRCA2=14.2; PALB2=19.4; RAD51C=20.3; VHL=34.5
 Pangolin,3–50,Moderate,4.33,Yes,0.4146675,0.4196,7,7,7,7,22.8,15.8,53.2,BAP1=15.8; BARD1=53.2; BRCA1=42.2; BRCA2=17.4; PALB2=21.2; RAD51C=22.8; VHL=29.2
 Pangolin,3–50,Strong,18.7,Yes,0.6798,0.6798,7,7,6,6,123,39.5,241,BAP1=39.5; BARD1=195; BRCA1=180; BRCA2=41.1; PALB2=241; RAD51C=65.8; VHL=n.e.
-AlphaGenome splice score,3–10,Supporting,2.08,Yes,2.199,2.198988,7,7,7,7,14.3,10.6,27.0,BAP1=10.6; BARD1=11.7; BRCA1=21.8; BRCA2=21.9; PALB2=14.3; RAD51C=10.7; VHL=27.0
-AlphaGenome splice score,3–10,Moderate,4.33,Yes,2.199554,2.1994395,7,7,6,6,18.8,14.2,38.0,BAP1=14.2; BARD1=15.7; BRCA1=38.0; BRCA2=27.3; PALB2=21.9; RAD51C=15.2; VHL=n.e.
-AlphaGenome splice score,3–10,Strong,18.7,Yes,2.19988276958,2.19988276958,7,7,6,5,41.6,16.9,72.0,BAP1=16.9; BARD1=62.5; BRCA1=48.3; BRCA2=35.0; PALB2=72.0; RAD51C=29.1; VHL=n.e.
-AlphaGenome splice score,11–50,Supporting,2.08,Yes,2.1972,2.1972,6,6,3,3,27.0,8.43,30.9,BAP1=8.43; BARD1=30.9; BRCA1=n.e.; PALB2=n.e.; RAD51C=27.0; VHL=n.e.
-AlphaGenome splice score,11–50,Moderate,4.33,Yes,2.198968,2.198879,6,6,3,3,27.0,8.04,56.8,BAP1=8.04; BARD1=56.8; BRCA1=n.e.; PALB2=n.e.; RAD51C=27.0; VHL=n.e.
-AlphaGenome splice score,11–50,Strong,18.7,Yes,2.19960445,2.19951,6,1,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=n.e.
-AlphaGenome splice score,3–50,Supporting,2.08,Yes,2.198835,2.198787,7,7,7,7,20.9,12.4,34.8,BAP1=13.9; BARD1=29.0; BRCA1=34.8; BRCA2=20.9; PALB2=24.5; RAD51C=20.7; VHL=12.4
-AlphaGenome splice score,3–50,Moderate,4.33,Yes,2.19935889,2.19918979,7,7,7,7,32.2,16.6,69.0,BAP1=16.6; BARD1=56.3; BRCA1=55.0; BRCA2=22.6; PALB2=32.2; RAD51C=27.8; VHL=69.0
-AlphaGenome splice score,3–50,Strong,18.7,Yes,2.1998709,2.19982656,7,7,6,6,70.3,19.3,247,BAP1=19.3; BARD1=247; BRCA1=83.0; BRCA2=38.3; PALB2=153; RAD51C=57.6; VHL=n.e.
+AlphaGenome splice score,3–10,Supporting,2.08,Yes,1.638,1.512695,7,7,6,6,28.5,11.2,40.8,BAP1=11.2; BARD1=11.2; BRCA1=40.8; BRCA2=32.0; PALB2=32.9; RAD51C=25.0; VHL=n.e.
+AlphaGenome splice score,3–10,Moderate,4.33,Yes,1.86855,1.847778,7,7,6,6,30.2,10.7,50.1,BAP1=10.7; BARD1=13.0; BRCA1=50.1; BRCA2=42.9; PALB2=32.9; RAD51C=27.6; VHL=n.e.
+AlphaGenome splice score,3–10,Strong,18.7,Yes,2.673,2.68066,7,7,6,6,51.2,22.7,208,BAP1=22.7; BARD1=208; BRCA1=69.3; BRCA2=32.0; PALB2=70.1; RAD51C=33.1; VHL=n.e.
+AlphaGenome splice score,11–50,Supporting,2.08,Yes,0.8003,0.8566,6,6,4,4,16.1,4.47,31.4,BAP1=4.47; BARD1=31.4; BRCA1=n.e.; PALB2=10.3; RAD51C=21.9; VHL=n.e.
+AlphaGenome splice score,11–50,Moderate,4.33,Yes,0.9600,1.225,6,6,4,4,21.6,11.4,44.7,BAP1=11.4; BARD1=44.7; BRCA1=n.e.; PALB2=17.1; RAD51C=26.0; VHL=n.e.
+AlphaGenome splice score,11–50,Strong,18.7,Yes,2.6528,2.6528,6,1,1,0,17.3,17.3,17.3,BAP1=17.3; BARD1=no threshold; BRCA1=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold
+AlphaGenome splice score,3–50,Supporting,2.08,Yes,1.435,1.35195,7,7,7,7,34.5,16.3,41.5,BAP1=16.3; BARD1=31.9; BRCA1=36.8; BRCA2=24.6; PALB2=41.5; RAD51C=38.2; VHL=34.5
+AlphaGenome splice score,3–50,Moderate,4.33,Yes,1.673,1.556,7,7,7,7,53.9,16.2,63.7,BAP1=16.2; BARD1=41.5; BRCA1=54.4; BRCA2=29.1; PALB2=59.3; RAD51C=53.9; VHL=63.7
+AlphaGenome splice score,3–50,Strong,18.7,Yes,2.543,2.493,7,7,6,5,96.3,17.2,282,BAP1=17.2; BARD1=224; BRCA1=102; BRCA2=27.8; PALB2=282; RAD51C=90.5; VHL=n.e.
 CADD,3–10,Supporting,2.08,Yes,19.26,18.79,7,7,6,6,4.45,2.82,11.4,BAP1=4.90; BARD1=4.63; BRCA1=3.13; BRCA2=11.4; PALB2=4.27; RAD51C=2.82; VHL=n.e.
 CADD,3–10,Moderate,4.33,No,,23.60,7,1,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=n.e.; VHL=no threshold
 CADD,3–10,Strong,18.7,No,,,7,0,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold

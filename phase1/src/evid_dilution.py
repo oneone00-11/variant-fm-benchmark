@@ -130,8 +130,9 @@ _SUPP_COLS = ["tool", "stratum", "tier", "path_cut_lr", "n_genes", "k", "n_subse
               "n_pairs_evaluable", "n_pairs_cleared", "frac_pairs_cleared",
               "heldout_lr_median"]
 # Thresholds are rounded to decimal places in score units, not to significant
-# figures: alphagenome's thresholds sit close together near the top of its scale,
-# and four significant figures merge its quartiles into one printed value.
+# figures: the atlas's AlphaGenome composite, the study's alphagenome until E17, had
+# its thresholds close together near the top of its scale, where four significant
+# figures merged its quartiles into one printed value.
 _DP_THRESHOLD = 4
 _SIG_LR = 3
 _DP_FRACTION = 2

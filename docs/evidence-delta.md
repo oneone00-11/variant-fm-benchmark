@@ -27,9 +27,9 @@ atlas region classifier (`reports/evidence/old_set_disposition.csv`).
 | pooled Spearman rho | pangolin | 0.7610 | 0.5034 | 8853 | same estimator, different variant set |
 | LR+ at 95% specificity (interpolated) | pangolin | 16.7600 | 16.3807 | 8501 | same estimator, different variant set |
 | LR+ at 95% specificity (scanned) | pangolin | 17.0394 | 16.3902 | 8501 | same estimator, different variant set |
-| pooled Spearman rho | alphagenome | 0.7502 | 0.4955 | 8853 | same estimator, different variant set |
-| LR+ at 95% specificity (interpolated) | alphagenome | 15.4689 | 16.4934 | 8501 | same estimator, different variant set |
-| LR+ at 95% specificity (scanned) | alphagenome | 15.7268 | 16.5030 | 8501 | same estimator, different variant set |
+| pooled Spearman rho | alphagenome | 0.7502 | 0.4992 | 8853 | same estimator, different variant set |
+| LR+ at 95% specificity (interpolated) | alphagenome | 15.4689 | 16.3431 | 8501 | same estimator, different variant set |
+| LR+ at 95% specificity (scanned) | alphagenome | 15.7268 | 16.3526 | 8501 | same estimator, different variant set |
 | pooled Spearman rho | cadd | 0.6942 | 0.4037 | 8853 | same estimator, different variant set |
 | LR+ at 95% specificity (interpolated) | cadd | 12.7263 | 13.2123 | 8501 | same estimator, different variant set |
 | LR+ at 95% specificity (scanned) | cadd | 12.9519 | 13.2199 | 8501 | same estimator, different variant set |

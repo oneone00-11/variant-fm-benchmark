@@ -75,13 +75,17 @@ Per gene (the unit the per-gene Spearman is computed in):
 | `avi_splice_site_usage` | same, scorer `SPLICE_SITE_USAGE` | maximum over the scorer's 367 tracks | same |
 | `avi_splice_junctions` | same, scorer `SPLICE_JUNCTIONS` | maximum over tracks AND over rows: this scorer returns one row per junction | same |
 
-**Not the same variable as `alphagenome`.** The `alphagenome` column is the atlas's
-client-0.7.0 merged-quantile splice score over a 16-kb window, computed by the
-model at query time. The `avi*` columns are Atlas *precomputed* values retrieved by
-lookup, under a client two minor versions later, and the AVI score itself combines
-coding and non-coding evidence rather than splicing alone. They are correlated but
-distinct: on the 8,853 analysis-set variants, `avi` against `alphagenome`
-rho = 0.729, and `avi_splice_sites` against `alphagenome` rho = 0.872.
+**Not the same variable as the AlphaGenome splice score.** The splice score these
+columns were first compared with, `alphagenome` until stage E17 and
+`alphagenome_atlas_quantile` since, is the atlas's client-0.7.0 merged-quantile
+splice score over a 16-kb window, computed by the model at query time. The `avi*`
+columns are Atlas *precomputed* values retrieved by lookup, under a client two minor
+versions later, and the AVI score itself combines coding and non-coding evidence
+rather than splicing alone. They are correlated but distinct: on the 8,853
+analysis-set variants, `avi` against that composite rho = 0.729, and
+`avi_splice_sites` against it rho = 0.872. Since E17 `alphagenome` is AlphaGenome's
+own definition (next section); its agreement with the `avi*` columns is in
+`reports/evidence/column_concordance.csv`.
 
 **Orientation** is measured, not assumed: all four are positively correlated with
 functional pathogenicity on the analysis set (`reports/evidence/feature_orientation.csv`),
@@ -94,3 +98,26 @@ it, the request count and any failed batches:
 
 **Licence** is declared per column in LICENSE-DATA section 2. The key is never in
 the tree; `tests/test_no_secrets.py` enforces it.
+
+## The AlphaGenome splice score by AlphaGenome's own definition (added 2026-10-22, stage E17)
+
+Since stage E17 the analysis set's `alphagenome` column is AlphaGenome's own
+definition of its splice score: the merged splicing score of AlphaGenome's notebook
+for scoring variants on their splicing effect (google-deepmind/alphagenome,
+`colabs/v1/splicing_variant_scoring.ipynb` at commit 55943112). For each variant it
+takes the largest raw score of each of three recommended scorers (`SPLICE_SITES`,
+`SPLICE_SITE_USAGE`, `SPLICE_JUNCTIONS`) over genes and tracks, in a 1 Mb window
+centred on the variant, and combines them as sites + usage + junctions / 5. Client
+0.10.0, `dna_client.score_variant`, no model version named. Each item of the
+definition, with the notebook lines it rests on, is in
+`phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json`; the scores, their
+components and their provenance are beside it, written by
+`scripts/stage_E17/score_official.py`.
+
+The column it replaced, the atlas's client-0.7.0 merged-quantile splice score over a
+16-kb window, stays in the analysis set as `alphagenome_atlas_quantile`, outside the
+panel. It appears in one table only, `reports/evidence/alphagenome_definition_comparison.csv`,
+beside the new column. `alphagenome_v061`, the published study's client-0.6.1
+definition, is unchanged.
+
+**Licence**: LICENSE-DATA section 2, as for the columns above.

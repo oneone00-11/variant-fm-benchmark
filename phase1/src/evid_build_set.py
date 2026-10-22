@@ -8,7 +8,8 @@ What changes from the set the published calibration study used:
   * a ClinVar record is no longer required for entry, so the set can carry a
     `unrecorded` arm at all;
   * a complete predictor row is no longer required for entry;
-  * scores come from the atlas matrix, which is the wider of the two freezes.
+  * scores come from the atlas matrix, which is the wider of the two freezes, except
+    AlphaGenome's, which come from AlphaGenome's own definition (stage E17).
 
 Nothing here fits anything. It selects, joins labels, annotates ClinVar, checks
 orientation, and writes a manifest.
@@ -72,6 +73,15 @@ OPTIONAL_COLUMNS = {
 AVI_PATH = OUT_DIR / "avi.parquet"
 AVI_COLUMNS = ["avi", "avi_splice_sites", "avi_splice_site_usage",
                "avi_splice_junctions"]
+# AlphaGenome (E17). The panel's `alphagenome` is AlphaGenome's own definition, the
+# merged splicing score of its splicing notebook on raw scores over a 1 Mb window,
+# scored for every row of this set by scripts/stage_E17/score_official.py (client
+# 0.10.0). The atlas matrix's `alphagenome`, its merged-quantile composite (client
+# 0.7.0, a 16-kb window), is kept beside it as `alphagenome_atlas_quantile`, outside
+# the panel, for the one comparison of the two (src.evid_alphagenome_definitions).
+AG_OFFICIAL = OUT_DIR / "alphagenome_official" / "all_scores.tsv"
+AG_OFFICIAL_COLUMN = "alphagenome_splicing"
+AG_ATLAS_QUANTILE = "alphagenome_atlas_quantile"
 
 CLINVAR_ARMS = ["classified", "recorded_unclassified", "unrecorded"]
 
@@ -262,6 +272,23 @@ def attach_labels(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     return df.drop(columns=["_join"]), pd.DataFrame(cov)
 
 
+def attach_alphagenome(sel: pd.DataFrame) -> pd.DataFrame:
+    """The official AlphaGenome score in the panel's `alphagenome` place, read back
+    exactly (the score file is written with repr; pandas' default parser is not
+    round-trip exact), and the atlas matrix's composite beside it, renamed. The score
+    file must cover exactly the set's variants."""
+    ag = pd.read_csv(AG_OFFICIAL, sep="\t", usecols=["variant_id", AG_OFFICIAL_COLUMN],
+                     float_precision="round_trip")
+    if ag["variant_id"].duplicated().any() or set(ag["variant_id"]) != set(sel["variant_id"]):
+        raise SystemExit(f"[E1] {AG_OFFICIAL} does not cover exactly the analysis set's "
+                         "variants; score them with scripts/stage_E17/score_official.py --all")
+    at = sel.columns.get_loc("alphagenome")
+    sel = sel.rename(columns={"alphagenome": AG_ATLAS_QUANTILE})
+    sel.insert(at, "alphagenome", sel["variant_id"].map(
+        ag.set_index("variant_id")[AG_OFFICIAL_COLUMN]).to_numpy(dtype=float))
+    return sel
+
+
 def directionality(atlas: pd.DataFrame) -> pd.DataFrame:
     """Control-anchored orientation gate, per gene, on the whole atlas rows for
     that gene -- the controls are coding, so they are not in the splice set."""
@@ -356,6 +383,7 @@ def build() -> None:
     # panel
     keep = {v: k for k, v in PANEL.items()}
     sel = sel.rename(columns=keep)
+    sel = attach_alphagenome(sel)
     sel["func_pathogenicity"] = sel["functional_pathogenicity"]
 
     # AlphaGenome v0.6.1, the published study's definition, as a sensitivity column.
@@ -468,6 +496,13 @@ def build() -> None:
             "atlas_alphagenome_v061": {
                 "path": "atlas:" + str(Path(ATLAS_V061).relative_to(ATLAS_REPO)),
                 "sha256": sha256_of(ATLAS_V061),
+            },
+            "alphagenome_official": {
+                "path": str(AG_OFFICIAL),  # relative to phase1/
+                "sha256": sha256_of(AG_OFFICIAL),
+                "column": AG_OFFICIAL_COLUMN,
+                "provenance_sha256": sha256_of(
+                    AG_OFFICIAL.with_name(AG_OFFICIAL.name + ".provenance.json")),
             },
             "clinvar_vcf": {
                 "path": str(CLINVAR_VCF),  # relative to phase1/

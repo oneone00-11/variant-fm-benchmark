@@ -27,34 +27,34 @@ Pangolin,3–50,Strong,3,35,35 (100%),0.6670,0.654198 to 0.6752,0.6798,123 of 14
 Pangolin,3–50,Strong,4,35,35 (100%),0.6740,0.6685 to 0.6761,0.6798,90 of 105,90 (100%),93.2,49.9 to 187
 Pangolin,3–50,Strong,5,21,21 (100%),0.6745,0.6717 to 0.67629,0.6798,36 of 42,36 (100%),93.9,44.9 to 197
 Pangolin,3–50,Strong,6,7,7 (100%),0.6740,0.66918 to 0.6833,0.6798,6 of 7,6 (100%),123,47.3 to 191
-AlphaGenome splice score,3–10,Moderate,2,21,21 (100%),2.199037,2.19885 to 2.1991865,2.199554,101 of 105,101 (100%),14.5,10.7 to 21.8
-AlphaGenome splice score,3–10,Moderate,3,35,35 (100%),2.199148,2.1990775 to 2.199487,2.199554,130 of 140,130 (100%),15.0,13.4 to 22.9
-AlphaGenome splice score,3–10,Moderate,4,35,35 (100%),2.1995366,2.19916 to 2.19956,2.199554,95 of 105,95 (100%),15.2,14.1 to 26.7
-AlphaGenome splice score,3–10,Moderate,5,21,21 (100%),2.199554,2.199296379 to 2.1995659,2.199554,37 of 42,37 (100%),16.4,14.2 to 27.3
-AlphaGenome splice score,3–10,Moderate,6,7,7 (100%),2.199551868,2.199527 to 2.19956,2.199554,6 of 7,6 (100%),18.8,15.3 to 26.0
-AlphaGenome splice score,3–10,Strong,2,21,9 (43%),2.199793875,2.19974 to 2.1998,2.19988276958,37 of 105,23 (62%),26.1,17.3 to 35.6
-AlphaGenome splice score,3–10,Strong,3,35,32 (91%),2.199865,2.19983 to 2.199891,2.19988276958,108 of 140,85 (79%),35.8,20.6 to 57.3
-AlphaGenome splice score,3–10,Strong,4,35,34 (97%),2.199878,2.199858 to 2.1998919,2.19988276958,88 of 105,70 (80%),41.7,27.8 to 58.5
-AlphaGenome splice score,3–10,Strong,5,21,19 (90%),2.1998846,2.199855 to 2.199891,2.19988276958,33 of 42,27 (82%),43.3,28.4 to 59.5
-AlphaGenome splice score,3–10,Strong,6,7,7 (100%),2.19988276958,2.1998797 to 2.199887,2.19988276958,6 of 7,5 (83%),41.6,30.6 to 59.0
-AlphaGenome splice score,11–50,Moderate,2,15,11 (73%),2.197709,2.195884 to 2.19844,2.198968,32 of 60,27 (84%),9.04,5.56 to 24.3
-AlphaGenome splice score,11–50,Moderate,3,20,20 (100%),2.19814,2.197495 to 2.1984967,2.198968,41 of 60,39 (95%),16.7,7.15 to 25.7
-AlphaGenome splice score,11–50,Moderate,4,15,15 (100%),2.1984967,2.19805 to 2.19884,2.198968,17 of 30,17 (100%),24.9,8.43 to 27.0
-AlphaGenome splice score,11–50,Moderate,5,6,6 (100%),2.19889,2.198494 to 2.1988979,2.198968,3 of 6,3 (100%),27.0,17.5 to 41.9
-AlphaGenome splice score,11–50,Strong,2,15,1 (7%),2.1982,2.1982 to 2.1982,2.19960445,2 of 60,0 (0%),7.62,7.15 to 8.09
-AlphaGenome splice score,11–50,Strong,3,20,1 (5%),2.19845,2.19845 to 2.19845,2.19960445,1 of 60,0 (0%),9.86,9.86 to 9.86
-AlphaGenome splice score,11–50,Strong,4,15,0 (0%),,,2.19960445,0 of 30,,,
-AlphaGenome splice score,11–50,Strong,5,6,1 (17%),2.199606,2.199606 to 2.199606,2.19960445,0 of 6,,,
-AlphaGenome splice score,3–50,Moderate,2,21,21 (100%),2.19893,2.1984542 to 2.1990666,2.19935889,105 of 105,105 (100%),24.1,18.7 to 31.3
-AlphaGenome splice score,3–50,Moderate,3,35,35 (100%),2.1990977,2.19892 to 2.19918979,2.19935889,140 of 140,140 (100%),24.8,20.9 to 37.1
-AlphaGenome splice score,3–50,Moderate,4,35,35 (100%),2.199235,2.19918979 to 2.199338,2.19935889,105 of 105,105 (100%),28.1,23.1 to 45.6
-AlphaGenome splice score,3–50,Moderate,5,21,21 (100%),2.199317,2.199223995 to 2.19935889,2.19935889,42 of 42,42 (100%),30.0,24.4 to 50.3
-AlphaGenome splice score,3–50,Moderate,6,7,7 (100%),2.199349,2.199324 to 2.19937,2.19935889,7 of 7,7 (100%),32.2,25.2 to 55.7
-AlphaGenome splice score,3–50,Strong,2,21,19 (90%),2.19968,2.199605 to 2.199823,2.1998709,90 of 105,81 (90%),53.5,27.6 to 75.3
-AlphaGenome splice score,3–50,Strong,3,35,35 (100%),2.1998067,2.1996967 to 2.19987,2.1998709,126 of 140,118 (94%),54.6,32.5 to 88.1
-AlphaGenome splice score,3–50,Strong,4,35,35 (100%),2.199862,2.1997936 to 2.1998929,2.1998709,90 of 105,87 (97%),57.6,33.3 to 121
-AlphaGenome splice score,3–50,Strong,5,21,21 (100%),2.199877,2.19982265 to 2.19988617897,2.1998709,36 of 42,36 (100%),58.9,36.5 to 142
-AlphaGenome splice score,3–50,Strong,6,7,7 (100%),2.199873,2.199864 to 2.1998785,2.1998709,6 of 7,6 (100%),70.3,43.1 to 135
+AlphaGenome splice score,3–10,Moderate,2,21,21 (100%),1.78867,1.7068 to 2.2035,1.86855,91 of 105,91 (100%),28.8,17.3 to 40.6
+AlphaGenome splice score,3–10,Moderate,3,35,35 (100%),1.6909,1.626 to 2.238,1.86855,120 of 140,120 (100%),27.8,13.5 to 41.8
+AlphaGenome splice score,3–10,Moderate,4,35,35 (100%),2.102,1.656 to 2.185,1.86855,90 of 105,90 (100%),28.4,13.5 to 41.8
+AlphaGenome splice score,3–10,Moderate,5,21,21 (100%),2.063,1.6648 to 2.123,1.86855,36 of 42,36 (100%),29.4,13.5 to 39.3
+AlphaGenome splice score,3–10,Moderate,6,7,7 (100%),1.9707,1.897 to 1.994,1.86855,6 of 7,6 (100%),30.2,16.6 to 40.4
+AlphaGenome splice score,3–10,Strong,2,21,13 (62%),2.579,2.341 to 2.6914,2.673,53 of 105,48 (91%),40.8,28.7 to 64.3
+AlphaGenome splice score,3–10,Strong,3,35,32 (91%),2.7234,2.444 to 2.786,2.673,108 of 140,102 (94%),42.6,32.0 to 74.2
+AlphaGenome splice score,3–10,Strong,4,35,35 (100%),2.7308,2.6604 to 2.864,2.673,87 of 105,84 (97%),45.4,32.0 to 66.0
+AlphaGenome splice score,3–10,Strong,5,21,21 (100%),2.732,2.673 to 3.0818,2.673,33 of 42,33 (100%),59.4,31.4 to 66.8
+AlphaGenome splice score,3–10,Strong,6,7,7 (100%),2.68066,2.656 to 3.067,2.673,6 of 7,6 (100%),51.2,32.3 to 69.9
+AlphaGenome splice score,11–50,Moderate,2,15,13 (87%),1.3494,1.1989 to 1.4216797,0.9600,25 of 60,25 (100%),31.4,19.2 to 58.9
+AlphaGenome splice score,11–50,Moderate,3,20,20 (100%),1.224,1.150 to 1.370,0.9600,33 of 60,33 (100%),30.4,20.2 to 45.6
+AlphaGenome splice score,11–50,Moderate,4,15,15 (100%),1.2216796875,1.136 to 1.340,0.9600,18 of 30,18 (100%),28.1,20.3 to 43.3
+AlphaGenome splice score,11–50,Moderate,5,6,6 (100%),1.11242,0.9853 to 1.193,0.9600,4 of 6,4 (100%),21.6,15.7 to 30.7
+AlphaGenome splice score,11–50,Strong,2,15,0 (0%),,,2.6528,0 of 60,,,
+AlphaGenome splice score,11–50,Strong,3,20,0 (0%),,,2.6528,0 of 60,,,
+AlphaGenome splice score,11–50,Strong,4,15,1 (7%),2.1648,2.1648 to 2.1648,2.6528,1 of 30,1 (100%),19.2,19.2 to 19.2
+AlphaGenome splice score,11–50,Strong,5,6,1 (17%),2.2799,2.2799 to 2.2799,2.6528,1 of 6,0 (0%),17.3,17.3 to 17.3
+AlphaGenome splice score,3–50,Moderate,2,21,21 (100%),1.632,1.512695 to 1.703,1.673,105 of 105,105 (100%),42.2,29.1 to 59.3
+AlphaGenome splice score,3–50,Moderate,3,35,35 (100%),1.622,1.521 to 1.70195,1.673,140 of 140,140 (100%),47.1,31.6 to 56.3
+AlphaGenome splice score,3–50,Moderate,4,35,35 (100%),1.70195,1.575 to 1.744,1.673,105 of 105,105 (100%),50.8,32.0 to 63.7
+AlphaGenome splice score,3–50,Moderate,5,21,21 (100%),1.6808,1.608 to 1.7216796875,1.673,42 of 42,42 (100%),52.3,32.0 to 62.8
+AlphaGenome splice score,3–50,Moderate,6,7,7 (100%),1.6867,1.628 to 1.700,1.673,7 of 7,7 (100%),53.9,35.3 to 56.9
+AlphaGenome splice score,3–50,Strong,2,21,19 (90%),2.3105,2.238 to 2.589,2.543,86 of 105,77 (90%),89.6,42.4 to 115
+AlphaGenome splice score,3–50,Strong,3,35,35 (100%),2.331,2.229 to 2.718,2.543,127 of 140,113 (89%),88.4,40.5 to 119
+AlphaGenome splice score,3–50,Strong,4,35,35 (100%),2.622766,2.285 to 2.688,2.543,95 of 105,82 (86%),91.9,38.3 to 122
+AlphaGenome splice score,3–50,Strong,5,21,21 (100%),2.6187987,2.258 to 2.64846,2.543,37 of 42,31 (84%),97.0,32.0 to 224
+AlphaGenome splice score,3–50,Strong,6,7,7 (100%),2.57788,2.550 to 2.608,2.543,6 of 7,5 (83%),96.3,43.5 to 193
 SpliceAI (published basis),3–10,Moderate,2,21,21 (100%),0.5450,0.5112 to 0.6189,0.5281,91 of 105,91 (100%),16.9,11.5 to 25.0
 SpliceAI (published basis),3–10,Moderate,3,35,35 (100%),0.50425,0.4711 to 0.6305,0.5281,122 of 140,122 (100%),15.6,11.2 to 23.6
 SpliceAI (published basis),3–10,Moderate,4,35,35 (100%),0.5701,0.4797 to 0.6250,0.5281,91 of 105,91 (100%),15.2,11.5 to 25.2

@@ -27,18 +27,32 @@ not assert one.
 2. AlphaGenome outputs: the AlphaGenome splice score, AlphaGenome Variant Impact (AVI) and the Atlas splice scores
 -------------------------------------------------------------------------------------------------------------
 
-Columns: `avi`, `avi_splice_sites`, `avi_splice_site_usage`,
-`avi_splice_junctions`, in `phase1/data/evidence/avi.parquet` and wherever they
-are merged downstream (the analysis set, the external-gene tables, and every
-reports/evidence/ table that carries an `avi*` row). Also `alphagenome` and
-`alphagenome_v061`, the AlphaGenome splice score computed by the model through the
-same API (clients 0.7.0 and 0.6.1), in the analysis set, the TP53 tables including
-`tp53_12nt_alphagenome_v061.parquet`, and every table that carries them; they fall
-under the same terms of service, and the restriction below applies to them too.
+Every value listed here was computed by the AlphaGenome model, or looked up in the
+AlphaGenome Atlas, through the AlphaGenome API. They fall under the same terms of
+service, and the restriction below applies to all of them, wherever they are
+merged downstream: the analysis set, the external-gene tables, and every
+reports/evidence/ table that carries them.
 
-    Source          AlphaGenome Atlas, queried through the AlphaGenome API
-                    (client 0.9.0, alphagenome.atlas), scorers AVI_SCORE,
-                    SPLICE_SITES, SPLICE_SITE_USAGE, SPLICE_JUNCTIONS
+- `avi`, `avi_splice_sites`, `avi_splice_site_usage`, `avi_splice_junctions`:
+  the Atlas's precomputed scores (client 0.9.0, alphagenome.atlas; scorers
+  AVI_SCORE, SPLICE_SITES, SPLICE_SITE_USAGE, SPLICE_JUNCTIONS), in
+  `phase1/data/evidence/avi.parquet`.
+- `alphagenome`: the AlphaGenome splice score by AlphaGenome's own definition,
+  the merged splicing score of its splicing notebook (client 0.10.0,
+  `dna_client.score_variant`; stage E17), in the analysis set. It is taken from
+  the score files in `phase1/data/evidence/alphagenome_official/`, whose columns
+  `SPLICE_SITES`, `SPLICE_SITE_USAGE`, `SPLICE_JUNCTIONS` and
+  `alphagenome_splicing` are its components and the score itself; the pilot's
+  score table in `docs/alphagenome-official-pilot.md` prints them too.
+- `alphagenome_atlas_quantile`: the score the study used as `alphagenome` until
+  stage E17, the companion atlas's merged-quantile splice composite (client
+  0.7.0), in the analysis set and in
+  `phase1/reports/evidence/alphagenome_definition_comparison.csv`.
+- `alphagenome_v061`: the AlphaGenome splice score by the published study's
+  definition (client 0.6.1), in the analysis set. The TP53 tables carry the same
+  definition as their `alphagenome` column, and as `alphagenome_splice` in
+  `tp53_12nt_alphagenome_v061.parquet`.
+
     Terms           AlphaGenome Terms of Service
                     https://deepmind.google.com/science/alphagenome/terms
     Restriction     NON-COMMERCIAL USE ONLY, and the outputs must NOT be used to
@@ -65,7 +79,9 @@ The API key used to obtain these columns is not in this repository and never was
 - Code, and the analysis outputs that contain no third-party score value: MIT,
   as LICENSE states.
 - The frozen assay matrix's functional-score columns: the deposits' own terms.
-- Any table carrying an `avi*`, `alphagenome` or `alphagenome_v061` value:
+- Any table carrying a value section 2 lists (`avi*`, `alphagenome`,
+  `alphagenome_atlas_quantile`, `alphagenome_v061`, or the scores in
+  `phase1/data/evidence/alphagenome_official/`):
   non-commercial research only, no model training, no clinical decision-making. The
   elastic-net combination in this repository leaves the AlphaGenome splice score out
   of its inputs for this reason.

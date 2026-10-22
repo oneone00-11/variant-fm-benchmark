@@ -1,8 +1,8 @@
 {
   "product": "evidence analysis_set_v1",
-  "built_utc": "2026-10-21T05:30:16+00:00",
+  "built_utc": "2026-10-22T13:55:22+00:00",
   "n_rows": 8853,
-  "sha256": "eb3c0af7abf1141a7643c7af7514f0f4b7659b213aa520d212fa32c53095c23d",
+  "sha256": "52e0c610b0147e2435b17b57b586f3340e7b988aa2ddec66890b92f1a59c7ecc",
   "selection": {
     "variant_type": "SNV",
     "region": "intron-side splice, 1 <= |intron_offset| <= 50",
@@ -23,6 +23,12 @@
     "atlas_alphagenome_v061": {
       "path": "atlas:results/alphagenome_v061_scores.parquet",
       "sha256": "c89854672be0f53ee2321b77265fb4cc3159cc39297165b025d64194a157c62c"
+    },
+    "alphagenome_official": {
+      "path": "data/evidence/alphagenome_official/all_scores.tsv",
+      "sha256": "10918c17f051cd543f5528d5bddf4709bf91c3ec2a0fcf24a39c4688835645bf",
+      "column": "alphagenome_splicing",
+      "provenance_sha256": "718337a05d61e1b091cc76ada62bac25ff092848d229c0ea9db4c68450d3b3da"
     },
     "clinvar_vcf": {
       "path": "data/evidence/clinvar/clinvar_20260615.vcf.gz",
@@ -85,6 +91,7 @@
     "hgvs_c",
     "functional_pathogenicity",
     "alphagenome",
+    "alphagenome_atlas_quantile",
     "cadd",
     "alphamissense",
     "evo2",

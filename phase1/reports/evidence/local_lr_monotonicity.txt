@@ -1,9 +1,9 @@
 tool_stratum n_grid n_drops drop_frac end_minus_start
-interval_lr_alphagenome_all_1_50 8331 422 0.051 211.78851761193653
-interval_lr_alphagenome_pm12 720 102 0.142 1.946995790279372
-interval_lr_alphagenome_s11_50 4545 108 0.024 37.67449221841203
-interval_lr_alphagenome_s3_10 3098 162 0.052 35.995038100301265
-interval_lr_alphagenome_s3_50 7632 293 0.038 57.864707801656095
+interval_lr_alphagenome_all_1_50 7008 1038 0.148 211.8321853475266
+interval_lr_alphagenome_pm12 841 18 0.021 4.418388825105244
+interval_lr_alphagenome_s11_50 3771 533 0.141 26.801622891308988
+interval_lr_alphagenome_s3_10 2918 268 0.092 84.58833953570795
+interval_lr_alphagenome_s3_50 6168 1021 0.166 135.66582597730138
 interval_lr_avi_all_1_50 8501 304 0.036 432.3731997495304
 interval_lr_avi_pm12 841 18 0.021 4.501682762657302
 interval_lr_avi_s11_50 4551 114 0.025 30.356214786708065
