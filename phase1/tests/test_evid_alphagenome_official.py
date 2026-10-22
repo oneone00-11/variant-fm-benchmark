@@ -1,12 +1,15 @@
 """E17: AlphaGenome's splicing score by its official definition, and the records it rests on.
 
 The definition is quoted from AlphaGenome's own notebook at a pinned commit, item by
-item with the lines it rests on; the scoring environment is pinned with hashes; the
-composite is the notebook's combination of its three components; the scores cover the
-seven training genes only, so that no external gene is scored before the thresholds are
-frozen (E17.0 rule 10); the pilot is the seeded draw it says it is, and its ten variants
-scored twice agree to the last bit; no record holds the API key; and no AlphaGenome
-column enters the fusion model (the AlphaGenome terms; E17.0 rule 5).
+item with the lines it rests on, and the notebook's words around it beside it; the
+scoring environment is pinned with hashes, and the model a request with no version gets
+is quoted from the client; the composite is the notebook's combination of its three
+components; the scores cover the seven training genes only, so that no external gene is
+scored before the thresholds are frozen (E17.0 rule 10); the pilot is the seeded draw it
+says it is, and its variants scored again (ten of them twice after the pilot, once after
+the full run) agree to the last bit; no record holds the API key; the scoring stops
+when it should; and no AlphaGenome column enters the fusion model (the AlphaGenome
+terms; E17.0 rule 5).
 """
 from __future__ import annotations
 
@@ -15,7 +18,10 @@ import importlib.util
 import json
 import re
 import sys
+import threading
+from datetime import datetime
 from pathlib import Path
+from types import SimpleNamespace
 
 import pandas as pd
 import pytest
@@ -24,12 +30,14 @@ PHASE1 = Path(__file__).resolve().parents[1]
 REPO = PHASE1.parent
 DIR = PHASE1 / "data/evidence/alphagenome_official"
 SOURCE = DIR / "NOTEBOOK_SOURCE.json"
+CONTEXT = DIR / "NOTEBOOK_CONTEXT.json"
 ENV = DIR / "ENVIRONMENT.json"
 REQ = REPO / "scripts/stage_E17/requirements.txt"
 SET = PHASE1 / "data/evidence/analysis_set_v1.parquet"
 COMPONENTS = ["SPLICE_SITES", "SPLICE_SITE_USAGE", "SPLICE_JUNCTIONS"]
 COMPOSITE = "alphagenome_splicing"
-SCORE_FILES = {"examples_scores.tsv", "pilot_scores.tsv", "repeat_scores.tsv", "scores.tsv"}
+FULL, DRIFT = "all_scores.tsv", "drift_scores.tsv"
+SCORE_FILES = {"examples_scores.tsv", "pilot_scores.tsv", "repeat_scores.tsv", FULL, DRIFT}
 
 if str(PHASE1) not in sys.path:
     sys.path.insert(0, str(PHASE1))
@@ -47,8 +55,17 @@ def _scores(name: str, as_text: bool = False) -> pd.DataFrame:
     return pd.read_csv(DIR / name, sep="\t", **kw)
 
 
+def _prov(name: str) -> dict:
+    return json.loads((DIR / f"{name}.provenance.json").read_text())
+
+
 def _present() -> list[str]:
     return sorted(p.name for p in DIR.glob("*_scores.tsv") if p.name in SCORE_FILES)
+
+
+def _need(name: str) -> None:
+    if not (DIR / name).exists():
+        pytest.skip(f"{name} is written by a later step")
 
 
 def _scorer():
@@ -76,6 +93,23 @@ def test_every_item_of_the_definition_rests_on_a_quoted_line():
     assert [s["is_signed"] for s in src["client"]["scorers"]] == [False] * 3
 
 
+def test_the_notebooks_words_are_quoted_from_the_same_file():
+    """Gate 1 review R6b: markdown cells 1, 10 and 16 of the very notebook the code is
+    quoted from (same commit, path and sha256), verbatim."""
+    src, ctx = json.loads(SOURCE.read_text()), json.loads(CONTEXT.read_text())
+    for k in ("repository", "commit", "path", "raw_url", "sha256", "bytes"):
+        assert ctx[k] == src[k], k
+    assert ctx["code_record"]["sha256"] == _sha(SOURCE)
+    cells = {c["cell"]: c for c in ctx["quoted_cells"]}
+    assert sorted(cells) == [1, 10, 16]
+    for c in cells.values():
+        assert c["type"] == "markdown"
+        assert c["sha256"] == hashlib.sha256(c["source"].encode()).hexdigest()
+    assert "the recommended method" in cells[1]["source"]
+    assert "We use a 1MB sequence length" in cells[10]["source"]
+    assert "We are working on a recommended variant score cutoff" in cells[16]["source"]
+
+
 def test_the_scoring_environment_is_pinned_with_hashes():
     lines = [l for l in REQ.read_text().splitlines() if l.strip() and not l.startswith("#")]
     for line in lines:
@@ -88,6 +122,24 @@ def test_the_scoring_environment_is_pinned_with_hashes():
     assert env["requirements_sha256"] == _sha(REQ)
 
 
+def test_the_default_model_is_quoted_from_the_client():
+    """Gate 1 review R6a: the request names no model version, as in the notebook, and
+    the records say which one that means, in the client's words. ENVIRONMENT.json has
+    held the quote since the full run."""
+    _need(FULL)
+    env = json.loads(ENV.read_text())
+    assert env["model"]["model_version_requested"] is None
+    d = env["model"]["default_when_not_requested"]
+    assert d["file"] == "alphagenome/models/v1/dna_model.py"
+    assert "ALL_FOLDS = enum.auto()" in d["text"] and "Default model version" in d["text"]
+    assert d["file_sha256_in_wheel_record"] is True and len(d["file_sha256"]) == 64
+    assert d["wheel"] == f"alphagenome=={env['client']['version']}"
+    assert f"{d['wheel']} --hash=sha256:{d['wheel_sha256']}" in REQ.read_text().splitlines()
+    for name in (FULL, DRIFT):
+        if (DIR / name).exists():
+            assert _prov(name)["model_version_default"] == d, name
+
+
 # --------------------------------------------------------------------------
 # the scores
 # --------------------------------------------------------------------------
@@ -97,8 +149,7 @@ def test_the_composite_is_the_notebooks_combination(name):
     in float32: the components are float32 values, and the composite is
     (sites + usage) + junctions / 5 in float32, to the last bit."""
     import numpy as np
-    if not (DIR / name).exists():
-        pytest.skip(f"{name} is written by a later step")
+    _need(name)
     df = _scores(name)
     f32 = {c: df[c].to_numpy(dtype=np.float32) for c in COMPONENTS}
     for c in COMPONENTS:
@@ -118,7 +169,8 @@ def test_the_new_scores_cover_the_seven_training_genes_only():
     assert set(aset.gene) == set(C.ASSAY_LABELS)
     for p in DIR.iterdir():
         assert p.name in SCORE_FILES | {f"{n}.provenance.json" for n in SCORE_FILES} | {
-            "NOTEBOOK_SOURCE.json", "ENVIRONMENT.json", "ATLAS_COLUMNS_CHECK.json"}, p.name
+            "NOTEBOOK_SOURCE.json", "NOTEBOOK_CONTEXT.json", "ENVIRONMENT.json",
+            "ATLAS_COLUMNS_CHECK.json"}, p.name
     for name in _present():
         df = _scores(name, as_text=True)
         if name == "examples_scores.tsv":
@@ -133,25 +185,66 @@ def test_the_new_scores_cover_the_seven_training_genes_only():
         assert set(df.gene) <= set(C.ASSAY_LABELS), name
 
 
+def test_the_full_run_scores_every_row_of_the_analysis_set():
+    _need(FULL)
+    aset = pd.read_parquet(SET, columns=["variant_id", "gene", "stratum"])
+    df = _scores(FULL, as_text=True)
+    assert list(df.variant_id) == list(aset.variant_id)
+    assert list(df.gene) == list(aset.gene) and list(df.stratum) == list(aset.stratum)
+    prov = _prov(FULL)
+    assert prov["n_variants"] == len(aset) and prov["genes"] == sorted(set(aset.gene))
+
+
 def test_the_pilot_is_the_seeded_draw():
     S = _scorer()
     aset = pd.read_parquet(SET, columns=["variant_id", "gene", "stratum"])
     pilot, repeat, share = S.pilot_sample(aset)
     assert len(pilot) == S.PILOT_N and len(repeat) == S.REPEAT_N
     assert sorted(_scores("pilot_scores.tsv").variant_id) == pilot
-    if (DIR / "repeat_scores.tsv").exists():
-        assert sorted(_scores("repeat_scores.tsv").variant_id) == repeat
+    for name in ("repeat_scores.tsv", DRIFT):
+        if (DIR / name).exists():
+            assert sorted(_scores(name).variant_id) == repeat, name
     prov = json.loads((DIR / "pilot_scores.tsv.provenance.json").read_text())
     assert prov["sample"]["share"] == share
 
 
 def test_the_ten_variants_scored_twice_agree_to_the_last_bit():
-    if not (DIR / "repeat_scores.tsv").exists():
-        pytest.skip("the determinism check has not run yet")
+    _need("repeat_scores.tsv")
     pilot = _scores("pilot_scores.tsv", as_text=True).set_index("variant_id")
     repeat = _scores("repeat_scores.tsv", as_text=True).set_index("variant_id")
     cols = COMPONENTS + [COMPOSITE]
     assert (pilot.loc[repeat.index, cols] == repeat[cols]).all().all()
+
+
+def test_the_pilot_scored_again_in_the_full_run_agrees_to_the_last_bit():
+    """Gate 1 review R4: the full run has its own cache, so it scored the pilot's 120
+    afresh; they equal the pilot's scores as written."""
+    _need(FULL)
+    pilot = _scores("pilot_scores.tsv", as_text=True).set_index("variant_id")
+    full = _scores(FULL, as_text=True).set_index("variant_id")
+    cols = COMPONENTS + [COMPOSITE]
+    assert (full.loc[pilot.index, cols] == pilot[cols]).all().all()
+    check = _prov(FULL)["pilot_cross_check"]
+    assert check["identical"] == check["variants"] == len(pilot) and check["differing"] == []
+    assert check["against_sha256"] == _sha(DIR / "pilot_scores.tsv")
+
+
+def test_the_drift_check_scored_the_ten_afresh_after_the_full_run():
+    """Gate 1 review R1: the ten were each a fresh call (none from a cache), made after
+    the full run ended, and equal the pilot's scores as written."""
+    _need(DRIFT)
+    S = _scorer()
+    prov, full = _prov(DRIFT), _prov(FULL)
+    assert prov["n_scored_this_run"] == S.REPEAT_N and prov["n_from_cache"] == 0
+    drift = _scores(DRIFT, as_text=True)
+    end = datetime.fromisoformat(full["end_utc"])
+    assert all(datetime.fromisoformat(t) > end for t in drift.scored_utc)
+    assert prov["after_full_run"]["end_utc"] == full["end_utc"]
+    assert prov["after_full_run"]["sha256"] == _sha(DIR / f"{FULL}.provenance.json")
+    pilot = _scores("pilot_scores.tsv", as_text=True).set_index("variant_id")
+    cols = COMPONENTS + [COMPOSITE]
+    assert (pilot.loc[drift.variant_id, cols].to_numpy() == drift[cols].to_numpy()).all()
+    assert prov["drift_check"]["identical"] == S.REPEAT_N
 
 
 @pytest.mark.parametrize("name", sorted(SCORE_FILES))
@@ -167,6 +260,123 @@ def test_each_record_matches_its_scores_and_holds_no_key(name):
     assert prov["failures"] == []
     text = prov_path.read_text() + ENV.read_text()
     assert not re.search(r"AIza[0-9A-Za-z_\-]{30,}", text)
+
+
+# --------------------------------------------------------------------------
+# the scoring stops when it should (gate 1 review R3): a fake client that only
+# raises, and no call to the service
+# --------------------------------------------------------------------------
+def _hold_until_stopped(workers: int, error: BaseException, at: int = 5):
+    """A fake client: calls before `at` return at once; call `at` waits until every
+    worker holds a call, then raises `error`; the calls then in flight return once the
+    run has stopped. Counts the calls, and those begun after the stop."""
+    stop, cond = threading.Event(), threading.Condition()
+    seen = {"calls": 0, "active": 0, "after_stop": 0, "all_held": None}
+
+    def score(r):
+        with cond:
+            seen["calls"] += 1
+            n = seen["calls"]
+            seen["after_stop"] += stop.is_set()
+            seen["active"] += 1
+            cond.notify_all()
+        try:
+            if n < at:
+                return {"score": 1.0}
+            if n == at:
+                with cond:
+                    seen["all_held"] = cond.wait_for(lambda: seen["active"] == workers, 30)
+                raise error
+            stop.wait(30)
+            return {"score": 1.0}
+        finally:
+            with cond:
+                seen["active"] -= 1
+    return score, stop, seen
+
+
+@pytest.mark.parametrize("workers", [1, 2, 4])
+def test_an_authentication_error_stops_the_run_after_the_calls_in_flight(workers):
+    """The calls in flight end, nothing queued starts, and no call begins after the
+    stop."""
+    S = _scorer()
+    score, stop, seen = _hold_until_stopped(
+        workers, RuntimeError("UNAUTHENTICATED: the request does not have valid credentials"))
+    rows = [SimpleNamespace(variant_id=f"v{i}") for i in range(200)]
+    kept = []
+    with pytest.raises(S.Stopped, match="authentication error") as e:
+        S.run(rows, score, lambda r, out: kept.append(r.variant_id), workers=workers,
+              backoff=0.0, stop=stop)
+    assert seen["all_held"] is True
+    assert seen["calls"] == 5 + workers - 1          # the fatal call and those in flight
+    assert seen["after_stop"] == 0
+    assert len(kept) == seen["calls"] - 1 and e.value.state["failures"] == []
+
+
+@pytest.mark.parametrize("workers", [1, 2, 4])
+def test_ctrl_c_stops_the_run_by_the_same_path(workers):
+    """Ctrl+C, here a KeyboardInterrupt that reaches the loop through a future as Ctrl+C
+    reaches the main thread. Until the loop sets the flag, the worker that raised it may
+    begin one more call; so at most one call per worker is in flight at the stop, and
+    nothing queued starts."""
+    S = _scorer()
+    score, stop, seen = _hold_until_stopped(workers, KeyboardInterrupt())
+    rows = [SimpleNamespace(variant_id=f"v{i}") for i in range(200)]
+    kept = []
+    with pytest.raises(S.Stopped, match=re.escape("Ctrl+C")):
+        S.run(rows, score, lambda r, out: kept.append(r.variant_id), workers=workers,
+              backoff=0.0, stop=stop)
+    assert seen["all_held"] is True
+    assert 5 + workers - 1 <= seen["calls"] <= 5 + workers
+    assert seen["after_stop"] <= 1
+    assert len(kept) == seen["calls"] - 1
+
+
+@pytest.mark.parametrize("workers", [1, 2, 4])
+def test_three_variants_in_a_row_failing_stop_the_run(workers):
+    """Errors that do not clear (here RESOURCE_EXHAUSTED on every call): the run stops
+    once three variants in a row have used all their attempts, with at most one more
+    variant per other worker begun, and at most one call each begun after the stop."""
+    S = _scorer()
+    stop, lock = threading.Event(), threading.Lock()
+    seen = {"calls": 0, "after_stop": 0}
+
+    def score(r):
+        with lock:
+            seen["calls"] += 1
+            seen["after_stop"] += stop.is_set()
+        raise RuntimeError("RESOURCE_EXHAUSTED: quota exceeded")
+
+    rows = [SimpleNamespace(variant_id=f"v{i}") for i in range(200)]
+    with pytest.raises(S.Stopped, match="3 variants in a row") as e:
+        S.run(rows, score, lambda r, out: None, workers=workers, attempts=3, backoff=0.0,
+              stop=stop)
+    failed = e.value.state["failures"]
+    assert 3 <= len(failed) <= 3 + workers - 1
+    assert seen["calls"] <= (3 + workers - 1) * 3
+    assert seen["after_stop"] <= workers - 1
+    if workers == 1:
+        assert [f["variant_id"] for f in failed] == ["v0", "v1", "v2"] and seen["calls"] == 9
+
+
+def test_failures_not_in_a_row_do_not_stop_the_run():
+    """A variant scored between failures starts the count again; the failures are
+    returned, and the caller stops after the run."""
+    S = _scorer()
+    rows = [SimpleNamespace(variant_id=f"v{i}") for i in range(12)]
+    bad = {"v0", "v1", "v3", "v4", "v6", "v7"}
+
+    def score(r):
+        if r.variant_id in bad:
+            raise RuntimeError("UNAVAILABLE: the service is unavailable")
+        return {"score": 1.0}
+
+    kept = []
+    state = S.run(rows, score, lambda r, out: kept.append(r.variant_id), workers=1,
+                  attempts=2, backoff=0.0)
+    assert [f["variant_id"] for f in state["failures"]] == sorted(bad)
+    assert kept == [f"v{i}" for i in range(12) if f"v{i}" not in bad]
+    assert state["retries"] == len(bad) and state["calls"] == 2 * len(bad) + len(kept)
 
 
 # --------------------------------------------------------------------------

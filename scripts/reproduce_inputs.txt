@@ -15,10 +15,16 @@
 # paper rules with their quote checks.
 # E17 (2026-10-22) added the official AlphaGenome definition's record, the scoring
 # environment's record, the read-only check of the Atlas columns and the scores of
-# the pilot (alphagenome_official/).
+# the pilot (alphagenome_official/); then the notebook's words around the code, and
+# the scores of the full run and of the drift check.
 phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json
 phase1/data/evidence/alphagenome_official/ENVIRONMENT.json
+phase1/data/evidence/alphagenome_official/NOTEBOOK_CONTEXT.json
 phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json
+phase1/data/evidence/alphagenome_official/all_scores.tsv
+phase1/data/evidence/alphagenome_official/all_scores.tsv.provenance.json
+phase1/data/evidence/alphagenome_official/drift_scores.tsv
+phase1/data/evidence/alphagenome_official/drift_scores.tsv.provenance.json
 phase1/data/evidence/alphagenome_official/examples_scores.tsv
 phase1/data/evidence/alphagenome_official/examples_scores.tsv.provenance.json
 phase1/data/evidence/alphagenome_official/pilot_scores.tsv

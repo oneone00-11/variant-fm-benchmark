@@ -1,0 +1,87 @@
+{
+ "written_by": "scripts/stage_E17/score_official.py",
+ "mode": "all",
+ "definition": "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json",
+ "definition_sha256": "8f050e9b0c224e0cdfce46a9d61f3c9c567123f7521085032391ee1b395c4e80",
+ "code_run": {
+  "cells_as_written": [
+   5,
+   9,
+   13,
+   "15 (the lines scoring one variant, out of the loop)"
+  ],
+  "cell_7": "dna_client.create(read_key()): the key aside, as written",
+  "per_variant_lines": "  interval = variant.reference_interval.resize(dna_client.SEQUENCE_LENGTH_1MB)\n  scores = dna_model.score_variant(\n      interval=interval,\n      variant=variant,\n      variant_scorers=splicing_scorers,\n      organism=dna_client.Organism.HOMO_SAPIENS,\n  )"
+ },
+ "client_version": "0.10.0",
+ "model_version_requested": null,
+ "model_version_in_response": "not_provided",
+ "model_version_default": {
+  "file": "alphagenome/models/v1/dna_model.py",
+  "line": 52,
+  "text": "  ALL_FOLDS = enum.auto()  # Default model version if None explicitly set.",
+  "file_sha256": "6296148c50bcd247e2aa96e8a863d4fd55cbe6665d84d92f7b0e04ce2e778fee",
+  "file_sha256_in_wheel_record": true,
+  "wheel": "alphagenome==0.10.0",
+  "wheel_sha256": "ed90696f7f0900b2e0d68e28e36ab7d6d95000f59cd19b969fec0bea806bd2c2",
+  "wheel_sha256_from": "scripts/stage_E17/requirements.txt"
+ },
+ "start_utc": "2026-10-22T10:01:57+00:00",
+ "end_utc": "2026-10-22T12:30:09+00:00",
+ "seconds_scoring": 8891.4,
+ "n_variants": 8853,
+ "n_scored_this_run": 8853,
+ "n_from_cache": 0,
+ "scored_utc_range": [
+  "2026-10-22T10:01:59+00:00",
+  "2026-10-22T12:30:08+00:00"
+ ],
+ "calls": 8853,
+ "retries": 0,
+ "failures": [],
+ "workers": 2,
+ "sample": null,
+ "genes": [
+  "BAP1",
+  "BARD1",
+  "BRCA1",
+  "BRCA2",
+  "PALB2",
+  "RAD51C",
+  "VHL"
+ ],
+ "summary": {
+  "SPLICE_SITES": {
+   "variants_with_no_row": 0,
+   "nan_raw_scores": 0,
+   "min_raw": 0.001953125
+  },
+  "SPLICE_SITE_USAGE": {
+   "variants_with_no_row": 0,
+   "nan_raw_scores": 0,
+   "min_raw": 2.6702880859375e-05
+  },
+  "SPLICE_JUNCTIONS": {
+   "variants_with_no_row": 0,
+   "nan_raw_scores": 0,
+   "min_raw": 0.0
+  }
+ },
+ "pilot_cross_check": {
+  "against": "phase1/data/evidence/alphagenome_official/pilot_scores.tsv",
+  "against_sha256": "7747b65602f27266e14dfce8c3c7916d7f7626f038c4eec5d6cb664c097f3e39",
+  "columns": [
+   "SPLICE_SITES",
+   "SPLICE_SITE_USAGE",
+   "SPLICE_JUNCTIONS",
+   "alphagenome_splicing"
+  ],
+  "variants": 120,
+  "identical": 120,
+  "differing": []
+ },
+ "output": "phase1/data/evidence/alphagenome_official/all_scores.tsv",
+ "output_sha256": "10918c17f051cd543f5528d5bddf4709bf91c3ec2a0fcf24a39c4688835645bf",
+ "api_key_present": true,
+ "api_key_source": "~/.config/alphagenome/key"
+}

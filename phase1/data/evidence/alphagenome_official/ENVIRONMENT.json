@@ -1,6 +1,6 @@
 {
  "written_by": "scripts/stage_E17/score_official.py",
- "written_utc": "2026-10-22T05:55:43+00:00",
+ "written_utc": "2026-10-22T12:30:42+00:00",
  "python": "3.12.13 (main, Mar  3 2026, 12:39:30) [Clang 21.0.0 (clang-2100.0.123.102)]",
  "platform": "macOS-26.6.2-arm64-arm-64bit",
  "pip_freeze": [
@@ -63,6 +63,16 @@
  "model": {
   "model_version_requested": null,
   "model_version_requested_note": "dna_client.create(...) as in the notebook's cell 7, with no model_version: the service's default",
+  "default_when_not_requested": {
+   "file": "alphagenome/models/v1/dna_model.py",
+   "line": 52,
+   "text": "  ALL_FOLDS = enum.auto()  # Default model version if None explicitly set.",
+   "file_sha256": "6296148c50bcd247e2aa96e8a863d4fd55cbe6665d84d92f7b0e04ce2e778fee",
+   "file_sha256_in_wheel_record": true,
+   "wheel": "alphagenome==0.10.0",
+   "wheel_sha256": "ed90696f7f0900b2e0d68e28e36ab7d6d95000f59cd19b969fec0bea806bd2c2",
+   "wheel_sha256_from": "scripts/stage_E17/requirements.txt"
+  },
   "model_version_in_response": "not_provided",
   "response_metadata_keys": [
    "interval",

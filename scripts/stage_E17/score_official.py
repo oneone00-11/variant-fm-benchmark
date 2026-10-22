@@ -20,15 +20,29 @@ Modes
               stratum cell (pm12, s3_10, s11_50), drawn with config.RANDOM_SEED; and,
               drawn from those, the 10 the determinism check scores again.
   --repeat    those 10 again, later: they must equal the pilot's scores bit for bit.
-  --all       every row of the analysis set (commit 2, after gate 1).
+  --all       every row of the analysis set (commit 2, after gate 1). Its own cache
+              means the pilot's 120 are scored again; they are compared with the
+              pilot's scores bit for bit (gate 1 review, R4).
+  --drift     the determinism check's 10 once more, after --all, from an empty cache
+              of its own, so that each is a fresh call: they must equal the pilot's
+              scores bit for bit, or the service's model changed during the full run
+              (E17.4; gate 1 review, R1).
+A comparison that finds a difference, or a raw score below zero (the scorers are
+unsigned, so the maximum would no longer be the maximum absolute score), is written to
+the record and then stops the script (E17.10).
 
-Scoring is gentle: --workers threads at most (2 by default), a pause and exponential
-backoff on errors, a stop on an authentication error or on quota errors that do not
-clear. Each scored variant is appended to a cache in phase1/data/alphagenome_official_cache/
-(gitignored), so a run can be resumed. Outputs, in alphagenome_official/: the scores
-(<mode>_scores.tsv: variant_id, the three components, the composite, and per component
-the rows scored and their smallest raw score), a provenance record beside it, and
-ENVIRONMENT.json.
+Scoring is gentle: --workers threads at most (2 by default), and a pause before each new
+attempt, doubling each time. The run stops (gate 1 review, R3) on an authentication
+error (E17.0 rule 4), when three variants in a row have used all their attempts whatever
+the error (E17.4: errors that do not clear), and on Ctrl+C: the variants not yet started
+are cancelled, and a flag every worker checks before each call lets the calls in flight
+end and no other begin. Each scored variant is appended to a cache in
+phase1/data/alphagenome_official_cache/ (gitignored, one file per mode), so a stopped
+run can be resumed. Outputs, in alphagenome_official/: the scores (<mode>_scores.tsv:
+variant_id, the three components, the composite, and per component the rows scored and
+their smallest raw score), a provenance record beside it, and ENVIRONMENT.json. Both
+records quote the client's line naming the model a request with no model_version gets
+(R6a); the request, as in the notebook, names none.
 
 Run from the repository root:
     .venv-ag-official/bin/python scripts/stage_E17/score_official.py --pilot
@@ -36,6 +50,8 @@ Run from the repository root:
 from __future__ import annotations
 
 import argparse
+import base64
+import hashlib
 import json
 import os
 import platform
@@ -44,6 +60,7 @@ import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -58,13 +75,18 @@ DIR = PHASE1 / "data" / "evidence" / "alphagenome_official"
 CACHE = PHASE1 / "data" / "alphagenome_official_cache"
 SOURCE = DIR / "NOTEBOOK_SOURCE.json"
 SET = PHASE1 / "data" / "evidence" / "analysis_set_v1.parquet"
+REQ = REPO / "scripts" / "stage_E17" / "requirements.txt"
 TRAINING = sorted(C.ASSAY_LABELS)                          # the seven genes
 STRATA = ["pm12", "s3_10", "s11_50"]
 PILOT_N, REPEAT_N = 120, 10
+FULL = "all_scores.tsv"
 COMPONENTS = ["SPLICE_SITES", "SPLICE_SITE_USAGE", "SPLICE_JUNCTIONS"]
 COMPOSITE = "alphagenome_splicing"
 MAX_ATTEMPTS, BACKOFF = 6, 5.0
+IN_A_ROW = 3              # variants in a row that use all their attempts: the run stops
 FATAL = ("UNAUTHENTICATED", "PERMISSION_DENIED", "API key", "api key")
+DNA_MODEL = "alphagenome/models/v1/dna_model.py"
+DEFAULT_LINE = "ALL_FOLDS = enum.auto()  # Default model version if None explicitly set."
 
 
 def key_report() -> dict:
@@ -132,6 +154,122 @@ class Notebook:
         return out
 
 
+class Stopped(SystemExit):
+    """The run stopped before its end; .state holds what it had done."""
+
+    def __init__(self, why: str, state: dict):
+        super().__init__(why)
+        self.state = state
+
+
+def run(rows, score, record, *, workers: int, attempts: int = MAX_ATTEMPTS,
+        backoff: float = BACKOFF, in_a_row: int = IN_A_ROW,
+        stop: threading.Event | None = None) -> dict:
+    """score(row) for every row, `workers` at a time, and record(row, result) for each
+    result. An error is tried again after a pause (backoff seconds, doubling), up to
+    `attempts` calls; a variant that uses them all is a failure, and the caller stops
+    after the run.
+
+    The run stops early, raising Stopped, on an authentication error (E17.0 rule 4),
+    when `in_a_row` variants in a row have used all their attempts, whatever the error
+    (E17.4: errors that do not clear), and on Ctrl+C. The variants not yet started are
+    then cancelled; `stop`, which every worker checks before each call and which ends any
+    pause, lets no new call begin, so only the calls already in flight end, at most one
+    per worker. Returns the calls, retries and failures."""
+    stop = stop or threading.Event()
+    lock = threading.Lock()
+    state = {"calls": 0, "retries": 0, "failures": [], "in_a_row": 0, "why": None}
+
+    def halt(why: str) -> None:                # with the lock held
+        state["why"] = state["why"] or why
+        stop.set()
+
+    def one(r) -> None:
+        for attempt in range(1, attempts + 1):
+            if stop.is_set():
+                return
+            with lock:
+                state["calls"] += 1
+            try:
+                out = score(r)
+            except Exception as e:                              # noqa: BLE001
+                msg = _clean(f"{type(e).__name__}: {e}")
+                if any(f in msg for f in FATAL):
+                    with lock:
+                        halt(f"authentication error: stopping (E17.0 rule 4): {msg}")
+                    return
+                if attempt < attempts:
+                    with lock:
+                        state["retries"] += 1
+                    stop.wait(backoff * 2 ** (attempt - 1))
+                    continue
+                with lock:
+                    state["failures"].append({"variant_id": r.variant_id, "error": msg})
+                    state["in_a_row"] += 1
+                    if state["in_a_row"] >= in_a_row:
+                        halt(f"{in_a_row} variants in a row failed after {attempts} "
+                             f"attempts each: stopping (E17.4); the cache keeps every "
+                             f"variant scored")
+                return
+            with lock:
+                state["in_a_row"] = 0
+            record(r, out)
+            return
+
+    pool = ThreadPoolExecutor(max_workers=workers)
+    try:
+        for fut in as_completed([pool.submit(one, r) for r in rows]):
+            fut.result()                       # an error of this script's own ends the run
+            if stop.is_set():
+                break
+    except KeyboardInterrupt:
+        with lock:
+            halt("interrupted (Ctrl+C): stopping; the cache keeps every variant scored")
+    finally:
+        stop.set()                             # no call begins after this
+        pool.shutdown(wait=True, cancel_futures=True)
+    if state["why"]:
+        raise Stopped(state["why"], state)
+    return state
+
+
+def differing(path: Path, ref: Path, ids: list[str]) -> list[str]:
+    """The variants among ids whose components or composite, as written, are not those
+    of ref to the last character. Both files are written with repr, so to the last bit."""
+    import pandas as pd
+    cols = COMPONENTS + [COMPOSITE]
+    a, b = (pd.read_csv(p, sep="\t", dtype=str, keep_default_na=False)
+            .set_index("variant_id")[cols] for p in (path, ref))
+    return [v for v in ids if list(a.loc[v]) != list(b.loc[v])]
+
+
+def model_default() -> dict:
+    """Which model a request with no model_version gets, in the client's own words (gate
+    1 review, R6a): the line of dna_model.py that says so, with its number; the file's
+    sha256, which must be the one the wheel's RECORD lists for it; and the wheel's sha256
+    as requirements.txt pins it."""
+    from importlib import metadata
+    dist = metadata.distribution("alphagenome")
+    entry = next(f for f in dist.files if str(f) == DNA_MODEL)
+    data = Path(entry.locate()).read_bytes()
+    digest = hashlib.sha256(data)
+    if (entry.hash.mode, entry.hash.value) != (
+            "sha256", base64.urlsafe_b64encode(digest.digest()).rstrip(b"=").decode()):
+        raise SystemExit(f"{DNA_MODEL} is not the file the alphagenome wheel installed")
+    lines = data.decode().split("\n")
+    hits = [n for n, line in enumerate(lines, 1) if DEFAULT_LINE in line]
+    pins = [l for l in REQ.read_text().splitlines()
+            if l.startswith(f"alphagenome=={dist.version} --hash=sha256:")]
+    if len(hits) != 1 or len(pins) != 1:
+        raise SystemExit(f"{len(hits)} lines of {DNA_MODEL} hold {DEFAULT_LINE!r}, and "
+                         f"{len(pins)} lines of {rel(REQ)} pin alphagenome {dist.version}")
+    return {"file": DNA_MODEL, "line": hits[0], "text": lines[hits[0] - 1],
+            "file_sha256": digest.hexdigest(), "file_sha256_in_wheel_record": True,
+            "wheel": f"alphagenome=={dist.version}",
+            "wheel_sha256": pins[0].split("--hash=sha256:")[1],
+            "wheel_sha256_from": rel(REQ)}
+
+
 def pilot_sample(df):
     """An even share of PILOT_N in each non-empty gene x stratum cell, drawn with the
     project seed in a fixed cell order; a cell short of its share gives the rest to the
@@ -171,12 +309,13 @@ def environment(nb: Notebook, log) -> None:
         "python": sys.version,
         "platform": platform.platform(),
         "pip_freeze": freeze,
-        "requirements": "scripts/stage_E17/requirements.txt",
-        "requirements_sha256": sha256_of(REPO / "scripts/stage_E17/requirements.txt"),
+        "requirements": rel(REQ),
+        "requirements_sha256": sha256_of(REQ),
         "client": {"package": "alphagenome", "version": alphagenome.__version__},
         "model": {"model_version_requested": None,
                   "model_version_requested_note": "dna_client.create(...) as in the "
                   "notebook's cell 7, with no model_version: the service's default",
+                  "default_when_not_requested": model_default(),
                   "model_version_in_response": "not_provided",
                   "response_metadata_keys": nb.uns_keys},
     } | key_report()
@@ -187,7 +326,7 @@ def environment(nb: Notebook, log) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     mode = ap.add_mutually_exclusive_group(required=True)
-    for m in ("examples", "pilot", "repeat", "all"):
+    for m in ("examples", "pilot", "repeat", "all", "drift"):
         mode.add_argument(f"--{m}", dest="mode", action="store_const", const=m)
     ap.add_argument("--workers", type=int, default=2)
     args = ap.parse_args()
@@ -196,6 +335,18 @@ def main() -> None:
         log.note("key", key_report())
         DIR.mkdir(parents=True, exist_ok=True)
         CACHE.mkdir(parents=True, exist_ok=True)
+        cache = CACHE / f"{args.mode}.jsonl"
+        after = None
+        if args.mode == "drift":                 # after the full run, every call a fresh one
+            full = DIR / f"{FULL}.provenance.json"
+            if not full.exists():
+                raise SystemExit(f"--drift runs after --all, and {rel(full)} is not there")
+            log.input(full)
+            after = {"provenance": rel(full), "sha256": sha256_of(full),
+                     "end_utc": json.loads(full.read_text())["end_utc"]}
+            if cache.exists() and cache.read_text().strip():
+                raise SystemExit(f"{rel(cache)} is not empty: the drift check scores its "
+                                 f"{REPEAT_N} variants afresh and does not resume")
         nb = Notebook()
         log.input(SOURCE)
         if args.mode == "examples":
@@ -214,9 +365,9 @@ def main() -> None:
                 raise SystemExit(f"genes outside the seven: {set(df.gene) - set(TRAINING)}")
             pilot, repeat, share = pilot_sample(df)
             log.note("pilot_share", share)
-            ids = {"pilot": pilot, "repeat": repeat, "all": df.variant_id.tolist()}[args.mode]
+            ids = {"pilot": pilot, "repeat": repeat, "drift": repeat,
+                   "all": df.variant_id.tolist()}[args.mode]
             todo = df.set_index("variant_id").loc[ids].reset_index()
-        cache = CACHE / f"{args.mode}.jsonl"
         done = {}
         if cache.exists():
             for line in cache.read_text().splitlines():
@@ -226,29 +377,14 @@ def main() -> None:
         print(f"[{args.mode}] {len(todo)} variants, {len(done)} cached, "
               f"{len(todo_rows)} to score with {args.workers} worker(s)", flush=True)
         nb.uns_keys = None
-        lock, stats = threading.Lock(), {"retries": 0, "failures": []}
+        lock = threading.Lock()
         start = utc_now()
         t0 = time.time()
 
-        def one(r):
-            v = nb.variant(r.chrom, r.pos, r.ref, r.alt)
-            for attempt in range(1, MAX_ATTEMPTS + 1):
-                try:
-                    out = nb.score(v)
-                    break
-                except Exception as e:                          # noqa: BLE001
-                    msg = _clean(f"{type(e).__name__}: {e}")
-                    if any(f in msg for f in FATAL):
-                        raise SystemExit(f"authentication error: stopping (E17.0 rule 4): "
-                                         f"{msg}")
-                    if attempt == MAX_ATTEMPTS:
-                        with lock:
-                            stats["failures"].append({"variant_id": r.variant_id,
-                                                      "error": msg})
-                        return None
-                    with lock:
-                        stats["retries"] += 1
-                    time.sleep(BACKOFF * 2 ** (attempt - 1))
+        def score(r):
+            return nb.score(nb.variant(r.chrom, r.pos, r.ref, r.alt))
+
+        def record(r, out):
             rec = {"variant_id": r.variant_id, "scored_utc": utc_now()} | out
             with lock:
                 with open(cache, "a") as f:
@@ -256,14 +392,21 @@ def main() -> None:
                 done[r.variant_id] = rec
                 if len(done) % 20 == 0:
                     print(f"  {len(done)} scored, {time.time() - t0:.0f} s", flush=True)
-            return rec
 
-        # the response's own metadata, once, for ENVIRONMENT.json
-        probe = nb.ns["score_one"](nb.variant(*todo.iloc[0][["chrom", "pos", "ref", "alt"]]))
+        try:                                     # the response's own metadata, once
+            probe = nb.ns["score_one"](nb.variant(*todo.iloc[0][["chrom", "pos", "ref", "alt"]]))
+        except Exception as e:                                  # noqa: BLE001
+            raise SystemExit("the first call failed: stopping (E17.0 rule 4, if it is an "
+                             f"authentication error): {_clean(f'{type(e).__name__}: {e}')}"
+                             ) from None
         nb.uns_keys = sorted({k for ad in probe for k in ad.uns.keys()})
-        with ThreadPoolExecutor(max_workers=args.workers) as pool:
-            for fut in as_completed([pool.submit(one, r) for r in todo_rows]):
-                fut.result()
+        try:
+            stats = run(todo_rows, score, record, workers=args.workers)
+        except Stopped as s:
+            log.note("stopped", {"why": str(s), "calls": s.state["calls"],
+                                 "retries": s.state["retries"],
+                                 "failures": s.state["failures"], "in_cache": len(done)})
+            raise
         elapsed = time.time() - t0
         if stats["failures"]:
             raise SystemExit(f"{len(stats['failures'])} variants failed after "
@@ -279,6 +422,29 @@ def main() -> None:
                            float_format=lambda x: repr(float(x)))
         log.output(out)
         environment(nb, log)
+        checks, stops = {}, []
+        summary = {c: {"variants_with_no_row": int((table[f"rows_{c}"] == 0).sum()),
+                       "nan_raw_scores": int(table[f"nan_{c}"].sum()),
+                       "min_raw": float(table[f"min_raw_{c}"].min())} for c in COMPONENTS}
+        if [c for c in COMPONENTS if summary[c]["min_raw"] < 0]:
+            stops.append("a raw score below zero")
+        if args.mode in ("all", "drift"):
+            ref = DIR / "pilot_scores.tsv"
+            ids = pilot if args.mode == "all" else repeat
+            diff = differing(out, ref, ids)
+            checks["pilot_cross_check" if args.mode == "all" else "drift_check"] = {
+                "against": rel(ref), "against_sha256": sha256_of(ref),
+                "columns": COMPONENTS + [COMPOSITE], "variants": len(ids),
+                "identical": len(ids) - len(diff), "differing": diff}
+            if diff:
+                stops.append(f"{len(diff)} of {len(ids)} variants differ from the pilot")
+        if args.mode == "drift":
+            end = datetime.fromisoformat(after["end_utc"])
+            early = [r["variant_id"] for r in rows if datetime.fromisoformat(r["scored_utc"]) <= end]
+            checks["after_full_run"] = after | {"every_scored_utc_later": not early}
+            if early or len(todo_rows) != REPEAT_N:
+                stops.append("the drift check did not score each of its variants afresh "
+                             "after the full run")
         prov = {
             "written_by": rel(Path(__file__).resolve()),
             "mode": args.mode,
@@ -289,25 +455,34 @@ def main() -> None:
                          "per_variant_lines": nb.body},
             "client_version": __import__("alphagenome").__version__,
             "model_version_requested": None, "model_version_in_response": "not_provided",
+            "model_version_default": model_default(),
             "start_utc": start, "end_utc": utc_now(),
             "seconds_scoring": round(elapsed, 1),
             "n_variants": len(table), "n_scored_this_run": len(todo_rows),
             "n_from_cache": len(todo) - len(todo_rows),
-            "retries": stats["retries"], "failures": stats["failures"],
-            "workers": args.workers,
+            "scored_utc_range": [min(table.scored_utc), max(table.scored_utc)],
+            "calls": stats["calls"], "retries": stats["retries"],
+            "failures": stats["failures"], "workers": args.workers,
             "sample": ({"seed": C.RANDOM_SEED, "pilot_n": PILOT_N, "repeat_n": REPEAT_N,
                         "share": log.notes.get("pilot_share")}
-                       if args.mode in ("pilot", "repeat") else None),
+                       if args.mode in ("pilot", "repeat", "drift") else None),
             "genes": sorted(set(table.gene) - {""}),
-            "output": rel(out), "output_sha256": sha256_of(out),
-        } | key_report()
+            "summary": summary,
+        } | checks | {"output": rel(out), "output_sha256": sha256_of(out)} | key_report()
         (DIR / f"{args.mode}_scores.tsv.provenance.json").write_text(
             json.dumps(prov, indent=1, ensure_ascii=False) + "\n")
         log.output(DIR / f"{args.mode}_scores.tsv.provenance.json")
         log.note("seconds_scoring", round(elapsed, 1))
         log.note("retries", stats["retries"])
+        for k, v in checks.items():
+            log.note(k, v)
         print(f"[{args.mode}] wrote {rel(out)}: {len(table)} variants, "
               f"{elapsed:.0f} s for {len(todo_rows)}, {stats['retries']} retries")
+        for k, v in checks.items():
+            print(f"  {k}: " + (f"{v['identical']}/{v['variants']} identical"
+                                if "identical" in v else json.dumps(v)))
+        if stops:
+            raise SystemExit("; ".join(stops) + ": stopping (E17.10)")
 
 
 if __name__ == "__main__":

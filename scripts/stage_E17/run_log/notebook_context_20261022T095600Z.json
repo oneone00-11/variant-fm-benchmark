@@ -1,0 +1,42 @@
+{
+ "script": "scripts/stage_E17/notebook_context.py",
+ "argv": [
+  "scripts/stage_E17/notebook_context.py"
+ ],
+ "git_commit": "6069ddb17af1bd45e7575d881ce6911d2965d79b",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E17/notebook_context.py": "4c48761c946af5b117f159d85a1026eec702f0667cc161ae875869710f8a5dcf",
+  "scripts/stage_E17/_runlog.py": "1cd6d51c9b1471958c2acbe56a7392043ca70641c641e6259a4da247ce50e032"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "0.10.0",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "anndata": "0.13.4",
+  "grpcio": "1.84.0",
+  "protobuf": "7.36.2"
+ },
+ "start_utc": "2026-10-22T09:56:00+00:00",
+ "end_utc": "2026-10-22T09:56:00+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json",
+   "bytes": 11530,
+   "sha256": "8f050e9b0c224e0cdfce46a9d61f3c9c567123f7521085032391ee1b395c4e80"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/alphagenome_official/NOTEBOOK_CONTEXT.json",
+   "bytes": 2985,
+   "sha256": "b2e22d4d0ede2b54935813a995bd271817d348f3625a2c1eaf372421aa4b21a4"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "sha256": "c39e6a6a09bc62512107c106cd43cabf7a016cbd073474ff872c669a1ad838df"
+ }
+}

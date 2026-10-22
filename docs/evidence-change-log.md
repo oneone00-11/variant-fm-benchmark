@@ -991,3 +991,45 @@ comparator's categories and criteria are as they were.
   - the differences a native run should be expected to show: PNG bytes with the same
     pixels, the TP53 manifest's exact count, and last digits;
   - the pixel comparison's command.
+
+## After 3.0.1: AlphaGenome scored by its official definition, not yet read (stage E17, 2026-10-22)
+
+Why: the study's `alphagenome` column is the companion atlas's quantile composite. On
+2026-10-19 the author decided to score AlphaGenome by its own definition instead. The
+previous commit pinned that definition from AlphaGenome's notebook and scored a pilot;
+this one scores the whole analysis set. The pipeline reads none of it yet, and every
+output is unchanged.
+
+- The scores: every row of the analysis set, 8,853 variants of the seven training
+  genes, with client 0.10.0 (`phase1/data/evidence/alphagenome_official/all_scores.tsv`
+  and its provenance). One call per variant, two at a time, from 10:01 to 12:30 UTC;
+  the Mac slept for 47 minutes in between and the run went on when it woke. No retry
+  and no failure. No variant lacks a row for any of the three scorers, no raw score is
+  NaN, and the smallest raw score is 0.0.
+- Two checks that the service's model did not change during the run:
+  - the pilot's 120 variants, scored again from the full run's own cache, equal the
+    pilot's scores bit for bit (120 of 120);
+  - the ten of the determinism check, scored afresh after the full run had ended
+    (`drift_scores.tsv`), equal them as well (10 of 10).
+- `NOTEBOOK_CONTEXT.json` quotes, verbatim, three markdown cells of the same notebook:
+  what the score is for (cell 1), why the window is 1 Mb (cell 10), and the score's
+  range, with a recommended cutoff still being worked on (cell 16).
+  `NOTEBOOK_SOURCE.json` is unchanged.
+- `ENVIRONMENT.json` and the new provenance records quote the client's line naming the
+  model a request with no version gets (`alphagenome/models/v1/dna_model.py`, line 52,
+  `ALL_FOLDS`), with the file's and the wheel's sha256. The request names no version,
+  as in the notebook.
+- `scripts/stage_E17/score_official.py` gains `--drift`, which runs only after `--all`
+  and from an empty cache of its own. The run now stops on an authentication error,
+  when three variants in a row have used all their attempts, and on Ctrl+C; then only
+  the calls in flight end. Tests check this with a fake client.
+- The pilot's files (the examples, the pilot, the repeat, and their records) are
+  unchanged.
+- Not in this commit: LICENSE-DATA section 2, which is to name the new scores.
+  LICENSE-DATA is an input of Supplementary Table S3, whose manifest records its
+  sha256, so changing it here would change an output. It goes into the next commit,
+  which changes outputs anyway (the author's decision of 2026-10-22).
+- A correction. Commit 866ca33 says that the Table S10 cell it holds as a literal "does
+  not depend on AlphaGenome". That cell is the AlphaGenome Atlas AVI score (`avi`). It
+  does not depend on the `alphagenome` column this stage replaces, and this stage does
+  not change the four Atlas columns.

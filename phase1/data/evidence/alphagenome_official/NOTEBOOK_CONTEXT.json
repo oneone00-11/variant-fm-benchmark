@@ -1,0 +1,38 @@
+{
+ "written_by": "scripts/stage_E17/notebook_context.py",
+ "repository": "https://github.com/google-deepmind/alphagenome",
+ "commit": "55943112b83439e0c2512110f1ae607d4b5b492a",
+ "path": "colabs/v1/splicing_variant_scoring.ipynb",
+ "raw_url": "https://raw.githubusercontent.com/google-deepmind/alphagenome/55943112b83439e0c2512110f1ae607d4b5b492a/colabs/v1/splicing_variant_scoring.ipynb",
+ "sha256": "c39e6a6a09bc62512107c106cd43cabf7a016cbd073474ff872c669a1ad838df",
+ "bytes": 13092,
+ "code_record": {
+  "file": "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json",
+  "sha256": "8f050e9b0c224e0cdfce46a9d61f3c9c567123f7521085032391ee1b395c4e80"
+ },
+ "accessed_utc": "2026-10-22T09:56:00+00:00",
+ "cell_numbering": "from 0, as in NOTEBOOK_SOURCE.json",
+ "quoted_cells": [
+  {
+   "cell": 1,
+   "type": "markdown",
+   "shows": "what the score is for",
+   "source": "This notebook demonstrates how to score genetic variants on their splicing\neffect using AlphaGenome. This is the approach used in the AlphaGenome paper to\nscore ClinVar variants for missplicing, and is the recommended method to assess\nwhether a variant is causing aberrant splicing.\n\nWe use the \"merged splicing\" approach, which combines\nthree splicing-related variant scorers into a single score:\n\n- **Splice sites**: Quantifies changes in splice site class assignment\n  probabilities (donor, acceptor) between ALT and REF alleles.\n- **Splice site usage**: Quantifies changes in the relative usage of splice\n  sites between ALT and REF alleles.\n- **Splice junctions**: Quantifies changes in the predicted splice junction\n  usage between ALT and REF alleles.\n\nThe merged splicing score is computed as (described in the paper):\n\n```\nalphagenome_splicing = max(splice_sites) + max(splice_site_usage) + max(splice_junctions) / 5.0\n```\n\nThis weighting scheme gives full weight to changes in splice site identity and\nusage, but a smaller weight to junction-level changes because their magnitude is larger.",
+   "sha256": "fd217d8152d49b9ca9b4ae5fc82004226e13bab1838ce8b60859ce4da9b22bb2"
+  },
+  {
+   "cell": 10,
+   "type": "markdown",
+   "shows": "why the window is 1 Mb",
+   "source": "## Score a single variant\n\nLet's score a variant near a known splice site. We use a 1MB sequence length, as\nthis provides the best predictions for gene-level scoring.",
+   "sha256": "eef1403619b4f8c6fcdd94026251c57c0ea36e1bf18aa837adcd8d8cdcea27a8"
+  },
+  {
+   "cell": 16,
+   "type": "markdown",
+   "shows": "the score's range, and the cutoff",
+   "source": "## Score interpretation\n\nThe score is in theory unbounded from 0 to infinity. Because the splice junction scorer is computing log fold change. However, emperically the majority of variants are in the range `[0, 6]`.\n\nWe are working on a recommended variant score cutoff. We see in practice variants with score > 1.0 generally have large effect.",
+   "sha256": "8b5677198b0bc93c6c88bc8a8ebf024cf15be93cc9fd6407b4ee8ff47472b9c9"
+  }
+ ]
+}
