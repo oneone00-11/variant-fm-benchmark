@@ -12,6 +12,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -232,3 +233,79 @@ def test_the_readme_gives_the_recorded_image():
     readme = (REPO / "README.md").read_text()
     assert f"IMAGE={ref}" in readme
     assert "bash container/run.sh fetch" in readme and "bash container/run.sh verify" in readme
+
+
+# --------------------------------------------------------------------------
+# PNG figures, pixel by pixel (B6, the author's wrap-up of 2026-10-22)
+# --------------------------------------------------------------------------
+def _pixels():
+    spec = importlib.util.spec_from_file_location(
+        "compare_png_pixels", REPO / "scripts" / "stage_B6" / "compare_png_pixels.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _png(array, level: int) -> bytes:
+    import io
+    from PIL import Image
+    buf = io.BytesIO()
+    Image.fromarray(array).save(buf, format="png", compress_level=level)
+    return buf.getvalue()
+
+
+def test_the_pixel_comparison_tells_the_three_cases_apart():
+    import numpy as np
+    P = _pixels()
+    image = np.zeros((20, 30, 4), dtype=np.uint8)
+    image[..., 3] = 255
+    image[5:10, 5:20, 0] = 200
+    a, b = _png(image, 9), _png(image, 1)               # the same pixels, other bytes
+    other = image.copy()
+    other[2, 3, 1] = 7
+    c = _png(other, 9)
+    assert a != b
+    assert P.classify(a, a)["status"] == P.SAME_BYTES
+    assert P.classify(a, b)["status"] == P.SAME_PIXELS
+    r = P.classify(a, c)
+    assert (r["status"], r["pixels_differing"], r["box"]) == (P.OTHER_PIXELS, 1, (3, 2, 4, 3))
+
+
+def test_the_rebaselined_pngs_differ_in_their_bytes_only():
+    P = _pixels()
+    doc = (REPO / "docs" / "rebaseline-png-pixels.md").read_text()
+    rows = dict(re.findall(r"^\| `([^`]+)` \| ([^|]+?) \|", doc, re.M))
+    assert len(rows) == 13 and set(rows.values()) == {P.SAME_PIXELS}
+    assert "old = commit e12220c, new = commit 7125246" in doc
+    if subprocess.run(["git", "-C", str(REPO), "cat-file", "-e", "e12220c^{commit}"],
+                      capture_output=True).returncode:
+        pytest.skip("the two commits are not in this clone; the document is checked")
+    assert sorted(rows) == P.pngs("e12220c") == P.pngs("7125246")
+    for path, status in rows.items():
+        assert P.classify(P.read("e12220c", path), P.read("7125246", path))["status"] == status
+
+
+def test_reproduce_sh_names_the_reference_image_and_keeps_the_runs_exit_status():
+    ref = json.loads(ENVIRONMENT.read_text())["image"]["reference"]
+    text = (REPO / "reproduce.sh").read_text()
+    for needed in (f"IMAGE={ref}", "bash container/run.sh fetch", "--network none",
+                   "bash container/run.sh verify", "scripts/stage_B6/compare_png_pixels.py"):
+        assert needed in text, needed
+    run = '.venv/bin/python scripts/reproduce_evidence.py --fetch-inputs --verify "$@"'
+    tail = text[text.index("status=0"):]
+    assert run in tail
+    for code in (0, 1):
+        script = "set -euo pipefail\n" + tail.replace(run, f"(exit {code})")
+        r = subprocess.run(["bash", "-c", script], capture_output=True, text=True)
+        assert r.returncode == code and "container/run.sh verify" in r.stdout
+
+
+def test_the_macos_job_compares_the_pngs_by_pixel_after_the_comparator():
+    import yaml
+    steps = yaml.safe_load((REPO / ".github/workflows/reproduce.yml").read_text()
+                           )["jobs"]["macos-arm64"]["steps"]
+    runs = [s.get("run", "") for s in steps]
+    comparator = runs.index("bash reproduce.sh")
+    pixels = next(i for i, r in enumerate(runs) if "compare_png_pixels.py" in r)
+    assert pixels == comparator + 1
+    assert steps[pixels]["if"] == "always()" and "GITHUB_STEP_SUMMARY" in runs[pixels]

@@ -970,3 +970,24 @@ author's Mac.
 - The previous commit holds `test_evid_tp53_extend.py` to the TP53 stage's own
   tolerance. That test had failed on the rebaseline commit. The change lies outside
   the stage's scope; the author approved it.
+
+## After 3.0.1: the PNG figures compared pixel by pixel, and reproduce.sh names the reference image (stage B6, 2026-10-22)
+
+Two decisions of the author that the CI switch left out. No output changes, and the
+comparator's categories and criteria are as they were.
+
+- `scripts/stage_B6/compare_png_pixels.py` decodes every PNG under the comparator's
+  output folders and compares it, pixel by pixel, with its committed version. Each one
+  is one of three: bytes identical; bytes differing with every pixel identical; or
+  pixels differing, with how many and where.
+  - The macOS job runs it after the comparator and writes its table to the job summary.
+  - Run once on the rebaseline (e12220c against 7125246), it finds all 13 PNGs the
+    comparator called "differs (figure)" identical in every pixel, differing only in
+    their compressed bytes (`docs/rebaseline-png-pixels.md`).
+    `docs/rebaseline-report.md` is left as it was written.
+- `reproduce.sh` now prints a note at its end, after the run, and its exit status is
+  still the run's. The note gives three things:
+  - the reference image by digest, with its two commands;
+  - the differences a native run should be expected to show: PNG bytes with the same
+    pixels, the TP53 manifest's exact count, and last digits;
+  - the pixel comparison's command.

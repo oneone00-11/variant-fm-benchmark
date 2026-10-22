@@ -98,7 +98,9 @@ jobs:
     # against the outputs the image wrote. It cannot end REPRODUCED there: Pillow
     # compresses the PNG figures into other bytes (the pixels are the same), the TP53
     # manifest's reproduction check counts one more value identical on arm64, and the
-    # maths libraries move last digits. Its verdict is recorded, not enforced.
+    # maths libraries move last digits. Its verdict is recorded, not enforced. After it,
+    # scripts/stage_B6/compare_png_pixels.py says in the job summary, for each PNG,
+    # whether its bytes, or only its bytes and not its pixels, or its pixels differ.
     runs-on: macos-14
     continue-on-error: true
     timeout-minutes: 300          # the ClinVar download alone has taken an hour
@@ -109,6 +111,12 @@ jobs:
           python-version: "3.12"
       - name: bash reproduce.sh
         run: bash reproduce.sh
+      - name: Compare the PNG figures pixel by pixel with the committed ones
+        if: always()
+        run: |
+          .venv/bin/python scripts/stage_B6/compare_png_pixels.py \
+            --out "$RUNNER_TEMP/png_pixels.md" > /dev/null
+          tee -a "$GITHUB_STEP_SUMMARY" < "$RUNNER_TEMP/png_pixels.md"
       - name: Upload the per-file comparison
         if: always()
         uses: actions/upload-artifact@v4

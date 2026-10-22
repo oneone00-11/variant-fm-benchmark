@@ -1,0 +1,57 @@
+{
+ "script": "scripts/stage_B6/compare_png_pixels.py",
+ "argv": [
+  "scripts/stage_B6/compare_png_pixels.py",
+  "--old",
+  "e12220c",
+  "--new",
+  "7125246",
+  "--out",
+  "docs/rebaseline-png-pixels.md",
+  "--note",
+  "The 13 PNG figures the comparator called \"differs (figure)\" when every stage ran in the reference image (commit 7125246) against the commit before it (e12220c), each decoded and compared pixel by pixel with its committed version. `docs/rebaseline-report.md`, which lists them, is left as it was written."
+ ],
+ "git_commit": "5558552e1447710407513e80d49e4420f5bd4896",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_B6/compare_png_pixels.py": "debfc4b9c871b732f40daf6ac538923751aea1b73b9d91e144902663b65887fa",
+  "scripts/stage_B6/_runlog.py": "d310fddfe3c56e9d8dbe42f6dc762f6316733c599ad3f397e4caa849daad3680"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "scipy": "1.13.1",
+  "pandas": "2.3.3",
+  "matplotlib": "3.9.4",
+  "threadpoolctl": "3.6.0"
+ },
+ "start_utc": "2026-10-22T02:19:34+00:00",
+ "end_utc": "2026-10-22T02:19:36+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "docs/rebaseline-png-pixels.md",
+   "bytes": 2289,
+   "sha256": "db4101ce3bad56cc080dbb98c380104b12aa1b0b1f33e83b432f79016c5c5867"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "results": {
+   "phase1/reports/evidence/fig_data/fig1_draft.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/fig_data/fig2_draft.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/fig_data/fig3_draft.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/fig_data/fig4_draft.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/figures/figure1.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/figures/figure2.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/figures/figure3.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/figures/figure4.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/figures/figureS1.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/figures/figureS2.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/figures/figureS3.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/figures/figure_practical.png": "bytes differ, pixels identical",
+   "phase1/reports/evidence/figures/figure_practical_slides.png": "bytes differ, pixels identical"
+  }
+ }
+}

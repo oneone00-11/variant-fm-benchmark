@@ -59,4 +59,26 @@ export MPLCONFIGDIR
 trap 'rm -rf "$MPLCONFIGDIR"' EXIT
 unset MATPLOTLIBRC
 
-.venv/bin/python scripts/reproduce_evidence.py --fetch-inputs --verify "$@"
+# The run's verdict is the script's exit status; the note printed after it changes
+# nothing.
+status=0
+.venv/bin/python scripts/reproduce_evidence.py --fetch-inputs --verify "$@" || status=$?
+cat <<'EOF'
+
+This was the native path, with this machine's own Python. Since stage B6 the reference
+environment is a Docker image, in which every committed output was written:
+    IMAGE=ghcr.io/oneone00-11/variant-fm-benchmark-reference@sha256:0dc03436cd94cf46effe25160efa3015ab9808852179d58908c72e16e0537776
+    docker run --rm --platform linux/amd64 --user "$(id -u):$(id -g)" \
+        -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh fetch      # online
+    docker run --rm --platform linux/amd64 --network none --user "$(id -u):$(id -g)" \
+        -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh verify     # no network
+There the run ends REPRODUCED. Run natively, expect three differences from it (README,
+the reproduction section):
+  - PNG figures whose compressed bytes differ while every pixel is the same;
+  - the TP53 manifest's exact count of re-scored values identical to the archived ones
+    (24 of 24 on arm64, 23 of 24 in the image);
+  - numbers that differ in their last digits.
+To compare the PNG figures pixel by pixel with the committed ones:
+    .venv/bin/python scripts/stage_B6/compare_png_pixels.py
+EOF
+exit "$status"
