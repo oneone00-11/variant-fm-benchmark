@@ -197,3 +197,38 @@ def test_the_pinned_probes_show_the_settings_in_force(name):
     assert p["numpy_cpu"]["dispatch_in_use"] == [
         d for d in p["numpy_cpu"]["dispatch"] if d not in disabled.split()
         and d in p["numpy_cpu"]["found"]]
+
+
+# --------------------------------------------------------------------------
+# B6.5: the required CI job runs in the recorded image
+# --------------------------------------------------------------------------
+BYTE_FOR_BYTE = "REPRODUCED: every output matches the committed one byte for byte."
+
+
+def test_the_required_job_runs_the_recorded_image_and_demands_reproduced():
+    import yaml
+    jobs = yaml.safe_load((REPO / ".github/workflows/reproduce.yml").read_text())["jobs"]
+    assert set(jobs) == {"image", "macos-arm64"}        # the native Linux job is gone
+    image = jobs["image"]
+    assert not image.get("continue-on-error")
+    steps = "\n".join(s.get("run", "") for s in image["steps"])
+    assert 'json.load(open("container/ENVIRONMENT.json"))["image"]["reference"]' in steps
+    assert "docker pull \"$IMAGE\"" in steps
+    assert "bash container/run.sh fetch" in steps
+    assert "--network none" in steps and "bash container/run.sh verify" in steps
+    assert f'"# {BYTE_FOR_BYTE}"' in steps                   # not REPRODUCED NUMERICALLY
+    assert BYTE_FOR_BYTE in (REPO / "scripts" / "reproduce_evidence.py").read_text()
+
+
+def test_the_native_macos_job_is_kept_for_the_record_only():
+    import yaml
+    mac = yaml.safe_load((REPO / ".github/workflows/reproduce.yml").read_text())["jobs"]["macos-arm64"]
+    assert mac["continue-on-error"] is True                  # the author's decision
+    assert any(s.get("run") == "bash reproduce.sh" for s in mac["steps"])
+
+
+def test_the_readme_gives_the_recorded_image():
+    ref = json.loads(ENVIRONMENT.read_text())["image"]["reference"]
+    readme = (REPO / "README.md").read_text()
+    assert f"IMAGE={ref}" in readme
+    assert "bash container/run.sh fetch" in readme and "bash container/run.sh verify" in readme

@@ -1,11 +1,13 @@
 name: reproduce
 
-# The one command a reader runs, on machines other than the author's: a fresh
-# checkout, then `bash reproduce.sh`, which builds the pinned environment, fetches
-# the two public inputs (ClinVar from NCBI, the atlas release archive from Zenodo)
-# and, after release 3.0.1, the four Ensembl chromosomes of the E16 reference-base
-# check, rebuilds every output of the evidence-strength study and fails unless each one
-# matches the committed file. A tag push runs it on exactly the tagged tree.
+# The reproduction of the evidence-strength study on machines other than the author's,
+# in the reference environment (stage B6): the Docker image container/ENVIRONMENT.json
+# records, pulled by its manifest digest, in which every committed output was written.
+# The inputs the repository does not carry are fetched online (ClinVar from NCBI, the
+# atlas release archive from Zenodo, the four Ensembl chromosomes of the E16
+# reference-base check, the label audit's sources); then every stage runs and every
+# output is compared with the committed file, with no network (container/run.sh). A tag
+# push runs it on exactly the tagged tree.
 on:
   push:
     branches: [evidence/rework]
@@ -25,13 +27,80 @@ on:
       - "docs/column-provenance.md"
   workflow_dispatch:
 
+defaults:
+  run:
+    shell: bash        # -eo pipefail
+
 jobs:
+  image:
+    # Required. It must end REPRODUCED, every output byte for byte (a manifest's build
+    # time aside); REPRODUCED NUMERICALLY does not pass here.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300          # the ClinVar download alone has taken an hour
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pull the reference image by the digest container/ENVIRONMENT.json records
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          IMAGE="$(python3 -c 'import json; print(json.load(open("container/ENVIRONMENT.json"))["image"]["reference"])')"
+          case "$IMAGE" in ghcr.io/*@sha256:*) ;; *) echo "no image digest recorded" >&2; exit 1 ;; esac
+          echo "IMAGE=$IMAGE" >> "$GITHUB_ENV"
+          echo "$TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker pull "$IMAGE"
+          grep -m1 "model name" /proc/cpuinfo
+      - name: Fetch the inputs (online)
+        run: |
+          docker run --rm --platform linux/amd64 --user "$(id -u):$(id -g)" \
+            -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh fetch
+      - name: Run every stage and compare (no network)
+        run: |
+          start=$(date +%s)
+          docker run --rm --platform linux/amd64 --network none --user "$(id -u):$(id -g)" \
+            -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh verify
+          echo "seconds: $(( $(date +%s) - start ))"
+      - name: Require REPRODUCED, byte for byte
+        run: |
+          sed -n 2p reproduce_report.txt
+          [ "$(sed -n 2p reproduce_report.txt)" = \
+            "# REPRODUCED: every output matches the committed one byte for byte." ]
+      - name: Upload the per-file comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reproduce-report-image
+          path: reproduce_report.txt
+          if-no-files-found: warn
+      - name: Collect the files that are not identical
+        if: always()
+        run: |
+          mkdir -p not-identical
+          if [ -f reproduce_report.txt ]; then
+            grep -E '^(differs|not rewritten|new)' reproduce_report.txt | cut -f2 |
+              while read -r f; do
+                [ -f "$f" ] && mkdir -p "not-identical/$(dirname "$f")" && cp "$f" "not-identical/$f"
+              done || true
+          fi
+      - name: Upload the files that are not identical
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reproduce-not-identical-image
+          path: not-identical
+          if-no-files-found: ignore
+
   macos-arm64:
-    # The platform the committed outputs were made on (macOS arm64, Python 3.12). It
-    # must end REPRODUCED or REPRODUCED NUMERICALLY: every printed table and figure
-    # byte for byte, other files at most in the last digits, which the runner's
-    # maths libraries (an M1 on macOS 14) can move.
+    # For the record, not required (the author's decision of 2026-10-22): the native
+    # path, `bash reproduce.sh` with the runner's own Python 3.12 (an M1 on macOS 14),
+    # against the outputs the image wrote. It cannot end REPRODUCED there: Pillow
+    # compresses the PNG figures into other bytes (the pixels are the same), the TP53
+    # manifest's reproduction check counts one more value identical on arm64, and the
+    # maths libraries move last digits. Its verdict is recorded, not enforced.
     runs-on: macos-14
+    continue-on-error: true
     timeout-minutes: 300          # the ClinVar download alone has taken an hour
     steps:
       - uses: actions/checkout@v4
@@ -62,43 +131,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: reproduce-not-identical-macos-arm64
-          path: not-identical
-          if-no-files-found: ignore
-
-  linux:
-    # Informational: which outputs differ off macOS, and whether the numbers do. The
-    # figures use Arial, which Linux runners lack, and numpy links a different BLAS.
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    timeout-minutes: 300
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: bash reproduce.sh
-        run: bash reproduce.sh
-      - name: Upload the per-file comparison
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: reproduce-report-linux
-          path: reproduce_report.txt
-          if-no-files-found: warn
-      - name: Collect the files that are not identical
-        if: always()
-        run: |
-          mkdir -p not-identical
-          if [ -f reproduce_report.txt ]; then
-            grep -E '^(differs|not rewritten|new)' reproduce_report.txt | cut -f2 |
-              while read -r f; do
-                [ -f "$f" ] && mkdir -p "not-identical/$(dirname "$f")" && cp "$f" "not-identical/$f"
-              done || true
-          fi
-      - name: Upload the files that are not identical
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: reproduce-not-identical-linux
           path: not-identical
           if-no-files-found: ignore

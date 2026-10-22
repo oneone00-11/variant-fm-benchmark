@@ -947,3 +947,26 @@ author's Mac.
 - The runner's CPU, probed again under `run.sh`'s settings, now runs the same OpenBLAS
   kernels (Nehalem) and the same numpy dispatch (up to SSE4.2) as the Mac's emulated
   CPU (`container/cpu_probe/github-linux-pinned.json`).
+
+## After 3.0.1: the required reproduction runs in the reference image (stage B6, 2026-10-22)
+
+- `.github/workflows/reproduce.yml` changes three jobs:
+  - The required job now runs in the reference image, pulled by the digest
+    `container/ENVIRONMENT.json` records. The inputs are fetched online, then every
+    stage and `--verify` run with no network (`container/run.sh`). It must end
+    REPRODUCED, byte for byte; REPRODUCED NUMERICALLY does not pass.
+  - The native Linux job is gone; the image job takes its place.
+  - The native macOS job stays, for the record only (`continue-on-error`, the author's
+    decision of 2026-10-22). Against the image's outputs it cannot end REPRODUCED. On
+    the rebaseline commit it ended NOT REPRODUCED, for three reasons: Pillow compresses
+    the PNG figures into other bytes, with the same pixels; the TP53 reproduction check
+    counts 24 of 24 on arm64; and numbers differ in their last digits.
+- README: the reproduction section only. It names the image and its digest, gives the
+  two steps, says the native path agrees in the numbers only, and lists what is not
+  tested.
+- Before this, the full run in the image, against the rebaselined outputs, ended
+  REPRODUCED on two CPUs: GitHub's runner (AMD EPYC 9V45; `container.yml` run
+  39638815249) and the Mac under amd64 emulation.
+- The previous commit holds `test_evid_tp53_extend.py` to the TP53 stage's own
+  tolerance. That test had failed on the rebaseline commit. The change lies outside
+  the stage's scope; the author approved it.

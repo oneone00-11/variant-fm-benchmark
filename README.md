@@ -57,53 +57,80 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   10.5281/zenodo.23051009 (all versions: 10.5281/zenodo.22674887), which also holds
   the ClinVar file.
 
-**Reproducing from a fresh clone: one command** (about 25 minutes of computation;
-on first use about 370 MB of downloads, 120 MB of Python packages and 240 MB of data,
-up to an hour when NCBI is slow; needs Python 3.12 and network access):
+**Reproducing from a fresh clone, in the reference environment.** On this branch, after
+release 3.0.1, the reference environment is a Docker image, and every committed output
+was written in it (stage B6): Python 3.12.13 on Debian bookworm, linux/amd64, with
+exactly the packages of `requirements-evidence.lock.txt`, each checked against the hash
+of its wheel. It is built from `container/Dockerfile`; `container/ENVIRONMENT.json`
+records its digests and what it holds. With Docker installed:
 
 ```bash
 git clone https://github.com/oneone00-11/variant-fm-benchmark
 cd variant-fm-benchmark
-git checkout v3.0.1-submission
-bash reproduce.sh
+git checkout evidence/rework
+IMAGE=ghcr.io/oneone00-11/variant-fm-benchmark-reference@sha256:0dc03436cd94cf46effe25160efa3015ab9808852179d58908c72e16e0537776
+# online: download and check the inputs the repository does not carry
+docker run --rm --platform linux/amd64 --user "$(id -u):$(id -g)" \
+    -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh fetch
+# no network: run every stage and compare every output with the committed one
+docker run --rm --platform linux/amd64 --network none --user "$(id -u):$(id -g)" \
+    -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh verify
 ```
 
-`reproduce.sh` builds `.venv` from `requirements-evidence.lock.txt`, then runs
-`scripts/reproduce_evidence.py --fetch-inputs --verify`. `--fetch-inputs` downloads
-the two public inputs this repository does not carry and checks them before any
-stage runs: the ClinVar GRCh38 release of 15 June 2026 (192 MB, from NCBI's archive;
-md5 against NCBI's file, sha256 against the analysis-set manifest) and the atlas
-release archive (50 MB, from Zenodo; md5 against Zenodo's). Both are gitignored.
-On this branch, after release 3.0.1, it also fetches the four Ensembl release-112
-chromosomes of the E16 genes (165 MB, gitignored; sha256 against each gene's raw
-manifest; SBDS, of E16b, shares XRCC2's), which only the reference-base checks
-read; a chromosome that cannot be fetched in three attempts is reported and the run
-goes on. First use of this branch therefore downloads about 530 MB.
-This release's Zenodo record (10.5281/zenodo.23051009) also holds the ClinVar file,
-NCBI's original unchanged, and `--fetch-inputs` falls back to it when NCBI cannot
-serve the exact file; the sha256 check is the same whichever source served it.
+The image is a 282 MB download. On first use the first step downloads about 450 MB
+into gitignored folders and checks each file before any stage runs:
+- the ClinVar GRCh38 release of 15 June 2026: 192 MB, from NCBI's archive, or NCBI's
+  file unchanged from this release's Zenodo record (10.5281/zenodo.23051009) when NCBI
+  cannot serve it; md5 against NCBI's file, sha256 against the analysis-set manifest;
+- the atlas release archive: 50 MB, from Zenodo; md5 against Zenodo's;
+- the four Ensembl release-112 chromosomes of the E16 genes: 165 MB; sha256 against each
+  gene's raw manifest;
+- the label source audit's uncommitted sources: 46 MB, from MaveDB and Europe PMC;
+  sha256 against its manifests.
+
+The second step runs every stage of `scripts/reproduce_evidence.py` and `--verify`, as
+the host user. The maths are single-threaded, and OpenBLAS's kernels and numpy's
+dispatch are held to one instruction level on every CPU (`container/run.sh`).
+
 `--verify` compares every committed output with what the run writes: in a clone, the
 files as HEAD has them, and in a release archive, the tree as first unpacked. A
 committed output the run leaves untouched fails too, unless
-`scripts/reproduce_inputs.txt` lists it as an input the stages only read. The run
-ends with one of two verdicts, or lists what differs and exits non-zero:
-`REPRODUCED` when every output matches byte for byte (a manifest's build time aside),
-and `REPRODUCED NUMERICALLY` when every printed table and figure does and other files
-differ only in the last digits of their numbers (relative 1e-9), which the operating
-system's maths libraries can move: numpy calls Apple's Accelerate on macOS,
-scikit-learn's coordinate descent calls the OpenBLAS that scipy bundles, and both
-differ between chips and macOS releases. On the machine the outputs were made
-on (Apple M5, macOS 26.6, Python 3.12.13) the run ends `REPRODUCED`: every output is
-byte-identical except the build time in
-`phase1/data/evidence/analysis_set_v1.manifest.json` (on this branch, also in the five
-E16 and E16b variant tables' provenance records). On a GitHub-hosted M1 (macOS
-14) it ends `REPRODUCED NUMERICALLY`: every printed table and figure matches byte for
-byte, and the tables that carry the elastic-net combination's scores match to 1e-9.
-`.github/workflows/reproduce.yml` runs the same command on that macOS arm64 runner on
-every push to this branch that changes more than documentation and on every release
-tag, and on a Linux runner to record what differs there; each run keeps its
-`reproduce_report.txt`, one line per output, and the files that are not identical as
-artifacts.
+`scripts/reproduce_inputs.txt` lists it as an input the stages only read. The run ends
+`REPRODUCED` when every output matches byte for byte (a manifest's build time aside);
+otherwise it lists what differs and exits non-zero. It ended `REPRODUCED` on a
+GitHub-hosted runner (AMD EPYC 9V45; the second step took 21 minutes) and on an Apple
+M5 Mac running the image under amd64 emulation (Rosetta, through Colima; 21 minutes).
+
+`.github/workflows/reproduce.yml` runs these two steps on every push to this branch
+that changes more than documentation and on every release tag, and requires
+`REPRODUCED`. Each run keeps its `reproduce_report.txt`, one line per output, and the
+files that are not identical as artifacts. Not tested: Apptainer or Singularity,
+Windows, and the image on arm64 without emulation.
+
+**Without Docker: numerical agreement only.** `bash reproduce.sh` builds `.venv` from
+`requirements-evidence.lock.txt` with the machine's own Python 3.12, then runs
+`scripts/reproduce_evidence.py --fetch-inputs --verify`. It needs the same downloads,
+about 25 minutes of computation, and network access. The machine's maths libraries can
+move the last digits of the numbers, so against the image's outputs this path agrees
+in the numbers only:
+- `REPRODUCED NUMERICALLY`, on a GitHub-hosted Linux runner (x86_64): every printed
+  table and figure matches byte for byte, and other files differ only in the last
+  digits of their numbers (relative 1e-9).
+- `NOT REPRODUCED`, on macOS arm64 (an Apple M5 with macOS 26.6, and a GitHub-hosted M1
+  with macOS 14). Every printed table matches byte for byte, and 21 files differ only in
+  the last digits of their numbers. But 13 PNG figures differ in their compressed bytes,
+  not their pixels, as Pillow writes them there. And the TP53 manifest counts 24 of 24
+  re-scored Nucleotide Transformer values identical where the image counts 23 (pandas'
+  default float parser on x86_64), a count the supplementary-table manifest's hash
+  carries.
+
+The `reproduce.yml` macOS job runs this path for the record and does not fail the
+workflow.
+
+Release 3.0.1 (tag `v3.0.1-submission`), whose outputs were made on macOS arm64, is
+reproduced by this path: `git checkout v3.0.1-submission && bash reproduce.sh`. It
+ended `REPRODUCED` on the machine the outputs were made on (Apple M5, macOS 26.6,
+Python 3.12.13) and `REPRODUCED NUMERICALLY` on a GitHub-hosted M1 (macOS 14).
 
 **Quick check: five minutes, no data download.** For a reader who does not want the
 full run:
