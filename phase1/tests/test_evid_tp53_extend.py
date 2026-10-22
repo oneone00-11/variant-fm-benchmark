@@ -132,14 +132,20 @@ def test_table_matches_its_manifest(df, manifest):
 
 
 def test_added_rows_come_from_the_same_scorers(manifest):
-    """Every scorer re-scored frozen rows beside the new ones; all must reproduce."""
+    """Every scorer re-scored frozen rows beside the new ones; all must reproduce, by the
+    stage's own rule: identical, or apart by no more than PARSE_TOLERANCE, the last-digit
+    difference a stored score's parse can show across CPUs. The record keeps the exact
+    counts and names every value that is not identical."""
+    from src.evid_tp53_extend import PARSE_TOLERANCE
     checks = manifest["reproduction_checks"]
     assert {c["scorer"] for c in checks} >= {"spliceai", "spliceai_walker", "pangolin", "nt",
                                              "cadd", "conservation", "gpn_msa", "avi",
                                              "alphagenome"}
     for c in checks:
         assert c["n_checked"] >= 24, c
-        assert c["n_identical"] == c["n_checked"], c
+        assert c["n_identical"] == c["n_checked"] or c["max_abs_diff"] <= PARSE_TOLERANCE, c
+        if c["n_identical"] < c["n_checked"]:
+            assert len(c["differing"]) == c["n_checked"] - c["n_identical"], c
 
 
 def test_score_files_are_the_ones_the_manifest_records(manifest):
