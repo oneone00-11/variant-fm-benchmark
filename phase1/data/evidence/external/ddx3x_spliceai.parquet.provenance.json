@@ -1,0 +1,45 @@
+{
+ "file": "phase1/data/evidence/external/ddx3x_spliceai.parquet",
+ "genes": [
+  "DDX3X"
+ ],
+ "set": "external",
+ "columns": [
+  "spliceai"
+ ],
+ "run": "spliceai",
+ "tool": "SpliceAI 1.3.1 (tensorflow 2.19.1, CPU)",
+ "scorer": "the atlas's models/spliceai/score_fullprec.py",
+ "configuration": {
+  "annotation": "grch38",
+  "distance": 50,
+  "mask": 0,
+  "score_definition": "max(DS_AG, DS_AL, DS_DG, DS_DL)"
+ },
+ "precision": "full float precision (the CLI's {:.2f} replaced by {:.17g})",
+ "direction": "larger = more damaging, as the analysis set's column",
+ "same_variable": {
+  "rule": "E18.0 rule 4(a): the run's anchors equal the analysis set's stored values bit for bit",
+  "anchors": "phase1/data/evidence/external/e18_anchors_spliceai.parquet",
+  "n_anchors": 39,
+  "n_identical": {
+   "spliceai": 39
+  }
+ },
+ "environment": "phase1/data/evidence/external/ddx3x_spliceai.parquet.environment.json",
+ "run_logs": [
+  "scripts/stage_E18/run_log/run_spliceai_20261023T082635Z.json"
+ ],
+ "cache": {
+  "phase1/data/e18_cache/spliceai_d50.tsv": "84d5007d6372a8c10c5f870a319a73770a9763d614e0ba626bb9299308a30f4d"
+ },
+ "n": 1857,
+ "n_scored": {
+  "spliceai": 1857
+ },
+ "scored_utc_range": [
+  "2026-10-23T05:04:51+00:00",
+  "2026-10-23T05:54:50+00:00"
+ ],
+ "sha256": "5ca2f44157b9e3d5a91517b2720b8d9b323977af6e561df94ff3738128e913bc"
+}

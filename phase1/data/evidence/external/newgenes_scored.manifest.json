@@ -1,0 +1,232 @@
+{
+ "file": "phase1/data/evidence/external/newgenes_scored.parquet",
+ "n": 4522,
+ "n_by_gene": {
+  "CTCF": 1370,
+  "SFPQ": 1019,
+  "RAD51D": 1296,
+  "XRCC2": 390,
+  "SBDS": 447
+ },
+ "rows": "each gene's <gene>_variants.parquet rows at 3 <= |offset| <= 50 (E18.1), in that file's order, with every one of its columns unchanged: the labels are E16's and, for SBDS, E16b's",
+ "columns": {
+  "spliceai": {
+   "source": [
+    "phase1/data/evidence/external/ctcf_spliceai.parquet",
+    "phase1/data/evidence/external/rad51d_spliceai.parquet",
+    "phase1/data/evidence/external/sbds_spliceai.parquet",
+    "phase1/data/evidence/external/sfpq_spliceai.parquet",
+    "phase1/data/evidence/external/xrcc2_spliceai.parquet"
+   ],
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  },
+  "spliceai_walker": {
+   "source": [
+    "phase1/data/evidence/external/ctcf_spliceai_walker.parquet",
+    "phase1/data/evidence/external/rad51d_spliceai_walker.parquet",
+    "phase1/data/evidence/external/sbds_spliceai_walker.parquet",
+    "phase1/data/evidence/external/sfpq_spliceai_walker.parquet",
+    "phase1/data/evidence/external/xrcc2_spliceai_walker.parquet"
+   ],
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  },
+  "pangolin": {
+   "source": [
+    "phase1/data/evidence/external/ctcf_pangolin.parquet",
+    "phase1/data/evidence/external/rad51d_pangolin.parquet",
+    "phase1/data/evidence/external/sbds_pangolin.parquet",
+    "phase1/data/evidence/external/sfpq_pangolin.parquet",
+    "phase1/data/evidence/external/xrcc2_pangolin.parquet"
+   ],
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  },
+  "alphagenome": {
+   "source": "phase1/data/evidence/alphagenome_official/external_scores.tsv",
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  },
+  "cadd": {
+   "source": [
+    "phase1/data/evidence/external/ctcf_cadd.parquet",
+    "phase1/data/evidence/external/rad51d_cadd.parquet",
+    "phase1/data/evidence/external/sbds_cadd.parquet",
+    "phase1/data/evidence/external/sfpq_cadd.parquet",
+    "phase1/data/evidence/external/xrcc2_cadd.parquet"
+   ],
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  },
+  "phylop": {
+   "source": [
+    "phase1/data/evidence/external/ctcf_conservation.parquet",
+    "phase1/data/evidence/external/rad51d_conservation.parquet",
+    "phase1/data/evidence/external/sbds_conservation.parquet",
+    "phase1/data/evidence/external/sfpq_conservation.parquet",
+    "phase1/data/evidence/external/xrcc2_conservation.parquet"
+   ],
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  },
+  "phastcons": {
+   "source": [
+    "phase1/data/evidence/external/ctcf_conservation.parquet",
+    "phase1/data/evidence/external/rad51d_conservation.parquet",
+    "phase1/data/evidence/external/sbds_conservation.parquet",
+    "phase1/data/evidence/external/sfpq_conservation.parquet",
+    "phase1/data/evidence/external/xrcc2_conservation.parquet"
+   ],
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  },
+  "gpn_msa": {
+   "source": [
+    "phase1/data/evidence/external/ctcf_gpn_msa.parquet",
+    "phase1/data/evidence/external/rad51d_gpn_msa.parquet",
+    "phase1/data/evidence/external/sbds_gpn_msa.parquet",
+    "phase1/data/evidence/external/sfpq_gpn_msa.parquet",
+    "phase1/data/evidence/external/xrcc2_gpn_msa.parquet"
+   ],
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  },
+  "avi": {
+   "source": [
+    "phase1/data/evidence/external/newgenes_avi.parquet"
+   ],
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  },
+  "avi_splice_sites": {
+   "source": [
+    "phase1/data/evidence/external/newgenes_avi.parquet"
+   ],
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  },
+  "avi_splice_site_usage": {
+   "source": [
+    "phase1/data/evidence/external/newgenes_avi.parquet"
+   ],
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  },
+  "avi_splice_junctions": {
+   "source": [
+    "phase1/data/evidence/external/newgenes_avi.parquet"
+   ],
+   "n_scored_by_gene": {
+    "CTCF": 1370,
+    "SFPQ": 1019,
+    "RAD51D": 1296,
+    "XRCC2": 390,
+    "SBDS": 447
+   }
+  }
+ },
+ "not_scored": {
+  "nt": "not part of this commit: NT is scored on the original GPU and has a commit of its own (the author's decision of 2026-10-23)"
+ },
+ "same_variable": "docs/external-column-identity.md",
+ "scored_utc_range": [
+  "2026-10-22T16:58:36+00:00",
+  "2026-10-23T10:20:42+00:00"
+ ],
+ "inputs": {
+  "phase1/data/evidence/external/ctcf_variants.parquet": "e565e144697a535aedc0fdaf8e8e8de44a4c805ba1901d2d60da01ad37e8c45d",
+  "phase1/data/evidence/external/sfpq_variants.parquet": "e52d293ccf76693a0dce570adfd58163488752c32de924804e578d100b53b670",
+  "phase1/data/evidence/external/rad51d_variants.parquet": "7837a3e13ba15c811cf09d89baabc97551905c0cc0b5bc04b35c804e39038135",
+  "phase1/data/evidence/external/xrcc2_variants.parquet": "c12b4dcaacd7da7ba484b21887870f75d773615b9518d687b4fd53dd0217e5b1",
+  "phase1/data/evidence/external/sbds_variants.parquet": "dbee75889e97a69e6e3fee3b1bdb02173010e37b3efd8ab063e1a2a7f3d53a47",
+  "phase1/data/evidence/alphagenome_official/external_scores.tsv": "095818bef37b8e9a931ce988373e8cbb49152c52ed74593fa4ff14875b2dbeb9",
+  "phase1/data/evidence/external/ctcf_spliceai.parquet": "f6cac439640c9ab494c0a1174af62f5fa1723d1cbd2aa41f3e039efde08f3499",
+  "phase1/data/evidence/external/rad51d_spliceai.parquet": "16fc57d7a85da0bfd29397894ca511905f9e6b033a76a4e2bca8688902ea3c06",
+  "phase1/data/evidence/external/sbds_spliceai.parquet": "5658e05452596fccc3b464256aa0bb492b547b33128258bd8f8bce8a426ee8f6",
+  "phase1/data/evidence/external/sfpq_spliceai.parquet": "50d1b11c1c2a55b01505ca1bd243ba7edd92e141c738ef501f147eb02fed80dc",
+  "phase1/data/evidence/external/xrcc2_spliceai.parquet": "bfc4d4ceba6a7d446945aef34d294c3e610909f18beec0c61ab0120f3e6e5b01",
+  "phase1/data/evidence/external/ctcf_spliceai_walker.parquet": "7630b451525bc08b97ca879e0fc36cfb2312aedb62d78d93c0f915ce0d147049",
+  "phase1/data/evidence/external/rad51d_spliceai_walker.parquet": "cd4e33074cb02937fcb598c6e52f44af20a388cdf5db30413f125d678c125e8a",
+  "phase1/data/evidence/external/sbds_spliceai_walker.parquet": "4cc7f2f9088d7fa891fa96c3c4b9f72e7adac8b5d30742d0863a01ceb89d9ab8",
+  "phase1/data/evidence/external/sfpq_spliceai_walker.parquet": "45e9694526522868588d02024f1324be74eccc18680d79035444ec64b740c09a",
+  "phase1/data/evidence/external/xrcc2_spliceai_walker.parquet": "1d286f67d299e5b8c69825a03f02cf9de8b6e6b30d1fd5de66ad497f3ea17715",
+  "phase1/data/evidence/external/ctcf_pangolin.parquet": "d3599f51cf8e34f9dd254dc08e1096eb366d2b59f4b2a46e7781a6f968d38d21",
+  "phase1/data/evidence/external/rad51d_pangolin.parquet": "4c135fbc6dcee2097cc7c0030e2e16dfefd42d0160f3f85402a22bcf1e1f3c43",
+  "phase1/data/evidence/external/sbds_pangolin.parquet": "28b5427c4b37491a9bd75c1145ab44013da3ee0ed30e606967fa86eb1c36965e",
+  "phase1/data/evidence/external/sfpq_pangolin.parquet": "cd634dcbdca4fff10bdfba432679733401e55b5efbd72017071d89ea9e7abe8e",
+  "phase1/data/evidence/external/xrcc2_pangolin.parquet": "bab3e9961901e04d199a281e8641b6d6fa99dc92cd1f36e6645943bd7170f148",
+  "phase1/data/evidence/external/ctcf_cadd.parquet": "cd4fab662a17e474953cfeec32e13f5bf9e546ec085df2127888171cf7559eca",
+  "phase1/data/evidence/external/rad51d_cadd.parquet": "d26b31ca39313d2d83c2b25055d2fffa9b9c361ce127f909bc949fa6dece4ce5",
+  "phase1/data/evidence/external/sbds_cadd.parquet": "64280b9abb1c4475bb9a65a4901dcf2dc5616f3f9db721201fddcfeeb2b4de20",
+  "phase1/data/evidence/external/sfpq_cadd.parquet": "a2d2ca027228d492c733ce16e37d919af52f62cd1871a3f0d7c6e32c7cfff4d9",
+  "phase1/data/evidence/external/xrcc2_cadd.parquet": "35ae271c433c06e69dfdbbcc140c6f87ee3cd8537081249fe41e7d7e50aaea6c",
+  "phase1/data/evidence/external/ctcf_conservation.parquet": "f4090e7751595889a67ca881093025c3145ed990831828acaaa72a3f7334e053",
+  "phase1/data/evidence/external/rad51d_conservation.parquet": "6eb4623034f75667db095161cb38f28cb56f0d4861b8934353065b46780ee8d7",
+  "phase1/data/evidence/external/sbds_conservation.parquet": "24280ba2baa7772a3a72461958eae45edbd1bf4987b6850464f9ff252a4fcde0",
+  "phase1/data/evidence/external/sfpq_conservation.parquet": "0ab70a3e03f963b6c73e8569112bf2ed11173c262ab2bd0ad278216833654eb9",
+  "phase1/data/evidence/external/xrcc2_conservation.parquet": "d339941b75ecc715f149f703f16f6c15b628eca06c44ec6229a1d7c29574e0eb",
+  "phase1/data/evidence/external/ctcf_gpn_msa.parquet": "24c320304aaaca403e2c522b8cf511dea13522d70aa2fd5b0e2aff6c1b816bb1",
+  "phase1/data/evidence/external/rad51d_gpn_msa.parquet": "14e908e656320dc7b23683c2a8df17c4670ad515e88d1122971d5d590c2728a3",
+  "phase1/data/evidence/external/sbds_gpn_msa.parquet": "d34f2097bb4f782a0382f40ad7e914ac8b12ce4cfdf329476589e48a4fd9ae02",
+  "phase1/data/evidence/external/sfpq_gpn_msa.parquet": "030b6c52edecf5467ac07f4c12cc3e6eae7a85a85f1e5311a9fea238d7600c61",
+  "phase1/data/evidence/external/xrcc2_gpn_msa.parquet": "dd3429622b21d480c5e0f049b271d0c14553d0b3115d51446c68d308f00db26c",
+  "phase1/data/evidence/external/newgenes_avi.parquet": "f82e746f56b9451d7be36df2d255ac6d751fe64543f72190cfc93db26cd7b1b5"
+ },
+ "sha256": "ca45600740b9b162d2f0444b7c03f54e9a8d660f15005074f9cbb3e2a2ab3897"
+}

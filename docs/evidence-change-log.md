@@ -1128,3 +1128,64 @@ the pipeline reads none of it, and every output is unchanged.
   now allows another gene only with scores after the tag.
 - `scripts/stage_E17/score_official.py` gains the three modes. They write
   `ENVIRONMENT_2b.json`, so that E17's `ENVIRONMENT.json` stays as tagged.
+
+## After the thresholds were frozen: the external genes' other columns, by the analysis set's own scorers (stage E18, 2026-10-23)
+
+Why: a threshold fitted on a column applies to an external gene only if the gene's
+column is the same variable: the same scorer, version, precision and direction
+(E18.0 rule 4). The evidence is either anchors, analysis-set variants re-scored in the
+same run and equal to the analysis set's values bit for bit, or a committed
+value-for-value record. This commit only adds data; the pipeline reads none of it, and
+every output is unchanged.
+
+- The anchors. `phase1/data/evidence/external/e18_anchors.parquet`
+  (`scripts/stage_E18/anchors.py`): three analysis-set variants per training gene and
+  stratum (s3_10, s11_50), drawn with `config.RANDOM_SEED`, 39 in all (BRCA2 has no
+  s11_50 variant). Every run below scored them together with its external variants.
+  In every run, every anchor equals the analysis set's stored value bit for bit, in
+  every column, the Walker basis's four components included (39/39).
+- The runs, all after the tag, each in the column's own pinned environment
+  (`scripts/stage_E18/run_*.py`, the scorers unchanged):
+  - SpliceAI at distance 50 (the atlas's `score_fullprec.py`) and Walker's basis at
+    distance 4,999 (`evid_score_spliceai_walker.py`): 6,706 variants each, the 39
+    anchors and all 6,667 external variants;
+  - Pangolin (the atlas's `score_fullprec.py`, on one thread, in six processes): the same
+    6,706;
+  - CADD, phyloP, phastCons and GPN-MSA (the atlas's scorers, run from byte-identical
+    copies of the release's files): the anchors, DDX3X's 1,857 and the five further
+    genes' 4,522. The sources as served: GPN-MSA at revision cf1718a9 and the pinned
+    size, the CADD v1.7 file of 29 January 2024, the UCSC tracks of 8 May 2015;
+  - the four Atlas columns (`evid_score_avi.run`, client 0.9.0, the scorer unchanged
+    and its client wrapped so that an authentication error or a batch failing every
+    attempt stops the run): the anchors, TP53's 288 and the five further genes' 4,522.
+
+  Each scorer first ran the anchors and 50 variants to measure throughput (E18.2);
+  every projection of a full run was under three hours. Every variant was scored; no
+  value is NaN.
+- Not scored again, because a committed record already shows them to be the analysis
+  set's variables (`docs/external-column-identity.md`):
+  - TP53's CADD, phyloP, phastCons and GPN-MSA: the published study's scorers, value for
+    value the atlas's (`docs/column-provenance.md`, section 2); GPN-MSA's raw sign is
+    turned to the analysis set's direction when the external test reads it (E18.0
+    rule 5);
+  - DDX3X's four Atlas columns, from the analysis set's own run (`avi.parquet`).
+- Nucleotide Transformer is not in this commit. By the author's decision of 2026-10-23
+  it was scored on an RTX A6000 in the original run's recorded environment, and has a
+  commit of its own.
+- The files: per gene and run `<gene>_<run>.parquet` (DDX3X's full-precision Pangolin
+  `ddx3x_pangolin_fullprec.parquet`; a column scored again `<gene>_<run>_rescored.parquet`),
+  each with its provenance and environment; the anchors of each run,
+  `e18_anchors_<run>.parquet`; the five further genes' Atlas columns,
+  `newgenes_avi.parquet`; and the five further genes with every column,
+  `newgenes_scored.parquet` with its manifest. `scripts/stage_E18/build_columns.py`
+  writes them in the reference image, and its `--offline` rebuild, from these files
+  alone, is byte-identical. DDX3X's file names avoid `ddx3x_spliceai_d50.parquet` and
+  `ddx3x_nt.parquet`, which E7's merge would read if present.
+- Three of Pangolin's six processes finished within the same second, and the run record
+  is named to the second, so worker 3's record overwrote those of workers 2 and 5. Their
+  caches, environment records and printed anchor checks survive, and `build_columns.py`
+  checks every anchor again from the caches.
+- LICENSE-DATA covers the new files from the commit that switches the external test
+  to them (E18.0 rule 10).
+- Tests: `test_evid_e18_columns.py`. The SBDS test also reads the manifest beside an
+  assembled table for its scoring time.

@@ -1,0 +1,57 @@
+{
+ "script": "scripts/stage_E18/anchors.py",
+ "argv": [
+  "scripts/stage_E18/anchors.py"
+ ],
+ "git_commit": "114ccfbc8a4a3e7ad6d3a84c7ed5bd485008d2a0",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/anchors.py": "5e6603ab95644f5f21aa233334eccd27c2067a668fd45ef4e3db14d8b15696c2",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T04:54:02+00:00",
+ "end_utc": "2026-10-23T04:54:03+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/analysis_set_v1.parquet",
+   "bytes": 1459145,
+   "sha256": "52e0c610b0147e2435b17b57b586f3340e7b988aa2ddec66890b92f1a59c7ecc"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/external/e18_anchors.parquet",
+   "bytes": 15662,
+   "sha256": "5c320fbb9e03374b0087797f4dfe096def8e6d62242447c59b5939ce2879a11c"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "cells": {
+   "BAP1/s11_50": 3,
+   "BAP1/s3_10": 3,
+   "BARD1/s11_50": 3,
+   "BARD1/s3_10": 3,
+   "BRCA1/s11_50": 3,
+   "BRCA1/s3_10": 3,
+   "BRCA2/s3_10": 3,
+   "PALB2/s11_50": 3,
+   "PALB2/s3_10": 3,
+   "RAD51C/s11_50": 3,
+   "RAD51C/s3_10": 3,
+   "VHL/s11_50": 3,
+   "VHL/s3_10": 3
+  },
+  "n": 39
+ }
+}

@@ -1,0 +1,140 @@
+{
+ "script": "scripts/stage_E18/run_avi.py",
+ "argv": [
+  "scripts/stage_E18/run_avi.py",
+  "--trial"
+ ],
+ "git_commit": "114ccfbc8a4a3e7ad6d3a84c7ed5bd485008d2a0",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/run_avi.py": "149e1084b1d522d1512e31c4029befe9aa0940909b662fe05bd9dd292034e0b4",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "0.9.0",
+  "numpy": "2.5.3",
+  "pandas": "3.0.6",
+  "anndata": "0.13.4",
+  "grpcio": "1.84.0",
+  "protobuf": "7.36.2"
+ },
+ "start_utc": "2026-10-23T04:58:55+00:00",
+ "end_utc": "2026-10-23T04:59:01+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/external/e18_score_input.parquet",
+   "bytes": 72487,
+   "sha256": "f8bc9c7ca819718a9027618c9fdd872b22545feb790d41c0ba32f779e8a51c3d"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/e18_cache/avi_target_anchor_trial.parquet",
+   "bytes": 3867,
+   "sha256": "266721974b688306950a23348de4196c4eb6ea2cda123f8deea55e31cad7817d"
+  },
+  {
+   "path": "phase1/data/e18_cache/avi_target_tp53_trial.parquet",
+   "bytes": 3582,
+   "sha256": "8f5f910a1c2f684505de35e895e90c522c7706e8e548dfda2586a045874a622e"
+  },
+  {
+   "path": "phase1/data/e18_cache/avi_e18_trial.segments.json",
+   "bytes": 564,
+   "sha256": "ad01955720b2ad40dfd8497a6ef2b47f04a381168aa443993e064f2d53bc5338"
+  },
+  {
+   "path": "phase1/data/e18_cache/avi_e18_trial.parquet",
+   "bytes": 9134,
+   "sha256": "e9a0a58a6593385f622e7808f985e491a7bd235ae64e733d21ce0b51084652de"
+  },
+  {
+   "path": "phase1/data/e18_cache/avi_e18_trial.parquet.provenance.json",
+   "bytes": 1433,
+   "sha256": "df86b2eef90620c601477e19b70ff149bd0bc0b471334460b8ca2374b096d047"
+  },
+  {
+   "path": "phase1/data/e18_cache/avi_e18_trial.environment.json",
+   "bytes": 2152,
+   "sha256": "fe97762662cfacccc0b687efe01037f9d0c8728a5c4a8d6327a5889e914ebcb7"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "segment": {
+   "start_utc": "2026-10-23T04:58:55+00:00",
+   "end_utc": "2026-10-23T04:59:00+00:00",
+   "errors": [],
+   "scorers_offered": [
+    "ATAC",
+    "ATAC_ACTIVE",
+    "AVI_SCORE",
+    "AVI_SCORE_FEATURE_IMPORTANCE",
+    "AVI_SCORE_MODEL_FEATURES",
+    "CAGE",
+    "CAGE_ACTIVE",
+    "CHIP_HISTONE",
+    "CHIP_HISTONE_ACTIVE",
+    "CHIP_TF",
+    "CHIP_TF_ACTIVE",
+    "CONTACT_MAPS",
+    "DNASE",
+    "DNASE_ACTIVE",
+    "POLYADENYLATION",
+    "PROCAP",
+    "PROCAP_ACTIVE",
+    "RNA_SEQ",
+    "RNA_SEQ_ACTIVE",
+    "SPLICE_JUNCTIONS",
+    "SPLICE_SITES",
+    "SPLICE_SITE_USAGE"
+   ]
+  },
+  "anchors": {
+   "avi": {
+    "column": "avi",
+    "n_anchors": 39,
+    "n_checked": 39,
+    "n_identical": 39,
+    "differing": [],
+    "max_abs_diff": 0.0
+   },
+   "avi_splice_sites": {
+    "column": "avi_splice_sites",
+    "n_anchors": 39,
+    "n_checked": 39,
+    "n_identical": 39,
+    "differing": [],
+    "max_abs_diff": 0.0
+   },
+   "avi_splice_site_usage": {
+    "column": "avi_splice_site_usage",
+    "n_anchors": 39,
+    "n_checked": 39,
+    "n_identical": 39,
+    "differing": [],
+    "max_abs_diff": 0.0
+   },
+   "avi_splice_junctions": {
+    "column": "avi_splice_junctions",
+    "n_anchors": 39,
+    "n_checked": 39,
+    "n_identical": 39,
+    "differing": [],
+    "max_abs_diff": 0.0
+   }
+  },
+  "throughput": {
+   "seconds": 4.9,
+   "n_scored": 89,
+   "seconds_per_variant": 0.055,
+   "n_full_run": 4849,
+   "processes": 1,
+   "projected_full_run_hours": 0.07,
+   "within_limit": true,
+   "limit_hours": 24.0
+  }
+ }
+}

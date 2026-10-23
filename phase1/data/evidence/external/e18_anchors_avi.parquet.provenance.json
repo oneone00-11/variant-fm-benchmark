@@ -1,0 +1,88 @@
+{
+ "file": "phase1/data/evidence/external/e18_anchors_avi.parquet",
+ "genes": [
+  "BAP1",
+  "BARD1",
+  "BRCA1",
+  "BRCA2",
+  "PALB2",
+  "RAD51C",
+  "VHL"
+ ],
+ "set": "anchors",
+ "columns": [
+  "avi",
+  "avi_splice_sites",
+  "avi_splice_site_usage",
+  "avi_splice_junctions"
+ ],
+ "run": "avi",
+ "tool": "AlphaGenome Atlas, client 0.9.0, scorers AVI_SCORE, SPLICE_SITES, SPLICE_SITE_USAGE, SPLICE_JUNCTIONS",
+ "scorer": "phase1/src/evid_score_avi.py::run",
+ "configuration": {
+  "aggregation": "the maximum over tracks and over rows"
+ },
+ "precision": "as returned (float32), stored as float64",
+ "direction": "larger = more damaging, as the analysis set's columns",
+ "same_variable": {
+  "rule": "E18.0 rule 4(a): the run's anchors equal the analysis set's stored values bit for bit",
+  "anchors": "phase1/data/evidence/external/e18_anchors_avi.parquet",
+  "n_anchors": 39,
+  "n_identical": {
+   "avi": 39,
+   "avi_splice_sites": 39,
+   "avi_splice_site_usage": 39,
+   "avi_splice_junctions": 39
+  }
+ },
+ "environment": "phase1/data/evidence/external/e18_anchors_avi.parquet.environment.json",
+ "run_logs": [
+  "scripts/stage_E18/run_log/run_avi_20261023T050549Z.json"
+ ],
+ "cache": {
+  "phase1/data/e18_cache/avi_e18.parquet": "7e56c9303e30fdaf857bf3d305558d7459798407c8653764331e50051a0ae346"
+ },
+ "n": 39,
+ "n_scored": {
+  "avi": 39,
+  "avi_splice_sites": 39,
+  "avi_splice_site_usage": 39,
+  "avi_splice_junctions": 39
+ },
+ "scored_utc_range": [
+  "2026-10-23T05:03:48+00:00",
+  "2026-10-23T05:05:49+00:00"
+ ],
+ "sha256": "25750adec9c37ce1b10a1aeafc8ddb4bff165645a5184eb8be9689ee95ce8681",
+ "segments": [
+  {
+   "start_utc": "2026-10-23T05:03:48+00:00",
+   "end_utc": "2026-10-23T05:05:49+00:00",
+   "errors": [],
+   "scorers_offered": [
+    "ATAC",
+    "ATAC_ACTIVE",
+    "AVI_SCORE",
+    "AVI_SCORE_FEATURE_IMPORTANCE",
+    "AVI_SCORE_MODEL_FEATURES",
+    "CAGE",
+    "CAGE_ACTIVE",
+    "CHIP_HISTONE",
+    "CHIP_HISTONE_ACTIVE",
+    "CHIP_TF",
+    "CHIP_TF_ACTIVE",
+    "CONTACT_MAPS",
+    "DNASE",
+    "DNASE_ACTIVE",
+    "POLYADENYLATION",
+    "PROCAP",
+    "PROCAP_ACTIVE",
+    "RNA_SEQ",
+    "RNA_SEQ_ACTIVE",
+    "SPLICE_JUNCTIONS",
+    "SPLICE_SITES",
+    "SPLICE_SITE_USAGE"
+   ]
+  }
+ ]
+}

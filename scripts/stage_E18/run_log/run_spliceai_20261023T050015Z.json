@@ -1,0 +1,83 @@
+{
+ "script": "scripts/stage_E18/run_spliceai.py",
+ "argv": [
+  "scripts/stage_E18/run_spliceai.py",
+  "--mode",
+  "d50",
+  "--trial"
+ ],
+ "git_commit": "114ccfbc8a4a3e7ad6d3a84c7ed5bd485008d2a0",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/run_spliceai.py": "7d24b4e0b25866cfe429059af52c8cea70a58e40105c917617a094446231e1bd",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.1.3",
+  "pandas": "3.0.5",
+  "anndata": "not installed",
+  "grpcio": "1.83.0",
+  "protobuf": "5.29.6"
+ },
+ "start_utc": "2026-10-23T04:58:58+00:00",
+ "end_utc": "2026-10-23T05:00:15+00:00",
+ "inputs": [
+  {
+   "path": "~/work/functional-standard-atlas/models/spliceai/score_fullprec.py",
+   "bytes": 6100,
+   "sha256": "a5056203b0e941ed7b9b53b1914c769cc42bf2a5b681e994ec6f5e2e7280b970"
+  },
+  {
+   "path": "phase1/data/evidence/external/e18_score_input.parquet",
+   "bytes": 72487,
+   "sha256": "f8bc9c7ca819718a9027618c9fdd872b22545feb790d41c0ba32f779e8a51c3d"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chrX.fa",
+   "bytes": 158641580,
+   "sha256": "2b484a1f1ed4a338ed4c0bb80a17a6a36a63f2c497a1d67881501e8bb1b8b6dd"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/e18_cache/spliceai_d50_trial.tsv",
+   "bytes": 6064,
+   "sha256": "fa30c41387a1cd9240f40700e23212b527318fa7c4f00d6ddec1d62455f6311d"
+  },
+  {
+   "path": "phase1/data/e18_cache/spliceai_d50_trial.environment.json",
+   "bytes": 1786,
+   "sha256": "50d7cb80592918f4d9d34fb9d2b98ee639bfb35c8d359c3799be01e8e81a9ce8"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "anchors": {
+   "column": "spliceai",
+   "n_anchors": 39,
+   "n_checked": 39,
+   "n_identical": 39,
+   "differing": [],
+   "max_abs_diff": 0.0
+  },
+  "throughput": {
+   "seconds": 76.5,
+   "n_scored": 89,
+   "seconds_per_variant": 0.86,
+   "n_full_run": 6706,
+   "processes": 1,
+   "projected_full_run_hours": 1.6,
+   "within_limit": true,
+   "limit_hours": 24.0
+  },
+  "n_scored_this_run": 89
+ }
+}

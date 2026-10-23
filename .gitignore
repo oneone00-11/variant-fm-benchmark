@@ -66,6 +66,9 @@ phase1/data/evidence/refs/
 phase1/data/evidence/label_audit_cache/
 # E17: the AlphaGenome scoring cache (scripts/stage_E17/score_official.py)
 phase1/data/alphagenome_official_cache/
+# E18: the external genes' scoring caches, the copies of the atlas's lookup scorers and
+# Pangolin's gene databases for chromosomes 1, 7 and X (scripts/stage_E18/run_*.py)
+phase1/data/e18_cache/
 
 # Transient scoring checkpoints (removed automatically when a scorer finishes).
 *.partial.parquet

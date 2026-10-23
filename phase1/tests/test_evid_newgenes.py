@@ -661,6 +661,9 @@ E16B_OUTPUTS = ["phase1/data/evidence/external/sbds_raw/manifest.json",
                 "phase1/data/evidence/external/sbds_variants.parquet.provenance.json",
                 "phase1/data/evidence/external/sbds_reference_check.json",
                 "phase1/data/evidence/external/igvf_sbds/manifest.json"]
+# E18's inputs that name SBDS but carry no score: the variant list every E18.2 scorer read
+# (the author's decision of 2026-10-23)
+E18_INPUTS = ["phase1/data/evidence/external/e18_score_input.parquet"]
 # the tagger time of frozen-thresholds-v1, from its tag object
 TAG_UTC = "2026-10-22T16:34:25+00:00"
 
@@ -668,14 +671,17 @@ TAG_UTC = "2026-10-22T16:34:25+00:00"
 def _scored_after(rel: str) -> str | None:
     """The first scoring time an E18 score file records: the file's own record if it
     is one (a provenance or manifest json with scored_utc_range), else the provenance
-    beside it (<file>.provenance.json; for <x>.environment.json, <x>.provenance.json).
-    None when there is no such record."""
+    beside it (<file>.provenance.json; for <x>.environment.json, <x>.provenance.json),
+    or for an assembled table <x>.parquet the manifest beside it (<x>.manifest.json, as
+    newgenes_scored.parquet has). None when there is no such record."""
     path = REPO / rel
     candidates = []
     if path.suffix == ".json" and not rel.endswith(".environment.json"):
         candidates.append(path)
     stem = rel.removesuffix(".environment.json") if rel.endswith(".environment.json") else rel
     candidates.append(REPO / f"{stem}.provenance.json")
+    if rel.endswith(".parquet"):
+        candidates.append(REPO / f"{rel.removesuffix('.parquet')}.manifest.json")
     for c in candidates:
         if c.exists():
             rng = json.loads(c.read_text()).get("scored_utc_range")
@@ -693,8 +699,11 @@ def test_no_predictor_score_for_any_sbds_variant_is_in_the_repository():
     began after the tag frozen-thresholds-v1; and the SBDS labels were built before the
     tag and before any SBDS score. E16b's own files are those its manifests list and the
     files it wrote (E16B_OUTPUTS), not every file named sbds_*: E18's sbds_<column>
-    files are score files. phase1/reports is no longer scanned: from E18's external test
-    on, its outputs carry SBDS results derived from E18's score files."""
+    files are score files. A third kind, named in E18_INPUTS, is an E18 input that lists
+    SBDS's variants and carries no predictor column either, so it needs no scoring time
+    (the author's decision of 2026-10-23). phase1/reports is no longer scanned: from
+    E18's external test on, its outputs carry SBDS results derived from E18's score
+    files."""
     from datetime import datetime
     man = _manifest("SBDS")
     tm = man["transcript_model"]
@@ -755,7 +764,7 @@ def test_no_predictor_score_for_any_sbds_variant_is_in_the_repository():
             why += ["positions of the region"] if any(lo <= p <= hi for p in near) else []
         if why:
             mentions[rel] = why
-        if own(rel):
+        if own(rel) or rel in E18_INPUTS:
             scored += [f"{rel}: {c}" for c in _columns(path)
                        if any(c.lower() == p or c.lower().startswith(p + "_")
                               for p in PREDICTOR_COLUMNS)]
@@ -763,7 +772,9 @@ def test_no_predictor_score_for_any_sbds_variant_is_in_the_repository():
         (EXT / "sbds_variants.parquet.provenance.json").read_text())["built_utc"])
     tagged = datetime.fromisoformat(TAG_UTC)
     assert built < tagged
-    after = {rel: _scored_after(rel) for rel in mentions if not own(rel)}
+    assert all(rel in mentions for rel in E18_INPUTS), "an E18 input no longer names SBDS"
+    after = {rel: _scored_after(rel) for rel in mentions
+             if not own(rel) and rel not in E18_INPUTS}
     assert mentions, "the scan found not even E16b's own files"
     assert all(t is not None for t in after.values()), [r for r, t in after.items() if t is None]
     assert all(datetime.fromisoformat(t) > tagged for t in after.values()), after

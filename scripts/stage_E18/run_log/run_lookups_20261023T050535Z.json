@@ -1,0 +1,189 @@
+{
+ "script": "scripts/stage_E18/run_lookups.py",
+ "argv": [
+  "scripts/stage_E18/run_lookups.py"
+ ],
+ "git_commit": "114ccfbc8a4a3e7ad6d3a84c7ed5bd485008d2a0",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/run_lookups.py": "f229d7efe629c1adcb25546d1642e83375f732f21ebe218a61f50b700baaf52a",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.14",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "0.7.0",
+  "numpy": "2.5.1",
+  "pandas": "3.0.5",
+  "anndata": "0.13.2",
+  "grpcio": "1.83.0",
+  "protobuf": "7.35.1"
+ },
+ "start_utc": "2026-10-23T05:03:47+00:00",
+ "end_utc": "2026-10-23T05:05:35+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/external/e18_score_input.parquet",
+   "bytes": 72487,
+   "sha256": "f8bc9c7ca819718a9027618c9fdd872b22545feb790d41c0ba32f779e8a51c3d"
+  },
+  {
+   "path": "phase1/data/evidence/companion_atlas/atlas/models/cadd/score.py",
+   "bytes": 13348,
+   "sha256": "d8a0cdc86dc7d3fdfd8568d5340b6a9aeb0e0b83e54c86b050b97212686a4025"
+  },
+  {
+   "path": "phase1/data/evidence/companion_atlas/atlas/models/conservation/score.py",
+   "bytes": 7260,
+   "sha256": "d922487466e0fc62a0bb2d9002dbcaa231d41a2157194c5e709796dcd052535c"
+  },
+  {
+   "path": "phase1/data/evidence/companion_atlas/atlas/models/gpn_msa/score.py",
+   "bytes": 10031,
+   "sha256": "406718a01613d995c988213de3fe7b6f2a5ae75ff82fd60335d1a123d08c6890"
+  },
+  {
+   "path": "phase1/data/evidence/companion_atlas/atlas/models/gpn_msa/gpn_scores.tsv.bgz.tbi",
+   "bytes": 2782844,
+   "sha256": "6b5241c207be318d35746db54ec20662ba8ae0e63cb97bd44eab9a53f7deb445"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/e18_cache/lookup_input.parquet",
+   "bytes": 68394,
+   "sha256": "d339f0188f9ef5f04c68a0f564583db58627623d96b8974027907da7dc324f91"
+  },
+  {
+   "path": "phase1/data/e18_cache/lookups.sources.json",
+   "bytes": 1228,
+   "sha256": "0be4fc9bb70c44f537712ceb60a13d08b62e909bf4bb1a7ba671a04749e03980"
+  },
+  {
+   "path": "phase1/data/e18_cache/lookup_cadd.parquet",
+   "bytes": 97836,
+   "sha256": "38057c0acd6b990ec75ec1076f022dd6b4e646e141a0429634359e89ca52f7da"
+  },
+  {
+   "path": "phase1/data/e18_cache/lookup_phylop.parquet",
+   "bytes": 87151,
+   "sha256": "90f47d619a382b609bc081eeb2471621efbb2e73ebdd71842900f20ebcabefd3"
+  },
+  {
+   "path": "phase1/data/e18_cache/lookup_phastcons.parquet",
+   "bytes": 72570,
+   "sha256": "2063649ebb2c34753427865bb87b6e93d3eeb038863361e21a627a86ecf8d28a"
+  },
+  {
+   "path": "phase1/data/e18_cache/lookup_gpn_msa.parquet",
+   "bytes": 83141,
+   "sha256": "39e2f8ed89ca24bc17699976f0406cb9897b416460901d5d5c6aea6d99c69faa"
+  },
+  {
+   "path": "phase1/data/e18_cache/atlas_scorers/cadd/run_log.json",
+   "bytes": 552,
+   "sha256": "c3b559fcb4e563d236c32067af8c7238dd0bb7be95a34a80829796166ebbac5a"
+  },
+  {
+   "path": "phase1/data/e18_cache/atlas_scorers/conservation/run_log_phastcons100way.json",
+   "bytes": 393,
+   "sha256": "413bddc019ed4c2fb2f2ea34cfd8db343355bf8c1a22bc131624aa03f69b8d0f"
+  },
+  {
+   "path": "phase1/data/e18_cache/atlas_scorers/conservation/run_log_phylop100way.json",
+   "bytes": 387,
+   "sha256": "1252b24cb8977ad36df4f14ceb3c492fd5be359879fb9746cb7229b4adb5abb6"
+  },
+  {
+   "path": "phase1/data/e18_cache/atlas_scorers/gpn_msa/run_log.json",
+   "bytes": 441,
+   "sha256": "521cb31528dd3260c8741d07de5017400cea56e646cc1171e12efdb6681bdcfe"
+  },
+  {
+   "path": "phase1/data/e18_cache/lookups.environment.json",
+   "bytes": 2440,
+   "sha256": "65383bfa397ddc504c21637a80749365d406219c86c35fc5f7d8df42924ab560"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "sources": {
+   "read_utc": "2026-10-23T05:03:48+00:00",
+   "gpn_msa": {
+    "url": "https://huggingface.co/datasets/songlab/gpn-msa-hg38-scores/resolve/main/scores.tsv.bgz",
+    "x_repo_commit": "cf1718a926db35d078bcb08b9dcebc803494bf37",
+    "x_linked_size": "37274961495",
+    "x_linked_etag": "\"8ecfbc0553f5f91be1d06cc94b0185b09b45ed1d3f9229007dbaf29f0c41b4ef\""
+   },
+   "cadd": {
+    "api_version": "GRCh38-v1.7",
+    "files": {
+     "https://krishna.gs.washington.edu/download/CADD/v1.7/GRCh38/whole_genome_SNVs.tsv.gz": {
+      "Content-Length": "87473403655",
+      "Last-Modified": "Mon, 29 Jan 2024 12:26:37 GMT",
+      "ETag": "\"145dd23707-61014c1cb9940\""
+     },
+     "https://krishna.gs.washington.edu/download/CADD/v1.7/GRCh38/whole_genome_SNVs.tsv.gz.tbi": {
+      "Content-Length": "2761840",
+      "Last-Modified": "Mon, 29 Jan 2024 12:55:36 GMT",
+      "ETag": "\"2a2470-610152972a200\""
+     }
+    }
+   },
+   "ucsc": {
+    "phyloP100way": {
+     "dataTime": "2015-05-08T16:02:02",
+     "dataTimeStamp": 1431126122,
+     "trackType": "wig -20 7.532",
+     "bigDataUrl": null,
+     "genome": "hg38"
+    },
+    "phastCons100way": {
+     "dataTime": "2015-05-08T10:01:00",
+     "dataTimeStamp": 1431104460,
+     "trackType": "wig 0 1",
+     "bigDataUrl": null,
+     "genome": "hg38"
+    }
+   }
+  },
+  "anchors": {
+   "cadd": {
+    "column": "cadd",
+    "n_anchors": 39,
+    "n_checked": 39,
+    "n_identical": 39,
+    "differing": [],
+    "max_abs_diff": 0.0
+   },
+   "phylop": {
+    "column": "phylop",
+    "n_anchors": 39,
+    "n_checked": 39,
+    "n_identical": 39,
+    "differing": [],
+    "max_abs_diff": 0.0
+   },
+   "phastcons": {
+    "column": "phastcons",
+    "n_anchors": 39,
+    "n_checked": 39,
+    "n_identical": 39,
+    "differing": [],
+    "max_abs_diff": 0.0
+   },
+   "gpn_msa": {
+    "column": "gpn_msa",
+    "n_anchors": 39,
+    "n_checked": 39,
+    "n_identical": 39,
+    "differing": [],
+    "max_abs_diff": 0.0
+   }
+  },
+  "n_scored_cadd": 6418,
+  "n_scored_phylop": 6418,
+  "n_scored_phastcons": 6418,
+  "n_scored_gpn_msa": 6418
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "script": "scripts/stage_E18/run_pangolin.py",
+ "argv": [
+  "scripts/stage_E18/run_pangolin.py",
+  "--trial",
+  "--workers",
+  "6"
+ ],
+ "git_commit": "114ccfbc8a4a3e7ad6d3a84c7ed5bd485008d2a0",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/run_pangolin.py": "f80dc2761d4fcd6daa0f86eac35ee8294d8db0f354e9e7f98b49933568d64f83",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.14",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.5.1",
+  "pandas": "3.0.5",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T04:58:55+00:00",
+ "end_utc": "2026-10-23T05:12:06+00:00",
+ "inputs": [
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/models/pangolin/score_fullprec.py",
+   "bytes": 10145,
+   "sha256": "1e65b2fe82776fb5830f8f397a73979f01c8e9f7b6a629ec291a91ee4d217e40"
+  },
+  {
+   "path": "phase1/data/evidence/external/e18_score_input.parquet",
+   "bytes": 72487,
+   "sha256": "f8bc9c7ca819718a9027618c9fdd872b22545feb790d41c0ba32f779e8a51c3d"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+   "bytes": 798986240,
+   "sha256": "4e01b083fe56f890c5d08fd933c53f6e86f9196fd88a26398c7a0ac4b7f3fc0b"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+   "bytes": 798986240,
+   "sha256": "4e01b083fe56f890c5d08fd933c53f6e86f9196fd88a26398c7a0ac4b7f3fc0b"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+   "bytes": 798986240,
+   "sha256": "4e01b083fe56f890c5d08fd933c53f6e86f9196fd88a26398c7a0ac4b7f3fc0b"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+   "bytes": 798986240,
+   "sha256": "4e01b083fe56f890c5d08fd933c53f6e86f9196fd88a26398c7a0ac4b7f3fc0b"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+   "bytes": 798986240,
+   "sha256": "4e01b083fe56f890c5d08fd933c53f6e86f9196fd88a26398c7a0ac4b7f3fc0b"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chrX.fa",
+   "bytes": 158641580,
+   "sha256": "2b484a1f1ed4a338ed4c0bb80a17a6a36a63f2c497a1d67881501e8bb1b8b6dd"
+  },
+  {
+   "path": "phase1/data/e18_cache/refs/chrX.gtf.db",
+   "bytes": 104771584,
+   "sha256": "edb18776b2a49a980ad029edb497c3889faf0b832c7b8f301abec5eda1b79b34"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/e18_cache/pangolin_trial.tsv",
+   "bytes": 6060,
+   "sha256": "8b76fec70abb3f932948d1f3951960faabd564eccbdedf6d8f613f96167bde13"
+  },
+  {
+   "path": "phase1/data/e18_cache/pangolin_trial.environment.json",
+   "bytes": 2323,
+   "sha256": "b4341eba5533c38534b6a53ee2ef51815f7c353ad8679d1385808d88efb0777b"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "anchors": {
+   "column": "pangolin",
+   "n_anchors": 39,
+   "n_checked": 39,
+   "n_identical": 39,
+   "differing": [],
+   "max_abs_diff": 0.0
+  },
+  "throughput": {
+   "seconds": 784.3,
+   "n_scored": 89,
+   "seconds_per_variant": 8.813,
+   "n_full_run": 6706,
+   "processes": 6,
+   "projected_full_run_hours": 2.74,
+   "within_limit": true,
+   "limit_hours": 24.0
+  },
+  "n_scored_this_run": 89,
+  "n_exceptions": 0
+ }
+}

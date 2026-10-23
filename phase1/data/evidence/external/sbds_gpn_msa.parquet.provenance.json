@@ -1,0 +1,51 @@
+{
+ "file": "phase1/data/evidence/external/sbds_gpn_msa.parquet",
+ "genes": [
+  "SBDS"
+ ],
+ "set": "external",
+ "columns": [
+  "gpn_msa"
+ ],
+ "run": "gpn_msa",
+ "tool": "GPN-MSA hg38 precomputed scores, songlab/gpn-msa-hg38-scores at cf1718a9",
+ "scorer": "the atlas's models/gpn_msa/score.py",
+ "configuration": {
+  "revision": "cf1718a926db35d078bcb08b9dcebc803494bf37"
+ },
+ "precision": "as served",
+ "direction": "gpn_msa = -raw: larger = more damaging, as the analysis set's column",
+ "same_variable": {
+  "rule": "E18.0 rule 4(a): the run's anchors equal the analysis set's stored values bit for bit",
+  "anchors": "phase1/data/evidence/external/e18_anchors_gpn_msa.parquet",
+  "n_anchors": 39,
+  "n_identical": {
+   "gpn_msa": 39
+  }
+ },
+ "source": {
+  "read_utc": "2026-10-23T05:03:48+00:00",
+  "gpn_msa": {
+   "url": "https://huggingface.co/datasets/songlab/gpn-msa-hg38-scores/resolve/main/scores.tsv.bgz",
+   "x_repo_commit": "cf1718a926db35d078bcb08b9dcebc803494bf37",
+   "x_linked_size": "37274961495",
+   "x_linked_etag": "\"8ecfbc0553f5f91be1d06cc94b0185b09b45ed1d3f9229007dbaf29f0c41b4ef\""
+  }
+ },
+ "environment": "phase1/data/evidence/external/sbds_gpn_msa.parquet.environment.json",
+ "run_logs": [
+  "scripts/stage_E18/run_log/run_lookups_20261023T050535Z.json"
+ ],
+ "cache": {
+  "phase1/data/e18_cache/lookup_gpn_msa.parquet": "39e2f8ed89ca24bc17699976f0406cb9897b416460901d5d5c6aea6d99c69faa"
+ },
+ "n": 447,
+ "n_scored": {
+  "gpn_msa": 447
+ },
+ "scored_utc_range": [
+  "2026-10-23T05:03:51+00:00",
+  "2026-10-23T05:05:35+00:00"
+ ],
+ "sha256": "d34f2097bb4f782a0382f40ad7e914ac8b12ce4cfdf329476589e48a4fd9ae02"
+}

@@ -1,0 +1,86 @@
+{
+ "script": "scripts/stage_E18/score_input.py",
+ "argv": [
+  "scripts/stage_E18/score_input.py"
+ ],
+ "git_commit": "114ccfbc8a4a3e7ad6d3a84c7ed5bd485008d2a0",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/score_input.py": "37029c589faf4d0f6e54b9eb23cdcf0dc467a93fde730de7f5af0551252da969",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T04:54:14+00:00",
+ "end_utc": "2026-10-23T04:54:15+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/external/e18_anchors.parquet",
+   "bytes": 15662,
+   "sha256": "5c320fbb9e03374b0087797f4dfe096def8e6d62242447c59b5939ce2879a11c"
+  },
+  {
+   "path": "phase1/data/evidence/external/ddx3x_splice.parquet",
+   "bytes": 106997,
+   "sha256": "cf51a401813aecf6ad6848393d33eef5592f5f5d7a4b55a7d1276869677c2dd1"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_splice_scored_12nt.parquet",
+   "bytes": 69325,
+   "sha256": "b06dc44d13e8d4e2999d625e3d216c8908adac555c2a348120eaeff260210c89"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_variants.parquet",
+   "bytes": 84301,
+   "sha256": "e565e144697a535aedc0fdaf8e8e8de44a4c805ba1901d2d60da01ad37e8c45d"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_variants.parquet",
+   "bytes": 64775,
+   "sha256": "e52d293ccf76693a0dce570adfd58163488752c32de924804e578d100b53b670"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_variants.parquet",
+   "bytes": 80758,
+   "sha256": "7837a3e13ba15c811cf09d89baabc97551905c0cc0b5bc04b35c804e39038135"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_variants.parquet",
+   "bytes": 35801,
+   "sha256": "c12b4dcaacd7da7ba484b21887870f75d773615b9518d687b4fd53dd0217e5b1"
+  },
+  {
+   "path": "phase1/data/evidence/external/sbds_variants.parquet",
+   "bytes": 37413,
+   "sha256": "dbee75889e97a69e6e3fee3b1bdb02173010e37b3efd8ab063e1a2a7f3d53a47"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/external/e18_score_input.parquet",
+   "bytes": 72487,
+   "sha256": "f8bc9c7ca819718a9027618c9fdd872b22545feb790d41c0ba32f779e8a51c3d"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "counts": {
+   "anchor": 39,
+   "DDX3X": 1857,
+   "CTCF": 1370,
+   "RAD51D": 1296,
+   "SFPQ": 1019,
+   "SBDS": 447,
+   "XRCC2": 390,
+   "TP53": 288
+  }
+ }
+}

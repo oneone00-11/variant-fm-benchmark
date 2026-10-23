@@ -1,0 +1,74 @@
+{
+ "file": "phase1/data/evidence/external/e18_anchors_conservation.parquet",
+ "genes": [
+  "BAP1",
+  "BARD1",
+  "BRCA1",
+  "BRCA2",
+  "PALB2",
+  "RAD51C",
+  "VHL"
+ ],
+ "set": "anchors",
+ "columns": [
+  "phylop",
+  "phastcons"
+ ],
+ "run": "conservation",
+ "tool": "UCSC phyloP100way and phastCons100way, hg38 (track API)",
+ "scorer": "the atlas's models/conservation/score.py",
+ "configuration": {
+  "tracks": [
+   "phyloP100way",
+   "phastCons100way"
+  ]
+ },
+ "precision": "as served",
+ "direction": "larger = more conserved = more damaging, as the analysis set's columns",
+ "same_variable": {
+  "rule": "E18.0 rule 4(a): the run's anchors equal the analysis set's stored values bit for bit",
+  "anchors": "phase1/data/evidence/external/e18_anchors_conservation.parquet",
+  "n_anchors": 39,
+  "n_identical": {
+   "phylop": 39,
+   "phastcons": 39
+  }
+ },
+ "source": {
+  "read_utc": "2026-10-23T05:03:48+00:00",
+  "ucsc": {
+   "phyloP100way": {
+    "dataTime": "2015-05-08T16:02:02",
+    "dataTimeStamp": 1431126122,
+    "trackType": "wig -20 7.532",
+    "bigDataUrl": null,
+    "genome": "hg38"
+   },
+   "phastCons100way": {
+    "dataTime": "2015-05-08T10:01:00",
+    "dataTimeStamp": 1431104460,
+    "trackType": "wig 0 1",
+    "bigDataUrl": null,
+    "genome": "hg38"
+   }
+  }
+ },
+ "environment": "phase1/data/evidence/external/e18_anchors_conservation.parquet.environment.json",
+ "run_logs": [
+  "scripts/stage_E18/run_log/run_lookups_20261023T050535Z.json"
+ ],
+ "cache": {
+  "phase1/data/e18_cache/lookup_phastcons.parquet": "2063649ebb2c34753427865bb87b6e93d3eeb038863361e21a627a86ecf8d28a",
+  "phase1/data/e18_cache/lookup_phylop.parquet": "90f47d619a382b609bc081eeb2471621efbb2e73ebdd71842900f20ebcabefd3"
+ },
+ "n": 39,
+ "n_scored": {
+  "phylop": 39,
+  "phastcons": 39
+ },
+ "scored_utc_range": [
+  "2026-10-23T05:03:51+00:00",
+  "2026-10-23T05:05:35+00:00"
+ ],
+ "sha256": "c68d3d95c50d53f2d066669946dcc5b59a038efe23d1d73d0b22bd82b6beaeab"
+}

@@ -1,0 +1,67 @@
+{
+ "script": "scripts/stage_E18/build_pangolin_refs.py",
+ "argv": [
+  "scripts/stage_E18/build_pangolin_refs.py"
+ ],
+ "git_commit": "114ccfbc8a4a3e7ad6d3a84c7ed5bd485008d2a0",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/build_pangolin_refs.py": "ed813837ca151fe0f5a041d3e16559b45ee7fc8d78e3b153a79c54458ddf3241",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.14",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.5.1",
+  "pandas": "3.0.5",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T04:40:00+00:00",
+ "end_utc": "2026-10-23T04:40:27+00:00",
+ "inputs": [
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/Homo_sapiens.GRCh38.112.gtf.gz",
+   "bytes": 55529204,
+   "sha256": "8c87436bab973c871447743c2f5cbb2b557be0523fe6efe3ff33307a4c836002"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/e18_cache/refs/chr1.gtf",
+   "bytes": 141300412,
+   "sha256": "b0740ebf9ec41db89b3ebd2acb1e235ceb38c872d004f8911df0a64b62357fc6"
+  },
+  {
+   "path": "phase1/data/e18_cache/refs/chr1.gtf.db",
+   "bytes": 281907200,
+   "sha256": "4092ee5f17a943a6f49e948c0232c19435a9af7bdebf7327401a441f31880ea6"
+  },
+  {
+   "path": "phase1/data/e18_cache/refs/chr7.gtf",
+   "bytes": 70845449,
+   "sha256": "d0b69f59b7fdc4fea68909608f2c28511b1350b9c4e4108675d19ce9d0b7010e"
+  },
+  {
+   "path": "phase1/data/e18_cache/refs/chr7.gtf.db",
+   "bytes": 141676544,
+   "sha256": "1f9957e70098aa8d48788508eb3b5a69692780bf1f6c19350825aa2a4b474531"
+  },
+  {
+   "path": "phase1/data/e18_cache/refs/chrX.gtf",
+   "bytes": 52648352,
+   "sha256": "983b62fb83e83b25f82a4858d78ee598b4dcc1ea956e79cf3699833f46776afb"
+  },
+  {
+   "path": "phase1/data/e18_cache/refs/chrX.gtf.db",
+   "bytes": 104771584,
+   "sha256": "edb18776b2a49a980ad029edb497c3889faf0b832c7b8f301abec5eda1b79b34"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "chrX_subset_equals_E2.7": true
+ }
+}

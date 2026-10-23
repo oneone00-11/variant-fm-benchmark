@@ -1,0 +1,145 @@
+{
+ "script": "scripts/stage_E18/run_pangolin.py",
+ "argv": [
+  "scripts/stage_E18/run_pangolin.py",
+  "--worker",
+  "0",
+  "--workers",
+  "6"
+ ],
+ "git_commit": "114ccfbc8a4a3e7ad6d3a84c7ed5bd485008d2a0",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/run_pangolin.py": "f80dc2761d4fcd6daa0f86eac35ee8294d8db0f354e9e7f98b49933568d64f83",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.14",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.5.1",
+  "pandas": "3.0.5",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T05:12:19+00:00",
+ "end_utc": "2026-10-23T08:40:47+00:00",
+ "inputs": [
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/models/pangolin/score_fullprec.py",
+   "bytes": 10145,
+   "sha256": "1e65b2fe82776fb5830f8f397a73979f01c8e9f7b6a629ec291a91ee4d217e40"
+  },
+  {
+   "path": "phase1/data/evidence/external/e18_score_input.parquet",
+   "bytes": 72487,
+   "sha256": "f8bc9c7ca819718a9027618c9fdd872b22545feb790d41c0ba32f779e8a51c3d"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr1.fa",
+   "bytes": 253105752,
+   "sha256": "69d1b92c83b9390b26e34986e92afb24680cdc2b44866a0cb356b2087f5841c1"
+  },
+  {
+   "path": "phase1/data/e18_cache/refs/chr1.gtf.db",
+   "bytes": 281907200,
+   "sha256": "4092ee5f17a943a6f49e948c0232c19435a9af7bdebf7327401a441f31880ea6"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+   "bytes": 798986240,
+   "sha256": "4e01b083fe56f890c5d08fd933c53f6e86f9196fd88a26398c7a0ac4b7f3fc0b"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+   "bytes": 798986240,
+   "sha256": "4e01b083fe56f890c5d08fd933c53f6e86f9196fd88a26398c7a0ac4b7f3fc0b"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+   "bytes": 798986240,
+   "sha256": "4e01b083fe56f890c5d08fd933c53f6e86f9196fd88a26398c7a0ac4b7f3fc0b"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+   "bytes": 798986240,
+   "sha256": "4e01b083fe56f890c5d08fd933c53f6e86f9196fd88a26398c7a0ac4b7f3fc0b"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.gtf.db",
+   "bytes": 798986240,
+   "sha256": "4e01b083fe56f890c5d08fd933c53f6e86f9196fd88a26398c7a0ac4b7f3fc0b"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr7.fa",
+   "bytes": 162001796,
+   "sha256": "71b9f38d87ecb8db7067498602e5ae44bc09a6080e276c11a24a3d2933b1ed93"
+  },
+  {
+   "path": "phase1/data/e18_cache/refs/chr7.gtf.db",
+   "bytes": 141676544,
+   "sha256": "1f9957e70098aa8d48788508eb3b5a69692780bf1f6c19350825aa2a4b474531"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chrX.fa",
+   "bytes": 158641580,
+   "sha256": "2b484a1f1ed4a338ed4c0bb80a17a6a36a63f2c497a1d67881501e8bb1b8b6dd"
+  },
+  {
+   "path": "phase1/data/e18_cache/refs/chrX.gtf.db",
+   "bytes": 104771584,
+   "sha256": "edb18776b2a49a980ad029edb497c3889faf0b832c7b8f301abec5eda1b79b34"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/e18_cache/pangolin_w0.tsv",
+   "bytes": 69741,
+   "sha256": "bea7a030125e94c606e72bddeb099bd767442f4f22da1284df2a0c92bbb5c04e"
+  },
+  {
+   "path": "phase1/data/e18_cache/pangolin_w0.environment.json",
+   "bytes": 2523,
+   "sha256": "e0f42b4e92fe97c5ce73261a76ec5590d65194228060fa2bfc5c3790ffe1820e"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "anchors": {
+   "column": "pangolin",
+   "n_anchors": 39,
+   "n_checked": 7,
+   "n_identical": 7,
+   "differing": [],
+   "max_abs_diff": 0.0
+  },
+  "n_scored_this_run": 1118,
+  "n_exceptions": 0
+ }
+}

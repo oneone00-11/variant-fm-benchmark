@@ -1,0 +1,61 @@
+{
+ "file": "phase1/data/evidence/external/ddx3x_cadd_rescored.parquet",
+ "genes": [
+  "DDX3X"
+ ],
+ "set": "external",
+ "columns": [
+  "cadd"
+ ],
+ "run": "cadd",
+ "tool": "CADD GRCh38-v1.7, the precomputed whole-genome SNV file (remote tabix)",
+ "scorer": "the atlas's models/cadd/score.py",
+ "configuration": {
+  "source": "precomputed",
+  "mirror": "US"
+ },
+ "precision": "as served (PHRED as printed in the file)",
+ "direction": "larger = more damaging, as the analysis set's column",
+ "same_variable": {
+  "rule": "E18.0 rule 4(a): the run's anchors equal the analysis set's stored values bit for bit",
+  "anchors": "phase1/data/evidence/external/e18_anchors_cadd.parquet",
+  "n_anchors": 39,
+  "n_identical": {
+   "cadd": 39
+  }
+ },
+ "source": {
+  "read_utc": "2026-10-23T05:03:48+00:00",
+  "cadd": {
+   "api_version": "GRCh38-v1.7",
+   "files": {
+    "https://krishna.gs.washington.edu/download/CADD/v1.7/GRCh38/whole_genome_SNVs.tsv.gz": {
+     "Content-Length": "87473403655",
+     "Last-Modified": "Mon, 29 Jan 2024 12:26:37 GMT",
+     "ETag": "\"145dd23707-61014c1cb9940\""
+    },
+    "https://krishna.gs.washington.edu/download/CADD/v1.7/GRCh38/whole_genome_SNVs.tsv.gz.tbi": {
+     "Content-Length": "2761840",
+     "Last-Modified": "Mon, 29 Jan 2024 12:55:36 GMT",
+     "ETag": "\"2a2470-610152972a200\""
+    }
+   }
+  }
+ },
+ "environment": "phase1/data/evidence/external/ddx3x_cadd_rescored.parquet.environment.json",
+ "run_logs": [
+  "scripts/stage_E18/run_log/run_lookups_20261023T050535Z.json"
+ ],
+ "cache": {
+  "phase1/data/e18_cache/lookup_cadd.parquet": "38057c0acd6b990ec75ec1076f022dd6b4e646e141a0429634359e89ca52f7da"
+ },
+ "n": 1857,
+ "n_scored": {
+  "cadd": 1857
+ },
+ "scored_utc_range": [
+  "2026-10-23T05:03:51+00:00",
+  "2026-10-23T05:05:35+00:00"
+ ],
+ "sha256": "034f15a9584a85944e3e850fed1718a7aa004a8d24cdff29b633b78f1ac52842"
+}

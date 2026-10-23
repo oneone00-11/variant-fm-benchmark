@@ -1,0 +1,82 @@
+{
+ "script": "scripts/stage_E18/run_spliceai.py",
+ "argv": [
+  "scripts/stage_E18/run_spliceai.py",
+  "--mode",
+  "d50"
+ ],
+ "git_commit": "114ccfbc8a4a3e7ad6d3a84c7ed5bd485008d2a0",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/run_spliceai.py": "7d24b4e0b25866cfe429059af52c8cea70a58e40105c917617a094446231e1bd",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.1.3",
+  "pandas": "3.0.5",
+  "anndata": "not installed",
+  "grpcio": "1.83.0",
+  "protobuf": "5.29.6"
+ },
+ "start_utc": "2026-10-23T05:03:51+00:00",
+ "end_utc": "2026-10-23T08:26:35+00:00",
+ "inputs": [
+  {
+   "path": "~/work/functional-standard-atlas/models/spliceai/score_fullprec.py",
+   "bytes": 6100,
+   "sha256": "a5056203b0e941ed7b9b53b1914c769cc42bf2a5b681e994ec6f5e2e7280b970"
+  },
+  {
+   "path": "phase1/data/evidence/external/e18_score_input.parquet",
+   "bytes": 72487,
+   "sha256": "f8bc9c7ca819718a9027618c9fdd872b22545feb790d41c0ba32f779e8a51c3d"
+  },
+  {
+   "path": "~/Documents/kimi/workspace/functional-standard-atlas/data/refs/grch38_subset.fa",
+   "bytes": 740590309,
+   "sha256": "ee51309debd10a2e16952bffdffde358160d71cae699f609710960eb28e9c811"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr1.fa",
+   "bytes": 253105752,
+   "sha256": "69d1b92c83b9390b26e34986e92afb24680cdc2b44866a0cb356b2087f5841c1"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chr7.fa",
+   "bytes": 162001796,
+   "sha256": "71b9f38d87ecb8db7067498602e5ae44bc09a6080e276c11a24a3d2933b1ed93"
+  },
+  {
+   "path": "phase1/data/evidence/refs/chrX.fa",
+   "bytes": 158641580,
+   "sha256": "2b484a1f1ed4a338ed4c0bb80a17a6a36a63f2c497a1d67881501e8bb1b8b6dd"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/e18_cache/spliceai_d50.tsv",
+   "bytes": 417242,
+   "sha256": "84d5007d6372a8c10c5f870a319a73770a9763d614e0ba626bb9299308a30f4d"
+  },
+  {
+   "path": "phase1/data/e18_cache/spliceai_d50.environment.json",
+   "bytes": 2031,
+   "sha256": "5898ab74b38525362a0160567242c4107de16670f8a56fa30f69082ed832856c"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "anchors": {
+   "column": "spliceai",
+   "n_anchors": 39,
+   "n_checked": 39,
+   "n_identical": 39,
+   "differing": [],
+   "max_abs_diff": 0.0
+  },
+  "n_scored_this_run": 6706
+ }
+}

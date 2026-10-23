@@ -1,0 +1,52 @@
+{
+ "file": "phase1/data/evidence/external/sfpq_pangolin.parquet",
+ "genes": [
+  "SFPQ"
+ ],
+ "set": "external",
+ "columns": [
+  "pangolin"
+ ],
+ "run": "pangolin",
+ "tool": "Pangolin at git 5cf94b8 (torch 2.13.0, CPU, one thread)",
+ "scorer": "the atlas's models/pangolin/score_fullprec.py",
+ "configuration": {
+  "distance": 50,
+  "mask": "True (Pangolin's default)",
+  "score_definition": "max(splice gain, |splice loss|) over the transcript records"
+ },
+ "precision": "full float precision (the two round(..., 2) removed)",
+ "direction": "larger = more damaging, as the analysis set's column",
+ "same_variable": {
+  "rule": "E18.0 rule 4(a): the run's anchors equal the analysis set's stored values bit for bit",
+  "anchors": "phase1/data/evidence/external/e18_anchors_pangolin.parquet",
+  "n_anchors": 39,
+  "n_identical": {
+   "pangolin": 39
+  }
+ },
+ "environment": "phase1/data/evidence/external/sfpq_pangolin.parquet.environment.json",
+ "run_logs": [
+  "scripts/stage_E18/run_log/run_pangolin_20261023T084040Z.json",
+  "scripts/stage_E18/run_log/run_pangolin_20261023T084044Z.json",
+  "scripts/stage_E18/run_log/run_pangolin_20261023T084047Z.json",
+  "scripts/stage_E18/run_log/run_pangolin_20261023T084049Z.json"
+ ],
+ "cache": {
+  "phase1/data/e18_cache/pangolin_w0.tsv": "bea7a030125e94c606e72bddeb099bd767442f4f22da1284df2a0c92bbb5c04e",
+  "phase1/data/e18_cache/pangolin_w1.tsv": "c0ec6ff88a758adb442ed1f3ac8bfa61f609e2a2af15d9bf3358b96dc4f79042",
+  "phase1/data/e18_cache/pangolin_w2.tsv": "0175e16445a202b0797fffe887cc5dcb55d4749a5c7df96dd88b46434a2a4fa9",
+  "phase1/data/e18_cache/pangolin_w3.tsv": "f0f66567a9d143c60e36f3ed0aadfe66d5d26ca27344ee3c9c55873128bde7f4",
+  "phase1/data/e18_cache/pangolin_w4.tsv": "fed39af40413b72643c0e527b278b214fc896b063a42017a8b2acc23fe94f5af",
+  "phase1/data/e18_cache/pangolin_w5.tsv": "c1e5a5f3e11eaf5f1257216509746755a0de95557e1de57439b4bd72399c4fae"
+ },
+ "n": 1019,
+ "n_scored": {
+  "pangolin": 1019
+ },
+ "scored_utc_range": [
+  "2026-10-23T07:38:53+00:00",
+  "2026-10-23T07:59:49+00:00"
+ ],
+ "sha256": "cd634dcbdca4fff10bdfba432679733401e55b5efbd72017071d89ea9e7abe8e"
+}
