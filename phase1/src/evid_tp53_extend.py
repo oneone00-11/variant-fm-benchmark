@@ -926,10 +926,12 @@ def ensure_events(sub: pd.DataFrame, atlas: Path, offline: bool) -> dict:
     if not _identical(evi.loc[sub["variant_id"], "spliceai_event_max"],
                       sub.set_index("variant_id")["spliceai_walker"]).all():
         raise SystemExit("[tp53-12nt] event maxima disagree with the Walker column")
+    from .evid_external import TP53_PRIMARY_LABEL_NAME as label    # its name (E18.4)
+    label = label[0].lower() + label[1:]
     return {"subset": _rel(SUBSET_OUT), "subset_sha256": sha256_file(SUBSET_OUT),
             "events": _rel(EVENTS_OUT), "events_sha256": sha256_file(EVENTS_OUT),
             "rule": ("spliceai_walker >= the Walker PP3 cut point (config/walker2023.yaml) "
-                     "and func_pathogenicity <= 0 (control-anchored label normal), "
+                     f"and func_pathogenicity <= 0 (normal under the {label} label), "
                      "as evid_inframe.external_subset"),
             "n_subset": int(len(sub)),
             "by_stratum": {k: int(v) for k, v in sub["stratum"].value_counts().sort_index().items()},

@@ -1,0 +1,152 @@
+{
+ "commit": "E18.4",
+ "reason": "TP53's primary label is named for the published ranges it equals variant by variant: 'Published range (urn:mavedb:00001277-a-1)' (scripts/stage_E18/check_tp53_ranges.py; phase1/data/evidence/external/tp53_raw/); its column keeps its name, and the two constructed labels stay as sensitivity labels",
+ "declared_from": "E18.4: only the text of TP53's label name changes, every number byte for byte the same. The outputs that print the name: Supplementary Tables S1, S12 and S13 and Figures 1 and 4; with them the supplement manifest's hashes of those tables, and, declared beforehand by the author's decision of 2026-10-23, any manifest entry of a source this scope declares; the figures write the label's short form, as they write DDX3X's, with the URN in the caption (the author's decision of 2026-10-23)",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/supplement/tableS1_functional_standards.csv": {
+   "kind": "rows",
+   "key": [
+    "Gene"
+   ],
+   "gene": "Gene",
+   "tool": "Gene",
+   "fields": [],
+   "renames": [
+    [
+     "Control-anchored",
+     "Published range (urn:mavedb:00001277-a-1)"
+    ]
+   ],
+   "rename_where": {
+    "Gene": "TP53"
+   }
+  },
+  "phase1/reports/evidence/supplement/tableS12_external_genes.csv": {
+   "kind": "rows",
+   "key": [
+    "Gene",
+    "Label definition",
+    "Stratum (intronic offset, bp)",
+    "Tool"
+   ],
+   "gene": "Gene",
+   "tool": "Tool",
+   "fields": [],
+   "renames": [
+    [
+     "Control-anchored",
+     "Published range (urn:mavedb:00001277-a-1)"
+    ]
+   ],
+   "rename_where": {
+    "Gene": "TP53",
+    "Label definition": "Control-anchored"
+   }
+  },
+  "phase1/reports/evidence/supplement/tableS13_inframe_attribution.csv": {
+   "kind": "rows",
+   "key": [
+    "Gene set",
+    "Label definition",
+    "Events read from",
+    "Variant subset",
+    "Stratum (intronic offset, bp)"
+   ],
+   "gene": "Gene set",
+   "tool": "Events read from",
+   "fields": [],
+   "renames": [
+    [
+     "Control-anchored",
+     "Published range (urn:mavedb:00001277-a-1)"
+    ],
+    [
+     "control-anchored",
+     "published range (urn:mavedb:00001277-a-1)"
+    ]
+   ],
+   "rename_where": {
+    "Gene set": "TP53",
+    "Label definition": "Control-anchored"
+   }
+  },
+  "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+   "kind": "fields",
+   "key": [
+    "File"
+   ],
+   "sources_in_scope": true,
+   "rows": {
+    "tableS1_functional_standards.csv": [
+     "File sha256"
+    ],
+    "tableS12_external_genes.csv": [
+     "File sha256"
+    ],
+    "tableS13_inframe_attribution.csv": [
+     "File sha256"
+    ]
+   }
+  },
+  "phase1/reports/evidence/figures/figure1.png": {
+   "kind": "file",
+   "why": "Figure 1 names TP53's label beside its rows, in the figures' short form 'published range'"
+  },
+  "phase1/reports/evidence/figures/figure1.pdf": {
+   "kind": "file",
+   "why": "Figure 1 names TP53's label beside its rows, in the figures' short form 'published range'"
+  },
+  "phase1/reports/evidence/figures/figure4.png": {
+   "kind": "file",
+   "why": "Figure 4 names TP53's label in its panel title, in the figures' short form 'published range'"
+  },
+  "phase1/reports/evidence/figures/figure4.pdf": {
+   "kind": "file",
+   "why": "Figure 4 names TP53's label in its panel title, in the figures' short form 'published range'"
+  },
+  "phase1/reports/evidence/fig_data/fig1_draft.png": {
+   "kind": "file",
+   "why": "the draft of Figure 1, if it prints the label"
+  },
+  "phase1/reports/evidence/fig_data/fig4_draft.png": {
+   "kind": "file",
+   "why": "the draft of Figure 4, if it prints the label"
+  },
+  "phase1/data/evidence/external/tp53_raw/manifest.json": {
+   "kind": "file",
+   "why": "the record E18.4 commits: the score set's metadata and score table as served, their manifest, and the check row by row"
+  },
+  "phase1/data/evidence/external/tp53_raw/scoreset_meta.json": {
+   "kind": "file",
+   "why": "the record E18.4 commits: the score set's metadata and score table as served, their manifest, and the check row by row"
+  },
+  "phase1/data/evidence/external/tp53_raw/urn_mavedb_00001277-a-1.csv": {
+   "kind": "file",
+   "why": "the record E18.4 commits: the score set's metadata and score table as served, their manifest, and the check row by row"
+  },
+  "phase1/data/evidence/external/tp53_raw/range_check.json": {
+   "kind": "file",
+   "why": "the record E18.4 commits: the score set's metadata and score table as served, their manifest, and the check row by row"
+  },
+  "phase1/data/evidence/external/tp53_raw/range_check.tsv": {
+   "kind": "file",
+   "why": "the record E18.4 commits: the score set's metadata and score table as served, their manifest, and the check row by row"
+  },
+  "phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json": {
+   "kind": "json",
+   "paths": [
+    [
+     "inframe",
+     "rule"
+    ],
+    [
+     "inputs_sha256",
+     "phase1/src/evid_tp53_extend.py"
+    ]
+   ],
+   "why": "the in-frame subset's rule names TP53's primary label; it now reads its name, and the record's hash of the code that writes it follows"
+  }
+ },
+ "amended_after_check": "2026-10-23: check_scope.py reported two changes outside this scope as first declared, both omitted from it though inside E18.4: the five new files of tp53_raw/, the record E18.4 commits; and, in Supplementary Table S13, the label's name in lower case inside TP53's 'Variant subset' text. With the lower-case form renamed too, S13's TP53 rows are otherwise byte for byte the previous commit's. By the author's decision of 2026-10-23 both were added. Then the case-insensitive search of every output the author asked for found one more place that names TP53's primary label the old way: the in-frame subset's rule in the TP53 table's manifest ('control-anchored label normal'). It now reads the name from the same mapping; its two fields that change were added."
+}

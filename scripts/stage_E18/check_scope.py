@@ -9,9 +9,13 @@ scope file (scripts/stage_E18/scope_<commit>.json), in one of three ways:
   "rows"    a table keyed by its declared key columns; every row added, removed or
             changed must belong to a declared (gene, tool) pair of the scope, and a
             changed row may change only the declared fields ("*": any); a table of one
-            gene with no gene column declares the gene ("gene_const");
+            gene with no gene column declares the gene ("gene_const"); a declared rename
+            ("renames", in the rows "rename_where" selects) is applied to the previous
+            commit's rows first, so that a renamed label leaves no other difference;
   "fields"  a table keyed the same way, of which only the declared rows' declared
-            fields may change (the supplement manifest's hash of an input, say);
+            fields may change (the supplement manifest's hash of an input, say); with
+            "sources_in_scope", a row's "; "-joined source hashes may also change in the
+            entry of any file this scope declares (a hash that follows a declared change);
   "lines"   a text, of which only the lines matching a declared pattern may change,
             appear or go (a sentence derived from the external rows);
   "json"    a JSON record, of which only the declared fields may change, each a path of
@@ -110,6 +114,14 @@ def check_rows(path: str, decl: dict, old: pd.DataFrame | None, new: pd.DataFram
         tool = labels.get(tool, tool) if decl.get("tool_labels") else tool
         return tool in pairs.get(gene_const or row[gene_col], [])
 
+    if old is not None and decl.get("renames"):
+        old = old.copy()
+        where = pd.Series(True, index=old.index)
+        for col, val in decl.get("rename_where", {}).items():
+            where &= old[col] == val
+        for col in old.columns:
+            for a_, b_ in decl["renames"]:
+                old.loc[where, col] = old.loc[where, col].str.replace(a_, b_, regex=False)
     a, b = keyed(old), keyed(new)
     out = {"added": 0, "removed": 0, "changed": 0, "outside": []}
     for k in sorted(set(a) | set(b), key=str):
@@ -136,7 +148,13 @@ def check_rows(path: str, decl: dict, old: pd.DataFrame | None, new: pd.DataFram
     return out
 
 
-def check_fields(path: str, decl: dict, old: pd.DataFrame | None, new: pd.DataFrame | None) -> dict:
+def check_fields(path: str, decl: dict, old: pd.DataFrame | None, new: pd.DataFrame | None,
+                 in_scope: set[str] = frozenset()) -> dict:
+    """Only the declared fields of the declared rows may change. A row's declaration is a
+    list of fields (any change in them) or {field: [source, ...]}: of that field's
+    "; "-joined list, one entry per source named in parts_from, only those sources'
+    entries may change. With sources_in_scope, every row's "Source sha256" may also
+    change in the entry of any file this scope declares."""
     key = decl["key"]
     ka = {tuple(r[k] for k in key): r for _, r in old.iterrows()}
     kb = {tuple(r[k] for k in key): r for _, r in new.iterrows()}
@@ -144,28 +162,33 @@ def check_fields(path: str, decl: dict, old: pd.DataFrame | None, new: pd.DataFr
     if set(ka) != set(kb) or list(old.columns) != list(new.columns):
         out["outside"].append({"rows_or_columns_differ": True})
         return out
-    allowed = {tuple([r]) if isinstance(r, str) else tuple(r): f for r, f in decl["rows"].items()}
+    declared = {tuple([r]) if isinstance(r, str) else tuple(r): f for r, f in decl["rows"].items()}
     parts_from = decl.get("parts_from", "Source files")
     for k in ka:
         diff = [c for c in old.columns if ka[k][c] != kb[k][c]]
         if not diff:
             continue
         out["changed"] += 1
-        spec = allowed.get(k, [])
+        spec = declared.get(k, [])
+        whole = set(spec) if isinstance(spec, list) else set()
+        parts = {f: set(v) for f, v in spec.items()} if isinstance(spec, dict) else {}
+        if decl.get("sources_in_scope") and "Source sha256" not in whole:
+            parts["Source sha256"] = parts.get("Source sha256", set()) | set(in_scope)
         for c in diff:
-            if isinstance(spec, dict) and c in spec:
-                # a "; "-joined list, one entry per source named in parts_from: only the
-                # declared sources' entries may change
-                names = [x.strip() for x in str(kb[k][parts_from]).split(";")]
-                pa, pb = str(ka[k][c]).split("; "), str(kb[k][c]).split("; ")
-                if not (len(pa) == len(pb) == len(names)) or ka[k][parts_from] != kb[k][parts_from]:
-                    out["outside"].append({"key": list(k), "field": c, "parts": "list changed"})
-                    continue
-                moved = [n for n, x, y in zip(names, pa, pb) if x != y]
-                if not set(moved) <= set(spec[c]):
-                    out["outside"].append({"key": list(k), "field": c, "parts": moved})
-            elif c not in spec:
+            if c in whole:
+                continue
+            if c not in parts:
                 out["outside"].append({"key": list(k), "fields": [c]})
+                continue
+            names = [x.strip() for x in str(kb[k][parts_from]).split(";")]
+            pa, pb = str(ka[k][c]).split("; "), str(kb[k][c]).split("; ")
+            if not (len(pa) == len(pb) == len(names)) or ka[k][parts_from] != kb[k][parts_from]:
+                out["outside"].append({"key": list(k), "field": c, "parts": "list changed"})
+                continue
+            moved = [n for n, x, y in zip(names, pa, pb) if x != y]
+            if not set(moved) <= parts[c]:
+                out["outside"].append({"key": list(k), "field": c,
+                                       "parts": sorted(set(moved) - parts[c])})
     return out
 
 
@@ -241,7 +264,7 @@ def main() -> None:
             elif kind == "json":
                 r = check_json(decl, a, b)
             else:
-                r = check_fields(p, decl, _table(a), _table(b))
+                r = check_fields(p, decl, _table(a), _table(b), set(scope["files"]))
             r["status"] = "OUTSIDE" if r["outside"] else "within the scope"
             report[p] = r
             if r["outside"]:

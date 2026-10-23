@@ -151,10 +151,18 @@ GENE_SET_LABEL = {"all_genes": "Seven genes", "no_BRCA1": "Without BRCA1"}
 LABEL_NAME = {"y_deposit": "Deposit classification",
               "y_control_anchored_gated": "Control-anchored, gated",
               "y_control_anchored": "Control-anchored", "y_fdr": "FDR",
-              # evid_inframe's name for TP53's control-anchored label
-              "y_tp53_control_anchored": "Control-anchored",
+              # evid_inframe's name for TP53's control-anchored label, which is named for
+              # the published ranges it equals (E18.4)
+              "y_tp53_control_anchored": EXT.TP53_PRIMARY_LABEL_NAME,
               "y_median_split": "Median split",
               "y_mid_band_excluded": "Mid-band excluded"}
+# TP53's primary label is named for the published ranges it equals (E18.4); DDX3X's
+# control-anchored label, a sensitivity label, keeps its name
+LABEL_NAME_FOR = {("TP53", "y_control_anchored"): EXT.TP53_PRIMARY_LABEL_NAME}
+
+
+def label_name(lab: str, gene: str | None = None) -> str:
+    return LABEL_NAME_FOR.get((gene, lab), LABEL_NAME[lab])
 
 # What each panel column is, in words. Numbers belong to the configuration column,
 # which reads them from the provenance files.
@@ -628,12 +636,12 @@ def s1() -> tuple[pd.DataFrame, list[Path]]:
         "Published class field": ("None published; labels constructed from the "
                                   "relative fitness score (RFS)"),
         "Classes mapped to damaging": (
-            f"{LABEL_NAME['y_control_anchored']} (primary): RFS > {c0}. "
+            f"{label_name('y_control_anchored', 'TP53')} (primary): RFS > {c0}. "
             f"{LABEL_NAME['y_median_split']}: RFS above the median of the analysed "
             f"variants ({fmt_sig(med, 3)}). {LABEL_NAME['y_mid_band_excluded']}: "
             f"RFS > {c0} with |RFS| ≥ {c1}"),
         "Classes mapped to normal": (
-            f"{LABEL_NAME['y_control_anchored']}: RFS ≤ {c0}. "
+            f"{label_name('y_control_anchored', 'TP53')}: RFS ≤ {c0}. "
             f"{LABEL_NAME['y_median_split']}: RFS at or below the median. "
             f"{LABEL_NAME['y_mid_band_excluded']}: RFS ≤ {c0} with |RFS| ≥ {c1}"),
         "Classes mapped to missing": (
@@ -646,7 +654,7 @@ def s1() -> tuple[pd.DataFrame, list[Path]]:
         "Normal": str(cnt["y_control_anchored"]["normal"]),
         "Not labelled": str(cnt["y_control_anchored"]["missing"]),
         "Note": "Counts are for the primary definition. " + "; ".join(
-            f"{LABEL_NAME[c]}: {v['damaging']} damaging, {v['normal']} normal"
+            f"{label_name(c, 'TP53')}: {v['damaging']} damaging, {v['normal']} normal"
             for c, v in cnt.items()) + ".",
     })
     srcs = [SET_PATH, SET_MANIFEST, REPORTS / "set_counts.csv",
@@ -1337,7 +1345,7 @@ def s12() -> tuple[pd.DataFrame, list[Path]]:
                     notes = []
                     if not ok:
                         notes.append(f"Not evaluable: {r.reason}")
-                    row = {"Gene": gene, "Label definition": LABEL_NAME[lab],
+                    row = {"Gene": gene, "Label definition": label_name(lab, gene),
                            "Stratum (intronic offset, bp)": _ext_band(gene, st),
                            "Tool": _tool(tool),
                            "Damaging": fmt_int(r.n_pos), "Normal": fmt_int(r.n_neg),
@@ -1434,7 +1442,7 @@ def s13() -> tuple[pd.DataFrame, list[Path]]:
             if lab is None:
                 normal = "assay normal"
             else:
-                word = LABEL_NAME[lab]
+                word = label_name(lab, gene)
                 word = word if word.isupper() else word[0].lower() + word[1:]
                 normal = f"normal under the {word} label"
             for tool in ("spliceai", "pangolin"):
@@ -1454,7 +1462,7 @@ def s13() -> tuple[pd.DataFrame, list[Path]]:
                         resolved = int(r.in_frame + r.out_of_frame)
                         rows.append({
                             "Gene set": name,
-                            "Label definition": "" if lab is None else LABEL_NAME[lab],
+                            "Label definition": "" if lab is None else label_name(lab, gene),
                             "Events read from": _tool(tool) if tool != "spliceai"
                             else _tool(col[0]),
                             "Variant subset": f"{_tool(col[0])} ≥ {pp3} and {normal}",

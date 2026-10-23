@@ -1,0 +1,41 @@
+{
+ "urn": "urn:mavedb:00001277-a-1",
+ "label_name": "Published range (urn:mavedb:00001277-a-1)",
+ "rows_e7_reads": 288,
+ "covered": 288,
+ "same_coordinates": 288,
+ "same_label": 288,
+ "classes": {
+  "Functionally Normal": 224,
+  "Functionally Abnormal": 64
+ },
+ "calibration": {
+  "title": "Investigator-provided functional ranges",
+  "investigatorProvided": true,
+  "ranges": [
+   {
+    "label": "Functionally Normal",
+    "functionalClassification": "normal",
+    "range": [
+     null,
+     0.0
+    ],
+    "inclusiveLowerBound": false,
+    "inclusiveUpperBound": true
+   },
+   {
+    "label": "Functionally Abnormal",
+    "functionalClassification": "abnormal",
+    "range": [
+     0.0,
+     null
+    ],
+    "inclusiveLowerBound": false,
+    "inclusiveUpperBound": false
+   }
+  ]
+ },
+ "mapping": "evid_newgenes' route (E16): the atlas mapping module, Mutalyzer model of NM_000546.6, the MANE Select partner's Ensembl lookup, the reference base checked against the cached Ensembl slice; offline",
+ "not_done": "the cross-check against MaveDB's mapped-variant records: their file is 40.4 MB, above the 25 MB limit; replaced by 288/288 coordinates identical (the author's decision of 2026-10-23)",
+ "file": "phase1/data/evidence/external/tp53_raw/range_check.tsv"
+}

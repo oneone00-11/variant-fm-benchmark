@@ -24,6 +24,8 @@
 # gene's and each run's score files with their records, and the five further genes' table.
 # Then NT's run on the original GPU, whose anchors did not hold: its evidence as served,
 # the anchor check and the record (nt_gpu_run/).
+# Then TP53's published classification ranges: urn:mavedb:00001277-a-1's metadata and
+# score table as served, and their check against E7's label row by row (tp53_raw/).
 phase1/data/evidence/FROZEN_AT_TAG.json
 phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json
 phase1/data/evidence/alphagenome_official/ENVIRONMENT.json
@@ -318,6 +320,11 @@ phase1/data/evidence/external/tp53_inframe_subset.parquet
 phase1/data/evidence/external/tp53_pangolin_rescored.parquet
 phase1/data/evidence/external/tp53_pangolin_rescored.parquet.environment.json
 phase1/data/evidence/external/tp53_pangolin_rescored.parquet.provenance.json
+phase1/data/evidence/external/tp53_raw/manifest.json
+phase1/data/evidence/external/tp53_raw/range_check.json
+phase1/data/evidence/external/tp53_raw/range_check.tsv
+phase1/data/evidence/external/tp53_raw/scoreset_meta.json
+phase1/data/evidence/external/tp53_raw/urn_mavedb_00001277-a-1.csv
 phase1/data/evidence/external/tp53_spliceai_rescored.parquet
 phase1/data/evidence/external/tp53_spliceai_rescored.parquet.environment.json
 phase1/data/evidence/external/tp53_spliceai_rescored.parquet.provenance.json

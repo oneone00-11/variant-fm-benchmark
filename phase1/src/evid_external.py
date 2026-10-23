@@ -127,6 +127,15 @@ _PRO_NON = re.compile(r"p\.[A-Za-z]{3}\d+(Ter|\*)")
 FDR_CUT = 0.01
 # TP53 to |offset| 12: the archived 192 rows plus the 96 scored by evid_tp53_extend
 TP53_TABLE = EXT_DIR / "tp53_splice_scored_12nt.parquet"
+# E18.4: the name TP53's primary label carries in every output. Its construction in
+# _load_external (relative fitness score > 0) is, variant by variant, the classification
+# by the investigator-provided ranges of urn:mavedb:00001277-a-1: all 288 rows E7 reads,
+# at their own coordinates (scripts/stage_E18/check_tp53_ranges.py; tp53_raw/). So the
+# label is named for the published ranges; its column keeps the name y_control_anchored.
+TP53_PRIMARY_LABEL_NAME = "Published range (urn:mavedb:00001277-a-1)"
+# The figures' short form, written as they write DDX3X's ("deposit label", "deposit
+# classification"); the URN goes into the caption (the author's decision of 2026-10-23)
+TP53_PRIMARY_LABEL_SHORT = "published range"
 
 
 def stratum_of(offset: int) -> str:

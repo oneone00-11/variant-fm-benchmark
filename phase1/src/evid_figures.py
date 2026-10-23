@@ -45,6 +45,7 @@ import pandas as pd  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 
 from . import evid_common as K  # noqa: E402
+from . import evid_external as X  # noqa: E402
 
 REPORT_DIR = Path("reports/evidence")
 FIG_DATA = REPORT_DIR / "fig_data"
@@ -218,7 +219,7 @@ def figure1() -> None:
                 rows.append((y, ARM_LABEL[arm], None, r.iloc[0])); y += 1
         y += 0.4
     for gene, lab in (("DDX3X", "deposit label"),
-                      ("TP53", "control-anchored label")):
+                      ("TP53", X.TP53_PRIMARY_LABEL_SHORT)):
         g = ext[ext.gene == gene]
         if not len(g):
             continue
@@ -528,7 +529,7 @@ def figure4() -> None:
                     draw(tier, t["lr_at_logo_threshold"],
                          t.get("lr_at_logo_threshold_lo", np.nan),
                          t.get("lr_at_logo_threshold_hi", np.nan))
-        lab = "deposit classification" if gene == "DDX3X" else "control-anchored label"
+        lab = "deposit classification" if gene == "DDX3X" else X.TP53_PRIMARY_LABEL_SHORT
         ax.set_title(f"{_it(gene)}, {_band_label(gene, st)}, {lab}", loc="left", pad=11)
         ax.set_xlabel("Likelihood ratio in the external gene")
         _logfmt(ax)

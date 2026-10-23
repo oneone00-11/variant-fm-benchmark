@@ -295,7 +295,7 @@ def test_every_printed_threshold_selects_the_fitted_band(monkeypatch):
         for _, r in s12[s12.Gene == gene].iterrows():
             tool, st = tools[r["Tool"]], band[r["Stratum (intronic offset, bp)"]]
             lab = [x for x in ext.label_definition.unique()
-                   if S.LABEL_NAME[x] == r["Label definition"]]
+                   if S.label_name(x, gene) == r["Label definition"]]
             row = ext[(ext.label_definition == lab[0]) & (ext.stratum == st) & (ext.tool == tool)]
             assert len(lab) == 1 and len(row) == 1, (gene, r["Label definition"], st, tool)
             sub = scored[scored.stratum != "pm12"] if st == "s3_50" else scored[scored.stratum == st]

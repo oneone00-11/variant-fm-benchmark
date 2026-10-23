@@ -120,3 +120,41 @@ def test_licence_data_names_every_score_file_stage_e18_committed():
     assert "nt_gpu_run/anchor_check.tsv" in sec1
     for f in ("external_scores.tsv", "drift_2b_start_scores.tsv", "drift_2b_end_scores.tsv"):
         assert f in sec2, f
+
+
+# --------------------------------------------------------------------------
+# E18.4: TP53's primary label is named for the published ranges it equals
+# --------------------------------------------------------------------------
+TP53_RAW = EXT / "tp53_raw"
+
+
+def test_the_published_ranges_reproduce_tp53s_label_row_for_row():
+    import hashlib
+    man = json.loads((TP53_RAW / "manifest.json").read_text())
+    assert man["urn"] == "urn:mavedb:00001277-a-1"
+    assert {Path(f["path"]).name for f in man["files"]} == {
+        "scoreset_meta.json", "urn_mavedb_00001277-a-1.csv"}
+    for f in man["files"]:
+        data = (REPO / f["path"]).read_bytes()
+        assert hashlib.sha256(data).hexdigest() == f["sha256"] and len(data) < 25 * 1024 * 1024
+    assert not list(TP53_RAW.glob("variant_details*"))
+    rec = json.loads((TP53_RAW / "range_check.json").read_text())
+    assert rec["rows_e7_reads"] == rec["covered"] == rec["same_coordinates"] == rec["same_label"] == 288
+    assert rec["label_name"] == X.TP53_PRIMARY_LABEL_NAME
+    assert rec["calibration"]["investigatorProvided"] is True
+    t = pd.read_csv(TP53_RAW / "range_check.tsv", sep="\t", keep_default_na=False)
+    assert t.same_coordinates.all() and t.same_label.all() and len(t) == 288
+
+
+def test_tp53s_primary_label_carries_the_published_ranges_name():
+    sup = REPORTS / "supplement"
+    name = X.TP53_PRIMARY_LABEL_NAME
+    s1 = pd.read_csv(sup / "tableS1_functional_standards.csv", keep_default_na=False).set_index("Gene")
+    assert s1.loc["TP53", "Classes mapped to damaging"].startswith(f"{name} (primary): RFS > 0")
+    assert "Control-anchored" not in " ".join(s1.loc["TP53"].astype(str))
+    s12 = pd.read_csv(sup / "tableS12_external_genes.csv", keep_default_na=False)
+    tp53 = set(s12.loc[s12.Gene == "TP53", "Label definition"])
+    assert name in tp53 and "Control-anchored" not in tp53
+    assert "Control-anchored" in set(s12.loc[s12.Gene == "DDX3X", "Label definition"])
+    s13 = pd.read_csv(sup / "tableS13_inframe_attribution.csv", keep_default_na=False)
+    assert set(s13.loc[s13["Gene set"] == "TP53", "Label definition"]) == {name}

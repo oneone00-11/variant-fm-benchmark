@@ -1,0 +1,183 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E18/scope_c4.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "227321e62a3dc093b52a607c2d9136b38ff85737",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "c24758fed0d93b427015da889e813eead5d9a111fc7c09d4a9f70cd17fba007d",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T15:31:10+00:00",
+ "end_utc": "2026-10-23T15:31:24+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E18/scope_c4.json",
+   "bytes": 2941,
+   "sha256": "00591d9982bb06c735b8bacb1ebf03d65174ba1cb24dc57667c2af75a5b2e059"
+  }
+ ],
+ "outputs": [],
+ "exception": "Traceback (most recent call last):\n  File \"/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py\", line 290, in main\n    raise SystemExit(1)\nSystemExit: 1\n",
+ "notes": {
+  "scope": "scripts/stage_E18/scope_c4.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/data/evidence/external/tp53_raw/manifest.json": {
+    "status": "OUTSIDE: not declared",
+    "change": "added"
+   },
+   "phase1/data/evidence/external/tp53_raw/range_check.json": {
+    "status": "OUTSIDE: not declared",
+    "change": "added"
+   },
+   "phase1/data/evidence/external/tp53_raw/range_check.tsv": {
+    "status": "OUTSIDE: not declared",
+    "change": "added"
+   },
+   "phase1/data/evidence/external/tp53_raw/scoreset_meta.json": {
+    "status": "OUTSIDE: not declared",
+    "change": "added"
+   },
+   "phase1/data/evidence/external/tp53_raw/urn_mavedb_00001277-a-1.csv": {
+    "status": "OUTSIDE: not declared",
+    "change": "added"
+   },
+   "phase1/reports/evidence/figures/figure1.pdf": {
+    "status": "declared",
+    "why": "Figure 1 names TP53's label beside its rows",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/figures/figure1.png": {
+    "status": "declared",
+    "why": "Figure 1 names TP53's label beside its rows",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/figures/figure4.pdf": {
+    "status": "declared",
+    "why": "Figure 4 names TP53's label in its panel title",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/figures/figure4.png": {
+    "status": "declared",
+    "why": "Figure 4 names TP53's label in its panel title",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+    "changed": 3,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/tableS12_external_genes.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/tableS13_inframe_attribution.csv": {
+    "added": 3,
+    "removed": 3,
+    "changed": 0,
+    "outside": [
+     {
+      "key": [
+       "TP53",
+       "Published range (urn:mavedb:00001277-a-1)",
+       "SpliceAI (published basis)",
+       "SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label",
+       "11–12"
+      ],
+      "row": "removed"
+     },
+     {
+      "key": [
+       "TP53",
+       "Published range (urn:mavedb:00001277-a-1)",
+       "SpliceAI (published basis)",
+       "SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label",
+       "3–10"
+      ],
+      "row": "removed"
+     },
+     {
+      "key": [
+       "TP53",
+       "Published range (urn:mavedb:00001277-a-1)",
+       "SpliceAI (published basis)",
+       "SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label",
+       "Canonical dinucleotides (out of scope)"
+      ],
+      "row": "removed"
+     },
+     {
+      "key": [
+       "TP53",
+       "Published range (urn:mavedb:00001277-a-1)",
+       "SpliceAI (published basis)",
+       "SpliceAI (published basis) ≥ 0.2 and normal under the published range (urn:mavedb:00001277-a-1) label",
+       "11–12"
+      ],
+      "row": "added"
+     },
+     {
+      "key": [
+       "TP53",
+       "Published range (urn:mavedb:00001277-a-1)",
+       "SpliceAI (published basis)",
+       "SpliceAI (published basis) ≥ 0.2 and normal under the published range (urn:mavedb:00001277-a-1) label",
+       "3–10"
+      ],
+      "row": "added"
+     },
+     {
+      "key": [
+       "TP53",
+       "Published range (urn:mavedb:00001277-a-1)",
+       "SpliceAI (published basis)",
+       "SpliceAI (published basis) ≥ 0.2 and normal under the published range (urn:mavedb:00001277-a-1) label",
+       "Canonical dinucleotides (out of scope)"
+      ],
+      "row": "added"
+     }
+    ],
+    "status": "OUTSIDE"
+   },
+   "phase1/reports/evidence/supplement/tableS1_functional_standards.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   }
+  },
+  "declared_but_unchanged": [
+   "phase1/reports/evidence/fig_data/fig1_draft.png",
+   "phase1/reports/evidence/fig_data/fig4_draft.png"
+  ],
+  "outside": [
+   "phase1/data/evidence/external/tp53_raw/manifest.json",
+   "phase1/data/evidence/external/tp53_raw/range_check.json",
+   "phase1/data/evidence/external/tp53_raw/range_check.tsv",
+   "phase1/data/evidence/external/tp53_raw/scoreset_meta.json",
+   "phase1/data/evidence/external/tp53_raw/urn_mavedb_00001277-a-1.csv",
+   "phase1/reports/evidence/supplement/tableS13_inframe_attribution.csv"
+  ]
+ }
+}

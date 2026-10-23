@@ -1,0 +1,39 @@
+{
+ "gene": "TP53",
+ "urn": "urn:mavedb:00001277-a-1",
+ "title": "Scores from deep mutational scan of the p53 DBD",
+ "published": "2026-07-23",
+ "license": {
+  "shortName": "CC0",
+  "longName": "CC0 (Public domain)",
+  "version": "1.0",
+  "link": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "n_rows": 8058,
+ "api": {
+  "base": "https://api.mavedb.org/api/v1",
+  "version": "2026.3.2"
+ },
+ "selection": "the URN named by the instruction (E18.4)",
+ "not_fetched": "the mapped-variant records (/variant-details, 40.4 MB, above the 25 MB limit): the author's decision of 2026-10-23",
+ "files": [
+  {
+   "path": "phase1/data/evidence/external/tp53_raw/scoreset_meta.json",
+   "bytes": 198807,
+   "sha256": "103f8b96528a4a904f74d4583092a70eec6bab59a933ab8d320aadac30cada29",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001277-a-1",
+   "fetched_utc": "2026-10-23T15:17:04+00:00",
+   "api_version": "2026.3.2",
+   "http_status": 200
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_raw/urn_mavedb_00001277-a-1.csv",
+   "bytes": 1071081,
+   "sha256": "15ed0e9933b302628a7326ba759231619406385ae518d3bdc174f41e79b14e62",
+   "source_url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001277-a-1/scores",
+   "fetched_utc": "2026-10-23T15:17:06+00:00",
+   "api_version": "2026.3.2",
+   "http_status": 200
+  }
+ ]
+}

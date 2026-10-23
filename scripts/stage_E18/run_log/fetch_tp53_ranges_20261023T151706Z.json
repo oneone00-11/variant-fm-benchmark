@@ -1,0 +1,46 @@
+{
+ "script": "scripts/stage_E18/fetch_tp53_ranges.py",
+ "argv": [
+  "scripts/stage_E18/fetch_tp53_ranges.py"
+ ],
+ "git_commit": "227321e62a3dc093b52a607c2d9136b38ff85737",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/fetch_tp53_ranges.py": "d61da210942d597dbe19089c443f875213f1f9845b707831b02da6d876b3848b",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T15:17:02+00:00",
+ "end_utc": "2026-10-23T15:17:06+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/external/tp53_raw/scoreset_meta.json",
+   "bytes": 198807,
+   "sha256": "103f8b96528a4a904f74d4583092a70eec6bab59a933ab8d320aadac30cada29"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_raw/urn_mavedb_00001277-a-1.csv",
+   "bytes": 1071081,
+   "sha256": "15ed0e9933b302628a7326ba759231619406385ae518d3bdc174f41e79b14e62"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_raw/manifest.json",
+   "bytes": 1358,
+   "sha256": "ee1421c851cec20a69b4ecb8890e37d1ec2ae7b7eb2d1b51e761dc4e3e11d92c"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "n_rows": 8058
+ }
+}

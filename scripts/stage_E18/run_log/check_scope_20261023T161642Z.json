@@ -1,0 +1,125 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E18/scope_c4.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "227321e62a3dc093b52a607c2d9136b38ff85737",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "c24758fed0d93b427015da889e813eead5d9a111fc7c09d4a9f70cd17fba007d",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T16:16:35+00:00",
+ "end_utc": "2026-10-23T16:16:42+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E18/scope_c4.json",
+   "bytes": 5879,
+   "sha256": "2f4f6aa73dac1fb59224ccf32fe767c7a646ea3480dc70a08cd3682cbe2af366"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E18/scope_c4.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/data/evidence/external/tp53_raw/manifest.json": {
+    "status": "declared",
+    "why": "the record E18.4 commits: the score set's metadata and score table as served, their manifest, and the check row by row",
+    "change": "added"
+   },
+   "phase1/data/evidence/external/tp53_raw/range_check.json": {
+    "status": "declared",
+    "why": "the record E18.4 commits: the score set's metadata and score table as served, their manifest, and the check row by row",
+    "change": "added"
+   },
+   "phase1/data/evidence/external/tp53_raw/range_check.tsv": {
+    "status": "declared",
+    "why": "the record E18.4 commits: the score set's metadata and score table as served, their manifest, and the check row by row",
+    "change": "added"
+   },
+   "phase1/data/evidence/external/tp53_raw/scoreset_meta.json": {
+    "status": "declared",
+    "why": "the record E18.4 commits: the score set's metadata and score table as served, their manifest, and the check row by row",
+    "change": "added"
+   },
+   "phase1/data/evidence/external/tp53_raw/urn_mavedb_00001277-a-1.csv": {
+    "status": "declared",
+    "why": "the record E18.4 commits: the score set's metadata and score table as served, their manifest, and the check row by row",
+    "change": "added"
+   },
+   "phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json": {
+    "changed": 2,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/figures/figure1.pdf": {
+    "status": "declared",
+    "why": "Figure 1 names TP53's label beside its rows, in the figures' short form 'published range'",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/figures/figure1.png": {
+    "status": "declared",
+    "why": "Figure 1 names TP53's label beside its rows, in the figures' short form 'published range'",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/figures/figure4.pdf": {
+    "status": "declared",
+    "why": "Figure 4 names TP53's label in its panel title, in the figures' short form 'published range'",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/figures/figure4.png": {
+    "status": "declared",
+    "why": "Figure 4 names TP53's label in its panel title, in the figures' short form 'published range'",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+    "changed": 3,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/tableS12_external_genes.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/tableS13_inframe_attribution.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/tableS1_functional_standards.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   }
+  },
+  "declared_but_unchanged": [
+   "phase1/reports/evidence/fig_data/fig1_draft.png",
+   "phase1/reports/evidence/fig_data/fig4_draft.png"
+  ],
+  "outside": []
+ }
+}

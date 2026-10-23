@@ -1274,3 +1274,54 @@ against the previous commit).
   itself is byte for byte the same. `check_scope.py` reported it; by the author's
   decision the scope was amended to that one entry, and the manifest's declaration
   narrowed to the two fields that change (`scope_c3.json`, `amended_after_check`).
+
+## After the thresholds were frozen: TP53's primary label is named for the published ranges it equals (stage E18, 2026-10-23)
+
+Why: TP53's primary label was constructed by this study from the relative fitness
+score (RFS > 0), its deposit, urn:mavedb:00001213-a-1, publishing no per-variant class.
+The score set urn:mavedb:00001277-a-1 now carries investigator-provided ranges that
+classify the same variants. Where they reproduce the label variant by variant, the
+label is named for them (E18.4). One reason, one commit: only the label's name changes,
+every number byte for byte the same (`scripts/stage_E18/scope_c4.json`, checked by
+`check_scope.py`).
+
+- The record (`scripts/stage_E18/fetch_tp53_ranges.py`,
+  `phase1/data/evidence/external/tp53_raw/`): the score set's metadata, which carries
+  the ranges, and its score table, as served from MaveDB (API 2026.3.2), each under
+  25 MB, with a manifest of their sizes, sha256 and fetch times. Nothing else was
+  fetched (the author's decision of 2026-10-23).
+- The check (`scripts/stage_E18/check_tp53_ranges.py`, `range_check.json` and `.tsv`):
+  - every one of the 288 TP53 rows E7 reads names one row of the score table;
+  - mapped by E16's route (the atlas mapping module through the Mutalyzer model of
+    NM_000546.6, anchored by the MANE Select partner's Ensembl lookup, the reference
+    base checked against the cached Ensembl slice), each lands on its existing chrom,
+    pos, ref and alt, 288 of 288;
+  - classified by the investigator-provided ranges, read from the metadata and applied
+    by E16's own rule (normal at or below 0, abnormal above), each gets the class
+    `y_control_anchored` gives it, 288 of 288 (64 abnormal, 224 normal).
+
+  E16's cross-check against MaveDB's mapped-variant records was not made: their file is
+  40.4 MB, above the 25 MB limit. By the author's decision of 2026-10-23 the 288/288
+  identical coordinates stand in for it.
+- The name: "Published range (urn:mavedb:00001277-a-1)"
+  (`evid_external.TP53_PRIMARY_LABEL_NAME`), in Supplementary Tables S1, S12 and S13 and
+  in the TP53 table's manifest; Figures 1 and 4 carry its short form (below). The column
+  keeps its name, `y_control_anchored`. DDX3X's control-anchored labels, sensitivity
+  labels, keep their names. The median-split and mid-band labels stay as TP53's
+  sensitivity labels. `test_evid_read_back.py` reads the printed name back through the
+  same gene-aware mapping.
+- The names come from one place in the code (`evid_external`): the full name for the
+  tables, and for the figures the short form "published range", written as the figures
+  write DDX3X's label ("deposit label", "deposit classification"), with the URN for the
+  caption (the author's decision of 2026-10-23). The full name in Figure 1's row heading
+  ran into panel a's plot; the short form does not.
+- A case-insensitive search of every output for "control-anchored" found it left only in
+  DDX3X's own labels and in internal column names, after one more place was changed: the
+  TP53 table's manifest describes the in-frame subset's rule, and now names the label
+  from the same mapping.
+- `check_scope.py` first reported two omissions from the declared scope, both inside
+  E18.4: the five new files of `tp53_raw/`, and the label's name in lower case in
+  Supplementary Table S13's description of TP53's subset; the search above added a third,
+  the manifest's rule. By the author's decision all three were added to `scope_c4.json`
+  (`amended_after_check`). With the old name replaced by the new, every changed table is
+  otherwise byte for byte the previous commit's, and no number changed.

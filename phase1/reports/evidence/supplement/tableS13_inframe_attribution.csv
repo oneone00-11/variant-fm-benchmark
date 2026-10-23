@@ -29,6 +29,6 @@ DDX3X,FDR,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and norm
 DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,Canonical dinucleotides (out of scope),12,34,1,47,0.255,0.261
 DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,3–10,35,120,13,168,0.208,0.226
 DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,11–25,5,54,17,76,0.066,0.085
-TP53,Control-anchored,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,Canonical dinucleotides (out of scope),0,0,1,1,0.000,
-TP53,Control-anchored,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,3–10,2,14,9,25,0.080,0.125
-TP53,Control-anchored,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored label,11–12,0,1,1,2,0.000,0.000
+TP53,Published range (urn:mavedb:00001277-a-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the published range (urn:mavedb:00001277-a-1) label,Canonical dinucleotides (out of scope),0,0,1,1,0.000,
+TP53,Published range (urn:mavedb:00001277-a-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the published range (urn:mavedb:00001277-a-1) label,3–10,2,14,9,25,0.080,0.125
+TP53,Published range (urn:mavedb:00001277-a-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the published range (urn:mavedb:00001277-a-1) label,11–12,0,1,1,2,0.000,0.000
