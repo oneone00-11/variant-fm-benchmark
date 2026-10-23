@@ -1228,3 +1228,49 @@ is unchanged.
 - `docs/external-column-identity.md`: the NT cell of each gene reads "no column of the
   same variable" and cites the anchor check; `newgenes_scored.manifest.json` says the
   same.
+
+## After the thresholds were frozen: DDX3X and TP53 read the analysis set's variables (stage E18, 2026-10-23)
+
+Why: E18.2 made each external gene's columns the analysis set's own variables; E7, the
+external test, now reads them. One reason, one commit: the outputs change only for
+DDX3X's and TP53's switched columns and what is derived from them
+(`scripts/stage_E18/scope_c3.json`, checked by `scripts/stage_E18/check_scope.py`
+against the previous commit).
+
+- DDX3X (`evid_external.DDX3X_SCORE_FILES`): SpliceAI at distance 50 and AlphaGenome by
+  the official definition are added; Pangolin is full precision, not the CLI's two
+  decimals; the Walker basis, CADD, phyloP, phastCons and GPN-MSA are read from the
+  files scored again with anchors, value for value the files read before.
+- TP53 (`evid_external.TP53_SCORE_FILES`): AlphaGenome is the official definition, scored
+  after the tag; the client-0.6.1 column is kept beside it as `alphagenome_v061`, which
+  has no frozen threshold and is not tested. SpliceAI, Pangolin, the Walker basis and the
+  Atlas columns are read from the files scored again with anchors (SpliceAI differs from
+  the table's by at most 1.1e-16, through the TSV the table's values once passed; Pangolin
+  by at most 1.3e-9; the Walker basis and the Atlas columns not at all). GPN-MSA, on the
+  published study's raw sign, is turned to the analysis set's direction (E18.0 rule 5).
+  CADD, phyloP and phastCons are the table's, value for value the analysis set's scorers'
+  (`docs/column-provenance.md`, section 2).
+- NT has no column of the same variable on either gene (the rule fixed before the GPU
+  run; `nt_gpu_run/`): TP53's published-study NT is no longer tested, and DDX3X gets
+  none. The column check names NT with its reason.
+- `DECLARED_MISMATCH` loses TP53's entry and is empty; the TP53 table's description of
+  its 0.6.1 column no longer points to it.
+- The column check now reports, for each gene, twelve columns comparable and NT named.
+- LICENSE-DATA (E18.0 rule 10): section 1 names stage E18's score files of the predictors
+  it covers, section 2 its AlphaGenome and Atlas files; Supplementary Table S3's record
+  in the supplement manifest carries LICENSE-DATA's new hash, and that of
+  `docs/column-provenance.md`, which gains a section on the external genes' columns.
+- What changed with them, all within the declared scope (`check_scope.py`: 14 outputs
+  differ from the previous commit, none outside the scope): E7's tables and column checks
+  for the two genes (DDX3X gains 40 rows, TP53 loses its 15 NT rows); the TP53 table's
+  record; `practical_metrics_external.csv` and the summary's sentence on the external
+  genes (DDX3X's largest gain in sensitivity over the held-out seven is now 0.52 and its
+  largest loss of specificity 0.06, both on its AlphaGenome rows, which are new; they were
+  0.37 and 0.05, both on Pangolin); Supplementary Table S12; Figure 4 and its data; and
+  the supplement manifest's records of the sources that changed.
+- One change was outside the scope as first declared: the supplement manifest's S1 row
+  records the hash of the TP53 table's manifest, which S1 reads, and that manifest's
+  description of the 0.6.1 AlphaGenome column changed with the withdrawn entry. S1
+  itself is byte for byte the same. `check_scope.py` reported it; by the author's
+  decision the scope was amended to that one entry, and the manifest's declaration
+  narrowed to the two fields that change (`scope_c3.json`, `amended_after_check`).

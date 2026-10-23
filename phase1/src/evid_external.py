@@ -50,6 +50,15 @@ that one tile supplies over half of the in-scope control-anchored damaging calls
 Its behaviour is consistent with nonsense-mediated decay escape in the last exon.
 The ungated label is kept so the effect of the gate is visible.
 
+Since E18.3 every column E7 tests on either gene is the analysis set's own variable:
+the same scorer, version, precision and direction, shown by anchors scored in the
+same run or by a committed value-for-value record (docs/external-column-identity.md).
+TP53's AlphaGenome is the official definition, its client-0.6.1 column kept beside it
+as alphagenome_v061 and not tested; its SpliceAI, Pangolin, NT, Walker-basis and
+Atlas columns were scored again by the analysis set's scorers; its GPN-MSA is turned
+to the analysis set's direction. DDX3X gains SpliceAI at distance 50, AlphaGenome and
+NT, and its Pangolin is full precision.
+
 Run (PYTHONPATH=phase1):
     python -m src.evid_external --prepare ddx3x
     python -m src.evid_external --apply TP53
@@ -341,32 +350,66 @@ def prepare_ddx3x() -> None:
 # ---------------------------------------------------------------------------
 # apply the thresholds
 # ---------------------------------------------------------------------------
-# Per-scorer outputs for DDX3X, written by the atlas's own model scripts, and the
-# panel column each carries. Anything absent is simply not in the external table;
-# the applied-threshold report then covers fewer tools and says so.
+# The external genes' columns (E18.3). Each is the analysis set's own variable: scored
+# after the thresholds were frozen by the scorer of the analysis set's column, which
+# in the same run reproduced the analysis set's stored values of 39 anchor variants
+# bit for bit (scripts/stage_E18/build_columns.py), or shown so by a committed
+# value-for-value record; docs/external-column-identity.md gives the evidence cell by
+# cell. The files E7 read before (DDX3X's ddx3x_cadd.parquet and the rest, Pangolin at
+# the CLI's two decimals among them) stay in place, unread.
 DDX3X_SCORE_FILES = {
-    "ddx3x_spliceai_walker.parquet": ["spliceai_walker"],
-    # deliberately not scored: the distance-50 column would only be needed to apply
-    # thresholds fitted on the distance-50 column, and E3 fits thresholds on the
-    # Walker-basis column too, so the external gene is evaluated end to end on one
-    # basis. CPU was the binding constraint; this pass was dropped to give the
-    # seven-gene re-score the machine.
-    "ddx3x_spliceai_d50.parquet": ["spliceai"],
-    "ddx3x_cadd.parquet": ["cadd"],
-    "ddx3x_phyloP100way.parquet": ["phylop100way"],
-    "ddx3x_phastCons100way.parquet": ["phastcons100way"],
-    "ddx3x_gpn_msa.parquet": ["gpn_msa"],
-    # The external gene's Pangolin value comes from the event scorer, which reads
-    # the CLI's printed CSV and is therefore at two decimals, where the seven-gene
-    # column is full precision. Recorded rather than hidden: the column-basis check
-    # sees the same variable and the rounding is below the precision any threshold
-    # here is quoted at.
-    "ddx3x_pangolin.parquet": ["pangolin_event_max"],
-    "ddx3x_nt.parquet": ["nucleotide_transformer"],
+    "ddx3x_spliceai.parquet": ["spliceai"],
+    "ddx3x_spliceai_walker_rescored.parquet": ["spliceai_walker"],
+    "ddx3x_pangolin_fullprec.parquet": ["pangolin"],
+    "ddx3x_cadd_rescored.parquet": ["cadd"],
+    "ddx3x_conservation_rescored.parquet": ["phylop", "phastcons"],
+    "ddx3x_gpn_msa_rescored.parquet": ["gpn_msa"],
+    "ddx3x_nt_a6000.parquet": ["nt"],
 }
-DDX3X_RENAME = {"phylop100way": "phylop", "phastcons100way": "phastcons",
-                "pangolin_score": "pangolin", "pangolin_event_max": "pangolin",
-                "nucleotide_transformer": "nt"}
+# TP53: the 288-row table's columns that are not the analysis set's variables,
+# replaced by E18.2's. Its CADD, phyloP, phastCons and GPN-MSA are kept: the published
+# study's scorers give the analysis set's values (docs/column-provenance.md, section 2),
+# GPN-MSA on the raw sign, which _load_external turns to the analysis set's (E18.0
+# rule 5). Its AlphaGenome is the client-0.6.1 definition, kept as alphagenome_v061,
+# which has no frozen threshold and is not tested.
+TP53_SCORE_FILES = {
+    "tp53_spliceai_rescored.parquet": ["spliceai"],
+    "tp53_spliceai_walker_rescored.parquet": ["spliceai_walker", "spliceai_walker_ds_ag",
+                                              "spliceai_walker_ds_al", "spliceai_walker_ds_dg",
+                                              "spliceai_walker_ds_dl"],
+    "tp53_pangolin_rescored.parquet": ["pangolin"],
+    "tp53_nt_rescored.parquet": ["nt"],
+    "tp53_avi_rescored.parquet": ["avi", "avi_splice_sites", "avi_splice_site_usage",
+                                  "avi_splice_junctions"],
+}
+# AlphaGenome by its official definition (E17), scored for the external genes after
+# the tag (E18.1) and read as the analysis set reads its own (evid_build_set:
+# the round-trip parser)
+AG_EXTERNAL = Path("data/evidence/alphagenome_official/external_scores.tsv")
+# NT, scored again on the original GPU, did not reproduce its anchors, so by the rule the
+# author fixed before the run (2026-10-23) no external gene has an NT column of the
+# analysis set's variable and NT is not tested; TP53's published-study NT column goes
+# with it. The column check names the column all the same.
+NT_RECORD = EXT_DIR / "nt_gpu_run" / "record.json"
+
+
+def _no_same_variable(tool: str) -> str | None:
+    """Why an external gene has no column of the analysis set's variable, if recorded."""
+    if tool != "nt" or not NT_RECORD.exists():
+        return None
+    r = json.loads(NT_RECORD.read_text())["anchors"]
+    return (f"no column of the same variable: NT on the original GPU reproduced "
+            f"{r['n_identical']} of the {r['n']} anchors bit for bit; by the rule fixed "
+            "before the run (the author's decision of 2026-10-23) it does not enter the "
+            "external test")
+
+
+def _alphagenome_for(gene: str) -> pd.DataFrame:
+    ag = pd.read_csv(AG_EXTERNAL, sep="\t", usecols=["gene", "variant_id", "alphagenome_splicing"],
+                     float_precision="round_trip")
+    ag = ag[ag["gene"] == gene]
+    return ag[["variant_id", "alphagenome_splicing"]].rename(
+        columns={"alphagenome_splicing": "alphagenome"})
 
 
 # The AlphaGenome Atlas columns are not in the registry above because they do not
@@ -406,13 +449,14 @@ def merge_ddx3x_scores() -> None:
             continue
         base = base.merge(d[["variant_id"] + take], on="variant_id", how="left")
         present += take
+    base = base.merge(_alphagenome_for("DDX3X"), on="variant_id", how="left")
+    present.append("alphagenome")
     avi = _avi_for("ddx3x")
     if avi is not None:
         base = base.merge(avi, on="variant_id", how="left")
         present += [c for c in avi.columns if c != "variant_id"]
     else:
         missing.append("avi.parquet (Atlas columns)")
-    base = base.rename(columns=DDX3X_RENAME)
     out = EXT_DIR / "ddx3x_scored.parquet"
     base.to_parquet(out, index=False)
     cov = {c: int(base[c].notna().sum()) for c in base.columns if c != "variant_id"}
@@ -442,8 +486,21 @@ def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
         df["y_median_split"] = (rfs > np.median(rfs)).astype(float)
         mid = np.abs(rfs) >= 0.5
         df["y_mid_band_excluded"] = np.where(mid, (rfs > 0).astype(float), np.nan)
-        # the extended table carries the published-basis SpliceAI column and the
-        # four Atlas columns itself (evid_tp53_extend)
+        # E18.3: the analysis set's variables (TP53_SCORE_FILES)
+        df = df.rename(columns={"alphagenome": "alphagenome_v061"})
+        for fname, cols in TP53_SCORE_FILES.items():
+            df = df.drop(columns=[c for c in cols if c in df.columns])
+            if not (EXT_DIR / fname).exists():
+                # NT only: by the author's decision of 2026-10-23 it is scored on the
+                # original GPU and counts only if its anchors hold; without it TP53 has
+                # no NT column of the analysis set's variable, so none is tested
+                if cols != ["nt"]:
+                    raise SystemExit(f"[E7] {EXT_DIR / fname} is missing")
+                continue
+            d = pd.read_parquet(EXT_DIR / fname)[["variant_id"] + cols]
+            df = df.merge(d, on="variant_id", how="left")
+        df = df.merge(_alphagenome_for("TP53"), on="variant_id", how="left")
+        df["gpn_msa"] = -df["gpn_msa"]       # the raw sign, turned (E18.0 rule 5)
         return df, ["y_control_anchored", "y_median_split", "y_mid_band_excluded"]
     if gene.upper() == "DDX3X":
         df = pd.read_parquet(EXT_DIR / "ddx3x_splice.parquet")
@@ -457,16 +514,11 @@ def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
 
 # Definition mismatches that no statistical check can be relied on to find, because
 # the two columns can overlap in range and still be different variables. Recorded
-# per external gene and per column, with the source of the claim.
-DECLARED_MISMATCH = {
-    ("TP53", "alphagenome"): (
-        "the TP53 column was scored with AlphaGenome client v0.6.1 as a single maximum "
-        "absolute raw score, while the analysis-set column the thresholds are fitted "
-        "on is AlphaGenome's own merged splicing score (client 0.10.0: the largest raw "
-        "score of each of three splicing scorers, combined as sites + usage + "
-        "junctions / 5). They are different variables, so a threshold fitted on one "
-        "does not apply to the other."),
-}
+# per external gene and per column, with the source of the claim. Empty since E18.3:
+# TP53's AlphaGenome entry went when E7 began reading the official definition, scored
+# for TP53 after the tag (E18.1); the client-0.6.1 column it described is kept as
+# alphagenome_v061, outside the test.
+DECLARED_MISMATCH: dict[tuple[str, str], str] = {}
 
 
 def column_basis_check(df: pd.DataFrame, tools: list[str],
@@ -474,13 +526,10 @@ def column_basis_check(df: pd.DataFrame, tools: list[str],
     """Is each external column the same variable as the analysis-set column of that
     name? A threshold fitted on one is meaningless on the other.
 
-    TP53's columns come from the published study's frozen matrix, not from the
-    atlas, and two of them are genuinely different variables: its `gpn_msa` is on
-    the raw anti-correlated convention (config.REVERSED_FEATURES) while the atlas
-    column is already oriented, and its `alphagenome` is the v0.6.1 definition, a
-    single maximum absolute raw score, not the merged splicing score E3 fits on
-    (AlphaGenome's own definition, since E17). Carrying an E3 threshold onto either
-    publishes a tier that describes a different variable.
+    Since E18.3 every column is the analysis set's variable by construction
+    (TP53_SCORE_FILES, DDX3X_SCORE_FILES; docs/external-column-identity.md), and this
+    check stays as the independent guard it was: a wrong orientation, a range that
+    misses the fitted column, or a declared definition change still disqualifies.
     """
     base = K.load_set()
     rows = []
@@ -586,9 +635,19 @@ def apply_thresholds(gene: str) -> None:
     rows = []
     tools = [t for t in K.PANEL + K.OPTIONAL if t in df.columns]
     basis = column_basis_check(df, tools, gene.upper())
+    # every panel column is accounted for: tested, or named with the reason it is not
+    absent = [t for t in K.PANEL + K.OPTIONAL if t not in df.columns]
+    if any(_no_same_variable(t) is None for t in absent):
+        raise SystemExit(f"[E7] {gene.upper()}: no column for "
+                         f"{[t for t in absent if _no_same_variable(t) is None]} and no recorded reason")
+    basis = pd.concat([basis, pd.DataFrame([{"tool": t, "comparable": False,
+                                             "reason": _no_same_variable(t)} for t in absent])],
+                      ignore_index=True)
+    order = {t: i for i, t in enumerate(K.PANEL + K.OPTIONAL)}
+    basis = basis.sort_values("tool", key=lambda c: c.map(order), kind="mergesort").reset_index(drop=True)
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     basis.to_csv(REPORT_DIR / f"external_{gene.lower()}_column_basis.csv", index=False)
-    comparable = set(basis.loc[basis["comparable"], "tool"])
+    comparable = set(basis.loc[basis["comparable"].astype(bool), "tool"])
     if set(tools) - comparable:
         print(f"[E7] {gene.upper()}: E3 thresholds NOT carried onto "
               f"{sorted(set(tools) - comparable)} -- not the same variable as the "

@@ -1,0 +1,169 @@
+{
+ "commit": "E18.3",
+ "reason": "DDX3X and TP53 read the analysis set's variables (E18.2's columns, docs/external-column-identity.md); TP53's declared definition mismatch is withdrawn; NT has no column of the same variable on any external gene (the author's rule, fixed before the GPU run, 2026-10-23); LICENSE-DATA covers stage E18's score files",
+ "declared_from": "E18.3: the external test's rows of DDX3X x {spliceai, nt, alphagenome, pangolin} and TP53 x {alphagenome, spliceai, pangolin, nt, gpn_msa}, new rows included; the columns E18.2 scored again for want of evidence, per the evidence table (DDX3X: spliceai_walker, cadd, phylop, phastcons, gpn_msa; TP53: spliceai_walker and the four Atlas columns); the counts derived from those rows; Figure 4's parts for the two genes; the supplementary-table manifest's S3 hash of LICENSE-DATA; and, in S3's row, docs/column-provenance.md's hash, since E18.3 adds a section to it and S3 hashes it as a source",
+ "pairs": {
+  "DDX3X": [
+   "spliceai",
+   "nt",
+   "alphagenome",
+   "pangolin",
+   "spliceai_walker",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa"
+  ],
+  "TP53": [
+   "alphagenome",
+   "spliceai",
+   "pangolin",
+   "nt",
+   "gpn_msa",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ]
+ },
+ "files": {
+  "phase1/reports/evidence/external_ddx3x.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "stratum",
+    "tool"
+   ],
+   "gene": "gene",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_tp53.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "stratum",
+    "tool"
+   ],
+   "gene": "gene",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_ddx3x_column_basis.csv": {
+   "kind": "rows",
+   "key": [
+    "tool"
+   ],
+   "gene_const": "DDX3X",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_tp53_column_basis.csv": {
+   "kind": "rows",
+   "key": [
+    "tool"
+   ],
+   "gene_const": "TP53",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/practical_metrics_external.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "tool",
+    "stratum",
+    "threshold_kind"
+   ],
+   "gene": "gene",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/supplement/tableS12_external_genes.csv": {
+   "kind": "rows",
+   "key": [
+    "Gene",
+    "Label definition",
+    "Stratum (intronic offset, bp)",
+    "Tool"
+   ],
+   "gene": "Gene",
+   "tool": "Tool",
+   "tool_labels": true
+  },
+  "phase1/reports/evidence/fig_data/fig4_external.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "stratum",
+    "tool",
+    "tier"
+   ],
+   "gene": "gene",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+   "kind": "fields",
+   "key": [
+    "File"
+   ],
+   "rows": {
+    "tableS3_predictor_columns.csv": {
+     "Source sha256": [
+      "LICENSE-DATA",
+      "docs/column-provenance.md"
+     ]
+    },
+    "tableS12_external_genes.csv": [
+     "Source sha256",
+     "File sha256",
+     "Rows"
+    ],
+    "tableS1_functional_standards.csv": {
+     "Source sha256": [
+      "phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json"
+     ]
+    }
+   }
+  },
+  "phase1/reports/evidence/figures/figure4.png": {
+   "kind": "file",
+   "why": "Figure 4 draws DDX3X and TP53 by tool; their switched columns are drawn"
+  },
+  "phase1/reports/evidence/figures/figure4.pdf": {
+   "kind": "file",
+   "why": "Figure 4 draws DDX3X and TP53 by tool; their switched columns are drawn"
+  },
+  "phase1/reports/evidence/fig_data/fig4_draft.png": {
+   "kind": "file",
+   "why": "the draft of Figure 4, from fig4_external.csv"
+  },
+  "phase1/data/evidence/external/ddx3x_scored.parquet": {
+   "kind": "file",
+   "why": "E7's merge of DDX3X's columns, now E18.2's files: SpliceAI at distance 50 and AlphaGenome added, Pangolin at full precision, the columns scored again identical value for value"
+  },
+  "phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json": {
+   "kind": "json",
+   "paths": [
+    [
+     "columns",
+     "alphagenome",
+     "definition"
+    ],
+    [
+     "inputs_sha256",
+     "phase1/src/evid_tp53_extend.py"
+    ]
+   ],
+   "why": "the description of TP53's client-0.6.1 AlphaGenome column named evid_external.DECLARED_MISMATCH, which is withdrawn; it now names TP53_SCORE_FILES, and the record's hash of the code that writes it follows"
+  },
+  "docs/practical-metrics-summary.md": {
+   "kind": "lines",
+   "patterns": [
+    "^5\\. Carried to DDX3X"
+   ],
+   "why": "the sentence on the external genes, derived from practical_metrics_external.csv's DDX3X and TP53 rows"
+  }
+ },
+ "amended_after_check": "2026-10-23: check_scope.py reported one change outside this scope as first declared: in the supplement manifest's S1 row, the hash of the TP53 table's manifest, which S1 lists as a source; the manifest changes because its description of TP53's 0.6.1 AlphaGenome column, the related text E18.3 has updated, named DECLARED_MISMATCH. S1 itself is byte for byte the same. By the author's decision of 2026-10-23 the scope was amended to that one entry of S1's row, and the manifest's declaration narrowed from any change to the two fields that change: columns.alphagenome.definition and the hash of evid_tp53_extend.py in inputs_sha256."
+}

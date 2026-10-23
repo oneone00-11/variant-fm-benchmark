@@ -1,0 +1,130 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E18/scope_c3.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "a82e90eb7ad3b50e2358423994d3722ff9d06238",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "53d8b2f2088c1449aa9ec2cc5b9a235a3cbc3d6c6082fb73f3c584904a13b5b5",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T13:41:59+00:00",
+ "end_utc": "2026-10-23T13:42:14+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E18/scope_c3.json",
+   "bytes": 5355,
+   "sha256": "e6c9eeffafbdedcbb5aa3a432f9941981c15fa9be829ddb32efc2fd90830428f"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E18/scope_c3.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "docs/practical-metrics-summary.md": {
+    "changed": 2,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/data/evidence/external/ddx3x_scored.parquet": {
+    "status": "declared",
+    "why": "E7's merge of DDX3X's columns, now E18.2's files: SpliceAI at distance 50 and AlphaGenome added, Pangolin at full precision, the columns scored again identical value for value",
+    "change": "differs"
+   },
+   "phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json": {
+    "changed": 2,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_ddx3x.csv": {
+    "added": 40,
+    "removed": 0,
+    "changed": 11,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_ddx3x_column_basis.csv": {
+    "added": 3,
+    "removed": 0,
+    "changed": 1,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_tp53.csv": {
+    "added": 0,
+    "removed": 15,
+    "changed": 20,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_tp53_column_basis.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 5,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/fig_data/fig4_draft.png": {
+    "status": "declared",
+    "why": "the draft of Figure 4, from fig4_external.csv",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/fig_data/fig4_external.csv": {
+    "added": 66,
+    "removed": 21,
+    "changed": 52,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/figures/figure4.pdf": {
+    "status": "declared",
+    "why": "Figure 4 draws DDX3X and TP53 by tool; their switched columns are drawn",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/figures/figure4.png": {
+    "status": "declared",
+    "why": "Figure 4 draws DDX3X and TP53 by tool; their switched columns are drawn",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/practical_metrics_external.csv": {
+    "added": 24,
+    "removed": 12,
+    "changed": 15,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+    "changed": 3,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/tableS12_external_genes.csv": {
+    "added": 24,
+    "removed": 9,
+    "changed": 25,
+    "outside": [],
+    "status": "within the scope"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

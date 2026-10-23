@@ -52,7 +52,7 @@
       "n_non_null": 288,
       "n_non_null_frozen_rows": 192,
       "n_non_null_new_rows": 96,
-      "definition": "AlphaGenome dna_client, client 0.6.1, 1 Mb interval, the recommended SPLICE_* variant scorers, max |raw_score| printed to 6 d.p.; scripts/phase4a_ag_drift_check.py::build_scorer/score_one, the verbatim copy of scripts/91_score_alphagenome.py::score_one that scored the frozen rows (phase4a_tp53_external.py). A different variable from the analysis set's column, AlphaGenome's own merged splicing score (evid_external.DECLARED_MISMATCH)"
+      "definition": "AlphaGenome dna_client, client 0.6.1, 1 Mb interval, the recommended SPLICE_* variant scorers, max |raw_score| printed to 6 d.p.; scripts/phase4a_ag_drift_check.py::build_scorer/score_one, the verbatim copy of scripts/91_score_alphagenome.py::score_one that scored the frozen rows (phase4a_tp53_external.py). A different variable from the analysis set's column, AlphaGenome's own merged splicing score; the external test reads that score for TP53 instead and keeps this column as alphagenome_v061, untested (evid_external.TP53_SCORE_FILES)"
     },
     "gpn_msa": {
       "n_non_null": 288,
@@ -599,7 +599,7 @@
     "phase1/src/config.py": "49dca5248e7d8d8d597663a5b437bc16f7b784e2c7f79bfb312d208c6b101fd7",
     "phase1/src/phase1_build_frozen_matrix.py": "c45379381f0db8f923f47b81bc04c2277b88e4cc8fb9df8f6ec37c4a213328c2",
     "phase1/data/frozen/frozen_matrix_v1.parquet": "64e31fb1dcedf6ba199ff72267b1f679409f59623062830f7969320e5f6b417a",
-    "phase1/src/evid_tp53_extend.py": "2a9c346b1adf3de2e9b873cd2b1e9e4c8881de27956cf669c3b7a6f165ec88b0",
+    "phase1/src/evid_tp53_extend.py": "2b29c8867a7f6e18b8402924d22fe98ff9dee7f316cf9b390e59a38958f207e9",
     "phase1/data/evidence/external/tp53_12nt_spliceai_d50.parquet": "a28b072a7dd8a8412e5778abf3c7057ddddafc055ff4930e85066354d33d6c11",
     "phase1/data/evidence/external/tp53_12nt_pangolin.parquet": "6761715d816f9a8fd867ad22fdda77bdfb2c54745504c0a404a8154cdfa642b2",
     "phase1/data/evidence/external/tp53_12nt_nt.parquet": "19b4f6a6b5b9c6884846f679053f9cfefb263638182013befd07a3dee3a1abf6",

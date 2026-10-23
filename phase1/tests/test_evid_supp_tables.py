@@ -203,8 +203,12 @@ def test_s12_external_rows_follow_the_basis_check():
     thr = [c for c in s12.columns if c.endswith("(median of leave-one-gene-out fits)")]
     assert len(thr) == 3
     no = s12[s12["Same variable as the fitted column"] == "No"]
-    assert len(no) and (no["Why not comparable"] != "").all()
+    assert (no["Why not comparable"] != "").all()
     assert (no[thr] == "").all().all()
+    # since E18.3 every column E7 tests is the analysis set's variable, and NT, which has
+    # no column of the same variable on either gene, is not tested at all
+    assert not len(no)
+    assert S.tool_labels()["nt"] not in set(s12.Tool)
     # the Walker-basis ratio at the published cut point is the external table's
     e = K.read_back(REPORTS / "external_ddx3x.csv")
     e = e[(e.tool == "spliceai_walker") & (e.stratum == "s3_50")

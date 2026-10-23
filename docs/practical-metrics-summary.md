@@ -47,7 +47,7 @@ The seven genes pooled: the most sensitive threshold at which at least 95% of no
 2. Held out, a Strong threshold at 3–10 bp catches 22% to 38% of damaging variants, depending on the tool.
 3. The cost is coverage: held out, Strong evidence reaches no more than 7.5% of the labelled variants in that band.
 4. At a specificity of 0.95 no tool is the most sensitive in every band, and the four are never more than 0.04 apart.
-5. Carried to DDX3X, the fitted thresholds are more sensitive than in the held-out seven genes, by as much as 0.37, and less specific, by as much as 0.05; on TP53 sensitivity rises too, except for the Atlas combined score's Moderate and Strong.
+5. Carried to DDX3X, the fitted thresholds are more sensitive than in the held-out seven genes, by as much as 0.52, and less specific, by as much as 0.06; on TP53 sensitivity rises too, except for the Atlas combined score's Moderate and Strong.
 
 ## Figure legend
 
