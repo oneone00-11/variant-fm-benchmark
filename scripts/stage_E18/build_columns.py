@@ -29,9 +29,17 @@ run_pangolin.py, run_lookups.py, run_avi.py, and NT's run on the GPU) this
 --offline does steps 3 and 4 from the committed files of step 2 alone, reading no cache
 and no network, and fails unless every file it writes is byte for byte the committed
 one. Nothing written carries the time of the build, so a rebuild is byte-identical.
-NT runs on a rented GPU and arrives later (the author's decision of 2026-10-23); until
-its results are in phase1/data/e18_cache/nt/, its column is left out and the table
-says so.
+NT was scored on an RTX A6000 in the original run's recorded environment (the author's
+decision of 2026-10-23), and its anchors decide alone: all 39 identical, and its files
+are written like any other run's. Otherwise, by the rule the author fixed before the run,
+NT does not enter the external test, with no tolerance, and no NT file per gene is
+written; the run's evidence goes to phase1/data/evidence/external/nt_gpu_run/: the pod's
+environment record, its three logs and both manifests as served, the 39 anchors' stored
+and re-scored values with their difference (anchor_check.tsv), and record.json, which
+says what was committed and names the two result tables that were not by their sha256
+(the 6,667 external values are not the analysis set's variable and stay in the
+gitignored cache; the author's decision of 2026-10-23). Every other run stops on an
+anchor that differs.
 
 Run in the reference image (修改单 §0 rule 9; scripts/stage_E18/in_image.sh):
     docker run ... IMAGE bash scripts/stage_E18/in_image.sh scripts/stage_E18/build_columns.py [--offline]
@@ -65,6 +73,14 @@ COLUMN_PROVENANCE = REPO / "docs/column-provenance.md"
 DOC = REPO / "docs/external-column-identity.md"
 SCORED = EXT / "newgenes_scored.parquet"
 MANIFEST = EXT / "newgenes_scored.manifest.json"
+# NT's evidence when its anchors do not hold (the author's decisions of 2026-10-23)
+NT_DIR = EXT / "nt_gpu_run"
+NT_SERVED = ["out/environment.json", "out/MANIFEST.sha256", "out_trial/MANIFEST.sha256",
+             "run.log", "run_trial.log", "run_trial_failed_hf_transfer.log"]
+NT_RULE = ("by the rule the author fixed before the run (2026-10-23), NT enters the external "
+           "test only if all 39 anchors are identical bit for bit; otherwise it does not, "
+           "with no tolerance and no re-scoring of the seven genes, and every external "
+           "gene's NT cell reads: no column of the same variable")
 
 NEW = ["CTCF", "SFPQ", "RAD51D", "XRCC2", "SBDS"]
 GENES = ["DDX3X", "TP53"] + NEW
@@ -272,6 +288,95 @@ def _write_json(obj, path: Path) -> None:
     path.write_text(json.dumps(obj, indent=1, ensure_ascii=False) + "\n")
 
 
+def _manifest(path: Path) -> dict[str, str]:
+    """name -> sha256, from a MANIFEST.sha256 the pod wrote."""
+    return {n: h for h, n in (ln.split("  ", 1) for ln in path.read_text().splitlines() if ln)}
+
+
+def nt_evidence(df: pd.DataFrame, anchors: pd.DataFrame, stored: pd.DataFrame, log) -> dict:
+    """NT's anchors do not hold: its run's evidence, and no NT file per gene."""
+    src = CACHE / "nt"
+    for sub in ("out", "out_trial"):
+        for name, h in _manifest(src / sub / "MANIFEST.sha256").items():
+            if sha(src / sub / name) != h:
+                raise SystemExit(f"[nt] {sub}/{name} is not the file the pod's manifest names")
+    committed = {}
+    for r in NT_SERVED:
+        dst = NT_DIR / r
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        dst.write_bytes((src / r).read_bytes())
+        committed[r] = sha(dst)
+        log.output(dst)
+    got = df.set_index("variant_id")["nt"]
+    st = stored.set_index("variant_id")
+    gene = anchors.set_index("variant_id")["gene"]
+    rows = []
+    for v in anchors["variant_id"]:
+        g, w = float(got[v]), float(st.loc[v, "nt"])
+        rows.append({"variant_id": v, "gene": gene[v], "stratum": st.loc[v, "stratum"],
+                     "stored": repr(w), "rescored": repr(g), "difference": repr(g - w),
+                     "identical": g == w})
+    table = pd.DataFrame(rows)
+    out = NT_DIR / "anchor_check.tsv"
+    table.to_csv(out, sep="\t", index=False)
+    log.output(out)
+    diff = np.array([abs(float(x)) for x in table["difference"]])
+    rel_diff = diff / np.abs(np.array([float(x) for x in table["stored"]]))
+
+    def results(sub):
+        t = pd.read_csv(src / sub / "results.tsv", sep="\t", dtype=str, keep_default_na=False)
+        return t.set_index("variant_id")
+    full, trial = results("out"), results("out_trial")
+    both = full.loc[trial.index, "nt"] == trial["nt"]          # repr against repr: bit for bit
+    in_trial = trial["set"] == "anchor"
+    env = json.loads((src / "out/environment.json").read_text())
+    query = [ln for ln in env["nvidia_smi_query"].splitlines() if ln and not ln.startswith("name")]
+    cuda_max = re.search(r"CUDA Version:\s*([0-9.]+)", env["nvidia_smi"])
+    k = int(table["identical"].sum())
+    rec = {
+        "column": "nt",
+        "rule": NT_RULE,
+        "result": (f"{k}/{len(table)} anchors identical bit for bit, largest difference "
+                   f"{diff.max():.3g}: NT does not enter the external test"),
+        "anchors": {"file": rel(out), "n": len(table), "n_identical": k,
+                    "largest_difference": repr(float(diff.max())),
+                    "largest_relative_difference": repr(float(rel_diff.max()))},
+        "trial_and_full_run_agree": {
+            "anchors": f"{int(both[in_trial].sum())}/{int(in_trial.sum())}",
+            "external": f"{int(both[~in_trial].sum())}/{int((~in_trial).sum())}"},
+        "run": {k_: env[k_] for k_ in ("gpu_name", "gpu_capability", "torch", "cuda", "cudnn",
+                                        "transformers", "checkpoint", "model_revision",
+                                        "model_class", "dtype", "device", "start_utc", "end_utc",
+                                        "n_variants", "n_scored", "package_manifest_sha256")}
+               | {"nvidia_smi_query": query, "driver_cuda_version": cuda_max and cuda_max.group(1)},
+        "committed_as_served": committed,
+        "not_committed": {
+            "files": {f"{sub}/results.tsv": _manifest(src / sub / "MANIFEST.sha256")["results.tsv"]
+                      for sub in ("out", "out_trial")},
+            "kept_in": "phase1/data/e18_cache/nt/ (gitignored)",
+            "why": ("the 6,667 external values are not the analysis set's variable and are not "
+                    "used (the author's decision of 2026-10-23)")},
+        "package_run_logs": [rel(q) for q in sorted(RUN_LOGS.glob("nt_gpu_package_*.json"))],
+        "scored_utc_range": [env["start_utc"], env["end_utc"]],
+    }
+    _write_json(rec, NT_DIR / "record.json")
+    log.output(NT_DIR / "record.json")
+    print(f"[nt] {rec['result']}; evidence in {rel(NT_DIR)}")
+    return {"record": rel(NT_DIR / "record.json")}
+
+
+def _nt_cell() -> str | None:
+    """The NT cell's text when NT's anchors did not hold, else None."""
+    rec = NT_DIR / "record.json"
+    if not rec.exists():
+        return None
+    r = json.loads(rec.read_text())["anchors"]
+    return (f"no column of the same variable: {r['n_identical']}/{r['n']} anchors identical bit "
+            f"for bit, largest difference {float(r['largest_difference']):.3g}; by the rule "
+            "fixed before the run (the author's decision of 2026-10-23) NT does not enter the "
+            "external test")
+
+
 def build_run(run: str, inp: pd.DataFrame, stored: pd.DataFrame, log) -> dict | None:
     spec = RUNS[run]
     paths = [p for pat in spec["cache"] for p in CACHE.glob(pat)]
@@ -296,6 +401,8 @@ def build_run(run: str, inp: pd.DataFrame, stored: pd.DataFrame, log) -> dict | 
         raise SystemExit(f"[{run}] scored {len(got)} variants, not the {len(expect)} it was asked for")
     check = anchors_check(run, df, anchors, stored)
     bad = {c: v for c, v in check["columns"].items() if v["n_identical"] != check["n_anchors"]}
+    if bad and run == "nt":
+        return {"nt_evidence": nt_evidence(df, anchors, stored, log), "anchors": check}
     if bad:
         raise SystemExit(f"[{run}] anchors not identical (E18.0 rule 4: stop): {bad}")
     env = environment(run)
@@ -397,8 +504,10 @@ def assemble() -> tuple[pd.DataFrame, dict]:
         files = sorted({_committed(run, g) for g in NEW})
         if not all(f.exists() for f in files):
             if RUNS[run].get("optional"):
-                absent[col] = ("not part of this commit: NT is scored on the original GPU and "
-                               "has a commit of its own (the author's decision of 2026-10-23)")
+                absent[col] = (f"{_nt_cell()} ({rel(NT_DIR / 'anchor_check.tsv')})" if _nt_cell()
+                               else "not part of this commit: NT is scored on the original GPU "
+                                    "and has a commit of its own (the author's decision of "
+                                    "2026-10-23)")
                 continue
             raise SystemExit(f"{col}: {[rel(f) for f in files if not f.exists()]} missing")
         take = [col] + ([c for c in WALKER if c != col] if col == "spliceai_walker" else [])
@@ -474,6 +583,10 @@ def identity_table(built: dict) -> str:
             spec = RUNS[run]
             if g in spec["genes"]:
                 f = _committed(run, g)
+                if not f.exists() and run == "nt" and _nt_cell():
+                    rows.append((g, col, spec["scorer"], spec["tool"], spec["precision"],
+                                 spec["direction"], _nt_cell(), rel(NT_DIR / "anchor_check.tsv")))
+                    continue
                 if not f.exists():
                     rows.append((g, col, spec["scorer"], spec["tool"], spec["precision"],
                                  spec["direction"], "not part of this commit: scored on the "
@@ -513,6 +626,7 @@ def identity_table(built: dict) -> str:
     n_a = sum(1 for r in rows if r[6].startswith("(a)"))
     n_b = sum(1 for r in rows if r[6].startswith("(b)"))
     n_p = sum(1 for r in rows if r[6].startswith("not part of this commit"))
+    n_none = sum(1 for r in rows if r[6].startswith("no column of the same variable"))
     return (
         "# External genes: the same variable as the analysis set, column by column\n\n"
         "Generated by `scripts/stage_E18/build_columns.py` (E18.2); do not edit by hand.\n\n"
@@ -525,7 +639,9 @@ def identity_table(built: dict) -> str:
         "`scripts/stage_E18/anchors.py`, 39 in all; for AlphaGenome, the pilot's ten variants "
         "of the drift checks); or (b) a committed value-for-value record. No tolerance.\n\n"
         f"{len(rows)} cells: {n_a} with evidence (a), {n_b} with evidence (b)"
-        + (f", {n_p} not part of this commit" if n_p else "") + ".\n\n" + head + body)
+        + (f", {n_p} not part of this commit" if n_p else "")
+        + (f", {n_none} with no column of the same variable (NT)" if n_none else "")
+        + ".\n\n" + head + body)
 
 
 def write_assembled(df: pd.DataFrame, manifest: dict, built: dict) -> dict[Path, bytes]:

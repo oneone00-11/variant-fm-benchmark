@@ -1,0 +1,64 @@
+{
+ "column": "nt",
+ "rule": "by the rule the author fixed before the run (2026-10-23), NT enters the external test only if all 39 anchors are identical bit for bit; otherwise it does not, with no tolerance and no re-scoring of the seven genes, and every external gene's NT cell reads: no column of the same variable",
+ "result": "7/39 anchors identical bit for bit, largest difference 4.77e-06: NT does not enter the external test",
+ "anchors": {
+  "file": "phase1/data/evidence/external/nt_gpu_run/anchor_check.tsv",
+  "n": 39,
+  "n_identical": 7,
+  "largest_difference": "4.76837158203125e-06",
+  "largest_relative_difference": "0.0001273723092599669"
+ },
+ "trial_and_full_run_agree": {
+  "anchors": "39/39",
+  "external": "50/50"
+ },
+ "run": {
+  "gpu_name": "NVIDIA RTX A6000",
+  "gpu_capability": [
+   8,
+   6
+  ],
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "cudnn": 91900,
+  "transformers": "4.46.3",
+  "checkpoint": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+  "model_revision": "06615c1660c892fc199840c18123f8385b3542a8",
+  "model_class": "transformers_modules.InstaDeepAI.nucleotide-transformer-v2-500m-multi-species.06615c1660c892fc199840c18123f8385b3542a8.modeling_esm.EsmForMaskedLM",
+  "dtype": "torch.float32",
+  "device": "cuda",
+  "start_utc": "2026-10-23T10:53:55+00:00",
+  "end_utc": "2026-10-23T11:05:51+00:00",
+  "n_variants": 6706,
+  "n_scored": 6706,
+  "package_manifest_sha256": "2a262eb712a01d485c74004cdc5ea9ff074b89a7bb2cb168ab5a7c6dbf3d5279",
+  "nvidia_smi_query": [
+   "NVIDIA RTX A6000, 595.91.07, 49140 MiB, 8.6"
+  ],
+  "driver_cuda_version": "13.2"
+ },
+ "committed_as_served": {
+  "out/environment.json": "62fa4d76ab963c25c1ee8ddaeb5d43784d58cc5a8f0b51653c273ee7b625c0cf",
+  "out/MANIFEST.sha256": "1cab034c71161a427ac587a96869e5389da740f652f55137bbecabd96f3abcd5",
+  "out_trial/MANIFEST.sha256": "a1fc3c59b6eb2d55bde5e4b40307dd8eb55c985a2f92fd8d8cb3f12997e576fc",
+  "run.log": "084a03997446a595feb76ac7f8f9916fa2a8e4eef12d3ded1b18dd880c1bdbca",
+  "run_trial.log": "2c8ccd18dd9071d1a5d83ee3c43eae8f788bc529feb3f82704adb7a630319657",
+  "run_trial_failed_hf_transfer.log": "ccf270449df4ff1bcfa6cb96bdb4e69be035571bce78adb8ac2e713dbaac25e6"
+ },
+ "not_committed": {
+  "files": {
+   "out/results.tsv": "9799cec4427f809db070b1e8c5bb9805c48321e337e56d5b2a7ac0c30c566d03",
+   "out_trial/results.tsv": "9dbd1fd458167384689cd68c206d6b39690a69d7278d169f60bcc837aef43b7f"
+  },
+  "kept_in": "phase1/data/e18_cache/nt/ (gitignored)",
+  "why": "the 6,667 external values are not the analysis set's variable and are not used (the author's decision of 2026-10-23)"
+ },
+ "package_run_logs": [
+  "scripts/stage_E18/run_log/nt_gpu_package_20261023T045810Z.json"
+ ],
+ "scored_utc_range": [
+  "2026-10-23T10:53:55+00:00",
+  "2026-10-23T11:05:51+00:00"
+ ]
+}

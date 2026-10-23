@@ -182,7 +182,7 @@
   }
  },
  "not_scored": {
-  "nt": "not part of this commit: NT is scored on the original GPU and has a commit of its own (the author's decision of 2026-10-23)"
+  "nt": "no column of the same variable: 7/39 anchors identical bit for bit, largest difference 4.77e-06; by the rule fixed before the run (the author's decision of 2026-10-23) NT does not enter the external test (phase1/data/evidence/external/nt_gpu_run/anchor_check.tsv)"
  },
  "same_variable": "docs/external-column-identity.md",
  "scored_utc_range": [

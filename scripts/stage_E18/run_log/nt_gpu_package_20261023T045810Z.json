@@ -1,0 +1,180 @@
+{
+ "script": "scripts/stage_E18/nt_gpu_package.py",
+ "argv": [
+  "scripts/stage_E18/nt_gpu_package.py",
+  "--out",
+  "/Users/cliffzhang/Desktop/E18_NT_GPU_package"
+ ],
+ "git_commit": "114ccfbc8a4a3e7ad6d3a84c7ed5bd485008d2a0",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/nt_gpu_package.py": "3a8bee484a7750bd693b175685495ac1bab563b78aa8759d1f5ac64ab23f060a",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.5.3",
+  "pandas": "3.0.5",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T04:58:08+00:00",
+ "end_utc": "2026-10-23T04:58:10+00:00",
+ "inputs": [
+  {
+   "path": "~/work/functional-standard-atlas/models/nt/score.py",
+   "bytes": 8914,
+   "sha256": "d69318b80ce001342ea493d4cef38ea007735746d5cbb1b5a6005ad99e692d01"
+  },
+  {
+   "path": "~/work/functional-standard-atlas/models/nt/pipfreeze_runpod.txt",
+   "bytes": 1340,
+   "sha256": "21bff23888b101bd273f6fb4554b321ad1a5151088fafb51343f743453b1ced7"
+  },
+  {
+   "path": "phase1/data/evidence/external/e18_anchors.parquet",
+   "bytes": 15662,
+   "sha256": "5c320fbb9e03374b0087797f4dfe096def8e6d62242447c59b5939ce2879a11c"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "~/Desktop/E18_NT_GPU_package/README.md",
+   "bytes": 3738,
+   "sha256": "b125fc5e9364b3a6804291ce4b32d1e9bb3a5b164969fc8d7cb2a1f8ccf76848"
+  },
+  {
+   "path": "~/Desktop/E18_NT_GPU_package/atlas_nt_score.py",
+   "bytes": 8914,
+   "sha256": "d69318b80ce001342ea493d4cef38ea007735746d5cbb1b5a6005ad99e692d01"
+  },
+  {
+   "path": "~/Desktop/E18_NT_GPU_package/pipfreeze_runpod.txt",
+   "bytes": 1340,
+   "sha256": "21bff23888b101bd273f6fb4554b321ad1a5151088fafb51343f743453b1ced7"
+  },
+  {
+   "path": "~/Desktop/E18_NT_GPU_package/regions.fa",
+   "bytes": 381488,
+   "sha256": "0ca810d1310f278b8165925a70bb53987a23a6b59a1c9135ffa87cfe0b7b9387"
+  },
+  {
+   "path": "~/Desktop/E18_NT_GPU_package/requirements_pod.txt",
+   "bytes": 1234,
+   "sha256": "7ddc9ded6500aa5a05f480144290112aa33feb3150588c13e626db7dea1a3716"
+  },
+  {
+   "path": "~/Desktop/E18_NT_GPU_package/run_nt_gpu.py",
+   "bytes": 9680,
+   "sha256": "b8d710deaac586219adc46a526593570853b63c0129f8e8187be1466112bee4c"
+  },
+  {
+   "path": "~/Desktop/E18_NT_GPU_package/variants.tsv",
+   "bytes": 314002,
+   "sha256": "64fd00d813cf14cccd7a24a0650230616d19c6bdac206ff85824fe7803429bd4"
+  },
+  {
+   "path": "~/Desktop/E18_NT_GPU_package/MANIFEST.sha256",
+   "bytes": 570,
+   "sha256": "2a262eb712a01d485c74004cdc5ea9ff074b89a7bb2cb168ab5a7c6dbf3d5279"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "variants": {
+   "anchors": 39,
+   "external": 6667
+  },
+  "slices": [
+   {
+    "chrom": "1",
+    "start0": 35180595,
+    "length": 14964
+   },
+   {
+    "chrom": "13",
+    "start0": 32375308,
+    "length": 25584
+   },
+   {
+    "chrom": "16",
+    "start0": 23604023,
+    "length": 38039
+   },
+   {
+    "chrom": "16",
+    "start0": 67607927,
+    "length": 33758
+   },
+   {
+    "chrom": "17",
+    "start0": 7669688,
+    "length": 9560
+   },
+   {
+    "chrom": "17",
+    "start0": 35097038,
+    "length": 26491
+   },
+   {
+    "chrom": "17",
+    "start0": 43043627,
+    "length": 31294
+   },
+   {
+    "chrom": "17",
+    "start0": 43100862,
+    "length": 18934
+   },
+   {
+    "chrom": "17",
+    "start0": 58690921,
+    "length": 16419
+   },
+   {
+    "chrom": "17",
+    "start0": 58720102,
+    "length": 18011
+   },
+   {
+    "chrom": "2",
+    "start0": 214741715,
+    "length": 8001
+   },
+   {
+    "chrom": "2",
+    "start0": 214763663,
+    "length": 37464
+   },
+   {
+    "chrom": "3",
+    "start0": 10142509,
+    "length": 11268
+   },
+   {
+    "chrom": "3",
+    "start0": 52399124,
+    "length": 14427
+   },
+   {
+    "chrom": "7",
+    "start0": 66984501,
+    "length": 14786
+   },
+   {
+    "chrom": "7",
+    "start0": 152645365,
+    "length": 34673
+   },
+   {
+    "chrom": "X",
+    "start0": 41330297,
+    "length": 21342
+   }
+  ],
+  "windows_checked": 6706
+ }
+}

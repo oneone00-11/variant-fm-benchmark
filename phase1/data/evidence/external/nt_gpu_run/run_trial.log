@@ -1,0 +1,10 @@
+A new version of the following files was downloaded from https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-500m-multi-species:
+- esm_config.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+A new version of the following files was downloaded from https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-500m-multi-species:
+- modeling_esm.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+nt: InstaDeepAI/nucleotide-transformer-v2-500m-multi-species at 06615c1660c892fc199840c18123f8385b3542a8 on NVIDIA RTX A6000, torch.float32
+anchors: 7/39 identical to the analysis set, bit for bit
+throughput: 0.100 s per variant; the full run of 6706 variants projects to 11.1 min
+wrote /workspace/E18_NT_GPU_package/out_trial: results.tsv, environment.json, MANIFEST.sha256

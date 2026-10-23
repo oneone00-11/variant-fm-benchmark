@@ -1,0 +1,16 @@
+nt: InstaDeepAI/nucleotide-transformer-v2-500m-multi-species at 06615c1660c892fc199840c18123f8385b3542a8 on NVIDIA RTX A6000, torch.float32
+  500/6706 scored, 52 s
+  1000/6706 scored, 106 s
+  1500/6706 scored, 159 s
+  2000/6706 scored, 213 s
+  2500/6706 scored, 266 s
+  3000/6706 scored, 320 s
+  3500/6706 scored, 373 s
+  4000/6706 scored, 427 s
+  4500/6706 scored, 480 s
+  5000/6706 scored, 533 s
+  5500/6706 scored, 587 s
+  6000/6706 scored, 640 s
+  6500/6706 scored, 694 s
+anchors: 7/39 identical to the analysis set, bit for bit
+wrote /workspace/E18_NT_GPU_package/out: results.tsv, environment.json, MANIFEST.sha256

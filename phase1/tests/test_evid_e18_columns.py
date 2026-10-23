@@ -9,9 +9,11 @@ variants, in e18_score_input.parquet's order, and its record names its sha256, i
 counts and its scoring times, every one after the tag; the five further genes' table and
 the evidence table rebuild from the committed files byte for byte (build_columns.py
 --offline); every cell of the evidence table, 7 genes x 13 columns, has evidence (a) or
-(b), or is NT's, in a commit of its own; and run_avi.py's guard stops the Atlas run on
-an authentication error and on a batch whose every attempt fails, with the key cut out
-of what it records.
+(b), or is NT's, which did not reproduce its anchors on the original GPU and, by the
+rule fixed before the run, has no column of the same variable (its run's evidence, as
+served, in nt_gpu_run/, checked against the pod's own manifests); and run_avi.py's
+guard stops the Atlas run on an authentication error and on a batch whose every
+attempt fails, with the key cut out of what it records.
 """
 from __future__ import annotations
 
@@ -164,9 +166,59 @@ def test_every_cell_of_the_evidence_table_has_evidence():
     for c in cells:
         ev = c[6]
         assert ev.startswith("(a)") or ev.startswith("(b)") or (
-            c[1] == "nt" and ev.startswith("not part of this commit")), c
+            c[1] == "nt" and (ev.startswith("not part of this commit") or (
+                ev.startswith("no column of the same variable") and NT_RECORD.exists()
+                and c[7] == "phase1/data/evidence/external/nt_gpu_run/anchor_check.tsv"))), c
         if "re-scored" in ev:
             assert "anchors 39/39 identical" in ev, c
+
+
+NT_DIR = EXT / "nt_gpu_run"
+NT_RECORD = NT_DIR / "record.json"
+
+
+def _pod_manifest(path: Path) -> dict:
+    return {n: h for h, n in (ln.split("  ", 1) for ln in path.read_text().splitlines() if ln)}
+
+
+@pytest.mark.skipif(not NT_RECORD.exists(), reason="NT's anchors held, or its commit is not in")
+def test_nt_evidence_is_the_pods_own_record():
+    rec = json.loads(NT_RECORD.read_text())
+    for name, h in rec["committed_as_served"].items():
+        assert _sha(NT_DIR / name) == h, name
+    out = _pod_manifest(NT_DIR / "out/MANIFEST.sha256")
+    trial = _pod_manifest(NT_DIR / "out_trial/MANIFEST.sha256")
+    assert _sha(NT_DIR / "out/environment.json") == out["environment.json"]
+    assert rec["not_committed"]["files"] == {"out/results.tsv": out["results.tsv"],
+                                             "out_trial/results.tsv": trial["results.tsv"]}
+    env = json.loads((NT_DIR / "out/environment.json").read_text())
+    assert (env["gpu_name"], env["gpu_capability"], env["torch"], env["cuda"],
+            env["transformers"], env["dtype"]) == ("NVIDIA RTX A6000", [8, 6], "2.11.0+cu128",
+                                                   "12.8", "4.46.3", "torch.float32")
+    assert env["model_revision"] == "06615c1660c892fc199840c18123f8385b3542a8"
+    assert datetime.fromisoformat(rec["scored_utc_range"][0]) > datetime.fromisoformat(TAG_UTC)
+
+
+@pytest.mark.skipif(not NT_RECORD.exists(), reason="NT's anchors held, or its commit is not in")
+def test_nt_anchor_check_is_the_analysis_sets_and_nt_stays_out():
+    rec = json.loads(NT_RECORD.read_text())
+    t = pd.read_csv(NT_DIR / "anchor_check.tsv", sep="\t", dtype=str, keep_default_na=False)
+    anchors = pd.read_parquet(EXT / "e18_anchors.parquet")
+    assert list(t["variant_id"]) == list(anchors["variant_id"])
+    s = pd.read_parquet(SET).set_index("variant_id").loc[t["variant_id"], "nt"].to_numpy(dtype=float)
+    stored = np.array([float(x) for x in t["stored"]])
+    rescored = np.array([float(x) for x in t["rescored"]])
+    assert (stored == s).all()
+    assert [x == "True" for x in t["identical"]] == list(rescored == stored)
+    assert all(float(d) == r - w for d, r, w in zip(t["difference"], rescored, stored))
+    k = int((rescored == stored).sum())
+    assert k == rec["anchors"]["n_identical"] < len(t) == 39
+    # by the rule fixed before the run, no NT column of any external gene
+    names = [B.file_name("nt", g) for g in B.GENES] + ["e18_anchors_nt.parquet"]
+    assert not any((EXT / n).exists() for n in names)
+    man = json.loads(B.MANIFEST.read_text())
+    assert man["not_scored"]["nt"].startswith("no column of the same variable") and "nt" not in \
+        pd.read_parquet(B.SCORED).columns
 
 
 class _Fake:

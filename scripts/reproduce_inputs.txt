@@ -22,6 +22,8 @@
 # Then the external genes' other columns, each scored after the tag by the analysis set's
 # scorer with 39 anchor variants in the same run: the anchors and the score input, each
 # gene's and each run's score files with their records, and the five further genes' table.
+# Then NT's run on the original GPU, whose anchors did not hold: its evidence as served,
+# the anchor check and the record (nt_gpu_run/).
 phase1/data/evidence/FROZEN_AT_TAG.json
 phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json
 phase1/data/evidence/alphagenome_official/ENVIRONMENT.json
@@ -191,6 +193,14 @@ phase1/data/evidence/external/newgenes_avi.parquet.provenance.json
 phase1/data/evidence/external/newgenes_reference_check.json
 phase1/data/evidence/external/newgenes_scored.manifest.json
 phase1/data/evidence/external/newgenes_scored.parquet
+phase1/data/evidence/external/nt_gpu_run/anchor_check.tsv
+phase1/data/evidence/external/nt_gpu_run/out/MANIFEST.sha256
+phase1/data/evidence/external/nt_gpu_run/out/environment.json
+phase1/data/evidence/external/nt_gpu_run/out_trial/MANIFEST.sha256
+phase1/data/evidence/external/nt_gpu_run/record.json
+phase1/data/evidence/external/nt_gpu_run/run.log
+phase1/data/evidence/external/nt_gpu_run/run_trial.log
+phase1/data/evidence/external/nt_gpu_run/run_trial_failed_hf_transfer.log
 phase1/data/evidence/external/rad51d_cadd.parquet
 phase1/data/evidence/external/rad51d_cadd.parquet.environment.json
 phase1/data/evidence/external/rad51d_cadd.parquet.provenance.json

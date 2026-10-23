@@ -1189,3 +1189,42 @@ every output is unchanged.
   to them (E18.0 rule 10).
 - Tests: `test_evid_e18_columns.py`. The SBDS test also reads the manifest beside an
   assembled table for its scoring time.
+
+## After the thresholds were frozen: NT on the original GPU does not reproduce its anchors, so NT stays out (stage E18, 2026-10-23)
+
+Why: the analysis set's `nt` column is the companion atlas's, scored on a rented RTX
+A6000 whose environment the atlas recorded. On this Mac the same scorer reproduces 4 of
+the 39 anchors bit for bit on the CPU and 2 on its GPU. By the author's decision of
+2026-10-23, NT was scored again on an RTX A6000 in the recorded environment, and the
+rule was fixed before the run: NT enters the external test only if all 39 anchors are
+identical. This commit only adds data; the pipeline reads none of it, and every output
+is unchanged.
+
+- The package (`scripts/stage_E18/nt_gpu_package.py`, `nt_gpu_run.py`, `nt_gpu_README.md`):
+  the anchors and the 6,667 external variants, reference slices checked window by
+  window against the whole chromosome, the atlas's `models/nt/score.py` verbatim, and a
+  runner that starts only on an RTX A6000 (compute capability 8.6) with torch
+  2.11.0+cu128, transformers 4.46.3, `pip freeze --all` equal to the atlas's record, and
+  the model at revision 06615c16. What the original run left unrecorded comes from
+  `score.py`'s defaults: float32, one variant per forward pass, the 6,000-nt window.
+- The run (RunPod, 2026-10-23 10:53 to 11:05 UTC): every check passed. The driver,
+  which the original run did not record, was 595.91.07 (CUDA 13.2). A first attempt
+  stopped before scoring anything, because the pod's template sets
+  `HF_HUB_ENABLE_HF_TRANSFER=1` and the recorded environment has no `hf_transfer`; the
+  variable was unset rather than the package added. Its log is kept.
+- The result: 7 of the 39 anchors identical bit for bit; the largest difference 4.77e-6
+  (relative 1.3e-4), 2 to 2,048 float32 units in the last place. A trial run of the
+  anchors and 50 variants before it gave the same values to the last bit, so the
+  difference is systematic. The analysis set's NT values are float32 values stored as
+  such (8,851 of 8,853), so it is not an effect of how they were stored.
+- Hence, by the rule fixed beforehand: NT enters the external test for no external
+  gene, TP53's published-study NT column included; the external test runs on the other
+  twelve columns; no tolerance, and the seven genes are not scored again.
+- `phase1/data/evidence/external/nt_gpu_run/`: the pod's environment record, its three
+  logs and both manifests, as served; `anchor_check.tsv`, the 39 anchors' stored and
+  re-scored values and their difference; `record.json`. The 6,667 external values are
+  not the analysis set's variable and are not committed; `record.json` names the two
+  result tables by sha256, and they stay in the gitignored cache.
+- `docs/external-column-identity.md`: the NT cell of each gene reads "no column of the
+  same variable" and cites the anchor check; `newgenes_scored.manifest.json` says the
+  same.
