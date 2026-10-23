@@ -145,6 +145,13 @@ def test_every_rows_counts_add_up(table):
     for path in (BY_GENE, EXTERNAL):
         x = _csv(path)
         x = x[x.status == "ok"]
+        if "side" in x.columns:
+            # the external genes carry the BP4 side too (E18.5)
+            xb = x[x.side == "bp4"]
+            assert len(xb)
+            assert (xb.bp4_n_pos_at_or_below + xb.bp4_n_pos_above == xb.n_pos).all()
+            assert (xb.bp4_n_neg_at_or_below + xb.bp4_n_neg_above == xb.n_neg).all()
+            x = x[x.side == "pp3"]
         assert (x.n_pos_above + x.n_pos_below == x.n_pos).all()
         assert (x.n_neg_above + x.n_neg_below == x.n_neg).all()
     # a held-out row without counts carries no counts, rather than the stratum's
@@ -381,7 +388,11 @@ def test_in_sample_thresholds_are_e3s(table):
 def test_external_genes_reproduce_e7():
     """E4.3: at the thresholds E7 carried over, the counts and the band ratio are
     E7's; at the published cut point, E7's sensitivity and specificity. Where E7
-    carried nothing, the row takes E7's words and applies no threshold."""
+    carried nothing, the row takes E7's words and applies no threshold. Since E18.5
+    E7 carries three kinds: the in-sample PP3 and BP4 thresholds of the main test, and
+    the LOGO medians of the sensitivity analysis."""
+    prefix = {"in_sample": {"pp3": "pp3_insample_", "bp4": "bp4_insample_"},
+              "logo_median": {"pp3": "pp3_logo_median_"}}
     x = _csv(EXTERNAL)
     checked = 0
     for gene, label in (("DDX3X", "y_deposit"), ("TP53", "y_control_anchored")):
@@ -394,19 +405,25 @@ def test_external_genes_reproduce_e7():
                 if f.status != "ok":
                     assert (r.status, r.note) == (f.status, f.reason)
                 elif r.threshold_kind != "walker_pp3" and bool(f.column_basis_comparable):
-                    k = r.threshold_kind
-                    assert (r.status, r.note) == (f[f"e3_{k}_tier_here"], f[f"e3_{k}_note"])
+                    k = prefix[r.threshold_source][r.side] + r.threshold_kind.removeprefix("bp4_")
+                    assert (r.status, r.note) == (f[f"{k}_tier_here"], f[f"{k}_note"])
                 continue
             if r.threshold_kind == "walker_pp3":
                 assert r.sensitivity == f.walker_sens_pp3
                 assert r.specificity == f.walker_spec_pp3
                 assert r.n_pos_above == f.walker_pp3_n_pos_band
+            elif r.side == "pp3":
+                k = prefix[r.threshold_source]["pp3"] + r.threshold_kind
+                assert r.threshold == f[f"{k}_threshold"]
+                assert r.n_pos_above == f[f"{k}_n_pos_band"]
+                assert r.n_neg_above == f[f"{k}_n_neg_band"]
+                assert _same(r.band_lr_plus, f[f"{k}_lr_here"])
             else:
-                k = r.threshold_kind
-                assert r.threshold == f[f"e3_{k}_threshold"]
-                assert r.n_pos_above == f[f"e3_{k}_n_pos_band"]
-                assert r.n_neg_above == f[f"e3_{k}_n_neg_band"]
-                assert _same(r.band_lr_plus, f[f"e3_{k}_lr_here"])
+                k = "bp4_insample_" + r.threshold_kind.removeprefix("bp4_")
+                assert r.threshold == f[f"{k}_threshold"]
+                assert r.bp4_n_pos_at_or_below == f[f"{k}_n_pos_band"]
+                assert r.bp4_n_neg_at_or_below == f[f"{k}_n_neg_band"]
+                assert _same(r.bp4_band_lr, f[f"{k}_lr_here"])
             checked += 1
     assert checked > 100
 
@@ -465,7 +482,8 @@ def test_summary_sentences_follow_the_data():
     assert P._sentence_matched(pd.DataFrame(rotating)).startswith(
         "At a specificity of 0.95 no tool is the most sensitive in every band")
     empty = pd.DataFrame(columns=["status", "external_test", "main_table", "stratum",
-                                  "threshold_kind", "sensitivity_minus_seven_gene",
+                                  "threshold_kind", "threshold_source",
+                                  "sensitivity_minus_seven_gene",
                                   "specificity_minus_seven_gene", "gene", "tool"])
     assert P._sentence_external(empty).startswith("No threshold carried to DDX3X")
 

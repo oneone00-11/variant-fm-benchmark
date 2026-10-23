@@ -1325,3 +1325,54 @@ every number byte for byte the same (`scripts/stage_E18/scope_c4.json`, checked 
   the manifest's rule. By the author's decision all three were added to `scope_c4.json`
   (`amended_after_check`). With the old name replaced by the new, every changed table is
   otherwise byte for byte the previous commit's, and no number changed.
+
+## After the thresholds were frozen: the external test applies the in-sample thresholds of Table 3(b), BP4 included (stage E18, 2026-10-24)
+
+Why: the external test carried over the medians of the leave-one-gene-out folds' PP3
+thresholds, which Table 3(b) does not recommend. It now applies the thresholds Table
+3(b) does recommend, the in-sample ones, on both sides (E18.5). The medians stay, as a
+sensitivity analysis. One reason, one commit (`scripts/stage_E18/scope_c5.json`,
+checked by `check_scope.py`).
+
+- The thresholds: read at full precision from the frozen `evidence_thresholds.csv`,
+  `pp3_threshold_insample` and `bp4_threshold_insample`, only for the tiers whose
+  `*_reachable` is true: PP3 at Supporting, Moderate and Strong, BP4 at Supporting and
+  Moderate. A tier not reached in-sample carries no threshold, as before. Nothing is
+  fitted.
+- The reading: PP3 on the upper side by `_band_detail`, the tier from the point
+  estimate, with the tier at the interval's lower bound beside it, as before; BP4 on the
+  lower side, the tier read by `evid_common.band_lr_benign_bound`, as the BP4 tier at
+  Walker's published cut point is read. Each new cell's bootstrap draws on a seed of its
+  own (`insample_<tier>`, `insample_bp4_<tier>`); the medians' cells keep theirs.
+- The sensitivity analysis: the medians, computed as before, in columns of their own:
+  `pp3_logo_median_<tier>_*` in E7's tables (`e3_<tier>_*` before), "<Tier>,
+  sensitivity: …" in Supplementary Table S12. `check_scope.py` compares the renamed
+  columns with the previous commit's: every cell the same.
+- Walker's published cut points, 0.2 and 0.1: unchanged.
+- The outputs that follow, each naming its thresholds' source in its column names:
+  - `external_ddx3x.csv`, `external_tp53.csv`: new columns `pp3_insample_<tier>_*`
+    and `bp4_insample_<tier>_*`;
+  - Supplementary Table S12: "<Tier>: … (in-sample, Table 3(b))" and "BP4 <Tier>: …"
+    columns before the sensitivity columns;
+  - `practical_metrics_external.csv`: a `side` column; the in-sample PP3 and BP4 rows
+    (`threshold_source` in_sample), the BP4 rows with E15's BP4 metrics, each set against
+    the seven genes' in-sample row of the same threshold; the medians' rows unchanged;
+  - `fig4_external.csv` and Figure 4: the ratio at the in-sample threshold in place of
+    the ratio at the median;
+  - `docs/practical-metrics-summary.md`, item 5: the sentence now reads the in-sample
+    thresholds and names what it compares them with, the seven genes they were fitted
+    on (before: the medians against the held-out genes).
+- The supplement manifest's S12 row: its file hash, the hashes of the sources that
+  changed, and its note, which now states the thresholds as above (it named the
+  medians); the note was added to `scope_c5.json` before the scope was checked.
+- `check_scope.py` against the previous commit: nine outputs differ, none outside the
+  scope. In E7's tables and in S12 the medians' columns, under their new names, hold the
+  previous commit's cells unchanged, and of every row only the new columns, and S12's
+  Note, differ; in `fig4_external.csv` only the eight columns of the fitted threshold;
+  in `practical_metrics_external.csv` the previous rows gain only the new columns, and
+  480 rows are new. Figure 4's draft, declared, did not change: it draws the published
+  cut point only.
+- The sentence on the external genes: on DDX3X the in-sample thresholds are more
+  sensitive than in the seven genes they were fitted on by as much as 0.35, and less
+  specific by as much as 0.06 (it read 0.52 and 0.06 for the medians against the
+  held-out genes).

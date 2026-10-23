@@ -1,0 +1,103 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E18/scope_c5.json",
+  "--base",
+  "938ad10"
+ ],
+ "git_commit": "938ad10960ad15964892602393df4f222112b042",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "7b9156b06a850e8a883ae0b50d36c63b79dc9379c6d9ad600c41f7fcc8859fac",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T17:02:27+00:00",
+ "end_utc": "2026-10-23T17:02:34+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E18/scope_c5.json",
+   "bytes": 13046,
+   "sha256": "1d6ecbbfc2a50860e632e6093a33e8dc594bcad8ce012eb2dbf5d7b139b38127"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E18/scope_c5.json",
+  "base": "938ad10",
+  "head": "working tree",
+  "files": {
+   "docs/practical-metrics-summary.md": {
+    "changed": 2,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_ddx3x.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 240,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_tp53.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 180,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/fig_data/fig4_external.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 485,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/figures/figure4.pdf": {
+    "status": "declared",
+    "why": "Figure 4 draws the external genes' ratios at the fitted thresholds, now the in-sample thresholds of Table 3(b)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/figures/figure4.png": {
+    "status": "declared",
+    "why": "Figure 4 draws the external genes' ratios at the fitted thresholds, now the in-sample thresholds of Table 3(b)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/practical_metrics_external.csv": {
+    "added": 480,
+    "removed": 0,
+    "changed": 296,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+    "changed": 1,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/tableS12_external_genes.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 252,
+    "outside": [],
+    "status": "within the scope"
+   }
+  },
+  "declared_but_unchanged": [
+   "phase1/reports/evidence/fig_data/fig4_draft.png"
+  ],
+  "outside": []
+ }
+}

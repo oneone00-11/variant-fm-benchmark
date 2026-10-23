@@ -11,7 +11,10 @@ scope file (scripts/stage_E18/scope_<commit>.json), in one of three ways:
             changed row may change only the declared fields ("*": any); a table of one
             gene with no gene column declares the gene ("gene_const"); a declared rename
             ("renames", in the rows "rename_where" selects) is applied to the previous
-            commit's rows first, so that a renamed label leaves no other difference;
+            commit's rows first, so that a renamed label leaves no other difference, and
+            so is a declared rename of columns ("column_renames", whole names, and
+            "column_prefix_renames", the start of a name), so that a column kept under a
+            new name must hold the previous commit's cells unchanged;
   "fields"  a table keyed the same way, of which only the declared rows' declared
             fields may change (the supplement manifest's hash of an input, say); with
             "sources_in_scope", a row's "; "-joined source hashes may also change in the
@@ -114,6 +117,17 @@ def check_rows(path: str, decl: dict, old: pd.DataFrame | None, new: pd.DataFram
         tool = labels.get(tool, tool) if decl.get("tool_labels") else tool
         return tool in pairs.get(gene_const or row[gene_col], [])
 
+    if old is not None and (decl.get("column_renames") or decl.get("column_prefix_renames")):
+        whole = dict(decl.get("column_renames", []))
+
+        def renamed(c: str) -> str:
+            if c in whole:
+                return whole[c]
+            for a_, b_ in decl.get("column_prefix_renames", []):
+                if c.startswith(a_):
+                    return b_ + c[len(a_):]
+            return c
+        old = old.rename(columns=renamed)
     if old is not None and decl.get("renames"):
         old = old.copy()
         where = pd.Series(True, index=old.index)

@@ -1,0 +1,412 @@
+{
+ "commit": "E18.5",
+ "reason": "the external test applies the in-sample thresholds Table 3(b) recommends, read at full precision from the frozen evidence_thresholds.csv: PP3 at Supporting, Moderate and Strong and BP4 at Supporting and Moderate, each where E3 reached the tier in-sample; PP3 read on the upper side as before, BP4 on the lower side by evid_common.band_lr_benign_bound; the medians of the leave-one-gene-out fits, the external test's thresholds before, stay as a sensitivity analysis in columns of their own; Walker's published cut points unchanged",
+ "declared_from": "E18.5: only the external test's outputs change: E7's two tables (external_ddx3x.csv, external_tp53.csv), Supplementary Table S12, practical_metrics_external.csv, Figure 4 and its fig_data, and the supplement manifest's S12 row, its note included, which states the thresholds. Declared beforehand by the author's decision of 2026-10-23, the knock-on changes of this kind: the manifest's hashes (S12's file hash, and any Source sha256 entry of a file this scope declares), the text that names the thresholds' source (the columns renamed below; the sentence on the external genes in docs/practical-metrics-summary.md, derived from practical_metrics_external.csv), and source files: none of the external test's source files changes in E18.5, so none is declared, and a change in one is outside the scope. The medians' columns are renamed, not recomputed: each table's renamed columns must hold the previous commit's cells unchanged (check_scope.py's column renames), and of every row only the new columns, and S12's Note, may differ",
+ "pairs": {
+  "DDX3X": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ],
+  "TP53": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ]
+ },
+ "files": {
+  "phase1/reports/evidence/external_ddx3x.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "stratum",
+    "tool"
+   ],
+   "gene": "gene",
+   "tool": "tool",
+   "column_prefix_renames": [
+    [
+     "e3_supporting_",
+     "pp3_logo_median_supporting_"
+    ],
+    [
+     "e3_moderate_",
+     "pp3_logo_median_moderate_"
+    ],
+    [
+     "e3_strong_",
+     "pp3_logo_median_strong_"
+    ]
+   ],
+   "fields": [
+    "pp3_insample_supporting_reachable",
+    "pp3_insample_supporting_threshold",
+    "pp3_insample_supporting_lr_here",
+    "pp3_insample_supporting_tier_here",
+    "pp3_insample_supporting_note",
+    "pp3_insample_moderate_reachable",
+    "pp3_insample_moderate_threshold",
+    "pp3_insample_moderate_lr_here",
+    "pp3_insample_moderate_tier_here",
+    "pp3_insample_moderate_note",
+    "pp3_insample_strong_reachable",
+    "pp3_insample_strong_threshold",
+    "pp3_insample_strong_lr_here",
+    "pp3_insample_strong_tier_here",
+    "pp3_insample_strong_note",
+    "bp4_insample_supporting_reachable",
+    "bp4_insample_supporting_threshold",
+    "bp4_insample_supporting_lr_here",
+    "bp4_insample_supporting_tier_here",
+    "bp4_insample_supporting_note",
+    "bp4_insample_moderate_reachable",
+    "bp4_insample_moderate_threshold",
+    "bp4_insample_moderate_lr_here",
+    "bp4_insample_moderate_tier_here",
+    "bp4_insample_moderate_note",
+    "pp3_insample_supporting_n_pos_band",
+    "pp3_insample_supporting_n_neg_band",
+    "pp3_insample_supporting_lr_lo",
+    "pp3_insample_supporting_lr_hi",
+    "pp3_insample_supporting_tier_at_bound",
+    "bp4_insample_supporting_n_pos_band",
+    "bp4_insample_supporting_n_neg_band",
+    "bp4_insample_supporting_lr_lo",
+    "bp4_insample_supporting_lr_hi",
+    "pp3_insample_moderate_n_pos_band",
+    "pp3_insample_moderate_n_neg_band",
+    "pp3_insample_moderate_lr_lo",
+    "pp3_insample_moderate_lr_hi",
+    "pp3_insample_moderate_tier_at_bound",
+    "pp3_insample_strong_n_pos_band",
+    "pp3_insample_strong_n_neg_band",
+    "pp3_insample_strong_lr_lo",
+    "pp3_insample_strong_lr_hi",
+    "pp3_insample_strong_tier_at_bound",
+    "bp4_insample_moderate_n_pos_band",
+    "bp4_insample_moderate_n_neg_band",
+    "bp4_insample_moderate_lr_lo",
+    "bp4_insample_moderate_lr_hi"
+   ],
+   "columns_may_change": true
+  },
+  "phase1/reports/evidence/external_tp53.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "stratum",
+    "tool"
+   ],
+   "gene": "gene",
+   "tool": "tool",
+   "column_prefix_renames": [
+    [
+     "e3_supporting_",
+     "pp3_logo_median_supporting_"
+    ],
+    [
+     "e3_moderate_",
+     "pp3_logo_median_moderate_"
+    ],
+    [
+     "e3_strong_",
+     "pp3_logo_median_strong_"
+    ]
+   ],
+   "fields": [
+    "pp3_insample_supporting_reachable",
+    "pp3_insample_supporting_threshold",
+    "pp3_insample_supporting_lr_here",
+    "pp3_insample_supporting_tier_here",
+    "pp3_insample_supporting_n_pos_band",
+    "pp3_insample_supporting_n_neg_band",
+    "pp3_insample_supporting_lr_lo",
+    "pp3_insample_supporting_lr_hi",
+    "pp3_insample_supporting_tier_at_bound",
+    "pp3_insample_moderate_reachable",
+    "pp3_insample_moderate_threshold",
+    "pp3_insample_moderate_lr_here",
+    "pp3_insample_moderate_tier_here",
+    "pp3_insample_moderate_n_pos_band",
+    "pp3_insample_moderate_n_neg_band",
+    "pp3_insample_moderate_lr_lo",
+    "pp3_insample_moderate_lr_hi",
+    "pp3_insample_moderate_tier_at_bound",
+    "pp3_insample_strong_reachable",
+    "pp3_insample_strong_threshold",
+    "pp3_insample_strong_lr_here",
+    "pp3_insample_strong_tier_here",
+    "pp3_insample_strong_n_pos_band",
+    "pp3_insample_strong_n_neg_band",
+    "pp3_insample_strong_lr_lo",
+    "pp3_insample_strong_lr_hi",
+    "pp3_insample_strong_tier_at_bound",
+    "bp4_insample_supporting_reachable",
+    "bp4_insample_supporting_threshold",
+    "bp4_insample_supporting_lr_here",
+    "bp4_insample_supporting_tier_here",
+    "bp4_insample_supporting_n_pos_band",
+    "bp4_insample_supporting_n_neg_band",
+    "bp4_insample_supporting_lr_lo",
+    "bp4_insample_supporting_lr_hi",
+    "bp4_insample_moderate_reachable",
+    "bp4_insample_moderate_threshold",
+    "bp4_insample_moderate_lr_here",
+    "bp4_insample_moderate_tier_here",
+    "bp4_insample_moderate_n_pos_band",
+    "bp4_insample_moderate_n_neg_band",
+    "bp4_insample_moderate_lr_lo",
+    "bp4_insample_moderate_lr_hi",
+    "pp3_insample_moderate_note",
+    "pp3_insample_strong_note",
+    "bp4_insample_moderate_note",
+    "bp4_insample_supporting_note",
+    "pp3_insample_supporting_note"
+   ],
+   "columns_may_change": true
+  },
+  "phase1/reports/evidence/supplement/tableS12_external_genes.csv": {
+   "kind": "rows",
+   "key": [
+    "Gene",
+    "Label definition",
+    "Stratum (intronic offset, bp)",
+    "Tool"
+   ],
+   "gene": "Gene",
+   "tool": "Tool",
+   "tool_labels": true,
+   "column_renames": [
+    [
+     "Supporting: threshold (median of leave-one-gene-out fits)",
+     "Supporting, sensitivity: threshold (median of leave-one-gene-out fits)"
+    ],
+    [
+     "Supporting: LR in this gene, 95% CI",
+     "Supporting, sensitivity: LR in this gene, 95% CI"
+    ],
+    [
+     "Supporting: above the threshold, damaging / normal",
+     "Supporting, sensitivity: above the threshold, damaging / normal"
+    ],
+    [
+     "Supporting: tier reached",
+     "Supporting, sensitivity: tier reached"
+    ],
+    [
+     "Supporting: tier at the lower bound",
+     "Supporting, sensitivity: tier at the lower bound"
+    ],
+    [
+     "Moderate: threshold (median of leave-one-gene-out fits)",
+     "Moderate, sensitivity: threshold (median of leave-one-gene-out fits)"
+    ],
+    [
+     "Moderate: LR in this gene, 95% CI",
+     "Moderate, sensitivity: LR in this gene, 95% CI"
+    ],
+    [
+     "Moderate: above the threshold, damaging / normal",
+     "Moderate, sensitivity: above the threshold, damaging / normal"
+    ],
+    [
+     "Moderate: tier reached",
+     "Moderate, sensitivity: tier reached"
+    ],
+    [
+     "Moderate: tier at the lower bound",
+     "Moderate, sensitivity: tier at the lower bound"
+    ],
+    [
+     "Strong: threshold (median of leave-one-gene-out fits)",
+     "Strong, sensitivity: threshold (median of leave-one-gene-out fits)"
+    ],
+    [
+     "Strong: LR in this gene, 95% CI",
+     "Strong, sensitivity: LR in this gene, 95% CI"
+    ],
+    [
+     "Strong: above the threshold, damaging / normal",
+     "Strong, sensitivity: above the threshold, damaging / normal"
+    ],
+    [
+     "Strong: tier reached",
+     "Strong, sensitivity: tier reached"
+    ],
+    [
+     "Strong: tier at the lower bound",
+     "Strong, sensitivity: tier at the lower bound"
+    ]
+   ],
+   "fields": [
+    "Supporting: threshold (in-sample, Table 3(b))",
+    "Supporting: LR in this gene, 95% CI",
+    "Supporting: above the threshold, damaging / normal",
+    "Supporting: tier reached",
+    "Supporting: tier at the lower bound",
+    "Moderate: threshold (in-sample, Table 3(b))",
+    "Moderate: LR in this gene, 95% CI",
+    "Moderate: above the threshold, damaging / normal",
+    "Moderate: tier reached",
+    "Moderate: tier at the lower bound",
+    "Strong: threshold (in-sample, Table 3(b))",
+    "Strong: LR in this gene, 95% CI",
+    "Strong: above the threshold, damaging / normal",
+    "Strong: tier reached",
+    "Strong: tier at the lower bound",
+    "BP4 Supporting: threshold (in-sample, Table 3(b))",
+    "BP4 Supporting: LR in this gene, 95% CI",
+    "BP4 Supporting: at or below the threshold, damaging / normal",
+    "BP4 Supporting: tier reached",
+    "BP4 Moderate: threshold (in-sample, Table 3(b))",
+    "BP4 Moderate: LR in this gene, 95% CI",
+    "BP4 Moderate: at or below the threshold, damaging / normal",
+    "BP4 Moderate: tier reached",
+    "Note"
+   ],
+   "columns_may_change": true
+  },
+  "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+   "kind": "fields",
+   "key": [
+    "File"
+   ],
+   "sources_in_scope": true,
+   "rows": {
+    "tableS12_external_genes.csv": [
+     "File sha256",
+     "Notes"
+    ]
+   }
+  },
+  "phase1/reports/evidence/practical_metrics_external.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "tool",
+    "stratum",
+    "threshold_kind",
+    "threshold_source"
+   ],
+   "gene": "gene",
+   "tool": "tool",
+   "fields": [
+    "side",
+    "bp4_n_neg_at_or_below",
+    "bp4_n_pos_at_or_below",
+    "bp4_n_neg_above",
+    "bp4_n_pos_above",
+    "bp4_sensitivity",
+    "bp4_sensitivity_lo",
+    "bp4_sensitivity_hi",
+    "bp4_specificity",
+    "bp4_specificity_lo",
+    "bp4_specificity_hi",
+    "bp4_npv_observed",
+    "bp4_band_lr",
+    "seven_gene_bp4_sensitivity",
+    "seven_gene_bp4_specificity",
+    "bp4_sensitivity_minus_seven_gene",
+    "bp4_specificity_minus_seven_gene"
+   ],
+   "columns_may_change": true
+  },
+  "phase1/reports/evidence/fig_data/fig4_external.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "stratum",
+    "tool",
+    "tier"
+   ],
+   "gene": "gene",
+   "tool": "tool",
+   "column_renames": [
+    [
+     "logo_threshold",
+     "insample_threshold"
+    ],
+    [
+     "lr_at_logo_threshold",
+     "lr_at_insample_threshold"
+    ],
+    [
+     "tier_at_logo_threshold",
+     "tier_at_insample_threshold"
+    ],
+    [
+     "n_pos_above_logo_threshold",
+     "n_pos_above_insample_threshold"
+    ],
+    [
+     "n_neg_above_logo_threshold",
+     "n_neg_above_insample_threshold"
+    ],
+    [
+     "lr_at_logo_threshold_lo",
+     "lr_at_insample_threshold_lo"
+    ],
+    [
+     "lr_at_logo_threshold_hi",
+     "lr_at_insample_threshold_hi"
+    ],
+    [
+     "tier_at_logo_threshold_lower_bound",
+     "tier_at_insample_threshold_lower_bound"
+    ]
+   ],
+   "fields": [
+    "insample_threshold",
+    "lr_at_insample_threshold",
+    "tier_at_insample_threshold",
+    "n_pos_above_insample_threshold",
+    "n_neg_above_insample_threshold",
+    "lr_at_insample_threshold_lo",
+    "lr_at_insample_threshold_hi",
+    "tier_at_insample_threshold_lower_bound"
+   ],
+   "columns_may_change": true
+  },
+  "phase1/reports/evidence/fig_data/fig4_draft.png": {
+   "kind": "file",
+   "why": "the draft of Figure 4, from fig4_external.csv"
+  },
+  "phase1/reports/evidence/figures/figure4.png": {
+   "kind": "file",
+   "why": "Figure 4 draws the external genes' ratios at the fitted thresholds, now the in-sample thresholds of Table 3(b)"
+  },
+  "phase1/reports/evidence/figures/figure4.pdf": {
+   "kind": "file",
+   "why": "Figure 4 draws the external genes' ratios at the fitted thresholds, now the in-sample thresholds of Table 3(b)"
+  },
+  "docs/practical-metrics-summary.md": {
+   "kind": "lines",
+   "patterns": [
+    "^5\\. Carried to DDX3X"
+   ],
+   "why": "the sentence on the external genes, derived from practical_metrics_external.csv's DDX3X and TP53 rows: it now reads the main test's in-sample thresholds and names the comparison, the seven genes they were fitted on"
+  }
+ }
+}

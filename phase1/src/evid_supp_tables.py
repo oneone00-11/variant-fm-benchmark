@@ -125,6 +125,8 @@ VERSION_NOTE = {
 TOOLS = K.PANEL + K.OPTIONAL
 IN_SCOPE = ["s3_10", "s11_50", "s3_50"]
 TIERS = ["supporting", "moderate", "strong"]
+# the BP4 tiers the external test carries (E18.5): those Table 3(b) reaches in-sample
+BP4_TIERS = ["supporting", "moderate"]
 ARMS = ["classified", "recorded_unclassified", "unrecorded"]
 STRICT_ARMS = ["classified", "recorded_unclassified", "recorded_no_assertion",
                "unrecorded"]
@@ -1366,10 +1368,14 @@ def s12() -> tuple[pd.DataFrame, list[Path]]:
                         row["Tier at published cut point"] = tier_text(r.walker_tier_pp3)
                         row["Tier at the lower bound"] = tier_text(
                             r.get("walker_tier_pp3_at_bound"))
+                    # E18.5: the main test at the in-sample thresholds Table 3(b)
+                    # recommends, PP3 and BP4; the leave-one-gene-out medians beside them
+                    # as a sensitivity analysis. Each column names its thresholds.
                     for tier in TIERS:
                         name = tier.capitalize()
+                        p = f"pp3_insample_{tier}"
                         tcol, lcol, ccol, gcol, bcol = (
-                            f"{name}: threshold (median of leave-one-gene-out fits)",
+                            f"{name}: threshold (in-sample, Table 3(b))",
                             f"{name}: LR in this gene, 95% CI",
                             f"{name}: above the threshold, damaging / normal",
                             f"{name}: tier reached",
@@ -1377,19 +1383,18 @@ def s12() -> tuple[pd.DataFrame, list[Path]]:
                         row[tcol] = row[lcol] = row[ccol] = row[gcol] = row[bcol] = ""
                         if not (ok and comparable):
                             continue
-                        thr = r.get(f"e3_{tier}_threshold")
-                        lr = r.get(f"e3_{tier}_lr_here")
-                        note = r.get(f"e3_{tier}_note")
+                        thr = r.get(f"{p}_threshold")
+                        lr = r.get(f"{p}_lr_here")
+                        note = r.get(f"{p}_note")
                         row[tcol] = fmt_thr(thr, tool)
-                        row[lcol] = (fmt_ci(lr, r.get(f"e3_{tier}_lr_lo"),
-                                            r.get(f"e3_{tier}_lr_hi"))
+                        row[lcol] = (fmt_ci(lr, r.get(f"{p}_lr_lo"), r.get(f"{p}_lr_hi"))
                                      if _finite(lr) else (
                                          "not evaluable" if _finite(thr) else ""))
                         if _finite(thr):
-                            row[ccol] = _counts_band(r.get(f"e3_{tier}_n_pos_band"),
-                                                     r.get(f"e3_{tier}_n_neg_band"))
-                        row[gcol] = tier_text(r.get(f"e3_{tier}_tier_here"))
-                        row[bcol] = (tier_text(r.get(f"e3_{tier}_tier_at_bound"))
+                            row[ccol] = _counts_band(r.get(f"{p}_n_pos_band"),
+                                                     r.get(f"{p}_n_neg_band"))
+                        row[gcol] = tier_text(r.get(f"{p}_tier_here"))
+                        row[bcol] = (tier_text(r.get(f"{p}_tier_at_bound"))
                                      if _finite(lr) else "")
                         if _text(note):
                             notes.append(f"{name}: {note}")
@@ -1399,7 +1404,8 @@ def s12() -> tuple[pd.DataFrame, list[Path]]:
                                  & (fig.tier == tier)]
                         if len(fr) == 1:
                             f0 = fr.iloc[0]
-                            pairs = [(thr, f0.logo_threshold), (lr, f0.lr_at_logo_threshold)]
+                            pairs = [(thr, f0.insample_threshold),
+                                     (lr, f0.lr_at_insample_threshold)]
                             if tool in WALKER_TOOLS:
                                 pairs.append((r.walker_lr_pp3, f0.lr_at_walker_cut))
                             for x, y in pairs:
@@ -1409,6 +1415,59 @@ def s12() -> tuple[pd.DataFrame, list[Path]]:
                                         f"[supp] S12 {gene}/{lab}/{st}/{tool}/{tier}: "
                                         "fig4_external.csv disagrees with "
                                         f"{ep.name}; rerun evid_fig_data")
+                    for tier in BP4_TIERS:
+                        name = f"BP4 {tier.capitalize()}"
+                        p = f"bp4_insample_{tier}"
+                        tcol, lcol, ccol, gcol = (
+                            f"{name}: threshold (in-sample, Table 3(b))",
+                            f"{name}: LR in this gene, 95% CI",
+                            f"{name}: at or below the threshold, damaging / normal",
+                            f"{name}: tier reached")
+                        row[tcol] = row[lcol] = row[ccol] = row[gcol] = ""
+                        if not (ok and comparable):
+                            continue
+                        thr = r.get(f"{p}_threshold")
+                        lr = r.get(f"{p}_lr_here")
+                        note = r.get(f"{p}_note")
+                        row[tcol] = fmt_thr(thr, tool, "lower")
+                        row[lcol] = (fmt_ci(lr, r.get(f"{p}_lr_lo"), r.get(f"{p}_lr_hi"))
+                                     if _finite(lr) else (
+                                         "not evaluable" if _finite(thr) else ""))
+                        if _finite(thr):
+                            row[ccol] = _counts_band(r.get(f"{p}_n_pos_band"),
+                                                     r.get(f"{p}_n_neg_band"))
+                        row[gcol] = tier_text(r.get(f"{p}_tier_here"))
+                        if _text(note):
+                            notes.append(f"{name}: {note}")
+                    # the sensitivity analysis: the columns the medians filled before
+                    # E18.5, printed as before under names of their own
+                    for tier in TIERS:
+                        name = f"{tier.capitalize()}, sensitivity"
+                        q = f"pp3_logo_median_{tier}"
+                        tcol, lcol, ccol, gcol, bcol = (
+                            f"{name}: threshold (median of leave-one-gene-out fits)",
+                            f"{name}: LR in this gene, 95% CI",
+                            f"{name}: above the threshold, damaging / normal",
+                            f"{name}: tier reached",
+                            f"{name}: tier at the lower bound")
+                        row[tcol] = row[lcol] = row[ccol] = row[gcol] = row[bcol] = ""
+                        if not (ok and comparable):
+                            continue
+                        thr = r.get(f"{q}_threshold")
+                        lr = r.get(f"{q}_lr_here")
+                        note = r.get(f"{q}_note")
+                        row[tcol] = fmt_thr(thr, tool)
+                        row[lcol] = (fmt_ci(lr, r.get(f"{q}_lr_lo"), r.get(f"{q}_lr_hi"))
+                                     if _finite(lr) else (
+                                         "not evaluable" if _finite(thr) else ""))
+                        if _finite(thr):
+                            row[ccol] = _counts_band(r.get(f"{q}_n_pos_band"),
+                                                     r.get(f"{q}_n_neg_band"))
+                        row[gcol] = tier_text(r.get(f"{q}_tier_here"))
+                        row[bcol] = (tier_text(r.get(f"{q}_tier_at_bound"))
+                                     if _finite(lr) else "")
+                        if _text(note):
+                            notes.append(f"{name}: {note}")
                     row["Note"] = "; ".join(notes)
                     rows.append(row)
     srcs.append(REPORTS / "fig_data/fig4_external.csv")
@@ -1564,14 +1623,19 @@ TABLES = [
      "External genes: the published cut point and the seven-gene fitted thresholds "
      "applied to DDX3X and TP53 under every label definition",
      "In-scope strata only, each cut at the depth the deposit reaches. Fitted "
-     "thresholds are the median of the leave-one-gene-out fits over the folds that "
-     "reached the tier, carried over only where the tier is reached in-sample and "
-     "the external column is the same variable. Intervals are 95% percentile "
-     "intervals of 2,000 bootstrap resamples of variants within the gene, class "
-     "sizes fixed; they describe this gene's variants, not variation between genes. "
-     "The tier at the lower bound is read off the lower end of that interval. The "
-     "Atlas combined score's model was selected on the DDX3X assay, so its DDX3X "
-     "rows are not an external test. Label definitions are stated in Table S1."),
+     "thresholds are the in-sample thresholds of Table 3(b), PP3 at Supporting, "
+     "Moderate and Strong and BP4 at Supporting and Moderate, carried over only where "
+     "the tier is reached in-sample and the external column is the same variable. A "
+     "BP4 tier is read as at the published cut point: from the point estimate, or, "
+     "where the band holds no damaging variant, from the rule-of-three upper bound. "
+     "As a sensitivity analysis, the PP3 thresholds are also replaced by the median of "
+     "the leave-one-gene-out fits over the folds that reached the tier. Intervals are "
+     "95% percentile intervals of 2,000 bootstrap resamples of variants within the "
+     "gene, class sizes fixed; they describe this gene's variants, not variation "
+     "between genes. The tier at the lower bound is read off the lower end of that "
+     "interval. The Atlas combined score's model was selected on the DDX3X assay, so "
+     "its DDX3X rows are not an external test. Label definitions are stated in Table "
+     "S1."),
     ("S13", "tableS13_inframe_attribution.csv", s13,
      "In-frame attribution of variants scored at or above the PP3 cut point and "
      "called normal by the assay",

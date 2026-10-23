@@ -129,6 +129,10 @@ OUT_OF_SCOPE = "out_of_scope_incl_pm12"
 PP3_TIERS = ["supporting", "moderate", "strong", "very_strong"]
 BP4_TIERS = ["supporting", "moderate"]
 EXTERNAL_TIERS = ["supporting", "moderate", "strong"]        # the tiers E7 carries over
+EXTERNAL_BP4_TIERS = ["supporting", "moderate"]              # and on the BP4 side (E18.5)
+# E7's threshold of each source, the external test's main one first (E18.5), and the
+# source of the seven-gene row each is set against
+EXTERNAL_SOURCES = {"in_sample": "in_sample", "logo_median": "logo", "published": "published"}
 TIER_NAME = {"supporting": "Supporting", "moderate": "Moderate", "strong": "Strong",
              "very_strong": "Very strong"}
 # DDX3X under the deposit's own classification, TP53 under its control-anchored
@@ -448,27 +452,34 @@ def external(table: pd.DataFrame, cfg: dict, tools: list[str]) -> pd.DataFrame:
                                   else OUT_OF_SCOPE),
                         "external_test": (gene, tool) not in F.NOT_EXTERNAL}
                 base |= _describe(frame, tool, label)
-                kinds = ([("walker_pp3", "published", pp3_cut)]
+                # E18.5: the main test at E3's in-sample thresholds, PP3 and BP4; the
+                # leave-one-gene-out medians (PP3) as the sensitivity analysis
+                kinds = ([("walker_pp3", "published", pp3_cut, "pp3", "")]
                          if tool == "spliceai_walker" else [])
-                kinds += [(t, "logo_median", r.get(f"e3_{t}_threshold", np.nan))
-                          for t in EXTERNAL_TIERS]
-                for kind, source, thr in kinds:
-                    row = base | {"threshold_kind": kind, "threshold_source": source}
+                kinds += [(t, "in_sample", r.get(f"pp3_insample_{t}_threshold", np.nan), "pp3",
+                           f"pp3_insample_{t}") for t in EXTERNAL_TIERS]
+                kinds += [(f"bp4_{t}", "in_sample", r.get(f"bp4_insample_{t}_threshold", np.nan),
+                           "bp4", f"bp4_insample_{t}") for t in EXTERNAL_BP4_TIERS]
+                kinds += [(t, "logo_median", r.get(f"pp3_logo_median_{t}_threshold", np.nan),
+                           "pp3", f"pp3_logo_median_{t}") for t in EXTERNAL_TIERS]
+                for kind, source, thr, side, prefix in kinds:
+                    row = base | {"threshold_kind": kind, "threshold_source": source,
+                                  "side": side}
                     note = ("" if row["external_test"] else
                             "not an external test: the combined Atlas score's model was "
                             "selected on the DDX3X assay")
                     if r.status != "ok":
                         rows.append(row | {"status": r.status, "note": r.reason})
                         continue
-                    if source == "logo_median" and not bool(r.column_basis_comparable):
+                    if source != "published" and not bool(r.column_basis_comparable):
                         rows.append(row | {"status": "not carried over",
                                            "note": "column not comparable: "
                                                    + str(basis.loc[tool, "reason"])})
                         continue
                     thr = float(thr) if thr is not None else np.nan
                     if not np.isfinite(thr):
-                        label_here = r.get(f"e3_{kind}_tier_here", np.nan)
-                        why = r.get(f"e3_{kind}_note", np.nan)
+                        label_here = r.get(f"{prefix}_tier_here", np.nan)
+                        why = r.get(f"{prefix}_note", np.nan)
                         rows.append(row | {
                             "status": (label_here if isinstance(label_here, str)
                                        else "not carried over"),
@@ -477,27 +488,31 @@ def external(table: pd.DataFrame, cfg: dict, tools: list[str]) -> pd.DataFrame:
                         continue
                     c = _cell(frame, tool, label, thr)
                     row |= {"status": "ok", "note": note, "threshold": thr}
-                    row |= _pp3_values(c, bands[0])
-                    # the same tool, band and threshold kind on the seven genes: held
-                    # out for a fitted threshold, the pooled value for the cut point
-                    key = (tool, stratum, kind, "published" if source == "published"
-                           else "logo")
+                    row |= _values(c, side, bands)
+                    # the same tool, band, threshold kind and source on the seven genes:
+                    # in-sample against in-sample, the LOGO medians against the held-out
+                    # folds, the cut point against the pooled value
+                    key = (tool, stratum, kind, EXTERNAL_SOURCES[source])
                     if key in seven.index and seven.loc[key, "status"] == "ok":
                         s7 = seven.loc[key]
+                        pre = "" if side == "pp3" else "bp4_"
                         row |= {"seven_gene_source": key[3],
-                                "seven_gene_sensitivity": s7["sensitivity"],
-                                "seven_gene_specificity": s7["specificity"],
-                                "sensitivity_minus_seven_gene":
-                                    row["sensitivity"] - s7["sensitivity"],
-                                "specificity_minus_seven_gene":
-                                    row["specificity"] - s7["specificity"]}
+                                f"seven_gene_{pre}sensitivity": s7[f"{pre}sensitivity"],
+                                f"seven_gene_{pre}specificity": s7[f"{pre}specificity"],
+                                f"{pre}sensitivity_minus_seven_gene":
+                                    row[f"{pre}sensitivity"] - s7[f"{pre}sensitivity"],
+                                f"{pre}specificity_minus_seven_gene":
+                                    row[f"{pre}specificity"] - s7[f"{pre}specificity"]}
                     rows.append(row)
     lead = ["gene", "label_definition", "tool", "main_table", "stratum", "scope",
-            "external_test", "threshold_kind", "threshold_source", "status", "note",
+            "external_test", "side", "threshold_kind", "threshold_source", "status", "note",
             "threshold"] + N_COLUMNS
+    bp4 = [c for c in TABLE_COLUMNS if c.startswith("bp4_")]
     tail = ["seven_gene_source", "seven_gene_sensitivity", "seven_gene_specificity",
-            "sensitivity_minus_seven_gene", "specificity_minus_seven_gene"]
-    return pd.DataFrame(rows).reindex(columns=lead + PP3_METRICS + tail)
+            "sensitivity_minus_seven_gene", "specificity_minus_seven_gene",
+            "seven_gene_bp4_sensitivity", "seven_gene_bp4_specificity",
+            "bp4_sensitivity_minus_seven_gene", "bp4_specificity_minus_seven_gene"]
+    return pd.DataFrame(rows).reindex(columns=lead + PP3_METRICS + bp4 + tail)
 
 
 # ---------------------------------------------------------------------------
@@ -1066,7 +1081,7 @@ def _sentences(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
         out.append("Held out, no tool's Strong threshold at 3–10 bp holds in most genes.")
     # 4. matched specificity
     out.append(_sentence_matched(main))
-    # 5. the external genes against the held-out seven
+    # 5. the external genes against the seven genes the thresholds were fitted on
     out.append(_sentence_external(ext))
     return out
 
@@ -1099,9 +1114,13 @@ def _sentence_matched(main: pd.DataFrame) -> str:
 
 
 def _sentence_external(ext: pd.DataFrame) -> str:
-    """The external genes at the carried thresholds against the held-out seven genes."""
+    """The external genes at the carried thresholds against the seven genes.
+
+    The main test's thresholds, E3's in-sample PP3 ones (E18.5), are set against the
+    seven genes they were fitted on, in-sample against in-sample."""
     e = ext[(ext.status == "ok") & ext.external_test.astype(bool) & ext.main_table
             & ext.stratum.isin(CURVE_STRATA) & ext.threshold_kind.isin(EXTERNAL_TIERS)
+            & (ext.threshold_source == "in_sample")
             & ext.sensitivity_minus_seven_gene.notna()]
     dd, tp = e[e.gene == "DDX3X"], e[e.gene == "TP53"]
     d_sens = _direction(dd.sensitivity_minus_seven_gene)
@@ -1110,13 +1129,14 @@ def _sentence_external(ext: pd.DataFrame) -> str:
         return "No threshold carried to DDX3X can be set against the seven genes."
     words = {"rises": "more", "falls": "less"}
     if d_sens in words and d_spec in words:
-        head = (f"Carried to DDX3X, the fitted thresholds are {words[d_sens]} sensitive "
-                "than in the held-out seven genes, by as much as "
+        head = (f"Carried to DDX3X, the in-sample thresholds are {words[d_sens]} "
+                "sensitive than in the seven genes they were fitted on, by as much as "
                 f"{dd.sensitivity_minus_seven_gene.abs().max():.2f}, and {words[d_spec]} "
                 "specific, by as much as "
                 f"{dd.specificity_minus_seven_gene.abs().max():.2f}")
     else:
-        head = (f"Carried to DDX3X, sensitivity {d_sens} against the held-out seven genes, "
+        head = (f"Carried to DDX3X, at the in-sample thresholds, sensitivity {d_sens} "
+                "against the seven genes they were fitted on, "
                 f"by as much as {dd.sensitivity_minus_seven_gene.abs().max():.2f}, and "
                 f"specificity {d_spec}")
     t_sens = _direction(tp.sensitivity_minus_seven_gene)

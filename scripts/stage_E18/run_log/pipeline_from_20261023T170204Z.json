@@ -1,0 +1,32 @@
+{
+ "script": "scripts/stage_E18/pipeline_from.py",
+ "argv": [
+  "/repo/scripts/reproduce_evidence.py",
+  "--from",
+  "9"
+ ],
+ "git_commit": "938ad10960ad15964892602393df4f222112b042",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/pipeline_from.py": "2bf24fd33dc5a54bd3ccba84fd71eb302e7700746dd7ad90cef1b72840bf60b7",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-23T16:53:28+00:00",
+ "end_utc": "2026-10-23T17:02:04+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "from_stage": 9
+ }
+}

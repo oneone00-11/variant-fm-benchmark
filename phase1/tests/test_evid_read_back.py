@@ -151,6 +151,14 @@ def test_every_default_read_is_one_that_uses_no_threshold():
         + "; ".join(sorted(expected - found)))
 
 
+# E7's thresholds (E18.5): the main test's in-sample ones, PP3 and BP4, and the LOGO
+# medians of the sensitivity analysis
+EXTERNAL_THRESHOLDS = ([f"pp3_insample_{t}_threshold" for t in ("supporting", "moderate", "strong")]
+                       + [f"bp4_insample_{t}_threshold" for t in ("supporting", "moderate")]
+                       + [f"pp3_logo_median_{t}_threshold"
+                          for t in ("supporting", "moderate", "strong")])
+
+
 @need
 def test_every_stored_threshold_reads_back_as_written():
     """Each threshold cell, and each copy of one, read through read_back is float() of
@@ -166,8 +174,8 @@ def test_every_stored_threshold_reads_back_as_written():
         EV / "territory_metrics.csv": ["e3_threshold_at_best_tier"],
         EV / "threshold_dilution_summary.csv": ["threshold_median", "threshold_all_genes",
                                                "threshold_q25", "threshold_q75"],
-        EV / "external_ddx3x.csv": [f"e3_{t}_threshold" for t in ("supporting", "moderate", "strong")],
-        EV / "external_tp53.csv": [f"e3_{t}_threshold" for t in ("supporting", "moderate", "strong")],
+        EV / "external_ddx3x.csv": EXTERNAL_THRESHOLDS,
+        EV / "external_tp53.csv": EXTERNAL_THRESHOLDS,
     }
     checked = 0
     for path, cols in columns.items():
@@ -300,15 +308,26 @@ def test_every_printed_threshold_selects_the_fitted_band(monkeypatch):
             assert len(lab) == 1 and len(row) == 1, (gene, r["Label definition"], st, tool)
             sub = scored[scored.stratum != "pm12"] if st == "s3_50" else scored[scored.stratum == st]
             s = sub[tool].dropna().to_numpy(dtype=float)
-            for tier in ("Supporting", "Moderate", "Strong"):
-                printed = r[f"{tier}: threshold (median of leave-one-gene-out fits)"]
+            cells = ([(f"{t}: threshold (in-sample, Table 3(b))",
+                       f"pp3_insample_{t.lower()}_threshold", "upper")
+                      for t in ("Supporting", "Moderate", "Strong")]
+                     + [(f"BP4 {t}: threshold (in-sample, Table 3(b))",
+                         f"bp4_insample_{t.lower()}_threshold", "lower")
+                        for t in ("Supporting", "Moderate")]
+                     + [(f"{t}, sensitivity: threshold (median of leave-one-gene-out fits)",
+                         f"pp3_logo_median_{t.lower()}_threshold", "upper")
+                        for t in ("Supporting", "Moderate", "Strong")])
+            for head, col, side in cells:
+                printed = r[head]
                 if not printed:
                     continue
-                c = float(row[f"e3_{tier.lower()}_threshold"].iloc[0])
+                c = float(row[col].iloc[0])
                 checked += 1
-                if (printed != S.fmt_thr(c, tool, "upper")
-                        or int((s >= float(printed)).sum()) != int((s >= c).sum())):
-                    bad.append(("S12", gene, lab[0], st, tool, tier, printed, repr(c)))
+                n_printed = int((s >= float(printed)).sum() if side == "upper"
+                                else (s <= float(printed)).sum())
+                n_fitted = int((s >= c).sum() if side == "upper" else (s <= c).sum())
+                if printed != S.fmt_thr(c, tool, side) or n_printed != n_fitted:
+                    bad.append(("S12", gene, lab[0], st, tool, head, printed, repr(c)))
     assert checked > 1000
     assert not bad, bad[:10]
 

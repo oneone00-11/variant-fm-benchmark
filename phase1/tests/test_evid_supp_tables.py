@@ -200,8 +200,11 @@ def test_s3_orientation_and_coverage():
 
 def test_s12_external_rows_follow_the_basis_check():
     s12 = _read("tableS12_external_genes.csv")
-    thr = [c for c in s12.columns if c.endswith("(median of leave-one-gene-out fits)")]
-    assert len(thr) == 3
+    # E18.5: the in-sample thresholds, PP3 at three tiers and BP4 at two, and the
+    # leave-one-gene-out medians of the sensitivity analysis
+    thr = [c for c in s12.columns if c.endswith("(in-sample, Table 3(b))")
+           or c.endswith("(median of leave-one-gene-out fits)")]
+    assert len(thr) == 8
     no = s12[s12["Same variable as the fitted column"] == "No"]
     assert (no["Why not comparable"] != "").all()
     assert (no[thr] == "").all().all()

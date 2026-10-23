@@ -526,9 +526,9 @@ def figure4() -> None:
                 t = r[r.tier == tier]
                 if len(t):
                     t = t.iloc[0]
-                    draw(tier, t["lr_at_logo_threshold"],
-                         t.get("lr_at_logo_threshold_lo", np.nan),
-                         t.get("lr_at_logo_threshold_hi", np.nan))
+                    draw(tier, t["lr_at_insample_threshold"],
+                         t.get("lr_at_insample_threshold_lo", np.nan),
+                         t.get("lr_at_insample_threshold_hi", np.nan))
         lab = "deposit classification" if gene == "DDX3X" else X.TP53_PRIMARY_LABEL_SHORT
         ax.set_title(f"{_it(gene)}, {_band_label(gene, st)}, {lab}", loc="left", pad=11)
         ax.set_xlabel("Likelihood ratio in the external gene")

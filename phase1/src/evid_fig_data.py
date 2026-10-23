@@ -144,7 +144,9 @@ def fig3() -> pd.DataFrame:
 
 # ---------------------------------------------------------------- fig 4
 def fig4() -> pd.DataFrame:
-    """External genes: the fixed cut point and the fitted threshold, side by side."""
+    """External genes: the fixed cut point and the fitted threshold, side by side. The
+    fitted thresholds are the in-sample ones Table 3(b) recommends (E18.5); E7 keeps the
+    leave-one-gene-out medians beside them as a sensitivity analysis, which S12 prints."""
     rows = []
     for gene in ("ddx3x", "tp53"):
         f = REPORT_DIR / f"external_{gene}.csv"
@@ -161,15 +163,17 @@ def fig4() -> pd.DataFrame:
                     "column_basis_comparable": getattr(r, "column_basis_comparable", True),
                     "lr_at_walker_cut": getattr(r, "walker_lr_pp3", np.nan),
                     "tier_at_walker_cut": getattr(r, "walker_tier_pp3", ""),
-                    "logo_threshold": getattr(r, f"e3_{tier}_threshold", np.nan),
-                    "lr_at_logo_threshold": getattr(r, f"e3_{tier}_lr_here", np.nan),
-                    "tier_at_logo_threshold": getattr(r, f"e3_{tier}_tier_here", ""),
-                    "n_pos_above_logo_threshold": getattr(r, f"e3_{tier}_n_pos_band", np.nan),
-                    "n_neg_above_logo_threshold": getattr(r, f"e3_{tier}_n_neg_band", np.nan),
-                    "lr_at_logo_threshold_lo": getattr(r, f"e3_{tier}_lr_lo", np.nan),
-                    "lr_at_logo_threshold_hi": getattr(r, f"e3_{tier}_lr_hi", np.nan),
-                    "tier_at_logo_threshold_lower_bound":
-                        getattr(r, f"e3_{tier}_tier_at_bound", ""),
+                    "insample_threshold": getattr(r, f"pp3_insample_{tier}_threshold", np.nan),
+                    "lr_at_insample_threshold": getattr(r, f"pp3_insample_{tier}_lr_here", np.nan),
+                    "tier_at_insample_threshold": getattr(r, f"pp3_insample_{tier}_tier_here", ""),
+                    "n_pos_above_insample_threshold":
+                        getattr(r, f"pp3_insample_{tier}_n_pos_band", np.nan),
+                    "n_neg_above_insample_threshold":
+                        getattr(r, f"pp3_insample_{tier}_n_neg_band", np.nan),
+                    "lr_at_insample_threshold_lo": getattr(r, f"pp3_insample_{tier}_lr_lo", np.nan),
+                    "lr_at_insample_threshold_hi": getattr(r, f"pp3_insample_{tier}_lr_hi", np.nan),
+                    "tier_at_insample_threshold_lower_bound":
+                        getattr(r, f"pp3_insample_{tier}_tier_at_bound", ""),
                     "lr_at_walker_cut_lo": getattr(r, "walker_lr_pp3_lo", np.nan),
                     "lr_at_walker_cut_hi": getattr(r, "walker_lr_pp3_hi", np.nan),
                 })

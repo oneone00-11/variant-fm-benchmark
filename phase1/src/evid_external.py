@@ -706,7 +706,17 @@ def apply_thresholds(gene: str) -> None:
                             "walker_bp4_n_neg_band": d["n_neg_band"],
                             "walker_lr_bp4_lo": d["lr_lo"], "walker_lr_bp4_hi": d["lr_hi"]}
                 row["column_basis_comparable"] = tool in comparable
-                # --- E3's LOGO thresholds, applied unchanged
+                # --- E3's thresholds, applied unchanged (E18.5). The main test uses the
+                # in-sample thresholds Table 3(b) recommends, read at full precision from
+                # the frozen evidence_thresholds.csv: PP3 at Supporting, Moderate and Strong
+                # and BP4 at Supporting and Moderate, each only where E3 reached the tier
+                # in-sample; a tier not reached carries no threshold. A PP3 tier is read on
+                # the upper side by its point estimate, with the tier at the interval's
+                # lower bound beside it; a BP4 tier on the lower side by
+                # evid_common.band_lr_benign_bound, as the published BP4 cut point is. The
+                # medians of the leave-one-gene-out folds' PP3 thresholds, the external
+                # test's thresholds before E18, stay as a sensitivity analysis, computed as
+                # before (the same cells, the same draws) in columns of their own.
                 if ev is not None and tool in comparable:
                     e = ev[(ev.tool == tool) & (ev.stratum == stratum)
                            & (ev.status == "ok")]
@@ -717,32 +727,73 @@ def apply_thresholds(gene: str) -> None:
                         t = e[e.tier == tier]
                         if not len(t):
                             continue
-                        # A tier E3 could not reach in-sample still has a finite
-                        # LOGO median, because that median is taken over only the
-                        # folds where a threshold was found. Carrying it over would
-                        # publish a "moderate" cut looser than the "supporting" cut.
                         reachable = bool(t["pp3_threshold_reachable"].iloc[0])
+                        p = f"pp3_insample_{tier}"
+                        row[f"{p}_reachable"] = reachable
+                        if reachable:
+                            tau = float(t["pp3_threshold_insample"].iloc[0])
+                            d = _band_detail(y, v, tau, "upper", path_bands, "pathogenic",
+                                             (gene.upper(), label, stratum, tool,
+                                              f"insample_{tier}"))
+                            row |= {f"{p}_threshold": tau, f"{p}_lr_here": d["lr"],
+                                    f"{p}_tier_here": d["tier"],
+                                    f"{p}_n_pos_band": d["n_pos_band"],
+                                    f"{p}_n_neg_band": d["n_neg_band"],
+                                    f"{p}_lr_lo": d["lr_lo"], f"{p}_lr_hi": d["lr_hi"],
+                                    f"{p}_tier_at_bound": d["tier_at_bound"]}
+                        else:
+                            row |= {f"{p}_threshold": np.nan, f"{p}_lr_here": np.nan,
+                                    f"{p}_tier_here": "not evaluable",
+                                    f"{p}_note": "tier not reached in-sample: no threshold"}
+                        # the sensitivity analysis: the LOGO median. A tier E3 could not
+                        # reach in-sample still has a finite LOGO median, because that
+                        # median is taken over only the folds where a threshold was found;
+                        # carrying it over would publish a "moderate" cut looser than the
+                        # "supporting" cut.
+                        q = f"pp3_logo_median_{tier}"
                         folds = float(t["pp3_logo_folds_reaching"].iloc[0] or 0)
-                        row[f"e3_{tier}_reachable_in_sample"] = reachable
-                        row[f"e3_{tier}_logo_folds"] = folds
+                        row[f"{q}_reachable_in_sample"] = reachable
+                        row[f"{q}_logo_folds"] = folds
                         if not reachable:
-                            row[f"e3_{tier}_threshold"] = np.nan
-                            row[f"e3_{tier}_lr_here"] = np.nan
-                            row[f"e3_{tier}_tier_here"] = "not evaluable"
-                            row[f"e3_{tier}_note"] = (
+                            row[f"{q}_threshold"] = np.nan
+                            row[f"{q}_lr_here"] = np.nan
+                            row[f"{q}_tier_here"] = "not evaluable"
+                            row[f"{q}_note"] = (
                                 "tier unreachable in-sample; LOGO median not carried over")
                             continue
                         tau = float(t["pp3_logo_threshold_median"].iloc[0])
-                        row[f"e3_{tier}_threshold"] = tau
+                        row[f"{q}_threshold"] = tau
                         d = _band_detail(y, v, tau, "upper", path_bands, "pathogenic",
                                          (gene.upper(), label, stratum, tool, tier))
-                        row[f"e3_{tier}_lr_here"] = d["lr"]
-                        row[f"e3_{tier}_tier_here"] = d["tier"]
-                        row[f"e3_{tier}_n_pos_band"] = d["n_pos_band"]
-                        row[f"e3_{tier}_n_neg_band"] = d["n_neg_band"]
-                        row[f"e3_{tier}_lr_lo"] = d["lr_lo"]
-                        row[f"e3_{tier}_lr_hi"] = d["lr_hi"]
-                        row[f"e3_{tier}_tier_at_bound"] = d["tier_at_bound"]
+                        row[f"{q}_lr_here"] = d["lr"]
+                        row[f"{q}_tier_here"] = d["tier"]
+                        row[f"{q}_n_pos_band"] = d["n_pos_band"]
+                        row[f"{q}_n_neg_band"] = d["n_neg_band"]
+                        row[f"{q}_lr_lo"] = d["lr_lo"]
+                        row[f"{q}_lr_hi"] = d["lr_hi"]
+                        row[f"{q}_tier_at_bound"] = d["tier_at_bound"]
+                    for tier in ["supporting", "moderate"]:
+                        t = e[e.tier == tier]
+                        if not len(t):
+                            continue
+                        reachable = bool(t["bp4_threshold_reachable"].iloc[0])
+                        p = f"bp4_insample_{tier}"
+                        row[f"{p}_reachable"] = reachable
+                        if not reachable:
+                            row |= {f"{p}_threshold": np.nan, f"{p}_lr_here": np.nan,
+                                    f"{p}_tier_here": "not evaluable",
+                                    f"{p}_note": "tier not reached in-sample: no threshold"}
+                            continue
+                        tau = float(t["bp4_threshold_insample"].iloc[0])
+                        d = _band_detail(y, v, tau, "lower", ben_bands, "benign",
+                                         (gene.upper(), label, stratum, tool,
+                                          f"insample_bp4_{tier}"))
+                        row |= {f"{p}_threshold": tau, f"{p}_lr_here": d["lr"],
+                                f"{p}_tier_here": K.tier_of(K.band_lr_benign_bound(y, v, tau),
+                                                            ben_bands, "benign"),
+                                f"{p}_n_pos_band": d["n_pos_band"],
+                                f"{p}_n_neg_band": d["n_neg_band"],
+                                f"{p}_lr_lo": d["lr_lo"], f"{p}_lr_hi": d["lr_hi"]}
                 rows.append(row)
 
     out = pd.DataFrame(rows)
