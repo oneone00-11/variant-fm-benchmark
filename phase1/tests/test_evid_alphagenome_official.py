@@ -40,7 +40,14 @@ SET = PHASE1 / "data/evidence/analysis_set_v1.parquet"
 COMPONENTS = ["SPLICE_SITES", "SPLICE_SITE_USAGE", "SPLICE_JUNCTIONS"]
 COMPOSITE = "alphagenome_splicing"
 FULL, DRIFT = "all_scores.tsv", "drift_scores.tsv"
-SCORE_FILES = {"examples_scores.tsv", "pilot_scores.tsv", "repeat_scores.tsv", FULL, DRIFT}
+# E18.1, after the tag: the external genes, between two drift checks
+EXTERNAL, START, END = "external_scores.tsv", "drift_2b_start_scores.tsv", "drift_2b_end_scores.tsv"
+SCORE_FILES = {"examples_scores.tsv", "pilot_scores.tsv", "repeat_scores.tsv", FULL, DRIFT,
+               EXTERNAL, START, END}
+ENV_2B = DIR / "ENVIRONMENT_2b.json"
+# the tagger time of the tag frozen-thresholds-v1, from its tag object
+# (`git cat-file -p frozen-thresholds-v1`: 1792686865 +0800)
+TAG_UTC = "2026-10-22T16:34:25+00:00"
 
 if str(PHASE1) not in sys.path:
     sys.path.insert(0, str(PHASE1))
@@ -163,17 +170,20 @@ def test_the_composite_is_the_notebooks_combination(name):
         assert (df[f"min_raw_{c}"].dropna() >= 0).all(), c
 
 
-def test_the_new_scores_cover_the_seven_training_genes_only():
-    """E17.0 rule 10: nothing for DDX3X, TP53 or the five further genes before the
-    thresholds are frozen. The notebook's own three examples are the one exception, and
-    they are exactly those."""
+def test_external_genes_are_scored_only_after_the_tag():
+    """E17.0 rule 10, as E18.1 restates it: no gene outside the seven training genes
+    has an AlphaGenome score from before the thresholds were frozen; every such score
+    post-dates the tag. The notebook's own three examples are the one exception, and
+    they are exactly those. (The seven genes' score files are as tagged:
+    test_evid_frozen_guard.py.)"""
     aset = pd.read_parquet(SET, columns=["variant_id", "gene"])
     from src import config as C
     assert set(aset.gene) == set(C.ASSAY_LABELS)
     for p in DIR.iterdir():
         assert p.name in SCORE_FILES | {f"{n}.provenance.json" for n in SCORE_FILES} | {
             "NOTEBOOK_SOURCE.json", "NOTEBOOK_CONTEXT.json", "ENVIRONMENT.json",
-            "ATLAS_COLUMNS_CHECK.json"}, p.name
+            "ENVIRONMENT_2b.json", "ATLAS_COLUMNS_CHECK.json"}, p.name
+    tagged = datetime.fromisoformat(TAG_UTC)
     for name in _present():
         df = _scores(name, as_text=True)
         if name == "examples_scores.tsv":
@@ -184,8 +194,63 @@ def test_the_new_scores_cover_the_seven_training_genes_only():
                 r"alternate_bases='(\w+)'", cell15)}
             assert set(df.variant_id) == notebook and len(notebook) == 3
             continue
-        assert set(df.variant_id) <= set(aset.variant_id), name
-        assert set(df.gene) <= set(C.ASSAY_LABELS), name
+        if set(df.gene) <= set(C.ASSAY_LABELS):
+            assert set(df.variant_id) <= set(aset.variant_id), name
+        else:
+            assert all(datetime.fromisoformat(t) > tagged for t in df.scored_utc), name
+
+
+def _external_set() -> pd.DataFrame:
+    """E18.1's external variants, rebuilt here from the source files and the rule."""
+    ext = PHASE1 / "data/evidence/external"
+    parts = [pd.read_parquet(ext / "ddx3x_splice.parquet")[["gene", "variant_id"]],
+             pd.read_parquet(ext / "tp53_splice_scored_12nt.parquet")[["gene", "variant_id"]]]
+    for g in ["ctcf", "sfpq", "rad51d", "xrcc2", "sbds"]:
+        v = pd.read_parquet(ext / f"{g}_variants.parquet")
+        parts.append(v.loc[(v["offset"].abs() >= 3) & (v["offset"].abs() <= 50),
+                           ["gene", "variant_id"]])
+    return pd.concat(parts, ignore_index=True)
+
+
+def test_the_external_scores_cover_exactly_the_instructions_variants():
+    """DDX3X 1,857 (every row E7 reads), TP53 288, and the five further genes at
+    3-50 nt, 4,522: 4,075 for CTCF, SFPQ, RAD51D and XRCC2, 447 for SBDS."""
+    _need(EXTERNAL)
+    want = _external_set()
+    n = want.gene.value_counts()
+    assert (n["DDX3X"], n["TP53"]) == (1857, 288)
+    assert n[["CTCF", "SFPQ", "RAD51D", "XRCC2"]].sum() == 4075 and n["SBDS"] == 447
+    got = _scores(EXTERNAL, as_text=True)
+    assert sorted(zip(got.gene, got.variant_id)) == sorted(zip(want.gene, want.variant_id))
+    prov = _prov(EXTERNAL)
+    assert prov["n_by_gene"] == {g: int(k) for g, k in n.items()}
+    assert prov["n_variants"] == len(want) == 6667
+
+
+def test_the_drift_checks_around_the_external_run_agree_to_the_last_bit():
+    """E18.1: the pilot's ten, from empty caches, before and after the external genes:
+    each equal to the pilot's scores as written; the external run began only after the
+    start check, and the end check only after the external run had ended."""
+    S = _scorer()
+    _need(END)
+    pilot = _scores("pilot_scores.tsv", as_text=True).set_index("variant_id")
+    cols = COMPONENTS + [COMPOSITE]
+    for name in (START, END):
+        prov, d = _prov(name), _scores(name, as_text=True)
+        assert prov["n_scored_this_run"] == S.REPEAT_N and prov["n_from_cache"] == 0, name
+        assert (pilot.loc[d.variant_id, cols].to_numpy() == d[cols].to_numpy()).all(), name
+        assert prov["drift_check"]["identical"] == S.REPEAT_N, name
+    ext, end = _prov(EXTERNAL), _prov(END)
+    assert ext["after_drift_2b_start"]["sha256"] == _sha(DIR / f"{START}.provenance.json")
+    assert end["after_external"]["sha256"] == _sha(DIR / f"{EXTERNAL}.provenance.json")
+    after = datetime.fromisoformat(ext["end_utc"])
+    assert all(datetime.fromisoformat(t) > after for t in _scores(END, as_text=True).scored_utc)
+    started = datetime.fromisoformat(_prov(START)["end_utc"])
+    assert all(datetime.fromisoformat(t) > started for t in _scores(EXTERNAL, as_text=True).scored_utc)
+    env = json.loads(ENV_2B.read_text())
+    for name in (START, EXTERNAL, END):
+        assert _prov(name)["model_version_default"] == env["model"]["default_when_not_requested"]
+        assert _prov(name)["after_tag"]["every_scored_utc_later"] is True
 
 
 def test_the_full_run_scores_every_row_of_the_analysis_set():
@@ -261,7 +326,7 @@ def test_each_record_matches_its_scores_and_holds_no_key(name):
     assert prov["api_key_present"] is True
     assert prov["api_key_source"] in ("ALPHAGENOME_API_KEY", "~/.config/alphagenome/key")
     assert prov["failures"] == []
-    text = prov_path.read_text() + ENV.read_text()
+    text = prov_path.read_text() + ENV.read_text() + (ENV_2B.read_text() if ENV_2B.exists() else "")
     assert not re.search(r"AIza[0-9A-Za-z_\-]{30,}", text)
 
 

@@ -1,0 +1,109 @@
+{
+ "written_by": "scripts/stage_E17/score_official.py",
+ "mode": "external",
+ "definition": "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json",
+ "definition_sha256": "8f050e9b0c224e0cdfce46a9d61f3c9c567123f7521085032391ee1b395c4e80",
+ "code_run": {
+  "cells_as_written": [
+   5,
+   9,
+   13,
+   "15 (the lines scoring one variant, out of the loop)"
+  ],
+  "cell_7": "dna_client.create(read_key()): the key aside, as written",
+  "per_variant_lines": "  interval = variant.reference_interval.resize(dna_client.SEQUENCE_LENGTH_1MB)\n  scores = dna_model.score_variant(\n      interval=interval,\n      variant=variant,\n      variant_scorers=splicing_scorers,\n      organism=dna_client.Organism.HOMO_SAPIENS,\n  )"
+ },
+ "client_version": "0.10.0",
+ "model_version_requested": null,
+ "model_version_in_response": "not_provided",
+ "model_version_default": {
+  "file": "alphagenome/models/v1/dna_model.py",
+  "line": 52,
+  "text": "  ALL_FOLDS = enum.auto()  # Default model version if None explicitly set.",
+  "file_sha256": "6296148c50bcd247e2aa96e8a863d4fd55cbe6665d84d92f7b0e04ce2e778fee",
+  "file_sha256_in_wheel_record": true,
+  "wheel": "alphagenome==0.10.0",
+  "wheel_sha256": "ed90696f7f0900b2e0d68e28e36ab7d6d95000f59cd19b969fec0bea806bd2c2",
+  "wheel_sha256_from": "scripts/stage_E17/requirements.txt"
+ },
+ "start_utc": "2026-10-22T16:58:34+00:00",
+ "end_utc": "2026-10-22T18:13:07+00:00",
+ "seconds_scoring": 4473.0,
+ "n_variants": 6667,
+ "n_scored_this_run": 6667,
+ "n_from_cache": 0,
+ "scored_utc_range": [
+  "2026-10-22T16:58:36+00:00",
+  "2026-10-22T18:13:07+00:00"
+ ],
+ "calls": 6667,
+ "retries": 0,
+ "failures": [],
+ "workers": 2,
+ "sample": null,
+ "genes": [
+  "CTCF",
+  "DDX3X",
+  "RAD51D",
+  "SBDS",
+  "SFPQ",
+  "TP53",
+  "XRCC2"
+ ],
+ "summary": {
+  "SPLICE_SITES": {
+   "variants_with_no_row": 0,
+   "nan_raw_scores": 0,
+   "min_raw": 0.00146484375
+  },
+  "SPLICE_SITE_USAGE": {
+   "variants_with_no_row": 0,
+   "nan_raw_scores": 0,
+   "min_raw": 3.337860107421875e-06
+  },
+  "SPLICE_JUNCTIONS": {
+   "variants_with_no_row": 0,
+   "nan_raw_scores": 0,
+   "min_raw": 0.0
+  }
+ },
+ "code_sha256": {
+  "scripts/stage_E17/score_official.py": "217e61c9f19774ffa1421a41bceee5e3c614884e6733950598342a63c48b33ec",
+  "scripts/stage_E17/_runlog.py": "1cd6d51c9b1471958c2acbe56a7392043ca70641c641e6259a4da247ce50e032"
+ },
+ "n_by_gene": {
+  "DDX3X": 1857,
+  "CTCF": 1370,
+  "RAD51D": 1296,
+  "SFPQ": 1019,
+  "SBDS": 447,
+  "XRCC2": 390,
+  "TP53": 288
+ },
+ "selection": "DDX3X: every row of ddx3x_splice.parquet; TP53: every row of tp53_splice_scored_12nt.parquet; CTCF, SFPQ, RAD51D, XRCC2, SBDS: the rows of <gene>_variants.parquet at 3 <= |offset| <= 50",
+ "sources": {
+  "phase1/data/evidence/external/ddx3x_splice.parquet": "cf51a401813aecf6ad6848393d33eef5592f5f5d7a4b55a7d1276869677c2dd1",
+  "phase1/data/evidence/external/tp53_splice_scored_12nt.parquet": "b06dc44d13e8d4e2999d625e3d216c8908adac555c2a348120eaeff260210c89",
+  "phase1/data/evidence/external/ctcf_variants.parquet": "e565e144697a535aedc0fdaf8e8e8de44a4c805ba1901d2d60da01ad37e8c45d",
+  "phase1/data/evidence/external/sfpq_variants.parquet": "e52d293ccf76693a0dce570adfd58163488752c32de924804e578d100b53b670",
+  "phase1/data/evidence/external/rad51d_variants.parquet": "7837a3e13ba15c811cf09d89baabc97551905c0cc0b5bc04b35c804e39038135",
+  "phase1/data/evidence/external/xrcc2_variants.parquet": "c12b4dcaacd7da7ba484b21887870f75d773615b9518d687b4fd53dd0217e5b1",
+  "phase1/data/evidence/external/sbds_variants.parquet": "dbee75889e97a69e6e3fee3b1bdb02173010e37b3efd8ab063e1a2a7f3d53a47"
+ },
+ "after_drift_2b_start": {
+  "provenance": "phase1/data/evidence/alphagenome_official/drift_2b_start_scores.tsv.provenance.json",
+  "sha256": "db38956cf5fc814cfb6e50025a98fb5c18d6979b85eb441cb888bf734733405d",
+  "end_utc": "2026-10-22T16:58:25+00:00",
+  "drift_check": "10/10 identical"
+ },
+ "after_tag": {
+  "tag": "frozen-thresholds-v1",
+  "tagged_utc": "2026-10-22T16:34:25Z",
+  "record": "phase1/data/evidence/FROZEN_AT_TAG.json",
+  "every_scored_utc_later": true
+ },
+ "output": "phase1/data/evidence/alphagenome_official/external_scores.tsv",
+ "output_sha256": "095818bef37b8e9a931ce988373e8cbb49152c52ed74593fa4ff14875b2dbeb9",
+ "api_key_present": true,
+ "api_key_source": "~/.config/alphagenome/key"
+}

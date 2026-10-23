@@ -1091,3 +1091,40 @@ combined as sites + usage + junctions / 5; client 0.10.0.
   number moves from matched to unmatched (62 matched; the same four unmatched since
   E16d). Three sentences and Supplementary Note 2 describe the old composite or its
   results; the stage report lists them. The manuscript is not changed.
+
+## After the thresholds were frozen: the freeze guard, and the external genes' AlphaGenome scores (stage E18, 2026-10-23)
+
+Why: the seven training genes' thresholds were frozen at the tag `frozen-thresholds-v1`
+(tag object c75eb39, commit 1d03019, 2026-10-22T16:34:25Z). The external genes are now
+scored, after the tag, for a test against those thresholds. This commit only adds data;
+the pipeline reads none of it, and every output is unchanged.
+
+- The freeze guard. `phase1/data/evidence/FROZEN_AT_TAG.json`
+  (`scripts/stage_E18/freeze_guard.py`) records the sha256, as tagged, of 96 files:
+  - the analysis set and its manifest;
+  - every record of `alphagenome_official/`, the seven genes' scores among them;
+  - the three threshold tables;
+  - the `table3*` tables, and Supplementary Tables S6 and S7;
+  - every `interval_lr_*.csv`;
+  - the fusion's outputs.
+
+  `test_evid_frozen_guard.py` requires HEAD to hold each of them byte for byte as
+  recorded.
+- AlphaGenome by the official definition (E17's code and environment, client 0.10.0,
+  no model version named) for the external genes' variants:
+  - DDX3X, all 1,857 rows E7 reads;
+  - TP53, all 288;
+  - the five further genes at 3–50 nt, 4,522: CTCF 1,370, SFPQ 1,019, RAD51D 1,296,
+    XRCC2 390 and SBDS 447.
+
+  The scores are in `alphagenome_official/external_scores.tsv` with its provenance.
+  The run took 2026-10-22 16:58 to 18:13 UTC, with no retry and no failure. No variant
+  lacks a row, no raw score is NaN, and none is below zero.
+- Two drift checks frame it, each the pilot's ten scored afresh from an empty cache, and
+  each equal to the pilot's scores bit for bit (10 of 10):
+  - before the external run (`drift_2b_start_scores.tsv`);
+  - after it (`drift_2b_end_scores.tsv`, at 01:11 UTC on 2026-10-23).
+- Every external score post-dates the tag. The test that allowed only the seven genes
+  now allows another gene only with scores after the tag.
+- `scripts/stage_E17/score_official.py` gains the three modes. They write
+  `ENVIRONMENT_2b.json`, so that E17's `ENVIRONMENT.json` stays as tagged.

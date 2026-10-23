@@ -1,0 +1,109 @@
+{
+ "script": "scripts/stage_E17/score_official.py",
+ "argv": [
+  "scripts/stage_E17/score_official.py",
+  "--drift-2b-start"
+ ],
+ "git_commit": "1d030192ff7c91f8eed63c95154122437c819dba",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E17/score_official.py": "217e61c9f19774ffa1421a41bceee5e3c614884e6733950598342a63c48b33ec",
+  "scripts/stage_E17/_runlog.py": "1cd6d51c9b1471958c2acbe56a7392043ca70641c641e6259a4da247ce50e032"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "0.10.0",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "anndata": "0.13.4",
+  "grpcio": "1.84.0",
+  "protobuf": "7.36.2"
+ },
+ "start_utc": "2026-10-22T16:58:15+00:00",
+ "end_utc": "2026-10-22T16:58:25+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/FROZEN_AT_TAG.json",
+   "bytes": 23450,
+   "sha256": "10b40da6e5febb9f436b48523ba8d932549c69664c90096aa68fec9d96c52d00"
+  },
+  {
+   "path": "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json",
+   "bytes": 11530,
+   "sha256": "8f050e9b0c224e0cdfce46a9d61f3c9c567123f7521085032391ee1b395c4e80"
+  },
+  {
+   "path": "phase1/data/evidence/analysis_set_v1.parquet",
+   "bytes": 1459145,
+   "sha256": "52e0c610b0147e2435b17b57b586f3340e7b988aa2ddec66890b92f1a59c7ecc"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/alphagenome_official/drift_2b_start_scores.tsv",
+   "bytes": 2135,
+   "sha256": "aba30ac841c074fe91323de3746d60b2641aeda16ce46da7547b577c82000b5c"
+  },
+  {
+   "path": "phase1/data/evidence/alphagenome_official/ENVIRONMENT_2b.json",
+   "bytes": 2480,
+   "sha256": "e878f348df5faa3f0b26c639fa139083fc73c6db52d5148193ba7aac608e70b6"
+  },
+  {
+   "path": "phase1/data/evidence/alphagenome_official/drift_2b_start_scores.tsv.provenance.json",
+   "bytes": 3589,
+   "sha256": "db38956cf5fc814cfb6e50025a98fb5c18d6979b85eb441cb888bf734733405d"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "key": {
+   "api_key_present": true,
+   "api_key_source": "~/.config/alphagenome/key"
+  },
+  "pilot_share": {
+   "BAP1/pm12": 6,
+   "BAP1/s3_10": 6,
+   "BAP1/s11_50": 6,
+   "BARD1/pm12": 6,
+   "BARD1/s3_10": 6,
+   "BARD1/s11_50": 6,
+   "BRCA1/pm12": 6,
+   "BRCA1/s3_10": 6,
+   "BRCA1/s11_50": 6,
+   "BRCA2/pm12": 6,
+   "BRCA2/s3_10": 6,
+   "PALB2/pm12": 6,
+   "PALB2/s3_10": 6,
+   "PALB2/s11_50": 6,
+   "RAD51C/pm12": 6,
+   "RAD51C/s3_10": 6,
+   "RAD51C/s11_50": 6,
+   "VHL/pm12": 6,
+   "VHL/s3_10": 6,
+   "VHL/s11_50": 6
+  },
+  "seconds_scoring": 8.9,
+  "retries": 0,
+  "drift_check": {
+   "against": "phase1/data/evidence/alphagenome_official/pilot_scores.tsv",
+   "against_sha256": "7747b65602f27266e14dfce8c3c7916d7f7626f038c4eec5d6cb664c097f3e39",
+   "columns": [
+    "SPLICE_SITES",
+    "SPLICE_SITE_USAGE",
+    "SPLICE_JUNCTIONS",
+    "alphagenome_splicing"
+   ],
+   "variants": 10,
+   "identical": 10,
+   "differing": []
+  },
+  "after_tag": {
+   "tag": "frozen-thresholds-v1",
+   "tagged_utc": "2026-10-22T16:34:25Z",
+   "record": "phase1/data/evidence/FROZEN_AT_TAG.json",
+   "every_scored_utc_later": true
+  }
+ }
+}

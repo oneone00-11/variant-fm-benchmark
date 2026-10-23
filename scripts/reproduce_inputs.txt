@@ -17,16 +17,26 @@
 # environment's record, the read-only check of the Atlas columns and the scores of
 # the pilot (alphagenome_official/); then the notebook's words around the code, and
 # the scores of the full run and of the drift check.
+# E18 (2026-10-23) added the freeze guard's record of the tag, and the external genes'
+# AlphaGenome scores between two drift checks, with the scoring environment's record.
+phase1/data/evidence/FROZEN_AT_TAG.json
 phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json
 phase1/data/evidence/alphagenome_official/ENVIRONMENT.json
+phase1/data/evidence/alphagenome_official/ENVIRONMENT_2b.json
 phase1/data/evidence/alphagenome_official/NOTEBOOK_CONTEXT.json
 phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json
 phase1/data/evidence/alphagenome_official/all_scores.tsv
 phase1/data/evidence/alphagenome_official/all_scores.tsv.provenance.json
+phase1/data/evidence/alphagenome_official/drift_2b_end_scores.tsv
+phase1/data/evidence/alphagenome_official/drift_2b_end_scores.tsv.provenance.json
+phase1/data/evidence/alphagenome_official/drift_2b_start_scores.tsv
+phase1/data/evidence/alphagenome_official/drift_2b_start_scores.tsv.provenance.json
 phase1/data/evidence/alphagenome_official/drift_scores.tsv
 phase1/data/evidence/alphagenome_official/drift_scores.tsv.provenance.json
 phase1/data/evidence/alphagenome_official/examples_scores.tsv
 phase1/data/evidence/alphagenome_official/examples_scores.tsv.provenance.json
+phase1/data/evidence/alphagenome_official/external_scores.tsv
+phase1/data/evidence/alphagenome_official/external_scores.tsv.provenance.json
 phase1/data/evidence/alphagenome_official/pilot_scores.tsv
 phase1/data/evidence/alphagenome_official/pilot_scores.tsv.provenance.json
 phase1/data/evidence/alphagenome_official/repeat_scores.tsv

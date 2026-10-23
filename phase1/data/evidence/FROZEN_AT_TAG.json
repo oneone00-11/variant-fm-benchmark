@@ -1,0 +1,511 @@
+{
+ "written_by": "scripts/stage_E18/freeze_guard.py",
+ "tag": "frozen-thresholds-v1",
+ "tag_object": "c75eb39c8285bbfea0a6c60fe4351281fe45a470",
+ "commit": "1d030192ff7c91f8eed63c95154122437c819dba",
+ "tagged_utc": "2026-10-22T16:34:25Z",
+ "how": "sha256 of `git show frozen-thresholds-v1:<path>`",
+ "groups": {
+  "the analysis set and its manifest": [
+   "phase1/data/evidence/analysis_set_v1.manifest.json",
+   "phase1/data/evidence/analysis_set_v1.parquet"
+  ],
+  "the seven genes' AlphaGenome scores and their records": [
+   "phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json",
+   "phase1/data/evidence/alphagenome_official/ENVIRONMENT.json",
+   "phase1/data/evidence/alphagenome_official/NOTEBOOK_CONTEXT.json",
+   "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json",
+   "phase1/data/evidence/alphagenome_official/all_scores.tsv",
+   "phase1/data/evidence/alphagenome_official/all_scores.tsv.provenance.json",
+   "phase1/data/evidence/alphagenome_official/drift_scores.tsv",
+   "phase1/data/evidence/alphagenome_official/drift_scores.tsv.provenance.json",
+   "phase1/data/evidence/alphagenome_official/examples_scores.tsv",
+   "phase1/data/evidence/alphagenome_official/examples_scores.tsv.provenance.json",
+   "phase1/data/evidence/alphagenome_official/pilot_scores.tsv",
+   "phase1/data/evidence/alphagenome_official/pilot_scores.tsv.provenance.json",
+   "phase1/data/evidence/alphagenome_official/repeat_scores.tsv",
+   "phase1/data/evidence/alphagenome_official/repeat_scores.tsv.provenance.json"
+  ],
+  "the thresholds": [
+   "phase1/reports/evidence/evidence_thresholds.csv",
+   "phase1/reports/evidence/evidence_thresholds_logo_folds.csv",
+   "phase1/reports/evidence/tier_logo_table.csv"
+  ],
+  "Table 3": [
+   "phase1/reports/evidence/tables/table3_counts.csv",
+   "phase1/reports/evidence/tables/table3_evidence_tiers.csv",
+   "phase1/reports/evidence/tables/table3b_thresholds.csv"
+  ],
+  "Supplementary Tables S6 and S7": [
+   "phase1/reports/evidence/supplement/tableS6_thresholds_pathogenic.csv",
+   "phase1/reports/evidence/supplement/tableS7_thresholds_benign.csv"
+  ],
+  "the interval likelihood-ratio curves": [
+   "phase1/reports/evidence/interval_lr_alphagenome_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_alphagenome_pm12.csv",
+   "phase1/reports/evidence/interval_lr_alphagenome_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_alphagenome_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_alphagenome_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_pm12.csv",
+   "phase1/reports/evidence/interval_lr_avi_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_avi_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_junctions_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_junctions_pm12.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_junctions_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_junctions_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_junctions_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_site_usage_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_site_usage_pm12.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_site_usage_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_site_usage_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_site_usage_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_sites_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_sites_pm12.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_sites_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_sites_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_avi_splice_sites_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_cadd_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_cadd_pm12.csv",
+   "phase1/reports/evidence/interval_lr_cadd_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_cadd_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_cadd_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_fusion_enet_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_fusion_enet_pm12.csv",
+   "phase1/reports/evidence/interval_lr_fusion_enet_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_fusion_enet_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_fusion_enet_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_gpn_msa_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_gpn_msa_pm12.csv",
+   "phase1/reports/evidence/interval_lr_gpn_msa_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_gpn_msa_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_gpn_msa_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_nt_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_nt_pm12.csv",
+   "phase1/reports/evidence/interval_lr_nt_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_nt_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_nt_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_pangolin_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_pangolin_pm12.csv",
+   "phase1/reports/evidence/interval_lr_pangolin_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_pangolin_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_pangolin_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_phastcons_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_phastcons_pm12.csv",
+   "phase1/reports/evidence/interval_lr_phastcons_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_phastcons_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_phastcons_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_phylop_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_phylop_pm12.csv",
+   "phase1/reports/evidence/interval_lr_phylop_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_phylop_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_phylop_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_spliceai_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_spliceai_pm12.csv",
+   "phase1/reports/evidence/interval_lr_spliceai_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_spliceai_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_spliceai_s3_50.csv",
+   "phase1/reports/evidence/interval_lr_spliceai_walker_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_spliceai_walker_pm12.csv",
+   "phase1/reports/evidence/interval_lr_spliceai_walker_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_spliceai_walker_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_spliceai_walker_s3_50.csv"
+  ],
+  "the fusion model's outputs": [
+   "phase1/reports/evidence/fusion_fold_coefficients.csv",
+   "phase1/reports/evidence/interval_lr_fusion_enet_all_1_50.csv",
+   "phase1/reports/evidence/interval_lr_fusion_enet_pm12.csv",
+   "phase1/reports/evidence/interval_lr_fusion_enet_s11_50.csv",
+   "phase1/reports/evidence/interval_lr_fusion_enet_s3_10.csv",
+   "phase1/reports/evidence/interval_lr_fusion_enet_s3_50.csv",
+   "phase1/reports/evidence/supplement/tableS9_fusion.csv"
+  ]
+ },
+ "files": {
+  "phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json": {
+   "sha256": "c31edcdd2ec3e339ddf5e62aa509712fc1ed6f58a43cc07a689be12dcf63a449",
+   "bytes": 1772
+  },
+  "phase1/data/evidence/alphagenome_official/ENVIRONMENT.json": {
+   "sha256": "aa608373424b5fda548e867c305a1d57fb4ed82dd0e0f9a6f50be2c1dcb89069",
+   "bytes": 2480
+  },
+  "phase1/data/evidence/alphagenome_official/NOTEBOOK_CONTEXT.json": {
+   "sha256": "b2e22d4d0ede2b54935813a995bd271817d348f3625a2c1eaf372421aa4b21a4",
+   "bytes": 2985
+  },
+  "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json": {
+   "sha256": "8f050e9b0c224e0cdfce46a9d61f3c9c567123f7521085032391ee1b395c4e80",
+   "bytes": 11530
+  },
+  "phase1/data/evidence/alphagenome_official/all_scores.tsv": {
+   "sha256": "10918c17f051cd543f5528d5bddf4709bf91c3ec2a0fcf24a39c4688835645bf",
+   "bytes": 1601441
+  },
+  "phase1/data/evidence/alphagenome_official/all_scores.tsv.provenance.json": {
+   "sha256": "718337a05d61e1b091cc76ada62bac25ff092848d229c0ea9db4c68450d3b3da",
+   "bytes": 2693
+  },
+  "phase1/data/evidence/alphagenome_official/drift_scores.tsv": {
+   "sha256": "e469ba8b78b3831c52f3514b8766277e5eff2820c3c561a45e35e18a9d87f577",
+   "bytes": 2135
+  },
+  "phase1/data/evidence/alphagenome_official/drift_scores.tsv.provenance.json": {
+   "sha256": "453eb1c72eecfc577b3f9d13d9cf88f88156e363afb43936d9222eca76ca7531",
+   "bytes": 3430
+  },
+  "phase1/data/evidence/alphagenome_official/examples_scores.tsv": {
+   "sha256": "e8c7e3298c943b97fb40e1f1c03101a2946ad3db3dc91f66e6c76ad1830b9a62",
+   "bytes": 813
+  },
+  "phase1/data/evidence/alphagenome_official/examples_scores.tsv.provenance.json": {
+   "sha256": "e465941ce5a7c86b49d1fe8e1ce0013b5a89a2ca973e572121c86c3d996627aa",
+   "bytes": 1327
+  },
+  "phase1/data/evidence/alphagenome_official/pilot_scores.tsv": {
+   "sha256": "7747b65602f27266e14dfce8c3c7916d7f7626f038c4eec5d6cb664c097f3e39",
+   "bytes": 22117
+  },
+  "phase1/data/evidence/alphagenome_official/pilot_scores.tsv.provenance.json": {
+   "sha256": "b464f8978a4d468e60340b3b6352127c986040404974c29f273d9efc238fa2ff",
+   "bytes": 1887
+  },
+  "phase1/data/evidence/alphagenome_official/repeat_scores.tsv": {
+   "sha256": "6dc0542af49bb23c47c31aa10e2fb36571dacbd7b063ae699be2ad4c23bff0ed",
+   "bytes": 2135
+  },
+  "phase1/data/evidence/alphagenome_official/repeat_scores.tsv.provenance.json": {
+   "sha256": "4d7ce9a76b29da2f1bad4c4616f7f0bf97a8f8b2c930a27626cf12f5fcc12f47",
+   "bytes": 1864
+  },
+  "phase1/data/evidence/analysis_set_v1.manifest.json": {
+   "sha256": "612c43168291b8ae6a65b92e3a1841f42b9dcc55611ee38b9d085121d8e1f92b",
+   "bytes": 4161
+  },
+  "phase1/data/evidence/analysis_set_v1.parquet": {
+   "sha256": "52e0c610b0147e2435b17b57b586f3340e7b988aa2ddec66890b92f1a59c7ecc",
+   "bytes": 1459145
+  },
+  "phase1/reports/evidence/evidence_thresholds.csv": {
+   "sha256": "adc7bee836561a354ff8ba6e5f32a3ff05fdbc06d1acd3ff6ba6e51e79199e73",
+   "bytes": 58607
+  },
+  "phase1/reports/evidence/evidence_thresholds_logo_folds.csv": {
+   "sha256": "a7b024a4e1482e18103b49dbcc41c1383c2b2440f384da2449ed979db2342c37",
+   "bytes": 98336
+  },
+  "phase1/reports/evidence/fusion_fold_coefficients.csv": {
+   "sha256": "7e3ea78fc2f8b8ebc60473f452a303db5ade1d6c7c4169f0fa7b42dc90cd34ec",
+   "bytes": 3043
+  },
+  "phase1/reports/evidence/interval_lr_alphagenome_all_1_50.csv": {
+   "sha256": "993ec2d11982593394799a4fa4aabdb99c410b7c89e63d635ea4a995d186fbab",
+   "bytes": 1142381
+  },
+  "phase1/reports/evidence/interval_lr_alphagenome_pm12.csv": {
+   "sha256": "6cf7bd3ceb7f610126961a58192941f6a5f1644e9545c3b66ed19351e6f099ce",
+   "bytes": 144317
+  },
+  "phase1/reports/evidence/interval_lr_alphagenome_s11_50.csv": {
+   "sha256": "49b4f8ad2f02faac8554ee7aa39aa1c255263ab104c348b46c91616d9aa36ec0",
+   "bytes": 571023
+  },
+  "phase1/reports/evidence/interval_lr_alphagenome_s3_10.csv": {
+   "sha256": "8fe4a27c24977187c8fd070a064d6a0e19e8523109c7019dea910378953006af",
+   "bytes": 478705
+  },
+  "phase1/reports/evidence/interval_lr_alphagenome_s3_50.csv": {
+   "sha256": "7e53dcb21a1979e2093667c3a5313ef59b9795ca0c65149204d4bd83764ef3d3",
+   "bytes": 969936
+  },
+  "phase1/reports/evidence/interval_lr_avi_all_1_50.csv": {
+   "sha256": "4e7d35a782061b9c75e838f2926f5f35deedcddc68f4ad0324f40e083a2d0865",
+   "bytes": 1336966
+  },
+  "phase1/reports/evidence/interval_lr_avi_pm12.csv": {
+   "sha256": "58d9725fa69b801769500b99e972da99e6e2dcc6d0fc5cc46bffc530c9faf7ef",
+   "bytes": 137848
+  },
+  "phase1/reports/evidence/interval_lr_avi_s11_50.csv": {
+   "sha256": "dd57348192e9e64fd63d2d765a1647727477d9995dac94c35b27b37a0ac26c65",
+   "bytes": 667534
+  },
+  "phase1/reports/evidence/interval_lr_avi_s3_10.csv": {
+   "sha256": "8df8dbd054fa2bd33c5994fec4d6cd438043ced8522f5aaae7e80bda22c4404b",
+   "bytes": 495568
+  },
+  "phase1/reports/evidence/interval_lr_avi_s3_50.csv": {
+   "sha256": "60a4cc4057f5d42623d2c16c07a791964f9f9559e4851ce82e31876cccc9c635",
+   "bytes": 1160049
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_junctions_all_1_50.csv": {
+   "sha256": "d7647a65c2f687dfcf2b2e87387107c1c2628d33224d7bbbaab719a079e71490",
+   "bytes": 821717
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_junctions_pm12.csv": {
+   "sha256": "7f8e0901a6a92bbd15d9db61c811b4d936ca9f2d999dac66eaef77714edf7e7d",
+   "bytes": 103614
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_junctions_s11_50.csv": {
+   "sha256": "70ace31a824e8ee19b63410b0e14facd750258cbb6b7dae4b0c1090d39500bf7",
+   "bytes": 484177
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_junctions_s3_10.csv": {
+   "sha256": "da499184c75020bc595a7c510f8765e5a76895d682f61bf43424d7ab2164398b",
+   "bytes": 418200
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_junctions_s3_50.csv": {
+   "sha256": "5eb22571a556aff0805d512028d260c05b0dc4106dc58e22fff8d06e0e768718",
+   "bytes": 733955
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_site_usage_all_1_50.csv": {
+   "sha256": "8520f80f1ec9d74d1f408daf48d181470276926042faa191c97b784b9f4b54cc",
+   "bytes": 264695
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_site_usage_pm12.csv": {
+   "sha256": "c3d1c5385540ed417087703c26aebf2f09c6671f5e8d02b2ec063bf885667faa",
+   "bytes": 130023
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_site_usage_s11_50.csv": {
+   "sha256": "fcac6195b2ab122572ed20dd7419609be106278176c39a41f32261d42b9ca201",
+   "bytes": 47943
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_site_usage_s3_10.csv": {
+   "sha256": "09723644371e30db9ba8ec5f2f7c3f959b2f8c36c18fb300f76e33486ce5d808",
+   "bytes": 115811
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_site_usage_s3_50.csv": {
+   "sha256": "c6c32702a2031baaddec62dd0bca6ac1334f6fa43d53ee781917a71e0e287fab",
+   "bytes": 141685
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_sites_all_1_50.csv": {
+   "sha256": "bf36069d111152715d6cc38902489e15e4f13ec013e38ae57f399b9136662331",
+   "bytes": 378830
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_sites_pm12.csv": {
+   "sha256": "91053e441f4bd03cb7e343ed68363db7f693e43ea547f50502a2244e03c624db",
+   "bytes": 121902
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_sites_s11_50.csv": {
+   "sha256": "eeacd6c2d917d97ab8e10dea0ca8a223824cea43e0e1be78e4a453d75143df7c",
+   "bytes": 123812
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_sites_s3_10.csv": {
+   "sha256": "ec2b58a0a2a609df87421ce243bbf8f78980529259b8054fc1bc526e9a96c352",
+   "bytes": 183036
+  },
+  "phase1/reports/evidence/interval_lr_avi_splice_sites_s3_50.csv": {
+   "sha256": "d669610dbd9c7489f15ca970a9abbed33576cd7d80ea58d7cb0c52d9e3b154be",
+   "bytes": 258238
+  },
+  "phase1/reports/evidence/interval_lr_cadd_all_1_50.csv": {
+   "sha256": "6edeae7e7d9ba47e5238d1ce4f5dc9eca320579f21ecad4d151a454488a54b2c",
+   "bytes": 663046
+  },
+  "phase1/reports/evidence/interval_lr_cadd_pm12.csv": {
+   "sha256": "89787b7d98c94b375b001bf6256ad419790060f00eec363a7a187143c1a9e77d",
+   "bytes": 12576
+  },
+  "phase1/reports/evidence/interval_lr_cadd_s11_50.csv": {
+   "sha256": "1088054bea8b842aef602c54ebf0109037f4492d578692ddec6e33dae64aeace",
+   "bytes": 446516
+  },
+  "phase1/reports/evidence/interval_lr_cadd_s3_10.csv": {
+   "sha256": "c7fe720323954a260f4145620b42a739dc789b72c110fd3c5aefa412ca2a0ccb",
+   "bytes": 316995
+  },
+  "phase1/reports/evidence/interval_lr_cadd_s3_50.csv": {
+   "sha256": "76b81ebce07d416970daccc2c520a9dd6c79159c136739aea9d55e88f662b5c9",
+   "bytes": 640855
+  },
+  "phase1/reports/evidence/interval_lr_fusion_enet_all_1_50.csv": {
+   "sha256": "433676a455628c6935dc685068acab21a86b3c851afd31307ea7b3108eb9e9a8",
+   "bytes": 1390390
+  },
+  "phase1/reports/evidence/interval_lr_fusion_enet_pm12.csv": {
+   "sha256": "34cf191ca200607a77c91200c3019375152ec4a8ad67a0a8a346b0274dd4e994",
+   "bytes": 145363
+  },
+  "phase1/reports/evidence/interval_lr_fusion_enet_s11_50.csv": {
+   "sha256": "db3bb4c1da2937855b188b18e6c25df8ceb4fac6ecd96effbc9c5c06e9ca0bbc",
+   "bytes": 698413
+  },
+  "phase1/reports/evidence/interval_lr_fusion_enet_s3_10.csv": {
+   "sha256": "c9727f8112a18ca53f0d1805a19ff6207de77d95fa95916af5976a46aeefb117",
+   "bytes": 505660
+  },
+  "phase1/reports/evidence/interval_lr_fusion_enet_s3_50.csv": {
+   "sha256": "902acb1869f7e76e26dfe26187d3b6babc8b4da0b85657ff8ce80e0a635d7b3f",
+   "bytes": 1210650
+  },
+  "phase1/reports/evidence/interval_lr_gpn_msa_all_1_50.csv": {
+   "sha256": "0e30a65aaf4d667b78acd37497e04077f444d9826d12c38f3ef05c9401fc32d2",
+   "bytes": 222656
+  },
+  "phase1/reports/evidence/interval_lr_gpn_msa_pm12.csv": {
+   "sha256": "bcfe5e21ce170e0117619416c355a32ae6f5b4d326870b0f7e249c436420febc",
+   "bytes": 78874
+  },
+  "phase1/reports/evidence/interval_lr_gpn_msa_s11_50.csv": {
+   "sha256": "eb7c014a54fba78491f29b0d52678d266724ce96d5fd64d97c0224cafacfebe4",
+   "bytes": 130397
+  },
+  "phase1/reports/evidence/interval_lr_gpn_msa_s3_10.csv": {
+   "sha256": "02f8cae28760a83cc442eb0e233af82f737ea99905e3c38d1cedd92371c16896",
+   "bytes": 154192
+  },
+  "phase1/reports/evidence/interval_lr_gpn_msa_s3_50.csv": {
+   "sha256": "350e5e89edaa498a1ef38fb7735af55670774e9c4f2e4b640510ba3ad1a47816",
+   "bytes": 178940
+  },
+  "phase1/reports/evidence/interval_lr_nt_all_1_50.csv": {
+   "sha256": "301d57ba2db29a952aa78d36efc7e82576184565ecf20f55a4560757de7f0281",
+   "bytes": 1445173
+  },
+  "phase1/reports/evidence/interval_lr_nt_pm12.csv": {
+   "sha256": "a63113f846e2410a3857364fb6fd695d3bb60856b9c87e2e39537a52ab051fec",
+   "bytes": 137338
+  },
+  "phase1/reports/evidence/interval_lr_nt_s11_50.csv": {
+   "sha256": "969ed77ce8b72a48671d0df2c1378f80ed5b812648d03358dbcd46522611ee2b",
+   "bytes": 686165
+  },
+  "phase1/reports/evidence/interval_lr_nt_s3_10.csv": {
+   "sha256": "7e900b8112509a70a488967b9a1c206f26bb6366a77485802b9bca8378470e92",
+   "bytes": 518107
+  },
+  "phase1/reports/evidence/interval_lr_nt_s3_50.csv": {
+   "sha256": "8121af4869ee99d5e3cbea14fa62cffa3e9e5d1b6eaeab78e7bc516349a2c6ed",
+   "bytes": 1257987
+  },
+  "phase1/reports/evidence/interval_lr_pangolin_all_1_50.csv": {
+   "sha256": "2aed44c384c34fe47e3a31a10cd6bb2f920fd2f25a1ade33a431c23dc69b2cf4",
+   "bytes": 1388103
+  },
+  "phase1/reports/evidence/interval_lr_pangolin_pm12.csv": {
+   "sha256": "e74a573188f8d414469e8877f26eccb907bcabaa48222a20d25b0483fe9716a7",
+   "bytes": 143400
+  },
+  "phase1/reports/evidence/interval_lr_pangolin_s11_50.csv": {
+   "sha256": "4356d59f3607071be412188a268941f0b2b5244fe215e5038e4bc8ba4426d5e0",
+   "bytes": 695411
+  },
+  "phase1/reports/evidence/interval_lr_pangolin_s3_10.csv": {
+   "sha256": "e7c3a5f9f81aa06551d0c4a0f32c5d171d6b4d449d8ffd867510abbb7c7d34a1",
+   "bytes": 510012
+  },
+  "phase1/reports/evidence/interval_lr_pangolin_s3_50.csv": {
+   "sha256": "10486a5bce2ac684d4e6deb2d5067106f5094328437f821a38751dfaf89e8e87",
+   "bytes": 1209846
+  },
+  "phase1/reports/evidence/interval_lr_phastcons_all_1_50.csv": {
+   "sha256": "ea92827f36895a408ca52ba164f828e69273d733983a542d875f3c8aba1f1478",
+   "bytes": 25088
+  },
+  "phase1/reports/evidence/interval_lr_phastcons_pm12.csv": {
+   "sha256": "a3316d2fb488612f94b16d8bef03535c4fc2ac197a3d116961b09afa6467feaa",
+   "bytes": 991
+  },
+  "phase1/reports/evidence/interval_lr_phastcons_s11_50.csv": {
+   "sha256": "efc845a0197b7972834cc166053d8a5a6bb587daf4e19dc6769b45689d96f3c6",
+   "bytes": 19324
+  },
+  "phase1/reports/evidence/interval_lr_phastcons_s3_10.csv": {
+   "sha256": "5ee40d93daeb77b84ac32205d8c8820026b0cafc4e59e73cc8a4976623e91b89",
+   "bytes": 19772
+  },
+  "phase1/reports/evidence/interval_lr_phastcons_s3_50.csv": {
+   "sha256": "36085355a99e95768cc46d6f7b21b6e3dba1b01925fbe830a274cdedef5b9b11",
+   "bytes": 24360
+  },
+  "phase1/reports/evidence/interval_lr_phylop_all_1_50.csv": {
+   "sha256": "4f5835580e81e5c5f5b71958c634da2da22e10f5e7cf7aec4c3bae308ebc1dcd",
+   "bytes": 271544
+  },
+  "phase1/reports/evidence/interval_lr_phylop_pm12.csv": {
+   "sha256": "21949930607988840ae0e5b74ecc8acb9c5ad52e3dfe75e72e77745701825523",
+   "bytes": 35885
+  },
+  "phase1/reports/evidence/interval_lr_phylop_s11_50.csv": {
+   "sha256": "199f12b55edeef6df91bbad219919951e12cdb4d8cccc24c2f42b44abae89c50",
+   "bytes": 136588
+  },
+  "phase1/reports/evidence/interval_lr_phylop_s3_10.csv": {
+   "sha256": "e48c55af26ca6a3daa5594ceb436e50aa643d822bfe185bf70e9c4d5276dadac",
+   "bytes": 137838
+  },
+  "phase1/reports/evidence/interval_lr_phylop_s3_50.csv": {
+   "sha256": "7b78f70d397f4b4963c527c02646be5f73a6e8a59669da6a522c46ef9ccbd126",
+   "bytes": 233556
+  },
+  "phase1/reports/evidence/interval_lr_spliceai_all_1_50.csv": {
+   "sha256": "60512219266995a869ee6963b7f7ff4ac59c5572ae1732f68d9247bce612afd3",
+   "bytes": 1402773
+  },
+  "phase1/reports/evidence/interval_lr_spliceai_pm12.csv": {
+   "sha256": "667562ae6df3411b66ede81e6335a664b145f019494f30d4bae609d64de2e47f",
+   "bytes": 142704
+  },
+  "phase1/reports/evidence/interval_lr_spliceai_s11_50.csv": {
+   "sha256": "6f9580b59caaeb902594cbc104a5943eea5ac77169529aba021ca19e27186a78",
+   "bytes": 697422
+  },
+  "phase1/reports/evidence/interval_lr_spliceai_s3_10.csv": {
+   "sha256": "f930cda813e594aa4115bf03b44dfed90b335530b5491a1c6138fb9fbb8e9be4",
+   "bytes": 516651
+  },
+  "phase1/reports/evidence/interval_lr_spliceai_s3_50.csv": {
+   "sha256": "58d135507a726d4c78d62991a04cebc063f42a38876e11cbe71aff8298ce0bda",
+   "bytes": 1221775
+  },
+  "phase1/reports/evidence/interval_lr_spliceai_walker_all_1_50.csv": {
+   "sha256": "7021603b45417ad83c6de132d951aa7c0cb4f11bfae0484383b0de27678794df",
+   "bytes": 1453346
+  },
+  "phase1/reports/evidence/interval_lr_spliceai_walker_pm12.csv": {
+   "sha256": "16533895d468f7f352ad55ae13a534cb07fa50f16f92da33cd5e9825ed1b0c05",
+   "bytes": 149790
+  },
+  "phase1/reports/evidence/interval_lr_spliceai_walker_s11_50.csv": {
+   "sha256": "dd6d02af1e22299b0e3baf53460e4548fc1e39613d97bad447e1b2226b23a74d",
+   "bytes": 732526
+  },
+  "phase1/reports/evidence/interval_lr_spliceai_walker_s3_10.csv": {
+   "sha256": "241eac721753769cbe05f855330e392edc6e28318bdad20ad11236c1f5877fd4",
+   "bytes": 536458
+  },
+  "phase1/reports/evidence/interval_lr_spliceai_walker_s3_50.csv": {
+   "sha256": "e018fdf26c6ac2ff98b570798a39b6079e3273ac999016a8bfebc6b6fcb48579",
+   "bytes": 1276243
+  },
+  "phase1/reports/evidence/supplement/tableS6_thresholds_pathogenic.csv": {
+   "sha256": "f15cc511d9f0e4f538e92472c8ca4c894601b560a107013615d3a248fa8e2e68",
+   "bytes": 19732
+  },
+  "phase1/reports/evidence/supplement/tableS7_thresholds_benign.csv": {
+   "sha256": "a23ca37b129570bf2d824c917f145783bc4ef30bad952dcb2248ff6fec232b5e",
+   "bytes": 6310
+  },
+  "phase1/reports/evidence/supplement/tableS9_fusion.csv": {
+   "sha256": "f381e3c63bdda42c09d90c554042d9fa497194ff90e9663f298e00686b07b0c5",
+   "bytes": 17918
+  },
+  "phase1/reports/evidence/tables/table3_counts.csv": {
+   "sha256": "2ceb1e5044c7184f9f0378705376067d7af8aff7d1db5b8239b76e995e337694",
+   "bytes": 3964
+  },
+  "phase1/reports/evidence/tables/table3_evidence_tiers.csv": {
+   "sha256": "3ab956700499851940187e72f9bde04b1948950aec6d1f127d5c8ae0ef3f77c2",
+   "bytes": 1256
+  },
+  "phase1/reports/evidence/tables/table3b_thresholds.csv": {
+   "sha256": "6160b5760ec097ea1c60f2e64f46579ce28e21f1db37d71819ea4e44c8c39039",
+   "bytes": 529
+  },
+  "phase1/reports/evidence/tier_logo_table.csv": {
+   "sha256": "e53394c90b2ffb701cf74e3781c1b050d358b6181d908cae08f5a124e7c4956e",
+   "bytes": 30232
+  }
+ }
+}

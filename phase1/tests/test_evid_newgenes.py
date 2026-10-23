@@ -654,24 +654,62 @@ def _columns(path: Path) -> list[str]:
     return line.split("," if stem.endswith(".csv") else "\t")
 
 
+# the files E16b wrote for SBDS, by name (evid_newgenes --gene SBDS); with the files
+# its manifests list, these are E16b's own
+E16B_OUTPUTS = ["phase1/data/evidence/external/sbds_raw/manifest.json",
+                "phase1/data/evidence/external/sbds_variants.parquet",
+                "phase1/data/evidence/external/sbds_variants.parquet.provenance.json",
+                "phase1/data/evidence/external/sbds_reference_check.json",
+                "phase1/data/evidence/external/igvf_sbds/manifest.json"]
+# the tagger time of frozen-thresholds-v1, from its tag object
+TAG_UTC = "2026-10-22T16:34:25+00:00"
+
+
+def _scored_after(rel: str) -> str | None:
+    """The first scoring time an E18 score file records: the file's own record if it
+    is one (a provenance or manifest json with scored_utc_range), else the provenance
+    beside it (<file>.provenance.json; for <x>.environment.json, <x>.provenance.json).
+    None when there is no such record."""
+    path = REPO / rel
+    candidates = []
+    if path.suffix == ".json" and not rel.endswith(".environment.json"):
+        candidates.append(path)
+    stem = rel.removesuffix(".environment.json") if rel.endswith(".environment.json") else rel
+    candidates.append(REPO / f"{stem}.provenance.json")
+    for c in candidates:
+        if c.exists():
+            rng = json.loads(c.read_text()).get("scored_utc_range")
+            if rng:
+                return rng[0]
+    return None
+
+
 def test_no_predictor_score_for_any_sbds_variant_is_in_the_repository():
     """The git history is the evidence that the SBDS label source was fixed before any
-    predictor result (E16b.0): no file under phase1/data or phase1/reports names SBDS,
-    its transcripts, or a position of its region, except E16b's own files and the
-    reference cache entries its mapping read; and none of those has a predictor
-    column."""
-    tm = _manifest("SBDS")["transcript_model"]
+    predictor result (E16b.0 rule 3). Since the thresholds were frozen (E18), SBDS is
+    scored, so the rule now reads: under phase1/data, a file that names SBDS, its
+    transcripts, or a position of its region is either one of E16b's own files, which
+    still carry no predictor column, or an E18 score file (or its record) whose scoring
+    began after the tag frozen-thresholds-v1; and the SBDS labels were built before the
+    tag and before any SBDS score. E16b's own files are those its manifests list and the
+    files it wrote (E16B_OUTPUTS), not every file named sbds_*: E18's sbds_<column>
+    files are score files. phase1/reports is no longer scanned: from E18's external test
+    on, its outputs carry SBDS results derived from E18's score files."""
+    from datetime import datetime
+    man = _manifest("SBDS")
+    tm = man["transcript_model"]
     ids = ["sbds", tm["mane_select"]["refseq_nuc"].split(".")[0].lower(),
            tm["mane_select"]["ensembl_nuc"].split(".")[0].lower()]
     chrom, lo, hi = str(tm["region"]["chrom"]), tm["region"]["start"], tm["region"]["end"]
     in_text = re.compile(rf"(?<![0-9A-Za-z])(?:chr)?{chrom}[-:_,\t ](\d{{7,9}})(?!\d)".encode())
-    own_cache = {item["path"] for item in tm["cache_files"].values()}
-    own_cache.add(str((CACHE / "MANIFEST.json").relative_to(REPO)))
-    ext, rep = str(EXT.relative_to(REPO)), str(REPORTS.relative_to(REPO))
+    igvf = json.loads((EXT / "igvf_sbds/manifest.json").read_text())
+    own_files = ({e["path"] for e in man["files"]}
+                 | {item["path"] for item in tm["cache_files"].values()}
+                 | {str((CACHE / "MANIFEST.json").relative_to(REPO))}
+                 | {e["path"] for e in igvf["files"]} | set(E16B_OUTPUTS))
 
     def own(rel: str) -> bool:
-        return (rel.startswith((f"{ext}/sbds_", f"{ext}/igvf_sbds/", f"{rep}/sbds_"))
-                or rel in own_cache)
+        return rel in own_files
 
     def in_region(df: pd.DataFrame) -> int:
         cols = {c.lower(): c for c in df.columns}
@@ -683,7 +721,7 @@ def test_no_predictor_score_for_any_sbds_variant_is_in_the_repository():
                     & pd.to_numeric(df[p], errors="coerce").between(lo, hi)).sum())
 
     mentions, scored = {}, []
-    for path in _repository_files("phase1/data", "phase1/reports"):
+    for path in _repository_files("phase1/data"):
         rel = path.relative_to(REPO).as_posix()
         why = []
         if path.suffix == ".parquet":
@@ -721,8 +759,15 @@ def test_no_predictor_score_for_any_sbds_variant_is_in_the_repository():
             scored += [f"{rel}: {c}" for c in _columns(path)
                        if any(c.lower() == p or c.lower().startswith(p + "_")
                               for p in PREDICTOR_COLUMNS)]
+    built = datetime.fromisoformat(json.loads(
+        (EXT / "sbds_variants.parquet.provenance.json").read_text())["built_utc"])
+    tagged = datetime.fromisoformat(TAG_UTC)
+    assert built < tagged
+    after = {rel: _scored_after(rel) for rel in mentions if not own(rel)}
     assert mentions, "the scan found not even E16b's own files"
-    assert all(own(rel) for rel in mentions), {k: v for k, v in mentions.items() if not own(k)}
+    assert all(t is not None for t in after.values()), [r for r, t in after.items() if t is None]
+    assert all(datetime.fromisoformat(t) > tagged for t in after.values()), after
+    assert all(datetime.fromisoformat(t) > built for t in after.values()), after
     assert not scored, scored
 
 

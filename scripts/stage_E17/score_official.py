@@ -27,9 +27,21 @@ Modes
               of its own, so that each is a fresh call: they must equal the pilot's
               scores bit for bit, or the service's model changed during the full run
               (E17.4; gate 1 review, R1).
+After the thresholds were frozen (tag frozen-thresholds-v1; stage E18.1):
+  --drift-2b-start  the same 10, from an empty cache of their own, before any external
+              gene is scored: they must equal the pilot's scores bit for bit, or the
+              service's model has changed since E17 and the external scores could not
+              go with the frozen thresholds.
+  --external  the external genes' variants (external_variants), only after the start
+              check found its 10 identical.
+  --drift-2b-end  the same 10 once more, after --external, from an empty cache: equal
+              to the pilot's, bit for bit, and each scored after the external run ended.
+These write ENVIRONMENT_2b.json, so that E17's ENVIRONMENT.json stays as tagged, and
+every score they write must post-date the tag (its time is read from
+phase1/data/evidence/FROZEN_AT_TAG.json).
 A comparison that finds a difference, or a raw score below zero (the scorers are
 unsigned, so the maximum would no longer be the maximum absolute score), is written to
-the record and then stops the script (E17.10).
+the record and then stops the script (E17.10; E18.8).
 
 Scoring is gentle: --workers threads at most (2 by default), and a pause before each new
 attempt, doubling each time. The run stops (gate 1 review, R3) on an authentication
@@ -80,6 +92,12 @@ TRAINING = sorted(C.ASSAY_LABELS)                          # the seven genes
 STRATA = ["pm12", "s3_10", "s11_50"]
 PILOT_N, REPEAT_N = 120, 10
 FULL = "all_scores.tsv"
+# E18.1: after the tag, the external genes
+EXT = PHASE1 / "data" / "evidence" / "external"
+FROZEN = PHASE1 / "data" / "evidence" / "FROZEN_AT_TAG.json"
+EXTERNAL = "external_scores.tsv"
+NEW_GENES = ["CTCF", "SFPQ", "RAD51D", "XRCC2", "SBDS"]
+E18_MODES = ("drift_2b_start", "external", "drift_2b_end")
 COMPONENTS = ["SPLICE_SITES", "SPLICE_SITE_USAGE", "SPLICE_JUNCTIONS"]
 COMPOSITE = "alphagenome_splicing"
 MAX_ATTEMPTS, BACKOFF = 6, 5.0
@@ -299,7 +317,39 @@ def pilot_sample(df):
     return sorted(picked), list(repeat), {f"{g}/{s}": n for (g, s), n in share.items()}
 
 
-def environment(nb: Notebook, log) -> None:
+def external_variants():
+    """E18.1: DDX3X, every row of ddx3x_splice.parquet; TP53, every row of
+    tp53_splice_scored_12nt.parquet, the 288 E7 reads; the five further genes, the rows
+    of <gene>_variants.parquet at 3 <= |offset| <= 50. The counts must be the
+    instruction's: 1,857; 288; 4,522, of which 4,075 for CTCF, SFPQ, RAD51D and XRCC2
+    and 447 for SBDS."""
+    import pandas as pd
+    cols = ["gene", "variant_id", "chrom", "pos", "ref", "alt"]
+    parts = [("DDX3X", pd.read_parquet(EXT / "ddx3x_splice.parquet")),
+             ("TP53", pd.read_parquet(EXT / "tp53_splice_scored_12nt.parquet"))]
+    for g in NEW_GENES:
+        v = pd.read_parquet(EXT / f"{g.lower()}_variants.parquet")
+        parts.append((g, v[v["offset"].abs().between(3, 50)]))
+    for g, d in parts:
+        if set(d["gene"]) != {g}:
+            raise SystemExit(f"the {g} rows name genes {set(d['gene'])}")
+    df = pd.concat([d[cols] for _, d in parts], ignore_index=True)
+    df["chrom"], df["pos"] = df["chrom"].astype(str), df["pos"].astype(int)
+    n = df["gene"].value_counts().to_dict()
+    if (n.get("DDX3X"), n.get("TP53"), sum(n.get(g, 0) for g in NEW_GENES),
+            sum(n.get(g, 0) for g in NEW_GENES[:4]), n.get("SBDS")) != (1857, 288, 4522, 4075, 447):
+        raise SystemExit(f"the external variants are not the instruction's: {n}")
+    if df["variant_id"].duplicated().any():
+        raise SystemExit("a variant_id comes twice among the external variants")
+    return df
+
+
+def tagged_utc() -> str:
+    """The tag's time, as the freeze guard recorded it from the tag object."""
+    return json.loads(FROZEN.read_text())["tagged_utc"]
+
+
+def environment(nb: Notebook, log, name: str = "ENVIRONMENT.json") -> None:
     import alphagenome
     freeze = sorted(subprocess.run([sys.executable, "-m", "pip", "freeze"], check=True,
                                    capture_output=True, text=True).stdout.split())
@@ -319,36 +369,51 @@ def environment(nb: Notebook, log) -> None:
                   "model_version_in_response": "not_provided",
                   "response_metadata_keys": nb.uns_keys},
     } | key_report()
-    (DIR / "ENVIRONMENT.json").write_text(json.dumps(env, indent=1, ensure_ascii=False) + "\n")
-    log.output(DIR / "ENVIRONMENT.json")
+    (DIR / name).write_text(json.dumps(env, indent=1, ensure_ascii=False) + "\n")
+    log.output(DIR / name)
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     mode = ap.add_mutually_exclusive_group(required=True)
-    for m in ("examples", "pilot", "repeat", "all", "drift"):
-        mode.add_argument(f"--{m}", dest="mode", action="store_const", const=m)
+    for m in ("examples", "pilot", "repeat", "all", "drift",
+              "drift-2b-start", "external", "drift-2b-end"):
+        mode.add_argument(f"--{m}", dest="mode", action="store_const", const=m.replace("-", "_"))
     ap.add_argument("--workers", type=int, default=2)
     args = ap.parse_args()
     import pandas as pd
+    e18 = args.mode in E18_MODES
     with RunLog(__file__) as log:
         log.note("key", key_report())
         DIR.mkdir(parents=True, exist_ok=True)
         CACHE.mkdir(parents=True, exist_ok=True)
         cache = CACHE / f"{args.mode}.jsonl"
-        after = None
-        if args.mode == "drift":                 # after the full run, every call a fresh one
-            full = DIR / f"{FULL}.provenance.json"
-            if not full.exists():
-                raise SystemExit(f"--drift runs after --all, and {rel(full)} is not there")
-            log.input(full)
-            after = {"provenance": rel(full), "sha256": sha256_of(full),
-                     "end_utc": json.loads(full.read_text())["end_utc"]}
-            if cache.exists() and cache.read_text().strip():
-                raise SystemExit(f"{rel(cache)} is not empty: the drift check scores its "
-                                 f"{REPEAT_N} variants afresh and does not resume")
+        after, tag_utc = None, (tagged_utc() if e18 else None)
+        if e18:
+            log.input(FROZEN)
+        # what each run must come after, read from the record of the run before it
+        before = {"drift": (FULL, "--all"), "external": ("drift_2b_start_scores.tsv", "--drift-2b-start"),
+                  "drift_2b_end": (EXTERNAL, "--external")}.get(args.mode)
+        if before:
+            prev = DIR / f"{before[0]}.provenance.json"
+            if not prev.exists():
+                raise SystemExit(f"--{args.mode.replace('_', '-')} runs after {before[1]}, and "
+                                 f"{rel(prev)} is not there")
+            log.input(prev)
+            p = json.loads(prev.read_text())
+            after = {"provenance": rel(prev), "sha256": sha256_of(prev), "end_utc": p["end_utc"]}
+            if args.mode == "external":
+                d = p["drift_check"]
+                if d["identical"] != d["variants"] or d["variants"] != REPEAT_N:
+                    raise SystemExit("the start drift check did not find its variants identical: "
+                                     "no external gene is scored (E18.1)")
+                after["drift_check"] = f"{d['identical']}/{d['variants']} identical"
+        if args.mode.startswith("drift") and cache.exists() and cache.read_text().strip():
+            raise SystemExit(f"{rel(cache)} is not empty: a drift check scores its "
+                             f"{REPEAT_N} variants afresh and does not resume")
         nb = Notebook()
         log.input(SOURCE)
+        key = ["variant_id", "gene", "stratum"]
         if args.mode == "examples":
             g = dict(nb.ns)
             src = {c["cell"]: c["source"] for c in json.loads(SOURCE.read_text())["quoted_cells"]}
@@ -357,6 +422,12 @@ def main() -> None:
                                   "chrom": v.chromosome.removeprefix("chr"), "pos": v.position,
                                   "ref": v.reference_bases, "alt": v.alternate_bases}
                                  for v in g["variants"]])
+        elif args.mode == "external":
+            todo = external_variants()
+            for f in ["ddx3x_splice.parquet", "tp53_splice_scored_12nt.parquet"] + [
+                    f"{g.lower()}_variants.parquet" for g in NEW_GENES]:
+                log.input(EXT / f)
+            key = ["gene", "variant_id", "chrom", "pos", "ref", "alt"]
         else:
             df = pd.read_parquet(SET, columns=["variant_id", "gene", "stratum", "chrom",
                                                 "pos", "ref", "alt"])
@@ -365,8 +436,8 @@ def main() -> None:
                 raise SystemExit(f"genes outside the seven: {set(df.gene) - set(TRAINING)}")
             pilot, repeat, share = pilot_sample(df)
             log.note("pilot_share", share)
-            ids = {"pilot": pilot, "repeat": repeat, "drift": repeat,
-                   "all": df.variant_id.tolist()}[args.mode]
+            ids = {"pilot": pilot, "repeat": repeat, "drift": repeat, "drift_2b_start": repeat,
+                   "drift_2b_end": repeat, "all": df.variant_id.tolist()}[args.mode]
             todo = df.set_index("variant_id").loc[ids].reset_index()
         done = {}
         if cache.exists():
@@ -412,23 +483,22 @@ def main() -> None:
             raise SystemExit(f"{len(stats['failures'])} variants failed after "
                              f"{MAX_ATTEMPTS} attempts: {stats['failures'][:3]}")
         rows = [done[v] for v in todo.variant_id]
-        table = todo[["variant_id", "gene", "stratum"]].merge(pd.DataFrame(rows),
-                                                              on="variant_id")
-        cols = (["variant_id", "gene", "stratum"] + COMPONENTS + [COMPOSITE]
+        table = todo[key].merge(pd.DataFrame(rows), on="variant_id")
+        cols = (key + COMPONENTS + [COMPOSITE]
                 + [f"{p}_{c}" for c in COMPONENTS for p in ("rows", "nan", "min_raw")]
                 + ["scored_utc"])
         out = DIR / f"{args.mode}_scores.tsv"
         table[cols].to_csv(out, sep="\t", index=False,          # exact, and read back as such
                            float_format=lambda x: repr(float(x)))
         log.output(out)
-        environment(nb, log)
+        environment(nb, log, "ENVIRONMENT_2b.json" if e18 else "ENVIRONMENT.json")
         checks, stops = {}, []
         summary = {c: {"variants_with_no_row": int((table[f"rows_{c}"] == 0).sum()),
                        "nan_raw_scores": int(table[f"nan_{c}"].sum()),
                        "min_raw": float(table[f"min_raw_{c}"].min())} for c in COMPONENTS}
         if [c for c in COMPONENTS if summary[c]["min_raw"] < 0]:
             stops.append("a raw score below zero")
-        if args.mode in ("all", "drift"):
+        if args.mode in ("all", "drift", "drift_2b_start", "drift_2b_end"):
             ref = DIR / "pilot_scores.tsv"
             ids = pilot if args.mode == "all" else repeat
             diff = differing(out, ref, ids)
@@ -438,13 +508,37 @@ def main() -> None:
                 "identical": len(ids) - len(diff), "differing": diff}
             if diff:
                 stops.append(f"{len(diff)} of {len(ids)} variants differ from the pilot")
-        if args.mode == "drift":
+        if args.mode in ("drift", "drift_2b_end"):
             end = datetime.fromisoformat(after["end_utc"])
             early = [r["variant_id"] for r in rows if datetime.fromisoformat(r["scored_utc"]) <= end]
-            checks["after_full_run"] = after | {"every_scored_utc_later": not early}
+            checks["after_full_run" if args.mode == "drift" else "after_external"] = (
+                after | {"every_scored_utc_later": not early})
             if early or len(todo_rows) != REPEAT_N:
                 stops.append("the drift check did not score each of its variants afresh "
-                             "after the full run")
+                             f"after {before[1]}")
+        if args.mode == "drift_2b_start" and len(todo_rows) != REPEAT_N:
+            stops.append("the drift check did not score each of its variants afresh")
+        if args.mode == "external":
+            checks["after_drift_2b_start"] = after
+        if e18:
+            when = datetime.fromisoformat(tag_utc.replace("Z", "+00:00"))
+            early = [r["variant_id"] for r in rows if datetime.fromisoformat(r["scored_utc"]) <= when]
+            checks["after_tag"] = {"tag": "frozen-thresholds-v1", "tagged_utc": tag_utc,
+                                   "record": rel(FROZEN), "every_scored_utc_later": not early}
+            if early:
+                stops.append("a score is not later than the tag")
+        extra = {}
+        if e18:
+            extra["code_sha256"] = {rel(p): sha256_of(p) for p in (
+                Path(__file__).resolve(), Path(__file__).resolve().parent / "_runlog.py")}
+        if args.mode == "external":
+            extra["n_by_gene"] = {g: int(n) for g, n in table["gene"].value_counts().items()}
+            extra["selection"] = ("DDX3X: every row of ddx3x_splice.parquet; TP53: every row of "
+                                  "tp53_splice_scored_12nt.parquet; CTCF, SFPQ, RAD51D, XRCC2, SBDS: "
+                                  "the rows of <gene>_variants.parquet at 3 <= |offset| <= 50")
+            extra["sources"] = {rel(EXT / f): sha256_of(EXT / f) for f in (
+                ["ddx3x_splice.parquet", "tp53_splice_scored_12nt.parquet"]
+                + [f"{g.lower()}_variants.parquet" for g in NEW_GENES])}
         prov = {
             "written_by": rel(Path(__file__).resolve()),
             "mode": args.mode,
@@ -465,10 +559,11 @@ def main() -> None:
             "failures": stats["failures"], "workers": args.workers,
             "sample": ({"seed": C.RANDOM_SEED, "pilot_n": PILOT_N, "repeat_n": REPEAT_N,
                         "share": log.notes.get("pilot_share")}
-                       if args.mode in ("pilot", "repeat", "drift") else None),
+                       if args.mode in ("pilot", "repeat", "drift", "drift_2b_start",
+                                        "drift_2b_end") else None),
             "genes": sorted(set(table.gene) - {""}),
             "summary": summary,
-        } | checks | {"output": rel(out), "output_sha256": sha256_of(out)} | key_report()
+        } | extra | checks | {"output": rel(out), "output_sha256": sha256_of(out)} | key_report()
         (DIR / f"{args.mode}_scores.tsv.provenance.json").write_text(
             json.dumps(prov, indent=1, ensure_ascii=False) + "\n")
         log.output(DIR / f"{args.mode}_scores.tsv.provenance.json")
@@ -482,7 +577,7 @@ def main() -> None:
             print(f"  {k}: " + (f"{v['identical']}/{v['variants']} identical"
                                 if "identical" in v else json.dumps(v)))
         if stops:
-            raise SystemExit("; ".join(stops) + ": stopping (E17.10)")
+            raise SystemExit("; ".join(stops) + ": stopping (E17.10; E18.8)")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,121 @@
+{
+ "written_by": "scripts/stage_E17/score_official.py",
+ "mode": "drift_2b_start",
+ "definition": "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json",
+ "definition_sha256": "8f050e9b0c224e0cdfce46a9d61f3c9c567123f7521085032391ee1b395c4e80",
+ "code_run": {
+  "cells_as_written": [
+   5,
+   9,
+   13,
+   "15 (the lines scoring one variant, out of the loop)"
+  ],
+  "cell_7": "dna_client.create(read_key()): the key aside, as written",
+  "per_variant_lines": "  interval = variant.reference_interval.resize(dna_client.SEQUENCE_LENGTH_1MB)\n  scores = dna_model.score_variant(\n      interval=interval,\n      variant=variant,\n      variant_scorers=splicing_scorers,\n      organism=dna_client.Organism.HOMO_SAPIENS,\n  )"
+ },
+ "client_version": "0.10.0",
+ "model_version_requested": null,
+ "model_version_in_response": "not_provided",
+ "model_version_default": {
+  "file": "alphagenome/models/v1/dna_model.py",
+  "line": 52,
+  "text": "  ALL_FOLDS = enum.auto()  # Default model version if None explicitly set.",
+  "file_sha256": "6296148c50bcd247e2aa96e8a863d4fd55cbe6665d84d92f7b0e04ce2e778fee",
+  "file_sha256_in_wheel_record": true,
+  "wheel": "alphagenome==0.10.0",
+  "wheel_sha256": "ed90696f7f0900b2e0d68e28e36ab7d6d95000f59cd19b969fec0bea806bd2c2",
+  "wheel_sha256_from": "scripts/stage_E17/requirements.txt"
+ },
+ "start_utc": "2026-10-22T16:58:16+00:00",
+ "end_utc": "2026-10-22T16:58:25+00:00",
+ "seconds_scoring": 8.9,
+ "n_variants": 10,
+ "n_scored_this_run": 10,
+ "n_from_cache": 0,
+ "scored_utc_range": [
+  "2026-10-22T16:58:19+00:00",
+  "2026-10-22T16:58:25+00:00"
+ ],
+ "calls": 10,
+ "retries": 0,
+ "failures": [],
+ "workers": 2,
+ "sample": {
+  "seed": 20260708,
+  "pilot_n": 120,
+  "repeat_n": 10,
+  "share": {
+   "BAP1/pm12": 6,
+   "BAP1/s3_10": 6,
+   "BAP1/s11_50": 6,
+   "BARD1/pm12": 6,
+   "BARD1/s3_10": 6,
+   "BARD1/s11_50": 6,
+   "BRCA1/pm12": 6,
+   "BRCA1/s3_10": 6,
+   "BRCA1/s11_50": 6,
+   "BRCA2/pm12": 6,
+   "BRCA2/s3_10": 6,
+   "PALB2/pm12": 6,
+   "PALB2/s3_10": 6,
+   "PALB2/s11_50": 6,
+   "RAD51C/pm12": 6,
+   "RAD51C/s3_10": 6,
+   "RAD51C/s11_50": 6,
+   "VHL/pm12": 6,
+   "VHL/s3_10": 6,
+   "VHL/s11_50": 6
+  }
+ },
+ "genes": [
+  "BAP1",
+  "BARD1",
+  "BRCA1",
+  "RAD51C",
+  "VHL"
+ ],
+ "summary": {
+  "SPLICE_SITES": {
+   "variants_with_no_row": 0,
+   "nan_raw_scores": 0,
+   "min_raw": 0.00390625
+  },
+  "SPLICE_SITE_USAGE": {
+   "variants_with_no_row": 0,
+   "nan_raw_scores": 0,
+   "min_raw": 0.000152587890625
+  },
+  "SPLICE_JUNCTIONS": {
+   "variants_with_no_row": 0,
+   "nan_raw_scores": 0,
+   "min_raw": 3.635883331298828e-06
+  }
+ },
+ "code_sha256": {
+  "scripts/stage_E17/score_official.py": "217e61c9f19774ffa1421a41bceee5e3c614884e6733950598342a63c48b33ec",
+  "scripts/stage_E17/_runlog.py": "1cd6d51c9b1471958c2acbe56a7392043ca70641c641e6259a4da247ce50e032"
+ },
+ "drift_check": {
+  "against": "phase1/data/evidence/alphagenome_official/pilot_scores.tsv",
+  "against_sha256": "7747b65602f27266e14dfce8c3c7916d7f7626f038c4eec5d6cb664c097f3e39",
+  "columns": [
+   "SPLICE_SITES",
+   "SPLICE_SITE_USAGE",
+   "SPLICE_JUNCTIONS",
+   "alphagenome_splicing"
+  ],
+  "variants": 10,
+  "identical": 10,
+  "differing": []
+ },
+ "after_tag": {
+  "tag": "frozen-thresholds-v1",
+  "tagged_utc": "2026-10-22T16:34:25Z",
+  "record": "phase1/data/evidence/FROZEN_AT_TAG.json",
+  "every_scored_utc_later": true
+ },
+ "output": "phase1/data/evidence/alphagenome_official/drift_2b_start_scores.tsv",
+ "output_sha256": "aba30ac841c074fe91323de3746d60b2641aeda16ce46da7547b577c82000b5c",
+ "api_key_present": true,
+ "api_key_source": "~/.config/alphagenome/key"
+}

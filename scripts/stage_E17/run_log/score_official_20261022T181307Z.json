@@ -1,0 +1,115 @@
+{
+ "script": "scripts/stage_E17/score_official.py",
+ "argv": [
+  "scripts/stage_E17/score_official.py",
+  "--external"
+ ],
+ "git_commit": "1d030192ff7c91f8eed63c95154122437c819dba",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E17/score_official.py": "217e61c9f19774ffa1421a41bceee5e3c614884e6733950598342a63c48b33ec",
+  "scripts/stage_E17/_runlog.py": "1cd6d51c9b1471958c2acbe56a7392043ca70641c641e6259a4da247ce50e032"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "0.10.0",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "anndata": "0.13.4",
+  "grpcio": "1.84.0",
+  "protobuf": "7.36.2"
+ },
+ "start_utc": "2026-10-22T16:58:33+00:00",
+ "end_utc": "2026-10-22T18:13:07+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/FROZEN_AT_TAG.json",
+   "bytes": 23450,
+   "sha256": "10b40da6e5febb9f436b48523ba8d932549c69664c90096aa68fec9d96c52d00"
+  },
+  {
+   "path": "phase1/data/evidence/alphagenome_official/drift_2b_start_scores.tsv.provenance.json",
+   "bytes": 3589,
+   "sha256": "db38956cf5fc814cfb6e50025a98fb5c18d6979b85eb441cb888bf734733405d"
+  },
+  {
+   "path": "phase1/data/evidence/alphagenome_official/NOTEBOOK_SOURCE.json",
+   "bytes": 11530,
+   "sha256": "8f050e9b0c224e0cdfce46a9d61f3c9c567123f7521085032391ee1b395c4e80"
+  },
+  {
+   "path": "phase1/data/evidence/external/ddx3x_splice.parquet",
+   "bytes": 106997,
+   "sha256": "cf51a401813aecf6ad6848393d33eef5592f5f5d7a4b55a7d1276869677c2dd1"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_splice_scored_12nt.parquet",
+   "bytes": 69325,
+   "sha256": "b06dc44d13e8d4e2999d625e3d216c8908adac555c2a348120eaeff260210c89"
+  },
+  {
+   "path": "phase1/data/evidence/external/ctcf_variants.parquet",
+   "bytes": 84301,
+   "sha256": "e565e144697a535aedc0fdaf8e8e8de44a4c805ba1901d2d60da01ad37e8c45d"
+  },
+  {
+   "path": "phase1/data/evidence/external/sfpq_variants.parquet",
+   "bytes": 64775,
+   "sha256": "e52d293ccf76693a0dce570adfd58163488752c32de924804e578d100b53b670"
+  },
+  {
+   "path": "phase1/data/evidence/external/rad51d_variants.parquet",
+   "bytes": 80758,
+   "sha256": "7837a3e13ba15c811cf09d89baabc97551905c0cc0b5bc04b35c804e39038135"
+  },
+  {
+   "path": "phase1/data/evidence/external/xrcc2_variants.parquet",
+   "bytes": 35801,
+   "sha256": "c12b4dcaacd7da7ba484b21887870f75d773615b9518d687b4fd53dd0217e5b1"
+  },
+  {
+   "path": "phase1/data/evidence/external/sbds_variants.parquet",
+   "bytes": 37413,
+   "sha256": "dbee75889e97a69e6e3fee3b1bdb02173010e37b3efd8ab063e1a2a7f3d53a47"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/alphagenome_official/external_scores.tsv",
+   "bytes": 1179883,
+   "sha256": "095818bef37b8e9a931ce988373e8cbb49152c52ed74593fa4ff14875b2dbeb9"
+  },
+  {
+   "path": "phase1/data/evidence/alphagenome_official/ENVIRONMENT_2b.json",
+   "bytes": 2480,
+   "sha256": "8beeda703c747fb4aa90e8f82206aef5aef01e94e4f44d10388971cfeff4bbfe"
+  },
+  {
+   "path": "phase1/data/evidence/alphagenome_official/external_scores.tsv.provenance.json",
+   "bytes": 4289,
+   "sha256": "1c4e7db7a9145a6a37631f28456930266a773acad18d9a26ffcf8ef4610c63db"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "key": {
+   "api_key_present": true,
+   "api_key_source": "~/.config/alphagenome/key"
+  },
+  "seconds_scoring": 4473.0,
+  "retries": 0,
+  "after_drift_2b_start": {
+   "provenance": "phase1/data/evidence/alphagenome_official/drift_2b_start_scores.tsv.provenance.json",
+   "sha256": "db38956cf5fc814cfb6e50025a98fb5c18d6979b85eb441cb888bf734733405d",
+   "end_utc": "2026-10-22T16:58:25+00:00",
+   "drift_check": "10/10 identical"
+  },
+  "after_tag": {
+   "tag": "frozen-thresholds-v1",
+   "tagged_utc": "2026-10-22T16:34:25Z",
+   "record": "phase1/data/evidence/FROZEN_AT_TAG.json",
+   "every_scored_utc_later": true
+  }
+ }
+}
