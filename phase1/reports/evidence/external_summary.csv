@@ -1,0 +1,391 @@
+Gene set,"Stratum (intronic offset, bp)",Tool,Side,Tier,"External genes reaching the tier, k/n (m)",Note
+Seven external genes,3–10,SpliceAI (distance 50),PP3,Supporting,6/7 (1),
+Seven external genes,3–10,SpliceAI (distance 50),PP3,Moderate,6/7 (1),
+Seven external genes,3–10,SpliceAI (distance 50),PP3,Strong,3/7 (3),
+Seven external genes,3–10,SpliceAI (distance 50),BP4,Supporting,4/7 (1),
+Seven external genes,3–10,SpliceAI (distance 50),BP4,Moderate,2/7 (1),
+Seven external genes,3–10,Pangolin,PP3,Supporting,6/7 (1),
+Seven external genes,3–10,Pangolin,PP3,Moderate,6/7 (1),
+Seven external genes,3–10,Pangolin,PP3,Strong,2/7 (1),
+Seven external genes,3–10,Pangolin,BP4,Supporting,5/7 (1),
+Seven external genes,3–10,Pangolin,BP4,Moderate,0/7 (1),
+Seven external genes,3–10,AlphaGenome splice score,PP3,Supporting,6/7 (1),
+Seven external genes,3–10,AlphaGenome splice score,PP3,Moderate,6/7 (1),
+Seven external genes,3–10,AlphaGenome splice score,PP3,Strong,2/7 (1),
+Seven external genes,3–10,AlphaGenome splice score,BP4,Supporting,4/7 (1),
+Seven external genes,3–10,AlphaGenome splice score,BP4,Moderate,0/7 (1),
+Seven external genes,3–10,CADD,PP3,Supporting,6/7 (1),
+Seven external genes,3–10,CADD,PP3,Moderate,–,no frozen threshold: the tier is not reached in-sample
+Seven external genes,3–10,CADD,PP3,Strong,–,no frozen threshold: the tier is not reached in-sample
+Seven external genes,3–10,CADD,BP4,Supporting,2/7 (2),
+Seven external genes,3–10,CADD,BP4,Moderate,0/7 (4),
+Seven external genes,3–10,phyloP,PP3,Supporting,4/7 (2),
+Seven external genes,3–10,phyloP,PP3,Moderate,3/7 (3),
+Seven external genes,3–10,phyloP,PP3,Strong,–,no frozen threshold: the tier is not reached in-sample
+Seven external genes,3–10,phyloP,BP4,Supporting,1/7 (1),
+Seven external genes,3–10,phyloP,BP4,Moderate,0/7 (3),
+Seven external genes,3–10,phastCons,PP3,Supporting,3/7 (2),
+Seven external genes,3–10,phastCons,PP3,Moderate,–,no frozen threshold: the tier is not reached in-sample
+Seven external genes,3–10,phastCons,PP3,Strong,–,no frozen threshold: the tier is not reached in-sample
+Seven external genes,3–10,phastCons,BP4,Supporting,3/7 (1),
+Seven external genes,3–10,phastCons,BP4,Moderate,–,no frozen threshold: the tier is not reached in-sample
+Seven external genes,3–10,GPN-MSA,PP3,Supporting,5/7 (2),
+Seven external genes,3–10,GPN-MSA,PP3,Moderate,3/7 (2),
+Seven external genes,3–10,GPN-MSA,PP3,Strong,–,no frozen threshold: the tier is not reached in-sample
+Seven external genes,3–10,GPN-MSA,BP4,Supporting,4/7 (1),
+Seven external genes,3–10,GPN-MSA,BP4,Moderate,0/7 (7),
+Seven external genes,3–10,Nucleotide Transformer,PP3,Supporting,No column of the same variable,no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test
+Seven external genes,3–10,Nucleotide Transformer,PP3,Moderate,No column of the same variable,no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test
+Seven external genes,3–10,Nucleotide Transformer,PP3,Strong,No column of the same variable,no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test
+Seven external genes,3–10,Nucleotide Transformer,BP4,Supporting,No column of the same variable,no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test
+Seven external genes,3–10,Nucleotide Transformer,BP4,Moderate,No column of the same variable,no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test
+Seven external genes,3–10,SpliceAI (published basis),PP3,Supporting,6/7 (1),
+Seven external genes,3–10,SpliceAI (published basis),PP3,Moderate,6/7 (1),
+Seven external genes,3–10,SpliceAI (published basis),PP3,Strong,1/7 (6),
+Seven external genes,3–10,SpliceAI (published basis),BP4,Supporting,4/7 (1),
+Seven external genes,3–10,SpliceAI (published basis),BP4,Moderate,0/7 (3),
+Seven external genes,3–10,Atlas combined score,PP3,Supporting,5/6 (1),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay"
+Seven external genes,3–10,Atlas combined score,PP3,Moderate,4/6 (2),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay"
+Seven external genes,3–10,Atlas combined score,PP3,Strong,1/6 (2),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay"
+Seven external genes,3–10,Atlas combined score,BP4,Supporting,4/6 (1),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay"
+Seven external genes,3–10,Atlas combined score,BP4,Moderate,0/6 (4),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay"
+Seven external genes,3–10,Atlas splice sites,PP3,Supporting,6/7 (1),
+Seven external genes,3–10,Atlas splice sites,PP3,Moderate,6/7 (1),
+Seven external genes,3–10,Atlas splice sites,PP3,Strong,–,no frozen threshold: the tier is not reached in-sample
+Seven external genes,3–10,Atlas splice sites,BP4,Supporting,4/7 (1),
+Seven external genes,3–10,Atlas splice sites,BP4,Moderate,–,no frozen threshold: the tier is not reached in-sample
+Seven external genes,3–10,Atlas splice-site usage,PP3,Supporting,6/7 (1),
+Seven external genes,3–10,Atlas splice-site usage,PP3,Moderate,6/7 (1),
+Seven external genes,3–10,Atlas splice-site usage,PP3,Strong,3/7 (2),
+Seven external genes,3–10,Atlas splice-site usage,BP4,Supporting,4/7 (1),
+Seven external genes,3–10,Atlas splice-site usage,BP4,Moderate,–,no frozen threshold: the tier is not reached in-sample
+Seven external genes,3–10,Atlas splice junctions,PP3,Supporting,6/7 (1),
+Seven external genes,3–10,Atlas splice junctions,PP3,Moderate,6/7 (1),
+Seven external genes,3–10,Atlas splice junctions,PP3,Strong,1/7 (3),
+Seven external genes,3–10,Atlas splice junctions,BP4,Supporting,4/7 (1),
+Seven external genes,3–10,Atlas splice junctions,BP4,Moderate,0/7 (5),
+Seven external genes,11–50,SpliceAI (distance 50),PP3,Supporting,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,SpliceAI (distance 50),PP3,Moderate,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,SpliceAI (distance 50),PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,SpliceAI (distance 50),BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,SpliceAI (distance 50),BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Pangolin,PP3,Supporting,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Pangolin,PP3,Moderate,3/7 (4),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Pangolin,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Pangolin,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Pangolin,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,AlphaGenome splice score,PP3,Supporting,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,AlphaGenome splice score,PP3,Moderate,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,AlphaGenome splice score,PP3,Strong,1/7 (6),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,AlphaGenome splice score,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,AlphaGenome splice score,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,CADD,PP3,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,CADD,PP3,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,CADD,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,CADD,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,CADD,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,phyloP,PP3,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,phyloP,PP3,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,phyloP,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,phyloP,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,phyloP,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,phastCons,PP3,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,phastCons,PP3,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,phastCons,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,phastCons,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,phastCons,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,GPN-MSA,PP3,Supporting,2/7 (4),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,GPN-MSA,PP3,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,GPN-MSA,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,GPN-MSA,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,GPN-MSA,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Nucleotide Transformer,PP3,Supporting,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Nucleotide Transformer,PP3,Moderate,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Nucleotide Transformer,PP3,Strong,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Nucleotide Transformer,BP4,Supporting,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Nucleotide Transformer,BP4,Moderate,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,SpliceAI (published basis),PP3,Supporting,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,SpliceAI (published basis),PP3,Moderate,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,SpliceAI (published basis),PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,SpliceAI (published basis),BP4,Supporting,0/7 (5),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,SpliceAI (published basis),BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas combined score,PP3,Supporting,3/6 (3),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas combined score,PP3,Moderate,2/6 (4),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas combined score,PP3,Strong,0/6 (6),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas combined score,BP4,Supporting,–,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas combined score,BP4,Moderate,–,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice sites,PP3,Supporting,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice sites,PP3,Moderate,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice sites,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice sites,BP4,Supporting,0/7 (6),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice sites,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice-site usage,PP3,Supporting,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice-site usage,PP3,Moderate,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice-site usage,PP3,Strong,2/7 (5),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice-site usage,BP4,Supporting,0/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice-site usage,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice junctions,PP3,Supporting,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice junctions,PP3,Moderate,3/7 (4),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice junctions,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice junctions,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,11–50,Atlas splice junctions,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12, SFPQ 11–44"
+Seven external genes,3–50,SpliceAI (distance 50),PP3,Supporting,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,SpliceAI (distance 50),PP3,Moderate,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,SpliceAI (distance 50),PP3,Strong,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,SpliceAI (distance 50),BP4,Supporting,2/7 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,SpliceAI (distance 50),BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Pangolin,PP3,Supporting,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Pangolin,PP3,Moderate,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Pangolin,PP3,Strong,6/7 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Pangolin,BP4,Supporting,0/7 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Pangolin,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,AlphaGenome splice score,PP3,Supporting,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,AlphaGenome splice score,PP3,Moderate,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,AlphaGenome splice score,PP3,Strong,6/7 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,AlphaGenome splice score,BP4,Supporting,0/7 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,AlphaGenome splice score,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,CADD,PP3,Supporting,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,CADD,PP3,Moderate,5/7 (2),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,CADD,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,CADD,BP4,Supporting,2/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,CADD,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,phyloP,PP3,Supporting,6/7 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,phyloP,PP3,Moderate,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,phyloP,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,phyloP,BP4,Supporting,1/7 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,phyloP,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,phastCons,PP3,Supporting,6/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,phastCons,PP3,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,phastCons,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,phastCons,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,phastCons,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,GPN-MSA,PP3,Supporting,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,GPN-MSA,PP3,Moderate,5/7 (2),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,GPN-MSA,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,GPN-MSA,BP4,Supporting,0/7 (6),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,GPN-MSA,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Nucleotide Transformer,PP3,Supporting,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Nucleotide Transformer,PP3,Moderate,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Nucleotide Transformer,PP3,Strong,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Nucleotide Transformer,BP4,Supporting,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Nucleotide Transformer,BP4,Moderate,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,SpliceAI (published basis),PP3,Supporting,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,SpliceAI (published basis),PP3,Moderate,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,SpliceAI (published basis),PP3,Strong,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,SpliceAI (published basis),BP4,Supporting,1/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,SpliceAI (published basis),BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas combined score,PP3,Supporting,6/6,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas combined score,PP3,Moderate,6/6,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas combined score,PP3,Strong,4/6 (2),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas combined score,BP4,Supporting,3/6,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas combined score,BP4,Moderate,–,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice sites,PP3,Supporting,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice sites,PP3,Moderate,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice sites,PP3,Strong,4/7 (3),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice sites,BP4,Supporting,4/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice sites,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice-site usage,PP3,Supporting,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice-site usage,PP3,Moderate,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice-site usage,PP3,Strong,6/7 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice-site usage,BP4,Supporting,2/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice-site usage,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice junctions,PP3,Supporting,7/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice junctions,PP3,Moderate,6/7 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice junctions,PP3,Strong,5/7 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice junctions,BP4,Supporting,2/7,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+Seven external genes,3–50,Atlas splice junctions,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12, SFPQ 3–44"
+DDX3X and TP53,3–10,SpliceAI (distance 50),PP3,Supporting,2/2,
+DDX3X and TP53,3–10,SpliceAI (distance 50),PP3,Moderate,2/2,
+DDX3X and TP53,3–10,SpliceAI (distance 50),PP3,Strong,1/2 (1),
+DDX3X and TP53,3–10,SpliceAI (distance 50),BP4,Supporting,2/2,
+DDX3X and TP53,3–10,SpliceAI (distance 50),BP4,Moderate,2/2,
+DDX3X and TP53,3–10,Pangolin,PP3,Supporting,2/2,
+DDX3X and TP53,3–10,Pangolin,PP3,Moderate,2/2,
+DDX3X and TP53,3–10,Pangolin,PP3,Strong,1/2,
+DDX3X and TP53,3–10,Pangolin,BP4,Supporting,2/2,
+DDX3X and TP53,3–10,Pangolin,BP4,Moderate,0/2,
+DDX3X and TP53,3–10,AlphaGenome splice score,PP3,Supporting,2/2,
+DDX3X and TP53,3–10,AlphaGenome splice score,PP3,Moderate,2/2,
+DDX3X and TP53,3–10,AlphaGenome splice score,PP3,Strong,1/2,
+DDX3X and TP53,3–10,AlphaGenome splice score,BP4,Supporting,2/2,
+DDX3X and TP53,3–10,AlphaGenome splice score,BP4,Moderate,0/2,
+DDX3X and TP53,3–10,CADD,PP3,Supporting,2/2,
+DDX3X and TP53,3–10,CADD,PP3,Moderate,–,no frozen threshold: the tier is not reached in-sample
+DDX3X and TP53,3–10,CADD,PP3,Strong,–,no frozen threshold: the tier is not reached in-sample
+DDX3X and TP53,3–10,CADD,BP4,Supporting,1/2,
+DDX3X and TP53,3–10,CADD,BP4,Moderate,0/2,
+DDX3X and TP53,3–10,phyloP,PP3,Supporting,1/2 (1),
+DDX3X and TP53,3–10,phyloP,PP3,Moderate,1/2 (1),
+DDX3X and TP53,3–10,phyloP,PP3,Strong,–,no frozen threshold: the tier is not reached in-sample
+DDX3X and TP53,3–10,phyloP,BP4,Supporting,0/2,
+DDX3X and TP53,3–10,phyloP,BP4,Moderate,0/2,
+DDX3X and TP53,3–10,phastCons,PP3,Supporting,1/2 (1),
+DDX3X and TP53,3–10,phastCons,PP3,Moderate,–,no frozen threshold: the tier is not reached in-sample
+DDX3X and TP53,3–10,phastCons,PP3,Strong,–,no frozen threshold: the tier is not reached in-sample
+DDX3X and TP53,3–10,phastCons,BP4,Supporting,1/2,
+DDX3X and TP53,3–10,phastCons,BP4,Moderate,–,no frozen threshold: the tier is not reached in-sample
+DDX3X and TP53,3–10,GPN-MSA,PP3,Supporting,1/2 (1),
+DDX3X and TP53,3–10,GPN-MSA,PP3,Moderate,1/2 (1),
+DDX3X and TP53,3–10,GPN-MSA,PP3,Strong,–,no frozen threshold: the tier is not reached in-sample
+DDX3X and TP53,3–10,GPN-MSA,BP4,Supporting,2/2,
+DDX3X and TP53,3–10,GPN-MSA,BP4,Moderate,0/2 (2),
+DDX3X and TP53,3–10,Nucleotide Transformer,PP3,Supporting,No column of the same variable,no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test
+DDX3X and TP53,3–10,Nucleotide Transformer,PP3,Moderate,No column of the same variable,no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test
+DDX3X and TP53,3–10,Nucleotide Transformer,PP3,Strong,No column of the same variable,no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test
+DDX3X and TP53,3–10,Nucleotide Transformer,BP4,Supporting,No column of the same variable,no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test
+DDX3X and TP53,3–10,Nucleotide Transformer,BP4,Moderate,No column of the same variable,no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test
+DDX3X and TP53,3–10,SpliceAI (published basis),PP3,Supporting,2/2,
+DDX3X and TP53,3–10,SpliceAI (published basis),PP3,Moderate,2/2,
+DDX3X and TP53,3–10,SpliceAI (published basis),PP3,Strong,1/2 (1),
+DDX3X and TP53,3–10,SpliceAI (published basis),BP4,Supporting,2/2,
+DDX3X and TP53,3–10,SpliceAI (published basis),BP4,Moderate,0/2 (1),
+DDX3X and TP53,3–10,Atlas combined score,PP3,Supporting,1/1,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay"
+DDX3X and TP53,3–10,Atlas combined score,PP3,Moderate,0/1 (1),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay"
+DDX3X and TP53,3–10,Atlas combined score,PP3,Strong,0/1 (1),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay"
+DDX3X and TP53,3–10,Atlas combined score,BP4,Supporting,1/1,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay"
+DDX3X and TP53,3–10,Atlas combined score,BP4,Moderate,0/1 (1),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay"
+DDX3X and TP53,3–10,Atlas splice sites,PP3,Supporting,2/2,
+DDX3X and TP53,3–10,Atlas splice sites,PP3,Moderate,2/2,
+DDX3X and TP53,3–10,Atlas splice sites,PP3,Strong,–,no frozen threshold: the tier is not reached in-sample
+DDX3X and TP53,3–10,Atlas splice sites,BP4,Supporting,2/2,
+DDX3X and TP53,3–10,Atlas splice sites,BP4,Moderate,–,no frozen threshold: the tier is not reached in-sample
+DDX3X and TP53,3–10,Atlas splice-site usage,PP3,Supporting,2/2,
+DDX3X and TP53,3–10,Atlas splice-site usage,PP3,Moderate,2/2,
+DDX3X and TP53,3–10,Atlas splice-site usage,PP3,Strong,2/2,
+DDX3X and TP53,3–10,Atlas splice-site usage,BP4,Supporting,2/2,
+DDX3X and TP53,3–10,Atlas splice-site usage,BP4,Moderate,–,no frozen threshold: the tier is not reached in-sample
+DDX3X and TP53,3–10,Atlas splice junctions,PP3,Supporting,2/2,
+DDX3X and TP53,3–10,Atlas splice junctions,PP3,Moderate,2/2,
+DDX3X and TP53,3–10,Atlas splice junctions,PP3,Strong,0/2 (1),
+DDX3X and TP53,3–10,Atlas splice junctions,BP4,Supporting,2/2,
+DDX3X and TP53,3–10,Atlas splice junctions,BP4,Moderate,0/2 (1),
+DDX3X and TP53,11–50,SpliceAI (distance 50),PP3,Supporting,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,SpliceAI (distance 50),PP3,Moderate,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,SpliceAI (distance 50),PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,SpliceAI (distance 50),BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,SpliceAI (distance 50),BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Pangolin,PP3,Supporting,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Pangolin,PP3,Moderate,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Pangolin,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Pangolin,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Pangolin,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,AlphaGenome splice score,PP3,Supporting,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,AlphaGenome splice score,PP3,Moderate,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,AlphaGenome splice score,PP3,Strong,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,AlphaGenome splice score,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,AlphaGenome splice score,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,CADD,PP3,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,CADD,PP3,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,CADD,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,CADD,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,CADD,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,phyloP,PP3,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,phyloP,PP3,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,phyloP,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,phyloP,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,phyloP,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,phastCons,PP3,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,phastCons,PP3,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,phastCons,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,phastCons,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,phastCons,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,GPN-MSA,PP3,Supporting,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,GPN-MSA,PP3,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,GPN-MSA,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,GPN-MSA,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,GPN-MSA,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Nucleotide Transformer,PP3,Supporting,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Nucleotide Transformer,PP3,Moderate,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Nucleotide Transformer,PP3,Strong,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Nucleotide Transformer,BP4,Supporting,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Nucleotide Transformer,BP4,Moderate,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,SpliceAI (published basis),PP3,Supporting,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,SpliceAI (published basis),PP3,Moderate,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,SpliceAI (published basis),PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,SpliceAI (published basis),BP4,Supporting,0/2 (2),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,SpliceAI (published basis),BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas combined score,PP3,Supporting,0/1 (1),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas combined score,PP3,Moderate,0/1 (1),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas combined score,PP3,Strong,0/1 (1),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas combined score,BP4,Supporting,–,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas combined score,BP4,Moderate,–,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice sites,PP3,Supporting,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice sites,PP3,Moderate,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice sites,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice sites,BP4,Supporting,0/2 (2),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice sites,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice-site usage,PP3,Supporting,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice-site usage,PP3,Moderate,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice-site usage,PP3,Strong,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice-site usage,BP4,Supporting,0/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice-site usage,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice junctions,PP3,Supporting,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice junctions,PP3,Moderate,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice junctions,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice junctions,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,11–50,Atlas splice junctions,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 11–25, TP53 11–12"
+DDX3X and TP53,3–50,SpliceAI (distance 50),PP3,Supporting,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,SpliceAI (distance 50),PP3,Moderate,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,SpliceAI (distance 50),PP3,Strong,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,SpliceAI (distance 50),BP4,Supporting,1/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,SpliceAI (distance 50),BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Pangolin,PP3,Supporting,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Pangolin,PP3,Moderate,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Pangolin,PP3,Strong,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Pangolin,BP4,Supporting,0/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Pangolin,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,AlphaGenome splice score,PP3,Supporting,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,AlphaGenome splice score,PP3,Moderate,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,AlphaGenome splice score,PP3,Strong,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,AlphaGenome splice score,BP4,Supporting,0/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,AlphaGenome splice score,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,CADD,PP3,Supporting,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,CADD,PP3,Moderate,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,CADD,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,CADD,BP4,Supporting,1/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,CADD,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,phyloP,PP3,Supporting,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,phyloP,PP3,Moderate,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,phyloP,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,phyloP,BP4,Supporting,0/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,phyloP,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,phastCons,PP3,Supporting,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,phastCons,PP3,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,phastCons,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,phastCons,BP4,Supporting,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,phastCons,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,GPN-MSA,PP3,Supporting,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,GPN-MSA,PP3,Moderate,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,GPN-MSA,PP3,Strong,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,GPN-MSA,BP4,Supporting,0/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,GPN-MSA,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Nucleotide Transformer,PP3,Supporting,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Nucleotide Transformer,PP3,Moderate,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Nucleotide Transformer,PP3,Strong,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Nucleotide Transformer,BP4,Supporting,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Nucleotide Transformer,BP4,Moderate,No column of the same variable,"no column of the same variable: NT on the original GPU reproduced 7 of the 39 anchors bit for bit; by the rule fixed before the run (the author's decision of 2026-10-23) it does not enter the external test; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,SpliceAI (published basis),PP3,Supporting,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,SpliceAI (published basis),PP3,Moderate,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,SpliceAI (published basis),PP3,Strong,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,SpliceAI (published basis),BP4,Supporting,0/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,SpliceAI (published basis),BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas combined score,PP3,Supporting,1/1,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas combined score,PP3,Moderate,1/1,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas combined score,PP3,Strong,0/1 (1),"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas combined score,BP4,Supporting,0/1,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas combined score,BP4,Moderate,–,"DDX3X not counted: not an external test, as the combined Atlas score's model was selected on the DDX3X assay; no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice sites,PP3,Supporting,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice sites,PP3,Moderate,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice sites,PP3,Strong,1/2 (1),"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice sites,BP4,Supporting,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice sites,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice-site usage,PP3,Supporting,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice-site usage,PP3,Moderate,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice-site usage,PP3,Strong,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice-site usage,BP4,Supporting,1/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice-site usage,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice junctions,PP3,Supporting,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice junctions,PP3,Moderate,2/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice junctions,PP3,Strong,1/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice junctions,BP4,Supporting,1/2,"each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"
+DDX3X and TP53,3–50,Atlas splice junctions,BP4,Moderate,–,"no frozen threshold: the tier is not reached in-sample; each gene's band as deep as its deposit reaches: DDX3X 3–25, TP53 3–12"

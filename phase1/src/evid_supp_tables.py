@@ -103,6 +103,9 @@ ATLAS_RESOURCES = ATLAS_REPO / "src/atlas/predictor_resources.py"
 
 SEVEN = ["BAP1", "BARD1", "BRCA1", "BRCA2", "PALB2", "RAD51C", "VHL"]
 EXTERNAL = ["DDX3X", "TP53"]
+# Supplementary Table S12's genes: the two, then the five that entered the external test
+# in E18.6
+S12_GENES = EXTERNAL + EXT.NEW_GENES
 # Short names of the assay publications, as the manuscript cites them.
 PUBLICATION = {
     "BRCA1": "Findlay 2018", "BRCA2": "Huang 2025", "BARD1": "Woo 2025 (preprint)",
@@ -161,10 +164,17 @@ LABEL_NAME = {"y_deposit": "Deposit classification",
 # other labels, sensitivity labels, keep their names
 LABEL_NAME_FOR = {("TP53", "y_control_anchored"): EXT.TP53_PRIMARY_LABEL_NAME,
                   ("DDX3X", "y_deposit"): EXT.DDX3X_PRIMARY_LABEL_NAME}
+# and the five genes that entered the external test in E18.6
+LABEL_NAME_FOR |= {(g, EXT.NEW_GENE_LABEL[g]): EXT.primary_label_name(g)
+                   for g in EXT.NEW_GENES}
 
 
 def label_name(lab: str, gene: str | None = None) -> str:
-    return LABEL_NAME_FOR.get((gene, lab), LABEL_NAME[lab])
+    # a label named only per gene (the new genes' investigator-provided ranges) has no
+    # generic name to fall back on
+    if (gene, lab) in LABEL_NAME_FOR:
+        return LABEL_NAME_FOR[(gene, lab)]
+    return LABEL_NAME[lab]
 
 # What each panel column is, in words. Numbers belong to the configuration column,
 # which reads them from the provenance files.
@@ -1326,7 +1336,7 @@ def s12() -> tuple[pd.DataFrame, list[Path]]:
     pp3 = fmt_const(_walker_cfg()["thresholds"]["pp3"]["value"])
     fig = K.read_back(_need(REPORTS / "fig_data/fig4_external.csv"))
     rows, srcs = [], []
-    for gene in EXTERNAL:
+    for gene in S12_GENES:
         ep = REPORTS / f"external_{gene.lower()}.csv"
         bp = REPORTS / f"external_{gene.lower()}_column_basis.csv"
         srcs += [ep, bp]
@@ -1621,7 +1631,8 @@ TABLES = [
      "Genes contributing all three arms only."),
     ("S12", "tableS12_external_genes.csv", s12,
      "External genes: the published cut point and the seven-gene fitted thresholds "
-     "applied to DDX3X and TP53 under every label definition",
+     "applied to DDX3X, TP53, CTCF, SFPQ, RAD51D, XRCC2 and SBDS under every label "
+     "definition",
      "In-scope strata only, each cut at the depth the deposit reaches. Fitted "
      "thresholds are the in-sample thresholds of Table 3(b), PP3 at Supporting, "
      "Moderate and Strong and BP4 at Supporting and Moderate, carried over only where "
@@ -1635,7 +1646,9 @@ TABLES = [
      "between genes. The tier at the lower bound is read off the lower end of that "
      "interval. The Atlas combined score's model was selected on the DDX3X assay, so "
      "its DDX3X rows are not an external test. Label definitions are stated in Table "
-     "S1."),
+     "S1 for DDX3X and TP53; CTCF, SFPQ, RAD51D and XRCC2 are labelled by the "
+     "investigator-provided ranges of the score set named, SBDS by its score table's "
+     "classification column."),
     ("S13", "tableS13_inframe_attribution.csv", s13,
      "In-frame attribution of variants scored at or above the PP3 cut point and "
      "called normal by the assay",
@@ -1694,6 +1707,148 @@ def write_all(out_dir: Path = OUT_DIR) -> pd.DataFrame:
     return man
 
 
+# ---------------------------------------------------------------------------
+# The external summary (E18.6): for each stratum, column, side and tier, how many
+# external genes reach the tier at the frozen threshold, read off Supplementary Table
+# S12 under each gene's primary label; once over the seven external genes and once over
+# DDX3X and TP53 alone, in one file with a column naming the gene set (the author's
+# decision of 2026-10-24)
+# ---------------------------------------------------------------------------
+SUMMARY = REPORTS / "external_summary.csv"
+SUMMARY_SETS = {"Seven external genes": S12_GENES, "DDX3X and TP53": EXTERNAL}
+TIER_RANK = {"Below Supporting": 0, "Supporting": 1, "Moderate": 2, "Strong": 3,
+             "Very strong": 4}
+# the cells that are not an external test, and why (evid_figures.NOT_EXTERNAL)
+NOT_EXTERNAL_WHY = {("DDX3X", "avi"): "the combined Atlas score's model was selected on "
+                                      "the DDX3X assay"}
+
+
+def training_overlap(genes: list[str]) -> set[tuple[str, str]]:
+    """(gene, column) pairs whose assay predictor_training_provenance.csv records in a
+    predictor's training or model-selection data: the gene named in that column's
+    training data or its documented use of multiplexed assays."""
+    prov = _csv(REPORTS / "predictor_training_provenance.csv", dtype=str,
+                keep_default_na=False)
+    hits = set()
+    for _, r in prov.iterrows():
+        text = f"{r['training_data']} {r['documented_mave_or_sge_in_training']}"
+        for g in genes:
+            if re.search(rf"\b{re.escape(g)}\b", text):
+                hits.add((g, r["score_column"]))
+    return hits
+
+
+def not_external() -> set[tuple[str, str]]:
+    """E18.6's training-overlap check. On DDX3X and TP53 it finds what
+    evid_figures.NOT_EXTERNAL records, DDX3X x the combined Atlas score; on a new gene
+    a hit stops the stage (E18.8), none being expected."""
+    from .evid_figures import NOT_EXTERNAL
+    hits = training_overlap(S12_GENES)
+    new = sorted(h for h in hits if h[0] in EXT.NEW_GENES)
+    if new:
+        raise SystemExit(f"[supp] a new gene's assay is in a predictor's training or "
+                         f"model selection: {new}: stopped (E18.8)")
+    if {h for h in hits if h[0] in EXTERNAL} != set(NOT_EXTERNAL) or \
+            set(NOT_EXTERNAL_WHY) != set(NOT_EXTERNAL):
+        raise SystemExit("[supp] predictor_training_provenance.csv, evid_figures."
+                         "NOT_EXTERNAL and NOT_EXTERNAL_WHY disagree")
+    return set(NOT_EXTERNAL)
+
+
+def external_summary(s12: pd.DataFrame, gene_set: str, genes: list[str]) -> pd.DataFrame:
+    """k/n (m), as Table 3 writes it: of the n external genes counted, k reach the tier
+    at the frozen threshold and m are not evaluable, shown where there are any (n counts
+    every gene counted, the not evaluable among them, as Table 3's n counts every held-out
+    gene: the author's decision of 2026-10-24). A gene reaches a tier when the tier its
+    ratio reaches there, as S12 prints it (the PP3 tier reached; the BP4 tier, read as at
+    the published cut point), is that tier or a stronger one. Not evaluable: no row in
+    the stratum, fewer than ten labelled on one side, or no ratio at the threshold. A
+    cell that is not an external test is not counted, and the note says so."""
+    skip = not_external()
+    ev = _evidence()
+    bases = {g: _csv(REPORTS / f"external_{g.lower()}_column_basis.csv", dtype=str,
+                     keep_default_na=False).set_index("tool") for g in genes}
+    rows = []
+    for st in IN_SCOPE:
+        depth = [f"{g} {_ext_band(g, st)}" for g in genes if _ext_band(g, st) != STRATUM_LABEL[st]]
+        for tool in TOOLS:
+            for side, tiers in (("PP3", TIERS), ("BP4", BP4_TIERS)):
+                for tier in tiers:
+                    name = tier.capitalize()
+                    head = f"{name}: tier reached" if side == "PP3" else f"BP4 {name}: tier reached"
+                    row = {"Gene set": gene_set,
+                           "Stratum (intronic offset, bp)": STRATUM_LABEL[st], "Tool": _tool(tool),
+                           "Side": side, "Tier": name}
+                    notes = []
+                    counted = [g for g in genes if (g, tool) not in skip]
+                    for g in genes:
+                        if (g, tool) in skip:
+                            notes.append(f"{g} not counted: not an external test, as "
+                                         f"{NOT_EXTERNAL_WHY[(g, tool)]}")
+                    comp = {g: tool in bases[g].index
+                            and bases[g].loc[tool, "comparable"] == "True" for g in counted}
+                    why = {g: (bases[g].loc[tool, "reason"] if tool in bases[g].index
+                               else "no column of this name") for g in counted if not comp[g]}
+                    e = ev[(ev.tool == tool) & (ev.stratum == st) & (ev.tier == tier)
+                           & (ev.status == "ok")]
+                    reach = "pp3_threshold_reachable" if side == "PP3" else "bp4_threshold_reachable"
+                    if counted and not any(comp.values()):
+                        # no external gene has a column of this variable (NT)
+                        row["External genes reaching the tier, k/n (m)"] = (
+                            "No column of the same variable")
+                        notes += sorted(set(why.values()))
+                    elif not len(e) or not bool(e[reach].iloc[0]):
+                        row["External genes reaching the tier, k/n (m)"] = "–"
+                        notes.append("no frozen threshold: the tier is not reached in-sample")
+                    else:
+                        k = n = m = 0
+                        for g in counted:
+                            if not comp[g]:
+                                m += 1
+                                notes.append(f"{g} not evaluable: {why[g]}")
+                                continue
+                            r = s12[(s12["Gene"] == g)
+                                    & (s12["Label definition"]
+                                       == label_name(EXT.PRIMARY_LABEL[g], g))
+                                    & (s12["Stratum (intronic offset, bp)"] == _ext_band(g, st))
+                                    & (s12["Tool"] == _tool(tool))]
+                            if len(r) > 1:
+                                raise SystemExit(f"[supp] S12 has {len(r)} rows for {g} {st} {tool}")
+                            if not len(r) or r["Evaluated"].iloc[0] != "Yes":
+                                m += 1
+                                continue
+                            t = r[head].iloc[0]
+                            if t == "not evaluable":
+                                m += 1
+                            elif t in TIER_RANK:
+                                n += 1
+                                k += TIER_RANK[t] >= TIER_RANK[name]
+                            else:
+                                raise SystemExit(f"[supp] S12 {g} {st} {tool} {head}: {t!r}")
+                        if k + n + m == 0 or n + m != len(counted):
+                            raise SystemExit(f"[supp] {gene_set} {st} {tool} {side} {tier}: "
+                                             "the genes counted do not add up")
+                        n += m
+                        row["External genes reaching the tier, k/n (m)"] = (
+                            f"{k}/{n}" + (f" ({m})" if m else ""))
+                    if depth:
+                        notes.append("each gene's band as deep as its deposit reaches: "
+                                     + ", ".join(depth))
+                    row["Note"] = "; ".join(notes)
+                    rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def write_external_summary(s12_path: Path, out_dir: Path) -> None:
+    s12 = pd.read_csv(s12_path, dtype=str, keep_default_na=False)
+    df = pd.concat([external_summary(s12, name, genes) for name, genes in SUMMARY_SETS.items()],
+                   ignore_index=True)
+    path = out_dir / SUMMARY.name
+    df.to_csv(path, index=False, lineterminator="\n", encoding="utf-8")
+    print(f"[supp] wrote {path} ({len(df)} rows: "
+          + "; ".join(f"{k}, {', '.join(v)}" for k, v in SUMMARY_SETS.items()) + ")")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Write the supplementary tables.")
     ap.add_argument("--out-dir", type=Path, default=OUT_DIR,
@@ -1702,6 +1857,9 @@ def main() -> None:
     out = ap.parse_args().out_dir
     man = write_all(out)
     print(f"[supp] wrote {len(man)} tables and {MANIFEST} to {out}")
+    # E18.6: beside the external tables E7 writes, or into the scratch directory
+    write_external_summary(out / "tableS12_external_genes.csv",
+                           REPORTS if out == OUT_DIR else out)
     for _, r in man.iterrows():
         print(f"  {r['Table']:4s} {r['File']:42s} {int(r['Rows']):>5} rows  "
               f"sha256 {r['File sha256']}")

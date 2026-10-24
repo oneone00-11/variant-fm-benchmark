@@ -54,15 +54,26 @@ Since E18.3 every column E7 tests on either gene is the analysis set's own varia
 the same scorer, version, precision and direction, shown by anchors scored in the
 same run or by a committed value-for-value record (docs/external-column-identity.md).
 TP53's AlphaGenome is the official definition, its client-0.6.1 column kept beside it
-as alphagenome_v061 and not tested; its SpliceAI, Pangolin, NT, Walker-basis and
-Atlas columns were scored again by the analysis set's scorers; its GPN-MSA is turned
-to the analysis set's direction. DDX3X gains SpliceAI at distance 50, AlphaGenome and
-NT, and its Pangolin is full precision.
+as alphagenome_v061 and not tested; its SpliceAI, Pangolin, Walker-basis and Atlas
+columns were scored again by the analysis set's scorers; its GPN-MSA is turned to the
+analysis set's direction. DDX3X gains SpliceAI at distance 50 and AlphaGenome, and its
+Pangolin is full precision. NT is tested on neither: scored again on the original GPU,
+it did not reproduce its anchors, and by the rule fixed before the run no external
+gene has an NT column of the analysis set's variable.
+
+Since E18.6 five more genes enter the test, the four of E16 (CTCF, SFPQ, RAD51D,
+XRCC2) and SBDS of E16b, each under the label its <gene>_variants.parquet carries
+(E16b.0's rule): the investigator-provided ranges for the four, SBDS's class column.
+Their columns are E18.2's, the analysis set's variables, in newgenes_scored.parquet.
+Only the three in-scope strata are evaluated. Where only the normal variants can be
+evaluated, external_normal_only.csv counts the normal variants at or above each frozen
+PP3 threshold and Walker's published cut point, without a ratio or a tier.
 
 Run (PYTHONPATH=phase1):
     python -m src.evid_external --prepare ddx3x
     python -m src.evid_external --apply TP53
     python -m src.evid_external --apply DDX3X
+    python -m src.evid_external --apply-new
 """
 from __future__ import annotations
 
@@ -144,7 +155,16 @@ TP53_TABLE = EXT_DIR / "tp53_splice_scored_12nt.parquet"
 LABEL_SOURCE_NAME = {"ranges": "Investigator-provided range",
                      "classification": "Deposit classification"}
 PRIMARY_LABEL_SOURCE = {"DDX3X": ("classification", DDX3X_CLASSIFICATION_SCORESET),
-                        "TP53": ("ranges", "urn:mavedb:00001277-a-1")}
+                        "TP53": ("ranges", "urn:mavedb:00001277-a-1"),
+                        # the five genes of E16 and E16b (E18.6): four by the one
+                        # calibration their records carry, titled "Investigator-provided
+                        # functional classes" (investigatorProvided: true); SBDS, whose
+                        # record carries none, by its score table's class column
+                        "CTCF": ("ranges", "urn:mavedb:00001262-a-3"),
+                        "SFPQ": ("ranges", "urn:mavedb:00001265-a-2"),
+                        "RAD51D": ("ranges", "urn:mavedb:00001260-a-2"),
+                        "XRCC2": ("ranges", "urn:mavedb:00001264-a-2"),
+                        "SBDS": ("classification", "urn:mavedb:00001284-a-1")}
 
 
 def primary_label_name(gene: str) -> str:
@@ -468,6 +488,28 @@ def _avi_for(set_name: str) -> pd.DataFrame | None:
     return a[["variant_id"] + take] if len(a) and take else None
 
 
+# The five genes E16 and E16b added (E18.6). E18.2 scored them into one table,
+# newgenes_scored.parquet: each gene's <gene>_variants.parquet rows at 3 <= |offset|
+# <= 50, in that file's order and with every one of its columns unchanged, the labels
+# among them, beside the analysis set's variables (GPN-MSA already on the analysis
+# set's sign; NT not scored, as above). Each gene's label is the one its
+# <gene>_variants.parquet carries, fixed in E16 and E16b before any predictor result:
+# the investigator-provided ranges of its score set for four, SBDS's score table's class
+# column, copied as it stands, for the fifth; each named for its source
+# (PRIMARY_LABEL_SOURCE). tests/test_evid_e18_newgenes_external.py checks the labels
+# against <gene>_variants.parquet value for value.
+NEW_GENES = ["CTCF", "SFPQ", "RAD51D", "XRCC2", "SBDS"]
+NEWGENES_SCORED = EXT_DIR / "newgenes_scored.parquet"
+NEW_GENE_LABEL = {g: ("y_deposit" if PRIMARY_LABEL_SOURCE[g][0] == "classification"
+                      else "y_investigator_range") for g in NEW_GENES}
+# each external gene's primary label, the one its summary rows read
+PRIMARY_LABEL = {"DDX3X": "y_deposit", "TP53": "y_control_anchored"} | NEW_GENE_LABEL
+NORMAL_ONLY = REPORT_DIR / "external_normal_only.csv"
+# the genes whose normal-only strata are counted: all seven external genes, under their
+# primary labels (the author's decision of 2026-10-24)
+NORMAL_ONLY_GENES = ["DDX3X", "TP53"] + NEW_GENES
+
+
 def merge_ddx3x_scores() -> None:
     """Collect whatever has been scored into one table the apply step reads."""
     base = pd.read_parquet(EXT_DIR / "ddx3x_splice.parquet")[["variant_id"]]
@@ -537,6 +579,17 @@ def _load_external(gene: str) -> tuple[pd.DataFrame, list[str]]:
         df = df.merge(_alphagenome_for("TP53"), on="variant_id", how="left")
         df["gpn_msa"] = -df["gpn_msa"]       # the raw sign, turned (E18.0 rule 5)
         return df, ["y_control_anchored", "y_median_split", "y_mid_band_excluded"]
+    if gene.upper() in NEW_GENES:
+        g = gene.upper()
+        df = pd.read_parquet(NEWGENES_SCORED)
+        df = df[df["gene"] == g].reset_index(drop=True)
+        if set(df["urn"]) != {PRIMARY_LABEL_SOURCE[g][1]}:
+            raise SystemExit(f"[E7] {g}: the scored table names {sorted(set(df['urn']))}, "
+                             f"not {PRIMARY_LABEL_SOURCE[g][1]}")
+        lab = NEW_GENE_LABEL[g]
+        df[lab] = df["label"].astype(float)
+        df["intron_offset_abs"] = df["offset"].abs()
+        return df, [lab]
     if gene.upper() == "DDX3X":
         df = pd.read_parquet(EXT_DIR / "ddx3x_splice.parquet")
         scored = EXT_DIR / "ddx3x_scored.parquet"
@@ -687,8 +740,16 @@ def apply_thresholds(gene: str) -> None:
         print(f"[E7] {gene.upper()}: E3 thresholds NOT carried onto "
               f"{sorted(set(tools) - comparable)} -- not the same variable as the "
               "column they were fitted on; see the column-basis table")
+        if gene.upper() in NEW_GENES:
+            # E18.6: on the new genes every column of the analysis set's variable must
+            # pass, NT the one recorded exception; a column that does not stops the stage
+            raise SystemExit(f"[E7] {gene.upper()}: {sorted(set(tools) - comparable)} not "
+                             "comparable: stopped (E18.6)")
+    # the new genes: the three in-scope strata only (E18.6)
+    strata = ([s for s in K.STRATA if s in K.IN_SCOPE_STRATA] if gene.upper() in NEW_GENES
+              else K.STRATA)
     for label in label_cols:
-        for stratum in K.STRATA:
+        for stratum in strata:
             sub = (df if stratum == "all_1_50"
                    else df[df["stratum"] != "pm12"] if stratum == "s3_50"
                    else df[df["stratum"] == stratum])
@@ -840,11 +901,62 @@ def apply_thresholds(gene: str) -> None:
     print(f"\n[E7] not evaluable: {len(ne)} cells")
 
 
+def normal_only(genes: list[str]) -> pd.DataFrame:
+    """E18.6: the strata where only the normal variants can be evaluated, fewer than
+    MIN_POS damaging and at least MIN_NEG normal, under each gene's primary label and
+    for each column of the analysis set's variable. At each frozen PP3 threshold of the
+    main test (E3's in-sample one, where the tier is reached in-sample) and, for the two
+    SpliceAI columns, at Walker's published PP3 cut point: the normal variants at or
+    above it, out of all the normal variants. No ratio and no tier."""
+    cfg = yaml.safe_load(CONFIG_PATH.read_text())
+    pp3 = cfg["thresholds"]["pp3"]["value"]
+    ev = K.read_back(REPORT_DIR / "evidence_thresholds.csv")
+    ev = ev[ev.status == "ok"]
+    rows = []
+    for gene in genes:
+        df, _ = _load_external(gene)
+        label = PRIMARY_LABEL[gene]
+        basis = K.read_back(REPORT_DIR / f"external_{gene.lower()}_column_basis.csv")
+        comparable = set(basis.loc[basis["comparable"].astype(bool), "tool"])
+        tools = [t for t in K.PANEL + K.OPTIONAL if t in comparable]
+        for stratum in [s for s in K.STRATA if s in K.IN_SCOPE_STRATA]:
+            sub = (df[df["stratum"] != "pm12"] if stratum == "s3_50"
+                   else df[df["stratum"] == stratum])
+            for tool in tools:
+                s = sub.dropna(subset=[label, tool])
+                y = s[label].to_numpy(dtype=float)
+                v = s[tool].to_numpy(dtype=float)
+                n_pos, n_neg = int((y == 1).sum()), int((y == 0).sum())
+                if not (n_pos < K.MIN_POS and n_neg >= K.MIN_NEG):
+                    continue
+                cuts = [("walker_pp3", "published", pp3)] if tool in ("spliceai",
+                                                                     "spliceai_walker") else []
+                e = ev[(ev.tool == tool) & (ev.stratum == stratum)]
+                for tier in ["supporting", "moderate", "strong"]:
+                    t = e[e.tier == tier]
+                    if len(t) and bool(t["pp3_threshold_reachable"].iloc[0]):
+                        cuts.append((tier, "in_sample", float(t["pp3_threshold_insample"].iloc[0])))
+                for kind, source, thr in cuts:
+                    rows.append({"gene": gene, "label_definition": label, "stratum": stratum,
+                                 "tool": tool, "n_pos": n_pos, "n_neg": n_neg,
+                                 "threshold_kind": kind, "threshold_source": source,
+                                 "threshold": thr,
+                                 "n_neg_at_or_above": int((v[y == 0] >= thr).sum())})
+    out = pd.DataFrame(rows, columns=["gene", "label_definition", "stratum", "tool", "n_pos",
+                                      "n_neg", "threshold_kind", "threshold_source",
+                                      "threshold", "n_neg_at_or_above"])
+    out.to_csv(NORMAL_ONLY, index=False)
+    print(f"[E7] wrote {NORMAL_ONLY} ({len(out)} rows)")
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--prepare", choices=["ddx3x"])
     ap.add_argument("--merge-scores", choices=["ddx3x"])
     ap.add_argument("--apply")
+    ap.add_argument("--apply-new", action="store_true",
+                    help="the five genes of E16 and E16b, then the normal-only strata (E18.6)")
     args = ap.parse_args()
     if args.prepare == "ddx3x":
         prepare_ddx3x()
@@ -852,8 +964,12 @@ def main() -> None:
         merge_ddx3x_scores()
     elif args.apply:
         apply_thresholds(args.apply)
+    elif args.apply_new:
+        for gene in NEW_GENES:
+            apply_thresholds(gene)
+        normal_only(NORMAL_ONLY_GENES)
     else:
-        ap.error("pass --prepare ddx3x, --merge-scores ddx3x or --apply <gene>")
+        ap.error("pass --prepare ddx3x, --merge-scores ddx3x, --apply <gene> or --apply-new")
 
 
 if __name__ == "__main__":

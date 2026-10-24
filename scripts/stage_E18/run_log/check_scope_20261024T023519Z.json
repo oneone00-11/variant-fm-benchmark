@@ -1,0 +1,138 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E18/scope_c6.json",
+  "--base",
+  "da38bac"
+ ],
+ "git_commit": "da38bac8b78f2116a615459750e935d08584df2a",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-24T02:35:04+00:00",
+ "end_utc": "2026-10-24T02:35:19+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E18/scope_c6.json",
+   "bytes": 5205,
+   "sha256": "c28e17aa439b1bbc4440149abc5f62b0a74216bb62f925262634918282c7a282"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E18/scope_c6.json",
+  "base": "da38bac",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/external_ctcf.csv": {
+    "added": 36,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_ctcf_column_basis.csv": {
+    "added": 13,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_normal_only.csv": {
+    "status": "declared",
+    "why": "new table (E18.6): the strata where only the normal variants can be evaluated, under the primary labels of all seven external genes (the author's decision of 2026-10-24), with the normal variants at or above each frozen PP3 threshold and Walker's cut point",
+    "change": "added"
+   },
+   "phase1/reports/evidence/external_rad51d.csv": {
+    "added": 36,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_rad51d_column_basis.csv": {
+    "added": 13,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_sbds.csv": {
+    "added": 36,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_sbds_column_basis.csv": {
+    "added": 13,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_sfpq.csv": {
+    "added": 36,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_sfpq_column_basis.csv": {
+    "added": 13,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_summary.csv": {
+    "status": "declared",
+    "why": "new table (E18.6): per stratum, column, side and tier, the external genes reaching the tier at the frozen threshold, k/n (m) as Table 3 writes it, over the seven external genes and over DDX3X and TP53, in one file (the author's decision of 2026-10-24)",
+    "change": "added"
+   },
+   "phase1/reports/evidence/external_xrcc2.csv": {
+    "added": 36,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/external_xrcc2_column_basis.csv": {
+    "added": 13,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+    "changed": 1,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/tableS12_external_genes.csv": {
+    "added": 180,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

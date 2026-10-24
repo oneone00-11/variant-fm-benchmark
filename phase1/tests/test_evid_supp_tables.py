@@ -268,8 +268,10 @@ def test_rerun_is_byte_identical_and_matches_the_tables_on_disk(tmp_path):
     assert names == sorted(p.name for p in b.iterdir())
     for n in names:
         assert (a / n).read_bytes() == (b / n).read_bytes(), n
-        # a table on disk older than its inputs fails here
-        assert (a / n).read_bytes() == (SUPP / n).read_bytes(), f"{n} is stale"
+        # a table on disk older than its inputs fails here; the external summary, read
+        # off S12, sits beside the external tables (E18.6)
+        disk = (REPORTS if n == S.SUMMARY.name else SUPP) / n
+        assert (a / n).read_bytes() == disk.read_bytes(), f"{n} is stale"
 
 
 

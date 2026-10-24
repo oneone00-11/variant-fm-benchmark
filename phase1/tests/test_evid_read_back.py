@@ -99,6 +99,12 @@ DEFAULT_READS = {
         "within-gene arm comparisons",
     "evid_supp_tables.py: basis = _csv(bp).set_index(\"tool\")":
         "the external genes' column-basis flags",
+    "evid_supp_tables.py: bases = {g: _csv(REPORTS / f\"external_{g.lower()}_column_basis.csv\", dtype=str,":
+        "the external genes' column-basis flags, as text (the external summary)",
+    "evid_supp_tables.py: prov = _csv(REPORTS / \"predictor_training_provenance.csv\", dtype=str,":
+        "training provenance, text (the training-overlap check)",
+    "evid_supp_tables.py: s12 = pd.read_csv(s12_path, dtype=str, keep_default_na=False)":
+        "Supplementary Table S12 as printed, text (the external summary)",
     "evid_supp_tables.py: sm = _csv(path)":
         "in-frame attribution summaries",
     "evid_supp_tables.py: \"Rows\": str(len(pd.read_csv(path))),":

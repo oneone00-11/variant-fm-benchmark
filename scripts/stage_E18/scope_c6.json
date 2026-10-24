@@ -1,0 +1,217 @@
+{
+ "commit": "E18.6",
+ "reason": "the five genes of E16 and E16b, CTCF, SFPQ, RAD51D, XRCC2 and SBDS, enter the external test at the frozen thresholds, each under the label its <gene>_variants.parquet carries, in the three in-scope strata, at least ten on each side",
+ "declared_from": "E18.6: only the new genes' rows and new tables. E7's tables and column checks for the five genes are new files, their rows the five genes' only; Supplementary Table S12 gains the five genes' rows and no other row of it changes; the normal-only table and the external summary are new tables; the supplement manifest's S12 row changes in its title and note, which name the genes, its sources, its row count and its hash. Declared beforehand by the author's decision of 2026-10-23, the knock-on changes of this kind: the manifest's hashes of any file this scope declares. DDX3X's and TP53's rows are byte for byte the previous commit's; Figure 4 does not change (B1)",
+ "pairs": {
+  "CTCF": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "nt",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ],
+  "SFPQ": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "nt",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ],
+  "RAD51D": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "nt",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ],
+  "XRCC2": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "nt",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ],
+  "SBDS": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "nt",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ]
+ },
+ "files": {
+  "phase1/reports/evidence/external_ctcf.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "stratum",
+    "tool"
+   ],
+   "gene": "gene",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_ctcf_column_basis.csv": {
+   "kind": "rows",
+   "key": [
+    "tool"
+   ],
+   "gene_const": "CTCF",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_sfpq.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "stratum",
+    "tool"
+   ],
+   "gene": "gene",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_sfpq_column_basis.csv": {
+   "kind": "rows",
+   "key": [
+    "tool"
+   ],
+   "gene_const": "SFPQ",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_rad51d.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "stratum",
+    "tool"
+   ],
+   "gene": "gene",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_rad51d_column_basis.csv": {
+   "kind": "rows",
+   "key": [
+    "tool"
+   ],
+   "gene_const": "RAD51D",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_xrcc2.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "stratum",
+    "tool"
+   ],
+   "gene": "gene",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_xrcc2_column_basis.csv": {
+   "kind": "rows",
+   "key": [
+    "tool"
+   ],
+   "gene_const": "XRCC2",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_sbds.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "stratum",
+    "tool"
+   ],
+   "gene": "gene",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_sbds_column_basis.csv": {
+   "kind": "rows",
+   "key": [
+    "tool"
+   ],
+   "gene_const": "SBDS",
+   "tool": "tool"
+  },
+  "phase1/reports/evidence/external_normal_only.csv": {
+   "kind": "file",
+   "why": "new table (E18.6): the strata where only the normal variants can be evaluated, under the primary labels of all seven external genes (the author's decision of 2026-10-24), with the normal variants at or above each frozen PP3 threshold and Walker's cut point"
+  },
+  "phase1/reports/evidence/external_summary.csv": {
+   "kind": "file",
+   "why": "new table (E18.6): per stratum, column, side and tier, the external genes reaching the tier at the frozen threshold, k/n (m) as Table 3 writes it, over the seven external genes and over DDX3X and TP53, in one file (the author's decision of 2026-10-24)"
+  },
+  "phase1/reports/evidence/supplement/tableS12_external_genes.csv": {
+   "kind": "rows",
+   "key": [
+    "Gene",
+    "Label definition",
+    "Stratum (intronic offset, bp)",
+    "Tool"
+   ],
+   "gene": "Gene",
+   "tool": "Tool",
+   "tool_labels": true,
+   "fields": []
+  },
+  "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+   "kind": "fields",
+   "key": [
+    "File"
+   ],
+   "sources_in_scope": true,
+   "rows": {
+    "tableS12_external_genes.csv": [
+     "Title",
+     "Notes",
+     "Source files",
+     "Source sha256",
+     "Rows",
+     "File sha256"
+    ]
+   }
+  }
+ }
+}

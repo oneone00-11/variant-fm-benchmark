@@ -1416,3 +1416,53 @@ declared to the field and checked by `check_scope.py`).
   field that names the label. The drafts of
   Figures 1 and 4, declared, did not change. A case-insensitive search of every output
   finds "published range" nowhere.
+
+## After the thresholds were frozen: five more genes enter the external test (stage E18, 2026-10-24)
+
+Why: the four genes of E16 (CTCF, SFPQ, RAD51D, XRCC2) and SBDS of E16b, scored by E18.2
+with the analysis set's variables, are tested at the frozen thresholds like DDX3X and
+TP53 (E18.6). One reason, one commit: only the new genes' rows and new tables
+(`scripts/stage_E18/scope_c6.json`, checked by `check_scope.py`).
+
+- The labels: the ones each gene's `<gene>_variants.parquet` carries, fixed in E16 and
+  E16b before any predictor result. `newgenes_scored.parquet` copies those rows unchanged,
+  and a test checks the labels against `<gene>_variants.parquet` value for value.
+  - CTCF, SFPQ, RAD51D and XRCC2: the one calibration each record carries, titled
+    "Investigator-provided functional classes" (`investigatorProvided: true`), named
+    "Investigator-provided range (<URN>)".
+  - SBDS: its record carries none; the score table's class column, named "Deposit
+    classification (urn:mavedb:00001284-a-1)".
+
+  The names come from the mapping of the previous commit (`PRIMARY_LABEL_SOURCE`).
+- The test: E7's new stage (`--apply-new`, stage 12 of `scripts/reproduce_evidence.py`,
+  after DDX3X's) runs `apply_thresholds` on each gene, in the three in-scope strata only,
+  at least ten labelled on each side; the thresholds, readings and seeds as for DDX3X and
+  TP53. Twelve columns are the analysis set's variables on every new gene, by
+  `docs/external-column-identity.md` and by E7's column check; NT is named with its
+  reason. A column that failed the check would stop the stage; none does.
+- The training overlap: `predictor_training_provenance.csv` records none of the five
+  assays in any predictor's training or model selection; the check, in the supplement
+  stage, finds DDX3X x the combined Atlas score only, as `evid_figures.NOT_EXTERNAL`
+  records, and would stop on a new gene.
+- New tables:
+  - `external_normal_only.csv`: the strata where only the normal variants can be
+    evaluated (fewer than ten damaging, at least ten normal), under the primary labels of
+    all seven external genes (the author's decision of 2026-10-24): at each frozen PP3
+    threshold and, for the SpliceAI columns, at Walker's cut point, the normal variants at
+    or above it out of all the normal variants; no ratio, no tier;
+  - `external_summary.csv`: per gene set, stratum, column, side and tier, k/n (m) as
+    Table 3 writes it: of the n external genes counted, k reach the tier at the frozen
+    threshold, as Supplementary Table S12 prints it, and m are not evaluable (the
+    author's decision of 2026-10-24, n counting every gene counted); once over the seven
+    external genes, once over DDX3X and TP53, in one file. DDX3X x the combined Atlas
+    score is not counted, and the note says so.
+- Supplementary Table S12 gains the five genes' rows; its title and note in the manifest
+  name the genes and their labels. Figure 4 is unchanged (B1).
+- `scripts/reproduce_evidence.py` gains the stage; the stages after it are renumbered
+  13 to 28 in its list.
+- `check_scope.py` against the previous commit: fourteen outputs differ, none outside the
+  scope. E7's ten new files hold the five genes' rows only (36 per gene, 13 in each
+  column check); S12 gains 180 rows, and its DDX3X and TP53 rows are byte for byte the
+  previous commit's; the manifest changes in S12's row alone. The normal-only table has
+  97 rows, in four strata: SBDS 11–50, XRCC2 3–10 and 11–50, TP53 11–12. The external
+  summary has 195 rows per gene set.

@@ -62,24 +62,25 @@ Stages
   9  evid_external TP53      fixed and fitted thresholds on TP53 (E7)
  10  evid_external DDX3X     merge the scored columns (E7)
  11  evid_external DDX3X     fixed and fitted thresholds on DDX3X (E7)
- 12  evid_diagnostics        cut-point, monotonicity, concordance and depth tables (E8)
- 13  evid_tier_logo          in-sample tier vs held-out ratio, per fold (E2.2)
- 14  evid_arms               ClinVar arms without BRCA1, and within gene (E2.3/E2.4)
- 15  evid_fig_data           the figure tables and draft PNGs (E2.9)
- 16  evid_training_provenance where each predictor's training signal comes from (E9)
- 17  evid_fusion_stability   the fusion's coefficients in every fold (E10)
- 18  evid_dilution           thresholds refitted on every subset of training genes (E11)
- 19  evid_tables             the four main tables as printed (E12)
- 20  evid_supp_tables        the supplementary tables as printed (E13)
- 21  evid_figures            main and supplementary figures, PDF and PNG (E14)
- 22  evid_practical_metrics  sensitivity, specificity and ROC at the evidence thresholds (E15)
- 23  evid_newgenes           four further external genes: records, coordinates, labels (E16)
- 24  evid_newgenes SBDS      a fifth one, and the training genes' label versions (E16b)
- 25  evid_label_audit        the seven label files against their cited sources (E16c)
- 26  evid_delta              every published quantity with a counterpart (E8)
- 27  evid_alphagenome_definitions  AlphaGenome's two definitions side by side (E17)
+ 12  evid_external NEW       the same on CTCF, SFPQ, RAD51D, XRCC2 and SBDS (E18.6)
+ 13  evid_diagnostics        cut-point, monotonicity, concordance and depth tables (E8)
+ 14  evid_tier_logo          in-sample tier vs held-out ratio, per fold (E2.2)
+ 15  evid_arms               ClinVar arms without BRCA1, and within gene (E2.3/E2.4)
+ 16  evid_fig_data           the figure tables and draft PNGs (E2.9)
+ 17  evid_training_provenance where each predictor's training signal comes from (E9)
+ 18  evid_fusion_stability   the fusion's coefficients in every fold (E10)
+ 19  evid_dilution           thresholds refitted on every subset of training genes (E11)
+ 20  evid_tables             the four main tables as printed (E12)
+ 21  evid_supp_tables        the supplementary tables as printed (E13)
+ 22  evid_figures            main and supplementary figures, PDF and PNG (E14)
+ 23  evid_practical_metrics  sensitivity, specificity and ROC at the evidence thresholds (E15)
+ 24  evid_newgenes           four further external genes: records, coordinates, labels (E16)
+ 25  evid_newgenes SBDS      a fifth one, and the training genes' label versions (E16b)
+ 26  evid_label_audit        the seven label files against their cited sources (E16c)
+ 27  evid_delta              every published quantity with a counterpart (E8)
+ 28  evid_alphagenome_definitions  AlphaGenome's two definitions side by side (E17)
 
-Outputs land in `phase1/reports/evidence/`; stages 22 to 26 also write a page under
+Outputs land in `phase1/reports/evidence/`; stages 23 to 27 also write a page under
 `docs/`.
 
     bash reproduce.sh                                       # from a fresh clone: everything
@@ -194,6 +195,8 @@ STAGES = [
     ("src.evid_external",           "E7  external gene: DDX3X, merge scored columns",
      ["--merge-scores", "ddx3x"]),
     ("src.evid_external",           "E7  external gene: DDX3X", ["--apply", "DDX3X"]),
+    ("src.evid_external",           "E7  external genes: CTCF, SFPQ, RAD51D, XRCC2 and SBDS",
+     ["--apply-new"]),
     ("src.evid_diagnostics",        "E8  cut-point and monotonicity diagnostics", []),
     ("src.evid_tier_logo",          "E2.2 in-sample tier against held-out ratio", []),
     ("src.evid_arms",               "E2.3/E2.4 ClinVar arms without the gene confound", []),
