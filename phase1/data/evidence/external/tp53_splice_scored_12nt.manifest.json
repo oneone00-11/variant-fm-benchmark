@@ -555,7 +555,7 @@
     "subset_sha256": "f67202dfa7277e4975abf6ba590e33f0b6dcdabdcd1fd5843eecc07551ab1c15",
     "events": "phase1/data/evidence/external/tp53_inframe_events_12nt.parquet",
     "events_sha256": "82e2b5abfd6692e5c1540bc5560f1c6f3f9e2931cc62baa7936cd5bfc527e8b3",
-    "rule": "spliceai_walker >= the Walker PP3 cut point (config/walker2023.yaml) and func_pathogenicity <= 0 (normal under the published range (urn:mavedb:00001277-a-1) label), as evid_inframe.external_subset",
+    "rule": "spliceai_walker >= the Walker PP3 cut point (config/walker2023.yaml) and func_pathogenicity <= 0 (normal under the investigator-provided range (urn:mavedb:00001277-a-1) label), as evid_inframe.external_subset",
     "n_subset": 28,
     "by_stratum": {
       "pm12": 1,

@@ -5,12 +5,12 @@ Seven genes,,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and a
 Seven genes,,Pangolin,Pangolin ≥ 0.2 and assay normal,Canonical dinucleotides (out of scope),9,25,1,35,0.257,0.265
 Seven genes,,Pangolin,Pangolin ≥ 0.2 and assay normal,3–10,131,185,32,348,0.376,0.415
 Seven genes,,Pangolin,Pangolin ≥ 0.2 and assay normal,11–50,44,84,13,141,0.312,0.344
-DDX3X,Deposit classification,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,Canonical dinucleotides (out of scope),15,32,0,47,0.319,0.319
-DDX3X,Deposit classification,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,3–10,45,99,18,162,0.278,0.313
-DDX3X,Deposit classification,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,11–25,14,53,14,81,0.173,0.209
-DDX3X,Deposit classification,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,Canonical dinucleotides (out of scope),15,31,1,47,0.319,0.326
-DDX3X,Deposit classification,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,3–10,39,111,12,162,0.241,0.260
-DDX3X,Deposit classification,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification label,11–25,9,55,17,81,0.111,0.141
+DDX3X,Deposit classification (urn:mavedb:00000658-0-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification (urn:mavedb:00000658-0-1) label,Canonical dinucleotides (out of scope),15,32,0,47,0.319,0.319
+DDX3X,Deposit classification (urn:mavedb:00000658-0-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification (urn:mavedb:00000658-0-1) label,3–10,45,99,18,162,0.278,0.313
+DDX3X,Deposit classification (urn:mavedb:00000658-0-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification (urn:mavedb:00000658-0-1) label,11–25,14,53,14,81,0.173,0.209
+DDX3X,Deposit classification (urn:mavedb:00000658-0-1),Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification (urn:mavedb:00000658-0-1) label,Canonical dinucleotides (out of scope),15,31,1,47,0.319,0.326
+DDX3X,Deposit classification (urn:mavedb:00000658-0-1),Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification (urn:mavedb:00000658-0-1) label,3–10,39,111,12,162,0.241,0.260
+DDX3X,Deposit classification (urn:mavedb:00000658-0-1),Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification (urn:mavedb:00000658-0-1) label,11–25,9,55,17,81,0.111,0.141
 DDX3X,"Control-anchored, gated",SpliceAI (published basis),"SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored, gated label",Canonical dinucleotides (out of scope),19,44,0,63,0.302,0.302
 DDX3X,"Control-anchored, gated",SpliceAI (published basis),"SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored, gated label",3–10,47,111,18,176,0.267,0.297
 DDX3X,"Control-anchored, gated",SpliceAI (published basis),"SpliceAI (published basis) ≥ 0.2 and normal under the control-anchored, gated label",11–25,15,51,14,80,0.188,0.227
@@ -29,6 +29,6 @@ DDX3X,FDR,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and norm
 DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,Canonical dinucleotides (out of scope),12,34,1,47,0.255,0.261
 DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,3–10,35,120,13,168,0.208,0.226
 DDX3X,FDR,Pangolin,SpliceAI (published basis) ≥ 0.2 and normal under the FDR label,11–25,5,54,17,76,0.066,0.085
-TP53,Published range (urn:mavedb:00001277-a-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the published range (urn:mavedb:00001277-a-1) label,Canonical dinucleotides (out of scope),0,0,1,1,0.000,
-TP53,Published range (urn:mavedb:00001277-a-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the published range (urn:mavedb:00001277-a-1) label,3–10,2,14,9,25,0.080,0.125
-TP53,Published range (urn:mavedb:00001277-a-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the published range (urn:mavedb:00001277-a-1) label,11–12,0,1,1,2,0.000,0.000
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the investigator-provided range (urn:mavedb:00001277-a-1) label,Canonical dinucleotides (out of scope),0,0,1,1,0.000,
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the investigator-provided range (urn:mavedb:00001277-a-1) label,3–10,2,14,9,25,0.080,0.125
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the investigator-provided range (urn:mavedb:00001277-a-1) label,11–12,0,1,1,2,0.000,0.000

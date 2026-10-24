@@ -123,7 +123,8 @@ def test_licence_data_names_every_score_file_stage_e18_committed():
 
 
 # --------------------------------------------------------------------------
-# E18.4: TP53's primary label is named for the published ranges it equals
+# E18.4: TP53's primary label is the investigator-provided ranges' classification;
+# since the author's decision of 2026-10-24 every primary label is named for its source
 # --------------------------------------------------------------------------
 TP53_RAW = EXT / "tp53_raw"
 
@@ -146,7 +147,7 @@ def test_the_published_ranges_reproduce_tp53s_label_row_for_row():
     assert t.same_coordinates.all() and t.same_label.all() and len(t) == 288
 
 
-def test_tp53s_primary_label_carries_the_published_ranges_name():
+def test_tp53s_primary_label_carries_its_sources_name():
     sup = REPORTS / "supplement"
     name = X.TP53_PRIMARY_LABEL_NAME
     s1 = pd.read_csv(sup / "tableS1_functional_standards.csv", keep_default_na=False).set_index("Gene")
@@ -158,3 +159,34 @@ def test_tp53s_primary_label_carries_the_published_ranges_name():
     assert "Control-anchored" in set(s12.loc[s12.Gene == "DDX3X", "Label definition"])
     s13 = pd.read_csv(sup / "tableS13_inframe_attribution.csv", keep_default_na=False)
     assert set(s13.loc[s13["Gene set"] == "TP53", "Label definition"]) == {name}
+
+
+def test_the_primary_labels_are_named_for_their_sources():
+    """The author's decision of 2026-10-24: each external gene's primary label is named
+    for its source as the source's record calls it, with the score set's URN; the
+    figures write the short forms. No output names a label a "published range"."""
+    assert X.TP53_PRIMARY_LABEL_NAME == "Investigator-provided range (urn:mavedb:00001277-a-1)"
+    assert X.DDX3X_PRIMARY_LABEL_NAME == "Deposit classification (urn:mavedb:00000658-0-1)"
+    assert (X.TP53_PRIMARY_LABEL_SHORT, X.DDX3X_PRIMARY_LABEL_SHORT) == (
+        "investigator-provided range", "deposit classification")
+    rec = json.loads((TP53_RAW / "range_check.json").read_text())
+    assert rec["calibration"]["title"] == "Investigator-provided functional ranges"
+    meta = json.loads((TP53_RAW / "scoreset_meta.json").read_text())
+    used = [c for c in meta["scoreCalibrations"] if c.get("investigatorProvided") is True]
+    assert [c["title"] for c in used] == ["Investigator-provided functional ranges"]
+    sup = REPORTS / "supplement"
+    name = X.DDX3X_PRIMARY_LABEL_NAME
+    s1 = pd.read_csv(sup / "tableS1_functional_standards.csv", keep_default_na=False).set_index("Gene")
+    assert s1.loc["DDX3X", "Classes mapped to damaging"].startswith(f"{name} (primary): abnormal")
+    s12 = pd.read_csv(sup / "tableS12_external_genes.csv", keep_default_na=False)
+    labels = set(s12.loc[s12.Gene == "DDX3X", "Label definition"])
+    assert name in labels and "Deposit classification" not in labels
+    s13 = pd.read_csv(sup / "tableS13_inframe_attribution.csv", keep_default_na=False)
+    assert name in set(s13.loc[s13["Gene set"] == "DDX3X", "Label definition"])
+    found = []
+    for root in (REPORTS, EXT):
+        for f in root.rglob("*"):
+            if f.suffix in (".csv", ".json", ".md", ".tsv") and f.is_file() \
+                    and "published range" in f.read_text(errors="ignore").lower():
+                found.append(str(f.relative_to(REPO)))
+    assert not found, found

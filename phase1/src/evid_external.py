@@ -127,15 +127,41 @@ _PRO_NON = re.compile(r"p\.[A-Za-z]{3}\d+(Ter|\*)")
 FDR_CUT = 0.01
 # TP53 to |offset| 12: the archived 192 rows plus the 96 scored by evid_tp53_extend
 TP53_TABLE = EXT_DIR / "tp53_splice_scored_12nt.parquet"
-# E18.4: the name TP53's primary label carries in every output. Its construction in
-# _load_external (relative fitness score > 0) is, variant by variant, the classification
-# by the investigator-provided ranges of urn:mavedb:00001277-a-1: all 288 rows E7 reads,
-# at their own coordinates (scripts/stage_E18/check_tp53_ranges.py; tp53_raw/). So the
-# label is named for the published ranges; its column keeps the name y_control_anchored.
-TP53_PRIMARY_LABEL_NAME = "Published range (urn:mavedb:00001277-a-1)"
-# The figures' short form, written as they write DDX3X's ("deposit label", "deposit
-# classification"); the URN goes into the caption (the author's decision of 2026-10-23)
-TP53_PRIMARY_LABEL_SHORT = "published range"
+# The names every output gives the external genes' primary labels, from this one place:
+# each is named for its source as the source's record calls it, with the URN of the
+# score set it comes from (the author's decision of 2026-10-24). A label read from a
+# score set's investigator-provided ranges is an "Investigator-provided range"; one
+# copied from a deposit's per-variant class column a "Deposit classification". The
+# figures write the short forms, and the URN goes into the caption.
+#   TP53 (E18.4): its construction in _load_external (relative fitness score > 0) is,
+# variant by variant, the classification by the investigator-provided ranges of
+# urn:mavedb:00001277-a-1, the calibration its record titles "Investigator-provided
+# functional ranges" (investigatorProvided: true; the record's two other calibrations,
+# IGVF's and ExCALIBR's, are not used): all 288 rows E7 reads, at their own coordinates
+# (scripts/stage_E18/check_tp53_ranges.py; tp53_raw/). Its column keeps the name
+# y_control_anchored.
+#   DDX3X: the deposit's own call, the class column of the classification score set.
+LABEL_SOURCE_NAME = {"ranges": "Investigator-provided range",
+                     "classification": "Deposit classification"}
+PRIMARY_LABEL_SOURCE = {"DDX3X": ("classification", DDX3X_CLASSIFICATION_SCORESET),
+                        "TP53": ("ranges", "urn:mavedb:00001277-a-1")}
+
+
+def primary_label_name(gene: str) -> str:
+    """The tables' name for a gene's primary label: its source and the score set's URN."""
+    kind, urn = PRIMARY_LABEL_SOURCE[gene]
+    return f"{LABEL_SOURCE_NAME[kind]} ({urn})"
+
+
+def primary_label_short(gene: str) -> str:
+    """The figures' name for it, without the URN."""
+    return LABEL_SOURCE_NAME[PRIMARY_LABEL_SOURCE[gene][0]].lower()
+
+
+TP53_PRIMARY_LABEL_NAME = primary_label_name("TP53")
+TP53_PRIMARY_LABEL_SHORT = primary_label_short("TP53")
+DDX3X_PRIMARY_LABEL_NAME = primary_label_name("DDX3X")
+DDX3X_PRIMARY_LABEL_SHORT = primary_label_short("DDX3X")
 
 
 def stratum_of(offset: int) -> str:

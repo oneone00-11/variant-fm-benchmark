@@ -1,0 +1,62 @@
+{
+ "script": "scripts/stage_E18/check_tp53_ranges.py",
+ "argv": [
+  "scripts/stage_E18/check_tp53_ranges.py"
+ ],
+ "git_commit": "889e4004131a6cd028990b9de22a2c1147f59546",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_tp53_ranges.py": "df3e1a03d750558689b0253bad9ff85def31a2bebf9c468e1fdcf679b1b718a5",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-24T00:57:38+00:00",
+ "end_utc": "2026-10-24T00:57:39+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/external/tp53_raw/scoreset_meta.json",
+   "bytes": 198807,
+   "sha256": "103f8b96528a4a904f74d4583092a70eec6bab59a933ab8d320aadac30cada29"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_raw/urn_mavedb_00001277-a-1.csv",
+   "bytes": 1071081,
+   "sha256": "15ed0e9933b302628a7326ba759231619406385ae518d3bdc174f41e79b14e62"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_splice_scored_12nt.parquet",
+   "bytes": 69325,
+   "sha256": "b06dc44d13e8d4e2999d625e3d216c8908adac555c2a348120eaeff260210c89"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/external/tp53_raw/range_check.tsv",
+   "bytes": 39194,
+   "sha256": "8ee8b425598c3ee2b435ddef5925c37771229b484c97cdfb1ab1d96feaaf439a"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_raw/range_check.json",
+   "bytes": 1276,
+   "sha256": "af601cd237d97a79c5be1840a0d2dce9014cae90c2adc9c1c6edb8a05db752e5"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "result": {
+   "rows_e7_reads": 288,
+   "covered": 288,
+   "same_coordinates": 288,
+   "same_label": 288
+  }
+ }
+}

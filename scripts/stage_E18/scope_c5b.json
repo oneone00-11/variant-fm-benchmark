@@ -1,0 +1,203 @@
+{
+ "commit": "E18.4b",
+ "reason": "each external gene's primary label is named for its source as the source's record calls it, with the URN of the score set it comes from (the author's decision of 2026-10-24): TP53's 'Investigator-provided range (urn:mavedb:00001277-a-1)', the calibration its record titles 'Investigator-provided functional ranges' (investigatorProvided: true), where 'Published range' was imprecise and ambiguous beside the record's IGVF calibration; DDX3X's 'Deposit classification (urn:mavedb:00000658-0-1)'. The figures write the short forms, the URN going into the caption",
+ "declared_from": "the author's decision of 2026-10-24: a commit of its own before E18.6 that changes text only, every number byte for byte the same, declared to the field. The outputs that print the two names: Supplementary Tables S1, S12 and S13, the TP53 table's manifest (its in-frame rule), the range check's record (label_name), Figures 1 and 4; with them, declared beforehand by the author's decision of 2026-10-23, the supplement manifest's hashes of those tables and any Source sha256 entry of a file this scope declares. Each table's rename is applied to the previous commit's rows of that gene's primary label only: DDX3X's and TP53's sensitivity labels keep their names. Figure 1's group headings move left, the one layout change, by the author's decision of 2026-10-24: at their old place TP53's new name ran 62 px into panel a",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/supplement/tableS1_functional_standards.csv": {
+   "kind": "rows",
+   "key": [
+    "Gene"
+   ],
+   "gene": "Gene",
+   "tool": "Gene",
+   "fields": [],
+   "rename_groups": [
+    {
+     "where": {
+      "Gene": "TP53"
+     },
+     "renames": [
+      [
+       "Published range (urn:mavedb:00001277-a-1)",
+       "Investigator-provided range (urn:mavedb:00001277-a-1)"
+      ],
+      [
+       "published range (urn:mavedb:00001277-a-1)",
+       "investigator-provided range (urn:mavedb:00001277-a-1)"
+      ]
+     ]
+    },
+    {
+     "where": {
+      "Gene": "DDX3X"
+     },
+     "renames": [
+      [
+       "Deposit classification",
+       "Deposit classification (urn:mavedb:00000658-0-1)"
+      ],
+      [
+       "deposit classification label",
+       "deposit classification (urn:mavedb:00000658-0-1) label"
+      ]
+     ]
+    }
+   ]
+  },
+  "phase1/reports/evidence/supplement/tableS12_external_genes.csv": {
+   "kind": "rows",
+   "key": [
+    "Gene",
+    "Label definition",
+    "Stratum (intronic offset, bp)",
+    "Tool"
+   ],
+   "gene": "Gene",
+   "tool": "Tool",
+   "fields": [],
+   "rename_groups": [
+    {
+     "where": {
+      "Gene": "TP53",
+      "Label definition": "Published range (urn:mavedb:00001277-a-1)"
+     },
+     "renames": [
+      [
+       "Published range (urn:mavedb:00001277-a-1)",
+       "Investigator-provided range (urn:mavedb:00001277-a-1)"
+      ],
+      [
+       "published range (urn:mavedb:00001277-a-1)",
+       "investigator-provided range (urn:mavedb:00001277-a-1)"
+      ]
+     ]
+    },
+    {
+     "where": {
+      "Gene": "DDX3X",
+      "Label definition": "Deposit classification"
+     },
+     "renames": [
+      [
+       "Deposit classification",
+       "Deposit classification (urn:mavedb:00000658-0-1)"
+      ],
+      [
+       "deposit classification label",
+       "deposit classification (urn:mavedb:00000658-0-1) label"
+      ]
+     ]
+    }
+   ]
+  },
+  "phase1/reports/evidence/supplement/tableS13_inframe_attribution.csv": {
+   "kind": "rows",
+   "key": [
+    "Gene set",
+    "Label definition",
+    "Events read from",
+    "Variant subset",
+    "Stratum (intronic offset, bp)"
+   ],
+   "gene": "Gene set",
+   "tool": "Events read from",
+   "fields": [],
+   "rename_groups": [
+    {
+     "where": {
+      "Gene set": "TP53",
+      "Label definition": "Published range (urn:mavedb:00001277-a-1)"
+     },
+     "renames": [
+      [
+       "Published range (urn:mavedb:00001277-a-1)",
+       "Investigator-provided range (urn:mavedb:00001277-a-1)"
+      ],
+      [
+       "published range (urn:mavedb:00001277-a-1)",
+       "investigator-provided range (urn:mavedb:00001277-a-1)"
+      ]
+     ]
+    },
+    {
+     "where": {
+      "Gene set": "DDX3X",
+      "Label definition": "Deposit classification"
+     },
+     "renames": [
+      [
+       "Deposit classification",
+       "Deposit classification (urn:mavedb:00000658-0-1)"
+      ],
+      [
+       "deposit classification label",
+       "deposit classification (urn:mavedb:00000658-0-1) label"
+      ]
+     ]
+    }
+   ]
+  },
+  "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+   "kind": "fields",
+   "key": [
+    "File"
+   ],
+   "sources_in_scope": true,
+   "rows": {
+    "tableS1_functional_standards.csv": [
+     "File sha256"
+    ],
+    "tableS12_external_genes.csv": [
+     "File sha256"
+    ],
+    "tableS13_inframe_attribution.csv": [
+     "File sha256"
+    ]
+   }
+  },
+  "phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json": {
+   "kind": "json",
+   "paths": [
+    [
+     "inframe",
+     "rule"
+    ]
+   ],
+   "why": "the in-frame subset's rule names TP53's primary label, read from the same mapping"
+  },
+  "phase1/data/evidence/external/tp53_raw/range_check.json": {
+   "kind": "json",
+   "paths": [
+    [
+     "label_name"
+    ]
+   ],
+   "why": "the record of the range check names the label it reproduces"
+  },
+  "phase1/reports/evidence/figures/figure1.png": {
+   "kind": "file",
+   "why": "Figure 1 names DDX3X's and TP53's primary labels beside their rows, in the short forms 'deposit classification' (it wrote 'deposit label') and 'investigator-provided range'; its group headings start further left (axes x -0.70, from -0.56) so that the longer names stay clear of panel a (the author's decision of 2026-10-24)"
+  },
+  "phase1/reports/evidence/figures/figure1.pdf": {
+   "kind": "file",
+   "why": "Figure 1 names DDX3X's and TP53's primary labels beside their rows, in the short forms 'deposit classification' (it wrote 'deposit label') and 'investigator-provided range'; its group headings start further left (axes x -0.70, from -0.56) so that the longer names stay clear of panel a (the author's decision of 2026-10-24)"
+  },
+  "phase1/reports/evidence/figures/figure4.png": {
+   "kind": "file",
+   "why": "Figure 4 names the two primary labels in its panel titles, in the short forms 'deposit classification' and 'investigator-provided range'"
+  },
+  "phase1/reports/evidence/figures/figure4.pdf": {
+   "kind": "file",
+   "why": "Figure 4 names the two primary labels in its panel titles, in the short forms 'deposit classification' and 'investigator-provided range'"
+  },
+  "phase1/reports/evidence/fig_data/fig1_draft.png": {
+   "kind": "file",
+   "why": "the draft, if it prints a label"
+  },
+  "phase1/reports/evidence/fig_data/fig4_draft.png": {
+   "kind": "file",
+   "why": "the draft, if it prints a label"
+  }
+ }
+}

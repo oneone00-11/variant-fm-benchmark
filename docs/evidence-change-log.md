@@ -1376,3 +1376,43 @@ checked by `check_scope.py`).
   sensitive than in the seven genes they were fitted on by as much as 0.35, and less
   specific by as much as 0.06 (it read 0.52 and 0.06 for the medians against the
   held-out genes).
+
+## After the thresholds were frozen: the external genes' primary labels are named for their sources (stage E18, 2026-10-24)
+
+Why: by the author's decision of 2026-10-24 each external gene's primary label is named
+for its source as the source's record calls it, with the URN of the score set it comes
+from. TP53's label is the classification by the calibration its record titles
+"Investigator-provided functional ranges" (`investigatorProvided: true`); the same record
+carries two other calibrations, IGVF's and ExCALIBR's, so "Published range", the name
+E18.4 gave it, was imprecise and ambiguous. One reason, one commit, before E18.6: only
+text changes, every number byte for byte the same (`scripts/stage_E18/scope_c5b.json`,
+declared to the field and checked by `check_scope.py`).
+
+- The names come from one mapping in `evid_external` (`PRIMARY_LABEL_SOURCE`): a label
+  read from a score set's investigator-provided ranges is an "Investigator-provided
+  range", one copied from a deposit's class column a "Deposit classification", each
+  followed by the score set's URN:
+  - TP53: "Investigator-provided range (urn:mavedb:00001277-a-1)";
+  - DDX3X: "Deposit classification (urn:mavedb:00000658-0-1)", the class column of its
+    classification score set.
+
+  Their other labels, sensitivity labels, keep their names.
+- Where the names are printed: Supplementary Tables S1, S12 and S13 (S13 names the label
+  in lower case in each in-frame subset's description); the TP53 table's manifest, in its
+  in-frame rule; and the range check's record, `label_name`. The range check ran again
+  in the image: 288 of 288 rows covered, at the same coordinates, with the same label;
+  `range_check.tsv` is byte for byte the same.
+- Figures 1 and 4 write the short forms, "investigator-provided range" and "deposit
+  classification" (Figure 1 wrote "deposit label" for DDX3X); the URNs go into the
+  caption. At its old place Figure 1's heading for TP53 ran 62 px into panel a (of a
+  2,161-px-wide PNG), and DDX3X's ended 1 px short of it. By the author's decision of
+  2026-10-24 Figure 1's group headings now start further left, at axes x -0.70 instead
+  of -0.56; no row, axis or panel moves. Figure 4's titles fit as they were.
+- `check_scope.py` against the previous commit: ten outputs differ, none outside the
+  scope. With each gene's primary-label rename applied to that label's rows
+  (`rename_groups`, new in `check_scope.py`), Supplementary Tables S1, S12 and S13 are row
+  for row the previous commit's; the supplement manifest changes in the three tables'
+  file hashes, and the TP53 table's manifest and the range check's record each in the one
+  field that names the label. The drafts of
+  Figures 1 and 4, declared, did not change. A case-insensitive search of every output
+  finds "published range" nowhere.

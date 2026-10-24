@@ -1,0 +1,105 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E18/scope_c5b.json",
+  "--base",
+  "889e400"
+ ],
+ "git_commit": "889e4004131a6cd028990b9de22a2c1147f59546",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E18/_runlog.py": "5a5723f0d4b6fe8aa539288f58b8a171021508a657212d03e6ce2126791249d6"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-24T01:32:40+00:00",
+ "end_utc": "2026-10-24T01:32:55+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E18/scope_c5b.json",
+   "bytes": 6869,
+   "sha256": "71f5dd763411c4cdd504e8e5510ee96d83f2f731e5917dac7755b3c37b0e9682"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E18/scope_c5b.json",
+  "base": "889e400",
+  "head": "working tree",
+  "files": {
+   "phase1/data/evidence/external/tp53_raw/range_check.json": {
+    "changed": 1,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json": {
+    "changed": 1,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/figures/figure1.pdf": {
+    "status": "declared",
+    "why": "Figure 1 names DDX3X's and TP53's primary labels beside their rows, in the short forms 'deposit classification' (it wrote 'deposit label') and 'investigator-provided range'; its group headings start further left (axes x -0.70, from -0.56) so that the longer names stay clear of panel a (the author's decision of 2026-10-24)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/figures/figure1.png": {
+    "status": "declared",
+    "why": "Figure 1 names DDX3X's and TP53's primary labels beside their rows, in the short forms 'deposit classification' (it wrote 'deposit label') and 'investigator-provided range'; its group headings start further left (axes x -0.70, from -0.56) so that the longer names stay clear of panel a (the author's decision of 2026-10-24)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/figures/figure4.pdf": {
+    "status": "declared",
+    "why": "Figure 4 names the two primary labels in its panel titles, in the short forms 'deposit classification' and 'investigator-provided range'",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/figures/figure4.png": {
+    "status": "declared",
+    "why": "Figure 4 names the two primary labels in its panel titles, in the short forms 'deposit classification' and 'investigator-provided range'",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+    "changed": 3,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/tableS12_external_genes.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/tableS13_inframe_attribution.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/tableS1_functional_standards.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   }
+  },
+  "declared_but_unchanged": [
+   "phase1/reports/evidence/fig_data/fig1_draft.png",
+   "phase1/reports/evidence/fig_data/fig4_draft.png"
+  ],
+  "outside": []
+ }
+}

@@ -38,7 +38,6 @@ PHASE1 = REPO / "phase1"
 RAW = PHASE1 / "data/evidence/external/tp53_raw"
 URN = "urn:mavedb:00001277-a-1"
 TRANSCRIPT = "NM_000546.6"
-NAME = f"Published range ({URN})"
 
 
 def main() -> None:
@@ -47,6 +46,7 @@ def main() -> None:
     import pandas as pd
     from src import evid_external as X
     from src import evid_newgenes as NG
+    name = X.TP53_PRIMARY_LABEL_NAME
     with RunLog(__file__) as log:
         man = json.loads((RAW / "manifest.json").read_text())
         for f in man["files"]:
@@ -103,7 +103,7 @@ def main() -> None:
         log.output(RAW / "range_check.tsv")
         cal = src["calibration"]
         result = {
-            "urn": URN, "label_name": NAME,
+            "urn": URN, "label_name": name,
             "rows_e7_reads": int(len(out)),
             "covered": int((out["score_set_row"] != "").sum()),
             "same_coordinates": int(out["same_coordinates"].sum()),
@@ -129,7 +129,8 @@ def main() -> None:
         print(f"TP53: {result['covered']}/{len(out)} covered, {result['same_coordinates']} at the "
               f"same coordinates, {result['same_label']} with the same label")
         if not (result["covered"] == result["same_coordinates"] == result["same_label"] == len(out) == 288):
-            raise SystemExit("TP53's published ranges do not reproduce E7's label row for row: "
+            raise SystemExit("TP53's investigator-provided ranges do not reproduce E7's label "
+                             "row for row: "
                              "stopped (E18.4)")
 
 

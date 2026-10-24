@@ -218,7 +218,7 @@ def figure1() -> None:
             if len(r):
                 rows.append((y, ARM_LABEL[arm], None, r.iloc[0])); y += 1
         y += 0.4
-    for gene, lab in (("DDX3X", "deposit label"),
+    for gene, lab in (("DDX3X", X.DDX3X_PRIMARY_LABEL_SHORT),
                       ("TP53", X.TP53_PRIMARY_LABEL_SHORT)):
         g = ext[ext.gene == gene]
         if not len(g):
@@ -275,7 +275,10 @@ def figure1() -> None:
     ax0.set_yticklabels([r[1] for r in rows if r[1] is not None])
     for yy, lab, head, rec in rows:
         if head:
-            ax0.text(-0.56, yy, head, transform=ax0.get_yaxis_transform(),
+            # the group headings start far enough left that the longest, an external
+            # gene's primary label, stays clear of panel a (the author's decision of
+            # 2026-10-24)
+            ax0.text(-0.70, yy, head, transform=ax0.get_yaxis_transform(),
                      fontsize=7, fontweight="bold", color=INK, va="center", ha="left")
     handles = [Line2D([], [], marker="o", ls="", color=ARM_COLOUR[a], mec="white",
                       label=ARM_LABEL[a], ms=4.5) for a in ARMS]
@@ -529,7 +532,7 @@ def figure4() -> None:
                     draw(tier, t["lr_at_insample_threshold"],
                          t.get("lr_at_insample_threshold_lo", np.nan),
                          t.get("lr_at_insample_threshold_hi", np.nan))
-        lab = "deposit classification" if gene == "DDX3X" else X.TP53_PRIMARY_LABEL_SHORT
+        lab = X.primary_label_short(gene)
         ax.set_title(f"{_it(gene)}, {_band_label(gene, st)}, {lab}", loc="left", pad=11)
         ax.set_xlabel("Likelihood ratio in the external gene")
         _logfmt(ax)

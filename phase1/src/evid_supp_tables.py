@@ -153,14 +153,14 @@ GENE_SET_LABEL = {"all_genes": "Seven genes", "no_BRCA1": "Without BRCA1"}
 LABEL_NAME = {"y_deposit": "Deposit classification",
               "y_control_anchored_gated": "Control-anchored, gated",
               "y_control_anchored": "Control-anchored", "y_fdr": "FDR",
-              # evid_inframe's name for TP53's control-anchored label, which is named for
-              # the published ranges it equals (E18.4)
+              # evid_inframe's name for TP53's primary label (evid_external names it)
               "y_tp53_control_anchored": EXT.TP53_PRIMARY_LABEL_NAME,
               "y_median_split": "Median split",
               "y_mid_band_excluded": "Mid-band excluded"}
-# TP53's primary label is named for the published ranges it equals (E18.4); DDX3X's
-# control-anchored label, a sensitivity label, keeps its name
-LABEL_NAME_FOR = {("TP53", "y_control_anchored"): EXT.TP53_PRIMARY_LABEL_NAME}
+# the external genes' primary labels are named for their sources (evid_external); their
+# other labels, sensitivity labels, keep their names
+LABEL_NAME_FOR = {("TP53", "y_control_anchored"): EXT.TP53_PRIMARY_LABEL_NAME,
+                  ("DDX3X", "y_deposit"): EXT.DDX3X_PRIMARY_LABEL_NAME}
 
 
 def label_name(lab: str, gene: str | None = None) -> str:
@@ -586,10 +586,10 @@ def s1() -> tuple[pd.DataFrame, list[Path]]:
         "Transcript": man["transcript"],
         "Published class field": EXT.DDX3X_CLASS_COLUMN,
         "Classes mapped to damaging": (
-            f"{LABEL_NAME['y_deposit']} (primary): abnormal, a random-forest call on "
+            f"{label_name('y_deposit', 'DDX3X')} (primary): abnormal, a random-forest call on "
             "the assay's combined log fold-changes whose boundary was trained on "
             "clinically classified variants"),
-        "Classes mapped to normal": f"{LABEL_NAME['y_deposit']}: normal",
+        "Classes mapped to normal": f"{label_name('y_deposit', 'DDX3X')}: normal",
         "Classes mapped to missing": (
             "No variant: every scored variant carries the deposit's call"
             if cnt["y_deposit"]["missing"] == 0
@@ -611,7 +611,7 @@ def s1() -> tuple[pd.DataFrame, list[Path]]:
                else "excludes none")
             + f"; {LABEL_NAME['y_fdr']}, trend BH-FDR < {EXT.FDR_CUT} and score below "
             "the synonymous median. " + "; ".join(
-                f"{LABEL_NAME[c]}: {v['damaging']} damaging, {v['normal']} normal"
+                f"{label_name(c, 'DDX3X')}: {v['damaging']} damaging, {v['normal']} normal"
                 for c, v in cnt.items()) + "."),
     })
 

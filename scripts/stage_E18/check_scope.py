@@ -11,7 +11,8 @@ scope file (scripts/stage_E18/scope_<commit>.json), in one of three ways:
             changed row may change only the declared fields ("*": any); a table of one
             gene with no gene column declares the gene ("gene_const"); a declared rename
             ("renames", in the rows "rename_where" selects) is applied to the previous
-            commit's rows first, so that a renamed label leaves no other difference, and
+            commit's rows first, so that a renamed label leaves no other difference
+            ("rename_groups": several such, each with its own "where"), and
             so is a declared rename of columns ("column_renames", whole names, and
             "column_prefix_renames", the start of a name), so that a column kept under a
             new name must hold the previous commit's cells unchanged;
@@ -128,14 +129,21 @@ def check_rows(path: str, decl: dict, old: pd.DataFrame | None, new: pd.DataFram
                     return b_ + c[len(a_):]
             return c
         old = old.rename(columns=renamed)
-    if old is not None and decl.get("renames"):
+    groups = ([{"where": decl.get("rename_where", {}), "renames": decl["renames"]}]
+              if decl.get("renames") else []) + decl.get("rename_groups", [])
+    if old is not None and groups:
         old = old.copy()
-        where = pd.Series(True, index=old.index)
-        for col, val in decl.get("rename_where", {}).items():
-            where &= old[col] == val
-        for col in old.columns:
-            for a_, b_ in decl["renames"]:
-                old.loc[where, col] = old.loc[where, col].str.replace(a_, b_, regex=False)
+        # each group's rows are chosen on the previous commit's text, before any renaming
+        wheres = []
+        for g in groups:
+            where = pd.Series(True, index=old.index)
+            for col, val in g.get("where", {}).items():
+                where &= old[col] == val
+            wheres.append(where)
+        for g, where in zip(groups, wheres):
+            for col in old.columns:
+                for a_, b_ in g["renames"]:
+                    old.loc[where, col] = old.loc[where, col].str.replace(a_, b_, regex=False)
     a, b = keyed(old), keyed(new)
     out = {"added": 0, "removed": 0, "changed": 0, "outside": []}
     for k in sorted(set(a) | set(b), key=str):
