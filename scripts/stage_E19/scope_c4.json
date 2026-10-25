@@ -1,0 +1,10 @@
+{
+ "commit": "E19.6 (C4)",
+ "reason": "C4: prior sensitivity, E3's in-sample thresholds at the priors 0.05, 0.10 and 0.185 with the tier edges moved by the fixed-posterior rule, a new stage (evid_suppl_c4) appended after every existing stage",
+ "declared_from": "E19.6 and E19.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/c4_band_edges.csv": {"kind": "file", "why": "new: the four tiers' edges on both sides at each prior, and the posterior each keeps; the formula and the edges in the header"},
+  "phase1/reports/evidence/suppl_analyses/c4_prior_sensitivity.csv": {"kind": "file", "why": "new: E3's in-sample fit at each prior's edges, cell by cell beside the fit at 0.10 (the frozen one), with whether Strong is still reached; the formula and the edges in the header"}
+ }
+}

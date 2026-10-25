@@ -1536,3 +1536,24 @@ follows in commits of its own.
 - `c3_without_bard1_palb2.csv`: not refitted; E11's fits of the subsets without BARD1,
   without PALB2 and without both (the PP3 side, Moderate and Strong, its four columns),
   beside every gene's. Of 24 cells each, 2, 1 and 2 lose their tier.
+
+## Supplementary analyses, C4: prior sensitivity (stage E19, 2026-10-25)
+
+Why: revision item C4 asks how the tiers depend on the prior of 0.10 (E19.6). A new
+stage, `evid_suppl_c4` (stage 31, after every existing stage), only adds files under
+`phase1/reports/evidence/suppl_analyses/`; every existing output is unchanged
+(`scripts/stage_E19/scope_c4.json`).
+
+- The priors: 0.05, 0.10 (the frozen fit) and 0.185, fixed in advance (E19.6). Each
+  tier's edge keeps the posterior its frozen edge gives at 0.10:
+  `LR_p = LR_0.10 x [0.10 / (1 - 0.10)] / [p / (1 - p)]`; the formula and the three
+  priors' edges head both files. All four tiers on both sides are converted, Very
+  strong included (the author's decision of 2026-10-25).
+- The fit: E3's own in-sample function, bootstrap and seed keys, for every cell of
+  `evidence_thresholds.csv` (fourteen columns, five strata, both sides, four tiers);
+  the run at 0.10 gives that file back exactly, or the stage stops.
+- `c4_prior_sensitivity.csv`: of 560 cells, 70 change tier at 0.05 (22 PP3 cells
+  lost, 48 BP4 cells gained) and 67 at 0.185 (22 PP3 gained, 45 BP4 lost). Strong is
+  reached in 29 column-stratum-side cells at 0.10; at 0.05 it is still reached in 19
+  of them, at 0.185 in all 29.
+- `c4_band_edges.csv`: the edges and the posteriors they keep.
