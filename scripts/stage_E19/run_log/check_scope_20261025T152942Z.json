@@ -1,0 +1,51 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E19/scope_twelve_gene.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "7b4d3b7e7b01f0c60d2db6af72bfc8060f05f489",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T15:29:35+00:00",
+ "end_utc": "2026-10-25T15:29:42+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E19/scope_twelve_gene.json",
+   "bytes": 753,
+   "sha256": "aa98b3761f2a7aa4164db4e1fbb9d9511ddc59b940004a55fa89e644134d0211"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E19/scope_twelve_gene.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/suppl_analyses/twelve_gene_refit.csv": {
+    "status": "declared",
+    "why": "new: every column x band x side x tier, the frozen seven-gene fit beside the twelve-gene fit, the threshold's absolute and relative change and whether the tier changed; NT and the fusion with the reason they are not refitted",
+    "change": "added"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

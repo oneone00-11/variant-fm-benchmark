@@ -1608,3 +1608,25 @@ unchanged (`scripts/stage_E19/scope_c8_c10.json`).
   below called), precision, recall, F1 and MCC, the formulas in the file's header, for
   its 336 in-sample and 336 held-out rows (133 and 102 with an MCC). For the supplement
   only.
+
+## Supplementary analyses, E19.10: the thresholds refitted on twelve genes (stage E19, 2026-10-25)
+
+Why: E19.10 asks how the in-sample thresholds move when the five further SGE genes of
+the same platform join the seven. A new stage, `evid_suppl_twelve_gene` (stage 34, after
+every existing stage), only adds a file under `phase1/reports/evidence/suppl_analyses/`;
+every existing output, every frozen file among them, is unchanged
+(`scripts/stage_E19/scope_twelve_gene.json`).
+
+- The genes: the seven training genes and CTCF, SFPQ, RAD51D, XRCC2 and SBDS (DDX3X and
+  TP53 left out: other cell lines and label mechanisms). The five genes' rows are E18's
+  `newgenes_scored.parquet`, all at 3-50 nt, read as E7 reads them, under their primary
+  labels; they follow the analysis set's rows, in E7's gene order.
+- The columns: twelve, the panel without NT (no column of the analysis set's variable
+  on the new genes); the fusion is not refitted (a trained model, with NT among its
+  inputs). Both have rows that say so.
+- The fit: E3's in-sample function, bootstrap and seed keys, the frozen fit's, on 3-10,
+  11-50 and 3-50 nt (twelve genes, eleven at 11-50 nt); no leave-one-gene-out fit. The
+  same code on the seven genes alone gives `evidence_thresholds.csv` back exactly.
+- `twelve_gene_refit.csv`: of 288 cells, 29 change tier (PP3: 5 gained, 8 lost; BP4: 16
+  lost); where both fits reach the tier (91 cells) the threshold moves by a median of
+  14.0% of the seven-gene value.

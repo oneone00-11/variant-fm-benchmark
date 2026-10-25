@@ -84,6 +84,7 @@ Stages
  31  evid_suppl_c4           prior sensitivity: the tiers at priors 0.05, 0.10, 0.185 (E19 C4)
  32  evid_suppl_c5           held-out ratios' intervals, Table 3 counts two ways, jackknife (E19 C5)
  33  evid_suppl_c8_c10       without BAP1, family held out, MCC and F1 (E19 C8-C10)
+ 34  evid_suppl_twelve_gene  the in-sample thresholds refitted on twelve genes (E19.10)
 
 Outputs land in `phase1/reports/evidence/`; stages 23 to 27 also write a page under
 `docs/`, and the supplementary analyses of E19 (stages 29 on) write under its
@@ -227,6 +228,7 @@ STAGES = [
     ("src.evid_suppl_c4",           "E19 C4 prior sensitivity", []),
     ("src.evid_suppl_c5",           "E19 C5 held-out intervals and fold counts", []),
     ("src.evid_suppl_c8_c10",       "E19 C8-C10 read from existing outputs", []),
+    ("src.evid_suppl_twelve_gene",  "E19.10 twelve-gene refit", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.

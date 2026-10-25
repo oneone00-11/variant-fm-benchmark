@@ -1,0 +1,9 @@
+{
+ "commit": "E19.10 (twelve-gene refit)",
+ "reason": "E3's in-sample thresholds refitted on the seven genes and CTCF, SFPQ, RAD51D, XRCC2 and SBDS, twelve columns (no NT; the fusion not refitted), a new stage (evid_suppl_twelve_gene) appended after every existing stage; no frozen file changes",
+ "declared_from": "E19.10 and E19.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/twelve_gene_refit.csv": {"kind": "file", "why": "new: every column x band x side x tier, the frozen seven-gene fit beside the twelve-gene fit, the threshold's absolute and relative change and whether the tier changed; NT and the fusion with the reason they are not refitted"}
+ }
+}
