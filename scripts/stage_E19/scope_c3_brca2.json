@@ -1,0 +1,10 @@
+{
+ "commit": "E19.5 (C3 item 3: BRCA2 against the second set)",
+ "reason": "C3 item 3: the concordance of BRCA2's labels with the second set's (Sahu et al. 2025, Supplementary Table 5 by rule R6, joined by the genomic coordinate) and the two refits, a new stage (evid_suppl_c3_brca2) appended after every existing stage, on the records, rule and mapping committed before it",
+ "declared_from": "E19.5 and E19.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/c3_brca2_concordance.csv": {"kind": "file", "why": "new: the 3 x 3 table of BRCA2's and the second set's classes on the 201 variants they share at 3-50 nt, counts and shares, with each refit's counts of labels added, removed and switched; the header names the set, its range and the rows of Table 5 the author's decisions concern"},
+  "phase1/reports/evidence/suppl_analyses/c3_brca2_second_set.csv": {"kind": "file", "why": "new: the two refits ('only variants the two sets agree on', 'the second set's labels'), E3's in-sample fit beside the frozen one, in c3_intermediate.csv's form; the same header"}
+ }
+}

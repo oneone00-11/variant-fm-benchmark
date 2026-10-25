@@ -1,0 +1,21 @@
+# E19 C3, BRCA2 against a second dataset (src/evid_suppl_c3_brca2.py).
+# Second set: urn:mavedb:00001242-a-1 (Sahu et al. 2025), classes by rule R6: Supplementary Table 5's Classification, abnormal / normal / intermediate by side (paper_rule.json).
+# Joined on the genomic coordinate (the author's decisions of 2026-10-26). Table 5's 6,551 rows were checked one by one: each row's c., mapped as E16 maps coordinates, gives its g. on 6,519; 28 write a c. that does not, their g. being GRCh38's, and are joined by g.; 4 write a reference base GRCh38 does not have and are dropped.
+#   c. miswritten, g.32376668 (1 row): c.8633-2-1A>T at g.32376668A>T = the set's c.8633-2A>T
+#   c. miswritten, g.32379745-g.32379749 (15 rows): c.8953-4A>C at g.32379745A>C = the set's c.8954-5A>C; c.8953-4A>G at g.32379745A>G = the set's c.8954-5A>G; c.8953-4A>T at g.32379745A>T = the set's c.8954-5A>T; c.8953-3A>C at g.32379746A>C = the set's c.8954-4A>C; c.8953-3A>G at g.32379746A>G = the set's c.8954-4A>G; c.8953-3A>T at g.32379746A>T = the set's c.8954-4A>T; c.8953-2C>A at g.32379747C>A = the set's c.8954-3C>A; c.8953-2C>G at g.32379747C>G = the set's c.8954-3C>G; c.8953-2C>T at g.32379747C>T = the set's c.8954-3C>T; c.8953-1A>C at g.32379748A>C = the set's c.8954-2A>C; c.8953-1A>G at g.32379748A>G = the set's c.8954-2A>G; c.8953-1A>T at g.32379748A>T = the set's c.8954-2A>T; c.8953G>A at g.32379749G>A = the set's c.8954-1G>A; c.8953G>C at g.32379749G>C = the set's c.8954-1G>C; c.8953G>T at g.32379749G>T = the set's c.8954-1G>T
+#   c. miswritten, g.32394934-g.32394937 (12 rows): c.9502G>A at g.32394934G>A = the set's c.9501+1G>A; c.9502G>C at g.32394934G>C = the set's c.9501+1G>C; c.9502G>T at g.32394934G>T = the set's c.9501+1G>T; c.9503T>A at g.32394935T>A = the set's c.9501+2T>A; c.9503T>C at g.32394935T>C = the set's c.9501+2T>C; c.9503T>G at g.32394935T>G = the set's c.9501+2T>G; c.9504A>C at g.32394936A>C = the set's c.9501+3A>C; c.9504A>G at g.32394936A>G = the set's c.9501+3A>G; c.9504A>T at g.32394936A>T = the set's c.9501+3A>T; c.9505A>C at g.32394937A>C = the set's c.9501+4A>C; c.9505A>G at g.32394937A>G = the set's c.9501+4A>G; c.9505A>T at g.32394937A>T = the set's c.9501+4A>T
+#   dropped, the reference base not GRCh38's: c.8610A>C at g.32371078A>C (GRCh38 G); c.8610A>T at g.32371078A>T (GRCh38 G); c.8613A>C at g.32371081A>C (GRCh38 G); c.8613A>T at g.32371081A>T (GRCh38 G)
+# c.9505A>C/G/T thus stands twice in Table 5 (for g.32394937, the set's c.9501+4A>C/G/T, and for the exonic g.32396901); MaveDB's urn:mavedb:00001242-a-1 lacks all six rows.
+# Shared with the analysis set's 551 BRCA2 variants at 3-10 nt: 201 by Table 5 (the screening record's 198, by MaveDB's score table, is unchanged).
+# The second set covers them only on the donor side +3 ... +9 and the acceptor side -3 ... -7 (coverage_3_10.csv); elsewhere BRCA2's labels are its own in both refits.
+# BRCA2 has no variant at 11-50 nt, so that band cannot change.
+huang_class,second_set_class,n,share_of_shared,second_set,n_shared_3_50,n_agree,agree_refit_n_added_3_50,agree_refit_n_removed_3_50,agree_refit_n_switched_3_50,second_refit_n_added_3_50,second_refit_n_removed_3_50,second_refit_n_switched_3_50
+abnormal,abnormal,24,0.11940298507462686,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+abnormal,normal,13,0.06467661691542288,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+abnormal,intermediate,2,0.009950248756218905,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+normal,abnormal,25,0.12437810945273632,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+normal,normal,127,0.6318407960199005,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+normal,intermediate,7,0.03482587064676617,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+intermediate,abnormal,1,0.004975124378109453,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+intermediate,normal,2,0.009950248756218905,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+intermediate,intermediate,0,0.0,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38

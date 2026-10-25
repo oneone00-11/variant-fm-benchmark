@@ -1768,3 +1768,28 @@ output is unchanged (`scripts/stage_E19/scope_c3_brca2_records.json`).
 - `evid_label_sources.supplementary_rows` takes an optional g. column (the label audit's
   extracts are unchanged); `reproduce_evidence.py` fetches and checks the second set's
   cached table with the label audit's, and `--check` checks E19's records.
+
+## Supplementary analyses, C3 item 3: BRCA2 against the second set (stage E19, 2026-10-26)
+
+Why: E19.5 item 3, on the records, rule and mapping committed before it. A new stage,
+`evid_suppl_c3_brca2` (stage 38, after every existing stage), only adds files under
+`phase1/reports/evidence/suppl_analyses/`; every existing output is unchanged
+(`scripts/stage_E19/scope_c3_brca2.json`).
+
+- The classes: Sahu et al. 2025's Supplementary Table 5 (R6), joined to the set's BRCA2
+  variants by the genomic coordinate after the row-by-row check; BRCA2's own classes are
+  its label file's. Shared at 3-50 nt: 201 (all at 3-10 nt).
+- `c3_brca2_concordance.csv`: the 3 x 3 table of the two classes, counts and shares; the
+  two agree on 151 of the 201 (abnormal 24, normal 127); 25 that BRCA2's file calls
+  normal the second set calls abnormal, 13 the other way.
+- `c3_brca2_second_set.csv`: two refits, E3's in-sample fit beside the frozen one, in
+  `c3_intermediate.csv`'s form: 'only variants the two sets agree on' (a variant they
+  class differently loses its label, one side intermediate counting as different) and
+  'the second set's labels' (every variant the second set classes takes its class);
+  variants it does not cover keep their own. The 11-50 nt band holds no BRCA2 variant and
+  cannot change. The first refit changes no tier; the second changes 5 of 336 cells, all
+  at 3-10 nt (SpliceAI and its published basis lose PP3 Strong; three AVI BP4 cells).
+- Both files' headers name the second set, its range (donor +3 ... +9, acceptor -3 ...
+  -7), the rows of Table 5 the author's decisions concern, MaveDB's table lacking the six
+  c.9505 rows, and the shared counts (201 by Table 5; the screening's 198 by MaveDB's
+  table unchanged).

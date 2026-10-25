@@ -88,6 +88,7 @@ Stages
  35  evid_suppl_c6_c7        BP4 at the BP7 positions; SpliceAI's cut points by position (E19 C6, C7)
  36  evid_suppl_c1           the predictors against ClinVar, by stars (E19 C1)
  37  evid_suppl_c1_low       the same on assertions evaluated before the SGE data were public (E19 C1)
+ 38  evid_suppl_c3_brca2     BRCA2 against a second dataset: concordance and two refits (E19 C3)
 
 Outputs land in `phase1/reports/evidence/`; stages 23 to 27 also write a page under
 `docs/`, and the supplementary analyses of E19 (stages 29 on) write under its
@@ -239,6 +240,7 @@ STAGES = [
     ("src.evid_suppl_c6_c7",        "E19 C6 BP4 at BP7 positions; C7 by position", []),
     ("src.evid_suppl_c1",           "E19 C1 the predictors against ClinVar", []),
     ("src.evid_suppl_c1_low",       "E19 C1 low-circularity subset", []),
+    ("src.evid_suppl_c3_brca2",     "E19 C3 BRCA2 against a second dataset", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.
