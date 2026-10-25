@@ -87,6 +87,7 @@ Stages
  34  evid_suppl_twelve_gene  the in-sample thresholds refitted on twelve genes (E19.10)
  35  evid_suppl_c6_c7        BP4 at the BP7 positions; SpliceAI's cut points by position (E19 C6, C7)
  36  evid_suppl_c1           the predictors against ClinVar, by stars (E19 C1)
+ 37  evid_suppl_c1_low       the same on assertions evaluated before the SGE data were public (E19 C1)
 
 Outputs land in `phase1/reports/evidence/`; stages 23 to 27 also write a page under
 `docs/`, and the supplementary analyses of E19 (stages 29 on) write under its
@@ -233,6 +234,7 @@ STAGES = [
     ("src.evid_suppl_twelve_gene",  "E19.10 twelve-gene refit", []),
     ("src.evid_suppl_c6_c7",        "E19 C6 BP4 at BP7 positions; C7 by position", []),
     ("src.evid_suppl_c1",           "E19 C1 the predictors against ClinVar", []),
+    ("src.evid_suppl_c1_low",       "E19 C1 low-circularity subset", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.

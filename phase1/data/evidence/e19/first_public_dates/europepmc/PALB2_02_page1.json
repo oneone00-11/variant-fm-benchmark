@@ -1,0 +1,1 @@
+{"version":"6.9","hitCount":0,"request":{"queryString":"SRC:PPR AND TITLE:\"PALB2\" AND (TITLE:\"saturation genome editing\" OR ABSTRACT:\"saturation genome editing\")","resultType":"core","cursorMark":"*","pageSize":1000,"sort":"","synonym":false},"resultList":{"result":[]}}

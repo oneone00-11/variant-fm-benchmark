@@ -1,0 +1,25 @@
+gene,source,identifier,date,field,record,found_by
+BAP1,mavedb_earliest_version,urn:mavedb:00000662-0-1,2026-02-24,publishedDate,phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000662-0-1.json,
+BAP1,journal_online,10.1038/s41588-024-01799-3,2024-07-05,published-online,phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41588-024-01799-3.json,MaveDB record or Crossref relation
+BAP1,first_public_date,10.1038/s41588-024-01799-3,2024-07-05,the earliest: journal_online,phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41588-024-01799-3.json,MaveDB record or Crossref relation
+BARD1,mavedb_earliest_version,urn:mavedb:00001250-a-1,2025-10-21,publishedDate,phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a-1.json,
+BARD1,preprint,10.1101/2025.11.03.25339440,2025-11-06,"created, the earlier of posted and created",phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2025.11.03.25339440.json,Europe PMC preprint search
+BARD1,first_public_date,urn:mavedb:00001250-a-1,2025-10-21,the earliest: mavedb_earliest_version,phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a-1.json,
+BRCA1,mavedb_earliest_version,urn:mavedb:00000097-0-1,,the chain's earliest version is not served by MaveDB (HTTP 404),,
+BRCA1,journal_online,10.1038/s41586-018-0461-z,2018-09-12,published-online,phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41586-018-0461-z.json,MaveDB record or Crossref relation
+BRCA1,preprint,10.1101/294520,2018-04-05,"created, the earlier of posted and created",phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F294520.json,MaveDB record or Crossref relation; Europe PMC preprint search
+BRCA1,first_public_date,10.1101/294520,2018-04-05,the earliest: preprint,phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F294520.json,MaveDB record or Crossref relation; Europe PMC preprint search
+BRCA2,mavedb_earliest_version,urn:mavedb:00001225-a-1,2025-05-08,publishedDate,phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001225-a-1.json,
+BRCA2,journal_online,10.1038/s41586-024-08388-8,2025-01-08,published-online,phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41586-024-08388-8.json,MaveDB record or Crossref relation
+BRCA2,preprint,10.1101/2023.12.14.571597,2023-12-15,"created, the earlier of posted and created",phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2023.12.14.571597.json,Europe PMC preprint search
+BRCA2,preprint,10.21203/rs.3.rs-3736200/v1,2023-12-19,"created, the earlier of posted and created",phase1/data/evidence/e19/first_public_dates/crossref/10.21203_2Frs.3.rs-3736200_2Fv1.json,Europe PMC preprint search
+BRCA2,first_public_date,10.1101/2023.12.14.571597,2023-12-15,the earliest: preprint,phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2023.12.14.571597.json,Europe PMC preprint search
+PALB2,mavedb_earliest_version,urn:mavedb:00001259-a-1,2026-01-10,publishedDate,phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001259-a-1.json,
+PALB2,first_public_date,urn:mavedb:00001259-a-1,2026-01-10,the earliest: mavedb_earliest_version,phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001259-a-1.json,
+RAD51C,mavedb_earliest_version,urn:mavedb:00000673-0-1,2026-02-13,publishedDate,phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000673-0-1.json,
+RAD51C,journal_online,10.1016/j.cell.2024.08.039,2024-09-18,created (no published-online; the author's decision of 2026-10-25),phase1/data/evidence/e19/first_public_dates/crossref/10.1016_2Fj.cell.2024.08.039.json,MaveDB record or Crossref relation
+RAD51C,first_public_date,10.1016/j.cell.2024.08.039,2024-09-18,the earliest: journal_online,phase1/data/evidence/e19/first_public_dates/crossref/10.1016_2Fj.cell.2024.08.039.json,MaveDB record or Crossref relation
+VHL,mavedb_earliest_version,urn:mavedb:00000675-a-1,2024-04-25,publishedDate,phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000675-a-1.json,
+VHL,journal_online,10.1038/s41588-024-01800-z,2024-07-05,published-online,phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41588-024-01800-z.json,MaveDB record or Crossref relation
+VHL,preprint,10.1101/2023.06.10.542698,2023-06-10,"created, the earlier of posted and created",phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2023.06.10.542698.json,MaveDB record or Crossref relation; Europe PMC preprint search
+VHL,first_public_date,10.1101/2023.06.10.542698,2023-06-10,the earliest: preprint,phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2023.06.10.542698.json,MaveDB record or Crossref relation; Europe PMC preprint search

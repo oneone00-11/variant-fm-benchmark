@@ -1,0 +1,57 @@
+{
+ "script": "scripts/stage_E19/extract_clinvar_variant_summary.py",
+ "argv": [
+  "scripts/stage_E19/extract_clinvar_variant_summary.py"
+ ],
+ "git_commit": "f8a8d8b158acc9fd7fad72c9d6a8b1b784d77d4e",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E19/extract_clinvar_variant_summary.py": "42c13685ab33f3288681edf841722f988a1ade3574c5bdd52c22594233a02c1f",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T17:51:21+00:00",
+ "end_utc": "2026-10-25T17:51:56+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/e19/clinvar_variant_summary/manifest.json",
+   "bytes": 2057,
+   "sha256": "67146fdb5edddbdaabc5e079a8477c2a4b16354d91bafe1cf1100f8d8c389893"
+  },
+  {
+   "path": "phase1/data/evidence/analysis_set_v1.parquet",
+   "bytes": 1459145,
+   "sha256": "52e0c610b0147e2435b17b57b586f3340e7b988aa2ddec66890b92f1a59c7ecc"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/e19/clinvar_variant_summary/variant_summary_2026-06_analysis_set.tsv",
+   "bytes": 1807631,
+   "sha256": "d30a984d1bef72a03b7cebd3bea7a3f3d2627273c3f363454c1a8b5bf2b0fa78"
+  },
+  {
+   "path": "phase1/data/evidence/e19/clinvar_variant_summary/manifest.json",
+   "bytes": 2057,
+   "sha256": "67146fdb5edddbdaabc5e079a8477c2a4b16354d91bafe1cf1100f8d8c389893"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "summary": {
+   "archive_rows": 8982609,
+   "rows_kept": 3279,
+   "variation_ids_in_set": 3279,
+   "variation_ids_found": 3279
+  }
+ }
+}

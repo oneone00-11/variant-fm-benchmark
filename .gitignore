@@ -66,6 +66,10 @@ phase1/data/evidence/refs/
 phase1/data/evidence/label_audit_cache/
 # E17: the AlphaGenome scoring cache (scripts/stage_E17/score_official.py)
 phase1/data/alphagenome_official_cache/
+# E19: files kept out of git and recorded by sha256 only (scripts/stage_E19/): the
+# downloads larger than 25 MB (E19.0 rule 4), the author's copy of a paper that is not
+# open access, and a paper's supplementary table, kept as Huang 2025's is
+phase1/data/e19_cache/
 # E18: the external genes' scoring caches, the copies of the atlas's lookup scorers and
 # Pangolin's gene databases for chromosomes 1, 7 and X (scripts/stage_E18/run_*.py)
 phase1/data/e18_cache/

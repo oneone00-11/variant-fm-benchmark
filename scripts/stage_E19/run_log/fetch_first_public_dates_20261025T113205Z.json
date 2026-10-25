@@ -1,0 +1,80 @@
+{
+ "script": "scripts/stage_E19/fetch_first_public_dates.py",
+ "argv": [
+  "scripts/stage_E19/fetch_first_public_dates.py"
+ ],
+ "git_commit": "2de6f3cd94d1441e5ae5c280810cedb48e019613",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E19/fetch_first_public_dates.py": "44fde695e830cc006384e61b49353735321d63067857b35fe9c0ad7fbf173bcb",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T11:31:54+00:00",
+ "end_utc": "2026-10-25T11:32:05+00:00",
+ "inputs": [
+  {
+   "path": "phase1/reports/evidence/supplement/tableS1_functional_standards.csv",
+   "bytes": 4110,
+   "sha256": "c6567738052e4a628423ed25339b6ff2a4fa5d1f8e119575347880a2c0dd0030"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000662-0-1.json",
+   "bytes": 653757,
+   "sha256": "946a93487ff823785e72fc9bf2eb6897ae5b94802bad0298488ecf8425d1af99"
+  },
+  {
+   "path": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000662-0.json",
+   "bytes": 5938,
+   "sha256": "1419fa8d1c57a9200e0ed0360371cea8914f46ab6c5c16d3fc5ed2c45919856f"
+  },
+  {
+   "path": "phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41588-024-01799-3.json",
+   "bytes": 35552,
+   "sha256": "8bee6d0f28cdd33d3e29260237bb939f4041bf83eb2268274cbd5371950ebab4"
+  },
+  {
+   "path": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a-2.json",
+   "bytes": 540178,
+   "sha256": "34f864425a780d7f063b9fe626c4c5e72492fe007029cd25580ff0d772755b0c"
+  },
+  {
+   "path": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a.json",
+   "bytes": 5042,
+   "sha256": "78e9b7ed7cda8e1f6c4709004a2dce82a5c8d07b822e78f791b4b7e3da1a2aee"
+  },
+  {
+   "path": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a-1.json",
+   "bytes": 29923,
+   "sha256": "aaec73b5efa4a5cc1c1ba1bb57a5e9b1a0500a51047e23607979e1c3c2275381"
+  },
+  {
+   "path": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a.json",
+   "bytes": 5042,
+   "sha256": "78e9b7ed7cda8e1f6c4709004a2dce82a5c8d07b822e78f791b4b7e3da1a2aee"
+  },
+  {
+   "path": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000097-0-2.json",
+   "bytes": 313573,
+   "sha256": "6a1d595c8dcce50cb842eb7f5d1d7300852b46cc50e44a5c0f25031f62d8f629"
+  },
+  {
+   "path": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000097-0.json",
+   "bytes": 4976,
+   "sha256": "cb1bf0239e0529db44f3ab3fd0eefa11a1d045e8d8d11d488bf0907df3d4b683"
+  }
+ ],
+ "exception": "Traceback (most recent call last):\n  File \"/Users/cliffzhang/work/vfb-e18-c3/scripts/stage_E19/fetch_first_public_dates.py\", line 105, in main\n    raise SystemExit(f\"{gene}: MaveDB has no score set {urn_now}: stopped\")\nSystemExit: BRCA1: MaveDB has no score set urn:mavedb:00000097-0-1: stopped\n",
+ "notes": {}
+}

@@ -1,0 +1,343 @@
+{
+ "what": "the records E19.4's first public dates are read from, as served",
+ "mavedb_api": "https://api.mavedb.org/api/v1",
+ "crossref_api": "https://api.crossref.org/works/",
+ "genes": {
+  "BAP1": {
+   "cited_urn": "urn:mavedb:00000662-0-1",
+   "versions": [
+    "urn:mavedb:00000662-0-1"
+   ],
+   "versions_not_served": [],
+   "dois": [
+    "10.1038/s41588-024-01799-3"
+   ],
+   "doi_sources": [
+    [
+     "10.1038/s41588-024-01799-3",
+     "urn:mavedb:00000662-0-1 primaryPublicationIdentifiers (PubMed 38969833)"
+    ],
+    [
+     "10.1038/s41588-024-01799-3",
+     "urn:mavedb:00000662-0 primaryPublicationIdentifiers (PubMed 38969833)"
+    ]
+   ]
+  },
+  "BARD1": {
+   "cited_urn": "urn:mavedb:00001250-a-2",
+   "versions": [
+    "urn:mavedb:00001250-a-2",
+    "urn:mavedb:00001250-a-1"
+   ],
+   "versions_not_served": [],
+   "dois": [],
+   "doi_sources": []
+  },
+  "BRCA1": {
+   "cited_urn": "urn:mavedb:00000097-0-2",
+   "versions": [
+    "urn:mavedb:00000097-0-2"
+   ],
+   "versions_not_served": [
+    "urn:mavedb:00000097-0-1"
+   ],
+   "dois": [
+    "10.1038/s41586-018-0461-z",
+    "10.1101/294520"
+   ],
+   "doi_sources": [
+    [
+     "10.1038/s41586-018-0461-z",
+     "urn:mavedb:00000097-0-2 primaryPublicationIdentifiers (PubMed 30209399)"
+    ]
+   ]
+  },
+  "BRCA2": {
+   "cited_urn": "urn:mavedb:00001225-a-1",
+   "versions": [
+    "urn:mavedb:00001225-a-1"
+   ],
+   "versions_not_served": [],
+   "dois": [
+    "10.1038/s41586-024-08388-8"
+   ],
+   "doi_sources": [
+    [
+     "10.1038/s41586-024-08388-8",
+     "urn:mavedb:00001225-a-1 primaryPublicationIdentifiers (PubMed 39779857)"
+    ],
+    [
+     "10.1038/s41586-024-08388-8",
+     "urn:mavedb:00001225-a primaryPublicationIdentifiers (PubMed 39779857)"
+    ]
+   ]
+  },
+  "PALB2": {
+   "cited_urn": "urn:mavedb:00001259-a-2",
+   "versions": [
+    "urn:mavedb:00001259-a-2",
+    "urn:mavedb:00001259-a-1"
+   ],
+   "versions_not_served": [],
+   "dois": [],
+   "doi_sources": []
+  },
+  "RAD51C": {
+   "cited_urn": "urn:mavedb:00000673-0-1",
+   "versions": [
+    "urn:mavedb:00000673-0-1"
+   ],
+   "versions_not_served": [],
+   "dois": [
+    "10.1016/j.cell.2024.08.039"
+   ],
+   "doi_sources": [
+    [
+     "10.1016/j.cell.2024.08.039",
+     "urn:mavedb:00000673-0-1 primaryPublicationIdentifiers (PubMed 39299233)"
+    ],
+    [
+     "10.1016/j.cell.2024.08.039",
+     "urn:mavedb:00000673-0 primaryPublicationIdentifiers (PubMed 39299233)"
+    ]
+   ]
+  },
+  "VHL": {
+   "cited_urn": "urn:mavedb:00000675-a-1",
+   "versions": [
+    "urn:mavedb:00000675-a-1"
+   ],
+   "versions_not_served": [],
+   "dois": [
+    "10.1038/s41588-024-01800-z",
+    "10.1101/2023.06.10.542698"
+   ],
+   "doi_sources": [
+    [
+     "10.1038/s41588-024-01800-z",
+     "urn:mavedb:00000675-a-1 primaryPublicationIdentifiers (PubMed 38969834)"
+    ],
+    [
+     "10.1101/2023.06.10.542698",
+     "urn:mavedb:00000675-a-1 doiIdentifiers"
+    ],
+    [
+     "10.1038/s41588-024-01800-z",
+     "urn:mavedb:00000675-a primaryPublicationIdentifiers (PubMed 38969834)"
+    ],
+    [
+     "10.1101/2023.06.10.542698",
+     "urn:mavedb:00000675-a doiIdentifiers"
+    ]
+   ]
+  }
+ },
+ "files": [
+  {
+   "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000662-0-1",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:42+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000662-0-1.json",
+   "bytes": 653757,
+   "sha256": "946a93487ff823785e72fc9bf2eb6897ae5b94802bad0298488ecf8425d1af99"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00000662-0",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:42+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000662-0.json",
+   "bytes": 5938,
+   "sha256": "1419fa8d1c57a9200e0ed0360371cea8914f46ab6c5c16d3fc5ed2c45919856f"
+  },
+  {
+   "url": "https://api.crossref.org/works/10.1038/s41588-024-01799-3",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:43+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41588-024-01799-3.json",
+   "bytes": 35552,
+   "sha256": "8bee6d0f28cdd33d3e29260237bb939f4041bf83eb2268274cbd5371950ebab4"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001250-a-2",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:45+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a-2.json",
+   "bytes": 540178,
+   "sha256": "34f864425a780d7f063b9fe626c4c5e72492fe007029cd25580ff0d772755b0c"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00001250-a",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:45+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a.json",
+   "bytes": 5042,
+   "sha256": "78e9b7ed7cda8e1f6c4709004a2dce82a5c8d07b822e78f791b4b7e3da1a2aee"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001250-a-1",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:46+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a-1.json",
+   "bytes": 29923,
+   "sha256": "aaec73b5efa4a5cc1c1ba1bb57a5e9b1a0500a51047e23607979e1c3c2275381"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00001250-a",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:46+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a.json",
+   "bytes": 5042,
+   "sha256": "78e9b7ed7cda8e1f6c4709004a2dce82a5c8d07b822e78f791b4b7e3da1a2aee"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000097-0-2",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:47+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000097-0-2.json",
+   "bytes": 313573,
+   "sha256": "6a1d595c8dcce50cb842eb7f5d1d7300852b46cc50e44a5c0f25031f62d8f629"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00000097-0",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:48+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000097-0.json",
+   "bytes": 4976,
+   "sha256": "cb1bf0239e0529db44f3ab3fd0eefa11a1d045e8d8d11d488bf0907df3d4b683"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000097-0-1",
+   "http_status": 404,
+   "fetched_utc": "2026-10-25T11:32:48+00:00",
+   "file": null
+  },
+  {
+   "url": "https://api.crossref.org/works/10.1038/s41586-018-0461-z",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:48+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41586-018-0461-z.json",
+   "bytes": 22428,
+   "sha256": "449ce5a4a1d158d34fe9492ca48c42b0ab9504b598f2ec753c2d2438543f5538"
+  },
+  {
+   "url": "https://api.crossref.org/works/10.1101/294520",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:48+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F294520.json",
+   "bytes": 13037,
+   "sha256": "d5252f02457007243b3a77adaf5fa97638395a92c0b4c58fa2cdee3653e41b1f"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001225-a-1",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:49+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001225-a-1.json",
+   "bytes": 13764,
+   "sha256": "bb809126744b526c1a0f2e23e44b9b539de01a86deb2968c0eea0c08736fd80e"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00001225-a",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:49+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001225-a.json",
+   "bytes": 6085,
+   "sha256": "c79940e67a778d3f67231db522dd92c7a55f05e068f08a71feace7dafec2da88"
+  },
+  {
+   "url": "https://api.crossref.org/works/10.1038/s41586-024-08388-8",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:49+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41586-024-08388-8.json",
+   "bytes": 24744,
+   "sha256": "0e106cbdb2df77215475198cbf1fcc657dc698a949e591a010df237cd3787836"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001259-a-2",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:52+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001259-a-2.json",
+   "bytes": 593703,
+   "sha256": "6c0aabcd1069a132d1dd44a792a7af3a211e0c8ff5325804235d845b3dcd7db2"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00001259-a",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:52+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001259-a.json",
+   "bytes": 3842,
+   "sha256": "4025f175397315e3bac08d9fc20ecb64669d7be28c35a4d453d1449d3c43a512"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00001259-a-1",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:53+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001259-a-1.json",
+   "bytes": 25819,
+   "sha256": "9a068f62d239633c79edb27c10870d113950a2da9b51d9ee864bb2a1a9e35063"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00001259-a",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:53+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001259-a.json",
+   "bytes": 3842,
+   "sha256": "4025f175397315e3bac08d9fc20ecb64669d7be28c35a4d453d1449d3c43a512"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000673-0-1",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:55+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000673-0-1.json",
+   "bytes": 374583,
+   "sha256": "cf1c166110906737271f01a804c15a4ef65a7c97508aa27606ab063f7b771d3c"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00000673-0",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:55+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000673-0.json",
+   "bytes": 6009,
+   "sha256": "697879bf8bf9b10cdf1760811382041e966e76ce379efe8076d411b0332d8489"
+  },
+  {
+   "url": "https://api.crossref.org/works/10.1016/j.cell.2024.08.039",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:55+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/crossref/10.1016_2Fj.cell.2024.08.039.json",
+   "bytes": 28990,
+   "sha256": "67c66d9bfea996e1ceb6eda72ef4cc7bed7da9e20c5175d1e9df01056309742e"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/score-sets/urn:mavedb:00000675-a-1",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:56+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000675-a-1.json",
+   "bytes": 266234,
+   "sha256": "ae105652fcdfbeb37a477233ea38e6710516de7722edd648bf42b9702592683a"
+  },
+  {
+   "url": "https://api.mavedb.org/api/v1/experiments/urn:mavedb:00000675-a",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:57+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000675-a.json",
+   "bytes": 8085,
+   "sha256": "c340d31d0e047a12f410b2fa9edb00d2550ca128462915280eb8d44b04732047"
+  },
+  {
+   "url": "https://api.crossref.org/works/10.1038/s41588-024-01800-z",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:57+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41588-024-01800-z.json",
+   "bytes": 31303,
+   "sha256": "701bf776e460cc437d079fbd6c4e8689cbec4711725e0b21baa03ba70edc6709"
+  },
+  {
+   "url": "https://api.crossref.org/works/10.1101/2023.06.10.542698",
+   "http_status": 200,
+   "fetched_utc": "2026-10-25T11:32:57+00:00",
+   "file": "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2023.06.10.542698.json",
+   "bytes": 14044,
+   "sha256": "f9996e69b45f1931f307ad1075d9f6e6cafb098aefa4ad551f9c03e97bbf90aa"
+  }
+ ]
+}

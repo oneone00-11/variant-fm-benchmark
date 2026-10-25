@@ -1,0 +1,316 @@
+{
+ "commit": "E19.4 (C1, the low-circularity subset)",
+ "reason": "C1: the ClinVar check on assertions last evaluated before the gene's SGE data were first public, a new stage (evid_suppl_c1_low) appended after every existing stage, with its inputs: the compact extract of ClinVar's June 2026 archive and the first-public-date records, the preprint searches of the author's review of 2026-10-25 among them",
+ "declared_from": "E19.4 and E19.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/c1_preprint_search.csv": {
+   "kind": "file",
+   "why": "new: every preprint Europe PMC's preprint index returned for each training gene's SGE study, the three conditions and whether it is the study's, and per gene which was found or none"
+  },
+  "phase1/reports/evidence/suppl_analyses/c1_first_public_dates.csv": {
+   "kind": "file",
+   "why": "new: each training gene's dates by source (MaveDB's earliest version, the journal's online date, a preprint's earlier of posted and created) and the earliest, with the record each is read from"
+  },
+  "phase1/reports/evidence/suppl_analyses/c1_low_circularity_variants.csv": {
+   "kind": "file",
+   "why": "new: every variant with a ClinVar record, the archive's and the VCF's fields, whether they agree, the dates, whether in the subset and if not why"
+  },
+  "phase1/reports/evidence/suppl_analyses/c1_low_circularity_composition.csv": {
+   "kind": "file",
+   "why": "new: P/LP and B/LB in the subset by gene and band, beside the main analysis's"
+  },
+  "phase1/reports/evidence/suppl_analyses/c1_low_circularity_metrics.csv": {
+   "kind": "file",
+   "why": "new: E19.3's metrics on the subset, at the main level"
+  },
+  "phase1/data/evidence/e19/clinvar_variant_summary/manifest.json": {
+   "kind": "file",
+   "why": "new input: the archive's URL, size, sha256, time of fetch and columns (the archive not committed, E19.0 rule 4), and the extract's record; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/clinvar_variant_summary/variant_summary_2026-06_analysis_set.tsv": {
+   "kind": "file",
+   "why": "new input: the archive's GRCh38 rows of the analysis set's VariationIDs, written in the reference image; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1016_2Fj.cell.2024.08.039.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41586-018-0461-z.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41586-024-08388-8.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41588-024-01799-3.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1038_2Fs41588-024-01800-z.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F103762.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2020.03.13.980946.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2020.11.16.384677.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2023.06.10.542698.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2023.12.14.571597.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2023.12.14.571713.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2024.01.22.24301588.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2024.01.25.576086.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2024.09.04.24313051.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2025.05.25.25327887.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2025.08.11.25333423.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F2025.11.03.25339440.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F294520.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F295279.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.1101_2F792754.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.21203_2Frs.3.rs-100292_2Fv1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.21203_2Frs.3.rs-10808240_2Fv1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.21203_2Frs.3.rs-10808240_2Fv2.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.21203_2Frs.3.rs-2756527_2Fv1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.21203_2Frs.3.rs-3568907_2Fv1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.21203_2Frs.3.rs-3736200_2Fv1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.64898_2F2026.01.29.702641.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/crossref/10.64898_2F2026.05.15.26352805.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BAP1_01_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BAP1_02_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BAP1_03_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BARD1_01_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BARD1_02_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BARD1_03_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BARD1_04_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BARD1_05_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BARD1_06_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BRCA1_01_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BRCA1_02_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BRCA1_03_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BRCA2_01_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BRCA2_02_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/BRCA2_03_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/PALB2_01_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/PALB2_02_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/RAD51C_01_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/RAD51C_02_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/RAD51C_03_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/RAD51C_04_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/VHL_01_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/VHL_02_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/europepmc/VHL_03_page1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/manifest.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000097-0-2.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000097-0.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000662-0-1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000662-0.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000673-0-1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000673-0.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000675-a-1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000675-a.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001225-a-1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001225-a.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a-1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a-2.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001250-a.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001259-a-1.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001259-a-2.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00001259-a.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/e19/first_public_dates/preprint_search.json": {
+   "kind": "file",
+   "why": "new input: a record the first public dates are read from, as served (MaveDB, Crossref, Europe PMC) or the fetch's own manifest; listed in reproduce_inputs.txt"
+  }
+ }
+}

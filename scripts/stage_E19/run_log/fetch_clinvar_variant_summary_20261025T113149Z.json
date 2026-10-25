@@ -1,0 +1,54 @@
+{
+ "script": "scripts/stage_E19/fetch_clinvar_variant_summary.py",
+ "argv": [
+  "scripts/stage_E19/fetch_clinvar_variant_summary.py"
+ ],
+ "git_commit": "2de6f3cd94d1441e5ae5c280810cedb48e019613",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E19/fetch_clinvar_variant_summary.py": "bc6f4d2fa2c245b3f733c2c5fed5964dd7c8f54cf95853d9b70bedaebcdd9ce9",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T11:30:51+00:00",
+ "end_utc": "2026-10-25T11:31:49+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/e19/clinvar_variant_summary/manifest.json",
+   "bytes": 1548,
+   "sha256": "09aa1092fbf61bb8ab72fa15bc27aed08d530ebb5e1328a47dd82e7bdf0b2b73"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "head": {
+   "http_status": 200,
+   "content_length": "439287089",
+   "last_modified": "Thu, 04 Jun 2026 04:05:02 GMT"
+  },
+  "manifest": {
+   "source_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/archive/variant_summary_2026-06.txt.gz",
+   "file": "variant_summary_2026-06.txt.gz",
+   "cached_at": "phase1/data/e19_cache/variant_summary_2026-06.txt.gz",
+   "committed": false,
+   "why_not_committed": "larger than 25 MB (E19.0 rule 4)",
+   "bytes": 439287089,
+   "sha256": "6da78082f630ec6f8ccc0288a91b14157190e81110070d499a26e41eaf6b7bf0",
+   "md5": "53c1f539c36b0e7b5314e56788d963ab",
+   "md5_published": "not_provided",
+   "last_modified": "Thu, 04 Jun 2026 04:05:02 GMT",
+   "fetched_utc": "2026-10-25T11:31:46+00:00",
+   "checked_utc": "2026-10-25T11:31:49+00:00"
+  }
+ }
+}

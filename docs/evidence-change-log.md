@@ -1685,3 +1685,41 @@ is unchanged (`scripts/stage_E19/scope_c1_main.json`).
   or above each PP3 threshold, in B/LB the share of SGE normal at or below each BP4
   threshold (E15's `bp4_sensitivity`, the author's decision of 2026-10-25), both in the
   unrecorded group.
+
+## Supplementary analyses, C1: the low-circularity subset (stage E19, 2026-10-26)
+
+Why: revision item C1 asks the same ClinVar check on assertions that could not have used
+the SGE data (E19.4). A new stage, `evid_suppl_c1_low` (stage 37, after every existing
+stage), only adds files under `phase1/reports/evidence/suppl_analyses/`, with its inputs
+under `phase1/data/evidence/e19/`; every existing output is unchanged
+(`scripts/stage_E19/scope_c1_low.json`).
+
+- The dates of assertions: LastEvaluated in ClinVar's monthly archive
+  `variant_summary_2026-06.txt.gz` (439,287,089 bytes, sha256 6da78082...; kept in the
+  gitignored `phase1/data/e19_cache/`, not committed and not fetched by CI); committed
+  in its place is the extract of its GRCh38 rows for the analysis set's 3,279
+  VariationIDs (all found), written in the reference image, with the extraction script.
+- The archive against the VCF: classification string and review status, each
+  normalised (underscores as spaces, white space collapsed, the VCF's empty field and
+  the archive's "-" both absent), must be identical (the author's decision of
+  2026-10-25): 3,278 of 3,279 agree (literally, before the normalisation, 82.04%); the
+  one that differs is left out.
+- The first public dates, each the earliest of its sources, every record saved as
+  served: MaveDB's earliest version of the cited score set, the journal's online date
+  (Crossref), and a preprint's date, the earlier of Crossref's posted and created (the
+  author's review of 2026-10-25). Every gene's study was searched for a preprint in
+  Europe PMC's preprint index (`scripts/stage_E19/fetch_preprints.py`), and a preprint
+  is the study's when its title names the gene and saturation genome editing is named
+  and its authors include the paper's first and last authors (for BARD1 and PALB2, which
+  record no paper, a contributor named on the score set): found for BRCA1 (294520),
+  BRCA2 (Huang's 10.1101/2023.12.14.571597), VHL (542698) and BARD1 (medRxiv, later than
+  MaveDB's date); none for BAP1, PALB2 and RAD51C. BRCA2's date is thereby 2023-12-15,
+  no longer the journal's 2025-01-08.
+- The subset: P/LP or B/LB, at least one star, the two files agreeing, LastEvaluated
+  strictly before the gene's date: 907 variants; 12 P/LP and 305 B/LB at 3-10 nt, 2 and
+  348 at 11-50 nt. E19.3's metrics on it (`c1_low_circularity_metrics.csv`, by C1's own
+  functions): the 11-50 nt band gives counts only, and no band has two genes with ten
+  of each for an AUROC.
+- Its limits, as E19.4 states them: some ClinVar classifications may have used predictor
+  scores as PP3 or BP4, which no date filter removes; the distal band holds almost no
+  usable P/LP.
