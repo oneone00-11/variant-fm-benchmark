@@ -1,0 +1,11 @@
+{
+ "commit": "E19.9 (C8, C9, C10)",
+ "reason": "C8-C10, read from existing outputs: the distal band without BAP1, family and function held out, and confusion matrices with MCC and F1, a new stage (evid_suppl_c8_c10) appended after every existing stage",
+ "declared_from": "E19.9 and E19.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/c8_without_bap1.csv": {"kind": "file", "why": "new: the 11-50 nt band's damaging variants by gene, and E11's fits without BAP1 at 11-50 and 3-50 nt with their held-out result on BAP1, beside every gene's"},
+  "phase1/reports/evidence/suppl_analyses/c9_family_holdout.csv": {"kind": "file", "why": "new: E11's fits trained on the homologous recombination genes and held out on VHL and BAP1, and the reverse; and the external genes, RAD51D and XRCC2 against the other five, counted from S12 as external_summary.csv counts"},
+  "phase1/reports/evidence/suppl_analyses/c10_confusion_mcc_f1.csv": {"kind": "file", "why": "new: TP, FP, FN, TN, precision, recall, F1 and MCC from practical_metrics_by_threshold.csv's in-sample and held-out rows; the formulas in the header"}
+ }
+}

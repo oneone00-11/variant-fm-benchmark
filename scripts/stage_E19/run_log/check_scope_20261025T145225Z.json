@@ -1,0 +1,61 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E19/scope_c8_c10.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "14cc71d5d52d1f37921ac56fd74fa7a3b8a4e2fe",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T14:52:18+00:00",
+ "end_utc": "2026-10-25T14:52:25+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E19/scope_c8_c10.json",
+   "bytes": 1201,
+   "sha256": "bd132086319b0f010fbc217dcb03ec0a1a74d466b4a23eb2236308bc4380c237"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E19/scope_c8_c10.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/suppl_analyses/c10_confusion_mcc_f1.csv": {
+    "status": "declared",
+    "why": "new: TP, FP, FN, TN, precision, recall, F1 and MCC from practical_metrics_by_threshold.csv's in-sample and held-out rows; the formulas in the header",
+    "change": "added"
+   },
+   "phase1/reports/evidence/suppl_analyses/c8_without_bap1.csv": {
+    "status": "declared",
+    "why": "new: the 11-50 nt band's damaging variants by gene, and E11's fits without BAP1 at 11-50 and 3-50 nt with their held-out result on BAP1, beside every gene's",
+    "change": "added"
+   },
+   "phase1/reports/evidence/suppl_analyses/c9_family_holdout.csv": {
+    "status": "declared",
+    "why": "new: E11's fits trained on the homologous recombination genes and held out on VHL and BAP1, and the reverse; and the external genes, RAD51D and XRCC2 against the other five, counted from S12 as external_summary.csv counts",
+    "change": "added"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

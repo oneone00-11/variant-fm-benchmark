@@ -1,0 +1,682 @@
+# E19 C10: confusion matrices, MCC and F1 at the study's thresholds (src/evid_suppl_c8_c10.py).
+# Counts from practical_metrics_by_threshold.csv, in-sample and held-out (leave-one-gene-out) rows.
+# PP3 side: damaging is the positive class, score at or above the threshold the call:
+#   TP = n_pos_above, FP = n_neg_above, FN = n_pos_below, TN = n_neg_below
+# BP4 side: normal is the positive class, score at or below the threshold the call:
+#   TP = bp4_n_neg_at_or_below, FP = bp4_n_pos_at_or_below, FN = bp4_n_neg_above, TN = bp4_n_pos_above
+# precision = TP / (TP + FP); recall = TP / (TP + FN); F1 = 2 TP / (2 TP + FP + FN)
+# MCC = (TP x TN - FP x FN) / sqrt((TP + FP)(TP + FN)(TN + FP)(TN + FN)); empty where a factor is zero
+# For the supplement only.
+tool,stratum,side,threshold_kind,threshold_source,threshold,status,positive_class,call,tp,fp,fn,tn,precision,recall,f1,mcc
+spliceai_walker,s3_10,pp3,supporting,in_sample,0.4195183515548706,ok,damaging,score at or above the threshold,381.0,127.0,189.0,2412.0,0.75,0.6684210526315789,0.7068645640074211,0.6471980229644607
+spliceai_walker,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,350.0,118.0,220.0,2421.0,0.7478632478632479,0.6140350877192983,0.674373795761079,0.6141486560674635
+spliceai_walker,s3_10,pp3,moderate,in_sample,0.5281116366386414,ok,damaging,score at or above the threshold,328.0,83.0,242.0,2456.0,0.7980535279805353,0.5754385964912281,0.6687054026503568,0.6200483774611459
+spliceai_walker,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,320.0,86.0,250.0,2453.0,0.7881773399014779,0.5614035087719298,0.6557377049180327,0.6058030702893452
+spliceai_walker,s3_10,pp3,strong,in_sample,0.9594634771347046,ok,damaging,score at or above the threshold,44.0,6.0,526.0,2533.0,0.88,0.07719298245614035,0.14193548387096774,0.2301806949723024
+spliceai_walker,s3_10,pp3,strong,logo,,ok,damaging,score at or above the threshold,124.0,16.0,446.0,2523.0,0.8857142857142857,0.21754385964912282,0.3492957746478873,0.39416701066971443
+spliceai_walker,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,s3_10,bp4,bp4_supporting,in_sample,0.026069002225995064,ok,normal,score at or below the threshold,1050.0,20.0,1489.0,550.0,0.9813084112149533,0.41354864119732176,0.5818786367414797,0.30824022958604214
+spliceai_walker,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai_walker,s3_10,bp4,bp4_moderate,in_sample,0.0028290152549743652,ok,normal,score at or below the threshold,139.0,1.0,2400.0,569.0,0.9928571428571429,0.05474596297755022,0.10377006345651363,0.09887955558515442
+spliceai_walker,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai_walker,s11_50,pp3,supporting,in_sample,0.24022004008293152,ok,damaging,score at or above the threshold,92.0,141.0,131.0,4187.0,0.3948497854077253,0.4125560538116592,0.40350877192982454,0.3721642512703782
+spliceai_walker,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,92.0,138.0,131.0,4190.0,0.4,0.4125560538116592,0.40618101545253865,0.375136573612801
+spliceai_walker,s11_50,pp3,moderate,in_sample,0.2920072078704834,ok,damaging,score at or above the threshold,84.0,106.0,139.0,4222.0,0.4421052631578947,0.37668161434977576,0.4067796610169492,0.38010462220106556
+spliceai_walker,s11_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,79.0,98.0,144.0,4230.0,0.4463276836158192,0.3542600896860987,0.395,0.3702598381500328
+spliceai_walker,s11_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,s11_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,15.0,15.0,122.0,1301.0,0.5,0.10948905109489052,0.17964071856287425,0.20158293239798683
+spliceai_walker,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,s11_50,bp4,bp4_supporting,in_sample,0.0012704133987426758,ok,normal,score at or below the threshold,52.0,1.0,4276.0,222.0,0.9811320754716981,0.012014787430683918,0.02373887240356083,0.015152043229105057
+spliceai_walker,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai_walker,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+spliceai_walker,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai_walker,s3_50,pp3,supporting,in_sample,0.31584545969963074,ok,damaging,score at or above the threshold,504.0,309.0,289.0,6558.0,0.6199261992619927,0.6355611601513241,0.6276463262764632,0.5841053283600963
+spliceai_walker,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,488.0,290.0,305.0,6577.0,0.6272493573264781,0.6153846153846154,0.6212603437301082,0.5780215783148678
+spliceai_walker,s3_50,pp3,moderate,in_sample,0.42631080746650696,ok,damaging,score at or above the threshold,437.0,178.0,356.0,6689.0,0.7105691056910569,0.5510718789407314,0.6207386363636364,0.588743463016047
+spliceai_walker,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,438.0,178.0,355.0,6689.0,0.711038961038961,0.5523329129886507,0.6217175301632364,0.5897198378286322
+spliceai_walker,s3_50,pp3,strong,in_sample,0.8773123025894165,ok,damaging,score at or above the threshold,161.0,19.0,632.0,6848.0,0.8944444444444445,0.2030264817150063,0.33093525179856115,0.4027415767870948
+spliceai_walker,s3_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,155.0,27.0,638.0,6840.0,0.8516483516483516,0.19546027742749053,0.31794871794871793,0.38311128108997883
+spliceai_walker,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,s3_50,bp4,bp4_supporting,in_sample,0.003408968448638916,ok,normal,score at or below the threshold,681.0,8.0,6186.0,785.0,0.988388969521045,0.09916994320664045,0.18025410269984118,0.09485305413813111
+spliceai_walker,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai_walker,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+spliceai_walker,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai_walker,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai_walker,pm12,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+spliceai_walker,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai_walker,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+spliceai_walker,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai,s3_10,pp3,supporting,in_sample,0.397732138633728,ok,damaging,score at or above the threshold,356.0,123.0,214.0,2416.0,0.7432150313152401,0.624561403508772,0.678741658722593,0.617495701799304
+spliceai,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,356.0,131.0,214.0,2408.0,0.731006160164271,0.624561403508772,0.67360454115421,0.6099820052590953
+spliceai,s3_10,pp3,moderate,in_sample,0.5493818521499634,ok,damaging,score at or above the threshold,303.0,72.0,267.0,2467.0,0.808,0.531578947368421,0.6412698412698413,0.5978784876557078
+spliceai,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,296.0,86.0,274.0,2453.0,0.774869109947644,0.519298245614035,0.6218487394957983,0.5721608483719349
+spliceai,s3_10,pp3,strong,in_sample,0.8605267405509949,ok,damaging,score at or above the threshold,136.0,16.0,434.0,2523.0,0.8947368421052632,0.23859649122807017,0.3767313019390582,0.4168317634673128
+spliceai,s3_10,pp3,strong,logo,,ok,damaging,score at or above the threshold,108.0,16.0,452.0,2463.0,0.8709677419354839,0.19285714285714287,0.3157894736842105,0.365304383336195
+spliceai,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,s3_10,bp4,bp4_supporting,in_sample,0.0067816972732543945,ok,normal,score at or below the threshold,796.0,16.0,1743.0,554.0,0.9802955665024631,0.31350925561244586,0.4750820650552074,0.2514338232645122
+spliceai,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai,s3_10,bp4,bp4_moderate,in_sample,0.000978877767920494,ok,normal,score at or below the threshold,270.0,2.0,2269.0,568.0,0.9926470588235294,0.1063410791650256,0.192102454642476,0.14082645223673232
+spliceai,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai,s11_50,pp3,supporting,in_sample,0.23402249813079834,ok,damaging,score at or above the threshold,88.0,124.0,135.0,4204.0,0.41509433962264153,0.39461883408071746,0.4045977011494253,0.37486650464313753
+spliceai,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,89.0,129.0,134.0,4199.0,0.40825688073394495,0.3991031390134529,0.4036281179138322,0.3732927105771331
+spliceai,s11_50,pp3,moderate,in_sample,0.29005610942840576,ok,damaging,score at or above the threshold,77.0,95.0,146.0,4233.0,0.4476744186046512,0.3452914798206278,0.389873417721519,0.3660207098854091
+spliceai,s11_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,80.0,96.0,143.0,4232.0,0.45454545454545453,0.35874439461883406,0.40100250626566414,0.37680563243189297
+spliceai,s11_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,s11_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,15.0,15.0,122.0,1301.0,0.5,0.10948905109489052,0.17964071856287425,0.20158293239798683
+spliceai,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,s11_50,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+spliceai,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+spliceai,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai,s3_50,pp3,supporting,in_sample,0.3301774859428406,ok,damaging,score at or above the threshold,461.0,257.0,332.0,6610.0,0.6420612813370473,0.5813366960907944,0.6101919258769027,0.5685173130724489
+spliceai,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,459.0,254.0,334.0,6613.0,0.6437587657784011,0.5788146279949559,0.6095617529880478,0.5681155155089657
+spliceai,s3_50,pp3,moderate,in_sample,0.3799819350242615,ok,damaging,score at or above the threshold,430.0,193.0,363.0,6674.0,0.6902086677367576,0.5422446406052963,0.6073446327683616,0.5730111112206817
+spliceai,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,434.0,199.0,359.0,6668.0,0.6856240126382307,0.5472887767969735,0.6086956521739131,0.5734856288382073
+spliceai,s3_50,pp3,strong,in_sample,0.8784627914428711,ok,damaging,score at or above the threshold,153.0,18.0,640.0,6849.0,0.8947368421052632,0.19293820933165196,0.31742738589211617,0.3924530227108315
+spliceai,s3_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,146.0,24.0,647.0,6843.0,0.8588235294117647,0.1841109709962169,0.3032191069574247,0.3735175014474678
+spliceai,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,s3_50,bp4,bp4_supporting,in_sample,0.0003459453582763672,ok,normal,score at or below the threshold,378.0,4.0,6489.0,789.0,0.9895287958115183,0.05504587155963303,0.10429024693061112,0.06997896059364947
+spliceai,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+spliceai,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+spliceai,pm12,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+spliceai,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+spliceai,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+spliceai,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+pangolin,s3_10,pp3,supporting,in_sample,0.3927895128726959,ok,damaging,score at or above the threshold,395.0,138.0,175.0,2401.0,0.7410881801125704,0.6929824561403509,0.7162284678150499,0.6556646926487782
+pangolin,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,378.0,123.0,192.0,2416.0,0.7544910179640718,0.6631578947368421,0.7058823529411765,0.6469473843491484
+pangolin,s3_10,pp3,moderate,in_sample,0.5108555555343628,ok,damaging,score at or above the threshold,331.0,85.0,239.0,2454.0,0.7956730769230769,0.5807017543859649,0.6713995943204868,0.6219694855651704
+pangolin,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,312.0,69.0,258.0,2470.0,0.8188976377952756,0.5473684210526316,0.6561514195583596,0.6138299619535198
+pangolin,s3_10,pp3,strong,in_sample,0.6972330212593079,ok,damaging,score at or above the threshold,220.0,18.0,350.0,2521.0,0.9243697478991597,0.38596491228070173,0.5445544554455446,0.5513917121552426
+pangolin,s3_10,pp3,strong,logo,,ok,damaging,score at or above the threshold,215.0,18.0,355.0,2521.0,0.9227467811158798,0.37719298245614036,0.5354919053549191,0.54390075244127
+pangolin,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,s3_10,bp4,bp4_supporting,in_sample,0.00377848488278687,ok,normal,score at or below the threshold,795.0,10.0,1744.0,560.0,0.9875776397515528,0.31311539976368646,0.47547846889952156,0.2610911885500255
+pangolin,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+pangolin,s3_10,bp4,bp4_moderate,in_sample,0.0015617124736309052,ok,normal,score at or below the threshold,370.0,2.0,2169.0,568.0,0.9946236559139785,0.14572666404096102,0.2542081758845757,0.16955638436580922
+pangolin,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+pangolin,s11_50,pp3,supporting,in_sample,0.20214825868606567,ok,damaging,score at or above the threshold,88.0,139.0,135.0,4189.0,0.3876651982378855,0.39461883408071746,0.39111111111111113,0.35946048196144426
+pangolin,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,92.0,165.0,131.0,4163.0,0.35797665369649806,0.4125560538116592,0.38333333333333336,0.3501641462241436
+pangolin,s11_50,pp3,moderate,in_sample,0.40933212637901306,ok,damaging,score at or above the threshold,59.0,29.0,164.0,4299.0,0.6704545454545454,0.2645739910313901,0.37942122186495175,0.40424800557726964
+pangolin,s11_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,61.0,46.0,162.0,4282.0,0.5700934579439252,0.273542600896861,0.3696969696969697,0.3745683512730233
+pangolin,s11_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,s11_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,s11_50,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+pangolin,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+pangolin,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+pangolin,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+pangolin,s3_50,pp3,supporting,in_sample,0.3605409562587738,ok,damaging,score at or above the threshold,478.0,210.0,315.0,6657.0,0.6947674418604651,0.6027742749054225,0.6455097906819717,0.6096631252071377
+pangolin,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,467.0,188.0,326.0,6679.0,0.7129770992366412,0.5889029003783102,0.6450276243093923,0.6117372822156852
+pangolin,s3_50,pp3,moderate,in_sample,0.4146675169467926,ok,damaging,score at or above the threshold,448.0,153.0,345.0,6714.0,0.7454242928452579,0.5649432534678437,0.642754662840746,0.6148105723379624
+pangolin,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,436.0,147.0,357.0,6720.0,0.7478559176672385,0.5498108448928121,0.6337209302325582,0.6070541535168269
+pangolin,s3_50,pp3,strong,in_sample,0.6798364520072937,ok,damaging,score at or above the threshold,266.0,26.0,527.0,6841.0,0.910958904109589,0.3354350567465322,0.49032258064516127,0.5276334934833278
+pangolin,s3_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,271.0,28.0,522.0,6839.0,0.9063545150501672,0.3417402269861286,0.49633699633699635,0.5311280938834791
+pangolin,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,s3_50,bp4,bp4_supporting,in_sample,0.0007956239278428257,ok,normal,score at or below the threshold,327.0,4.0,6540.0,789.0,0.9879154078549849,0.047619047619047616,0.09085857182550708,0.06378778367909323
+pangolin,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+pangolin,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+pangolin,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+pangolin,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+pangolin,pm12,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+pangolin,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+pangolin,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+pangolin,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+alphagenome,s3_10,pp3,supporting,in_sample,1.6383056640625,ok,damaging,score at or above the threshold,367.0,81.0,203.0,2458.0,0.8191964285714286,0.643859649122807,0.7210216110019646,0.6742616699184225
+alphagenome,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,363.0,83.0,207.0,2456.0,0.8139013452914798,0.6368421052631579,0.7145669291338582,0.6669020208273692
+alphagenome,s3_10,pp3,moderate,in_sample,1.868554711341858,ok,damaging,score at or above the threshold,346.0,58.0,224.0,2481.0,0.8564356435643564,0.6070175438596491,0.7104722792607803,0.6722589825974411
+alphagenome,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,334.0,70.0,236.0,2469.0,0.8267326732673267,0.5859649122807018,0.6858316221765913,0.6425929907840703
+alphagenome,s3_10,pp3,strong,in_sample,2.6731934547424316,ok,damaging,score at or above the threshold,227.0,19.0,343.0,2520.0,0.9227642276422764,0.39824561403508774,0.5563725490196079,0.5601486152428339
+alphagenome,s3_10,pp3,strong,logo,,ok,damaging,score at or above the threshold,195.0,17.0,375.0,2522.0,0.9198113207547169,0.34210526315789475,0.49872122762148335,0.5148755112115693
+alphagenome,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,s3_10,bp4,bp4_supporting,in_sample,0.11171875149011612,ok,normal,score at or below the threshold,1031.0,18.0,1508.0,552.0,0.982840800762631,0.40606538007089404,0.5746934225195095,0.30646685545323565
+alphagenome,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+alphagenome,s3_10,bp4,bp4_moderate,in_sample,0.04345703125,ok,normal,score at or below the threshold,322.0,4.0,2217.0,566.0,0.9877300613496932,0.12682158330051202,0.22478184991273997,0.15131251035570098
+alphagenome,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+alphagenome,s11_50,pp3,supporting,in_sample,0.8003276586532593,ok,damaging,score at or above the threshold,86.0,124.0,137.0,4204.0,0.4095238095238095,0.38565022421524664,0.3972286374133949,0.36733238546308794
+alphagenome,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,90.0,173.0,133.0,4155.0,0.34220532319391633,0.40358744394618834,0.37037037037037035,0.33638203153158114
+alphagenome,s11_50,pp3,moderate,in_sample,0.9600492715835571,ok,damaging,score at or above the threshold,78.0,91.0,145.0,4237.0,0.46153846153846156,0.34977578475336324,0.3979591836734694,0.3753031045521353
+alphagenome,s11_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,62.0,67.0,161.0,4261.0,0.4806201550387597,0.27802690582959644,0.3522727272727273,0.34150554467776556
+alphagenome,s11_50,pp3,strong,in_sample,2.6528077125549316,ok,damaging,score at or above the threshold,33.0,5.0,190.0,4323.0,0.868421052631579,0.14798206278026907,0.25287356321839083,0.348318796157649
+alphagenome,s11_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,9.0,5.0,128.0,1311.0,0.6428571428571429,0.06569343065693431,0.11920529801324503,0.18515806543931065
+alphagenome,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,s11_50,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+alphagenome,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+alphagenome,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+alphagenome,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+alphagenome,s3_50,pp3,supporting,in_sample,1.4351074695587158,ok,damaging,score at or above the threshold,442.0,134.0,351.0,6733.0,0.7673611111111112,0.5573770491803278,0.6457268078889701,0.6213576063852035
+alphagenome,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,430.0,139.0,363.0,6728.0,0.7557117750439367,0.5422446406052963,0.631424375917768,0.606433467921091
+alphagenome,s3_50,pp3,moderate,in_sample,1.6732620000839233,ok,damaging,score at or above the threshold,411.0,95.0,382.0,6772.0,0.8122529644268774,0.5182849936948297,0.6327944572748267,0.618712844288616
+alphagenome,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,405.0,105.0,388.0,6762.0,0.7941176470588235,0.510718789407314,0.6216423637759018,0.6054284044073857
+alphagenome,s3_50,pp3,strong,in_sample,2.5432190895080566,ok,damaging,score at or above the threshold,286.0,30.0,507.0,6837.0,0.9050632911392406,0.36065573770491804,0.5157799819657349,0.5457707292797285
+alphagenome,s3_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,286.0,40.0,507.0,6827.0,0.8773006134969326,0.36065573770491804,0.5111706881143878,0.53550329530424
+alphagenome,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,s3_50,bp4,bp4_supporting,in_sample,0.02796020545065403,ok,normal,score at or below the threshold,394.0,2.0,6473.0,791.0,0.9949494949494949,0.057375855540993156,0.10849511221258433,0.07547293269744539
+alphagenome,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+alphagenome,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+alphagenome,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+alphagenome,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+alphagenome,pm12,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+alphagenome,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+alphagenome,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+alphagenome,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi,s3_10,pp3,supporting,in_sample,0.8246464729309082,ok,damaging,score at or above the threshold,390.0,124.0,180.0,2415.0,0.7587548638132295,0.6842105263157895,0.7195571955719557,0.6618306623160023
+avi,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,233.0,89.0,145.0,1773.0,0.7236024844720497,0.6164021164021164,0.6657142857142857,0.6070066508047861
+avi,s3_10,pp3,moderate,in_sample,1.0710335969924927,ok,damaging,score at or above the threshold,295.0,46.0,275.0,2493.0,0.8651026392961877,0.5175438596491229,0.6476399560922064,0.618415149926844
+avi,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,174.0,35.0,204.0,1827.0,0.8325358851674641,0.4603174603174603,0.5928449744463373,0.568536661188549
+avi,s3_10,pp3,strong,in_sample,1.3645528554916382,ok,damaging,score at or above the threshold,156.0,6.0,414.0,2533.0,0.9629629629629629,0.2736842105263158,0.4262295081967213,0.4723943915768537
+avi,s3_10,pp3,strong,logo,,ok,damaging,score at or above the threshold,91.0,7.0,287.0,1855.0,0.9285714285714286,0.24074074074074073,0.38235294117647056,0.4339374395547249
+avi,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,s3_10,bp4,bp4_supporting,in_sample,0.1918952465057373,ok,normal,score at or below the threshold,1269.0,30.0,1270.0,540.0,0.976905311778291,0.4998030720756203,0.6612819176654507,0.35083185930355293
+avi,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi,s3_10,bp4,bp4_moderate,in_sample,-0.0919465646147728,ok,normal,score at or below the threshold,80.0,1.0,2459.0,569.0,0.9876543209876543,0.03150846790074833,0.061068702290076333,0.07227612961331156
+avi,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi,s11_50,pp3,supporting,in_sample,0.5888686776161194,ok,damaging,score at or above the threshold,78.0,107.0,145.0,4221.0,0.42162162162162165,0.34977578475336324,0.38235294117647056,0.3553223877376504
+avi,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,68.0,87.0,116.0,3170.0,0.43870967741935485,0.3695652173913043,0.40117994100294985,0.37190051020321846
+avi,s11_50,pp3,moderate,in_sample,0.6985705494880676,ok,damaging,score at or above the threshold,64.0,57.0,159.0,4271.0,0.5289256198347108,0.28699551569506726,0.37209302325581395,0.36743061153398754
+avi,s11_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,54.0,49.0,130.0,3208.0,0.5242718446601942,0.29347826086956524,0.37630662020905925,0.3676020083192157
+avi,s11_50,pp3,strong,in_sample,1.1270228624343872,ok,damaging,score at or above the threshold,25.0,3.0,198.0,4325.0,0.8928571428571429,0.11210762331838565,0.199203187250996,0.3075709524281527
+avi,s11_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,2.0,0.0,13.0,462.0,1.0,0.13333333333333333,0.23529411764705882,0.3601169400712993
+avi,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,s11_50,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi,s3_50,pp3,supporting,in_sample,0.7119490504264832,ok,damaging,score at or above the threshold,492.0,245.0,301.0,6622.0,0.6675712347354138,0.6204287515762925,0.6431372549019608,0.6041017386093388
+avi,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,312.0,172.0,250.0,4947.0,0.6446280991735537,0.5551601423487544,0.5965583173996176,0.5577836992709616
+avi,s3_50,pp3,moderate,in_sample,0.8921248912811279,ok,damaging,score at or above the threshold,409.0,116.0,384.0,6751.0,0.7790476190476191,0.5157629255989912,0.6206373292867982,0.6014940512855653
+avi,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,273.0,107.0,289.0,5012.0,0.718421052631579,0.48576512455516013,0.5796178343949044,0.5555391030449764
+avi,s3_50,pp3,strong,in_sample,1.171376347541809,ok,damaging,score at or above the threshold,276.0,23.0,517.0,6844.0,0.9230769230769231,0.3480453972257251,0.5054945054945055,0.5421911382378526
+avi,s3_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,160.0,15.0,402.0,5104.0,0.9142857142857143,0.2846975088967972,0.43419267299864317,0.4868712238167881
+avi,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,s3_50,bp4,bp4_supporting,in_sample,-0.05172933265566826,ok,normal,score at or below the threshold,485.0,5.0,6382.0,788.0,0.9897959183673469,0.07062763943497888,0.13184722033437543,0.0800802107017428
+avi,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi,pm12,pp3,supporting,in_sample,1.8928370475769043,ok,damaging,score at or above the threshold,105.0,0.0,699.0,37.0,1.0,0.13059701492537312,0.23102310231023102,0.08102677992825492
+avi,pm12,pp3,supporting,logo,,ok,damaging,score at or above the threshold,65.0,0.0,217.0,2.0,1.0,0.23049645390070922,0.3746397694524496,0.04588017487523145
+avi,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi,pm12,bp4,bp4_supporting,in_sample,1.1784663200378418,ok,normal,score at or below the threshold,13.0,6.0,24.0,798.0,0.6842105263157895,0.35135135135135137,0.4642857142857143,0.47460688929768
+avi,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,s3_10,pp3,supporting,in_sample,0.3272552490234375,ok,damaging,score at or above the threshold,363.0,116.0,207.0,2423.0,0.7578288100208769,0.6368421052631579,0.6920877025738799,0.6336134494842381
+avi_splice_sites,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,343.0,93.0,227.0,2446.0,0.786697247706422,0.6017543859649123,0.6819085487077535,0.6297543600370653
+avi_splice_sites,s3_10,pp3,moderate,in_sample,0.4609375,ok,damaging,score at or above the threshold,324.0,65.0,246.0,2474.0,0.8329048843187661,0.5684210526315789,0.67570385818561,0.6348420776516116
+avi_splice_sites,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,327.0,67.0,243.0,2472.0,0.8299492385786802,0.5736842105263158,0.6784232365145229,0.6365872268268493
+avi_splice_sites,s3_10,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,s3_10,pp3,strong,logo,,ok,damaging,score at or above the threshold,15.0,5.0,131.0,586.0,0.75,0.10273972602739725,0.18072289156626506,0.23126654551388834
+avi_splice_sites,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,s3_10,bp4,bp4_supporting,in_sample,0.01519775390625,ok,normal,score at or below the threshold,944.0,22.0,1595.0,548.0,0.9772256728778468,0.37179992122883027,0.5386590584878744,0.2785983839679789
+avi_splice_sites,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,s3_10,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,s11_50,pp3,supporting,in_sample,0.2694845199584961,ok,damaging,score at or above the threshold,68.0,84.0,155.0,4244.0,0.4473684210526316,0.30493273542600896,0.3626666666666667,0.3430364392264767
+avi_splice_sites,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,69.0,86.0,154.0,4242.0,0.44516129032258067,0.3094170403587444,0.36507936507936506,0.34460341882796813
+avi_splice_sites,s11_50,pp3,moderate,in_sample,0.4608755111694336,ok,damaging,score at or above the threshold,51.0,45.0,172.0,4283.0,0.53125,0.22869955156950672,0.31974921630094044,0.3279401407288763
+avi_splice_sites,s11_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,50.0,42.0,173.0,4286.0,0.5434782608695652,0.2242152466367713,0.31746031746031744,0.3290280817934543
+avi_splice_sites,s11_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,s11_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,s11_50,bp4,bp4_supporting,in_sample,0.00537109375,ok,normal,score at or below the threshold,61.0,1.0,4267.0,222.0,0.9838709677419355,0.014094269870609981,0.027790432801822324,0.01789563911940279
+avi_splice_sites,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,s3_50,pp3,supporting,in_sample,0.296875,ok,damaging,score at or above the threshold,438.0,202.0,355.0,6665.0,0.684375,0.5523329129886507,0.6113049546406141,0.5756973406649528
+avi_splice_sites,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,423.0,188.0,370.0,6679.0,0.6923076923076923,0.5334174022698613,0.6025641025641025,0.5690110255588182
+avi_splice_sites,s3_50,pp3,moderate,in_sample,0.42951393127441406,ok,damaging,score at or above the threshold,383.0,118.0,410.0,6749.0,0.7644710578842315,0.48297604035308955,0.5919629057187017,0.5739413029473689
+avi_splice_sites,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,382.0,119.0,411.0,6748.0,0.7624750499001997,0.4817150063051702,0.5904173106646059,0.5722080433719889
+avi_splice_sites,s3_50,pp3,strong,in_sample,0.8475713729858398,ok,damaging,score at or above the threshold,192.0,27.0,601.0,6840.0,0.8767123287671232,0.2421185372005044,0.3794466403162055,0.43541150012910296
+avi_splice_sites,s3_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,182.0,31.0,611.0,6836.0,0.8544600938967136,0.22950819672131148,0.36182902584493043,0.41687926194373437
+avi_splice_sites,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,s3_50,bp4,bp4_supporting,in_sample,0.01025390625,ok,normal,score at or below the threshold,1894.0,24.0,4973.0,769.0,0.9874869655891554,0.27581185379350515,0.43118952760387025,0.17266285554888527
+avi_splice_sites,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_sites,pm12,bp4,bp4_supporting,in_sample,0.4296875,ok,normal,score at or below the threshold,8.0,0.0,29.0,804.0,1.0,0.21621621621621623,0.35555555555555557,0.45682478146198296
+avi_splice_sites,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_sites,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,s3_10,pp3,supporting,in_sample,0.568359375,ok,damaging,score at or above the threshold,366.0,77.0,204.0,2462.0,0.8261851015801355,0.6421052631578947,0.7226061204343535,0.6772218402235923
+avi_splice_site_usage,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,365.0,86.0,205.0,2453.0,0.8093126385809313,0.6403508771929824,0.7149853085210578,0.6663754409676211
+avi_splice_site_usage,s3_10,pp3,moderate,in_sample,0.6567840576171875,ok,damaging,score at or above the threshold,346.0,64.0,224.0,2475.0,0.8439024390243902,0.6070175438596491,0.7061224489795919,0.6653607278786278
+avi_splice_site_usage,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,340.0,68.0,230.0,2471.0,0.8333333333333334,0.5964912280701754,0.6952965235173824,0.65287420208437
+avi_splice_site_usage,s3_10,pp3,strong,in_sample,0.9189453125,ok,damaging,score at or above the threshold,165.0,10.0,405.0,2529.0,0.9428571428571428,0.2894736842105263,0.4429530201342282,0.4793792600637718
+avi_splice_site_usage,s3_10,pp3,strong,logo,,ok,damaging,score at or above the threshold,158.0,11.0,412.0,2528.0,0.9349112426035503,0.2771929824561403,0.42760487144790255,0.4656853115299987
+avi_splice_site_usage,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,s3_10,bp4,bp4_supporting,in_sample,0.017578125,ok,normal,score at or below the threshold,918.0,27.0,1621.0,543.0,0.9714285714285714,0.36155966916108706,0.5269804822043628,0.2643128814595426
+avi_splice_site_usage,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,s3_10,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,s11_50,pp3,supporting,in_sample,0.1328125,ok,damaging,score at or above the threshold,96.0,121.0,127.0,4207.0,0.4423963133640553,0.4304932735426009,0.43636363636363634,0.4077802938470263
+avi_splice_site_usage,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,84.0,113.0,139.0,4215.0,0.4263959390862944,0.37668161434977576,0.4,0.37187471350840823
+avi_splice_site_usage,s11_50,pp3,moderate,in_sample,0.24609375,ok,damaging,score at or above the threshold,74.0,62.0,149.0,4266.0,0.5441176470588235,0.33183856502242154,0.41225626740947074,0.40255302194786724
+avi_splice_site_usage,s11_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,76.0,65.0,147.0,4263.0,0.5390070921985816,0.34080717488789236,0.4175824175824176,0.4058851953092838
+avi_splice_site_usage,s11_50,pp3,strong,in_sample,0.6875,ok,damaging,score at or above the threshold,41.0,9.0,182.0,4319.0,0.82,0.18385650224215247,0.30036630036630035,0.37643979471517175
+avi_splice_site_usage,s11_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,4.0,3.0,14.0,801.0,0.5714285714285714,0.2222222222222222,0.32,0.3479924040403179
+avi_splice_site_usage,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,s11_50,bp4,bp4_supporting,in_sample,0.00968170166015625,ok,normal,score at or below the threshold,1463.0,32.0,2865.0,191.0,0.9785953177257525,0.3380314232902033,0.5024901253649322,0.08941153611096138
+avi_splice_site_usage,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,s3_50,pp3,supporting,in_sample,0.435546875,ok,damaging,score at or above the threshold,445.0,134.0,348.0,6733.0,0.768566493955095,0.5611601513240857,0.6486880466472303,0.6242370016854871
+avi_splice_site_usage,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,453.0,158.0,340.0,6709.0,0.7414075286415712,0.5712484237074401,0.6452991452991453,0.6164620449249499
+avi_splice_site_usage,s3_50,pp3,moderate,in_sample,0.484375,ok,damaging,score at or above the threshold,430.0,117.0,363.0,6750.0,0.7861060329067642,0.5422446406052963,0.6417910447761194,0.6213413431818268
+avi_splice_site_usage,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,423.0,110.0,370.0,6757.0,0.7936210131332082,0.5334174022698613,0.6380090497737556,0.6194817535219933
+avi_splice_site_usage,s3_50,pp3,strong,in_sample,0.9124755859375,ok,damaging,score at or above the threshold,211.0,14.0,582.0,6853.0,0.9377777777777778,0.266078184110971,0.41453831041257366,0.47638402362477894
+avi_splice_site_usage,s3_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,217.0,24.0,576.0,6843.0,0.9004149377593361,0.27364438839848676,0.4197292069632495,0.47145792215851534
+avi_splice_site_usage,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,s3_50,bp4,bp4_supporting,in_sample,0.009765625,ok,normal,score at or below the threshold,1731.0,39.0,5136.0,754.0,0.9779661016949153,0.25207514198339886,0.40083362278568946,0.1466380860921946
+avi_splice_site_usage,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_site_usage,pm12,bp4,bp4_supporting,in_sample,0.4609375,ok,normal,score at or below the threshold,5.0,1.0,32.0,803.0,0.8333333333333334,0.13513513513513514,0.23255813953488372,0.3262590423319198
+avi_splice_site_usage,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_site_usage,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,s3_10,pp3,supporting,in_sample,3.46484375,ok,damaging,score at or above the threshold,373.0,134.0,197.0,2405.0,0.7357001972386588,0.6543859649122807,0.6926648096564532,0.630123505055136
+avi_splice_junctions,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,369.0,142.0,201.0,2397.0,0.7221135029354208,0.6473684210526316,0.6827012025901943,0.6175186833570985
+avi_splice_junctions,s3_10,pp3,moderate,in_sample,5.41796875,ok,damaging,score at or above the threshold,232.0,40.0,338.0,2499.0,0.8529411764705882,0.4070175438596491,0.5510688836104513,0.5358259996918816
+avi_splice_junctions,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,228.0,72.0,342.0,2467.0,0.76,0.4,0.5241379310344828,0.48703201746234565
+avi_splice_junctions,s3_10,pp3,strong,in_sample,6.83984375,ok,damaging,score at or above the threshold,106.0,5.0,464.0,2534.0,0.954954954954955,0.18596491228070175,0.31130690161527164,0.3837063533029248
+avi_splice_junctions,s3_10,pp3,strong,logo,,ok,damaging,score at or above the threshold,112.0,10.0,458.0,2529.0,0.9180327868852459,0.19649122807017544,0.3236994219653179,0.3837256193777846
+avi_splice_junctions,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,s3_10,bp4,bp4_supporting,in_sample,0.384521484375,ok,normal,score at or below the threshold,1166.0,29.0,1373.0,541.0,0.9757322175732217,0.4592359196534069,0.6245313336904125,0.3248296766857892
+avi_splice_junctions,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,s3_10,bp4,bp4_moderate,in_sample,0.062286376953125,ok,normal,score at or below the threshold,116.0,1.0,2423.0,569.0,0.9914529914529915,0.04568727845608507,0.08734939759036145,0.08932743230083233
+avi_splice_junctions,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,s11_50,pp3,supporting,in_sample,3.302734375,ok,damaging,score at or above the threshold,48.0,50.0,175.0,4278.0,0.4897959183673469,0.21524663677130046,0.29906542056074764,0.3029247904622307
+avi_splice_junctions,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,68.0,148.0,155.0,4180.0,0.3148148148148148,0.30493273542600896,0.3097949886104784,0.2748665716847278
+avi_splice_junctions,s11_50,pp3,moderate,in_sample,4.44140625,ok,damaging,score at or above the threshold,38.0,19.0,185.0,4309.0,0.6666666666666666,0.17040358744394618,0.2714285714285714,0.32224462479263055
+avi_splice_junctions,s11_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,38.0,57.0,185.0,4271.0,0.4,0.17040358744394618,0.2389937106918239,0.2374142782097992
+avi_splice_junctions,s11_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,s11_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,s11_50,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,s3_50,pp3,supporting,in_sample,3.181640625,ok,damaging,score at or above the threshold,436.0,219.0,357.0,6648.0,0.665648854961832,0.5498108448928121,0.6022099447513812,0.5642315926655221
+avi_splice_junctions,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,434.0,219.0,359.0,6648.0,0.664624808575804,0.5472887767969735,0.6002766251728907,0.5622629362933408
+avi_splice_junctions,s3_50,pp3,moderate,in_sample,3.857421875,ok,damaging,score at or above the threshold,392.0,136.0,401.0,6731.0,0.7424242424242424,0.4943253467843632,0.5934897804693414,0.5706271780663262
+avi_splice_junctions,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,384.0,148.0,409.0,6719.0,0.7218045112781954,0.4842370744010088,0.579622641509434,0.5544541206071074
+avi_splice_junctions,s3_50,pp3,strong,in_sample,6.08203125,ok,damaging,score at or above the threshold,197.0,25.0,596.0,6842.0,0.8873873873873874,0.2484237074401009,0.38817733990147785,0.44452581500538213
+avi_splice_junctions,s3_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,185.0,29.0,608.0,6838.0,0.8644859813084113,0.23329129886506936,0.36742800397219466,0.42346402722422216
+avi_splice_junctions,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,s3_50,bp4,bp4_supporting,in_sample,0.075927734375,ok,normal,score at or below the threshold,758.0,7.0,6109.0,786.0,0.9908496732026144,0.11038299111693607,0.19863731656184486,0.10318742958345854
+avi_splice_junctions,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+avi_splice_junctions,pm12,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+avi_splice_junctions,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+cadd,s3_10,pp3,supporting,in_sample,19.26,ok,damaging,score at or above the threshold,205.0,183.0,365.0,2356.0,0.5283505154639175,0.35964912280701755,0.4279749478079332,0.3366956546694909
+cadd,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,217.0,211.0,353.0,2328.0,0.5070093457943925,0.38070175438596493,0.4348697394789579,0.33421715925219325
+cadd,s3_10,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,1.0,2.0,87.0,289.0,0.3333333333333333,0.011363636363636364,0.02197802197802198,0.021397126782023827
+cadd,s3_10,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s3_10,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s3_10,bp4,bp4_supporting,in_sample,0.707,ok,normal,score at or below the threshold,160.0,5.0,2379.0,565.0,0.9696969696969697,0.06301693580149666,0.11834319526627218,0.09363056944999594
+cadd,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+cadd,s3_10,bp4,bp4_moderate,in_sample,0.343,ok,normal,score at or below the threshold,91.0,0.0,2448.0,570.0,1.0,0.03584088223710122,0.06920152091254753,0.08227486073398395
+cadd,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+cadd,s11_50,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,6.0,91.0,58.0,1162.0,0.061855670103092786,0.09375,0.07453416149068323,0.017389300041975742
+cadd,s11_50,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s11_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,1.0,1.0,35.0,728.0,0.5,0.027777777777777776,0.05263157894736842,0.10950676596884339
+cadd,s11_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s11_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s11_50,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+cadd,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+cadd,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+cadd,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+cadd,s3_50,pp3,supporting,in_sample,19.27,ok,damaging,score at or above the threshold,230.0,259.0,563.0,6608.0,0.4703476482617587,0.2900378310214376,0.358814352574103,0.3144340679319444
+cadd,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,253.0,347.0,540.0,6520.0,0.4216666666666667,0.31904161412358134,0.36324479540559945,0.30444072406021
+cadd,s3_50,pp3,moderate,in_sample,22.6,ok,damaging,score at or above the threshold,87.0,73.0,706.0,6794.0,0.54375,0.10970996216897856,0.1825813221406086,0.2110633889941905
+cadd,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,99.0,116.0,694.0,6751.0,0.4604651162790698,0.12484237074401008,0.19642857142857142,0.19910910960080935
+cadd,s3_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s3_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,s3_50,bp4,bp4_supporting,in_sample,0.286,ok,normal,score at or below the threshold,283.0,0.0,6584.0,793.0,1.0,0.04121159167030727,0.07916083916083916,0.06655893986444063
+cadd,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+cadd,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+cadd,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+cadd,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+cadd,pm12,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+cadd,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+cadd,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+cadd,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phylop,s3_10,pp3,supporting,in_sample,4.48364,ok,damaging,score at or above the threshold,96.0,58.0,474.0,2481.0,0.6233766233766234,0.16842105263157894,0.26519337016574585,0.2596113490036638
+phylop,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,101.0,99.0,469.0,2440.0,0.505,0.17719298245614035,0.2623376623376623,0.21796858343308465
+phylop,s3_10,pp3,moderate,in_sample,5.34067,ok,damaging,score at or above the threshold,49.0,19.0,521.0,2520.0,0.7205882352941176,0.08596491228070176,0.1536050156739812,0.2076224173925511
+phylop,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,37.0,34.0,533.0,2505.0,0.5211267605633803,0.06491228070175438,0.11544461778471139,0.13345398172270626
+phylop,s3_10,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s3_10,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s3_10,bp4,bp4_supporting,in_sample,-0.850937,ok,normal,score at or below the threshold,194.0,4.0,2345.0,566.0,0.9797979797979798,0.07640803465931469,0.14176105224698576,0.10995501438328638
+phylop,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phylop,s3_10,bp4,bp4_moderate,in_sample,-1.32707,ok,normal,score at or below the threshold,105.0,1.0,2434.0,569.0,0.9905660377358491,0.04135486411973218,0.07939508506616257,0.08443813052272775
+phylop,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phylop,s11_50,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,7.0,73.0,149.0,2660.0,0.0875,0.04487179487179487,0.059322033898305086,0.02501533257540572
+phylop,s11_50,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s11_50,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s11_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s11_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s11_50,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phylop,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phylop,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phylop,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phylop,s3_50,pp3,supporting,in_sample,4.15258,ok,damaging,score at or above the threshold,132.0,130.0,661.0,6737.0,0.5038167938931297,0.1664564943253468,0.2502369668246445,0.24727433007373925
+phylop,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,130.0,203.0,663.0,6664.0,0.39039039039039036,0.16393442622950818,0.23090586145648312,0.20074564136779396
+phylop,s3_50,pp3,moderate,in_sample,5.58181,ok,damaging,score at or above the threshold,33.0,20.0,760.0,6847.0,0.6226415094339622,0.0416141235813367,0.07801418439716312,0.1422344781548597
+phylop,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,47.0,43.0,746.0,6824.0,0.5222222222222223,0.05926860025220681,0.10645526613816535,0.1498587997800241
+phylop,s3_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s3_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,s3_50,bp4,bp4_supporting,in_sample,-1.49783,ok,normal,score at or below the threshold,212.0,2.0,6655.0,791.0,0.9906542056074766,0.0308722877530217,0.059878548227651464,0.05240927390530518
+phylop,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phylop,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phylop,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phylop,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phylop,pm12,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phylop,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phylop,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phylop,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phastcons,s3_10,pp3,supporting,in_sample,1.0,ok,damaging,score at or above the threshold,243.0,267.0,327.0,2272.0,0.4764705882352941,0.4263157894736842,0.45,0.3355806928337411
+phastcons,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,243.0,267.0,327.0,2272.0,0.4764705882352941,0.4263157894736842,0.45,0.3355806928337411
+phastcons,s3_10,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s3_10,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s3_10,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s3_10,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s3_10,bp4,bp4_supporting,in_sample,0.0,ok,normal,score at or below the threshold,956.0,64.0,1583.0,506.0,0.9372549019607843,0.3765261914139425,0.5372295588648497,0.21777451518751345
+phastcons,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phastcons,s3_10,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phastcons,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phastcons,s11_50,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,2.0,138.0,17.0,1279.0,0.014285714285714285,0.10526315789473684,0.025157232704402517,0.0030332458824113627
+phastcons,s11_50,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s11_50,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s11_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s11_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s11_50,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phastcons,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phastcons,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phastcons,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phastcons,s3_50,pp3,supporting,in_sample,0.992126,ok,damaging,score at or above the threshold,339.0,652.0,454.0,6215.0,0.3420787083753784,0.4274905422446406,0.38004484304932734,0.30185727660834866
+phastcons,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,263.0,480.0,530.0,6387.0,0.35397039030955585,0.3316519546027743,0.3424479166666667,0.26943719797614996
+phastcons,s3_50,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,93.0,240.0,275.0,3477.0,0.27927927927927926,0.25271739130434784,0.2653352353780314,0.19686522788510494
+phastcons,s3_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s3_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,s3_50,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phastcons,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phastcons,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phastcons,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phastcons,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+phastcons,pm12,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phastcons,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+phastcons,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+phastcons,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+gpn_msa,s3_10,pp3,supporting,in_sample,7.47,ok,damaging,score at or above the threshold,201.0,145.0,369.0,2394.0,0.5809248554913294,0.3526315789473684,0.4388646288209607,0.36360580686343924
+gpn_msa,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,209.0,154.0,361.0,2385.0,0.5757575757575758,0.36666666666666664,0.4480171489817792,0.3687269538445349
+gpn_msa,s3_10,pp3,moderate,in_sample,9.01,ok,damaging,score at or above the threshold,102.0,49.0,468.0,2490.0,0.6754966887417219,0.17894736842105263,0.2829403606102635,0.28737294375739625
+gpn_msa,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,104.0,52.0,466.0,2487.0,0.6666666666666666,0.1824561403508772,0.2865013774104683,0.2870942206871796
+gpn_msa,s3_10,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s3_10,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s3_10,bp4,bp4_supporting,in_sample,1.63,ok,normal,score at or below the threshold,364.0,14.0,2175.0,556.0,0.9629629629629629,0.14336352894840487,0.2495714775454234,0.14066506096957207
+gpn_msa,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+gpn_msa,s3_10,bp4,bp4_moderate,in_sample,-3.15,ok,normal,score at or below the threshold,20.0,0.0,2519.0,570.0,1.0,0.007877116975187082,0.015631105900742476,0.038125199163012526
+gpn_msa,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+gpn_msa,s11_50,pp3,supporting,in_sample,6.63,ok,damaging,score at or above the threshold,43.0,152.0,180.0,4176.0,0.2205128205128205,0.19282511210762332,0.20574162679425836,0.16810482566759988
+gpn_msa,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,42.0,174.0,181.0,4154.0,0.19444444444444445,0.18834080717488788,0.19134396355353075,0.15039714205913612
+gpn_msa,s11_50,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s11_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,16.0,46.0,121.0,1270.0,0.25806451612903225,0.11678832116788321,0.16080402010050251,0.11832108437024723
+gpn_msa,s11_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s11_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s11_50,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+gpn_msa,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+gpn_msa,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+gpn_msa,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+gpn_msa,s3_50,pp3,supporting,in_sample,6.84,ok,damaging,score at or above the threshold,313.0,370.0,480.0,6497.0,0.4582723279648609,0.39470365699873894,0.4241192411924119,0.3643376185624593
+gpn_msa,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,301.0,377.0,492.0,6490.0,0.443952802359882,0.37957124842370743,0.40924541128484027,0.3482241187539289
+gpn_msa,s3_50,pp3,moderate,in_sample,8.24,ok,damaging,score at or above the threshold,146.0,103.0,647.0,6764.0,0.5863453815261044,0.1841109709962169,0.2802303262955854,0.29050639041411425
+gpn_msa,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,166.0,138.0,627.0,6729.0,0.5460526315789473,0.20933165195460277,0.30264357338195075,0.29530117114780763
+gpn_msa,s3_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s3_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,s3_50,bp4,bp4_supporting,in_sample,-2.59,ok,normal,score at or below the threshold,56.0,0.0,6811.0,793.0,1.0,0.00815494393476045,0.016177957532861477,0.029162585787600847
+gpn_msa,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+gpn_msa,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+gpn_msa,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+gpn_msa,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+gpn_msa,pm12,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+gpn_msa,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+gpn_msa,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+gpn_msa,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+nt,s3_10,pp3,supporting,in_sample,3.268993377685547,ok,damaging,score at or above the threshold,126.0,115.0,444.0,2424.0,0.5228215767634855,0.22105263157894736,0.31072749691738594,0.25432483581580406
+nt,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,90.0,84.0,480.0,2455.0,0.5172413793103449,0.15789473684210525,0.24193548387096775,0.21010792160274439
+nt,s3_10,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,10.0,11.0,404.0,1877.0,0.47619047619047616,0.024154589371980676,0.04597701149425287,0.07403745663507652
+nt,s3_10,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_10,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_10,bp4,bp4_supporting,in_sample,-1.2618465423583984,ok,normal,score at or below the threshold,119.0,3.0,2420.0,567.0,0.9754098360655737,0.046868846002363136,0.08944006012777152,0.08291325419350103
+nt,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+nt,s3_10,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+nt,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+nt,s11_50,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s11_50,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s11_50,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s11_50,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s11_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s11_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s11_50,bp4,bp4_supporting,in_sample,-2.141326427459717,ok,normal,score at or below the threshold,39.0,0.0,4289.0,223.0,1.0,0.009011090573012939,0.017861231967025416,0.021103600820559107
+nt,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+nt,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+nt,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+nt,s3_50,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,1.0,6.0,101.0,814.0,0.14285714285714285,0.00980392156862745,0.01834862385321101,0.008986627820722487
+nt,s3_50,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_50,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,s3_50,bp4,bp4_supporting,in_sample,-1.7628707885742188,ok,normal,score at or below the threshold,130.0,2.0,6737.0,791.0,0.9848484848484849,0.01893111984855104,0.03714816402343192,0.038412876615504396
+nt,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+nt,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+nt,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+nt,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+nt,pm12,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+nt,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+nt,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+nt,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+fusion_enet,s3_10,pp3,supporting,in_sample,0.6563120169882428,ok,damaging,score at or above the threshold,356.0,221.0,214.0,2318.0,0.6169844020797227,0.624561403508772,0.6207497820401047,0.5349867819922262
+fusion_enet,s3_10,pp3,supporting,logo,,ok,damaging,score at or above the threshold,134.0,109.0,436.0,2430.0,0.551440329218107,0.23508771929824562,0.3296432964329643,0.27700316681148607
+fusion_enet,s3_10,pp3,moderate,in_sample,0.7437235681372876,ok,damaging,score at or above the threshold,60.0,11.0,510.0,2528.0,0.8450704225352113,0.10526315789473684,0.187207488299532,0.26143828856451196
+fusion_enet,s3_10,pp3,moderate,logo,,ok,damaging,score at or above the threshold,71.0,57.0,499.0,2482.0,0.5546875,0.12456140350877193,0.2034383954154728,0.19886482497265
+fusion_enet,s3_10,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,s3_10,pp3,strong,logo,,ok,damaging,score at or above the threshold,37.0,10.0,29.0,383.0,0.7872340425531915,0.5606060606060606,0.6548672566371682,0.6193768575055352
+fusion_enet,s3_10,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,s3_10,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,s3_10,bp4,bp4_supporting,in_sample,0.4389130629206123,ok,normal,score at or below the threshold,964.0,16.0,1575.0,554.0,0.9836734693877551,0.3796770382040173,0.5478829212844558,0.29283653059943227
+fusion_enet,s3_10,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+fusion_enet,s3_10,bp4,bp4_moderate,in_sample,0.323800122561503,ok,normal,score at or below the threshold,206.0,1.0,2333.0,569.0,0.9951690821256038,0.08113430484442694,0.15003641660597233,0.12320988500861814
+fusion_enet,s3_10,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+fusion_enet,s11_50,pp3,supporting,in_sample,0.6217657787647346,ok,damaging,score at or above the threshold,97.0,230.0,126.0,4098.0,0.2966360856269113,0.4349775784753363,0.3527272727272727,0.3191804220545831
+fusion_enet,s11_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,95.0,243.0,128.0,4085.0,0.28106508875739644,0.4260089686098655,0.33868092691622104,0.304496846028839
+fusion_enet,s11_50,pp3,moderate,in_sample,0.6493064232045906,ok,damaging,score at or above the threshold,73.0,121.0,150.0,4207.0,0.37628865979381443,0.3273542600896861,0.3501199040767386,0.31992525816877976
+fusion_enet,s11_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,73.0,135.0,150.0,4193.0,0.35096153846153844,0.3273542600896861,0.33874709976798145,0.3061250323969079
+fusion_enet,s11_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,s11_50,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,s11_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,s11_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,s11_50,bp4,bp4_supporting,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+fusion_enet,s11_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+fusion_enet,s11_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+fusion_enet,s11_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+fusion_enet,s3_50,pp3,supporting,in_sample,0.6395726814164857,ok,damaging,score at or above the threshold,483.0,450.0,310.0,6417.0,0.5176848874598071,0.6090794451450189,0.5596755504055619,0.506298918403945
+fusion_enet,s3_50,pp3,supporting,logo,,ok,damaging,score at or above the threshold,508.0,571.0,285.0,6296.0,0.47080630213160335,0.6406052963430012,0.5427350427350427,0.4881715663458247
+fusion_enet,s3_50,pp3,moderate,in_sample,0.7374493805138544,ok,damaging,score at or above the threshold,74.0,23.0,719.0,6844.0,0.7628865979381443,0.09331651954602774,0.1662921348314607,0.24511576691765125
+fusion_enet,s3_50,pp3,moderate,logo,,ok,damaging,score at or above the threshold,104.0,155.0,689.0,6712.0,0.4015444015444015,0.13114754098360656,0.19771863117870722,0.18300297749564276
+fusion_enet,s3_50,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,s3_50,pp3,strong,logo,,ok,damaging,score at or above the threshold,45.0,53.0,40.0,1757.0,0.45918367346938777,0.5294117647058824,0.4918032786885246,0.46746013192055336
+fusion_enet,s3_50,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,s3_50,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,s3_50,bp4,bp4_supporting,in_sample,0.2998726444673672,ok,normal,score at or below the threshold,464.0,3.0,6403.0,790.0,0.9935760171306209,0.06756953545944372,0.12653395145895827,0.08121476008899646
+fusion_enet,s3_50,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+fusion_enet,s3_50,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+fusion_enet,s3_50,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+fusion_enet,pm12,pp3,supporting,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,pm12,pp3,supporting,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,pm12,pp3,moderate,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,pm12,pp3,moderate,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,pm12,pp3,strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,pm12,pp3,strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,pm12,pp3,very_strong,in_sample,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,pm12,pp3,very_strong,logo,,not reached,damaging,score at or above the threshold,,,,,,,,
+fusion_enet,pm12,bp4,bp4_supporting,in_sample,0.6389414297866349,ok,normal,score at or below the threshold,6.0,9.0,31.0,795.0,0.4,0.16216216216216217,0.23076923076923078,0.23392601118620607
+fusion_enet,pm12,bp4,bp4_supporting,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,
+fusion_enet,pm12,bp4,bp4_moderate,in_sample,,not reached,normal,score at or below the threshold,,,,,,,,
+fusion_enet,pm12,bp4,bp4_moderate,logo,,no held-out threshold,normal,score at or below the threshold,,,,,,,,

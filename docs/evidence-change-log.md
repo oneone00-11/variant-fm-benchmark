@@ -1582,3 +1582,29 @@ is unchanged (`scripts/stage_E19/scope_c5.json`).
   the 42 cells.
 - The variant-level and gene-level bootstrap thresholds already stand side by side in
   Supplementary Tables S6 and S7; no file repeats them.
+
+## Supplementary analyses, C8, C9, C10: read from existing outputs (stage E19, 2026-10-25)
+
+Why: revision items C8 to C10 (E19.9). A new stage, `evid_suppl_c8_c10` (stage 33,
+after every existing stage), reads existing outputs only, fits nothing, and only adds
+files under `phase1/reports/evidence/suppl_analyses/`; every existing output is
+unchanged (`scripts/stage_E19/scope_c8_c10.json`).
+
+- `c8_without_bap1.csv`: the 11-50 nt band's labelled variants by gene (BAP1 holds 137
+  of its 223 damaging variants); from `threshold_dilution.csv`, the fit on every gene
+  but BAP1 at 11-50 nt (five genes, BRCA2 having none there) and 3-50 nt (six), with
+  its held-out result on BAP1, beside every gene's (E11's four columns, the PP3 side,
+  Moderate and Strong). Of 16 cells, 2 change whether the tier is reached; on BAP1, 14
+  are evaluable and 10 clear the cut.
+- `c9_family_holdout.csv`: (a) from `threshold_dilution.csv`, the fit on the homologous
+  recombination genes (the four with variants at 11-50 nt) held out on VHL and BAP1 (48
+  rows, 27 evaluable, 23 clearing the cut), and the fit on VHL and BAP1 held out on each
+  of those genes (112 rows, 58 evaluable, 58 clearing); (b) the external genes, RAD51C's
+  paralogues RAD51D and XRCC2 against the other five, counted from Supplementary Table
+  S12 by the supplement's own `external_summary` (Table 3's k/n (m)), beside the seven
+  external genes' row of `external_summary.csv`; the two groups add up to it.
+- `c10_confusion_mcc_f1.csv`: TP, FP, FN and TN from `practical_metrics_by_threshold.csv`
+  (PP3: damaging positive, at or above the threshold called; BP4: normal positive, at or
+  below called), precision, recall, F1 and MCC, the formulas in the file's header, for
+  its 336 in-sample and 336 held-out rows (133 and 102 with an MCC). For the supplement
+  only.
