@@ -15,7 +15,7 @@ Outputs, under reports/evidence/ unless named otherwise:
       coverage; prevalence; the observed PPV; the band likelihood ratio; the posterior
       at a prior of 0.10; and two tiers, side by side
   practical_metrics_logo_by_gene.csv   the held-out rows, one row per fold
-  practical_metrics_external.csv       DDX3X and TP53 at the thresholds E7 carried over
+  practical_metrics_external.csv       the external genes at the thresholds E7 carried over
   practical_roc_curves.csv, practical_pr_curves.csv   every distinct score threshold
   practical_curve_auc.csv              pooled AUROC and AUPRC of each curve, beside
       the gene-pooled AUROC of fig_data/fig3_evidence_by_territory.csv
@@ -135,9 +135,11 @@ EXTERNAL_BP4_TIERS = ["supporting", "moderate"]              # and on the BP4 si
 EXTERNAL_SOURCES = {"in_sample": "in_sample", "logo_median": "logo", "published": "published"}
 TIER_NAME = {"supporting": "Supporting", "moderate": "Moderate", "strong": "Strong",
              "very_strong": "Very strong"}
-# DDX3X under the deposit's own classification, TP53 under its control-anchored
-# construction: each gene's primary label, as in Figures 1 and 4
-EXTERNAL = [("DDX3X", F.PRIMARY_LABEL["DDX3X"]), ("TP53", F.PRIMARY_LABEL["TP53"])]
+# Each external gene under its primary label (evid_external.PRIMARY_LABEL): DDX3X under
+# the deposit's own classification and TP53 under its investigator-provided ranges, as in
+# Figures 1 and 4, and since E19.1 the five genes of E16 and E16b, computed exactly as
+# those two are
+EXTERNAL = [(g, X.PRIMARY_LABEL[g]) for g in ["DDX3X", "TP53"] + X.NEW_GENES]
 PRIOR = 0.10                   # the prior Tavtigian's tier cuts are solved at
 Z95 = 1.959963984540054        # two-sided 95% quantile of the standard normal
 MATCHED_SPECIFICITY = (Fraction(90, 100), Fraction(95, 100))

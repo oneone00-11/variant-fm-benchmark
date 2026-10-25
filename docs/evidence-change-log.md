@@ -1466,3 +1466,25 @@ TP53 (E18.6). One reason, one commit: only the new genes' rows and new tables
   previous commit's; the manifest changes in S12's row alone. The normal-only table has
   97 rows, in four strata: SBDS 11–50, XRCC2 3–10 and 11–50, TP53 11–12. The external
   summary has 195 rows per gene set.
+
+## Supplementary analyses: the five new genes in the practical metrics (stage E19, 2026-10-25)
+
+Why: E18 tested CTCF, SFPQ, RAD51D, XRCC2 and SBDS at the frozen thresholds; E15's
+table of practical metrics for the external genes still held DDX3X and TP53 only
+(E19.1). This commit adds rows and changes nothing else (`scripts/stage_E19/scope_c1.json`,
+checked by `scripts/stage_E19/check_scope.py`, which runs E18's check as it stands).
+
+- `practical_metrics_external.csv`: the five genes' rows, built by E15's own external-gene
+  code exactly as DDX3X's and TP53's are. Each gene is under its primary label
+  (`evid_external.PRIMARY_LABEL`), in the three in-scope strata, for the twelve columns of
+  the analysis set's variable (NT has none on these genes). The thresholds are the ones
+  E7 carried over: Table 3(b)'s in-sample PP3 and BP4 thresholds and Walker's published
+  cut point; by the author's decision of 2026-10-25 the medians of the leave-one-gene-out
+  fits are carried too, as the sensitivity rows they are for DDX3X and TP53.
+- `check_scope.py`: one output differs, 1,455 rows added, no existing row changed. The
+  summary page `docs/practical-metrics-summary.md` is unchanged (E19.0 rule 1); its
+  sentence naming DDX3X and TP53 as the external genes in this table is now incomplete,
+  and is listed for the revision.
+- `scripts/stage_E19/`: this stage's run records (`_runlog.py`, a copy of E18's), the
+  image runner and the pipeline helper (copies of E18's for this folder), the scope check
+  and the secrets scan (wrappers that run E18's scripts unchanged, recording here).

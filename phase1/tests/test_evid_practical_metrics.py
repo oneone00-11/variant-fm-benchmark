@@ -393,9 +393,10 @@ def test_external_genes_reproduce_e7():
     the LOGO medians of the sensitivity analysis."""
     prefix = {"in_sample": {"pp3": "pp3_insample_", "bp4": "bp4_insample_"},
               "logo_median": {"pp3": "pp3_logo_median_"}}
+    from src import evid_practical_metrics as P
     x = _csv(EXTERNAL)
     checked = 0
-    for gene, label in (("DDX3X", "y_deposit"), ("TP53", "y_control_anchored")):
+    for gene, label in P.EXTERNAL:
         e = _csv(EV / f"external_{gene.lower()}.csv")
         e = e[e.label_definition == label].set_index(["tool", "stratum"])
         for r in x[x.gene == gene].itertuples():
@@ -426,6 +427,32 @@ def test_external_genes_reproduce_e7():
                 assert _same(r.bp4_band_lr, f[f"{k}_lr_here"])
             checked += 1
     assert checked > 100
+
+
+@need
+def test_the_five_new_genes_rows_are_built_as_ddx3x_and_tp53s():
+    """E19.1: the five genes of E16 and E16b enter the table through the same code as
+    DDX3X and TP53, under their primary labels: the three in-scope strata, the twelve
+    columns of the analysis set's variable (no NT), and per column and stratum the same
+    threshold kinds and sources as the two."""
+    from src import evid_common as K
+    from src import evid_external as X
+    from src import evid_practical_metrics as P
+    x = _csv(EXTERNAL)
+    assert [g for g, _ in P.EXTERNAL] == ["DDX3X", "TP53"] + X.NEW_GENES
+    assert list(dict.fromkeys(x.gene)) == [g for g, _ in P.EXTERNAL]
+    for gene in X.NEW_GENES:
+        g = x[x.gene == gene]
+        assert set(g.label_definition) == {X.PRIMARY_LABEL[gene]}
+        assert set(g.stratum) == {"s3_10", "s11_50", "s3_50"}
+        assert set(g.tool) == set(K.PANEL + K.OPTIONAL) - {"nt"}
+        # per column the threshold kinds of DDX3X's rows, column for column
+        for tool in set(g.tool):
+            mine = sorted(zip(*[g[(g.tool == tool) & (g.stratum == "s3_10")][c]
+                                for c in ("side", "threshold_kind", "threshold_source")]))
+            ref = x[(x.gene == "DDX3X") & (x.tool == tool) & (x.stratum == "s3_10")]
+            assert mine == sorted(zip(ref.side, ref.threshold_kind, ref.threshold_source))
+        assert g.external_test.astype(bool).all()
 
 
 @need

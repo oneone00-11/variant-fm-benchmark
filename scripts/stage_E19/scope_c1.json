@@ -1,0 +1,93 @@
+{
+ "commit": "E19.1",
+ "reason": "the five genes of E16 and E16b enter practical_metrics_external.csv through E15's own external-gene code, exactly as DDX3X and TP53: their primary labels, the thresholds E7 carried over (Table 3(b)'s in-sample PP3 and BP4, Walker's published cut point, the leave-one-gene-out medians of the sensitivity analysis), the three in-scope strata, the twelve columns of the analysis set's variable (no NT)",
+ "declared_from": "E19.1: only the five genes' rows are added; every existing row, DDX3X's and TP53's, stays byte for byte the same (fields: none), and every other output, the summary page docs/practical-metrics-summary.md included, does not change (E19.0 rule 1). The author's decision of 2026-10-25: the new genes' rows carry the medians' sensitivity rows too, the same code as DDX3X's and TP53's",
+ "pairs": {
+  "CTCF": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ],
+  "SFPQ": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ],
+  "RAD51D": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ],
+  "XRCC2": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ],
+  "SBDS": [
+   "spliceai",
+   "pangolin",
+   "alphagenome",
+   "cadd",
+   "phylop",
+   "phastcons",
+   "gpn_msa",
+   "spliceai_walker",
+   "avi",
+   "avi_splice_sites",
+   "avi_splice_site_usage",
+   "avi_splice_junctions"
+  ]
+ },
+ "files": {
+  "phase1/reports/evidence/practical_metrics_external.csv": {
+   "kind": "rows",
+   "key": [
+    "gene",
+    "label_definition",
+    "tool",
+    "stratum",
+    "threshold_kind",
+    "threshold_source"
+   ],
+   "gene": "gene",
+   "tool": "tool",
+   "fields": []
+  }
+ }
+}
