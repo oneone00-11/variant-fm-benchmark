@@ -1,0 +1,68 @@
+{
+ "gene": "BRCA2",
+ "score_set": "urn:mavedb:00001242-a-1",
+ "what": "the second BRCA2 set's label source under rule R6 (the author's specification of 2026-10-25, item 4), as served",
+ "written_by": "scripts/stage_E19/fetch_brca2_supplementary.py",
+ "article_page": {
+  "url": "https://www.nature.com/articles/s41586-024-08349-1",
+  "final_url": "https://www.nature.com/articles/s41586-024-08349-1",
+  "http_status": 200,
+  "bytes": 453445,
+  "sha256": "5b39514f6f9a1087448c810533a357e069d540345ea9f2726fbb1802060f1a80",
+  "fetched_utc": "2026-10-25T17:08:18+00:00",
+  "saved": false,
+  "why_not_saved": "the publisher's page; only its record is kept",
+  "supplementary_items": 7,
+  "entry": {
+   "title": "Supplementary Table 5",
+   "link": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08349-1/MediaObjects/41586_2024_8349_MOESM6_ESM.xlsx",
+   "description": "Function scores for 6,551 SNVs across exons 15 to 26 encoding the CTDB of BRCA2."
+  }
+ },
+ "files": [
+  {
+   "path": "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx",
+   "bytes": 601345,
+   "sha256": "987f6af0320e5cc1925eee5039739605614993866ea1b9da19cd08cca8c805f6",
+   "source_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08349-1/MediaObjects/41586_2024_8349_MOESM6_ESM.xlsx",
+   "fetched_utc": "2026-10-25T17:08:20+00:00",
+   "http_status": 200,
+   "cached": true,
+   "article_entry": "Supplementary Table 5",
+   "sheet": "Sheet 1",
+   "header_row": {
+    "A": "Exon",
+    "B": "AA.change",
+    "C": "c.nom",
+    "D": "g.nom",
+    "E": "dbSNP.ID",
+    "F": "ClinVar.annotation",
+    "G": "Protein.change",
+    "H": "Affect.splicing",
+    "I": "Function.score",
+    "J": "Probability",
+    "K": "Classification",
+    "L": "ACMG.class.AVENGERS"
+   }
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/supplementary_table5_classes.tsv",
+   "bytes": 623791,
+   "sha256": "04f5474f104e28abe32250626b4119d6dd3db6ea6344da6efbd5c65983c71b74",
+   "compact_of": [
+    "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx"
+   ],
+   "n_rows": 6551,
+   "supplementary": {
+    "sheet": "Sheet 1",
+    "header_row": 1,
+    "hgvs_column": "c.nom",
+    "class_column": "Classification",
+    "score_column": "Function.score",
+    "genomic_column": "g.nom"
+   },
+   "written_by": "scripts/stage_E19/extract_brca2_supplementary.py",
+   "note": "compact extract: every row of the sheet with a classification; the ACMG column (ACMG.class.AVENGERS) and the probability are not taken"
+  }
+ ]
+}

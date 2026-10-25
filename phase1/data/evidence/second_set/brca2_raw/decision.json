@@ -1,0 +1,52 @@
+{
+ "what": "the second BRCA2 dataset, by the author's four conditions (2026-10-25)",
+ "written_by": "scripts/stage_E19/screen_brca2_second_set.py",
+ "conditions": "E19 C3, BRCA2 (E19.5 item 3, as the author specified it on 2026-10-25): which of the\nBRCA2 score sets is a second dataset, by the four conditions, from the records\nscripts/stage_E19/fetch_brca2_second_set.py saved. Offline; run in the reference image\n(修改单 §0 rule 9).\n\nThe conditions (the author's items 2 and 3), each read from a saved record:\n  (a) an SGE score set: the catalog's own rule (scripts/20_catalog_mavedb.py,\n      assay_type): 'saturation genome editing', or SGE as a word, in the score set's\n      title, its experiment's abstract or method, or its own method (case folded). For\n      every score set results/tables/mavedb_catalog.tsv lists, its is_sge must agree, or\n      this stops.\n  (b) the experiment comes from a laboratory other than Huang 2025's, judged on the\n      authors of the papers, not on MaveDB's submitters or contributors: the papers\n      MaveDB records on the score set (else on its experiment) do not include Huang\n      2025, and no such paper shares its last author with Huang 2025 (the last author\n      taken as the head of the laboratory) or names Huang 2025's last author among its\n      authors, nor does Huang 2025 name its last author among its own. Authors are\n      Crossref's, as served, compared on family name and first initial, case and\n      accents folded. A score set with no paper recorded cannot be judged so: (b) is not\n      met ('no paper').\n  (c) it shares variants with the analysis set's BRCA2 intronic variants, which are\n      551, all at 3-10 nt (BRCA2 has none at 11-50 nt): rows of the score table written\n      on BRCA2's MANE Select pair (HGNC's record: ENST00000380152.8, NM_000059.4) whose\n      c. notation, normalised as evid_build_set.attach_labels normalises it, is one of\n      those 551. Rows on any other reference are counted, and not matched.\n  (d) it has a per-variant experimental classification, taken by the label source\n      audit's order (the author's item 4): R1, an investigator-provided calibration\n      (evid_label_audit's R1); R2, a class column of the score table (evid_label_audit's\n      CLASS_COLUMNS); R4, the rule the paper states (paper_rule.json in this folder,\n      quoted and checked); R6, a per-variant table published with the paper, the\n      experimental classes only. R1 and R2 are read for every score set; R4 and R6 only\n      for one that meets (a) to (c), and until paper_rule.json is written they are\n      pending.\nThe author's expectation (item 3) is checked against, not assumed: the condition each\nscore set fails is written beside it.",
+ "analysis_set_brca2": {
+  "s3_10": 551,
+  "pm12": 138,
+  "s11_50": 0
+ },
+ "catalog_brca2": [
+  "urn:mavedb:00001223-a-1",
+  "urn:mavedb:00001224-a-1",
+  "urn:mavedb:00001225-a-1",
+  "urn:mavedb:00001242-a-1",
+  "urn:mavedb:00001263-a-2",
+  "urn:mavedb:00001268-0-1",
+  "urn:mavedb:00001268-a-1",
+  "urn:mavedb:00001268-b-1",
+  "urn:mavedb:00001268-c-1"
+ ],
+ "candidates": [
+  "urn:mavedb:00001223-a-1",
+  "urn:mavedb:00001224-a-1",
+  "urn:mavedb:00001225-a-1",
+  "urn:mavedb:00001242-a-1",
+  "urn:mavedb:00001263-a-2",
+  "urn:mavedb:00001268-0-1",
+  "urn:mavedb:00001268-a-1",
+  "urn:mavedb:00001268-b-1",
+  "urn:mavedb:00001268-c-1",
+  "urn:mavedb:00001279-a-1"
+ ],
+ "meeting_all": [
+  "urn:mavedb:00001242-a-1"
+ ],
+ "outcome": "use urn:mavedb:00001242-a-1",
+ "item_7": {
+  "urn": "urn:mavedb:00001279-a-1",
+  "investigator_provided_calibration": false,
+  "calibrations": [
+   [
+    "ExCALIBR calibration",
+    false
+   ]
+  ],
+  "variants_in_both": 6959,
+  "scores_equal": 0,
+  "same_scores_variant_by_variant": false,
+  "compared_with": "urn:mavedb:00001225-a-1",
+  "line": "urn:mavedb:00001279-a-1: investigator-provided calibration no; its scores equal urn:mavedb:00001225-a-1's on 0 of the 6,959 variants both carry (same c. notation); nothing is changed on this account"
+ }
+}

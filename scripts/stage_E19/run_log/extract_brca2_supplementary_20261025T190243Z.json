@@ -1,0 +1,50 @@
+{
+ "script": "scripts/stage_E19/extract_brca2_supplementary.py",
+ "argv": [
+  "scripts/stage_E19/extract_brca2_supplementary.py"
+ ],
+ "git_commit": "98c2b9acff456602c9f82bce245bdebff6ddc856",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E19/extract_brca2_supplementary.py": "8172c996ac8f869409f00710a007014a6dfb203fbd48c3f65e9a3b941945e82a",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T19:02:42+00:00",
+ "end_utc": "2026-10-25T19:02:43+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/label_source_manifest.json",
+   "bytes": 2586,
+   "sha256": "018f2cbf5c295178982cbc46f234787e21f7471eb388a05eb9f2f2a5100bba99"
+  },
+  {
+   "path": "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx",
+   "bytes": 601345,
+   "sha256": "987f6af0320e5cc1925eee5039739605614993866ea1b9da19cd08cca8c805f6"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/supplementary_table5_classes.tsv",
+   "bytes": 623791,
+   "sha256": "04f5474f104e28abe32250626b4119d6dd3db6ea6344da6efbd5c65983c71b74"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/label_source_manifest.json",
+   "bytes": 2586,
+   "sha256": "018f2cbf5c295178982cbc46f234787e21f7471eb388a05eb9f2f2a5100bba99"
+  }
+ ],
+ "exception": null,
+ "notes": {}
+}

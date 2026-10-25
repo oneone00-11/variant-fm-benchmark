@@ -1,0 +1,971 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E19/scope_c3_brca2_records.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "98c2b9acff456602c9f82bce245bdebff6ddc856",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T19:03:14+00:00",
+ "end_utc": "2026-10-25T19:03:24+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E19/scope_c3_brca2_records.json",
+   "bytes": 63183,
+   "sha256": "fc771de5f7a3c2e213db1d320c4b038698d6702678b456d8506363292453c7b9"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E19/scope_c3_brca2_records.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001223-a-1.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001223-a-1_scores.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001223-a.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001224-a-1.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001224-a-1_scores.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001224-a.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001225-a-1.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001225-a-1_scores.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001225-a.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001242-a-1.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001242-a-1_scores.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001242-a.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001263-a-2.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001263-a-2_scores.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001263-a.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-0-1.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-0-1_scores.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-0.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-a-1.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-a-1_scores.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-a.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-b-1.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-b-1_scores.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-b.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-c-1.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-c-1_scores.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-c.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001279-a-1.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001279-a-1_scores.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001279-a.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/coverage_3_10.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/decision.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/identifiers/ensembl_ENSG00000139618.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/identifiers/hgnc_BRCA2.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/identifiers/ncbi_gene_675_product_report.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/label_source_manifest.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/listing.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/manifest.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/paper_quote_check.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/paper_rule.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/papers/crossref_10.1016_j.ajhg.2024.02.002.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/papers/crossref_10.1038_s41586-024-08349-1.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/papers/crossref_10.1038_s41586-024-08388-8.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/papers/crossref_10.1038_s41587-021-01201-1.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/papers/crossref_10.1371_journal.pgen.1010940.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/screening.csv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/count_after.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/count_before.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/filter_options.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000000.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000001.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000002.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000003.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000004.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000005.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000006.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000007.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000008.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000009.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000010.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000011.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000012.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000013.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000014.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000015.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000016.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000017.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000018.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000019.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000020.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000021.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000022.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000023.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000024.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000025.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000026.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000027.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000028.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000029.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000030.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000031.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000032.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000033.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000034.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000035.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000036.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000037.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000038.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000039.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000040.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000041.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000042.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000043.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000044.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000045.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000046.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000047.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000048.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000049.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000050.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000051.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000052.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000053.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000054.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000055.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000056.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000057.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000058.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000059.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000060.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000061.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000062.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000063.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000064.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000065.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000066.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000067.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000068.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000069.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000070.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000071.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000072.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000073.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000074.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000075.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000076.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000077.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000078.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000079.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000080.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000081.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000082.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000083.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000084.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000085.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000086.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000087.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000088.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000089.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000090.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000091.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000092.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000093.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000094.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000095.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000096.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000097.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000098.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000099.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000100.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000101.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000102.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000103.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000104.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000105.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000106.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000107.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000108.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000109.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000110.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000111.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000112.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000113.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000114.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000115.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000116.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000117.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000118.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000119.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000120.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000121.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000122.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000123.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000124.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000125.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000126.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000127.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000128.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000129.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000130.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000131.json.gz": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/search_target_accessions.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/search_targets.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/search/search_text.json": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/second_set/brca2_raw/supplementary_table5_classes.tsv": {
+    "status": "declared",
+    "why": "new input: the second BRCA2 set's records (fetched as served, or written in the reference image from them: the screening, the coverage record, the quote check, the compact extract); listed in reproduce_inputs.txt",
+    "change": "added"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

@@ -1,0 +1,56 @@
+{
+ "checked_utc": "2026-10-25T19:02:46+00:00",
+ "written_by": "scripts/stage_E19/check_brca2_paper_quotes.py",
+ "paper_rule": "phase1/data/evidence/second_set/brca2_raw/paper_rule.json",
+ "paper_rule_sha256": "eaf4e34ae17bb8fa2fc1775a6b58e7a90e14fdd63ce2812d5ffc07e31f2cec78",
+ "pdf": {
+  "cache_path": "phase1/data/e19_cache/brca2_second_set/s41586-024-08349-1.pdf",
+  "sha256": "a57223b602f6d14daa760a7758058406a465bf20a7f4dfdd0a3904ccdce6c92c",
+  "bytes": 23826668,
+  "pages": 30
+ },
+ "text_extraction": "pypdf 6.19.0",
+ "folding": "Unicode NFKC; a hyphen at a line end joined to a following lower-case letter; all white space removed; the same on both sides",
+ "quotes": [
+  {
+   "where": "Methods, 'Statistical modelling and SNV categorization'",
+   "found": true,
+   "first_words": "The position-corrected and normalized function scores were used"
+  },
+  {
+   "where": "Methods, 'Statistical modelling and SNV categorization'",
+   "found": true,
+   "first_words": "We applied a Bayesian approach to calculate OddsPath,"
+  },
+  {
+   "where": "Methods, 'Functional classification of SNVs'",
+   "found": true,
+   "first_words": "For each SNV, four function scores were calculated:"
+  },
+  {
+   "where": "Results, introduction (before the first heading)",
+   "found": true,
+   "first_words": "We identified score ranges associated with pathogenic strong,"
+  },
+  {
+   "where": "Results, 'SGE-based BRCA2 functional assay in mES cells'",
+   "found": true,
+   "first_words": "Function scores were bimodally distributed, and we used"
+  },
+  {
+   "where": "Results, 'Pathogenic spectrum of BRCA2 variants'",
+   "found": true,
+   "first_words": "In summary, using a 7-tier categorization, we categorized"
+  },
+  {
+   "where": "Figure 2 legend, panel b",
+   "found": true,
+   "first_words": "The dashed lines represent benign and pathogenic thresholds"
+  },
+  {
+   "where": "Results, 'SGE-based BRCA2 functional assay in mES cells'",
+   "found": true,
+   "first_words": "Depending on the availability of sgRNAs, we used"
+  }
+ ]
+}

@@ -1,0 +1,39 @@
+{
+ "script": "scripts/stage_E19/fetch_brca2_supplementary.py",
+ "argv": [
+  "scripts/stage_E19/fetch_brca2_supplementary.py"
+ ],
+ "git_commit": "299e1e221ae5a17f9db988777a9ffc94fb789c6c",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E19/fetch_brca2_supplementary.py": "a400f91f9f07f24a88090867f3f34a69047535f0f67e1dcae91d1cec952dcde0",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T17:08:14+00:00",
+ "end_utc": "2026-10-25T17:08:20+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx",
+   "bytes": 601345,
+   "sha256": "987f6af0320e5cc1925eee5039739605614993866ea1b9da19cd08cca8c805f6"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/label_source_manifest.json",
+   "bytes": 1842,
+   "sha256": "94cc0e4426120393bb0328fdfa140406f97d77335640cc94a268f06f12f63926"
+  }
+ ],
+ "exception": null,
+ "notes": {}
+}

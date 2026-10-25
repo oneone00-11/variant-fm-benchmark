@@ -666,6 +666,23 @@ E16B_OUTPUTS = ["phase1/data/evidence/external/sbds_raw/manifest.json",
 E18_INPUTS = ["phase1/data/evidence/external/e18_score_input.parquet"]
 # the tagger time of frozen-thresholds-v1, from its tag object
 TAG_UTC = "2026-10-22T16:34:25+00:00"
+# A fourth kind: E19's records of MaveDB's whole listing of score sets, which name SBDS's
+# score set among the 2,938 and carry no variant of it and no predictor column, all
+# fetched after the tag (the second BRCA2 set's search, E19 C3 item 3); the time of each
+# is its fetch time in that search's manifest, the listing table's that of the newest page
+E19_SEARCH_MANIFEST = REPO / "phase1/data/evidence/second_set/brca2_raw/manifest.json"
+
+
+def _e19_fetched() -> dict[str, str]:
+    if not E19_SEARCH_MANIFEST.exists():
+        return {}
+    files = {e["file"]: e["fetched_utc"] for e in json.loads(E19_SEARCH_MANIFEST.read_text())["files"]
+             if e.get("file")}
+    listing = str((E19_SEARCH_MANIFEST.parent / "listing.csv").relative_to(REPO))
+    pages = [v for k, v in files.items() if "/search/listing_" in k]
+    if pages:
+        files[listing] = max(pages)
+    return files
 
 
 def _scored_after(rel: str) -> str | None:
@@ -703,9 +720,11 @@ def test_no_predictor_score_for_any_sbds_variant_is_in_the_repository():
     SBDS's variants and carries no predictor column either, so it needs no scoring time
     (the author's decision of 2026-10-23). phase1/reports is no longer scanned: from
     E18's external test on, its outputs carry SBDS results derived from E18's score
-    files."""
+    files. A fourth kind are E19's records of MaveDB's listing (E19_SEARCH_MANIFEST),
+    fetched after the tag and carrying no predictor column."""
     from datetime import datetime
     man = _manifest("SBDS")
+    e19 = _e19_fetched()
     tm = man["transcript_model"]
     ids = ["sbds", tm["mane_select"]["refseq_nuc"].split(".")[0].lower(),
            tm["mane_select"]["ensembl_nuc"].split(".")[0].lower()]
@@ -764,7 +783,7 @@ def test_no_predictor_score_for_any_sbds_variant_is_in_the_repository():
             why += ["positions of the region"] if any(lo <= p <= hi for p in near) else []
         if why:
             mentions[rel] = why
-        if own(rel) or rel in E18_INPUTS:
+        if own(rel) or rel in E18_INPUTS or rel in e19:
             scored += [f"{rel}: {c}" for c in _columns(path)
                        if any(c.lower() == p or c.lower().startswith(p + "_")
                               for p in PREDICTOR_COLUMNS)]
@@ -773,7 +792,7 @@ def test_no_predictor_score_for_any_sbds_variant_is_in_the_repository():
     tagged = datetime.fromisoformat(TAG_UTC)
     assert built < tagged
     assert all(rel in mentions for rel in E18_INPUTS), "an E18 input no longer names SBDS"
-    after = {rel: _scored_after(rel) for rel in mentions
+    after = {rel: _scored_after(rel) or e19.get(rel) for rel in mentions
              if not own(rel) and rel not in E18_INPUTS}
     assert mentions, "the scan found not even E16b's own files"
     assert all(t is not None for t in after.values()), [r for r, t in after.items() if t is None]

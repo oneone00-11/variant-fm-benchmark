@@ -1,0 +1,940 @@
+{
+ "script": "scripts/stage_E19/fetch_brca2_second_set.py",
+ "argv": [
+  "scripts/stage_E19/fetch_brca2_second_set.py"
+ ],
+ "git_commit": "299e1e221ae5a17f9db988777a9ffc94fb789c6c",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E19/fetch_brca2_second_set.py": "9bc7ed2578c4b3623c1fe2ac11d6585f638c63add83d895993fd0bcccee46f12",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T12:59:22+00:00",
+ "end_utc": "2026-10-25T13:02:33+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/identifiers/hgnc_BRCA2.json",
+   "bytes": 1756,
+   "sha256": "5be7282b86ff31c5214474c671122d108badb57aa8b060caa441c6f919de9b75"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/identifiers/ensembl_ENSG00000139618.json",
+   "bytes": 88694,
+   "sha256": "ad2f86e011c8a2671043e392a3d9809c77a593690d7c3dd2ff0fee6f97c8d67d"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/identifiers/ncbi_gene_675_product_report.json",
+   "bytes": 31536,
+   "sha256": "187f33d2bbb2d6e07020d11f36f23e78038e393bb9c1b5ba2b43edd6a30c29de"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/count_before.json",
+   "bytes": 2658,
+   "sha256": "726ed231a8c49862823c660417cb9281ec7b97804e15958194d92b8f148adf58"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000000.json.gz",
+   "bytes": 23885,
+   "sha256": "e1de011980c7075178bf461a424dd43de7dce5ef9ebf9fdc846ad52a57f8c915"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000001.json.gz",
+   "bytes": 12401,
+   "sha256": "b82746c1344fe1d1ef640ffbaa23e671ccb0c6e754845715e3141042de93567b"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000002.json.gz",
+   "bytes": 6187,
+   "sha256": "8188359592a30c380edf02b23d190ee9766714ef95ecbdabe4668b23a3c22faf"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000003.json.gz",
+   "bytes": 13025,
+   "sha256": "0f57585b59f275345c323ae5668c5cf3cbf1ab115dd63c0f3e1bc76521b11e10"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000004.json.gz",
+   "bytes": 21995,
+   "sha256": "3a3132c436d17353134dc545ffd7a81f8e91bd9a142af69848bb8c8f46d86e38"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000005.json.gz",
+   "bytes": 20022,
+   "sha256": "94def34c77fa156c491beb51a5c476360e82c28a606656c46eea89506082071d"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000006.json.gz",
+   "bytes": 19665,
+   "sha256": "32db6bc46b1afb7bcee3ecb47266b935684c9edf9074ea86d6e952603fd567dc"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000007.json.gz",
+   "bytes": 23899,
+   "sha256": "2c3031e5b03f1565ff2776ee3b54be415be869777ea1b9333e1518e623dcf7d6"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000008.json.gz",
+   "bytes": 25758,
+   "sha256": "5b91b3302089bcc10e507e65bc7136280ac06b1de7b9c044bbadf788a1bbbc0c"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000009.json.gz",
+   "bytes": 32017,
+   "sha256": "e0aa45a292fb134eefe7d7cc074176b60b2c682a0c60f32a88c0f1d8e235521c"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000010.json.gz",
+   "bytes": 25947,
+   "sha256": "7ea13e040eb4f345243cc7dd54f2ff3341f2b5b8f6945f8e37a0b2bb921f0525"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000011.json.gz",
+   "bytes": 14125,
+   "sha256": "172dfa9b41080e19ec2bbe4f907af1d28af03288e4942d9e831bc93952f0466c"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000012.json.gz",
+   "bytes": 4163,
+   "sha256": "fbeea0d8f248164d4ef2df2500fb98142a842c9df303d6637ccf1ddf67041cab"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000013.json.gz",
+   "bytes": 4268,
+   "sha256": "ec11b215428a5db8c0f26390abaffbf0c7e3079c97fee027578a941c58306224"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000014.json.gz",
+   "bytes": 4271,
+   "sha256": "0a477b777d4399715bbc93dab87ff93fdf507746f1ebf35b2e9e0a7c7c6fe6d6"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000015.json.gz",
+   "bytes": 4534,
+   "sha256": "df6b9fc0cb7bbd353ccd1b5386806cf5e9f335ba054da07bd79bde3aca494133"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000016.json.gz",
+   "bytes": 4214,
+   "sha256": "c400ab001a2373f560360d3934b6102625d3fb1e3ed4d6a6e66b3c049ba51e76"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000017.json.gz",
+   "bytes": 3862,
+   "sha256": "8c2b3d850db54d9c5bb2c1eebbd87c3fcd6e92b008df6fbb7f1ecf6890cd7b86"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000018.json.gz",
+   "bytes": 4272,
+   "sha256": "9ad44ff232a5188de0de5356602f4bb06b2de0512b8a8c30198738fe9af95be3"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000019.json.gz",
+   "bytes": 3933,
+   "sha256": "24ce28bcc37ffb3ff345d9aac14f13984e7a3219e4492452a4be900ea2f0ffb1"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000020.json.gz",
+   "bytes": 4250,
+   "sha256": "c504a7b5e5bc15e4d0e38d9bbd852419c5a0f462628a88dc3ef058a4980d2d89"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000021.json.gz",
+   "bytes": 4382,
+   "sha256": "db653d7a0b8ed7b0b30edbe888e1b9846be916ae0393b4092b4f23c8cdfd0d3c"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000022.json.gz",
+   "bytes": 4013,
+   "sha256": "47cb707386d4b3b5bbf1199225293ec701d08e21dd4a7db467bb712ae0b03bfb"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000023.json.gz",
+   "bytes": 4375,
+   "sha256": "a3aa40f75df353bead9b53762f23f569c005ace7facfb6ac9b221328d2ddeb68"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000024.json.gz",
+   "bytes": 3978,
+   "sha256": "1490e7973f6af81401fcb2f532afcd382cff74f7df058c89eb9c777d732607e8"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000025.json.gz",
+   "bytes": 4457,
+   "sha256": "80051657748eaa2207fc94dc67d937a1f673cc5caa9a1b18ebf9fe15c70b4276"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000026.json.gz",
+   "bytes": 4215,
+   "sha256": "421d084604e1823e83bd4d5850878cae457330ff188d11fd94fe450ececb2fd7"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000027.json.gz",
+   "bytes": 4374,
+   "sha256": "b7ad16d76027e3d88f6dd05c592645fe4f524ed8c9b331842449110d7cb0bea5"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000028.json.gz",
+   "bytes": 4261,
+   "sha256": "3d286ba39e1d4064af044a84f10e0171a0787be7fa14281cec70341cdb2e1adc"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000029.json.gz",
+   "bytes": 4299,
+   "sha256": "85e8ab7f9fa57ce12e45b88691eb1120196016c7afff1f95c8ccb664cf303f9b"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000030.json.gz",
+   "bytes": 4399,
+   "sha256": "4d565e0931f98dd686e23bbf773d5887ad27c10f6514f119cf079fb573f842dc"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000031.json.gz",
+   "bytes": 4120,
+   "sha256": "168bc7b3d470eca1e1f407e3b99ecc7e6a34fa07263d240be103e308db997784"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000032.json.gz",
+   "bytes": 4346,
+   "sha256": "527969182299e91013066c59b9c6537be563844ab4893a9c7c78ee92b9b30b68"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000033.json.gz",
+   "bytes": 4143,
+   "sha256": "a9499ac5946d6204239c19eb7e89d5f223da232910a1781920367c7fcd01e32b"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000034.json.gz",
+   "bytes": 4226,
+   "sha256": "2442b14a0585a6db31943fae02029f74e0db495c23bd962277f6a7e5c7fe77ef"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000035.json.gz",
+   "bytes": 3999,
+   "sha256": "77426f2c7985202573ae6a330e26c4180624eea04b8cbda9ee4a5c8b78a00f20"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000036.json.gz",
+   "bytes": 4406,
+   "sha256": "2019e1546fa72b41f11ca4b4efedbf495779c68de68c3bb03dc063a63883587e"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000037.json.gz",
+   "bytes": 4145,
+   "sha256": "61d80ed1a9187242b6c9908e92d91cf2abd5c4c930d843dc089bc4ae8b3e7f7b"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000038.json.gz",
+   "bytes": 4338,
+   "sha256": "f70e9a172fff9e710a1cb25c6eb7c4457dfc9564ef5ccf8d38c2440f67184ea3"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000039.json.gz",
+   "bytes": 4406,
+   "sha256": "61e552a2ea835844450cd0298e0b37d1891c8d3cb68e814512970e4963237486"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000040.json.gz",
+   "bytes": 4557,
+   "sha256": "69f0f019f97b6da9fdcc06628389f19f4c8fdf3cf00dee745a0a3f7b49d8b641"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000041.json.gz",
+   "bytes": 4013,
+   "sha256": "12ec1ae4bbbb8a1712324c32f83a82c154fcfce112699e2506c56a6a8dd4c609"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000042.json.gz",
+   "bytes": 4007,
+   "sha256": "387b0288fb3ee0637dca5d34d1e162de2328b662aa98a0db7705129cf551f00e"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000043.json.gz",
+   "bytes": 4377,
+   "sha256": "3e6c5eabd017120938d0f62051513e5daf0b9e6c465c8bb09fc81a9c65b5379f"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000044.json.gz",
+   "bytes": 4551,
+   "sha256": "99373d6045f7b4c6c94a38277e58d7c3ec1eb77026f9b72f8f41f3ff998dba92"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000045.json.gz",
+   "bytes": 3918,
+   "sha256": "03ea99c7fd5526050c04e40220aa64b8684ad102493c523bf8dde46209daf8e6"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000046.json.gz",
+   "bytes": 3556,
+   "sha256": "32a7fc5177f811ad84c824fb20a72816190b4a5c34ef123a31de11bdf4bcc835"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000047.json.gz",
+   "bytes": 3464,
+   "sha256": "f5b86d3cc91ddbbe3d8f98097a5161cb563c0db84f797bcbac063ef1acef55a9"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000048.json.gz",
+   "bytes": 3414,
+   "sha256": "2ee0dfe0bc5bbaa0e9c56bd295f4425ac5eeb292a25f47c8d7fd9b169d711d4f"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000049.json.gz",
+   "bytes": 3347,
+   "sha256": "41189122d666283f579a76fce66fc605b2b4e8728609eaca3192784d72acad17"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000050.json.gz",
+   "bytes": 3383,
+   "sha256": "1cb154dac37dcfaec535d1e14c4d03869da0f1bae13f3c0265d0e791290eab00"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000051.json.gz",
+   "bytes": 3457,
+   "sha256": "69f85f55a17e47653fe0d35673102cfa56b0508db162d7cc398b19f19a5d2aa3"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000052.json.gz",
+   "bytes": 3430,
+   "sha256": "db1ee2abf1362bd1ffe804c92dae30aa579d685aeb70cc0a0e842642b8253955"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000053.json.gz",
+   "bytes": 3414,
+   "sha256": "cc820911a0667cb72ccb91b274eec58a291aa3574c415cb1d13a8d582b76cf19"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000054.json.gz",
+   "bytes": 3524,
+   "sha256": "6e763dbfcdfb2e609b178c8fcef6c75bf8b96258cf0a259409654b700349181e"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000055.json.gz",
+   "bytes": 3532,
+   "sha256": "8e3d58aea2d4a036e5d79a222dd44eb0ca7920b7bd455ef39cde634b2aa1f31d"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000056.json.gz",
+   "bytes": 3479,
+   "sha256": "2a19db876af665945d12ae4e6fa14c1af44e8104cf3c0dfbb105024de869d32f"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000057.json.gz",
+   "bytes": 3445,
+   "sha256": "acb87e9a4fe93e8f3c91d95bf413355122be126edd0440fa7de2529ba042120d"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000058.json.gz",
+   "bytes": 3469,
+   "sha256": "4f80e758e6b808c9c59c5f6ff38aaf57cdc1ff91ca6166d5769fee86d1803fec"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000059.json.gz",
+   "bytes": 3485,
+   "sha256": "d86f31b4305ca4f8340fae5e31376fef20b5e6ef49979bb2b67d3a4d598b5bad"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000060.json.gz",
+   "bytes": 3524,
+   "sha256": "47374154ea6f5885cbba5d34879db8f5525f430f40c25760c81633e9d7af2b4e"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000061.json.gz",
+   "bytes": 3579,
+   "sha256": "4707960c8dc3973cf0c74298127421ffa8c24abd9979f36be55c5a7bb2426e27"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000062.json.gz",
+   "bytes": 3820,
+   "sha256": "074d70df320ec72f08b1aafdf916d99987790d4b9987c7a43dded5382437b923"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000063.json.gz",
+   "bytes": 4547,
+   "sha256": "c17bd5cb6870ce9fb55ce837279aa090c4c58690d80a40843e58f3a0be9f618b"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000064.json.gz",
+   "bytes": 3769,
+   "sha256": "0a72a47d553b049f337f45dcc3f8b34768ba018681c372e00decc5a67a9b4690"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000065.json.gz",
+   "bytes": 18260,
+   "sha256": "0fb92d1056c82a8689ebfacd3bbb26537408a8340475abb85f0df2cae8e8e65e"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000066.json.gz",
+   "bytes": 31697,
+   "sha256": "d28b5c917999e61e6fc08b0f5eabf30bf631158335a6ab883a08066ef533574d"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000067.json.gz",
+   "bytes": 17203,
+   "sha256": "772c71dc0af97e53f614f4623652415349f45e32e215b7f62630bb05c387871e"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000068.json.gz",
+   "bytes": 4100,
+   "sha256": "ea80800a0f3adc1d44cc82ebb09c70452d8f86db1cd9838ecc67e9b49d121d49"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000069.json.gz",
+   "bytes": 4421,
+   "sha256": "7186b89570b243d25e0be9df7f87105ac04f98c3dfcd768728667eb55c4ffe61"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000070.json.gz",
+   "bytes": 4389,
+   "sha256": "6c3f33dc68ddfa81fac2d822f37b49f1126bc43072beb5f825d08d7e82dac553"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000071.json.gz",
+   "bytes": 4256,
+   "sha256": "868ee2c7729564f704b98b236792a13ed6cbe7d4c8e81105eb7129d6d31ab8ed"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000072.json.gz",
+   "bytes": 3906,
+   "sha256": "f8fdba9021e2f0919c6d5ac4db34704b641c2f884ab8f26626e63b5334bd55bb"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000073.json.gz",
+   "bytes": 4509,
+   "sha256": "b62bbaa1857eb021fa52e4b17dabc1ca434ac682e4a08c13ef22c9a763d1125b"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000074.json.gz",
+   "bytes": 4126,
+   "sha256": "9c600cafe8528e4665f8a2944b0c6ead46e17c9091b9dd114c7ad9624ee60050"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000075.json.gz",
+   "bytes": 4351,
+   "sha256": "9e3107fb266df516ddcba35553b76cc31b2d38173cbc8c1a6ccb9b3ea4ef55c0"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000076.json.gz",
+   "bytes": 4257,
+   "sha256": "faa5c6290766156f0611a7abded7186085e2bc75701365d943605c2f8a11cad0"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000077.json.gz",
+   "bytes": 4198,
+   "sha256": "f7ff35f608a3332cfe9a71c27d9cca6e66ae5566d6d6594233ca2588d7b38be1"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000078.json.gz",
+   "bytes": 4117,
+   "sha256": "dd4d5e39ff0f543f23e0f7487a251c2534850b587c6f4cc10ce35e387439a7a1"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000079.json.gz",
+   "bytes": 4431,
+   "sha256": "e87f12ed1b65a983573fad1328383e74ec4c76e952937697da626ca939d7eb06"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000080.json.gz",
+   "bytes": 4397,
+   "sha256": "7d85e3d9722dac2d40854571b12a37deda2ab00b7e72a64e36b0ca4da9e34def"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000081.json.gz",
+   "bytes": 4258,
+   "sha256": "419a0ab88866a390dbb799dd7e391ee91ef9bda72a3e6e9e5a67c9197e369eb3"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000082.json.gz",
+   "bytes": 4093,
+   "sha256": "2c7832c7338de9816bc956935ecf3962cbdc59976bf491e98851f23cb94d1a4f"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000083.json.gz",
+   "bytes": 4027,
+   "sha256": "a36abfbcde278259cca70a93fc885ec53c301092fe3cfd10ae5696a2409bcedc"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000084.json.gz",
+   "bytes": 4448,
+   "sha256": "fe900da283dd00cf020c1edea827ea9d7f7b0c3d5782d164d3eb72ba70eecd5a"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000085.json.gz",
+   "bytes": 4102,
+   "sha256": "c25030294cc2fcd28c69cce931c9793e5c9451c8338ca2f4ddd0003653e752b9"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000086.json.gz",
+   "bytes": 4245,
+   "sha256": "a3f45cc1a6a24775056fe7fa2905b4263f3e3e35291216c166fd685125172b82"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000087.json.gz",
+   "bytes": 4398,
+   "sha256": "6041319be067fc203f78815450fa14a88386cab2d754aaf6afab4f5370d23025"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000088.json.gz",
+   "bytes": 4106,
+   "sha256": "e76056eed4cf9da5452d85102dd0f4cb7ea252c04bc2d9e45c73a57bf77cee3a"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000089.json.gz",
+   "bytes": 4331,
+   "sha256": "4da7dd0bae8ab04e55b13fb0e2e63749d65169381ee32c6edf89022283439079"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000090.json.gz",
+   "bytes": 4149,
+   "sha256": "0cc05783d5225a31a386071546ad479bfdd6a21ad94096382717415fd0b144f3"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000091.json.gz",
+   "bytes": 4093,
+   "sha256": "94a9a6866d97b23d663da60927e2834f4defec4792f93074204db139fd07d619"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000092.json.gz",
+   "bytes": 4269,
+   "sha256": "df14d21e5b438e424511aba31e7193e6aab93e0736f5519047049df73fb871b7"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000093.json.gz",
+   "bytes": 4133,
+   "sha256": "25b2caaad7cb26482e5d217dfda8f2dfedc028df9d9eada6439ddc2d6468ee05"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000094.json.gz",
+   "bytes": 4262,
+   "sha256": "f0967371f3539e586715d658607577461731c236e7cd58b442cb5037d6af471d"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000095.json.gz",
+   "bytes": 4402,
+   "sha256": "f15a678dc584f460c402a83b375c4dca7cc3ef9dbe3031f0a5d14312dd544777"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000096.json.gz",
+   "bytes": 4237,
+   "sha256": "c4380a1d60574c674c721093e440318bae2aaf7203e759458cb973658052541b"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000097.json.gz",
+   "bytes": 3887,
+   "sha256": "e1fbdfa9850d99c29c9a9b70c27d3d1adad323194e60668a6781042ba3f1f0d6"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000098.json.gz",
+   "bytes": 4264,
+   "sha256": "3ddfe71d3b0b530b6bbfd5bd1929f8e253cea8b90693570f4ee5f179dd8a6c11"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000099.json.gz",
+   "bytes": 4061,
+   "sha256": "f1af05ac45f28bf633baa6f6a39d038d5cab7c625af083c8eb8b6e6ce7eb5bc2"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000100.json.gz",
+   "bytes": 4281,
+   "sha256": "954327d071f26939d64e2fb05c973b991586d2448ea9397a16c2bb0eebc5d47b"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000101.json.gz",
+   "bytes": 4175,
+   "sha256": "d9e2b1639472bb822b711532ba4128f0b589ae683e6da85addc70523d03dabc0"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000102.json.gz",
+   "bytes": 4531,
+   "sha256": "75df8d35812531a499f3afdbaf1857c3ae944de8dad04af51e04f5b1af3f03b5"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000103.json.gz",
+   "bytes": 4022,
+   "sha256": "266db896cf108c519e58298bdd1ec7466d63ce310c36d269f9b8fb1ebb922212"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000104.json.gz",
+   "bytes": 4271,
+   "sha256": "75116178c497c4d304db2a7770de55e0fdbc84505881ed57a47795435e85a4c4"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000105.json.gz",
+   "bytes": 4028,
+   "sha256": "98716f0dfbd224d9553af7baef7b886ca2de71939996681124b93d1ccf35046c"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000106.json.gz",
+   "bytes": 4073,
+   "sha256": "10001b3e7ac43a7ad3254b63aa93dab5bb30bb80984dfb479b134ecf28d17e13"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000107.json.gz",
+   "bytes": 4258,
+   "sha256": "a582a29147d1b1edf13e1f62e3334cc239984237346d537244d6b1e657ab8f0d"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000108.json.gz",
+   "bytes": 4357,
+   "sha256": "c54ad3272251bb3dec29986e8f4801395d06d2c222ad2c628bd3db197ac87775"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000109.json.gz",
+   "bytes": 4079,
+   "sha256": "510da06cf9567aea603b9471a5fb53adba0fde3357ebb5ffcb3d1540ef17398b"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000110.json.gz",
+   "bytes": 4367,
+   "sha256": "a009dadd08bf0742a7724ec65b247f72898e50f83257a6382f301bc384ef7533"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000111.json.gz",
+   "bytes": 4192,
+   "sha256": "36fa9292f5be5055b2a6bf382d80a2d99505ef06d4a8183fe7913b45be2ead10"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000112.json.gz",
+   "bytes": 4324,
+   "sha256": "5683d6d969ada21298f6c0eb7e5984b7854994018bbf1c36206056fb2a123aee"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000113.json.gz",
+   "bytes": 4225,
+   "sha256": "2beb9cc65ccfc03a2da15215d1ecce24a7469f3769a08b8429b671a5b9f7d69c"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000114.json.gz",
+   "bytes": 4122,
+   "sha256": "32d6a8327bdc5f477c9d26f99c592839ce1c97f619174baad2839a3a95077914"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000115.json.gz",
+   "bytes": 3858,
+   "sha256": "a830a7685895ec36cf64dc6bd1c4819817931c26a2d2d69b2faf36b2a9948493"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000116.json.gz",
+   "bytes": 3829,
+   "sha256": "ea914c4e4c741dcd535c7d13a1ef76c3cf02544c4cf4ff4d16b3429f95fa8cfd"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000117.json.gz",
+   "bytes": 4104,
+   "sha256": "9c35aed52ec9180c08f4ad02cb8c7bc9ebf863905361d59996e97f2f66b9d8b2"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000118.json.gz",
+   "bytes": 3810,
+   "sha256": "8c3386f92553b40e8f1cd44daef8c1b1d641b713ddf6bf5c827864d543cb3056"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000119.json.gz",
+   "bytes": 11428,
+   "sha256": "d5c0fc3fb1236b69016fee451ee05e8e5cca6aa84cc4c36212ed291a7c1b3363"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000120.json.gz",
+   "bytes": 26868,
+   "sha256": "086e1c49884ca69fe1189ec75e36388444c2bb7c50176d174ccd6f9f758bbf35"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000121.json.gz",
+   "bytes": 34275,
+   "sha256": "585ce634a3f64c110ad302ba950cc0adf1185448343ff50f2871662a1e3caa1e"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000122.json.gz",
+   "bytes": 20139,
+   "sha256": "280863f759bd9a9436fdfb2944c29ec448172f449a036c9248476609b424e9b3"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000123.json.gz",
+   "bytes": 55314,
+   "sha256": "7a470c5b671428aeff7369b9c856fc8709728ee37c614d0ff96172f6215345f1"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000124.json.gz",
+   "bytes": 17080,
+   "sha256": "224c065869a6cf9d6baa67709020a0c7af0eb770256b9204dca6a75ed02357bc"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000125.json.gz",
+   "bytes": 31523,
+   "sha256": "afb3fb150a9b2b67d9338e147e5637dad890d9ace753204a67fde0954dd214da"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000126.json.gz",
+   "bytes": 14531,
+   "sha256": "61cb5b37585d977d0bc3688514e28f637fd043ede199bc4bd2541f4a8f6223eb"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000127.json.gz",
+   "bytes": 23330,
+   "sha256": "ae1c84e76b38ce22eea11de690b02da79297fced1651236932a39e6a6cb661fc"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000128.json.gz",
+   "bytes": 15083,
+   "sha256": "e9fa3177ec8fd0805e700ab40c9aaf60482488b64165a635a1f609f1d65bf15e"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000129.json.gz",
+   "bytes": 4792,
+   "sha256": "e118da6fda49f19b2b77006dda55a4b24c32409bf0e82efbf814d770a58267d9"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000130.json.gz",
+   "bytes": 26394,
+   "sha256": "0dce348607a763552af50fa9f0a81fe90976eca904a166c182979de7833a4ad3"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/listing_urn_mavedb_0000131.json.gz",
+   "bytes": 25038,
+   "sha256": "ea49cef7d85801785e93c46077dc59364b3a271ec6524b56447394a7375bb4b2"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/count_after.json",
+   "bytes": 2658,
+   "sha256": "726ed231a8c49862823c660417cb9281ec7b97804e15958194d92b8f148adf58"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/listing.csv",
+   "bytes": 392684,
+   "sha256": "262ce59a63e4f9a97b3659c39c41208883c08f53ff9bfc54f06bb557b1c9a955"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/filter_options.json",
+   "bytes": 106468,
+   "sha256": "1131d2906fd25d18fb9950d8ad09f3ddfaa51053f0db2489334194ae4f4d34a1"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/search_text.json",
+   "bytes": 133619,
+   "sha256": "8bb7d7d1944379e69d178510c19590c7d0c507aad90be68b505be8e5d9e7cd92"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/search_targets.json",
+   "bytes": 117809,
+   "sha256": "44a92fe3c7e19765bbdb52cee2423b30f454444ec431f67d8ecb1887094b80de"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/search/search_target_accessions.json",
+   "bytes": 92967,
+   "sha256": "8f4ef8d51c7f664149fcd99acfa9935c2243e9abbeccbc26c5d228c8152d0fba"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001223-a-1.json",
+   "bytes": 10913,
+   "sha256": "c456ab012d407ffc40e3794d46f1f6efaf0100b2aeafeecb7d4eb6e276609070"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001223-a.json",
+   "bytes": 4608,
+   "sha256": "8ca0f77fe171309e57afaa37c1f13b52b90c2a206309981f51d6d911edf425f4"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001223-a-1_scores.csv",
+   "bytes": 31404,
+   "sha256": "9d997a18c71aa0c816fa24a181089c280ebe368856ba90c4639a5db9903c835f"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001224-a-1.json",
+   "bytes": 159927,
+   "sha256": "cd6333d04d3b8800152b3f80f779db8a644b90a8ea9dda60d16bf3ea1038a979"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001224-a.json",
+   "bytes": 9281,
+   "sha256": "e5bbe2c1a894128e1ca75c69ede0994420b15ce3d180dc6bcb428a0dc8cb3a67"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001224-a-1_scores.csv",
+   "bytes": 33771,
+   "sha256": "0b67b6dc0d43bdd184a62af5e76b19c526bbc46fcf7b732f284dec62b7fd65ce"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001225-a-1.json",
+   "bytes": 13764,
+   "sha256": "bb809126744b526c1a0f2e23e44b9b539de01a86deb2968c0eea0c08736fd80e"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001225-a.json",
+   "bytes": 6085,
+   "sha256": "c79940e67a778d3f67231db522dd92c7a55f05e068f08a71feace7dafec2da88"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001225-a-1_scores.csv",
+   "bytes": 573836,
+   "sha256": "b799cd0cecb74d391e2e23c07ccf68cbf2512f168e76c2586693cea1a04938b2"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001242-a-1.json",
+   "bytes": 52609,
+   "sha256": "5beeae00a69d636195fffcc57562dec797fd3241d27b853b66df9c84bfeaffb7"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001242-a.json",
+   "bytes": 5698,
+   "sha256": "53b39cfff7c4761070476c5153b324d692d9cf4943d086a05a023c2760dcbde4"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001242-a-1_scores.csv",
+   "bytes": 541883,
+   "sha256": "bb89c0b067fd1fafd128accfae93ca421f9a5a4f913bf67b7229ef20fe6b955b"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001263-a-2.json",
+   "bytes": 22021,
+   "sha256": "fa17a0d0ed65ae13f064d38c6d87d39d2b9588d102b919b4fc32b4793c088960"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001263-a.json",
+   "bytes": 4011,
+   "sha256": "4a0b6f1da5fde989847b04dff5984a5a82092a7066968dfa3452d84d400ec1fc"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001263-a-2_scores.csv",
+   "bytes": 85301,
+   "sha256": "b2d89570f2bebdf9c77f5ac5212d742c5552e937f8e337903bc5c4b6b4110b46"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-0-1.json",
+   "bytes": 47560,
+   "sha256": "8a5eee52a9e4d6e9d7536c041b6db57e6bd652793680d34db146978716ff26d4"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-0.json",
+   "bytes": 3212,
+   "sha256": "065ef174494f0ba3d3b58c2672212ddbdc95f2ea58b0ee160c400068a51ee315"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-0-1_scores.csv",
+   "bytes": 17150,
+   "sha256": "82de592c70528ccb38142e183d535e552319853d1f705de2204c93a5e43fc325"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-a-1.json",
+   "bytes": 53133,
+   "sha256": "51ef8e682a1a6972fae31922d6fd23c68fb3958342e393abb3dacba1859d5251"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-a.json",
+   "bytes": 8712,
+   "sha256": "537820d6415014ccdee55e243203f621db22a1e6fcfd968efd58f68d3c6d3392"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-a-1_scores.csv",
+   "bytes": 17162,
+   "sha256": "369f81c567f7de24a5da2d152cce1b56aa0577029b38deecfd8b8fb06b0ee34d"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-b-1.json",
+   "bytes": 53464,
+   "sha256": "0f548aa9a37cd798efb160c10c41c7c42a79ee8fc02c58aec5d5bc1b7d0e0f01"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-b.json",
+   "bytes": 8599,
+   "sha256": "8f007d7393cebc9285a8a0d71db271a0607a4509d13661f665cabba3996b696c"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-b-1_scores.csv",
+   "bytes": 17154,
+   "sha256": "3ad22df6a6d8635e22ea8f9650880f33acc16abd7234515c99c01b63c73d817c"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-c-1.json",
+   "bytes": 69074,
+   "sha256": "f6743b127d36801426bf4fe5d7f5513534777488e96fe053aab38ba9c0be8636"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-c.json",
+   "bytes": 8692,
+   "sha256": "1a355b7f9b00d4df2767d630b1da600f178a5790bd34020ed40318eaf26fa309"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001268-c-1_scores.csv",
+   "bytes": 17153,
+   "sha256": "5684aa556131135b73f56a4d3a2845f4c90887981d771118655b33176ad26641"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001279-a-1.json",
+   "bytes": 30238,
+   "sha256": "bec9221cff70aa616fc256011f4492be4341662b0736689bfcf61691e11d22ee"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001279-a.json",
+   "bytes": 8326,
+   "sha256": "918874d3ecdb45b08f139756e5cfe668851b94744246b8b7afdb7452201d829f"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/candidates/urn_mavedb_00001279-a-1_scores.csv",
+   "bytes": 489662,
+   "sha256": "4e1798c8cd5564221faeb247c5fa2102a147c13fa246b5fc1349e9873135e6d8"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/papers/crossref_10.1016_j.ajhg.2024.02.002.json",
+   "bytes": 16570,
+   "sha256": "430c23e84572c371b44f492d97c28cfc69e8488cc0cc896632408c05eb98a7a9"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/papers/crossref_10.1038_s41586-024-08349-1.json",
+   "bytes": 28977,
+   "sha256": "00b8e2013a38e2f065ff6a5bb2aeecee521820495e693eb2a54afeb16a22b93f"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/papers/crossref_10.1038_s41586-024-08388-8.json",
+   "bytes": 24744,
+   "sha256": "0e106cbdb2df77215475198cbf1fcc657dc698a949e591a010df237cd3787836"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/papers/crossref_10.1038_s41587-021-01201-1.json",
+   "bytes": 25918,
+   "sha256": "53f418a7a319dd31a6ec11c8e64f65f3bd6bba9bc9d034981314f1bb6acb360b"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/papers/crossref_10.1371_journal.pgen.1010940.json",
+   "bytes": 30059,
+   "sha256": "d9dc3cd99690f4579acb4a5b374aa51a8897cd99cab1b5de259b48e850d20c4e"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/manifest.json",
+   "bytes": 95696,
+   "sha256": "e749346bf65c6d68e400e7d19a38515236bb5a7bda23945b966b915e7ad59855"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "api_version": "2026.3.2",
+  "listing": {
+   "published_score_sets_before": 2938,
+   "published_score_sets_after": 2938,
+   "listed": 2938,
+   "parts_read": 132,
+   "parts_split": []
+  },
+  "candidates": [
+   "urn:mavedb:00001223-a-1",
+   "urn:mavedb:00001224-a-1",
+   "urn:mavedb:00001225-a-1",
+   "urn:mavedb:00001242-a-1",
+   "urn:mavedb:00001263-a-2",
+   "urn:mavedb:00001268-0-1",
+   "urn:mavedb:00001268-a-1",
+   "urn:mavedb:00001268-b-1",
+   "urn:mavedb:00001268-c-1",
+   "urn:mavedb:00001279-a-1"
+  ]
+ }
+}

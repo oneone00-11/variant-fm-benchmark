@@ -1723,3 +1723,48 @@ under `phase1/data/evidence/e19/`; every existing output is unchanged
 - Its limits, as E19.4 states them: some ClinVar classifications may have used predictor
   scores as PP3 or BP4, which no date filter removes; the distal band holds almost no
   usable P/LP.
+
+## Supplementary analyses, C3 item 3: the second BRCA2 set's records, label rule and mapping (stage E19, 2026-10-26)
+
+Why: revision item C3 asks whether BRCA2's labels hold against a second SGE dataset
+(E19.5 item 3), and the author specified how to find and label one (2026-10-25). This
+commit adds the records, the screening, the rule and the mapping, and no predictor score
+is read: the analysis comes in the next commit (the author's order). Every existing
+output is unchanged (`scripts/stage_E19/scope_c3_brca2_records.json`).
+
+- The search (`scripts/stage_E19/fetch_brca2_second_set.py`): every one of the 2,938
+  published score sets MaveDB served on 2026-10-25, read in URN-prefix parts (its
+  paged search repeats and skips score sets that share an experiment title), the rule
+  applied to each: the title, a target's name or a target's identifiers (Ensembl,
+  RefSeq, HGNC, from saved HGNC, Ensembl and NCBI records) pointing to BRCA2. Ten score
+  sets: the catalog's nine and urn:mavedb:00001279-a-1.
+- The screening (`screen_brca2_second_set.py`, in the reference image): (a) SGE by the
+  catalog's rule, (b) another laboratory by the papers' authors (Crossref), (c) shared
+  variants with the set's 551 BRCA2 variants at 3-10 nt, (d) a per-variant experimental
+  classification by R1, R2, R4, R6. Only urn:mavedb:00001242-a-1 (Sahu et al. 2025)
+  meets all four; (c) 198 shared by its MaveDB table. The others fail as the author
+  expected. 00001279-a-1 (the author's item 7, recorded only): no investigator-provided
+  calibration; its scores equal 00001225-a-1's on none of the 6,959 variants.
+- R4 does not apply (`paper_rule.json`): the paper's classes are cut on a mixture model's
+  probability, which the score table does not carry; its quotes are checked against the
+  publisher's PDF, which the author obtained and which stays in the gitignored cache
+  (`check_brca2_paper_quotes.py`: 8/8 found). R6: Supplementary Table 5's
+  `Classification`, never its ACMG column, each class by its side; the table, fetched
+  through the article page's own entry, stays in the cache sha256-pinned and
+  `--fetch-inputs` fetches it again, its compact extract committed
+  (`supplementary_table5_classes.tsv`); grouped as the paper's text counts them, its
+  classes are the paper's counts in every class.
+- Table 5 checked row by row (`phase1/src/evid_second_set.py`): each row's c., mapped as
+  E16 maps coordinates, against the row's g. On 6,519 rows they agree; 28 rows write a c.
+  that does not give their g., the g. being GRCh38's (the exon 25 donor site written
+  c.9502-c.9505 for c.9501+1 ... +4, so c.9505A>C/G/T stands twice in the table; the exon
+  23 acceptor site written c.8953-4 ... c.8953 for c.8954-5 ... -1; one malformed
+  c.8633-2-1A>T); 4 rows (c.8610A>C/T, c.8613A>C/T) write a reference base GRCh38 does
+  not have. By the author's decisions of 2026-10-26 the rows are joined by g., the 28
+  kept and the 4 dropped; any other disagreement stops.
+- `coverage_3_10.csv`: the set's 551 variants at 3-10 nt by side and offset: 201 in
+  Table 5 by g. (the 198 of MaveDB's table and c.9501+4A>C/G/T), only at donor +3 ... +9
+  and acceptor -3 ... -7.
+- `evid_label_sources.supplementary_rows` takes an optional g. column (the label audit's
+  extracts are unchanged); `reproduce_evidence.py` fetches and checks the second set's
+  cached table with the label audit's, and `--check` checks E19's records.

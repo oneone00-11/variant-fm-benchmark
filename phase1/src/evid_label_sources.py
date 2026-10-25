@@ -85,19 +85,25 @@ def xlsx_sheet(path: Path, sheet: str) -> dict[int, dict[str, str]]:
 
 def supplementary_rows(path: Path, spec: dict) -> tuple[list[dict], dict]:
     """The rows of a supplementary table that carry a class: the c. HGVS, the class and
-    the score, in sheet order; and the sheet's title cell and header row as written."""
+    the score, in sheet order, and the g. HGVS too where the spec names a
+    genomic_column (E19's second BRCA2 set; written in an extract's column hgvs_g); and
+    the sheet's title cell and header row as written."""
     sheet = xlsx_sheet(path, spec["sheet"])
     header = sheet[spec["header_row"]]
-    col = {name: next(k for k, v in header.items() if v.strip() == name)
-           for name in (spec["hgvs_column"], spec["class_column"], spec["score_column"])}
+    names = (spec["hgvs_column"], spec["class_column"], spec["score_column"]) + (
+        (spec["genomic_column"],) if spec.get("genomic_column") else ())
+    col = {name: next(k for k, v in header.items() if v.strip() == name) for name in names}
     rows = []
     for i in range(spec["header_row"] + 1, max(sheet) + 1):
         r = sheet.get(i, {})
         if not (r.get(col[spec["class_column"]]) or "").strip():
             continue
-        rows.append({"hgvs_nt": r[col[spec["hgvs_column"]]].strip(),
-                     "category": r[col[spec["class_column"]]].strip(),
-                     "score": (r.get(col[spec["score_column"]]) or "").strip()})
+        row = {"hgvs_nt": r[col[spec["hgvs_column"]]].strip(),
+               "category": r[col[spec["class_column"]]].strip(),
+               "score": (r.get(col[spec["score_column"]]) or "").strip()}
+        if spec.get("genomic_column"):
+            row["hgvs_g"] = (r.get(col[spec["genomic_column"]]) or "").strip()
+        rows.append(row)
     return rows, {"title_cell": sheet[1].get("A"), "header": header}
 
 

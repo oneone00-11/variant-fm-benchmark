@@ -1,0 +1,114 @@
+{
+ "gene": "BRCA2",
+ "score_set": "urn:mavedb:00001242-a-1",
+ "source": {
+  "pmid": "39779848",
+  "pmcid": null,
+  "doi": "10.1038/s41586-024-08349-1",
+  "citation_ids": "PMID 39779848; doi:10.1038/s41586-024-08349-1",
+  "copy_read": "the publisher's PDF, which the author obtained through the NUS library on 2026-10-26 (not open access; not in PMC or Europe PMC); kept in the gitignored cache, not committed",
+  "pdf": {
+   "cache_path": "phase1/data/e19_cache/brca2_second_set/s41586-024-08349-1.pdf",
+   "saved_as": "s41586-024-08349-1 (1).pdf",
+   "bytes": 23826668,
+   "sha256": "a57223b602f6d14daa760a7758058406a465bf20a7f4dfdd0a3904ccdce6c92c",
+   "obtained": "2026-10-26",
+   "pages": 30,
+   "not_fetched_by_fetch_inputs": "the author's copy of a paper that is not open access"
+  }
+ },
+ "status": "not_stated",
+ "not_applicable_because": "the paper's classes are cut on the probability of pathogenicity that a Gaussian mixture model, fitted on twelve SNVs and not given in the paper, assigns to each function score, through OddsPath into evidence categories; a variant whose DMSO and global (weighted-mean) classifications differ is 'uncertain'. The cited score table carries one score and neither that probability nor the global score; the function-score thresholds the mixture model implies are drawn only as dashed lines in figures, which are not read",
+ "quotes": [
+  {
+   "where": "Methods, 'Statistical modelling and SNV categorization'",
+   "text": "The position-corrected and normalized function scores were used as an input for a GMM estimating the probability for each SNV. A model was trained using twelve SNVs classified using a multifactorial model encompassing direct human subjects20 (Supplementary Table 4) and the mclust version 6.1.1 function in R. Then, the model predicted the probability of pathogenicity for all SNV using their function scores."
+  },
+  {
+   "where": "Methods, 'Statistical modelling and SNV categorization'",
+   "text": "We applied a Bayesian approach to calculate OddsPath, based on the recommendations47. OddsPath was calculated using the formula: [P2 × (1 − P1)]/[(1 − P2) × P1], where P1 is the prior probability and P2 is the posterior probability. The thresholds for OddsPath were categorized into strong, moderate and supporting categories and estimated as evidence categories using Bayesian points formulation. The classifications obtained using DMSO data were considered for final classification. The variants that showed discordance between DMSO and global (weighted mean) classifications were classified as ‘uncertain’."
+  },
+  {
+   "where": "Methods, 'Functional classification of SNVs'",
+   "text": "For each SNV, four function scores were calculated: one for each treatment (DMSO, cisplatin and olaparib) and one global using a weighted mean of the three conditions (weights: 0.4 for DMSO, 0.25 for cisplatin and olaparib)."
+  },
+  {
+   "where": "Results, introduction (before the first heading)",
+   "text": "We identified score ranges associated with pathogenic strong, moderate and supporting; indeterminate; and benign strong, moderate and supporting categories as previously curated for the BRCA1 MAVE assay36 and for in silico predictors37."
+  },
+  {
+   "where": "Results, 'SGE-based BRCA2 functional assay in mES cells'",
+   "text": "Function scores were bimodally distributed, and we used a two-component GMM to calculate the PIF."
+  },
+  {
+   "where": "Results, 'Pathogenic spectrum of BRCA2 variants'",
+   "text": "In summary, using a 7-tier categorization, we categorized 4,724 variants (72.1%) as benign strong, 115 (1.7%) as benign moderate, 31 (0.47%) as benign supporting, 1,206 (18.4%) as pathogenic strong, 80 (1.2%) as pathogenic moderate, 42 (0.7%) as pathogenic supporting and 353 (5.4%) as uncertain (Fig. 2e,f, Extended Data Fig. 4e and Supplementary Table 5)."
+  },
+  {
+   "where": "Figure 2 legend, panel b",
+   "text": "The dashed lines represent benign and pathogenic thresholds derived from mixture modelling."
+  },
+  {
+   "where": "Results, 'SGE-based BRCA2 functional assay in mES cells'",
+   "text": "Depending on the availability of sgRNAs, we used 48 different oligonucleotide pools as HDR templates for SGE covering 12 exons and 3–7 bp upstream or downstream of adjacent intronic sequences that encode the entire CTDB domain."
+  }
+ ],
+ "reported_counts": {
+  "where": "Results, 'Pathogenic spectrum of BRCA2 variants' (the sixth quote)",
+  "level": "all SNVs (the paper reports no count for the intronic 3-10 nt variants)",
+  "counts": {
+   "benign strong": 4724,
+   "benign moderate": 115,
+   "benign supporting": 31,
+   "pathogenic strong": 1206,
+   "pathogenic moderate": 80,
+   "pathogenic supporting": 42,
+   "uncertain": 353
+  },
+  "total": 6551
+ },
+ "rules": [],
+ "transcription_note": "Quotes copied verbatim from the publisher's PDF (text as pypdf 6.19.0 extracts it, which the reference image carries); scripts/stage_E19/check_brca2_paper_quotes.py checks every quote against that text, Unicode compatibility forms, line-end hyphenation and white space folded, nothing else. Superscript citation numbers run on as the PDF's text gives them (e.g. 'subjects20'). R4 is settled before the supplementary table is opened (the author's order, 2026-10-25: R1, R2, R4, R6).",
+ "supplementary_rule": {
+  "rule": "R6",
+  "name": "Supplementary Table 5 'Classification', each class by its side",
+  "decided": "the author's specification of 2026-10-25, item 4: a per-variant table published with the paper may be the source, of the same kind as BRCA2's own labels (Huang 2025, Supplementary Table 3), taken as that table was taken; only the experimental classification derived from the function scores, never the ACMG classification",
+  "table": {
+   "article_entry": "Supplementary Table 5",
+   "file": "41586_2024_8349_MOESM6_ESM.xlsx",
+   "sheet": "Sheet 1",
+   "hgvs_column": "c.nom",
+   "class_column": "Classification",
+   "score_column": "Function.score",
+   "columns_not_used": {
+    "ACMG.class.AVENGERS": "the ACMG/AMP classification, which combines BayesDel and other computational evidence (circular for this study)",
+    "Probability": "the mixture model's probability, from which the Classification is cut"
+   }
+  },
+  "groups": {
+   "Pathogenic Very Strong": "abnormal",
+   "Pathogenic Strong": "abnormal",
+   "Pathogenic Moderate": "abnormal",
+   "Pathogenic Supporting": "abnormal",
+   "Benign Very Strong": "normal",
+   "Benign Strong": "normal",
+   "Benign Moderate": "normal",
+   "Benign Supporting": "normal",
+   "Uncertain": "intermediate"
+  },
+  "mapping_rule": "the abnormal side -> abnormal, the normal side -> normal, everything else -> intermediate (the author's specification of 2026-10-25, item 4)",
+  "paper_groups": {
+   "Benign Very Strong": "benign strong",
+   "Benign Strong": "benign strong",
+   "Benign Moderate": "benign moderate",
+   "Benign Supporting": "benign supporting",
+   "Pathogenic Very Strong": "pathogenic strong",
+   "Pathogenic Strong": "pathogenic strong",
+   "Pathogenic Moderate": "pathogenic moderate",
+   "Pathogenic Supporting": "pathogenic supporting",
+   "Uncertain": "uncertain"
+  },
+  "paper_groups_note": "the table writes nine classes and the text (the sixth quote) counts seven, its 'strong' holding the table's Very Strong and Strong; grouped so, the table's counts must be the text's (reported_counts) in every class, or the stage stops",
+  "quote_where": "Results, 'Pathogenic spectrum of BRCA2 variants'"
+ }
+}

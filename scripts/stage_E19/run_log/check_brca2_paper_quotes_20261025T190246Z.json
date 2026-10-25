@@ -1,0 +1,40 @@
+{
+ "script": "scripts/stage_E19/check_brca2_paper_quotes.py",
+ "argv": [
+  "scripts/stage_E19/check_brca2_paper_quotes.py"
+ ],
+ "git_commit": "98c2b9acff456602c9f82bce245bdebff6ddc856",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E19/check_brca2_paper_quotes.py": "c1b5b63122a51dec46434733f0c00d9603173d44196d894c21e115afa8821a6a",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T19:02:44+00:00",
+ "end_utc": "2026-10-25T19:02:46+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/paper_rule.json",
+   "bytes": 7482,
+   "sha256": "eaf4e34ae17bb8fa2fc1775a6b58e7a90e14fdd63ce2812d5ffc07e31f2cec78"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/paper_quote_check.json",
+   "bytes": 2026,
+   "sha256": "3c18975c9b16c52db8c0a4bf1a5363846e170be7cdc807996b4a57ef1efd9560"
+  }
+ ],
+ "exception": null,
+ "notes": {}
+}

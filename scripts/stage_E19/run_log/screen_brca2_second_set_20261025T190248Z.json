@@ -1,0 +1,231 @@
+{
+ "script": "scripts/stage_E19/screen_brca2_second_set.py",
+ "argv": [
+  "scripts/stage_E19/screen_brca2_second_set.py"
+ ],
+ "git_commit": "98c2b9acff456602c9f82bce245bdebff6ddc856",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E19/screen_brca2_second_set.py": "2e6982582c0a7f9d00100a0f6bf88d01eb16e580ac28cf295c623eb73663ddf6",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T19:02:48+00:00",
+ "end_utc": "2026-10-25T19:02:48+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/manifest.json",
+   "bytes": 95696,
+   "sha256": "e749346bf65c6d68e400e7d19a38515236bb5a7bda23945b966b915e7ad59855"
+  },
+  {
+   "path": "phase1/data/evidence/analysis_set_v1.parquet",
+   "bytes": 1459145,
+   "sha256": "52e0c610b0147e2435b17b57b586f3340e7b988aa2ddec66890b92f1a59c7ecc"
+  },
+  {
+   "path": "results/tables/mavedb_catalog.tsv",
+   "bytes": 10518,
+   "sha256": "64d88bec1cd48cfcb08fa21a4c427d7767e0ca0b9cee27e66249050f6645b3c3"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/coverage_3_10.csv",
+   "bytes": 499,
+   "sha256": "40168b4f4eaa4bcd92a1aac1af7f2d13f348e11f5422fbb00519ff17639d946c"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/screening.csv",
+   "bytes": 6072,
+   "sha256": "11ac329cd3bc1ef840640ed9bb0008785f234843e5dcfb1008c518562d3c0658"
+  },
+  {
+   "path": "phase1/data/evidence/second_set/brca2_raw/decision.json",
+   "bytes": 4047,
+   "sha256": "4d90bb39faefa61d461733f0540e3b1407bd195e355c4576787f907d5fb9d23e"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "table5_check": {
+   "rows": 6551,
+   "kept": 6547,
+   "c_gives_g": 6519,
+   "c_miswritten": [
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8633-2-1A>T",
+     "hgvs_g": "NC_000013.11:g.32376668A>T",
+     "c_gives": "not mapped (parse_error)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-4A>C",
+     "hgvs_g": "NC_000013.11:g.32379745A>C",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-4A>G",
+     "hgvs_g": "NC_000013.11:g.32379745A>G",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-4A>T",
+     "hgvs_g": "NC_000013.11:g.32379745A>T",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-3A>C",
+     "hgvs_g": "NC_000013.11:g.32379746A>C",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-3A>G",
+     "hgvs_g": "NC_000013.11:g.32379746A>G",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-3A>T",
+     "hgvs_g": "NC_000013.11:g.32379746A>T",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-2C>A",
+     "hgvs_g": "NC_000013.11:g.32379747C>A",
+     "c_gives": "g.32379513C>A"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-2C>G",
+     "hgvs_g": "NC_000013.11:g.32379747C>G",
+     "c_gives": "g.32379513C>G"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-2C>T",
+     "hgvs_g": "NC_000013.11:g.32379747C>T",
+     "c_gives": "g.32379513C>T"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-1A>C",
+     "hgvs_g": "NC_000013.11:g.32379748A>C",
+     "c_gives": "g.32379514A>C"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-1A>G",
+     "hgvs_g": "NC_000013.11:g.32379748A>G",
+     "c_gives": "g.32379514A>G"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953-1A>T",
+     "hgvs_g": "NC_000013.11:g.32379748A>T",
+     "c_gives": "g.32379514A>T"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953G>A",
+     "hgvs_g": "NC_000013.11:g.32379749G>A",
+     "c_gives": "g.32379515G>A"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953G>C",
+     "hgvs_g": "NC_000013.11:g.32379749G>C",
+     "c_gives": "g.32379515G>C"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8953G>T",
+     "hgvs_g": "NC_000013.11:g.32379749G>T",
+     "c_gives": "g.32379515G>T"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9502G>A",
+     "hgvs_g": "NC_000013.11:g.32394934G>A",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9502G>C",
+     "hgvs_g": "NC_000013.11:g.32394934G>C",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9502G>T",
+     "hgvs_g": "NC_000013.11:g.32394934G>T",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9503T>A",
+     "hgvs_g": "NC_000013.11:g.32394935T>A",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9503T>C",
+     "hgvs_g": "NC_000013.11:g.32394935T>C",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9503T>G",
+     "hgvs_g": "NC_000013.11:g.32394935T>G",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9504A>C",
+     "hgvs_g": "NC_000013.11:g.32394936A>C",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9504A>G",
+     "hgvs_g": "NC_000013.11:g.32394936A>G",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9504A>T",
+     "hgvs_g": "NC_000013.11:g.32394936A>T",
+     "c_gives": "not mapped (ref_mismatch)"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9505A>C",
+     "hgvs_g": "NC_000013.11:g.32394937A>C",
+     "c_gives": "g.32396901A>C"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9505A>G",
+     "hgvs_g": "NC_000013.11:g.32394937A>G",
+     "c_gives": "g.32396901A>G"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.9505A>T",
+     "hgvs_g": "NC_000013.11:g.32394937A>T",
+     "c_gives": "g.32396901A>T"
+    }
+   ],
+   "dropped": [
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8610A>C",
+     "hgvs_g": "NC_000013.11:g.32371078A>C",
+     "grch38_base": "G"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8610A>T",
+     "hgvs_g": "NC_000013.11:g.32371078A>T",
+     "grch38_base": "G"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8613A>C",
+     "hgvs_g": "NC_000013.11:g.32371081A>C",
+     "grch38_base": "G"
+    },
+    {
+     "hgvs_nt": "NM_000059.4(BRCA2):c.8613A>T",
+     "hgvs_g": "NC_000013.11:g.32371081A>T",
+     "grch38_base": "G"
+    }
+   ]
+  },
+  "outcome": "use urn:mavedb:00001242-a-1"
+ }
+}

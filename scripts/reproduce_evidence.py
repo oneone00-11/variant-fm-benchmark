@@ -160,6 +160,10 @@ NEWGENE_RAW = [PHASE1 / "data" / "evidence" / "external" / f"{g}_raw"
 # The label source audit's raw folders (E16c) and the cache of its uncommitted sources.
 LABEL_AUDIT = PHASE1 / "data" / "evidence" / "label_audit"
 LABEL_AUDIT_CACHE = PHASE1 / "data" / "evidence" / "label_audit_cache"
+# E19's second BRCA2 set (C3 item 3): its label source, Sahu 2025's Supplementary Table 5,
+# kept in the gitignored phase1/data/e19_cache/ as Huang 2025's table is kept, with a
+# manifest in the label audit's form
+SECOND_SET = PHASE1 / "data" / "evidence" / "second_set"
 # What --verify compares: every file the stages write, as it stood before the run.
 # Fetched inputs are left out; manifests may differ only in their wall-clock fields,
 # the set evid_supp_tables also leaves out when it hashes them.
@@ -460,7 +464,8 @@ def fetch_label_audit_cache(attempts: int = 5) -> None:
     file that cannot be fetched, stops the run: after --fetch-inputs nothing may be
     skipped."""
     from src import evid_label_sources as LS
-    for man_path in sorted(LABEL_AUDIT.glob("*_raw/manifest.json")):
+    for man_path in (sorted(LABEL_AUDIT.glob("*_raw/manifest.json"))
+                     + sorted(SECOND_SET.glob("*_raw/label_source_manifest.json"))):
         man = json.loads(man_path.read_text())
         for e in [x for x in man["files"] if x.get("cached")]:
             path = REPO / e["path"]
@@ -1016,6 +1021,29 @@ def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
                 continue
             add(rec, REPO / entry["path"], entry["sha256"])
     for rec in sorted((ev / "label_audit").glob("*_raw/paper_quote_check.json")):
+        d = json.loads(rec.read_text())
+        add(rec, REPO / d["paper_rule"], d["paper_rule_sha256"])
+    # E19's records as fetched or saved: each file of a manifest (a gzip-stored one by the
+    # stored file's sha256), the second set's label source (the cached one when it is
+    # here) and its paper rule as the quote check read it
+    for rec in [*sorted((ev / "e19").glob("*/manifest.json")),
+                ev / "e19" / "first_public_dates" / "preprint_search.json",
+                *sorted((ev / "second_set").glob("*_raw/manifest.json"))]:
+        d = json.loads(rec.read_text())
+        for entry in d.get("files") or []:
+            if entry.get("file"):
+                add(rec, REPO / entry["file"], entry.get("sha256_gz") or entry["sha256"])
+        if d.get("file") and d.get("sha256"):
+            add(rec, REPO / d["file"], d["sha256"])
+        if d.get("extract"):
+            add(rec, REPO / d["extract"]["file"], d["extract"]["sha256"])
+    for rec in sorted((ev / "second_set").glob("*_raw/label_source_manifest.json")):
+        for entry in json.loads(rec.read_text())["files"]:
+            if entry.get("cached") and not (REPO / entry["path"]).exists():
+                absent.append(f"{entry['path']} (E19's cache; --fetch-inputs)")
+                continue
+            add(rec, REPO / entry["path"], entry["sha256"])
+    for rec in sorted((ev / "second_set").glob("*_raw/paper_quote_check.json")):
         d = json.loads(rec.read_text())
         add(rec, REPO / d["paper_rule"], d["paper_rule_sha256"])
 
