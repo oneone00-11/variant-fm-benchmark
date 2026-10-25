@@ -1,0 +1,10 @@
+{
+ "commit": "E19.8 (C6, C7)",
+ "reason": "C6: BP4 at Walker 2023's BP7 positions, by the published cut and by Table 3(b)'s fitted BP4 Supporting threshold; C7: SpliceAI's published cut points by Walker 2023's position groups; a new stage (evid_suppl_c6_c7) appended after every existing stage",
+ "declared_from": "E19.8 and E19.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/c6_bp4_bp7.csv": {"kind": "file", "why": "new: at the BP7 positions (donor +7 and beyond, acceptor -21 and beyond), the SGE damaging and normal variants at or below each BP4 cut and the damaging share, per gene and for the seven genes; the header gives (b)'s fitted thresholds and what the printed values would leave out"},
+  "phase1/reports/evidence/suppl_analyses/c7_by_position.csv": {"kind": "file", "why": "new: per Walker 2023 position group, the damaging and normal variants and E2's band ratios at the published cut points with their gene-clustered intervals"}
+ }
+}

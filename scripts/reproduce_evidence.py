@@ -85,6 +85,7 @@ Stages
  32  evid_suppl_c5           held-out ratios' intervals, Table 3 counts two ways, jackknife (E19 C5)
  33  evid_suppl_c8_c10       without BAP1, family held out, MCC and F1 (E19 C8-C10)
  34  evid_suppl_twelve_gene  the in-sample thresholds refitted on twelve genes (E19.10)
+ 35  evid_suppl_c6_c7        BP4 at the BP7 positions; SpliceAI's cut points by position (E19 C6, C7)
 
 Outputs land in `phase1/reports/evidence/`; stages 23 to 27 also write a page under
 `docs/`, and the supplementary analyses of E19 (stages 29 on) write under its
@@ -229,6 +230,7 @@ STAGES = [
     ("src.evid_suppl_c5",           "E19 C5 held-out intervals and fold counts", []),
     ("src.evid_suppl_c8_c10",       "E19 C8-C10 read from existing outputs", []),
     ("src.evid_suppl_twelve_gene",  "E19.10 twelve-gene refit", []),
+    ("src.evid_suppl_c6_c7",        "E19 C6 BP4 at BP7 positions; C7 by position", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.

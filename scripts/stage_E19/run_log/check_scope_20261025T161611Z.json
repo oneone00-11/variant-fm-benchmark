@@ -1,0 +1,56 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E19/scope_c6_c7.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "8516c441474710b97d486e82cf96cf9ccbe74466",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T16:16:04+00:00",
+ "end_utc": "2026-10-25T16:16:11+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E19/scope_c6_c7.json",
+   "bytes": 1044,
+   "sha256": "3f69406395ece19dbd586737f8d49f3c64faa276f3174a1841032c4aae69b7dc"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E19/scope_c6_c7.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/suppl_analyses/c6_bp4_bp7.csv": {
+    "status": "declared",
+    "why": "new: at the BP7 positions (donor +7 and beyond, acceptor -21 and beyond), the SGE damaging and normal variants at or below each BP4 cut and the damaging share, per gene and for the seven genes; the header gives (b)'s fitted thresholds and what the printed values would leave out",
+    "change": "added"
+   },
+   "phase1/reports/evidence/suppl_analyses/c7_by_position.csv": {
+    "status": "declared",
+    "why": "new: per Walker 2023 position group, the damaging and normal variants and E2's band ratios at the published cut points with their gene-clustered intervals",
+    "change": "added"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

@@ -1630,3 +1630,25 @@ every existing output, every frozen file among them, is unchanged
 - `twelve_gene_refit.csv`: of 288 cells, 29 change tier (PP3: 5 gained, 8 lost; BP4: 16
   lost); where both fits reach the tier (91 cells) the threshold moves by a median of
   14.0% of the seven-gene value.
+
+## Supplementary analyses, C6 and C7: BP4 at the BP7 positions; the cut points by position (stage E19, 2026-10-26)
+
+Why: revision items C6 and C7 (E19.8). A new stage, `evid_suppl_c6_c7` (stage 35, after
+every existing stage), only adds files under `phase1/reports/evidence/suppl_analyses/`;
+every existing output is unchanged (`scripts/stage_E19/scope_c6_c7.json`).
+
+- `c6_bp4_bp7.csv`: at Walker 2023's BP7 positions (donor +7 and beyond, acceptor -21
+  and beyond), the SGE damaging and normal variants whose published-basis SpliceAI
+  score is (a) at or below the published cut, 0.1, or (b) at or below the BP4 Supporting
+  threshold of Table 3(b) for the variant's band (+7 ... +10 in 3-10 nt, the rest in
+  11-50 nt), per gene and for the seven genes. For (b) the threshold is the fitted
+  value at full precision from `evidence_thresholds.csv`, read as E18's external test
+  reads Table 3(b) (the author's decision of 2026-10-26); the file's header says that
+  with Table 3(b)'s printed values (rounded down to three figures) the two SGE normal
+  variants sitting exactly on the fitted thresholds, BAP1 c.255+9G>C and BARD1
+  c.1810+43A>G, would not be counted, the damaging counts being the same. For the seven
+  genes: (a) 3,658 variants, 57 damaging; (b) 502 variants, 5 damaging.
+- `c7_by_position.csv`: per position group (+3...+6, +7...+10, +11...+50; -3...-10,
+  -11...-20, -21...-50), the damaging and normal variants and E2's band ratios at the
+  published cut points (at or above 0.2, at or below 0.1) with E2's gene-clustered
+  intervals; every group has at least ten of each.
