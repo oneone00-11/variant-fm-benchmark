@@ -1,0 +1,61 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E19/scope_c2.json",
+  "--base",
+  "2de6f3c"
+ ],
+ "git_commit": "2de6f3cd94d1441e5ae5c280810cedb48e019613",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T12:21:47+00:00",
+ "end_utc": "2026-10-25T12:22:01+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E19/scope_c2.json",
+   "bytes": 934,
+   "sha256": "956215a3d788199104e6054fd6625cbbe2eee3bcf1e706f62fd0fe8f17aa99b2"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E19/scope_c2.json",
+  "base": "2de6f3c",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/suppl_analyses/c2_clinvar_coverage_by_position.csv": {
+    "status": "declared",
+    "why": "new: per gene and for the seven genes, the variants at each signed offset and ClinVar's records, classifications and classes among them",
+    "change": "added"
+   },
+   "phase1/reports/evidence/suppl_analyses/c2_clinvar_coverage_by_stratum.csv": {
+    "status": "declared",
+    "why": "new: the same by band, 1-2, 3-10 and 11-50 nt: unrecorded, recorded but unclassified, classified",
+    "change": "added"
+   },
+   "phase1/reports/evidence/suppl_analyses/c2_clinvar_coverage_draft.png": {
+    "status": "declared",
+    "why": "new: a draft of the coverage by offset, in evid_fig_data's manner",
+    "change": "added"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

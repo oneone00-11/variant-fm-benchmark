@@ -79,9 +79,11 @@ Stages
  26  evid_label_audit        the seven label files against their cited sources (E16c)
  27  evid_delta              every published quantity with a counterpart (E8)
  28  evid_alphagenome_definitions  AlphaGenome's two definitions side by side (E17)
+ 29  evid_suppl_c2           ClinVar coverage by signed offset (E19 C2)
 
 Outputs land in `phase1/reports/evidence/`; stages 23 to 27 also write a page under
-`docs/`.
+`docs/`, and the supplementary analyses of E19 (stages 29 on) write under its
+`suppl_analyses/`.
 
     bash reproduce.sh                                       # from a fresh clone: everything
     bash reproduce.sh --check                               # five minutes, no download
@@ -214,6 +216,9 @@ STAGES = [
     ("src.evid_label_audit",        "E16c label source audit (read-only)", []),
     ("src.evid_delta",             "E8  old/new quantity list -> docs/evidence-delta.md", []),
     ("src.evid_alphagenome_definitions", "E17 the two AlphaGenome definitions side by side", []),
+    # E19, the supplementary analyses: each reads outputs of the stages above and writes
+    # only under reports/evidence/suppl_analyses/
+    ("src.evid_suppl_c2",           "E19 C2 ClinVar coverage by position", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.

@@ -1,0 +1,11 @@
+{
+ "commit": "E19.2",
+ "reason": "C2: ClinVar's coverage of the analysis set by signed intronic offset and by band, a new stage (evid_suppl_c2) appended after every existing stage",
+ "declared_from": "E19.2 and E19.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/c2_clinvar_coverage_by_position.csv": {"kind": "file", "why": "new: per gene and for the seven genes, the variants at each signed offset and ClinVar's records, classifications and classes among them"},
+  "phase1/reports/evidence/suppl_analyses/c2_clinvar_coverage_by_stratum.csv": {"kind": "file", "why": "new: the same by band, 1-2, 3-10 and 11-50 nt: unrecorded, recorded but unclassified, classified"},
+  "phase1/reports/evidence/suppl_analyses/c2_clinvar_coverage_draft.png": {"kind": "file", "why": "new: a draft of the coverage by offset, in evid_fig_data's manner"}
+ }
+}

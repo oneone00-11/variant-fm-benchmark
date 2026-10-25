@@ -1488,3 +1488,25 @@ checked by `scripts/stage_E19/check_scope.py`, which runs E18's check as it stan
 - `scripts/stage_E19/`: this stage's run records (`_runlog.py`, a copy of E18's), the
   image runner and the pipeline helper (copies of E18's for this folder), the scope check
   and the secrets scan (wrappers that run E18's scripts unchanged, recording here).
+
+## Supplementary analyses, C2: ClinVar's coverage by position (stage E19, 2026-10-25)
+
+Why: revision item C2 asks how ClinVar covers the variants the assays measured,
+position by position, with every SNV of the analysis set as the denominator (E19.2). A
+new stage, `evid_suppl_c2` (stage 29, after every existing stage), only adds files
+under `phase1/reports/evidence/suppl_analyses/`; every existing output is unchanged
+(`scripts/stage_E19/scope_c2.json`).
+
+- The denominator: all 8,853 SNVs, the 1-2 nt dinucleotides included, at their signed
+  intronic offset (-50 ... -1 acceptor side, +1 ... +50 donor side), read from the c.
+  notation by the companion atlas's own offset pattern with the sign kept; its magnitude
+  is the set's `intron_offset_abs` for every variant.
+- `c2_clinvar_coverage_by_position.csv`: per gene and for the seven genes together, at
+  each offset, the variants, those with any ClinVar record, those classified P/LP or
+  B/LB, and P/LP, B/LB, VUS, Conflicting and Other (the set's `clnsig_class`), as
+  counts and shares.
+- `c2_clinvar_coverage_by_stratum.csv`: by band, unrecorded, recorded but unclassified
+  and classified, as counts and shares. For the seven genes: 1-2 nt 856 variants,
+  31.4% unrecorded; 3-10 nt 3,290, 51.6%; 11-50 nt 4,707, 76.6%.
+- `c2_clinvar_coverage_draft.png`: a draft in evid_fig_data's manner; the figure's
+  layout is left to the revision.
