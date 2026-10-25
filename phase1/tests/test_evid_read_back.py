@@ -117,6 +117,9 @@ DEFAULT_READS = {
         "AUROCs by ClinVar arm",
     "evid_tables.py: print(f\"[tables] wrote {f.name} ({len(pd.read_csv(f))} rows)\")":
         "a row count",
+    "evid_suppl_c3.py: lab = pd.read_csv(path, sep=None, engine=\"python\")":
+        "a label file, read exactly as evid_build_set reads it (the join must be "
+        "attach_labels' own), no threshold",
     "evid_tp53_extend.py: return pd.read_csv(buf, sep=\"\\t\")":
         "deliberate: reproduces the TSV write and default-parser read that the frozen "
         "TP53 spliceai, pangolin and nt values went through (TSV_STORED); read_back "

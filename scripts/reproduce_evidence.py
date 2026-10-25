@@ -80,6 +80,7 @@ Stages
  27  evid_delta              every published quantity with a counterpart (E8)
  28  evid_alphagenome_definitions  AlphaGenome's two definitions side by side (E17)
  29  evid_suppl_c2           ClinVar coverage by signed offset (E19 C2)
+ 30  evid_suppl_c3           label sensitivity: refits under other labels (E19 C3)
 
 Outputs land in `phase1/reports/evidence/`; stages 23 to 27 also write a page under
 `docs/`, and the supplementary analyses of E19 (stages 29 on) write under its
@@ -219,6 +220,7 @@ STAGES = [
     # E19, the supplementary analyses: each reads outputs of the stages above and writes
     # only under reports/evidence/suppl_analyses/
     ("src.evid_suppl_c2",           "E19 C2 ClinVar coverage by position", []),
+    ("src.evid_suppl_c3",           "E19 C3 label sensitivity", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.

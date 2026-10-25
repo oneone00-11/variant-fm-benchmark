@@ -1,0 +1,11 @@
+{
+ "commit": "E19.5 (C3 items 1, 2 and 4)",
+ "reason": "C3: label sensitivity, the in-sample thresholds refitted under other labels (intermediate classes as damaging and as normal; PALB2's and BARD1's superseded labels) and read for the subsets without BARD1 and PALB2, a new stage (evid_suppl_c3) appended after every existing stage; item 3, a second BRCA2 dataset, follows in its own commits",
+ "declared_from": "E19.5 and E19.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/c3_intermediate.csv": {"kind": "file", "why": "new: E3's in-sample fit with the 337 intermediate-class variants at 3-50 nt taken as damaging, then as normal, cell by cell beside the frozen fit"},
+  "phase1/reports/evidence/suppl_analyses/c3_superseded_labels.csv": {"kind": "file", "why": "new: the same fit with PALB2's and BARD1's superseded labels, beside the frozen fit"},
+  "phase1/reports/evidence/suppl_analyses/c3_without_bard1_palb2.csv": {"kind": "file", "why": "new: E11's in-sample thresholds for the subsets without BARD1, without PALB2 and without both, beside every gene's"}
+ }
+}

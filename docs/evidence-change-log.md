@@ -1510,3 +1510,29 @@ under `phase1/reports/evidence/suppl_analyses/`; every existing output is unchan
   31.4% unrecorded; 3-10 nt 3,290, 51.6%; 11-50 nt 4,707, 76.6%.
 - `c2_clinvar_coverage_draft.png`: a draft in evid_fig_data's manner; the figure's
   layout is left to the revision.
+
+## Supplementary analyses, C3 items 1, 2 and 4: label sensitivity (stage E19, 2026-10-25)
+
+Why: revision item C3 asks how far the thresholds rest on the labels' handling of
+intermediate classes, on the label files the audit replaced, and on BARD1 and PALB2
+(E19.5). A new stage, `evid_suppl_c3` (stage 30, after every existing stage), only adds
+files under `phase1/reports/evidence/suppl_analyses/`; every existing output is
+unchanged (`scripts/stage_E19/scope_c3_labels.json`). Item 3, a second BRCA2 dataset,
+follows in commits of its own.
+
+- Every refit is E3's in-sample fit, cell for cell: the same function, bootstrap and
+  seed keys, on the bands 3-10, 11-50 and 3-50 nt, for the fourteen columns E3 fits
+  (the fusion's out-of-fold column computed as E3 computes it; it is trained on the
+  within-gene rank of the functional score, not on these labels). Before any refit, the
+  same fit on the analysis set's own labels gives `evidence_thresholds.csv` back
+  exactly, or the stage stops.
+- `c3_intermediate.csv`: the 337 variants at 3-50 nt that the label files class as
+  intermediate, indeterminate or enriched (181 at 3-10, 156 at 11-50 nt), all taken as
+  damaging, then all as normal. Of 336 cells each, 8 gain a tier and 26 lose one under
+  the first; 2 gain and 4 lose under the second.
+- `c3_superseded_labels.csv`: PALB2's and BARD1's labels from
+  `data/assay_labels/superseded/`, joined exactly as the current files are; 48 variants
+  at 3-50 nt lose their label and 2 change side. 2 cells gain a tier, 1 loses one.
+- `c3_without_bard1_palb2.csv`: not refitted; E11's fits of the subsets without BARD1,
+  without PALB2 and without both (the PP3 side, Moderate and Strong, its four columns),
+  beside every gene's. Of 24 cells each, 2, 1 and 2 lose their tier.
