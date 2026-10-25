@@ -1557,3 +1557,28 @@ stage, `evid_suppl_c4` (stage 31, after every existing stage), only adds files u
   reached in 29 column-stratum-side cells at 0.10; at 0.05 it is still reached in 19
   of them, at 0.185 in all 29.
 - `c4_band_edges.csv`: the edges and the posteriors they keep.
+
+## Supplementary analyses, C5: held-out intervals, two fold counts, jackknife (stage E19, 2026-10-25)
+
+Why: revision item C5 asks for intervals on the held-out likelihood ratios, Table 3's
+fold counts by the point estimate and by the lower bound, and how far the Strong
+threshold moves from fold to fold (E19.7). A new stage, `evid_suppl_c5` (stage 32,
+after every existing stage), only adds files under
+`phase1/reports/evidence/suppl_analyses/`; every existing output, Table 3 among them,
+is unchanged (`scripts/stage_E19/scope_c5.json`).
+
+- `c5_heldout_lr_ci.csv`: the 1,120 folds of `evidence_thresholds_logo_folds.csv` at
+  3-10, 11-50 and 3-50 nt (fourteen columns, four tiers, the PP3 side); 477 have a
+  held-out ratio, each equal to the per-fold file's, and an interval by the resampling
+  E7 uses on the external genes (`evid_external._band_detail`: the held-out gene's
+  variants resampled within each class, 2,000 draws, seeded from the cell's identity).
+  The fusion's rows carry E3's leakage note.
+- `c5_fold_counts_point_vs_bound.csv`: Table 3's 78 cells. By the point estimate the
+  counts are Table 3's in every cell (the stage stops otherwise); by the lower bound
+  24 cells count fewer folds.
+- `c5_jackknife_strong.csv`: per column and band, the Strong thresholds of the folds
+  (number, smallest, median, largest) and the largest shift from the in-sample Strong
+  threshold, read from the per-fold file only; Strong is reached in-sample in 18 of
+  the 42 cells.
+- The variant-level and gene-level bootstrap thresholds already stand side by side in
+  Supplementary Tables S6 and S7; no file repeats them.

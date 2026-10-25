@@ -1,0 +1,79 @@
+tool,predictor,stratum,tier,in_sample_tier_reached,excluded_folds,n_folds,point_evaluable,point_k,point_m,point_cell,table3_cell,bound_evaluable,bound_k,bound_m,bound_cell
+spliceai_walker,SpliceAI (published basis),s3_10,moderate,True,,7.0,6.0,6.0,1.0,6/7 (1),6/7 (1),6.0,6.0,1.0,6/7 (1)
+spliceai_walker,SpliceAI (published basis),s3_10,strong,True,,7.0,6.0,4.0,1.0,4/7 (1),4/7 (1),6.0,3.0,1.0,3/7 (1)
+spliceai_walker,SpliceAI (published basis),s11_50,moderate,True,,6.0,4.0,4.0,2.0,4/6 (2),4/6 (2),4.0,3.0,2.0,3/6 (2)
+spliceai_walker,SpliceAI (published basis),s11_50,strong,False,,,,,,–,–,,,,–
+spliceai_walker,SpliceAI (published basis),s3_50,moderate,True,,7.0,7.0,7.0,0.0,7/7,7/7,7.0,7.0,0.0,7/7
+spliceai_walker,SpliceAI (published basis),s3_50,strong,True,,7.0,6.0,5.0,1.0,5/7 (1),5/7 (1),6.0,3.0,1.0,3/7 (1)
+spliceai,SpliceAI (distance 50),s3_10,moderate,True,,7.0,6.0,6.0,1.0,6/7 (1),6/7 (1),6.0,6.0,1.0,6/7 (1)
+spliceai,SpliceAI (distance 50),s3_10,strong,True,,7.0,6.0,4.0,1.0,4/7 (1),4/7 (1),6.0,2.0,1.0,2/7 (1)
+spliceai,SpliceAI (distance 50),s11_50,moderate,True,,6.0,4.0,4.0,2.0,4/6 (2),4/6 (2),4.0,3.0,2.0,3/6 (2)
+spliceai,SpliceAI (distance 50),s11_50,strong,False,,,,,,–,–,,,,–
+spliceai,SpliceAI (distance 50),s3_50,moderate,True,,7.0,7.0,7.0,0.0,7/7,7/7,7.0,7.0,0.0,7/7
+spliceai,SpliceAI (distance 50),s3_50,strong,True,,7.0,6.0,5.0,1.0,5/7 (1),5/7 (1),6.0,2.0,1.0,2/7 (1)
+pangolin,Pangolin,s3_10,moderate,True,,7.0,6.0,6.0,1.0,6/7 (1),6/7 (1),6.0,6.0,1.0,6/7 (1)
+pangolin,Pangolin,s3_10,strong,True,,7.0,6.0,6.0,1.0,6/7 (1),6/7 (1),6.0,4.0,1.0,4/7 (1)
+pangolin,Pangolin,s11_50,moderate,True,,6.0,4.0,4.0,2.0,4/6 (2),4/6 (2),4.0,4.0,2.0,4/6 (2)
+pangolin,Pangolin,s11_50,strong,False,,,,,,–,–,,,,–
+pangolin,Pangolin,s3_50,moderate,True,,7.0,7.0,7.0,0.0,7/7,7/7,7.0,7.0,0.0,7/7
+pangolin,Pangolin,s3_50,strong,True,,7.0,6.0,6.0,1.0,6/7 (1),6/7 (1),6.0,6.0,1.0,6/7 (1)
+alphagenome,AlphaGenome splice score,s3_10,moderate,True,,7.0,6.0,6.0,1.0,6/7 (1),6/7 (1),6.0,6.0,1.0,6/7 (1)
+alphagenome,AlphaGenome splice score,s3_10,strong,True,,7.0,6.0,6.0,1.0,6/7 (1),6/7 (1),6.0,3.0,1.0,3/7 (1)
+alphagenome,AlphaGenome splice score,s11_50,moderate,True,,6.0,4.0,4.0,2.0,4/6 (2),4/6 (2),4.0,4.0,2.0,4/6 (2)
+alphagenome,AlphaGenome splice score,s11_50,strong,True,,6.0,1.0,0.0,5.0,0/6 (5),0/6 (5),1.0,0.0,5.0,0/6 (5)
+alphagenome,AlphaGenome splice score,s3_50,moderate,True,,7.0,7.0,7.0,0.0,7/7,7/7,7.0,7.0,0.0,7/7
+alphagenome,AlphaGenome splice score,s3_50,strong,True,,7.0,6.0,5.0,1.0,5/7 (1),5/7 (1),6.0,4.0,1.0,4/7 (1)
+avi,Atlas combined score †,s3_10,moderate,True,BRCA1;RAD51C,5.0,4.0,4.0,1.0,4/5 (1),4/5 (1),4.0,4.0,1.0,4/5 (1)
+avi,Atlas combined score †,s3_10,strong,True,BRCA1;RAD51C,5.0,3.0,3.0,2.0,3/5 (2),3/5 (2),3.0,2.0,2.0,2/5 (2)
+avi,Atlas combined score †,s11_50,moderate,True,BRCA1;RAD51C,4.0,3.0,3.0,1.0,3/4 (1),3/4 (1),3.0,2.0,1.0,2/4 (1)
+avi,Atlas combined score †,s11_50,strong,True,BRCA1;RAD51C,4.0,0.0,0.0,4.0,0/4 (4),0/4 (4),0.0,0.0,4.0,0/4 (4)
+avi,Atlas combined score †,s3_50,moderate,True,BRCA1;RAD51C,5.0,5.0,5.0,0.0,5/5,5/5,5.0,5.0,0.0,5/5
+avi,Atlas combined score †,s3_50,strong,True,BRCA1;RAD51C,5.0,5.0,5.0,0.0,5/5,5/5,5.0,4.0,0.0,4/5
+avi_splice_sites,Atlas splice sites,s3_10,moderate,True,,7.0,6.0,6.0,1.0,6/7 (1),6/7 (1),6.0,6.0,1.0,6/7 (1)
+avi_splice_sites,Atlas splice sites,s3_10,strong,False,,,,,,–,–,,,,–
+avi_splice_sites,Atlas splice sites,s11_50,moderate,True,,6.0,3.0,3.0,3.0,3/6 (3),3/6 (3),3.0,2.0,3.0,2/6 (3)
+avi_splice_sites,Atlas splice sites,s11_50,strong,False,,,,,,–,–,,,,–
+avi_splice_sites,Atlas splice sites,s3_50,moderate,True,,7.0,7.0,7.0,0.0,7/7,7/7,7.0,7.0,0.0,7/7
+avi_splice_sites,Atlas splice sites,s3_50,strong,True,,7.0,6.0,5.0,1.0,5/7 (1),5/7 (1),6.0,4.0,1.0,4/7 (1)
+avi_splice_site_usage,Atlas splice-site usage,s3_10,moderate,True,,7.0,7.0,7.0,0.0,7/7,7/7,7.0,7.0,0.0,7/7
+avi_splice_site_usage,Atlas splice-site usage,s3_10,strong,True,,7.0,5.0,5.0,2.0,5/7 (2),5/7 (2),5.0,3.0,2.0,3/7 (2)
+avi_splice_site_usage,Atlas splice-site usage,s11_50,moderate,True,,6.0,4.0,4.0,2.0,4/6 (2),4/6 (2),4.0,3.0,2.0,3/6 (2)
+avi_splice_site_usage,Atlas splice-site usage,s11_50,strong,True,,6.0,0.0,0.0,6.0,0/6 (6),0/6 (6),0.0,0.0,6.0,0/6 (6)
+avi_splice_site_usage,Atlas splice-site usage,s3_50,moderate,True,,7.0,7.0,7.0,0.0,7/7,7/7,7.0,7.0,0.0,7/7
+avi_splice_site_usage,Atlas splice-site usage,s3_50,strong,True,,7.0,5.0,5.0,2.0,5/7 (2),5/7 (2),5.0,4.0,2.0,4/7 (2)
+avi_splice_junctions,Atlas splice junctions,s3_10,moderate,True,,7.0,6.0,6.0,1.0,6/7 (1),6/7 (1),6.0,6.0,1.0,6/7 (1)
+avi_splice_junctions,Atlas splice junctions,s3_10,strong,True,,7.0,5.0,5.0,2.0,5/7 (2),5/7 (2),5.0,2.0,2.0,2/7 (2)
+avi_splice_junctions,Atlas splice junctions,s11_50,moderate,True,,6.0,2.0,2.0,4.0,2/6 (4),2/6 (4),2.0,2.0,4.0,2/6 (4)
+avi_splice_junctions,Atlas splice junctions,s11_50,strong,False,,,,,,–,–,,,,–
+avi_splice_junctions,Atlas splice junctions,s3_50,moderate,True,,7.0,7.0,7.0,0.0,7/7,7/7,7.0,7.0,0.0,7/7
+avi_splice_junctions,Atlas splice junctions,s3_50,strong,True,,7.0,5.0,5.0,2.0,5/7 (2),5/7 (2),5.0,3.0,2.0,3/7 (2)
+cadd,CADD,s3_10,moderate,False,,,,,,–,–,,,,–
+cadd,CADD,s3_10,strong,False,,,,,,–,–,,,,–
+cadd,CADD,s11_50,moderate,False,,,,,,–,–,,,,–
+cadd,CADD,s11_50,strong,False,,,,,,–,–,,,,–
+cadd,CADD,s3_50,moderate,True,,7.0,6.0,5.0,1.0,5/7 (1),5/7 (1),6.0,2.0,1.0,2/7 (1)
+cadd,CADD,s3_50,strong,False,,,,,,–,–,,,,–
+phylop,phyloP,s3_10,moderate,True,,7.0,2.0,2.0,5.0,2/7 (5),2/7 (5),2.0,0.0,5.0,0/7 (5)
+phylop,phyloP,s3_10,strong,False,,,,,,–,–,,,,–
+phylop,phyloP,s11_50,moderate,False,,,,,,–,–,,,,–
+phylop,phyloP,s11_50,strong,False,,,,,,–,–,,,,–
+phylop,phyloP,s3_50,moderate,True,,7.0,3.0,3.0,4.0,3/7 (4),3/7 (4),3.0,2.0,4.0,2/7 (4)
+phylop,phyloP,s3_50,strong,False,,,,,,–,–,,,,–
+phastcons,phastCons,s3_10,moderate,False,,,,,,–,–,,,,–
+phastcons,phastCons,s3_10,strong,False,,,,,,–,–,,,,–
+phastcons,phastCons,s11_50,moderate,False,,,,,,–,–,,,,–
+phastcons,phastCons,s11_50,strong,False,,,,,,–,–,,,,–
+phastcons,phastCons,s3_50,moderate,False,,,,,,–,–,,,,–
+phastcons,phastCons,s3_50,strong,False,,,,,,–,–,,,,–
+gpn_msa,GPN-MSA,s3_10,moderate,True,,7.0,6.0,6.0,1.0,6/7 (1),6/7 (1),6.0,2.0,1.0,2/7 (1)
+gpn_msa,GPN-MSA,s3_10,strong,False,,,,,,–,–,,,,–
+gpn_msa,GPN-MSA,s11_50,moderate,False,,,,,,–,–,,,,–
+gpn_msa,GPN-MSA,s11_50,strong,False,,,,,,–,–,,,,–
+gpn_msa,GPN-MSA,s3_50,moderate,True,,7.0,6.0,6.0,1.0,6/7 (1),6/7 (1),6.0,4.0,1.0,4/7 (1)
+gpn_msa,GPN-MSA,s3_50,strong,False,,,,,,–,–,,,,–
+nt,Nucleotide Transformer,s3_10,moderate,False,,,,,,–,–,,,,–
+nt,Nucleotide Transformer,s3_10,strong,False,,,,,,–,–,,,,–
+nt,Nucleotide Transformer,s11_50,moderate,False,,,,,,–,–,,,,–
+nt,Nucleotide Transformer,s11_50,strong,False,,,,,,–,–,,,,–
+nt,Nucleotide Transformer,s3_50,moderate,False,,,,,,–,–,,,,–
+nt,Nucleotide Transformer,s3_50,strong,False,,,,,,–,–,,,,–

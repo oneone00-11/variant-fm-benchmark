@@ -1,0 +1,61 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E19/scope_c5.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "45ca6b32f8bd2e78412858ebc9a3c691e944297f",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T14:16:46+00:00",
+ "end_utc": "2026-10-25T14:16:53+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E19/scope_c5.json",
+   "bytes": 1149,
+   "sha256": "bdb1b191778ab18794ce323b29a98cfe142b993d6d242e88d9b9472eebd0bbbf"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E19/scope_c5.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/suppl_analyses/c5_fold_counts_point_vs_bound.csv": {
+    "status": "declared",
+    "why": "new: Table 3's k/n (m) by the point estimate (equal to Table 3 in every cell) and by the interval's lower bound",
+    "change": "added"
+   },
+   "phase1/reports/evidence/suppl_analyses/c5_heldout_lr_ci.csv": {
+    "status": "declared",
+    "why": "new: every fold of E3's per-fold file at 3-10, 11-50 and 3-50 nt, the held-out ratio at its threshold and a 95% interval by E7's within-gene resampling",
+    "change": "added"
+   },
+   "phase1/reports/evidence/suppl_analyses/c5_jackknife_strong.csv": {
+    "status": "declared",
+    "why": "new: each column's and band's Strong thresholds across the folds, read from the per-fold file only, and the largest shift from the in-sample one",
+    "change": "added"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

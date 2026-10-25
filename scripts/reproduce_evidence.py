@@ -82,6 +82,7 @@ Stages
  29  evid_suppl_c2           ClinVar coverage by signed offset (E19 C2)
  30  evid_suppl_c3           label sensitivity: refits under other labels (E19 C3)
  31  evid_suppl_c4           prior sensitivity: the tiers at priors 0.05, 0.10, 0.185 (E19 C4)
+ 32  evid_suppl_c5           held-out ratios' intervals, Table 3 counts two ways, jackknife (E19 C5)
 
 Outputs land in `phase1/reports/evidence/`; stages 23 to 27 also write a page under
 `docs/`, and the supplementary analyses of E19 (stages 29 on) write under its
@@ -223,6 +224,7 @@ STAGES = [
     ("src.evid_suppl_c2",           "E19 C2 ClinVar coverage by position", []),
     ("src.evid_suppl_c3",           "E19 C3 label sensitivity", []),
     ("src.evid_suppl_c4",           "E19 C4 prior sensitivity", []),
+    ("src.evid_suppl_c5",           "E19 C5 held-out intervals and fold counts", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.

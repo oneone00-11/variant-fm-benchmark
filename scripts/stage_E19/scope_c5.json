@@ -1,0 +1,11 @@
+{
+ "commit": "E19.7 (C5)",
+ "reason": "C5: the held-out likelihood ratios with E7's within-gene intervals, Table 3's fold counts by the point estimate and by the lower bound, and the Strong thresholds across the folds, a new stage (evid_suppl_c5) appended after every existing stage; Table 3 is not changed",
+ "declared_from": "E19.7 and E19.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/c5_heldout_lr_ci.csv": {"kind": "file", "why": "new: every fold of E3's per-fold file at 3-10, 11-50 and 3-50 nt, the held-out ratio at its threshold and a 95% interval by E7's within-gene resampling"},
+  "phase1/reports/evidence/suppl_analyses/c5_fold_counts_point_vs_bound.csv": {"kind": "file", "why": "new: Table 3's k/n (m) by the point estimate (equal to Table 3 in every cell) and by the interval's lower bound"},
+  "phase1/reports/evidence/suppl_analyses/c5_jackknife_strong.csv": {"kind": "file", "why": "new: each column's and band's Strong thresholds across the folds, read from the per-fold file only, and the largest shift from the in-sample one"}
+ }
+}
