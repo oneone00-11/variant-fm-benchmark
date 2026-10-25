@@ -1,0 +1,51 @@
+{
+ "script": "scripts/stage_E19/fetch_clinvar_review_status.py",
+ "argv": [
+  "scripts/stage_E19/fetch_clinvar_review_status.py"
+ ],
+ "git_commit": "2de6f3cd94d1441e5ae5c280810cedb48e019613",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E19/fetch_clinvar_review_status.py": "34032c29d4cd2ac17201bfc2bb10340e2f2ef72d65203bffc3dfe9b154e313f0",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T11:18:11+00:00",
+ "end_utc": "2026-10-25T11:18:11+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/e19/clinvar_review_status/review_status.html",
+   "bytes": 21276,
+   "sha256": "38b7cca10576427c5286d1f209b8f4cbadfd0a7ef616becd084780535c6d7c59"
+  },
+  {
+   "path": "phase1/data/evidence/e19/clinvar_review_status/manifest.json",
+   "bytes": 461,
+   "sha256": "2ef68bd14452d1084e8829a947576ff0dcd61eb1e800c8bf726bc06b4a5743a1"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "manifest": {
+   "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/review_status/",
+   "final_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/review_status/",
+   "http_status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "last_modified": null,
+   "fetched_utc": "2026-10-25T11:18:11+00:00",
+   "file": "phase1/data/evidence/e19/clinvar_review_status/review_status.html",
+   "bytes": 21276,
+   "sha256": "38b7cca10576427c5286d1f209b8f4cbadfd0a7ef616becd084780535c6d7c59"
+  }
+ }
+}

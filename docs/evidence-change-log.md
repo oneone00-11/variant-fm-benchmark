@@ -1652,3 +1652,36 @@ every existing output is unchanged (`scripts/stage_E19/scope_c6_c7.json`).
   -11...-20, -21...-50), the damaging and normal variants and E2's band ratios at the
   published cut points (at or above 0.2, at or below 0.1) with E2's gene-clustered
   intervals; every group has at least ten of each.
+
+## Supplementary analyses, C1: the predictors against ClinVar (stage E19, 2026-10-26)
+
+Why: revision item C1 asks how the frozen thresholds and the published cut points read
+against ClinVar's germline classifications, as a concordance check (E19.3). A new stage,
+`evid_suppl_c1` (stage 36, after every existing stage), only adds files under
+`phase1/reports/evidence/suppl_analyses/`, and one input folder; every existing output
+is unchanged (`scripts/stage_E19/scope_c1_main.json`).
+
+- The reference: the analysis set's `clnsig_class`, the project's collapse of the VCF's
+  INFO CLNSIG ("Aggregate germline classification for this single variant", ClinVar
+  2026-06-15), P/LP positive and B/LB negative; conflicting classifications and the
+  rest carry no reference label.
+- The stars: from CLNREVSTAT ("review status of germline classification for the
+  Variation ID") by ClinVar's own table for germline classifications on aggregate records
+  (VCV and RCV), read from its review-status page (`phase1/data/evidence/e19/
+  clinvar_review_status/`). The scripted fetch was served a reCAPTCHA page, kept out
+  (its run record is kept); the author saved the page with Chrome on 2026-10-26, and its
+  manifest records the URL, size, sha256, save time and that. Every review status of the
+  set is graded; the conversion is written out (`c1_clinvar_star_conversion.csv`).
+- `c1_clinvar_reference_metrics.csv`: at least one star, 74 P/LP and 645 B/LB at 3-10 nt,
+  3 and 765 at 11-50 nt (counts only), 77 and 1,410 at 3-50 nt; at least two stars, 59
+  and 273, 0 and 304, 59 and 577. Sensitivity and specificity with E15's Wilson
+  intervals at Walker's cut points (both SpliceAI columns) and Table 3(b)'s in-sample
+  thresholds, by E15's own code and names; AUROC by E4's estimator, each gene's AUROC
+  beside the pooled one. Only BRCA1 and BRCA2 have ten of each at 3-10 and 3-50 nt;
+  where BRCA2's AUROC is 1 (nine of the fourteen columns) E4's logit pooling is
+  undefined and the row says so. No likelihood ratio, no tier (E19.0 rule 3).
+- `c1_clinvar_sge_crosstab.csv`: ClinVar (P/LP, B/LB, unrecorded) x SGE (damaging,
+  normal) x the side of each threshold, as counts; in P/LP the share of SGE damaging at
+  or above each PP3 threshold, in B/LB the share of SGE normal at or below each BP4
+  threshold (E15's `bp4_sensitivity`, the author's decision of 2026-10-25), both in the
+  unrecorded group.

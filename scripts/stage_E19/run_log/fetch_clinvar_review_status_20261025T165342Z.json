@@ -1,0 +1,74 @@
+{
+ "script": "scripts/stage_E19/fetch_clinvar_review_status.py",
+ "argv": [
+  "scripts/stage_E19/fetch_clinvar_review_status.py",
+  "--from-file",
+  "/Users/cliffzhang/Desktop/Review status in ClinVar.html"
+ ],
+ "git_commit": "299e1e221ae5a17f9db988777a9ffc94fb789c6c",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E19/fetch_clinvar_review_status.py": "ed8fb73fffd414a537235338a2bd44c1646958cb8191eb59a58c429338190d29",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T16:53:42+00:00",
+ "end_utc": "2026-10-25T16:53:42+00:00",
+ "inputs": [
+  {
+   "path": "~/Desktop/Review status in ClinVar.html",
+   "bytes": 60897,
+   "sha256": "73b9238879111cd3157e884d7c69c507cae2ab73a4c7ac042b7b996ab3e90966"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/e19/clinvar_review_status/review_status.html",
+   "bytes": 60897,
+   "sha256": "73b9238879111cd3157e884d7c69c507cae2ab73a4c7ac042b7b996ab3e90966"
+  },
+  {
+   "path": "phase1/data/evidence/e19/clinvar_review_status/manifest.json",
+   "bytes": 767,
+   "sha256": "12776eb77e0c3946b760a89345017f43c73299e75b6d5a40e53732edbce9f883"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "how": {
+   "how": "saved by the author with a browser (作者用浏览器保存), as 'Webpage, HTML only', the scripted fetch having been served a reCAPTCHA challenge (the author's decision of 2026-10-25)",
+   "saved_as": "Review status in ClinVar.html",
+   "file_saved_utc": "2026-10-25T16:52:01+00:00",
+   "file_saved_local": "2026-10-26T00:52:01+08:00",
+   "where_from": [
+    "https://www.ncbi.nlm.nih.gov/clinvar/docs/review_status/"
+   ],
+   "browser": "Chrome",
+   "recorded_utc": "2026-10-25T16:53:42+00:00"
+  },
+  "manifest": {
+   "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/review_status/",
+   "how": "saved by the author with a browser (作者用浏览器保存), as 'Webpage, HTML only', the scripted fetch having been served a reCAPTCHA challenge (the author's decision of 2026-10-25)",
+   "saved_as": "Review status in ClinVar.html",
+   "file_saved_utc": "2026-10-25T16:52:01+00:00",
+   "file_saved_local": "2026-10-26T00:52:01+08:00",
+   "where_from": [
+    "https://www.ncbi.nlm.nih.gov/clinvar/docs/review_status/"
+   ],
+   "browser": "Chrome",
+   "recorded_utc": "2026-10-25T16:53:42+00:00",
+   "file": "phase1/data/evidence/e19/clinvar_review_status/review_status.html",
+   "bytes": 60897,
+   "sha256": "73b9238879111cd3157e884d7c69c507cae2ab73a4c7ac042b7b996ab3e90966"
+  }
+ }
+}

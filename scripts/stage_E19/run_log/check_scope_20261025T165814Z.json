@@ -1,0 +1,71 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E19/scope_c1_main.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "9527587fabf10bf661ccfe956b4b4dfea642d9fb",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E19/_runlog.py": "b7b82e917a8c0014b1585986b2d2b97f726ca5677396ec0dba7074176cef35e7"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "alphagenome": "not installed",
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "anndata": "not installed",
+  "grpcio": "not installed",
+  "protobuf": "not installed"
+ },
+ "start_utc": "2026-10-25T16:58:07+00:00",
+ "end_utc": "2026-10-25T16:58:14+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E19/scope_c1_main.json",
+   "bytes": 1693,
+   "sha256": "f55733f744f6ce3d575c650336ed91a17656729f20dfb5cfe7a644a7ed4a8804"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E19/scope_c1_main.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/data/evidence/e19/clinvar_review_status/manifest.json": {
+    "status": "declared",
+    "why": "new input: the page's URL, size, sha256, save time and how it was saved; listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/e19/clinvar_review_status/review_status.html": {
+    "status": "declared",
+    "why": "new input: ClinVar's review-status documentation, saved by the author with a browser on 2026-10-26 (the scripted fetch was served a reCAPTCHA page); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/reports/evidence/suppl_analyses/c1_clinvar_reference_metrics.csv": {
+    "status": "declared",
+    "why": "new: per star level, predictor and band, sensitivity and specificity at the published cut points and Table 3(b)'s in-sample thresholds, and AUROC by E4's estimator; no likelihood ratio, no tier",
+    "change": "added"
+   },
+   "phase1/reports/evidence/suppl_analyses/c1_clinvar_sge_crosstab.csv": {
+    "status": "declared",
+    "why": "new: ClinVar group x SGE class x side of each threshold, as counts, with the shares E19.3 names",
+    "change": "added"
+   },
+   "phase1/reports/evidence/suppl_analyses/c1_clinvar_star_conversion.csv": {
+    "status": "declared",
+    "why": "new: the review statuses and their stars as the page's table for germline classifications on aggregate records gives them, with the set's count of each",
+    "change": "added"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

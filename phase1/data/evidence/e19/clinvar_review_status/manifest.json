@@ -1,0 +1,15 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/review_status/",
+ "how": "saved by the author with a browser (\u4f5c\u8005\u7528\u6d4f\u89c8\u5668\u4fdd\u5b58), as 'Webpage, HTML only', the scripted fetch having been served a reCAPTCHA challenge (the author's decision of 2026-10-25)",
+ "saved_as": "Review status in ClinVar.html",
+ "file_saved_utc": "2026-10-25T16:52:01+00:00",
+ "file_saved_local": "2026-10-26T00:52:01+08:00",
+ "where_from": [
+  "https://www.ncbi.nlm.nih.gov/clinvar/docs/review_status/"
+ ],
+ "browser": "Chrome",
+ "recorded_utc": "2026-10-25T16:53:42+00:00",
+ "file": "phase1/data/evidence/e19/clinvar_review_status/review_status.html",
+ "bytes": 60897,
+ "sha256": "73b9238879111cd3157e884d7c69c507cae2ab73a4c7ac042b7b996ab3e90966"
+}

@@ -1,0 +1,13 @@
+{
+ "commit": "E19.3 (C1, the ClinVar concordance check)",
+ "reason": "C1: the predictors against ClinVar's germline classifications (P/LP against B/LB) by stars, a new stage (evid_suppl_c1) appended after every existing stage; and its input, ClinVar's review-status page as the author saved it from a browser, with its manifest",
+ "declared_from": "E19.3 and E19.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/data/evidence/e19/clinvar_review_status/review_status.html": {"kind": "file", "why": "new input: ClinVar's review-status documentation, saved by the author with a browser on 2026-10-26 (the scripted fetch was served a reCAPTCHA page); listed in reproduce_inputs.txt"},
+  "phase1/data/evidence/e19/clinvar_review_status/manifest.json": {"kind": "file", "why": "new input: the page's URL, size, sha256, save time and how it was saved; listed in reproduce_inputs.txt"},
+  "phase1/reports/evidence/suppl_analyses/c1_clinvar_star_conversion.csv": {"kind": "file", "why": "new: the review statuses and their stars as the page's table for germline classifications on aggregate records gives them, with the set's count of each"},
+  "phase1/reports/evidence/suppl_analyses/c1_clinvar_reference_metrics.csv": {"kind": "file", "why": "new: per star level, predictor and band, sensitivity and specificity at the published cut points and Table 3(b)'s in-sample thresholds, and AUROC by E4's estimator; no likelihood ratio, no tier"},
+  "phase1/reports/evidence/suppl_analyses/c1_clinvar_sge_crosstab.csv": {"kind": "file", "why": "new: ClinVar group x SGE class x side of each threshold, as counts, with the shares E19.3 names"}
+ }
+}
