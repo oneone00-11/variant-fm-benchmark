@@ -1,0 +1,9 @@
+{
+ "commit": "E20.2 (C12: the true positives' in-frame attribution)",
+ "reason": "C12: the true positives' in-frame attribution, by evid_inframe's own classifiers on the event records of E20.1, beside E6's and E2.7's false positives read from their attribution files as they stand, a new stage (evid_suppl_c12) appended after every existing stage",
+ "declared_from": "E20.2 and E20.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/c12_inframe_tp_fp.csv": {"kind": "file", "why": "new: per gene set x label definition x tool x band x group (true positives, false positives), the in-frame, out-of-frame and undetermined counts with the in-frame share and its Wilson interval; the false-positive rows equal E6's and E2.7's summaries cell by cell; the header says what E20.2 asks it to say"}
+ }
+}

@@ -1817,3 +1817,24 @@ is added, and every existing output is unchanged (`scripts/stage_E20/scope_c12_e
   563, 66, 15); Pangolin equals the stored `pangolin` rounded as its CLI prints it (E6 524/524;
   new 549). Anchor 2: 10 SpliceAI and 10 Pangolin variants from E6's event files, scored in the
   same runs, give E6's records back in every field, and Pangolin's CLI lines verbatim.
+
+## Supplementary analyses, C12: the true positives' in-frame attribution (stage E20, 2026-10-26)
+
+Why: E20.2, on the event records of E20.1. A new stage, `evid_suppl_c12` (stage 39, after
+every existing stage), only adds a file under `phase1/reports/evidence/suppl_analyses/`;
+every existing output is unchanged (`scripts/stage_E20/scope_c12.json`).
+
+- The true positives: each variant of E20.1's subsets, the anchors left out, classified by
+  `evid_inframe.classify` (SpliceAI) or `classify_pangolin` (Pangolin), unchanged, on
+  `evid_inframe`'s transcript maps; DDX3X and TP53 on SpliceAI's events, each label
+  definition counted on its own.
+- The false positives: E6's and E2.7's per-variant attribution files as they stand, counted
+  as their summaries count them; every count equals the summary's, cell by cell. E2.7's
+  DDX3X Pangolin rows have no true-positive counterpart and are not carried.
+- `c12_inframe_tp_fp.csv`: 28 rows (gene set x label definition x tool x band x group), the
+  in-frame share with E15's Wilson interval and the share among the resolved. Seven genes,
+  3-10 nt: in frame 135 of 453 true positives and 155 of 387 false positives (SpliceAI), 145
+  of 451 and 131 of 348 (Pangolin).
+- The header states that the frame is inferred from the tools' output, that TP53's label is
+  its primary label variant by variant, the bands, and that E6's false positives predate
+  E16d's relabel (6 and 7 PALB2 variants would be added under the current labels).

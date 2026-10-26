@@ -89,9 +89,10 @@ Stages
  36  evid_suppl_c1           the predictors against ClinVar, by stars (E19 C1)
  37  evid_suppl_c1_low       the same on assertions evaluated before the SGE data were public (E19 C1)
  38  evid_suppl_c3_brca2     BRCA2 against a second dataset: concordance and two refits (E19 C3)
+ 39  evid_suppl_c12          the true positives' in-frame attribution beside the false positives' (E20 C12)
 
 Outputs land in `phase1/reports/evidence/`; stages 23 to 27 also write a page under
-`docs/`, and the supplementary analyses of E19 (stages 29 on) write under its
+`docs/`, and the supplementary analyses of E19 and E20 (stages 29 on) write under its
 `suppl_analyses/`.
 
     bash reproduce.sh                                       # from a fresh clone: everything
@@ -241,6 +242,8 @@ STAGES = [
     ("src.evid_suppl_c1",           "E19 C1 the predictors against ClinVar", []),
     ("src.evid_suppl_c1_low",       "E19 C1 low-circularity subset", []),
     ("src.evid_suppl_c3_brca2",     "E19 C3 BRCA2 against a second dataset", []),
+    # E20, two further supplementary analyses, under reports/evidence/suppl_analyses/
+    ("src.evid_suppl_c12",          "E20 C12 in-frame attribution of the true positives", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.
