@@ -1876,3 +1876,36 @@ every existing output is unchanged (`scripts/stage_E20/scope_c13.json`).
 - `c13_vcep_band_lr.csv`: 24 band rows (18 evaluable; BRCA1 and BRCA2 at 11-50 nt and VHL's
   PP3 at 3-10 and 11-50 nt are not), 12 BP7 rows read from `c6_bp4_bp7.csv` beside each
   specification's own BP7 scope, and BAP1, BARD1 and RAD51C without a specification.
+
+## Supplementary analyses, E6 under the current labels (stage E20b, 2026-10-26)
+
+Why: E20b.1 (the author's answer to E20's open items 1 and 2). E6 drew its false-positive
+subsets on 2026-09-17, before E16d switched PALB2 and BARD1 to the archived classification;
+under the current labels they gain 6 (SpliceAI) and 7 (Pangolin) PALB2 variants at 3-10 nt
+and lose none. E6 is drawn again with its own code, its events are re-scored whole, and its
+attribution, Supplementary Table S13 and C12's false-positive group follow. No stage is
+added; every other output is unchanged (`scripts/stage_E20b/scope_e6.json`).
+
+- The pre-check: every committed input that a one-off script derived from label columns
+  (E6's subsets and the Pangolin scorer's variant list, DDX3X's and TP53's in-frame subsets,
+  E20.1's true-positive subsets and score inputs, the four further genes' scored table),
+  derived again by the same code under the current labels and compared variant by variant.
+  Only E6's two subsets and the Pangolin variant list (the same 7 variants) differ.
+- The subsets: `python -m src.evid_inframe --subset`, unchanged. SpliceAI 615 (was 609),
+  Pangolin 531 (was 524): exactly the committed rows and the 6 and 7 variants.
+- The events: re-scored whole by `evid_score_spliceai_events.py` and
+  `evid_score_pangolin_events.py` in E20.1's environments and settings (SpliceAI distance
+  4,999, no masking; Pangolin -d 50, the CLI's masking, five chunks of two threads). Beside
+  each event file, the environment record E6 did not keep (the command, the interpreter and
+  its pip freeze, the references' sha256). Anchor 1: the committed variants' records (609
+  and 524) are the same in every field, and Pangolin's CLI lines verbatim. Anchor 2: every
+  row's largest score stands in E20.1's relation to the stored column (615 and 531).
+- `inframe_attribution.csv`: the committed rows unchanged; 13 rows added (SpliceAI: 4 in
+  frame, 1 out of frame, 1 undetermined; Pangolin: 3 in frame, 4 out of frame). The summary
+  changes only at 3-10 nt: SpliceAI 159 of 393 in frame (was 155 of 387), Pangolin 134 of
+  355 (was 131 of 348). Supplementary Table S13's two rows and the supplement's manifest
+  follow, and so do C12's false-positive rows of the seven genes at 3-10 nt; C12's header
+  says the subsets were drawn again.
+- E2.7's DDX3X and TP53 files, C12's true-positive rows and C13 are unchanged. E20.1's
+  anchor test reads E6's event files without the added variants, as they stood when the
+  anchors were drawn.

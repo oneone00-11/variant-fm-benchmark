@@ -41,6 +41,8 @@
 # Then C13's records: the VCEP specifications of the training genes as ClinGen's Criteria Specification
 # Registry serves them, their Zenodo deposits' records and ClinGen's terms of use (vcep/raw/, with its
 # manifest), and the rules file read from them before any score was joined to it (vcep/vcep_rules.json).
+# E20b (2026-10-26) drew E6's subsets again under the current labels and re-scored their events
+# whole (the files keep their names); E6's event files gained the environment records E6 did not keep.
 phase1/data/evidence/FROZEN_AT_TAG.json
 phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json
 phase1/data/evidence/alphagenome_official/ENVIRONMENT.json
@@ -457,8 +459,10 @@ phase1/data/evidence/external/xrcc2_spliceai_walker.parquet
 phase1/data/evidence/external/xrcc2_spliceai_walker.parquet.environment.json
 phase1/data/evidence/external/xrcc2_spliceai_walker.parquet.provenance.json
 phase1/data/evidence/inframe_events.parquet
+phase1/data/evidence/inframe_events.parquet.environment.json
 phase1/data/evidence/inframe_events.parquet.provenance.json
 phase1/data/evidence/inframe_events_pangolin.parquet
+phase1/data/evidence/inframe_events_pangolin.parquet.environment.json
 phase1/data/evidence/inframe_events_pangolin.parquet.provenance.json
 phase1/data/evidence/inframe_events_pangolin_tp.parquet
 phase1/data/evidence/inframe_events_pangolin_tp.parquet.environment.json

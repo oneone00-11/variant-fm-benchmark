@@ -1,0 +1,124 @@
+{
+ "commit": "E20b.1 (commit 1: E6 under the current labels)",
+ "reason": "E6's subsets drawn again under the current labels (E16d had switched PALB2 and BARD1); the events re-scored whole by E6's own scorers; E6's attribution and summary, Supplementary Table S13 and C12's false positives follow; no stage is added",
+ "declared_from": "E20b.1: the files it names change, every other output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/data/evidence/inframe_subset.parquet": {
+   "kind": "file",
+   "why": "re-taken: E6's SpliceAI subset by `python -m src.evid_inframe --subset` under the current labels, the committed 609 rows plus the 6 PALB2 variants the pre-check found (write_e6_subsets.py)"
+  },
+  "phase1/data/evidence/inframe_subset_pangolin.parquet": {
+   "kind": "file",
+   "why": "re-taken: E6's Pangolin subset, the committed 524 rows plus the 7 PALB2 variants the pre-check found"
+  },
+  "phase1/data/evidence/inframe_events.parquet": {
+   "kind": "file",
+   "why": "re-scored whole by E6's scorer in E20.1's environment and settings; both anchors hold (check_e6_rescore.py)"
+  },
+  "phase1/data/evidence/inframe_events.parquet.provenance.json": {
+   "kind": "file",
+   "why": "the scorer's provenance of the re-scored file"
+  },
+  "phase1/data/evidence/inframe_events.parquet.environment.json": {
+   "kind": "file",
+   "why": "new: the environment record E6 did not keep (run_e6_events.py)"
+  },
+  "phase1/data/evidence/inframe_events_pangolin.parquet": {
+   "kind": "file",
+   "why": "re-scored whole by E6's scorer in E20.1's environment and settings; both anchors hold (check_e6_rescore.py)"
+  },
+  "phase1/data/evidence/inframe_events_pangolin.parquet.provenance.json": {
+   "kind": "file",
+   "why": "the scorer's provenance of the re-scored file"
+  },
+  "phase1/data/evidence/inframe_events_pangolin.parquet.environment.json": {
+   "kind": "file",
+   "why": "new: the environment record E6 did not keep (run_e6_events.py)"
+  },
+  "phase1/data/evidence/pangolin_events_work/variants.csv": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset (its variant list, chunks, markers and the CLI's raw output)"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.csv": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.done": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.out.csv": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.csv": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.done": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.out.csv": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.csv": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.done": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.out.csv": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.csv": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.done": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.out.csv": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.csv": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.done": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.out.csv": {
+   "kind": "file",
+   "why": "the Pangolin scorer's work folder for the re-scored subset"
+  },
+  "phase1/reports/evidence/inframe_attribution.csv": {
+   "kind": "file",
+   "why": "E6's attribution: HEAD's rows unchanged, the 6 and 7 added variants' rows new (check_e6_downstream.py)"
+  },
+  "phase1/reports/evidence/inframe_attribution_summary.csv": {
+   "kind": "file",
+   "why": "E6's summary: only the 3-10 nt cells change, by the added variants' frames"
+  },
+  "phase1/reports/evidence/supplement/tableS13_inframe_attribution.csv": {
+   "kind": "file",
+   "why": "Supplementary Table S13: the seven genes' 3-10 nt rows follow E6's summary"
+  },
+  "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+   "kind": "file",
+   "why": "the supplement's manifest: S13's record"
+  },
+  "phase1/reports/evidence/suppl_analyses/c12_inframe_tp_fp.csv": {
+   "kind": "file",
+   "why": "C12: the seven genes' false positives at 3-10 nt follow E6; the header's sentence on E6's subsets"
+  }
+ }
+}

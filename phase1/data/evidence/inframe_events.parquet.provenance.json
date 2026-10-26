@@ -5,9 +5,9 @@
   "mask": 0,
   "reference_fasta": "/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.fa",
   "annotation": "grch38",
-  "n_variants": 609,
-  "n_scored": 609,
-  "output_sha256": "dcecb2b2bfbc5aced6b13d399fcd662339212decc6bc8f0d306882f165449860",
-  "scored_utc": "2026-09-17T13:16:39+00:00",
-  "runtime_minutes": 15.6
+  "n_variants": 615,
+  "n_scored": 615,
+  "output_sha256": "0720f9f85f69baf55a4caa6566ef8f4dc89f34b5636843815e96f7691dda98f3",
+  "scored_utc": "2026-10-26T14:01:21+00:00",
+  "runtime_minutes": 21.4
 }

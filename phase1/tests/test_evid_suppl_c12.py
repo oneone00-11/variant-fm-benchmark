@@ -92,7 +92,7 @@ def test_the_header_says_what_e20_2_asks():
     assert "not measured on transcripts" in head and "nonsense-mediated decay" in head
     assert "urn:mavedb:00001277-a-1" in head and "checked in E18" in head
     assert "3-10 and 11-50 nt" in head and "DDX3X 11-25 nt" in head
-    assert "before E16d" in head
+    assert "drawn again under the current labels in E20b (2026-10-26)" in head
 
 
 def test_the_stage_runs_last():

@@ -1,17 +1,17 @@
 # E20 C12: the in-frame attribution of the true positives, beside the false positives' (src/evid_suppl_c12.py).
 # In frame or not is inferred from SpliceAI's or Pangolin's own output, not measured on transcripts: the dominant event's position read against the transcript's exon boundaries (an exon skipped, a cryptic site's shift from the nearest natural site); nonsense-mediated decay, partial use of a new site and a variant that changes more than one site are not considered (evid_inframe, E6).
 # True positives: scored at or above Walker's PP3 cut point, 0.2 (SpliceAI: spliceai_walker; Pangolin: the same cut on pangolin, so that the two tools' sets are defined alike), and called damaging by the assay (y_assay == 1; DDX3X and TP53 under each of their label definitions); the event records of E20.1, E6's scorers in E6's environments, the anchors left out.
-# False positives: E6's and E2.7's attribution files as they stand, counted as their summaries count them (equal in every cell). E6 drew its false positives on 2026-09-17, before E16d switched PALB2 and BARD1 to the archived classification: under the current labels 6 PALB2 variants at 3-10 nt (SpliceAI) and 7 (Pangolin) would be added; they are not in E6's files. The true positives are the same under either version of the labels.
+# False positives: E6's and E2.7's attribution files as they stand, counted as their summaries count them (equal in every cell). E6's subsets were drawn again under the current labels in E20b (2026-10-26), after E16d had switched PALB2 and BARD1 to the archived classification; the true positives are the same under either version of the labels.
 # TP53's label (y_tp53_control_anchored, as E2.7 derives it) is its primary label, urn:mavedb:00001277-a-1's investigator-provided ranges, variant by variant (checked in E18: 288 of 288).
 # Bands: 3-10 and 11-50 nt (DDX3X 11-25 nt, TP53 11-12 nt: their variants reach 25 and 12 nt); +/-1-2 nt is outside PP3 and BP4 and is not counted. DDX3X and TP53 are read on SpliceAI's events only; E2.7's DDX3X Pangolin rows have no true-positive counterpart and are not carried.
 # in_frame_share = in_frame / n, with its Wilson 95% interval (E15's); resolved_in_frame_share = in_frame / (in_frame + out_of_frame); rounded to four decimals, as E6's summaries are.
 gene_set,label_definition,tool,stratum,group,in_frame,out_of_frame,undetermined,n,in_frame_share,resolved_in_frame_share,in_frame_share_lo,in_frame_share_hi
 seven genes,y_assay,pangolin,s3_10,true_positive,145,292,14,451,0.3215,0.3318,0.2801,0.366
-seven genes,y_assay,pangolin,s3_10,false_positive,131,185,32,348,0.3764,0.4146,0.3271,0.4284
+seven genes,y_assay,pangolin,s3_10,false_positive,134,189,32,355,0.3775,0.4149,0.3286,0.4289
 seven genes,y_assay,pangolin,s11_50,true_positive,19,58,11,88,0.2159,0.2468,0.1428,0.3128
 seven genes,y_assay,pangolin,s11_50,false_positive,44,84,13,141,0.3121,0.3438,0.2414,0.3927
 seven genes,y_assay,spliceai,s3_10,true_positive,135,309,9,453,0.298,0.3041,0.2577,0.3417
-seven genes,y_assay,spliceai,s3_10,false_positive,155,169,63,387,0.4005,0.4784,0.3529,0.4501
+seven genes,y_assay,spliceai,s3_10,false_positive,159,170,64,393,0.4046,0.4833,0.3572,0.4538
 seven genes,y_assay,spliceai,s11_50,true_positive,20,78,2,100,0.2,0.2041,0.1334,0.2888
 seven genes,y_assay,spliceai,s11_50,false_positive,48,107,31,186,0.2581,0.3097,0.2005,0.3254
 DDX3X,y_deposit,spliceai,s3_10,true_positive,5,38,0,43,0.1163,0.1163,0.0507,0.2448

@@ -1,9 +1,9 @@
 Gene set,Label definition,Events read from,Variant subset,"Stratum (intronic offset, bp)",In-frame,Out-of-frame,Undetermined,Total,In-frame share,In-frame share among resolved
 Seven genes,,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and assay normal,Canonical dinucleotides (out of scope),9,26,1,36,0.250,0.257
-Seven genes,,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and assay normal,3–10,155,169,63,387,0.401,0.478
+Seven genes,,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and assay normal,3–10,159,170,64,393,0.405,0.483
 Seven genes,,SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and assay normal,11–50,48,107,31,186,0.258,0.310
 Seven genes,,Pangolin,Pangolin ≥ 0.2 and assay normal,Canonical dinucleotides (out of scope),9,25,1,35,0.257,0.265
-Seven genes,,Pangolin,Pangolin ≥ 0.2 and assay normal,3–10,131,185,32,348,0.376,0.415
+Seven genes,,Pangolin,Pangolin ≥ 0.2 and assay normal,3–10,134,189,32,355,0.377,0.415
 Seven genes,,Pangolin,Pangolin ≥ 0.2 and assay normal,11–50,44,84,13,141,0.312,0.344
 DDX3X,Deposit classification (urn:mavedb:00000658-0-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification (urn:mavedb:00000658-0-1) label,Canonical dinucleotides (out of scope),15,32,0,47,0.319,0.319
 DDX3X,Deposit classification (urn:mavedb:00000658-0-1),SpliceAI (published basis),SpliceAI (published basis) ≥ 0.2 and normal under the deposit classification (urn:mavedb:00000658-0-1) label,3–10,45,99,18,162,0.278,0.313

@@ -70,13 +70,23 @@ def test_the_external_subsets_are_the_union_of_damaging_labels():
     assert list(got["variant_id"]) == list(t.loc[keep, "variant_id"]) and len(got) == 15
 
 
+def _added_in_e20b(tool: str) -> set:
+    """The variants E20b added to E6's subsets (its subset run record): E20.1 drew the anchors
+    from E6's event files as they stood before, 609 and 524 variants."""
+    rec = sorted((REPO / "scripts/stage_E20b/run_log").glob("write_e6_subsets_*.json"))
+    return set(json.loads(rec[-1].read_text())["notes"]["checks"][tool]["added"]) if rec else set()
+
+
 def test_the_score_inputs_add_the_anchors_at_equal_steps():
     for tool, (_col, subset, inp, _new, old) in SEVEN.items():
         s, i = pd.read_parquet(subset), pd.read_parquet(inp)
         tp = i[i["role"] == "true_positive"]
         assert list(tp["variant_id"]) == list(s["variant_id"])
-        ev = pd.read_parquet(old).sort_values("variant_id", kind="mergesort").reset_index(drop=True)
+        ev = pd.read_parquet(old)
+        ev = ev[~ev["variant_id"].isin(_added_in_e20b(tool))]
+        ev = ev.sort_values("variant_id", kind="mergesort").reset_index(drop=True)
         n = len(ev)
+        assert n == {"spliceai": 609, "pangolin": 524}[tool]
         want = [ev.loc[k * n // 10, "variant_id"] for k in range(10)]
         assert list(i.loc[i["role"] == "anchor", "variant_id"]) == want
 

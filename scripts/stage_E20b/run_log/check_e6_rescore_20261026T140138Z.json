@@ -1,0 +1,296 @@
+{
+ "script": "scripts/stage_E20b/check_e6_rescore.py",
+ "argv": [
+  "scripts/stage_E20b/check_e6_rescore.py",
+  "--install"
+ ],
+ "git_commit": "ebd6b506dd7a69f3b4a71a0d58bbabcdd693c5c5",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20b/check_e6_rescore.py": "2df5e05e48028e451553b5c0f4529f8d16febae7870f93889bdeae84684bbade",
+  "scripts/stage_E20b/_runlog.py": "365c3f499693097f81b9b67999c9be1f04e8ac03d3a54ebb41674b297c8c202c"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T14:01:38+00:00",
+ "end_utc": "2026-10-26T14:01:38+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/analysis_set_v1.parquet",
+   "bytes": 1459145,
+   "sha256": "52e0c610b0147e2435b17b57b586f3340e7b988aa2ddec66890b92f1a59c7ecc"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events.parquet",
+   "bytes": 47062,
+   "sha256": "dcecb2b2bfbc5aced6b13d399fcd662339212decc6bc8f0d306882f165449860"
+  },
+  {
+   "path": "phase1/data/e20b_staging/inframe_events.parquet",
+   "bytes": 47315,
+   "sha256": "0720f9f85f69baf55a4caa6566ef8f4dc89f34b5636843815e96f7691dda98f3"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset.parquet",
+   "bytes": 22129,
+   "sha256": "f4088760c82d4683c1d482f41381d4f64bd4c54a36c4873c9fb5b913efb61298"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events_pangolin.parquet",
+   "bytes": 17619,
+   "sha256": "3e2ead99f0a994abd52c530c0cb96d9b8974f92b8a261740c9d24ed77bf1f677"
+  },
+  {
+   "path": "phase1/data/e20b_staging/inframe_events_pangolin.parquet",
+   "bytes": 17720,
+   "sha256": "23894430e03f7cb21b2b53c3e1fc608bae2a40de5aa8afe66b87e67d48a677d8"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset_pangolin.parquet",
+   "bytes": 19842,
+   "sha256": "9979232f9415640ef6a219ab9b66b1ca0a76a39aef103942380735ebfb603f49"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/inframe_events.parquet",
+   "bytes": 47315,
+   "sha256": "0720f9f85f69baf55a4caa6566ef8f4dc89f34b5636843815e96f7691dda98f3"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events.parquet.provenance.json",
+   "bytes": 461,
+   "sha256": "fdea5b62fbc0c5ff79daa12fd22f1466db0a7a4457d17391904f9c9c290f2a4d"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events.parquet.environment.json",
+   "bytes": 2536,
+   "sha256": "af743584b6276a42b8877cc0e31c4bf7d23d193fc6705267420ee878391bc3d3"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events_pangolin.parquet",
+   "bytes": 17720,
+   "sha256": "23894430e03f7cb21b2b53c3e1fc608bae2a40de5aa8afe66b87e67d48a677d8"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events_pangolin.parquet.provenance.json",
+   "bytes": 478,
+   "sha256": "7809bb9f335db31c310092297c783519785b70ca603eb0ab90ab9dc376284f1c"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events_pangolin.parquet.environment.json",
+   "bytes": 2721,
+   "sha256": "d3cd3ed3ac17cebb988db42b628fecaed0933cc630f873281e7425ad82526e4b"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.csv",
+   "bytes": 1730,
+   "sha256": "573d85c59d04d84c17b8868f9139df40e30b4de5a8af25e4c8d51867be38ceb0"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.done",
+   "bytes": 32,
+   "sha256": "545a8b2e36a1014087089fe5a29df78b97d0a8cf070eb60378d432908d326858"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.out.csv",
+   "bytes": 9559,
+   "sha256": "97bf6715e1defaed1c9f616f1627e7853965685a065fdefa6000342a728e1925"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.csv",
+   "bytes": 1730,
+   "sha256": "811f6e7c1d61010a8845d0aa32a303b2cc645e3cb4bcebbe7e20055adaa4ae81"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.done",
+   "bytes": 32,
+   "sha256": "d6068d8e31c48b3f03efa3c0959803a8704cde9443cf74373e8fcc1863750ceb"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.out.csv",
+   "bytes": 9097,
+   "sha256": "4f368353101a8390c010ff587476bcd125f5ac4e27b6c8d7fb7739e091d8d01d"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.csv",
+   "bytes": 1730,
+   "sha256": "442838626144c62996a3bb28df687dcb9b6012d123d1fcb72df4834300513bf0"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.done",
+   "bytes": 32,
+   "sha256": "53fcd0edff91fc6cf5e9a01004cf3d1680713d3fa5579a3acc4822034ec2d249"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.out.csv",
+   "bytes": 8623,
+   "sha256": "51778b879d1c2def044f69aa9d955ea68e204e8c59bad43539879d8cc842c895"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.csv",
+   "bytes": 1683,
+   "sha256": "de114ea60c79ac347d55ff17cfe9fe9b0d1daee8d527567050358782595bbbe4"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.done",
+   "bytes": 32,
+   "sha256": "1527f3344ec28c6379a50b3ceb34a075b60ace40f6caff38d906c9a6310482c2"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.out.csv",
+   "bytes": 9218,
+   "sha256": "270b22d747392beaa07f35f7b4d06de88fa4cd5313836ccd732c7ffc661cd5d1"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.csv",
+   "bytes": 1563,
+   "sha256": "16673730aa96c48a55931f6a3c05137bd8cf0793a9c76f31ae8232da69afc0c6"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.done",
+   "bytes": 32,
+   "sha256": "7a6b587fb414528eb94d045357d6c6d4930ca94922d405c17d4e052f12d2d090"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.out.csv",
+   "bytes": 8479,
+   "sha256": "98a00cbe4e49b5d1c666d49ae2ea2ad37fba86ca046f8f4fc8a53dc2227d9640"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/variants.csv",
+   "bytes": 8364,
+   "sha256": "bd3685937a5f78f4acbca7b77e40109e808caa87987b0295c9d4d265b7058746"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "anchors": {
+   "spliceai": {
+    "committed_rows": 609,
+    "new_rows": 615,
+    "subset_rows": 615,
+    "anchor1_fields_identical": {
+     "variant_id": true,
+     "gene": true,
+     "chrom": true,
+     "pos": true,
+     "ref": true,
+     "alt": true,
+     "spliceai_event_max": true,
+     "spliceai_event_symbol": true,
+     "spliceai_ds_ag": true,
+     "spliceai_ds_al": true,
+     "spliceai_ds_dg": true,
+     "spliceai_ds_dl": true,
+     "spliceai_dp_ag": true,
+     "spliceai_dp_al": true,
+     "spliceai_dp_dg": true,
+     "spliceai_dp_dl": true
+    },
+    "anchor2_holding": 615,
+    "anchor2_failing": []
+   },
+   "pangolin": {
+    "committed_rows": 524,
+    "new_rows": 531,
+    "subset_rows": 531,
+    "anchor1_fields_identical": {
+     "variant_id": true,
+     "gene": true,
+     "chrom": true,
+     "pos": true,
+     "ref": true,
+     "alt": true,
+     "pangolin_event_max": true,
+     "pangolin_gain": true,
+     "pangolin_gain_pos": true,
+     "pangolin_loss": true,
+     "pangolin_loss_pos": true
+    },
+    "anchor1_cli_lines_identical": 524,
+    "anchor2_holding": 531,
+    "anchor2_failing": []
+   }
+  },
+  "failures": [],
+  "moved": [
+   {
+    "file": "phase1/data/evidence/inframe_events.parquet",
+    "sha256_before": "dcecb2b2bfbc5aced6b13d399fcd662339212decc6bc8f0d306882f165449860",
+    "sha256_after": "0720f9f85f69baf55a4caa6566ef8f4dc89f34b5636843815e96f7691dda98f3"
+   },
+   {
+    "file": "phase1/data/evidence/inframe_events.parquet.provenance.json",
+    "sha256_before": "577b35bd28acf73d0a8d13d21d65cbf8a0ac1caf3a5eb5a6150179f1af1d65dc",
+    "sha256_after": "fdea5b62fbc0c5ff79daa12fd22f1466db0a7a4457d17391904f9c9c290f2a4d"
+   },
+   {
+    "file": "phase1/data/evidence/inframe_events.parquet.environment.json",
+    "sha256_before": null,
+    "sha256_after": "af743584b6276a42b8877cc0e31c4bf7d23d193fc6705267420ee878391bc3d3"
+   },
+   {
+    "file": "phase1/data/evidence/inframe_events_pangolin.parquet",
+    "sha256_before": "3e2ead99f0a994abd52c530c0cb96d9b8974f92b8a261740c9d24ed77bf1f677",
+    "sha256_after": "23894430e03f7cb21b2b53c3e1fc608bae2a40de5aa8afe66b87e67d48a677d8"
+   },
+   {
+    "file": "phase1/data/evidence/inframe_events_pangolin.parquet.provenance.json",
+    "sha256_before": "22fc2cc69a26b68a55a4eca019758b26a5febe1448065c95cfc219bba641b28d",
+    "sha256_after": "7809bb9f335db31c310092297c783519785b70ca603eb0ab90ab9dc376284f1c"
+   },
+   {
+    "file": "phase1/data/evidence/inframe_events_pangolin.parquet.environment.json",
+    "sha256_before": null,
+    "sha256_after": "d3cd3ed3ac17cebb988db42b628fecaed0933cc630f873281e7425ad82526e4b"
+   }
+  ],
+  "work_folder": {
+   "before": {
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.csv": "3461f0d1bdba8fcf6af04cad1910b29bab7ed0c9659b71ad680fb126171d4740",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.done": "67e87a204522c870fde59d3f986ce19549ad90f597ecdcfb9ad35ed0d1b41b53",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.out.csv": "f484845ca1dda2ed490b5b83f86ea5644db771e2ce24c23f8792584131ac1f2a",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.csv": "5ae507e411bd66db7e2e7b69abfc7976ff3660c92af7f4f96a628f26ab0bdc87",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.done": "51c6638d274854178e6657877f6962cf9b8af313879a79aceeff1caff2890ad5",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.out.csv": "183ff2c0b761a212f9ff41ebd6985dedf4d43f99cbf52ad36126c1a704cfac06",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.csv": "ea2e664240489c1102b923ab5ddd06e172c4651970671602fa66478a39bfc93f",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.done": "b34467917babed0080fa8fbb9c7d0d0ceaf3502ecd4cc82969ff8070d13fa95b",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.out.csv": "5163e3067340b8bf9c57ef9cff986af081f4b048edc1282698374a6eda63f2fc",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.csv": "8c5af24d0dda65d3b7060c00a8c48cc5429c16f256331a7d38671a0b97b0937e",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.done": "b84540ba90962d1a57014bc9a8755bdbda50b5e381931690113637486331a1ef",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.out.csv": "67264ec500874105334e443fd56c0921e1f88a842eec96ec33d5f4d3d5bcf58f",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.csv": "802de019effc546bc33213aa063d04ba8bf57379a76ae8ccbb51cabf20bdfbde",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.done": "f5c9ec821713813e5f97ca45d2e2e888095f86615c287ca9908adcea362f8d03",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.out.csv": "a0236e1e208419c16dad1a1c17e45eb1bd9eb7b65377de79968814a408828287",
+    "phase1/data/evidence/pangolin_events_work/variants.csv": "c364a124c4dd4148a8ae7273edcf9a8d94613c38573753affbe55f3a5b85676d"
+   },
+   "after": {
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.csv": "573d85c59d04d84c17b8868f9139df40e30b4de5a8af25e4c8d51867be38ceb0",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.done": "545a8b2e36a1014087089fe5a29df78b97d0a8cf070eb60378d432908d326858",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_00.out.csv": "97bf6715e1defaed1c9f616f1627e7853965685a065fdefa6000342a728e1925",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.csv": "811f6e7c1d61010a8845d0aa32a303b2cc645e3cb4bcebbe7e20055adaa4ae81",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.done": "d6068d8e31c48b3f03efa3c0959803a8704cde9443cf74373e8fcc1863750ceb",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_01.out.csv": "4f368353101a8390c010ff587476bcd125f5ac4e27b6c8d7fb7739e091d8d01d",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.csv": "442838626144c62996a3bb28df687dcb9b6012d123d1fcb72df4834300513bf0",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.done": "53fcd0edff91fc6cf5e9a01004cf3d1680713d3fa5579a3acc4822034ec2d249",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_02.out.csv": "51778b879d1c2def044f69aa9d955ea68e204e8c59bad43539879d8cc842c895",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.csv": "de114ea60c79ac347d55ff17cfe9fe9b0d1daee8d527567050358782595bbbe4",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.done": "1527f3344ec28c6379a50b3ceb34a075b60ace40f6caff38d906c9a6310482c2",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_03.out.csv": "270b22d747392beaa07f35f7b4d06de88fa4cd5313836ccd732c7ffc661cd5d1",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.csv": "16673730aa96c48a55931f6a3c05137bd8cf0793a9c76f31ae8232da69afc0c6",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.done": "7a6b587fb414528eb94d045357d6c6d4930ca94922d405c17d4e052f12d2d090",
+    "phase1/data/evidence/pangolin_events_work/chunks/chunk_04.out.csv": "98a00cbe4e49b5d1c666d49ae2ea2ad37fba86ca046f8f4fc8a53dc2227d9640",
+    "phase1/data/evidence/pangolin_events_work/variants.csv": "bd3685937a5f78f4acbca7b77e40109e808caa87987b0295c9d4d265b7058746"
+   }
+  }
+ }
+}

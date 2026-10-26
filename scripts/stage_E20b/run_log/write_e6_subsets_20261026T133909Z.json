@@ -1,0 +1,100 @@
+{
+ "script": "scripts/stage_E20b/write_e6_subsets.py",
+ "argv": [
+  "src.evid_inframe",
+  "--subset"
+ ],
+ "git_commit": "ebd6b506dd7a69f3b4a71a0d58bbabcdd693c5c5",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20b/write_e6_subsets.py": "aaaf68831b1b94a499765db04f8fbb8760b39f7be323bdb3ab1fdd28f447269d",
+  "scripts/stage_E20b/_runlog.py": "365c3f499693097f81b9b67999c9be1f04e8ac03d3a54ebb41674b297c8c202c"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T13:39:08+00:00",
+ "end_utc": "2026-10-26T13:39:09+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E20b/run_log/precheck_label_inputs_20261026T133701Z.json",
+   "bytes": 8225,
+   "sha256": "35d48bb29c460764dbdd264e72e1ae590c1eaa09da69cd3ac6f3b96c0d3c38cd"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset.parquet",
+   "bytes": 22023,
+   "sha256": "1d2b8b83e629f28b2d15442f1d58f54537a25cedc89354ef6996ad7c8dd7189f"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset_pangolin.parquet",
+   "bytes": 19679,
+   "sha256": "b8f73efef0d5218ed30028374e24a78c0f43a2286d74f6df2cf39ba0cb53e818"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/inframe_subset.parquet",
+   "bytes": 22129,
+   "sha256": "f4088760c82d4683c1d482f41381d4f64bd4c54a36c4873c9fb5b913efb61298"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset_pangolin.parquet",
+   "bytes": 19842,
+   "sha256": "9979232f9415640ef6a219ab9b66b1ca0a76a39aef103942380735ebfb603f49"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "checks": {
+   "spliceai": {
+    "committed": 609,
+    "new": 615,
+    "added": [
+     "urn:mavedb:00001259-a-2#2812",
+     "urn:mavedb:00001259-a-2#2871",
+     "urn:mavedb:00001259-a-2#2880",
+     "urn:mavedb:00001259-a-2#3368",
+     "urn:mavedb:00001259-a-2#3374",
+     "urn:mavedb:00001259-a-2#5376"
+    ],
+    "removed": [],
+    "committed_rows_unchanged": true,
+    "added_as_the_precheck_found": true,
+    "by_stratum": {
+     "pm12": 36,
+     "s11_50": 186,
+     "s3_10": 393
+    }
+   },
+   "pangolin": {
+    "committed": 524,
+    "new": 531,
+    "added": [
+     "urn:mavedb:00001259-a-2#2538",
+     "urn:mavedb:00001259-a-2#2812",
+     "urn:mavedb:00001259-a-2#2825",
+     "urn:mavedb:00001259-a-2#2827",
+     "urn:mavedb:00001259-a-2#3368",
+     "urn:mavedb:00001259-a-2#3372",
+     "urn:mavedb:00001259-a-2#5376"
+    ],
+    "removed": [],
+    "committed_rows_unchanged": true,
+    "added_as_the_precheck_found": true,
+    "by_stratum": {
+     "pm12": 35,
+     "s11_50": 141,
+     "s3_10": 355
+    }
+   }
+  }
+ }
+}

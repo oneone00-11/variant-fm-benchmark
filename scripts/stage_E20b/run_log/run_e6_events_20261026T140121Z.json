@@ -1,0 +1,120 @@
+{
+ "script": "scripts/stage_E20b/run_e6_events.py",
+ "argv": [
+  "scripts/stage_E20b/run_e6_events.py",
+  "spliceai"
+ ],
+ "git_commit": "ebd6b506dd7a69f3b4a71a0d58bbabcdd693c5c5",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20b/run_e6_events.py": "255e0faf80850fb959682921476e503b5ca277a16b972be3f5befe8304f803f3",
+  "scripts/stage_E20b/_runlog.py": "365c3f499693097f81b9b67999c9be1f04e8ac03d3a54ebb41674b297c8c202c"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T13:39:48+00:00",
+ "end_utc": "2026-10-26T14:01:21+00:00",
+ "inputs": [
+  {
+   "path": "phase1/src/evid_score_spliceai_events.py",
+   "bytes": 5298,
+   "sha256": "ff9f34cc8674131b97e1d017ffec4208b6047aafc1a946c9b1e53950c2c82cc9"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset.parquet",
+   "bytes": 22129,
+   "sha256": "f4088760c82d4683c1d482f41381d4f64bd4c54a36c4873c9fb5b913efb61298"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/e20b_staging/inframe_events.parquet",
+   "bytes": 47315,
+   "sha256": "0720f9f85f69baf55a4caa6566ef8f4dc89f34b5636843815e96f7691dda98f3"
+  },
+  {
+   "path": "phase1/data/e20b_staging/inframe_events.parquet.provenance.json",
+   "bytes": 461,
+   "sha256": "fdea5b62fbc0c5ff79daa12fd22f1466db0a7a4457d17391904f9c9c290f2a4d"
+  },
+  {
+   "path": "phase1/data/e20b_staging/inframe_events.parquet.environment.json",
+   "bytes": 2536,
+   "sha256": "af743584b6276a42b8877cc0e31c4bf7d23d193fc6705267420ee878391bc3d3"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "command": [
+   "~/work/functional-standard-atlas/models/spliceai/.venv/bin/python",
+   "phase1/src/evid_score_spliceai_events.py",
+   "--variants",
+   "phase1/data/evidence/inframe_subset.parquet",
+   "--distance",
+   "4999",
+   "--out",
+   "phase1/data/e20b_staging/inframe_events.parquet",
+   "--run"
+  ],
+  "returncode": 0,
+  "stdout_tail": [
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 91ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 98ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 90ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 97ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 90ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 97ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 90ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 96ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 90ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 96ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 91ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 97ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 91ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 97ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 93ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 100ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 91ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 97ms/step",
+   "{",
+   "  \"product\": \"SpliceAI full record (four deltas and four positions)\",",
+   "  \"package_version\": \"1.3.1\",",
+   "  \"distance\": 4999,",
+   "  \"mask\": 0,",
+   "  \"reference_fasta\": \"/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.fa\",",
+   "  \"annotation\": \"grch38\",",
+   "  \"n_variants\": 615,",
+   "  \"n_scored\": 615,",
+   "  \"output_sha256\": \"0720f9f85f69baf55a4caa6566ef8f4dc89f34b5636843815e96f7691dda98f3\",",
+   "  \"scored_utc\": \"2026-10-26T14:01:21+00:00\",",
+   "  \"runtime_minutes\": 21.4",
+   "}"
+  ],
+  "stderr_tail": [
+   "WARNING:absl:No training configuration found in the save file, so the model was *not* compiled. Compile it manually.",
+   "WARNING:absl:No training configuration found in the save file, so the model was *not* compiled. Compile it manually.",
+   "WARNING:absl:No training configuration found in the save file, so the model was *not* compiled. Compile it manually.",
+   "WARNING:absl:No training configuration found in the save file, so the model was *not* compiled. Compile it manually.",
+   "WARNING:absl:No training configuration found in the save file, so the model was *not* compiled. Compile it manually.",
+   "WARNING:tensorflow:5 out of the last 5 calls to <function TensorFlowTrainer.make_predict_function.<locals>.one_step_on_data_distributed at 0x128efb600> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.",
+   "WARNING:tensorflow:5 out of the last 5 calls to <function TensorFlowTrainer.make_predict_function.<locals>.one_step_on_data_distributed at 0x128efb600> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details."
+  ]
+ }
+}

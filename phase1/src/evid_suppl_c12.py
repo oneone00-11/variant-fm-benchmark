@@ -154,9 +154,9 @@ def header() -> list[str]:
         "DDX3X and TP53 under each of their label definitions); the event records of E20.1, E6's scorers in E6's "
         "environments, the anchors left out.",
         "# False positives: E6's and E2.7's attribution files as they stand, counted as their summaries count them (equal "
-        "in every cell). E6 drew its false positives on 2026-09-17, before E16d switched PALB2 and BARD1 to the archived "
-        "classification: under the current labels 6 PALB2 variants at 3-10 nt (SpliceAI) and 7 (Pangolin) would be "
-        "added; they are not in E6's files. The true positives are the same under either version of the labels.",
+        "in every cell). E6's subsets were drawn again under the current labels in E20b (2026-10-26), after E16d had "
+        "switched PALB2 and BARD1 to the archived classification; the true positives are the same under either version "
+        "of the labels.",
         "# TP53's label (y_tp53_control_anchored, as E2.7 derives it) is its primary label, urn:mavedb:00001277-a-1's "
         "investigator-provided ranges, variant by variant (checked in E18: 288 of 288).",
         "# Bands: 3-10 and 11-50 nt (DDX3X 11-25 nt, TP53 11-12 nt: their variants reach 25 and 12 nt); +/-1-2 nt is "

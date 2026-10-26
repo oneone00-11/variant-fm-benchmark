@@ -1,0 +1,274 @@
+{
+ "script": "scripts/stage_E20b/precheck_label_inputs.py",
+ "argv": [
+  "scripts/stage_E20b/precheck_label_inputs.py"
+ ],
+ "git_commit": "ebd6b506dd7a69f3b4a71a0d58bbabcdd693c5c5",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20b/precheck_label_inputs.py": "2633e7f7678c9fb8a56b08a6d356201de2b9a83edd430d786cd4ae452e21c567",
+  "scripts/stage_E20b/_runlog.py": "365c3f499693097f81b9b67999c9be1f04e8ac03d3a54ebb41674b297c8c202c"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T13:36:57+00:00",
+ "end_utc": "2026-10-26T13:37:01+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/analysis_set_v1.parquet",
+   "bytes": 1459145,
+   "sha256": "52e0c610b0147e2435b17b57b586f3340e7b988aa2ddec66890b92f1a59c7ecc"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset.parquet",
+   "bytes": 22023,
+   "sha256": "1d2b8b83e629f28b2d15442f1d58f54537a25cedc89354ef6996ad7c8dd7189f"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset_pangolin.parquet",
+   "bytes": 19679,
+   "sha256": "b8f73efef0d5218ed30028374e24a78c0f43a2286d74f6df2cf39ba0cb53e818"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work/variants.csv",
+   "bytes": 8252,
+   "sha256": "c364a124c4dd4148a8ae7273edcf9a8d94613c38573753affbe55f3a5b85676d"
+  },
+  {
+   "path": "phase1/data/evidence/external/ddx3x_inframe_subset.parquet",
+   "bytes": 16654,
+   "sha256": "7388120d75b79606b8fcd05372ca8ff2ce1cd990aa149f451af1210f566ec963"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_inframe_subset.parquet",
+   "bytes": 6568,
+   "sha256": "716326de2c9309b632b947f84b879151f5120cacd518cd6ab7fede0d519c65a7"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset_tp.parquet",
+   "bytes": 20159,
+   "sha256": "9c8ed4522e3bf9a19eb60cbdd1139c969bb8f36b0f6bc8300b87f25495325bed"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_score_input_tp.parquet",
+   "bytes": 10875,
+   "sha256": "3723e623f5871020baf6ea3688db57d377c4e3eb8db7733a441d6b28cd1318db"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset_pangolin_tp.parquet",
+   "bytes": 19733,
+   "sha256": "fae99dde66b160872e697732f0961e7919be5d1c3612b11b577270b97bf4e6b1"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_score_input_pangolin_tp.parquet",
+   "bytes": 10757,
+   "sha256": "75888966d29f75d5b7afea010524e7b2ad4dd9bdae3100aa9fa38693291ad35b"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/variants.csv",
+   "bytes": 8651,
+   "sha256": "27a2c77e96b0b972278f2890dc1a4eeb6a8cdb8c7253f891640236fb47cc818a"
+  },
+  {
+   "path": "phase1/data/evidence/external/ddx3x_inframe_subset_tp.parquet",
+   "bytes": 10212,
+   "sha256": "118853e91510c40a527f9622c0c5ebb715c0328a9365bbf652efdfff8d415a2c"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_inframe_subset_12nt_tp.parquet",
+   "bytes": 6428,
+   "sha256": "d4d8ba6941a8caa36300df37d631100741b9d8cab6792d6976195daea1dc43ad"
+  },
+  {
+   "path": "phase1/data/evidence/external/newgenes_scored.parquet",
+   "bytes": 610229,
+   "sha256": "ca45600740b9b162d2f0444b7c03f54e9a8d660f15005074f9cbb3e2a2ab3897"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "compared": [
+   {
+    "file": "inframe_subset.parquet",
+    "committed_rows": 609,
+    "derived_rows": 615,
+    "columns_same": true,
+    "only_committed": [],
+    "only_derived": [
+     "urn:mavedb:00001259-a-2#2812",
+     "urn:mavedb:00001259-a-2#2871",
+     "urn:mavedb:00001259-a-2#2880",
+     "urn:mavedb:00001259-a-2#3368",
+     "urn:mavedb:00001259-a-2#3374",
+     "urn:mavedb:00001259-a-2#5376"
+    ],
+    "values_differ": {},
+    "order_of_common_rows_same": true,
+    "identical": false
+   },
+   {
+    "file": "inframe_subset_pangolin.parquet",
+    "committed_rows": 524,
+    "derived_rows": 531,
+    "columns_same": true,
+    "only_committed": [],
+    "only_derived": [
+     "urn:mavedb:00001259-a-2#2538",
+     "urn:mavedb:00001259-a-2#2812",
+     "urn:mavedb:00001259-a-2#2825",
+     "urn:mavedb:00001259-a-2#2827",
+     "urn:mavedb:00001259-a-2#3368",
+     "urn:mavedb:00001259-a-2#3372",
+     "urn:mavedb:00001259-a-2#5376"
+    ],
+    "values_differ": {},
+    "order_of_common_rows_same": true,
+    "identical": false
+   },
+   {
+    "file": "pangolin_events_work/variants.csv",
+    "committed_rows": 524,
+    "derived_rows": 531,
+    "only_committed": [],
+    "only_derived": [
+     "16,23624003,A,G",
+     "16,23624097,A,T",
+     "16,23624102,A,C",
+     "16,23624102,A,T",
+     "16,23626405,A,C",
+     "16,23626406,A,G",
+     "16,23634859,T,C"
+    ],
+    "identical": false
+   },
+   {
+    "file": "external/ddx3x_inframe_subset.parquet",
+    "committed_rows": 333,
+    "derived_rows": 333,
+    "columns_same": true,
+    "only_committed": [],
+    "only_derived": [],
+    "values_differ": {},
+    "order_of_common_rows_same": true,
+    "identical": true
+   },
+   {
+    "file": "external/tp53_inframe_subset.parquet",
+    "committed_rows": 22,
+    "derived_rows": 22,
+    "columns_same": true,
+    "only_committed": [],
+    "only_derived": [],
+    "values_differ": {},
+    "order_of_common_rows_same": true,
+    "identical": true
+   },
+   {
+    "file": "inframe_subset_tp.parquet",
+    "committed_rows": 553,
+    "derived_rows": 553,
+    "columns_same": true,
+    "only_committed": [],
+    "only_derived": [],
+    "values_differ": {},
+    "order_of_common_rows_same": true,
+    "identical": true
+   },
+   {
+    "file": "inframe_score_input_tp.parquet",
+    "committed_rows": 563,
+    "derived_rows": 563,
+    "columns_same": true,
+    "only_committed": [],
+    "only_derived": [],
+    "values_differ": {},
+    "order_of_common_rows_same": true,
+    "identical": true
+   },
+   {
+    "file": "inframe_subset_pangolin_tp.parquet",
+    "committed_rows": 539,
+    "derived_rows": 539,
+    "columns_same": true,
+    "only_committed": [],
+    "only_derived": [],
+    "values_differ": {},
+    "order_of_common_rows_same": true,
+    "identical": true
+   },
+   {
+    "file": "inframe_score_input_pangolin_tp.parquet",
+    "committed_rows": 549,
+    "derived_rows": 549,
+    "columns_same": true,
+    "only_committed": [],
+    "only_derived": [],
+    "values_differ": {},
+    "order_of_common_rows_same": true,
+    "identical": true
+   },
+   {
+    "file": "pangolin_events_work_tp/variants.csv",
+    "committed_rows": 549,
+    "derived_rows": 549,
+    "only_committed": [],
+    "only_derived": [],
+    "identical": true
+   },
+   {
+    "file": "external/ddx3x_inframe_subset_tp.parquet",
+    "committed_rows": 66,
+    "derived_rows": 66,
+    "columns_same": true,
+    "only_committed": [],
+    "only_derived": [],
+    "values_differ": {},
+    "order_of_common_rows_same": true,
+    "identical": true
+   },
+   {
+    "file": "external/tp53_inframe_subset_12nt_tp.parquet",
+    "committed_rows": 15,
+    "derived_rows": 15,
+    "columns_same": true,
+    "only_committed": [],
+    "only_derived": [],
+    "values_differ": {},
+    "order_of_common_rows_same": true,
+    "identical": true
+   },
+   {
+    "file": "external/newgenes_scored.parquet",
+    "committed_rows": 4522,
+    "derived_rows": 4522,
+    "columns_same": true,
+    "only_committed": [],
+    "only_derived": [],
+    "values_differ": {},
+    "order_of_common_rows_same": true,
+    "identical": true
+   }
+  ],
+  "left_out": {
+   "event files (inframe_events*.parquet, external/*_inframe_events*.parquet)": "the scorers' output on the subsets, derived again only by scoring them (E6's: E20b commit 1)",
+   "external/ddx3x_splice.parquet": "evid_external --prepare ddx3x builds DDX3X's labels from the deposit; it reads no label column",
+   "E16-E19's other one-off inputs (score inputs, anchors, records, extracts)": "their scripts read no label column (searched: y_assay, y_*, label_cols, PRIMARY_LABEL)",
+   "tp53_inframe_subset_12nt.parquet, external/<gene>_variants.parquet": "written by a stage on every run, so not inputs",
+   "label_change_effect.csv": "a comparison report (COMPARISON_REPORTS), not an input"
+  },
+  "differing": [
+   "inframe_subset.parquet",
+   "inframe_subset_pangolin.parquet",
+   "pangolin_events_work/variants.csv"
+  ]
+ }
+}

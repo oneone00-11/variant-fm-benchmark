@@ -1,0 +1,279 @@
+{
+ "script": "scripts/stage_E20b/check_e6_downstream.py",
+ "argv": [
+  "scripts/stage_E20b/check_e6_downstream.py"
+ ],
+ "git_commit": "ebd6b506dd7a69f3b4a71a0d58bbabcdd693c5c5",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20b/check_e6_downstream.py": "5e0b6661184f96b586a57476793dea88e7e4645ead73484398fd9cf6e036ce81",
+  "scripts/stage_E20b/_runlog.py": "365c3f499693097f81b9b67999c9be1f04e8ac03d3a54ebb41674b297c8c202c"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T14:44:46+00:00",
+ "end_utc": "2026-10-26T14:44:47+00:00",
+ "inputs": [
+  {
+   "path": "phase1/reports/evidence/inframe_attribution.csv",
+   "bytes": 171092,
+   "sha256": "4c7ffa2b00abd65b698b192f12c2795f16297fa64c943fffb1ecbee693e2dedf"
+  },
+  {
+   "path": "phase1/reports/evidence/inframe_attribution_summary.csv",
+   "bytes": 338,
+   "sha256": "f54f68eabc0fa9d29c9dda1f2e1da56bbf41cf2b3d781c8f83b97bb481e638bd"
+  },
+  {
+   "path": "phase1/reports/evidence/inframe_attribution_ddx3x.csv",
+   "bytes": 106718,
+   "sha256": "1080aa8394e72881212f3ac4940f367b7e5eea4ea381db41c5937f63e6b08773"
+  },
+  {
+   "path": "phase1/reports/evidence/inframe_attribution_ddx3x_summary.csv",
+   "bytes": 1446,
+   "sha256": "4d919359653940567025ceb6e672a9d1a898ed2e155a85ca6be7d453643b9bda"
+  },
+  {
+   "path": "phase1/reports/evidence/inframe_attribution_tp53.csv",
+   "bytes": 4756,
+   "sha256": "112c93093d2319afab978e12de0b1fb7103968efc8e0d1e4374f01d6456f7821"
+  },
+  {
+   "path": "phase1/reports/evidence/inframe_attribution_tp53_summary.csv",
+   "bytes": 273,
+   "sha256": "c7eaab4acb9c07aafed3dcc1b4384ff562d2859c71d2bd0497b9345d06922418"
+  },
+  {
+   "path": "phase1/reports/evidence/suppl_analyses/c13_vcep_band_lr.csv",
+   "bytes": 19291,
+   "sha256": "1c07e1f1202c7459f7ac804b11b4d6205b23ea3e7975187fec941121d04913a8"
+  },
+  {
+   "path": "phase1/reports/evidence/suppl_analyses/c12_inframe_tp_fp.csv",
+   "bytes": 4513,
+   "sha256": "c9d8b792ed966d9f637069bce9af297bcbd3b11f6b6e7f9ac15dda8bb1a8b938"
+  },
+  {
+   "path": "phase1/reports/evidence/supplement/tableS13_inframe_attribution.csv",
+   "bytes": 5823,
+   "sha256": "61ee608adbcf1ca3968a3511ec1ef2b968c489ce1587b6c225ee8378564f5007"
+  },
+  {
+   "path": "phase1/reports/evidence/supplement/supplement_tables_manifest.csv",
+   "bytes": 14268,
+   "sha256": "1fbf45921e4c36fd4c065561a57d57c46939c648b9ac3308d7586fb08ada64f4"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "checks": {
+   "attribution": {
+    "head_rows": 1133,
+    "new_rows": 1146,
+    "head_rows_unchanged": true,
+    "new_rows_are_the_added_variants": true,
+    "added_frames": {
+     "spliceai": {
+      "in_frame": 4,
+      "out_of_frame": 1,
+      "undetermined": 1
+     },
+     "pangolin": {
+      "out_of_frame": 4,
+      "in_frame": 3
+     }
+    }
+   },
+   "summary_changed_cells": {
+    "pangolin s3_10": {
+     "head": {
+      "in_frame": "131",
+      "out_of_frame": "185",
+      "undetermined": "32",
+      "n": "348",
+      "in_frame_share": "0.3764",
+      "resolved_in_frame_share": "0.4146"
+     },
+     "new": {
+      "in_frame": "134",
+      "out_of_frame": "189",
+      "undetermined": "32",
+      "n": "355",
+      "in_frame_share": "0.3775",
+      "resolved_in_frame_share": "0.4149"
+     }
+    },
+    "spliceai s3_10": {
+     "head": {
+      "in_frame": "155",
+      "out_of_frame": "169",
+      "undetermined": "63",
+      "n": "387",
+      "in_frame_share": "0.4005",
+      "resolved_in_frame_share": "0.4784"
+     },
+     "new": {
+      "in_frame": "159",
+      "out_of_frame": "170",
+      "undetermined": "64",
+      "n": "393",
+      "in_frame_share": "0.4046",
+      "resolved_in_frame_share": "0.4833"
+     }
+    }
+   },
+   "unchanged_files": {
+    "phase1/reports/evidence/inframe_attribution_ddx3x.csv": true,
+    "phase1/reports/evidence/inframe_attribution_ddx3x_summary.csv": true,
+    "phase1/reports/evidence/inframe_attribution_tp53.csv": true,
+    "phase1/reports/evidence/inframe_attribution_tp53_summary.csv": true,
+    "phase1/reports/evidence/suppl_analyses/c13_vcep_band_lr.csv": true
+   },
+   "c12_changed_rows": {
+    "seven genes y_assay pangolin s3_10 false_positive": {
+     "head": {
+      "in_frame": "131",
+      "out_of_frame": "185",
+      "undetermined": "32",
+      "n": "348",
+      "in_frame_share": "0.3764",
+      "resolved_in_frame_share": "0.4146",
+      "in_frame_share_lo": "0.3271",
+      "in_frame_share_hi": "0.4284"
+     },
+     "new": {
+      "in_frame": "134",
+      "out_of_frame": "189",
+      "undetermined": "32",
+      "n": "355",
+      "in_frame_share": "0.3775",
+      "resolved_in_frame_share": "0.4149",
+      "in_frame_share_lo": "0.3286",
+      "in_frame_share_hi": "0.4289"
+     }
+    },
+    "seven genes y_assay spliceai s3_10 false_positive": {
+     "head": {
+      "in_frame": "155",
+      "out_of_frame": "169",
+      "undetermined": "63",
+      "n": "387",
+      "in_frame_share": "0.4005",
+      "resolved_in_frame_share": "0.4784",
+      "in_frame_share_lo": "0.3529",
+      "in_frame_share_hi": "0.4501"
+     },
+     "new": {
+      "in_frame": "159",
+      "out_of_frame": "170",
+      "undetermined": "64",
+      "n": "393",
+      "in_frame_share": "0.4046",
+      "resolved_in_frame_share": "0.4833",
+      "in_frame_share_lo": "0.3572",
+      "in_frame_share_hi": "0.4538"
+     }
+    }
+   },
+   "c12_header_lines_changed": [
+    {
+     "head": "# False positives: E6's and E2.7's attribution files as they stand, counted as their summaries count them (equal in every cell). E6 drew its false positives on 2026-09-17, before E16d switched PALB2 and BARD1 to the archived classification: under the current labels 6 PALB2 variants at 3-10 nt (SpliceAI) and 7 (Pangolin) would be added; they are not in E6's files. The true positives are the same under either version of the labels.",
+     "new": "# False positives: E6's and E2.7's attribution files as they stand, counted as their summaries count them (equal in every cell). E6's subsets were drawn again under the current labels in E20b (2026-10-26), after E16d had switched PALB2 and BARD1 to the archived classification; the true positives are the same under either version of the labels."
+    }
+   ],
+   "changed_rows tableS13_inframe_attribution.csv": [
+    {
+     "head": {
+      "Gene set": "Seven genes",
+      "Label definition": "",
+      "Events read from": "SpliceAI (published basis)",
+      "Variant subset": "SpliceAI (published basis) ≥ 0.2 and assay normal",
+      "Stratum (intronic offset, bp)": "3–10",
+      "In-frame": "155",
+      "Out-of-frame": "169",
+      "Undetermined": "63",
+      "Total": "387",
+      "In-frame share": "0.401",
+      "In-frame share among resolved": "0.478"
+     },
+     "new": {
+      "Gene set": "Seven genes",
+      "Label definition": "",
+      "Events read from": "SpliceAI (published basis)",
+      "Variant subset": "SpliceAI (published basis) ≥ 0.2 and assay normal",
+      "Stratum (intronic offset, bp)": "3–10",
+      "In-frame": "159",
+      "Out-of-frame": "170",
+      "Undetermined": "64",
+      "Total": "393",
+      "In-frame share": "0.405",
+      "In-frame share among resolved": "0.483"
+     }
+    },
+    {
+     "head": {
+      "Gene set": "Seven genes",
+      "Label definition": "",
+      "Events read from": "Pangolin",
+      "Variant subset": "Pangolin ≥ 0.2 and assay normal",
+      "Stratum (intronic offset, bp)": "3–10",
+      "In-frame": "131",
+      "Out-of-frame": "185",
+      "Undetermined": "32",
+      "Total": "348",
+      "In-frame share": "0.376",
+      "In-frame share among resolved": "0.415"
+     },
+     "new": {
+      "Gene set": "Seven genes",
+      "Label definition": "",
+      "Events read from": "Pangolin",
+      "Variant subset": "Pangolin ≥ 0.2 and assay normal",
+      "Stratum (intronic offset, bp)": "3–10",
+      "In-frame": "134",
+      "Out-of-frame": "189",
+      "Undetermined": "32",
+      "Total": "355",
+      "In-frame share": "0.377",
+      "In-frame share among resolved": "0.415"
+     }
+    }
+   ],
+   "changed_rows supplement_tables_manifest.csv": [
+    {
+     "head": {
+      "Table": "S13",
+      "File": "tableS13_inframe_attribution.csv",
+      "Title": "In-frame attribution of variants scored at or above the PP3 cut point and called normal by the assay",
+      "Source files": "phase1/reports/evidence/inframe_attribution_summary.csv; phase1/data/evidence/inframe_subset.parquet; phase1/data/evidence/inframe_subset_pangolin.parquet; phase1/reports/evidence/inframe_attribution_ddx3x_summary.csv; phase1/data/evidence/external/ddx3x_inframe_subset.parquet; phase1/reports/evidence/inframe_attribution_tp53_summary.csv; phase1/data/evidence/external/tp53_inframe_subset_12nt.parquet",
+      "Source sha256": "708dca87a1d92d428aad8fffaa5eed33ee889439999a87a74f9e368b3f81e9c9; 1d2b8b83e629f28b2d15442f1d58f54537a25cedc89354ef6996ad7c8dd7189f; b8f73efef0d5218ed30028374e24a78c0f43a2286d74f6df2cf39ba0cb53e818; 4d919359653940567025ceb6e672a9d1a898ed2e155a85ca6be7d453643b9bda; 7388120d75b79606b8fcd05372ca8ff2ce1cd990aa149f451af1210f566ec963; c7eaab4acb9c07aafed3dcc1b4384ff562d2859c71d2bd0497b9345d06922418; f67202dfa7277e4975abf6ba590e33f0b6dcdabdcd1fd5843eecc07551ab1c15",
+      "Rows": "33",
+      "File sha256": "0b9744bf04766f87e8173d1af4e2e935ca16cd8db7b282afc1bdeb79d7f259b4",
+      "Notes": "An inference from each tool's own predicted events, not a transcript measurement. Shares are recomputed from the counts. The PP3 cut point of 0.2 is calibrated for SpliceAI only; in the seven genes the Pangolin rows use the same score as a comparison device, and in the external genes Pangolin's events are read on SpliceAI's false positives. External genes are summarised per label definition, never pooled across definitions."
+     },
+     "new": {
+      "Table": "S13",
+      "File": "tableS13_inframe_attribution.csv",
+      "Title": "In-frame attribution of variants scored at or above the PP3 cut point and called normal by the assay",
+      "Source files": "phase1/reports/evidence/inframe_attribution_summary.csv; phase1/data/evidence/inframe_subset.parquet; phase1/data/evidence/inframe_subset_pangolin.parquet; phase1/reports/evidence/inframe_attribution_ddx3x_summary.csv; phase1/data/evidence/external/ddx3x_inframe_subset.parquet; phase1/reports/evidence/inframe_attribution_tp53_summary.csv; phase1/data/evidence/external/tp53_inframe_subset_12nt.parquet",
+      "Source sha256": "f54f68eabc0fa9d29c9dda1f2e1da56bbf41cf2b3d781c8f83b97bb481e638bd; f4088760c82d4683c1d482f41381d4f64bd4c54a36c4873c9fb5b913efb61298; 9979232f9415640ef6a219ab9b66b1ca0a76a39aef103942380735ebfb603f49; 4d919359653940567025ceb6e672a9d1a898ed2e155a85ca6be7d453643b9bda; 7388120d75b79606b8fcd05372ca8ff2ce1cd990aa149f451af1210f566ec963; c7eaab4acb9c07aafed3dcc1b4384ff562d2859c71d2bd0497b9345d06922418; f67202dfa7277e4975abf6ba590e33f0b6dcdabdcd1fd5843eecc07551ab1c15",
+      "Rows": "33",
+      "File sha256": "61ee608adbcf1ca3968a3511ec1ef2b968c489ce1587b6c225ee8378564f5007",
+      "Notes": "An inference from each tool's own predicted events, not a transcript measurement. Shares are recomputed from the counts. The PP3 cut point of 0.2 is calibrated for SpliceAI only; in the seven genes the Pangolin rows use the same score as a comparison device, and in the external genes Pangolin's events are read on SpliceAI's false positives. External genes are summarised per label definition, never pooled across definitions."
+     }
+    }
+   ]
+  },
+  "failures": []
+ }
+}
