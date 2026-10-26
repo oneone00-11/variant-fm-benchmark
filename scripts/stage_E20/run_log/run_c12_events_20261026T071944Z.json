@@ -1,0 +1,169 @@
+{
+ "script": "scripts/stage_E20/run_c12_events.py",
+ "argv": [
+  "scripts/stage_E20/run_c12_events.py",
+  "pangolin"
+ ],
+ "git_commit": "94e3bedd8eec9187eca133958b2d30091b37a411",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20/run_c12_events.py": "d3b4b9f41b3a29c04ad3c6911db0af094200358ea2b9586c6dbbd9b9624bff21",
+  "scripts/stage_E20/_runlog.py": "8483813f99d10e14cc678a7913c508515bf95b2963556b81d583b8e4e0c41a86"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T06:55:20+00:00",
+ "end_utc": "2026-10-26T07:19:44+00:00",
+ "inputs": [
+  {
+   "path": "phase1/src/evid_score_pangolin_events.py",
+   "bytes": 7990,
+   "sha256": "6d38fec07571a1d8a35e4279f07a981a11cd35a047d5aa3bc695dbcf2d666173"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_score_input_pangolin_tp.parquet",
+   "bytes": 10757,
+   "sha256": "75888966d29f75d5b7afea010524e7b2ad4dd9bdae3100aa9fa38693291ad35b"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/inframe_events_pangolin_tp.parquet",
+   "bytes": 17735,
+   "sha256": "92e498fdd566be1d909cf1c5a52ddda5b8b27d702a9caedd49547ac13cb4922e"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events_pangolin_tp.parquet.provenance.json",
+   "bytes": 478,
+   "sha256": "e799e90755456dad03ae8944bde0b0a96491cfa1932e9668818ae80de04f3f6b"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events_pangolin_tp.parquet.environment.json",
+   "bytes": 2601,
+   "sha256": "e67c2b97fb5c9f90f71cf314c12fb493174850452f1f1368877cbff2a645f28d"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_00.csv",
+   "bytes": 1778,
+   "sha256": "8af136f04ba330fe67b5f9c3fe58a69e85b5ef6773f4d91c4dd8de980210b087"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_00.done",
+   "bytes": 32,
+   "sha256": "8f93d75c738de7da7057961abf3f2b73c28ac7a6ddb5d6086d25d832d4126307"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_00.out.csv",
+   "bytes": 11619,
+   "sha256": "1f9e9537e05e2b5eaa11d39ab3ddd6d2a64c5ffb28d3456a0e288366049ef6fe"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_01.csv",
+   "bytes": 1778,
+   "sha256": "ae344ac1e456863f68c4d5d73d332893ef4b6c3dd9b1863c7bcb13c1b820b748"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_01.done",
+   "bytes": 32,
+   "sha256": "70b67f250a31c352922a4383b0dfd70e9bbfe40d4ca0b010299b97e3323cca50"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_01.out.csv",
+   "bytes": 9385,
+   "sha256": "b7a257b934c8b536ee104504d5476a62a7999aadb4df74b70976f4049874425b"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_02.csv",
+   "bytes": 1778,
+   "sha256": "3e0e96df08e9f1c0f21f099635d8c8d26104df222382d9df1c64258a700521f9"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_02.done",
+   "bytes": 32,
+   "sha256": "585703f4828552cdf6c57d153affff88662932dc58966b10384211490242941f"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_02.out.csv",
+   "bytes": 9243,
+   "sha256": "15995847e9bb25b80da872bf638d4cc3f296b47a7b9ae3623884f2c862746848"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_03.csv",
+   "bytes": 1736,
+   "sha256": "4f4e97a6465db86dd38d3a936400d819f8ed60dac4a9e38cc5dca896ccac9ce2"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_03.done",
+   "bytes": 32,
+   "sha256": "d019b6e4141ab9d4718b08a89b18f55dfda2d090933906f40e4c35c6b40ab587"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_03.out.csv",
+   "bytes": 9373,
+   "sha256": "711b8574d06cab31d7697b954fb0421576747901a9f365ce10dedc5a3211efda"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_04.csv",
+   "bytes": 1653,
+   "sha256": "2ff9e13bd3c035ebb1c01e96dac379cb976594510c765c0193c8c7fcaf7472e9"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_04.done",
+   "bytes": 32,
+   "sha256": "1d67e1ad7464930f831b2e150891010bd04c3e6db629e2b7e55760cb69d77cfd"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_04.out.csv",
+   "bytes": 9270,
+   "sha256": "076073747a6aec81a8a9127e5c45d4595375f21a644b36d03494d60fa3cb12cf"
+  },
+  {
+   "path": "phase1/data/evidence/pangolin_events_work_tp/variants.csv",
+   "bytes": 8651,
+   "sha256": "27a2c77e96b0b972278f2890dc1a4eeb6a8cdb8c7253f891640236fb47cc818a"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "command": [
+   "~/Documents/kimi/workspace/functional-standard-atlas/models/pangolin/.venv/bin/python",
+   "phase1/src/evid_score_pangolin_events.py",
+   "--variants",
+   "phase1/data/evidence/inframe_score_input_pangolin_tp.parquet",
+   "--work",
+   "phase1/data/evidence/pangolin_events_work_tp",
+   "--out",
+   "phase1/data/evidence/inframe_events_pangolin_tp.parquet",
+   "--run"
+  ],
+  "returncode": 0,
+  "stdout_tail": [
+   "[pangolin-events] 549 SNVs, 5 chunks, -d 50",
+   "  chunk 1 done",
+   "  chunk 2 done",
+   "  chunk 4 done",
+   "  chunk 3 done",
+   "  chunk 0 done",
+   "{",
+   "  \"product\": \"Pangolin gain/loss scores with their positions\",",
+   "  \"distance\": 50,",
+   "  \"reference_fasta\": \"/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.fa\",",
+   "  \"gtf_db\": \"/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.gtf.db\",",
+   "  \"n_variants\": 549,",
+   "  \"n_scored\": 549,",
+   "  \"output_sha256\": \"92e498fdd566be1d909cf1c5a52ddda5b8b27d702a9caedd49547ac13cb4922e\",",
+   "  \"scored_utc\": \"2026-10-26T07:19:44+00:00\",",
+   "  \"runtime_minutes\": 24.4",
+   "}"
+  ],
+  "stderr_tail": []
+ }
+}

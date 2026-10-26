@@ -1,0 +1,278 @@
+{
+ "script": "scripts/stage_E20/write_c12_subsets.py",
+ "argv": [
+  "scripts/stage_E20/write_c12_subsets.py"
+ ],
+ "git_commit": "94e3bedd8eec9187eca133958b2d30091b37a411",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20/write_c12_subsets.py": "2ae273da6258caa27dd1915828a19e079e871523c60f3fb5a741a3bf3091acf4",
+  "scripts/stage_E20/_runlog.py": "8483813f99d10e14cc678a7913c508515bf95b2963556b81d583b8e4e0c41a86"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T06:54:51+00:00",
+ "end_utc": "2026-10-26T06:54:51+00:00",
+ "inputs": [
+  {
+   "path": "phase1/config/walker2023.yaml",
+   "bytes": 15704,
+   "sha256": "afdcb4e2f57be6e1028252340584cd0443b224606044e06474d3a6cd87d43c02"
+  },
+  {
+   "path": "phase1/data/evidence/analysis_set_v1.parquet",
+   "bytes": 1459145,
+   "sha256": "52e0c610b0147e2435b17b57b586f3340e7b988aa2ddec66890b92f1a59c7ecc"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset.parquet",
+   "bytes": 22023,
+   "sha256": "1d2b8b83e629f28b2d15442f1d58f54537a25cedc89354ef6996ad7c8dd7189f"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events.parquet",
+   "bytes": 47062,
+   "sha256": "dcecb2b2bfbc5aced6b13d399fcd662339212decc6bc8f0d306882f165449860"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset_pangolin.parquet",
+   "bytes": 19679,
+   "sha256": "b8f73efef0d5218ed30028374e24a78c0f43a2286d74f6df2cf39ba0cb53e818"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events_pangolin.parquet",
+   "bytes": 17619,
+   "sha256": "3e2ead99f0a994abd52c530c0cb96d9b8974f92b8a261740c9d24ed77bf1f677"
+  },
+  {
+   "path": "phase1/data/evidence/external/ddx3x_splice.parquet",
+   "bytes": 106997,
+   "sha256": "cf51a401813aecf6ad6848393d33eef5592f5f5d7a4b55a7d1276869677c2dd1"
+  },
+  {
+   "path": "phase1/data/evidence/external/ddx3x_scored.parquet",
+   "bytes": 128118,
+   "sha256": "d6ccf02ba096536d41fbca3bc7d6bc909c24c0dc9d1fc5aa730ffb9ccb67ca1a"
+  },
+  {
+   "path": "phase1/data/evidence/external/ddx3x_inframe_subset.parquet",
+   "bytes": 16654,
+   "sha256": "7388120d75b79606b8fcd05372ca8ff2ce1cd990aa149f451af1210f566ec963"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_splice_scored_12nt.parquet",
+   "bytes": 69325,
+   "sha256": "b06dc44d13e8d4e2999d625e3d216c8908adac555c2a348120eaeff260210c89"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_inframe_subset_12nt.parquet",
+   "bytes": 6705,
+   "sha256": "f67202dfa7277e4975abf6ba590e33f0b6dcdabdcd1fd5843eecc07551ab1c15"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/inframe_subset_tp.parquet",
+   "bytes": 20159,
+   "sha256": "9c8ed4522e3bf9a19eb60cbdd1139c969bb8f36b0f6bc8300b87f25495325bed"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_score_input_tp.parquet",
+   "bytes": 10875,
+   "sha256": "3723e623f5871020baf6ea3688db57d377c4e3eb8db7733a441d6b28cd1318db"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_subset_pangolin_tp.parquet",
+   "bytes": 19733,
+   "sha256": "fae99dde66b160872e697732f0961e7919be5d1c3612b11b577270b97bf4e6b1"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_score_input_pangolin_tp.parquet",
+   "bytes": 10757,
+   "sha256": "75888966d29f75d5b7afea010524e7b2ad4dd9bdae3100aa9fa38693291ad35b"
+  },
+  {
+   "path": "phase1/data/evidence/external/ddx3x_inframe_subset_tp.parquet",
+   "bytes": 10212,
+   "sha256": "118853e91510c40a527f9622c0c5ebb715c0328a9365bbf652efdfff8d415a2c"
+  },
+  {
+   "path": "phase1/data/evidence/external/tp53_inframe_subset_12nt_tp.parquet",
+   "bytes": 6428,
+   "sha256": "d4d8ba6941a8caa36300df37d631100741b9d8cab6792d6976195daea1dc43ad"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "spliceai_false_positive_definition_check": {
+   "stored": 609,
+   "now": 615,
+   "stored_contained": true,
+   "beyond_stored": [
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#2812",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.2749-3T>A"
+    },
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#2871",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.2748+6T>C"
+    },
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#2880",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.2748+3A>G"
+    },
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#3368",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.2587-8T>G"
+    },
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#3374",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.2587-10A>T"
+    },
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#5376",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.1684+3A>G"
+    }
+   ]
+  },
+  "spliceai_anchors": {
+   "from": "data/evidence/inframe_events.parquet",
+   "rule": "sorted by variant_id, positions i * n // 10, i = 0 ... 9",
+   "n_events": 609,
+   "variant_ids": [
+    "urn:mavedb:00000097-0-2#110",
+    "urn:mavedb:00000097-0-2#3880",
+    "urn:mavedb:00000662-0-1#4431",
+    "urn:mavedb:00000662-0-1#631",
+    "urn:mavedb:00000673-0-1#1393",
+    "urn:mavedb:00000673-0-1#8356",
+    "urn:mavedb:00001225-a-1#4994",
+    "urn:mavedb:00001250-a-2#2103",
+    "urn:mavedb:00001250-a-2#4520",
+    "urn:mavedb:00001259-a-2#2547"
+   ]
+  },
+  "pangolin_false_positive_definition_check": {
+   "stored": 524,
+   "now": 531,
+   "stored_contained": true,
+   "beyond_stored": [
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#2538",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.2834+6T>C"
+    },
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#2812",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.2749-3T>A"
+    },
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#2825",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.2749-8T>G"
+    },
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#2827",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.2749-8T>A"
+    },
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#3368",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.2587-8T>G"
+    },
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#3372",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.2587-9T>C"
+    },
+    {
+     "variant_id": "urn:mavedb:00001259-a-2#5376",
+     "gene": "PALB2",
+     "stratum": "s3_10",
+     "hgvs_c": "c.1684+3A>G"
+    }
+   ]
+  },
+  "pangolin_anchors": {
+   "from": "data/evidence/inframe_events_pangolin.parquet",
+   "rule": "sorted by variant_id, positions i * n // 10, i = 0 ... 9",
+   "n_events": 524,
+   "variant_ids": [
+    "urn:mavedb:00000097-0-2#110",
+    "urn:mavedb:00000097-0-2#3883",
+    "urn:mavedb:00000662-0-1#4436",
+    "urn:mavedb:00000662-0-1#631",
+    "urn:mavedb:00000673-0-1#1786",
+    "urn:mavedb:00000673-0-1#8341",
+    "urn:mavedb:00001225-a-1#3874",
+    "urn:mavedb:00001250-a-2#1580",
+    "urn:mavedb:00001250-a-2#4795",
+    "urn:mavedb:00001259-a-2#3659"
+   ]
+  },
+  "ddx3x_false_positive_definition_check": {
+   "stored": 333,
+   "now": 333,
+   "identical": true
+  },
+  "tp53_false_positive_definition_check": {
+   "stored": 28,
+   "now": 28,
+   "identical": true
+  },
+  "true_positive_counts": {
+   "seven_genes_spliceai": {
+    "s11_50": 100,
+    "s3_10": 453
+   },
+   "seven_genes_pangolin": {
+    "s11_50": 88,
+    "s3_10": 451
+   },
+   "ddx3x": {
+    "s11_50": 19,
+    "s3_10": 47
+   },
+   "ddx3x_by_label": {
+    "y_deposit": 55,
+    "y_control_anchored_gated": 34,
+    "y_control_anchored": 36,
+    "y_fdr": 54
+   },
+   "tp53": {
+    "s3_10": 15
+   },
+   "tp53_by_label": {
+    "y_tp53_control_anchored": 15
+   }
+  }
+ }
+}

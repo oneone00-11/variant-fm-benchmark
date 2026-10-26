@@ -35,6 +35,9 @@
 # candidates as served, the identifier and paper records, the screening, the paper's rule with its
 # quote check, the label source's manifest and the compact extract of Supplementary Table 5 (the
 # table itself and the paper's PDF only in the gitignored cache).
+# E20 (2026-10-26) added the true positives' event records of C12, by E6's own scorers in E6's
+# environments: the subsets and the score inputs carrying the anchors, each event file with its
+# provenance and environment records, and the Pangolin scorer's work folder (pangolin_events_work_tp/).
 phase1/data/evidence/FROZEN_AT_TAG.json
 phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json
 phase1/data/evidence/alphagenome_official/ENVIRONMENT.json
@@ -173,7 +176,11 @@ phase1/data/evidence/external/ddx3x_gpn_msa_rescored.parquet.environment.json
 phase1/data/evidence/external/ddx3x_gpn_msa_rescored.parquet.provenance.json
 phase1/data/evidence/external/ddx3x_inframe_events.parquet
 phase1/data/evidence/external/ddx3x_inframe_events.parquet.provenance.json
+phase1/data/evidence/external/ddx3x_inframe_events_tp.parquet
+phase1/data/evidence/external/ddx3x_inframe_events_tp.parquet.environment.json
+phase1/data/evidence/external/ddx3x_inframe_events_tp.parquet.provenance.json
 phase1/data/evidence/external/ddx3x_inframe_subset.parquet
+phase1/data/evidence/external/ddx3x_inframe_subset_tp.parquet
 phase1/data/evidence/external/ddx3x_pangolin.parquet
 phase1/data/evidence/external/ddx3x_pangolin.parquet.provenance.json
 phase1/data/evidence/external/ddx3x_pangolin_fullprec.parquet
@@ -399,7 +406,11 @@ phase1/data/evidence/external/tp53_inframe_events.parquet.provenance.json
 phase1/data/evidence/external/tp53_inframe_events_12nt.parquet
 phase1/data/evidence/external/tp53_inframe_events_12nt.parquet.environment.json
 phase1/data/evidence/external/tp53_inframe_events_12nt.parquet.provenance.json
+phase1/data/evidence/external/tp53_inframe_events_12nt_tp.parquet
+phase1/data/evidence/external/tp53_inframe_events_12nt_tp.parquet.environment.json
+phase1/data/evidence/external/tp53_inframe_events_12nt_tp.parquet.provenance.json
 phase1/data/evidence/external/tp53_inframe_subset.parquet
+phase1/data/evidence/external/tp53_inframe_subset_12nt_tp.parquet
 phase1/data/evidence/external/tp53_pangolin_rescored.parquet
 phase1/data/evidence/external/tp53_pangolin_rescored.parquet.environment.json
 phase1/data/evidence/external/tp53_pangolin_rescored.parquet.provenance.json
@@ -446,8 +457,18 @@ phase1/data/evidence/inframe_events.parquet
 phase1/data/evidence/inframe_events.parquet.provenance.json
 phase1/data/evidence/inframe_events_pangolin.parquet
 phase1/data/evidence/inframe_events_pangolin.parquet.provenance.json
+phase1/data/evidence/inframe_events_pangolin_tp.parquet
+phase1/data/evidence/inframe_events_pangolin_tp.parquet.environment.json
+phase1/data/evidence/inframe_events_pangolin_tp.parquet.provenance.json
+phase1/data/evidence/inframe_events_tp.parquet
+phase1/data/evidence/inframe_events_tp.parquet.environment.json
+phase1/data/evidence/inframe_events_tp.parquet.provenance.json
+phase1/data/evidence/inframe_score_input_pangolin_tp.parquet
+phase1/data/evidence/inframe_score_input_tp.parquet
 phase1/data/evidence/inframe_subset.parquet
 phase1/data/evidence/inframe_subset_pangolin.parquet
+phase1/data/evidence/inframe_subset_pangolin_tp.parquet
+phase1/data/evidence/inframe_subset_tp.parquet
 phase1/data/evidence/label_audit/bap1_raw/calibration_classes_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.tsv
 phase1/data/evidence/label_audit/bap1_raw/experiment_meta.json
 phase1/data/evidence/label_audit/bap1_raw/manifest.json
@@ -509,6 +530,22 @@ phase1/data/evidence/pangolin_events_work/chunks/chunk_04.csv
 phase1/data/evidence/pangolin_events_work/chunks/chunk_04.done
 phase1/data/evidence/pangolin_events_work/chunks/chunk_04.out.csv
 phase1/data/evidence/pangolin_events_work/variants.csv
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_00.csv
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_00.done
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_00.out.csv
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_01.csv
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_01.done
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_01.out.csv
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_02.csv
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_02.done
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_02.out.csv
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_03.csv
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_03.done
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_03.out.csv
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_04.csv
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_04.done
+phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_04.out.csv
+phase1/data/evidence/pangolin_events_work_tp/variants.csv
 phase1/data/evidence/reference_cache/MANIFEST.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000246868.json
 phase1/data/evidence/reference_cache/ensembl/lookup_ENST00000256474.json

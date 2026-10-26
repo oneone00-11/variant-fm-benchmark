@@ -1,0 +1,144 @@
+{
+ "commit": "E20.1 (C12: the true positives' event records)",
+ "reason": "C12's new input: the true positives (score at or above Walker's PP3 cut point, the assay calling the variant damaging) on the 3-10 and 11-50 nt bands, scored by E6's own scorers with E6's settings, with anchor 2's variants in the same runs; no stage is added and no output changes",
+ "declared_from": "E20.1 and E20.0 rule 1: only new input files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/data/evidence/external/ddx3x_inframe_events_tp.parquet": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/external/ddx3x_inframe_events_tp.parquet.environment.json": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/external/ddx3x_inframe_events_tp.parquet.provenance.json": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/external/ddx3x_inframe_subset_tp.parquet": {
+   "kind": "file",
+   "why": "new input: C12's true-positive subsets and the score inputs carrying anchor 2's variants, written in the reference image (scripts/stage_E20/write_c12_subsets.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/external/tp53_inframe_events_12nt_tp.parquet": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/external/tp53_inframe_events_12nt_tp.parquet.environment.json": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/external/tp53_inframe_events_12nt_tp.parquet.provenance.json": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/external/tp53_inframe_subset_12nt_tp.parquet": {
+   "kind": "file",
+   "why": "new input: C12's true-positive subsets and the score inputs carrying anchor 2's variants, written in the reference image (scripts/stage_E20/write_c12_subsets.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/inframe_events_pangolin_tp.parquet": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/inframe_events_pangolin_tp.parquet.environment.json": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/inframe_events_pangolin_tp.parquet.provenance.json": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/inframe_events_tp.parquet": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/inframe_events_tp.parquet.environment.json": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/inframe_events_tp.parquet.provenance.json": {
+   "kind": "file",
+   "why": "new input: the true positives' event records by E6's own scorers in E6's environments (scripts/stage_E20/run_c12_events.py), with their provenance and environment records; both anchors hold (scripts/stage_E20/check_c12_anchors.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/inframe_score_input_pangolin_tp.parquet": {
+   "kind": "file",
+   "why": "new input: C12's true-positive subsets and the score inputs carrying anchor 2's variants, written in the reference image (scripts/stage_E20/write_c12_subsets.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/inframe_score_input_tp.parquet": {
+   "kind": "file",
+   "why": "new input: C12's true-positive subsets and the score inputs carrying anchor 2's variants, written in the reference image (scripts/stage_E20/write_c12_subsets.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/inframe_subset_pangolin_tp.parquet": {
+   "kind": "file",
+   "why": "new input: C12's true-positive subsets and the score inputs carrying anchor 2's variants, written in the reference image (scripts/stage_E20/write_c12_subsets.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/inframe_subset_tp.parquet": {
+   "kind": "file",
+   "why": "new input: C12's true-positive subsets and the score inputs carrying anchor 2's variants, written in the reference image (scripts/stage_E20/write_c12_subsets.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_00.csv": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_00.done": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_00.out.csv": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_01.csv": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_01.done": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_01.out.csv": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_02.csv": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_02.done": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_02.out.csv": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_03.csv": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_03.done": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_03.out.csv": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_04.csv": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_04.done": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/chunks/chunk_04.out.csv": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/pangolin_events_work_tp/variants.csv": {
+   "kind": "file",
+   "why": "new input: the Pangolin scorer's work folder for the true positives (its chunks, their markers and the CLI's raw output), as E6's pangolin_events_work; listed in reproduce_inputs.txt"
+  }
+ }
+}

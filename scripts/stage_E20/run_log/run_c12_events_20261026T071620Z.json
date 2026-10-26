@@ -1,0 +1,120 @@
+{
+ "script": "scripts/stage_E20/run_c12_events.py",
+ "argv": [
+  "scripts/stage_E20/run_c12_events.py",
+  "spliceai"
+ ],
+ "git_commit": "94e3bedd8eec9187eca133958b2d30091b37a411",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20/run_c12_events.py": "d3b4b9f41b3a29c04ad3c6911db0af094200358ea2b9586c6dbbd9b9624bff21",
+  "scripts/stage_E20/_runlog.py": "8483813f99d10e14cc678a7913c508515bf95b2963556b81d583b8e4e0c41a86"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T06:55:20+00:00",
+ "end_utc": "2026-10-26T07:16:20+00:00",
+ "inputs": [
+  {
+   "path": "phase1/src/evid_score_spliceai_events.py",
+   "bytes": 5298,
+   "sha256": "ff9f34cc8674131b97e1d017ffec4208b6047aafc1a946c9b1e53950c2c82cc9"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_score_input_tp.parquet",
+   "bytes": 10875,
+   "sha256": "3723e623f5871020baf6ea3688db57d377c4e3eb8db7733a441d6b28cd1318db"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/inframe_events_tp.parquet",
+   "bytes": 43299,
+   "sha256": "9cf5fec6a77c261dc922878bb9c2467772acc5f74f36630304bd93e005e96592"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events_tp.parquet.provenance.json",
+   "bytes": 461,
+   "sha256": "79e8299c9bfff0543bedbed9cf40ba81a6979c218765231afbd7bc54360de1c5"
+  },
+  {
+   "path": "phase1/data/evidence/inframe_events_tp.parquet.environment.json",
+   "bytes": 2426,
+   "sha256": "99c8757d22c40c2854ff68d4ff56ea19a8e4cdbec307ad0b5b819e44858362a1"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "command": [
+   "~/work/functional-standard-atlas/models/spliceai/.venv/bin/python",
+   "phase1/src/evid_score_spliceai_events.py",
+   "--variants",
+   "phase1/data/evidence/inframe_score_input_tp.parquet",
+   "--distance",
+   "4999",
+   "--out",
+   "phase1/data/evidence/inframe_events_tp.parquet",
+   "--run"
+  ],
+  "returncode": 0,
+  "stdout_tail": [
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 118ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 126ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 109ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 118ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 107ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 114ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 114ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 123ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 106ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 116ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 112ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 121ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 105ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 114ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 106ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 114ms/step",
+   "",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 113ms/step\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
+   "\u001b[1m1/1\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m0s\u001b[0m 121ms/step",
+   "{",
+   "  \"product\": \"SpliceAI full record (four deltas and four positions)\",",
+   "  \"package_version\": \"1.3.1\",",
+   "  \"distance\": 4999,",
+   "  \"mask\": 0,",
+   "  \"reference_fasta\": \"/Users/cliffzhang/work/functional-standard-atlas/data/refs/grch38_subset.fa\",",
+   "  \"annotation\": \"grch38\",",
+   "  \"n_variants\": 563,",
+   "  \"n_scored\": 563,",
+   "  \"output_sha256\": \"9cf5fec6a77c261dc922878bb9c2467772acc5f74f36630304bd93e005e96592\",",
+   "  \"scored_utc\": \"2026-10-26T07:16:20+00:00\",",
+   "  \"runtime_minutes\": 20.8",
+   "}"
+  ],
+  "stderr_tail": [
+   "WARNING:absl:No training configuration found in the save file, so the model was *not* compiled. Compile it manually.",
+   "WARNING:absl:No training configuration found in the save file, so the model was *not* compiled. Compile it manually.",
+   "WARNING:absl:No training configuration found in the save file, so the model was *not* compiled. Compile it manually.",
+   "WARNING:absl:No training configuration found in the save file, so the model was *not* compiled. Compile it manually.",
+   "WARNING:absl:No training configuration found in the save file, so the model was *not* compiled. Compile it manually.",
+   "WARNING:tensorflow:5 out of the last 5 calls to <function TensorFlowTrainer.make_predict_function.<locals>.one_step_on_data_distributed at 0x12480b4c0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.",
+   "WARNING:tensorflow:5 out of the last 5 calls to <function TensorFlowTrainer.make_predict_function.<locals>.one_step_on_data_distributed at 0x12480b4c0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details."
+  ]
+ }
+}

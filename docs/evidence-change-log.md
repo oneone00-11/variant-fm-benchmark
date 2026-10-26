@@ -1793,3 +1793,27 @@ Why: E19.5 item 3, on the records, rule and mapping committed before it. A new s
   -7), the rows of Table 5 the author's decisions concern, MaveDB's table lacking the six
   c.9505 rows, and the shared counts (201 by Table 5; the screening's 198 by MaveDB's
   table unchanged).
+
+## Supplementary analyses, C12: the true positives' event records (stage E20, 2026-10-26)
+
+Why: E20.1 (修改单 v2.40 §4, C12). E6 counted how many of the tools' false positives are
+predicted to change the transcript in frame, with no true-positive group beside them. This
+adds the true positives' event records, the input of the attribution that follows. No stage
+is added, and every existing output is unchanged (`scripts/stage_E20/scope_c12_events.json`).
+
+- The subsets: E6's and E2.7's definition with "called damaging" for "called normal", on the
+  3-10 and 11-50 nt bands. The seven genes: 553 (SpliceAI, `spliceai_walker` >= 0.2) and 539
+  (Pangolin, the same cut on `pangolin`); DDX3X 66 (damaging under any of its four label
+  definitions); TP53 15. The same code with "called normal" gives E2.7's stored DDX3X and TP53
+  subsets back exactly and contains E6's two; under the current labels E6's would gain 6 and 7
+  PALB2 variants (E6 drew them on 2026-09-17, before E16d's relabel).
+- The event records: `evid_score_spliceai_events.py` and `evid_score_pangolin_events.py`,
+  unchanged, in the atlas's SpliceAI environment and the Pangolin environment E18 names, with
+  E6's settings (SpliceAI distance 4,999, no masking; Pangolin -d 50, the CLI's masking, five
+  chunks of two threads). Beside each event file: the scorer's provenance and an environment
+  record (the command, the interpreter and its pip freeze, the references' sha256).
+- Anchor 1: every row's largest score stands in the relation the existing records establish.
+  SpliceAI equals `spliceai_walker` bit for bit (E6 609/609, DDX3X 333/333, TP53 28/28; new
+  563, 66, 15); Pangolin equals the stored `pangolin` rounded as its CLI prints it (E6 524/524;
+  new 549). Anchor 2: 10 SpliceAI and 10 Pangolin variants from E6's event files, scored in the
+  same runs, give E6's records back in every field, and Pangolin's CLI lines verbatim.
