@@ -1,0 +1,76 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E20b/scope_enigma.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "008896031d4fa0607818402049011d9f64bd7ca2",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E20b/_runlog.py": "365c3f499693097f81b9b67999c9be1f04e8ac03d3a54ebb41674b297c8c202c"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T16:07:32+00:00",
+ "end_utc": "2026-10-26T16:07:53+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E20b/scope_enigma.json",
+   "bytes": 2480,
+   "sha256": "b443d10c1d5fdd7b6481c0a2f87e42c4eed12677cb50dc9f3d7fe2d676e0baaa"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E20b/scope_enigma.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/data/evidence/vcep/raw/GN092_page.html": {
+    "status": "declared",
+    "why": "new input: the registry's page for GN092 (BRCA1), whose files panel lists the specification's files (scripts/stage_E20b/fetch_enigma_specification.py); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/vcep/raw/GN097_page.html": {
+    "status": "declared",
+    "why": "new input: the registry's page for GN097 (BRCA2), whose files panel lists the specification's files (scripts/stage_E20b/fetch_enigma_specification.py); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/vcep/raw/crossref_10.1016_j.ajhg.2024.07.013.json": {
+    "status": "declared",
+    "why": "new input: Crossref's record of the ENIGMA panel's paper, read for the publisher's licences (scripts/stage_E20b/fetch_enigma_specification.py); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/vcep/raw/enigma_quote_check.json": {
+    "status": "declared",
+    "why": "new input: Appendix J's sentences on how SpliceAI is scored and Figure 1A's caption, checked verbatim in both specifications' cached files (scripts/stage_E20b/check_enigma_quotes.py); listed in reproduce_inputs.txt",
+    "change": "added"
+   },
+   "phase1/data/evidence/vcep/raw/manifest.json": {
+    "changed": 2,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/data/evidence/vcep/vcep_rules.json": {
+    "status": "declared",
+    "why": "ENIGMA's six rules: score_definition_stated and further_quotes (Appendix J's sentences appended after the registry's), the description and the writer; write_vcep_rules.py stops on any other difference from HEAD",
+    "change": "differs"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

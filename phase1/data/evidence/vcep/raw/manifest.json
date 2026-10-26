@@ -308,6 +308,234 @@
    "file": "phase1/data/evidence/vcep/raw/clingen_terms_of_use.html",
    "bytes": 116813,
    "sha256": "bbeed8bdb6ba5029ee803b17b2e9a46cc92c9787c2cc5420a9c93477c50dc6ec"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN092",
+   "final_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN092",
+   "http_status": 200,
+   "content_type": "text/html",
+   "content_disposition": null,
+   "fetched_utc": "2026-10-26T16:05:11+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN092_page.html",
+   "bytes": 324277,
+   "sha256": "4c3c35851f8ad47aea1c7e05bcbb4559f5f034b22fe99e2e90942f193c029782"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN097",
+   "final_url": "https://cspec.genome.network/cspec/ui/svi/doc/GN097",
+   "http_status": 200,
+   "content_type": "text/html",
+   "content_disposition": null,
+   "fetched_utc": "2026-10-26T16:05:21+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN097_page.html",
+   "bytes": 324153,
+   "sha256": "a427adb83a16808bbd2e45c5b01aadaee8b46eea24ccd68c967ea13134db7d4b"
+  },
+  {
+   "url": "https://api.crossref.org/works/10.1016/j.ajhg.2024.07.013",
+   "final_url": "https://api.crossref.org/works/10.1016/j.ajhg.2024.07.013",
+   "http_status": 200,
+   "content_type": "application/json",
+   "content_disposition": null,
+   "fetched_utc": "2026-10-26T16:05:33+00:00",
+   "file": "phase1/data/evidence/vcep/raw/crossref_10.1016_j.ajhg.2024.07.013.json",
+   "bytes": 20088,
+   "sha256": "6064e676faf07c74b5307e432ebee9b8792e616b3272f04fffdfa26db31f3245"
   }
- ]
+ ],
+ "enigma_specification": {
+  "what": "the ENIGMA specification files that hold Figure 1A and Appendix J (E20b.2)",
+  "written_by": "scripts/stage_E20b/fetch_enigma_specification.py",
+  "specifications": {
+   "GN092": {
+    "gene": "BRCA1",
+    "page": "phase1/data/evidence/vcep/raw/GN092_page.html",
+    "record_version": "1.2",
+    "record_approved_on": "2025-01-09T01:11:34.495Z",
+    "release_notes_on_spliceai": [
+     "*   Added clarification for PM2\\_Supporting, PTC code for frameshift variant, mRNA data interpretation, SpliceAI, PP3 application if PVS1 is met, PS1 criteria, Table 9"
+    ],
+    "attachments": [
+     {
+      "name": "Appendix_V1.2",
+      "description": "Appendix document with detailed information for criteria calibration.",
+      "file_id": "9e6119dc-90b9-42b5-a3b7-1a2eb28b1b12",
+      "url": "https://cspec.genome.network/cspec/File/id/9e6119dc-90b9-42b5-a3b7-1a2eb28b1b12/data",
+      "final_url": "https://cspec.genome.network/cspec/File/id/9e6119dc-90b9-42b5-a3b7-1a2eb28b1b12/data",
+      "http_status": 200,
+      "content_type": "application/octet-stream",
+      "content_disposition": "attachment; filename=Appendices_V1.2_2024-11-18.docx",
+      "fetched_utc": "2026-10-26T16:05:17+00:00",
+      "cached_at": "phase1/data/e20b_cache/enigma_specification/GN092/Appendices_V1.2_2024-11-18.docx",
+      "committed": false,
+      "bytes": 2624819,
+      "sha256": "9a9cc9210178e8d947597089ba8edd5ff0633ff7e4fea268b8f202d46e6c8ebb",
+      "filename": "Appendices_V1.2_2024-11-18.docx"
+     },
+     {
+      "name": "Specifications_Table4_V1.2",
+      "description": "Table 4 of the Specifications, provided as a separate Excel document.",
+      "file_id": "ca5cf57b-94df-4ad6-a001-c62ceccb3845",
+      "url": "https://cspec.genome.network/cspec/File/id/ca5cf57b-94df-4ad6-a001-c62ceccb3845/data",
+      "fetched": false,
+      "why": "not needed: Figure 1A and Appendix J are in the Specifications and Appendix files"
+     },
+     {
+      "name": "Specifications_V1.2",
+      "description": "Specifications document including full criteria table and additional flowcharts/tables to assist in application of the specifications",
+      "file_id": "11e62fec-23b0-4a3e-b2df-751855301746",
+      "url": "https://cspec.genome.network/cspec/File/id/11e62fec-23b0-4a3e-b2df-751855301746/data",
+      "final_url": "https://cspec.genome.network/cspec/File/id/11e62fec-23b0-4a3e-b2df-751855301746/data",
+      "http_status": 200,
+      "content_type": "application/octet-stream",
+      "content_disposition": "attachment; filename=Specifications_V1.2_2024-11-18.docx",
+      "fetched_utc": "2026-10-26T16:05:19+00:00",
+      "cached_at": "phase1/data/e20b_cache/enigma_specification/GN092/Specifications_V1.2_2024-11-18.docx",
+      "committed": false,
+      "bytes": 642168,
+      "sha256": "ff0761c3e052ed916668676d9e92650999804e64d6186ac9cc28488764d327b4",
+      "filename": "Specifications_V1.2_2024-11-18.docx"
+     },
+     {
+      "name": "Supplementary_Tables_V1.2",
+      "description": "Supplementary tables of the Appendix, provided as a separate Excel document.",
+      "file_id": "cb4a09fe-30f4-4aa8-9d76-d7ea407c9754",
+      "url": "https://cspec.genome.network/cspec/File/id/cb4a09fe-30f4-4aa8-9d76-d7ea407c9754/data",
+      "fetched": false,
+      "why": "not needed: Figure 1A and Appendix J are in the Specifications and Appendix files"
+     },
+     {
+      "name": "Specifications_Table9_V1.2",
+      "description": "Table 9 of the Specifications, provided as a separate Excel document.",
+      "file_id": "0a35d6a8-5050-44b6-8a9d-babe8cdc06b2",
+      "url": "https://cspec.genome.network/cspec/File/id/0a35d6a8-5050-44b6-8a9d-babe8cdc06b2/data",
+      "fetched": false,
+      "why": "not needed: Figure 1A and Appendix J are in the Specifications and Appendix files"
+     }
+    ]
+   },
+   "GN097": {
+    "gene": "BRCA2",
+    "page": "phase1/data/evidence/vcep/raw/GN097_page.html",
+    "record_version": "1.2",
+    "record_approved_on": "2025-01-09T01:12:40.191Z",
+    "release_notes_on_spliceai": [
+     "*   Added clarification for PM2\\_Supporting, PTC code for frameshift variant, mRNA data interpretation, SpliceAI, PP3 application if PVS1 is met, PS1 criteria, Table 9"
+    ],
+    "attachments": [
+     {
+      "name": "Specifications_Table4_V1.2",
+      "description": "Table 4 of the Specifications, provided as a separate Excel document.",
+      "file_id": "10301df8-45e0-4309-adba-c121eb057d3e",
+      "url": "https://cspec.genome.network/cspec/File/id/10301df8-45e0-4309-adba-c121eb057d3e/data",
+      "fetched": false,
+      "why": "not needed: Figure 1A and Appendix J are in the Specifications and Appendix files"
+     },
+     {
+      "name": "Specifications_Table9_V1.2",
+      "description": "Table 9 of the Specifications, provided as a separate Excel document.",
+      "file_id": "c540f11d-0be2-45d6-a0bf-ae5327a04885",
+      "url": "https://cspec.genome.network/cspec/File/id/c540f11d-0be2-45d6-a0bf-ae5327a04885/data",
+      "fetched": false,
+      "why": "not needed: Figure 1A and Appendix J are in the Specifications and Appendix files"
+     },
+     {
+      "name": "Appendix_V1.2",
+      "description": "Appendix document with detailed information for criteria calibration.",
+      "file_id": "5a75d1a0-1222-46a2-8802-68a4f2251a3a",
+      "url": "https://cspec.genome.network/cspec/File/id/5a75d1a0-1222-46a2-8802-68a4f2251a3a/data",
+      "final_url": "https://cspec.genome.network/cspec/File/id/5a75d1a0-1222-46a2-8802-68a4f2251a3a/data",
+      "http_status": 200,
+      "content_type": "application/octet-stream",
+      "content_disposition": "attachment; filename=Appendices_V1.2_2024-11-18.docx",
+      "fetched_utc": "2026-10-26T16:05:29+00:00",
+      "cached_at": "phase1/data/e20b_cache/enigma_specification/GN097/Appendices_V1.2_2024-11-18.docx",
+      "committed": false,
+      "bytes": 2624819,
+      "sha256": "9a9cc9210178e8d947597089ba8edd5ff0633ff7e4fea268b8f202d46e6c8ebb",
+      "filename": "Appendices_V1.2_2024-11-18.docx"
+     },
+     {
+      "name": "Specifications_V1.2",
+      "description": "Specifications document including full criteria table and additional flowcharts/tables to assist in application of the specifications",
+      "file_id": "02537f62-66a3-4e67-8aec-cf44b326534d",
+      "url": "https://cspec.genome.network/cspec/File/id/02537f62-66a3-4e67-8aec-cf44b326534d/data",
+      "final_url": "https://cspec.genome.network/cspec/File/id/02537f62-66a3-4e67-8aec-cf44b326534d/data",
+      "http_status": 200,
+      "content_type": "application/octet-stream",
+      "content_disposition": "attachment; filename=Specifications_V1.2_2024-11-18.docx",
+      "fetched_utc": "2026-10-26T16:05:32+00:00",
+      "cached_at": "phase1/data/e20b_cache/enigma_specification/GN097/Specifications_V1.2_2024-11-18.docx",
+      "committed": false,
+      "bytes": 642168,
+      "sha256": "ff0761c3e052ed916668676d9e92650999804e64d6186ac9cc28488764d327b4",
+      "filename": "Specifications_V1.2_2024-11-18.docx"
+     },
+     {
+      "name": "Supplementary_Tables_V1.2",
+      "description": "Supplementary tables of the Appendix, provided as a separate Excel document.",
+      "file_id": "3dadda2f-94a3-497f-aa35-3bb6e828ddd5",
+      "url": "https://cspec.genome.network/cspec/File/id/3dadda2f-94a3-497f-aa35-3bb6e828ddd5/data",
+      "fetched": false,
+      "why": "not needed: Figure 1A and Appendix J are in the Specifications and Appendix files"
+     }
+    ]
+   }
+  },
+  "same_files_for_brca1_and_brca2": {
+   "Specifications_V1.2": true,
+   "Appendix_V1.2": true
+  },
+  "licence": {
+   "clingen_terms": "raw/clingen_terms_of_use.html: curated content published by ClinGen under CC0 1.0",
+   "the_specification_as_the_journal_published_it": {
+    "doi": "10.1016/j.ajhg.2024.07.013",
+    "pmid": "39142283",
+    "pmcid": "PMC11393667",
+    "supplement_item": "Data S2. Approved specifications developed by the ClinGen ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel (mmc7.zip)",
+    "supplement_read": false,
+    "pmc_page": "not requested: it served this work a challenge page on 2026-10-26, which was not answered",
+    "crossref_record": "phase1/data/evidence/vcep/raw/crossref_10.1016_j.ajhg.2024.07.013.json",
+    "licences": [
+     {
+      "url": "https://www.elsevier.com/tdm/userlicense/1.0/",
+      "content_version": "tdm",
+      "from": "2024-09-01T00:00:00Z"
+     },
+     {
+      "url": "https://www.elsevier.com/legal/tdmrep-license",
+      "content_version": "tdm",
+      "from": "2024-09-01T00:00:00Z"
+     },
+     {
+      "url": "http://www.elsevier.com/open-access/userlicense/1.0/",
+      "content_version": "vor",
+      "from": "2025-03-05T00:00:00Z"
+     }
+    ]
+   },
+   "decision": "unclear: kept in the gitignored cache, recorded by URL and sha256, not committed (E20b.2, as Sahu 2025's PDF in E19)"
+  },
+  "searched": {
+   "registry_records": "raw/GN092_record.json, raw/GN097_record.json (E20.3): no file in the JSON",
+   "registry_pages": "the files panel of each specification's page: found",
+   "clingen_panel_page": {
+    "url": "https://clinicalgenome.org/affiliation/50087/",
+    "final_url": "https://clinicalgenome.org/affiliation/50087/",
+    "http_status": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "content_disposition": null,
+    "fetched_utc": "2026-10-26T16:05:35+00:00",
+    "bytes": 142700,
+    "sha256": "57e1419789fb994e7e47cb439345e91689dbd80c91721ac623ae5130bb3d8331",
+    "page_saved": false,
+    "links_to_the_registry": [
+     "https://cspec.genome.network/cspec/ui/svi/affiliation/50087"
+    ],
+    "links_to_a_file": [],
+    "links_to_the_paper": []
+   },
+   "published_paper": "not needed (the registry holds the files)"
+  }
+ }
 }

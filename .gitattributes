@@ -23,3 +23,6 @@ phase1/data/evidence/label_audit/*_raw/** -text
 # And for E19's records of the second BRCA2 set (C3 item 3): MaveDB's score tables are CRLF, and
 # the screening's tables were written with the csv module's CRLF line ends.
 phase1/data/evidence/second_set/*_raw/** -text
+# And for the VCEP specifications' records (E20, E20b): the registry serves its pages with CRLF
+# line ends.
+phase1/data/evidence/vcep/raw/** -text

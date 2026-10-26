@@ -1909,3 +1909,31 @@ added; every other output is unchanged (`scripts/stage_E20b/scope_e6.json`).
 - E2.7's DDX3X and TP53 files, C12's true-positive rows and C13 are unchanged. E20.1's
   anchor test reads E6's event files without the added variants, as they stood when the
   anchors were drawn.
+
+## Supplementary analyses, C13: ENIGMA's SpliceAI setting from its specification (stage E20b, 2026-10-26)
+
+Why: E20b.2 (E20's open item 4). ENIGMA's criteria in the registry name SpliceAI and its cut
+points and refer to "Specifications Figure 1A and Appendix J", which the registry's records
+do not carry. No predictor score is read, no stage is added and every existing output is
+unchanged (`scripts/stage_E20b/scope_enigma.json`).
+
+- Where: the registry's page for each specification (GN092, BRCA1; GN097, BRCA2) lists the
+  files attached to its rule set, version 1.2 like the records. The two that hold Figure 1A
+  and Appendix J (`Specifications_V1.2_2024-11-18.docx`, `Appendices_V1.2_2024-11-18.docx`)
+  are the same bytes for both genes. ClinGen's page for the panel links the registry and no
+  file. The pages and Crossref's record of the panel's paper are committed in `vcep/raw/`;
+  the files themselves are kept in the gitignored `phase1/data/e20b_cache/` and recorded by
+  URL and sha256 in `raw/manifest.json`: ClinGen puts its curated content under CC0, but the
+  journal's copy of the specification is under the publisher's licences, none of them open.
+  PMC served a challenge page, which was not answered.
+- `raw/enigma_quote_check.json`: seven sentences of Appendix J, each found verbatim in both
+  copies; Figure 1A's caption, its two images (found through the document's relationships)
+  and the key inside the first, transcribed (it names SpliceAI and its cut points only);
+  every Appendix J paragraph on a source, version, annotation, distance, masking or score,
+  and every paragraph of either file that names SpliceAI.
+- The setting Appendix J states: the largest of the four delta scores, Max Distance 10 000,
+  'unmasked' scores; SpliceAI is cited by its paper, with no version, online tool or
+  annotation. `vcep_rules.json`: ENIGMA's six rules record this in `score_definition_stated`
+  and carry the sentences in `further_quotes` after the registry's; nothing else changes.
+  Neither SpliceAI column of this study has that distance (published basis 4,999,
+  `spliceai` 50).

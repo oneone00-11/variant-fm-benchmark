@@ -43,6 +43,9 @@
 # manifest), and the rules file read from them before any score was joined to it (vcep/vcep_rules.json).
 # E20b (2026-10-26) drew E6's subsets again under the current labels and re-scored their events
 # whole (the files keep their names); E6's event files gained the environment records E6 did not keep.
+# Then ENIGMA's specification files (vcep/raw/): the registry's pages that list them (the files
+# themselves only in the gitignored cache), the check of the sentences quoted from them, and
+# Crossref's record of the panel's paper, read for its licences.
 phase1/data/evidence/FROZEN_AT_TAG.json
 phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json
 phase1/data/evidence/alphagenome_official/ENVIRONMENT.json
@@ -791,13 +794,17 @@ phase1/data/evidence/vcep/raw/GN077_record.json
 phase1/data/evidence/vcep/raw/GN078.json
 phase1/data/evidence/vcep/raw/GN078_record.json
 phase1/data/evidence/vcep/raw/GN092.json
+phase1/data/evidence/vcep/raw/GN092_page.html
 phase1/data/evidence/vcep/raw/GN092_record.json
 phase1/data/evidence/vcep/raw/GN096.json
 phase1/data/evidence/vcep/raw/GN096_record.json
 phase1/data/evidence/vcep/raw/GN097.json
+phase1/data/evidence/vcep/raw/GN097_page.html
 phase1/data/evidence/vcep/raw/GN097_record.json
 phase1/data/evidence/vcep/raw/clingen_terms_of_use.html
+phase1/data/evidence/vcep/raw/crossref_10.1016_j.ajhg.2024.07.013.json
 phase1/data/evidence/vcep/raw/cspec_svis.json
+phase1/data/evidence/vcep/raw/enigma_quote_check.json
 phase1/data/evidence/vcep/raw/manifest.json
 phase1/data/evidence/vcep/raw/zenodo_GN077_21433964.json
 phase1/data/evidence/vcep/raw/zenodo_GN078_21433974.json

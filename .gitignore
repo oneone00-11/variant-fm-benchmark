@@ -73,6 +73,9 @@ phase1/data/e19_cache/
 # E18: the external genes' scoring caches, the copies of the atlas's lookup scorers and
 # Pangolin's gene databases for chromosomes 1, 7 and X (scripts/stage_E18/run_*.py)
 phase1/data/e18_cache/
+# E20b: the ENIGMA specification's files, whose licence is unclear, recorded by URL and
+# sha256 only (scripts/stage_E20b/fetch_enigma_specification.py)
+phase1/data/e20b_cache/
 
 # Transient scoring checkpoints (removed automatically when a scorer finishes).
 *.partial.parquet

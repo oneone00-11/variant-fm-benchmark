@@ -1,0 +1,634 @@
+{
+ "what": "the ENIGMA specification's sentences on how SpliceAI is scored, checked verbatim (E20b.2)",
+ "written_by": "scripts/stage_E20b/check_enigma_quotes.py",
+ "files": {
+  "GN092 Appendix_V1.2": {
+   "cached_at": "phase1/data/e20b_cache/enigma_specification/GN092/Appendices_V1.2_2024-11-18.docx",
+   "sha256": "9a9cc9210178e8d947597089ba8edd5ff0633ff7e4fea268b8f202d46e6c8ebb",
+   "filename": "Appendices_V1.2_2024-11-18.docx"
+  },
+  "GN092 Specifications_V1.2": {
+   "cached_at": "phase1/data/e20b_cache/enigma_specification/GN092/Specifications_V1.2_2024-11-18.docx",
+   "sha256": "ff0761c3e052ed916668676d9e92650999804e64d6186ac9cc28488764d327b4",
+   "filename": "Specifications_V1.2_2024-11-18.docx"
+  },
+  "GN097 Appendix_V1.2": {
+   "cached_at": "phase1/data/e20b_cache/enigma_specification/GN097/Appendices_V1.2_2024-11-18.docx",
+   "sha256": "9a9cc9210178e8d947597089ba8edd5ff0633ff7e4fea268b8f202d46e6c8ebb",
+   "filename": "Appendices_V1.2_2024-11-18.docx"
+  },
+  "GN097 Specifications_V1.2": {
+   "cached_at": "phase1/data/e20b_cache/enigma_specification/GN097/Specifications_V1.2_2024-11-18.docx",
+   "sha256": "ff0761c3e052ed916668676d9e92650999804e64d6186ac9cc28488764d327b4",
+   "filename": "Specifications_V1.2_2024-11-18.docx"
+  }
+ },
+ "quotes": [
+  {
+   "quote": "For splicing predictions, our recommendations are based on results from unpublished analyses conducted by the SVI Splicing subgroup.",
+   "section": "Appendix J (Appendix J: Bioinformatic Analysis and Code Application - incorporating PM1, PP3, BP1, BP4, BP7, and PS1)",
+   "file": "Appendix_V1.2",
+   "found": {
+    "GN092": {
+     "found": true,
+     "paragraph": 1311,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    },
+    "GN097": {
+     "found": true,
+     "paragraph": 1311,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    }
+   }
+  },
+  {
+   "quote": "For variants outside of the donor/acceptor ±1,2 positions, the optimal Splice AI cutpoints (based on the maximum ∆ score of donor loss, acceptor loss, donor gain or acceptor gain) to predict spliceogenicity were:",
+   "section": "Appendix J (Appendix J: Bioinformatic Analysis and Code Application - incorporating PM1, PP3, BP1, BP4, BP7, and PS1)",
+   "file": "Appendix_V1.2",
+   "found": {
+    "GN092": {
+     "found": true,
+     "paragraph": 1311,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    },
+    "GN097": {
+     "found": true,
+     "paragraph": 1311,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    }
+   }
+  },
+  {
+   "quote": "≤0.1 for BP4 for no predicted splicing impact",
+   "section": "Appendix J (Appendix J: Bioinformatic Analysis and Code Application - incorporating PM1, PP3, BP1, BP4, BP7, and PS1)",
+   "file": "Appendix_V1.2",
+   "found": {
+    "GN092": {
+     "found": true,
+     "paragraph": 1312,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    },
+    "GN097": {
+     "found": true,
+     "paragraph": 1312,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    }
+   }
+  },
+  {
+   "quote": "≥0.2 for PP3 for predicted splicing impact",
+   "section": "Appendix J (Appendix J: Bioinformatic Analysis and Code Application - incorporating PM1, PP3, BP1, BP4, BP7, and PS1)",
+   "file": "Appendix_V1.2",
+   "found": {
+    "GN092": {
+     "found": true,
+     "paragraph": 1314,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    },
+    "GN097": {
+     "found": true,
+     "paragraph": 1314,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    }
+   }
+  },
+  {
+   "quote": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants.",
+   "section": "Appendix J (Appendix J: Bioinformatic Analysis and Code Application - incorporating PM1, PP3, BP1, BP4, BP7, and PS1)",
+   "file": "Appendix_V1.2",
+   "found": {
+    "GN092": {
+     "found": true,
+     "paragraph": 1316,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    },
+    "GN097": {
+     "found": true,
+     "paragraph": 1316,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    }
+   }
+  },
+  {
+   "quote": "Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.",
+   "section": "Appendix J (Appendix J: Bioinformatic Analysis and Code Application - incorporating PM1, PP3, BP1, BP4, BP7, and PS1)",
+   "file": "Appendix_V1.2",
+   "found": {
+    "GN092": {
+     "found": true,
+     "paragraph": 1316,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    },
+    "GN097": {
+     "found": true,
+     "paragraph": 1316,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    }
+   }
+  },
+  {
+   "quote": "Calibration of predictors against functional and splicing assay results showed that the SpliceAI tool (Jaganathan et al 2019, PMID: 30661751) outperformed multiple other splicing predictors (including MaxEntScan).",
+   "section": "Appendix J (Appendix J: Bioinformatic Analysis and Code Application - incorporating PM1, PP3, BP1, BP4, BP7, and PS1)",
+   "file": "Appendix_V1.2",
+   "found": {
+    "GN092": {
+     "found": true,
+     "paragraph": 1311,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    },
+    "GN097": {
+     "found": true,
+     "paragraph": 1311,
+     "section_paragraphs": [
+      1307,
+      1569
+     ]
+    }
+   }
+  }
+ ],
+ "figure_1a": {
+  "GN092": {
+   "caption": "Figure 1A: Application of bioinformatic codes based on variant type and location.",
+   "caption_found": true,
+   "caption_paragraph": 709,
+   "images": [
+    {
+     "media": "word/media/image1.png",
+     "sha256": "bbe0a5d4944760d011dae2c83cea65bf03cb0c784c35a8e46cb8983da206ed1a"
+    },
+    {
+     "media": "word/media/image2.png",
+     "sha256": "98caae9bc22862eec5e5007e0c45e416cb621d04ecd29eaefd17fc99eb424166"
+    }
+   ],
+   "key_transcribed": "Splice Predictions, using SpliceAI / No impact ≤0.1 / Not informative (do not use) >0.1 and <0.2 / Impact ≥0.2",
+   "key_in": "word/media/image1.png",
+   "note": "the figure is drawn as images, read by eye: the first (synonymous and intronic variants) carries the key, transcribed here and not machine-checked, which names SpliceAI and its cut points and no setting; the second (missense and in-frame variants) carries no splicing key"
+  },
+  "GN097": {
+   "caption": "Figure 1A: Application of bioinformatic codes based on variant type and location.",
+   "caption_found": true,
+   "caption_paragraph": 709,
+   "images": [
+    {
+     "media": "word/media/image1.png",
+     "sha256": "bbe0a5d4944760d011dae2c83cea65bf03cb0c784c35a8e46cb8983da206ed1a"
+    },
+    {
+     "media": "word/media/image2.png",
+     "sha256": "98caae9bc22862eec5e5007e0c45e416cb621d04ecd29eaefd17fc99eb424166"
+    }
+   ],
+   "key_transcribed": "Splice Predictions, using SpliceAI / No impact ≤0.1 / Not informative (do not use) >0.1 and <0.2 / Impact ≥0.2",
+   "key_in": "word/media/image1.png",
+   "note": "the figure is drawn as images, read by eye: the first (synonymous and intronic variants) carries the key, transcribed here and not machine-checked, which names SpliceAI and its cut points and no setting; the second (missense and in-frame variants) carries no splicing key"
+  }
+ },
+ "appendix_j_searched": {
+  "GN092": {
+   "source or online tool": [
+    {
+     "paragraph": 1320,
+     "names_spliceai": false,
+     "text": "To inform bioinformatic code use for missense prediction, we carried out analysis to determine the predictive capacity of “location inside or outside domain” for a missense variant, and to compare the utility of several missense prediction tools to provide evidence for or against pathogenicity. We also reviewed findings from the literature to inform code weights for variants according to domain and broad effect (missense, silent/synonymous, intronic)."
+    },
+    {
+     "paragraph": 1326,
+     "names_spliceai": false,
+     "text": "A-GVGD  – missense alterations, scores assigned as per website (http://agvgd.hci.utah.edu/)"
+    },
+    {
+     "paragraph": 1327,
+     "names_spliceai": false,
+     "text": "BayesDel – missense alterations, including in-frame indels, scores assigned using the PERCH package (http://fengbj-laboratory.org/lab/index.html). Scores were categorized in several ways – generic recommendation from tool creator Bing Feng (<0.3, ≥0.30), or as designated in two publications comparing predictors (Tian et al 2019, PMID: 31484976; Hart et al 2019, PMID: 29884841). The web tool (https://gwiggins.shinyapps.io/lr_shiny/) was then used to compare the sensitivity and specificity of different BayesDel cutpoints across three categories."
+    },
+    {
+     "paragraph": 1329,
+     "names_spliceai": false,
+     "text": "Annotations to exclude potentially spliceogenic missense variants were based on prior probability derived from MaxEntScan scores (http://priors.hci.utah.edu/PRIORS/, See below for details."
+    },
+    {
+     "paragraph": 1370,
+     "names_spliceai": false,
+     "text": "* Includes Likely pathogenic and VUS missense only. Amino acid substitution variants also predicted to potentially disrupt splicing (based on MaxEntScan predictions, http://priors.hci.utah.edu/PRIORS/, moderate-high prior probability to disrupt a native donor or acceptor), were excluded."
+    },
+    {
+     "paragraph": 1455,
+     "names_spliceai": false,
+     "text": "*Excludes variants with partial impact or conflicting results between studies, and variants also predicted to potentially disrupt splicing (based on MaxEntScan predictions, http://priors.hci.utah.edu/PRIORS/)."
+    }
+   ],
+   "version": [],
+   "annotation or genome build": [],
+   "distance": [
+    {
+     "paragraph": 1316,
+     "names_spliceai": false,
+     "text": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants. Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.  "
+    }
+   ],
+   "masking": [
+    {
+     "paragraph": 1316,
+     "names_spliceai": false,
+     "text": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants. Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.  "
+    }
+   ],
+   "which score": [
+    {
+     "paragraph": 1311,
+     "names_spliceai": true,
+     "text": "For splicing predictions, our recommendations are based on results from unpublished analyses conducted by the SVI Splicing subgroup. Calibration of predictors against functional and splicing assay results showed that the SpliceAI tool (Jaganathan et al 2019, PMID: 30661751) outperformed multiple other splicing predictors (including MaxEntScan). For variants outside of the donor/acceptor ±1,2 positions, the optimal Splice AI cutpoints (based on the maximum ∆ score of donor loss, acceptor loss, donor gain or acceptor gain) to predict spliceogenicity were:"
+    },
+    {
+     "paragraph": 1316,
+     "names_spliceai": false,
+     "text": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants. Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.  "
+    },
+    {
+     "paragraph": 1503,
+     "names_spliceai": false,
+     "text": "*** Justification for application of BP7 for intronic variants in this region is based on maximum likelihood estimation analysis of breast cancer case-control data, with results indicating that most rare non-coding variants in BRCA1 and BRCA2 (without applying any bioinformatic prediction filters) are benign (James et al 2022, PMID: 35191126); Case-control enrichment analysis limited to deeper intronic variants (Supplementary Table 15) indicate that intronic variant location outside of the splice region (+7 to -21) provides moderate evidence against pathogenicity (even without applying bioinformatic prediction of splicing as a filter)."
+    }
+   ]
+  },
+  "GN097": {
+   "source or online tool": [
+    {
+     "paragraph": 1320,
+     "names_spliceai": false,
+     "text": "To inform bioinformatic code use for missense prediction, we carried out analysis to determine the predictive capacity of “location inside or outside domain” for a missense variant, and to compare the utility of several missense prediction tools to provide evidence for or against pathogenicity. We also reviewed findings from the literature to inform code weights for variants according to domain and broad effect (missense, silent/synonymous, intronic)."
+    },
+    {
+     "paragraph": 1326,
+     "names_spliceai": false,
+     "text": "A-GVGD  – missense alterations, scores assigned as per website (http://agvgd.hci.utah.edu/)"
+    },
+    {
+     "paragraph": 1327,
+     "names_spliceai": false,
+     "text": "BayesDel – missense alterations, including in-frame indels, scores assigned using the PERCH package (http://fengbj-laboratory.org/lab/index.html). Scores were categorized in several ways – generic recommendation from tool creator Bing Feng (<0.3, ≥0.30), or as designated in two publications comparing predictors (Tian et al 2019, PMID: 31484976; Hart et al 2019, PMID: 29884841). The web tool (https://gwiggins.shinyapps.io/lr_shiny/) was then used to compare the sensitivity and specificity of different BayesDel cutpoints across three categories."
+    },
+    {
+     "paragraph": 1329,
+     "names_spliceai": false,
+     "text": "Annotations to exclude potentially spliceogenic missense variants were based on prior probability derived from MaxEntScan scores (http://priors.hci.utah.edu/PRIORS/, See below for details."
+    },
+    {
+     "paragraph": 1370,
+     "names_spliceai": false,
+     "text": "* Includes Likely pathogenic and VUS missense only. Amino acid substitution variants also predicted to potentially disrupt splicing (based on MaxEntScan predictions, http://priors.hci.utah.edu/PRIORS/, moderate-high prior probability to disrupt a native donor or acceptor), were excluded."
+    },
+    {
+     "paragraph": 1455,
+     "names_spliceai": false,
+     "text": "*Excludes variants with partial impact or conflicting results between studies, and variants also predicted to potentially disrupt splicing (based on MaxEntScan predictions, http://priors.hci.utah.edu/PRIORS/)."
+    }
+   ],
+   "version": [],
+   "annotation or genome build": [],
+   "distance": [
+    {
+     "paragraph": 1316,
+     "names_spliceai": false,
+     "text": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants. Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.  "
+    }
+   ],
+   "masking": [
+    {
+     "paragraph": 1316,
+     "names_spliceai": false,
+     "text": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants. Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.  "
+    }
+   ],
+   "which score": [
+    {
+     "paragraph": 1311,
+     "names_spliceai": true,
+     "text": "For splicing predictions, our recommendations are based on results from unpublished analyses conducted by the SVI Splicing subgroup. Calibration of predictors against functional and splicing assay results showed that the SpliceAI tool (Jaganathan et al 2019, PMID: 30661751) outperformed multiple other splicing predictors (including MaxEntScan). For variants outside of the donor/acceptor ±1,2 positions, the optimal Splice AI cutpoints (based on the maximum ∆ score of donor loss, acceptor loss, donor gain or acceptor gain) to predict spliceogenicity were:"
+    },
+    {
+     "paragraph": 1316,
+     "names_spliceai": false,
+     "text": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants. Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.  "
+    },
+    {
+     "paragraph": 1503,
+     "names_spliceai": false,
+     "text": "*** Justification for application of BP7 for intronic variants in this region is based on maximum likelihood estimation analysis of breast cancer case-control data, with results indicating that most rare non-coding variants in BRCA1 and BRCA2 (without applying any bioinformatic prediction filters) are benign (James et al 2022, PMID: 35191126); Case-control enrichment analysis limited to deeper intronic variants (Supplementary Table 15) indicate that intronic variant location outside of the splice region (+7 to -21) provides moderate evidence against pathogenicity (even without applying bioinformatic prediction of splicing as a filter)."
+    }
+   ]
+  }
+ },
+ "spliceai_paragraphs": {
+  "GN092 Specifications_V1.2": [
+   {
+    "paragraph": 62,
+    "in_appendix_j": false,
+    "text": "Apply PS1, for predicted missense substitutions, where a previously classified pathogenic variant is considered to act via protein change (no confirmed or predicted effect on mRNA splicing (SpliceAI≤0.1))."
+   },
+   {
+    "paragraph": 63,
+    "in_appendix_j": false,
+    "text": "Apply PS1_Moderate, for predicted missense substitutions, where previously established likely pathogenic variant is considered to act via protein change (no confirmed or predicted effect on mRNA splicing (SpliceAI≤0.1))."
+   },
+   {
+    "paragraph": 202,
+    "in_appendix_j": false,
+    "text": "Apply PP3 for predicted splicing (SpliceAI ≥0.2) for silent, missense/in-frame (irrespective of location in clinically important functional domain) and for intronic variants outside of the donor and acceptor ±1,2 positions."
+   },
+   {
+    "paragraph": 334,
+    "in_appendix_j": false,
+    "text": "no splicing predicted (SpliceAI ≤0.1). "
+   },
+   {
+    "paragraph": 358,
+    "in_appendix_j": false,
+    "text": "Missense or in-frame insertion, deletion or delins variants inside a (potentially) clinically important functional domain, and no predicted impact via protein change or splicing (BayesDel predicted No Impact AND SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 360,
+    "in_appendix_j": false,
+    "text": "Silent variant inside a (potentially) clinically important functional domain, if no predicted impact via splicing (SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 364,
+    "in_appendix_j": false,
+    "text": "AND no predicted impact via splicing (SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 408,
+    "in_appendix_j": false,
+    "text": "Following convention, this code is applied in addition to BP4 (no splicing prediction, Splice AI ≤0.1) to capture the low prior probability of pathogenicity of silent variants."
+   }
+  ],
+  "GN092 Appendix_V1.2": [
+   {
+    "paragraph": 565,
+    "in_appendix_j": false,
+    "text": "Exon 5(6) donor site. In silico, all six variants score very similar, with SpliceAI predicting PTC (NMD) transcripts 5(6) and MES identifying an in-frame cryptic donor site. Experimental data for c.301+1G>C (Paxgene RNA) do not detect 5(6) transcripts, but confirms use of the cryptic site to produce in-frame 5(6)q9 (p.Gly98_Tyr101delinsAsp) transcripts (Leman et al 2018, PMID: 29750258). Based on that, we have assigned a pathogenic supporting evidence (PVS1_Supporting). Of note, all six donor site variants score damaging in a functional assay (Findlay et al 2018, PMID:30209399), but c.301+1G>A, also producing 5(6)q9,  has been detected in trans with a stop-gain variant in one healthy individual without Fanconi Anemia features (Ambry Genetics internal data, ClinVar VCV000142004.13). "
+   },
+   {
+    "paragraph": 593,
+    "in_appendix_j": false,
+    "text": "Exon 10(11) acceptor site. All six variants score similar with SpliceAI predictions. Experimental splicing data shows that c.671-2A>C produces PTC (NMD) transcripts 9-10(10-11) and in-frame transcripts 8-10(9-11) and particularly 10(11) (Keaton et al 2003, PMID:14513821; Lattimore et al 2018, PMID:29774201). Based on similarities with exon 10(11) donor site variants (see below), we have assigned pathogenic with moderate evidence strength (PVS1_Moderate)."
+   },
+   {
+    "paragraph": 629,
+    "in_appendix_j": false,
+    "text": "Exon 3 acceptor site. In silico, all six variants score very similar, with SpliceAI predicting acceptor loss and acceptor gain 6nt into exon 3, resulting in an in-frame deletion ∆(E3p6). No known pathogenic missense variants are within this 6nt region, however the BayesDel prediction of this in-frame deletion is above the threshold for PP3. We have assigned pathogenic evidence at the supporting strength (PVS1_Supporting) to exon 3 acceptor site variants."
+   },
+   {
+    "paragraph": 635,
+    "in_appendix_j": false,
+    "text": "Exon 4 acceptor site. In silico, all six variants score very similar, with SpliceAI predicting exon 4 skipping (PTC (NMD)). Experimental splicing data indicates that c.317-2A>G produces 4, but also a significant proportion of 4,5 (Fraile-Bethencourt et al 2019, PMID: 30883759). Based on similarity with exon 4 donor site variants, we have not assigned pathogenic evidence at any strength (PVS1_N/A) to exon 4 acceptor site variants. "
+   },
+   {
+    "paragraph": 641,
+    "in_appendix_j": false,
+    "text": "Exon 4 donor site. In silico, all six variants score very similar, with SpliceAI predicting exon 4 skipping (PTC (NMD)). Clinical, functional, and splicing data indicates that c.425G>T (with very similar SpliceAI predictions) is (partially) functional and benign, presumable due to production (in addition to 4) of in-frame 4,5 and/or 4,7 transcripts (Nix et al, 2021, PMID: 33469799) (Mesman et al 2020, PMID: 32398771). Based on that, we have not assigned pathogenic evidence at any strength (PVS1_N/A) to exon 4 donor site variants."
+   },
+   {
+    "paragraph": 647,
+    "in_appendix_j": false,
+    "text": "Exon 7 acceptor site. With the exception of c.517-1G>A, all variants score very similar, with SpliceAI predicting 7 (PTC (NMD)).  Functional, and splicing data (Mesman et al 2020, PMID: 32398771) indicates that c.517-2A>G is (partially) functional, presumable due to production of in-frame 4,7 transcripts. Based on that (and similarity with exon 4 donor sites), we have not assigned pathogenic evidence at any strength (PVS1_N/A) to exon 7 acceptor site variants. Variant c.517-1G>A is predicted (and observed) to produce 7 and 7p1 (both PTC (NMD)) (Menéndez et al 2016, PMID: 21735045; Fraile-Bethencourt et al 2019, PMID: 30883759). Based on that, we have assigned PVS1 (RNA) to this specific variant. "
+   },
+   {
+    "paragraph": 653,
+    "in_appendix_j": false,
+    "text": "Exon 7 donor site. In silico, all six variants score very similarly, with SpliceAI predicting PTC (NMD) 7 transcripts. Functional and splicing data (PMIDs: 21719596, 32398771) for c.631+2T>G report discordant results: functional effect similar to benign control variants (PMID: 32398771) and similar to pathogenic control variants (PMID: 21719596), presumably due to production of in-frame 4,7 transcripts. However, clinical data supports pathogenicity for this variant. For c.631+1G>A, experimental data has detected 7 but not the candidate rescue 4,7 (Fraile-Bethencourt et al 2019, PMID: 30883759). Based on that, we have assigned PVS1 to exon 7 donor site variants."
+   },
+   {
+    "paragraph": 659,
+    "in_appendix_j": false,
+    "text": "Exon 10 acceptor site. SpliceAI predicts loss of acceptor site and potential de novo acceptor site 18nt into the exon. Use of the de novo acceptor site would result in an in-frame transcript outside of the critical functional domains, and is expected to retain function. Experimental splicing data for c.794-2A>G showed skipping of exon 10 (internal data contributors). Functional data indicates that 10 codes for a (partially) functional protein (Mesman et al 2020, PMID: 32398771). Based on that, we have not assigned pathogenic evidence at ant strength (PVS1_N/A). The only exception is c.794-1G>A, which is predicted by SpliceAI to create a new acceptor site 1nt into the exon, expected to result in a frame-shifting transcript. We have assigned PVS1 to this specific variant."
+   },
+   {
+    "paragraph": 678,
+    "in_appendix_j": false,
+    "text": "Exon 24 acceptor site variant. In silico, the c.9118-1G>A variant is predicted by SpliceAI to create an acceptor site 24nt into exon 24, resulting in an in-frame transcript. This deletion removes part of the DNA-binding domain but no known pathogenic missense variants (Table 4). Based on this information we have assigned supporting strength pathogenic evidence (PVS1_Supporting) to this specific variant."
+   },
+   {
+    "paragraph": 684,
+    "in_appendix_j": false,
+    "text": "Exon 25 acceptor site. In silico, all variants (except for -1G>A) have similar predictions to create an acceptor site 27nt into exon 25, resulting in an in-frame transcript. This deletion removes part of the DNA-binding domain but no known pathogenic missense variants (Table 4). Based on this information we have assigned supporting strength pathogenic evidence (PVS1_Supporting).  The only exception is c.9257-1G>A, which is predicted by SpliceAI to create a new acceptor site 1nt into the exon, expected to result in a frame-shifting transcript. We have assigned PVS1 to this specific variant."
+   },
+   {
+    "paragraph": 1311,
+    "in_appendix_j": true,
+    "text": "For splicing predictions, our recommendations are based on results from unpublished analyses conducted by the SVI Splicing subgroup. Calibration of predictors against functional and splicing assay results showed that the SpliceAI tool (Jaganathan et al 2019, PMID: 30661751) outperformed multiple other splicing predictors (including MaxEntScan). For variants outside of the donor/acceptor ±1,2 positions, the optimal Splice AI cutpoints (based on the maximum ∆ score of donor loss, acceptor loss, donor gain or acceptor gain) to predict spliceogenicity were:"
+   },
+   {
+    "paragraph": 1470,
+    "in_appendix_j": true,
+    "text": "Based on the findings described above, we provide in Table 16 below a summary of the recommendations for application of initial code weights based on variant type/location and bioinformatic predictions. In some instances codes are considered not applicable since they are captured by other codes/criteria. Silent substitution (synonymous) variants are categorized by location outside versus inside a domain to align weights with those for missense alterations outside of a domain, and to allow for the small possibility that nucleotide changes within a protein functional domain could potentially affect protein translation rate and folding due to codon usage bias. Current preference is for use of SpliceAI for splicing predictions, and BayesDel for missense and in-frame exonic alterations within a (potentially) clinically important functional domain. Please also see Appendix E, Figure 9 for recommendation around use of bioinformatic codes in the context of mRNA and protein functional data."
+   },
+   {
+    "paragraph": 1487,
+    "in_appendix_j": true,
+    "text": "Apply PP3 for predicted splicing (SpliceAI ≥0.2) for silent, missense/in-frame (irrespective of location in clinically important functional domain) and for intronic variants outside of the donor and acceptor ±1,2 positions."
+   },
+   {
+    "paragraph": 1490,
+    "in_appendix_j": true,
+    "text": "Apply BP1_Strong for silent substitution, missense or in-frame insertion-deletion outside a (potentially) clinically important functional domain” (no splicing predicted, SpliceAI ≤0.1). Missense prediction not applicable."
+   },
+   {
+    "paragraph": 1494,
+    "in_appendix_j": true,
+    "text": "Apply BP4 for missense or in-frame insertion-deletion inside a (potentially) clinically important functional domain, and no predicted impact via protein change or splicing (BayesDel ≤0.15 (BRCA1) or ≤0.18 (BRCA2), AND SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 1495,
+    "in_appendix_j": true,
+    "text": "Apply BP4 for silent variant inside a (potentially) clinically important functional domain, if no predicted impact via splicing (SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 1496,
+    "in_appendix_j": true,
+    "text": "Apply BP4 for intronic variants outside of the donor and acceptor ±1,2 positions, and no predicted impact via splicing (SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 1498,
+    "in_appendix_j": true,
+    "text": "Following convention, this code is applied in addition to BP4 (no splicing prediction, Splice AI ≤0.1) to capture the low prior probability of pathogenicity of silent variants.  Nucleotide conservation is not considered relevant."
+   }
+  ],
+  "GN097 Specifications_V1.2": [
+   {
+    "paragraph": 62,
+    "in_appendix_j": false,
+    "text": "Apply PS1, for predicted missense substitutions, where a previously classified pathogenic variant is considered to act via protein change (no confirmed or predicted effect on mRNA splicing (SpliceAI≤0.1))."
+   },
+   {
+    "paragraph": 63,
+    "in_appendix_j": false,
+    "text": "Apply PS1_Moderate, for predicted missense substitutions, where previously established likely pathogenic variant is considered to act via protein change (no confirmed or predicted effect on mRNA splicing (SpliceAI≤0.1))."
+   },
+   {
+    "paragraph": 202,
+    "in_appendix_j": false,
+    "text": "Apply PP3 for predicted splicing (SpliceAI ≥0.2) for silent, missense/in-frame (irrespective of location in clinically important functional domain) and for intronic variants outside of the donor and acceptor ±1,2 positions."
+   },
+   {
+    "paragraph": 334,
+    "in_appendix_j": false,
+    "text": "no splicing predicted (SpliceAI ≤0.1). "
+   },
+   {
+    "paragraph": 358,
+    "in_appendix_j": false,
+    "text": "Missense or in-frame insertion, deletion or delins variants inside a (potentially) clinically important functional domain, and no predicted impact via protein change or splicing (BayesDel predicted No Impact AND SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 360,
+    "in_appendix_j": false,
+    "text": "Silent variant inside a (potentially) clinically important functional domain, if no predicted impact via splicing (SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 364,
+    "in_appendix_j": false,
+    "text": "AND no predicted impact via splicing (SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 408,
+    "in_appendix_j": false,
+    "text": "Following convention, this code is applied in addition to BP4 (no splicing prediction, Splice AI ≤0.1) to capture the low prior probability of pathogenicity of silent variants."
+   }
+  ],
+  "GN097 Appendix_V1.2": [
+   {
+    "paragraph": 565,
+    "in_appendix_j": false,
+    "text": "Exon 5(6) donor site. In silico, all six variants score very similar, with SpliceAI predicting PTC (NMD) transcripts 5(6) and MES identifying an in-frame cryptic donor site. Experimental data for c.301+1G>C (Paxgene RNA) do not detect 5(6) transcripts, but confirms use of the cryptic site to produce in-frame 5(6)q9 (p.Gly98_Tyr101delinsAsp) transcripts (Leman et al 2018, PMID: 29750258). Based on that, we have assigned a pathogenic supporting evidence (PVS1_Supporting). Of note, all six donor site variants score damaging in a functional assay (Findlay et al 2018, PMID:30209399), but c.301+1G>A, also producing 5(6)q9,  has been detected in trans with a stop-gain variant in one healthy individual without Fanconi Anemia features (Ambry Genetics internal data, ClinVar VCV000142004.13). "
+   },
+   {
+    "paragraph": 593,
+    "in_appendix_j": false,
+    "text": "Exon 10(11) acceptor site. All six variants score similar with SpliceAI predictions. Experimental splicing data shows that c.671-2A>C produces PTC (NMD) transcripts 9-10(10-11) and in-frame transcripts 8-10(9-11) and particularly 10(11) (Keaton et al 2003, PMID:14513821; Lattimore et al 2018, PMID:29774201). Based on similarities with exon 10(11) donor site variants (see below), we have assigned pathogenic with moderate evidence strength (PVS1_Moderate)."
+   },
+   {
+    "paragraph": 629,
+    "in_appendix_j": false,
+    "text": "Exon 3 acceptor site. In silico, all six variants score very similar, with SpliceAI predicting acceptor loss and acceptor gain 6nt into exon 3, resulting in an in-frame deletion ∆(E3p6). No known pathogenic missense variants are within this 6nt region, however the BayesDel prediction of this in-frame deletion is above the threshold for PP3. We have assigned pathogenic evidence at the supporting strength (PVS1_Supporting) to exon 3 acceptor site variants."
+   },
+   {
+    "paragraph": 635,
+    "in_appendix_j": false,
+    "text": "Exon 4 acceptor site. In silico, all six variants score very similar, with SpliceAI predicting exon 4 skipping (PTC (NMD)). Experimental splicing data indicates that c.317-2A>G produces 4, but also a significant proportion of 4,5 (Fraile-Bethencourt et al 2019, PMID: 30883759). Based on similarity with exon 4 donor site variants, we have not assigned pathogenic evidence at any strength (PVS1_N/A) to exon 4 acceptor site variants. "
+   },
+   {
+    "paragraph": 641,
+    "in_appendix_j": false,
+    "text": "Exon 4 donor site. In silico, all six variants score very similar, with SpliceAI predicting exon 4 skipping (PTC (NMD)). Clinical, functional, and splicing data indicates that c.425G>T (with very similar SpliceAI predictions) is (partially) functional and benign, presumable due to production (in addition to 4) of in-frame 4,5 and/or 4,7 transcripts (Nix et al, 2021, PMID: 33469799) (Mesman et al 2020, PMID: 32398771). Based on that, we have not assigned pathogenic evidence at any strength (PVS1_N/A) to exon 4 donor site variants."
+   },
+   {
+    "paragraph": 647,
+    "in_appendix_j": false,
+    "text": "Exon 7 acceptor site. With the exception of c.517-1G>A, all variants score very similar, with SpliceAI predicting 7 (PTC (NMD)).  Functional, and splicing data (Mesman et al 2020, PMID: 32398771) indicates that c.517-2A>G is (partially) functional, presumable due to production of in-frame 4,7 transcripts. Based on that (and similarity with exon 4 donor sites), we have not assigned pathogenic evidence at any strength (PVS1_N/A) to exon 7 acceptor site variants. Variant c.517-1G>A is predicted (and observed) to produce 7 and 7p1 (both PTC (NMD)) (Menéndez et al 2016, PMID: 21735045; Fraile-Bethencourt et al 2019, PMID: 30883759). Based on that, we have assigned PVS1 (RNA) to this specific variant. "
+   },
+   {
+    "paragraph": 653,
+    "in_appendix_j": false,
+    "text": "Exon 7 donor site. In silico, all six variants score very similarly, with SpliceAI predicting PTC (NMD) 7 transcripts. Functional and splicing data (PMIDs: 21719596, 32398771) for c.631+2T>G report discordant results: functional effect similar to benign control variants (PMID: 32398771) and similar to pathogenic control variants (PMID: 21719596), presumably due to production of in-frame 4,7 transcripts. However, clinical data supports pathogenicity for this variant. For c.631+1G>A, experimental data has detected 7 but not the candidate rescue 4,7 (Fraile-Bethencourt et al 2019, PMID: 30883759). Based on that, we have assigned PVS1 to exon 7 donor site variants."
+   },
+   {
+    "paragraph": 659,
+    "in_appendix_j": false,
+    "text": "Exon 10 acceptor site. SpliceAI predicts loss of acceptor site and potential de novo acceptor site 18nt into the exon. Use of the de novo acceptor site would result in an in-frame transcript outside of the critical functional domains, and is expected to retain function. Experimental splicing data for c.794-2A>G showed skipping of exon 10 (internal data contributors). Functional data indicates that 10 codes for a (partially) functional protein (Mesman et al 2020, PMID: 32398771). Based on that, we have not assigned pathogenic evidence at ant strength (PVS1_N/A). The only exception is c.794-1G>A, which is predicted by SpliceAI to create a new acceptor site 1nt into the exon, expected to result in a frame-shifting transcript. We have assigned PVS1 to this specific variant."
+   },
+   {
+    "paragraph": 678,
+    "in_appendix_j": false,
+    "text": "Exon 24 acceptor site variant. In silico, the c.9118-1G>A variant is predicted by SpliceAI to create an acceptor site 24nt into exon 24, resulting in an in-frame transcript. This deletion removes part of the DNA-binding domain but no known pathogenic missense variants (Table 4). Based on this information we have assigned supporting strength pathogenic evidence (PVS1_Supporting) to this specific variant."
+   },
+   {
+    "paragraph": 684,
+    "in_appendix_j": false,
+    "text": "Exon 25 acceptor site. In silico, all variants (except for -1G>A) have similar predictions to create an acceptor site 27nt into exon 25, resulting in an in-frame transcript. This deletion removes part of the DNA-binding domain but no known pathogenic missense variants (Table 4). Based on this information we have assigned supporting strength pathogenic evidence (PVS1_Supporting).  The only exception is c.9257-1G>A, which is predicted by SpliceAI to create a new acceptor site 1nt into the exon, expected to result in a frame-shifting transcript. We have assigned PVS1 to this specific variant."
+   },
+   {
+    "paragraph": 1311,
+    "in_appendix_j": true,
+    "text": "For splicing predictions, our recommendations are based on results from unpublished analyses conducted by the SVI Splicing subgroup. Calibration of predictors against functional and splicing assay results showed that the SpliceAI tool (Jaganathan et al 2019, PMID: 30661751) outperformed multiple other splicing predictors (including MaxEntScan). For variants outside of the donor/acceptor ±1,2 positions, the optimal Splice AI cutpoints (based on the maximum ∆ score of donor loss, acceptor loss, donor gain or acceptor gain) to predict spliceogenicity were:"
+   },
+   {
+    "paragraph": 1470,
+    "in_appendix_j": true,
+    "text": "Based on the findings described above, we provide in Table 16 below a summary of the recommendations for application of initial code weights based on variant type/location and bioinformatic predictions. In some instances codes are considered not applicable since they are captured by other codes/criteria. Silent substitution (synonymous) variants are categorized by location outside versus inside a domain to align weights with those for missense alterations outside of a domain, and to allow for the small possibility that nucleotide changes within a protein functional domain could potentially affect protein translation rate and folding due to codon usage bias. Current preference is for use of SpliceAI for splicing predictions, and BayesDel for missense and in-frame exonic alterations within a (potentially) clinically important functional domain. Please also see Appendix E, Figure 9 for recommendation around use of bioinformatic codes in the context of mRNA and protein functional data."
+   },
+   {
+    "paragraph": 1487,
+    "in_appendix_j": true,
+    "text": "Apply PP3 for predicted splicing (SpliceAI ≥0.2) for silent, missense/in-frame (irrespective of location in clinically important functional domain) and for intronic variants outside of the donor and acceptor ±1,2 positions."
+   },
+   {
+    "paragraph": 1490,
+    "in_appendix_j": true,
+    "text": "Apply BP1_Strong for silent substitution, missense or in-frame insertion-deletion outside a (potentially) clinically important functional domain” (no splicing predicted, SpliceAI ≤0.1). Missense prediction not applicable."
+   },
+   {
+    "paragraph": 1494,
+    "in_appendix_j": true,
+    "text": "Apply BP4 for missense or in-frame insertion-deletion inside a (potentially) clinically important functional domain, and no predicted impact via protein change or splicing (BayesDel ≤0.15 (BRCA1) or ≤0.18 (BRCA2), AND SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 1495,
+    "in_appendix_j": true,
+    "text": "Apply BP4 for silent variant inside a (potentially) clinically important functional domain, if no predicted impact via splicing (SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 1496,
+    "in_appendix_j": true,
+    "text": "Apply BP4 for intronic variants outside of the donor and acceptor ±1,2 positions, and no predicted impact via splicing (SpliceAI ≤0.1)."
+   },
+   {
+    "paragraph": 1498,
+    "in_appendix_j": true,
+    "text": "Following convention, this code is applied in addition to BP4 (no splicing prediction, Splice AI ≤0.1) to capture the low prior probability of pathogenicity of silent variants.  Nucleotide conservation is not considered relevant."
+   }
+  ]
+ },
+ "all_found": true
+}

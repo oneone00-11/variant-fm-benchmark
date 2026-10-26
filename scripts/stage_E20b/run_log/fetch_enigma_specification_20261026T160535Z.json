@@ -1,0 +1,69 @@
+{
+ "script": "scripts/stage_E20b/fetch_enigma_specification.py",
+ "argv": [
+  "scripts/stage_E20b/fetch_enigma_specification.py"
+ ],
+ "git_commit": "008896031d4fa0607818402049011d9f64bd7ca2",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20b/fetch_enigma_specification.py": "12c56d90c264985397b77ec85493ec21a2132e94f4cb8f6d92f686e479c34946",
+  "scripts/stage_E20b/_runlog.py": "365c3f499693097f81b9b67999c9be1f04e8ac03d3a54ebb41674b297c8c202c"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T16:05:08+00:00",
+ "end_utc": "2026-10-26T16:05:35+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN092_page.html",
+   "bytes": 324277,
+   "sha256": "4c3c35851f8ad47aea1c7e05bcbb4559f5f034b22fe99e2e90942f193c029782"
+  },
+  {
+   "path": "phase1/data/e20b_cache/enigma_specification/GN092/Appendices_V1.2_2024-11-18.docx",
+   "bytes": 2624819,
+   "sha256": "9a9cc9210178e8d947597089ba8edd5ff0633ff7e4fea268b8f202d46e6c8ebb"
+  },
+  {
+   "path": "phase1/data/e20b_cache/enigma_specification/GN092/Specifications_V1.2_2024-11-18.docx",
+   "bytes": 642168,
+   "sha256": "ff0761c3e052ed916668676d9e92650999804e64d6186ac9cc28488764d327b4"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN097_page.html",
+   "bytes": 324153,
+   "sha256": "a427adb83a16808bbd2e45c5b01aadaee8b46eea24ccd68c967ea13134db7d4b"
+  },
+  {
+   "path": "phase1/data/e20b_cache/enigma_specification/GN097/Appendices_V1.2_2024-11-18.docx",
+   "bytes": 2624819,
+   "sha256": "9a9cc9210178e8d947597089ba8edd5ff0633ff7e4fea268b8f202d46e6c8ebb"
+  },
+  {
+   "path": "phase1/data/e20b_cache/enigma_specification/GN097/Specifications_V1.2_2024-11-18.docx",
+   "bytes": 642168,
+   "sha256": "ff0761c3e052ed916668676d9e92650999804e64d6186ac9cc28488764d327b4"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/crossref_10.1016_j.ajhg.2024.07.013.json",
+   "bytes": 20088,
+   "sha256": "6064e676faf07c74b5307e432ebee9b8792e616b3272f04fffdfa26db31f3245"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/manifest.json",
+   "bytes": 21831,
+   "sha256": "153ca516bae85484d4cb5ff27083ca170d48b8bfd2cb90e4dc89ec27df48bd94"
+  }
+ ],
+ "exception": null,
+ "notes": {}
+}

@@ -1,0 +1,62 @@
+{
+ "script": "scripts/stage_E20b/check_enigma_quotes.py",
+ "argv": [
+  "scripts/stage_E20b/check_enigma_quotes.py"
+ ],
+ "git_commit": "008896031d4fa0607818402049011d9f64bd7ca2",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20b/check_enigma_quotes.py": "ec27585d414d4866a35f49bb9ad1cd6f395778696c87750f2f83a1ea0b72a6fe",
+  "scripts/stage_E20b/_runlog.py": "365c3f499693097f81b9b67999c9be1f04e8ac03d3a54ebb41674b297c8c202c"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T16:06:59+00:00",
+ "end_utc": "2026-10-26T16:07:00+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/vcep/raw/manifest.json",
+   "bytes": 21831,
+   "sha256": "153ca516bae85484d4cb5ff27083ca170d48b8bfd2cb90e4dc89ec27df48bd94"
+  },
+  {
+   "path": "phase1/data/e20b_cache/enigma_specification/GN092/Appendices_V1.2_2024-11-18.docx",
+   "bytes": 2624819,
+   "sha256": "9a9cc9210178e8d947597089ba8edd5ff0633ff7e4fea268b8f202d46e6c8ebb"
+  },
+  {
+   "path": "phase1/data/e20b_cache/enigma_specification/GN092/Specifications_V1.2_2024-11-18.docx",
+   "bytes": 642168,
+   "sha256": "ff0761c3e052ed916668676d9e92650999804e64d6186ac9cc28488764d327b4"
+  },
+  {
+   "path": "phase1/data/e20b_cache/enigma_specification/GN097/Appendices_V1.2_2024-11-18.docx",
+   "bytes": 2624819,
+   "sha256": "9a9cc9210178e8d947597089ba8edd5ff0633ff7e4fea268b8f202d46e6c8ebb"
+  },
+  {
+   "path": "phase1/data/e20b_cache/enigma_specification/GN097/Specifications_V1.2_2024-11-18.docx",
+   "bytes": 642168,
+   "sha256": "ff0761c3e052ed916668676d9e92650999804e64d6186ac9cc28488764d327b4"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/vcep/raw/enigma_quote_check.json",
+   "bytes": 40691,
+   "sha256": "298294ee5cf061113ecb9c1b85f2617a8c06b2dec8ac9bc74ac7489dc1f05706"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "missing": []
+ }
+}

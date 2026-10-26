@@ -1,6 +1,6 @@
 {
- "what": "the splicing-prediction rules (PP3, BP4, BP7) of the current, approved VCEP specifications of the seven training genes, as ClinGen's Criteria Specification Registry serves them (E20.3)",
- "written_by": "scripts/stage_E20/write_vcep_rules.py",
+ "what": "the splicing-prediction rules (PP3, BP4, BP7) of the current, approved VCEP specifications of the seven training genes, as ClinGen's Criteria Specification Registry serves them (E20.3; ENIGMA's setting from its specification's Appendix J, E20b.2)",
+ "written_by": "scripts/stage_E20b/write_vcep_rules.py",
  "source_manifest": "phase1/data/evidence/vcep/raw/manifest.json",
  "licence": "ClinGen's terms of use (raw/clingen_terms_of_use.html): curated content under CC0 1.0, attribution and access date requested; the registry's Zenodo deposits: cc-pddc",
  "genes": {
@@ -96,7 +96,7 @@
    "fetched_utc": "2026-10-26T10:00:09+00:00",
    "criterion": "PP3",
    "tool": "SpliceAI",
-   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "score_definition_stated": "not stated in the registry's criterion text; stated in the specification's Appendix J (Appendices_V1.2_2024-11-18.docx): the largest of the four delta scores (donor loss, acceptor loss, donor gain, acceptor gain), Max Distance 10 000, 'unmasked' scores; SpliceAI is cited by its paper (Jaganathan et al. 2019), with no version, online tool or annotation named. Figure 1A (Specifications_V1.2_2024-11-18.docx) names SpliceAI and its cut points only",
    "direction": ">=",
    "cut": 0.2,
    "strength_allowed": [
@@ -107,7 +107,38 @@
    "extra_conditions": [],
    "quote": "Apply PP3 for predicted splicing (SpliceAI ≥0.2) for silent, missense/in-frame (irrespective of location in clinically important functional domain) and for intronic variants outside of donor and acceptor 1,2 sites.",
    "section": "PP3, Supporting (strength text)",
-   "further_quotes": []
+   "further_quotes": [
+    {
+     "quote": "For splicing predictions, our recommendations are based on results from unpublished analyses conducted by the SVI Splicing subgroup.",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Calibration of predictors against functional and splicing assay results showed that the SpliceAI tool (Jaganathan et al 2019, PMID: 30661751) outperformed multiple other splicing predictors (including MaxEntScan).",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "For variants outside of the donor/acceptor ±1,2 positions, the optimal Splice AI cutpoints (based on the maximum ∆ score of donor loss, acceptor loss, donor gain or acceptor gain) to predict spliceogenicity were:",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "≥0.2 for PP3 for predicted splicing impact",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants.",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    }
+   ]
   },
   {
    "gene": "BRCA1",
@@ -124,7 +155,7 @@
    "fetched_utc": "2026-10-26T10:00:09+00:00",
    "criterion": "BP4",
    "tool": "SpliceAI",
-   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "score_definition_stated": "not stated in the registry's criterion text; stated in the specification's Appendix J (Appendices_V1.2_2024-11-18.docx): the largest of the four delta scores (donor loss, acceptor loss, donor gain, acceptor gain), Max Distance 10 000, 'unmasked' scores; SpliceAI is cited by its paper (Jaganathan et al. 2019), with no version, online tool or annotation named. Figure 1A (Specifications_V1.2_2024-11-18.docx) names SpliceAI and its cut points only",
    "direction": "<=",
    "cut": 0.1,
    "strength_allowed": [
@@ -135,7 +166,38 @@
    "extra_conditions": [],
    "quote": "Intronic variants outside of the native donor and acceptor splice sites (i.e. not +/- 1,2 positions) AND no predicted impact via splicing (SpliceAI ≤0.1).",
    "section": "BP4, Supporting (strength text)",
-   "further_quotes": []
+   "further_quotes": [
+    {
+     "quote": "For splicing predictions, our recommendations are based on results from unpublished analyses conducted by the SVI Splicing subgroup.",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Calibration of predictors against functional and splicing assay results showed that the SpliceAI tool (Jaganathan et al 2019, PMID: 30661751) outperformed multiple other splicing predictors (including MaxEntScan).",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "For variants outside of the donor/acceptor ±1,2 positions, the optimal Splice AI cutpoints (based on the maximum ∆ score of donor loss, acceptor loss, donor gain or acceptor gain) to predict spliceogenicity were:",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "≤0.1 for BP4 for no predicted splicing impact",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants.",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    }
+   ]
   },
   {
    "gene": "BRCA1",
@@ -152,7 +214,7 @@
    "fetched_utc": "2026-10-26T10:00:09+00:00",
    "criterion": "BP7",
    "tool": "SpliceAI, through BP4",
-   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "score_definition_stated": "not stated in the registry's criterion text; stated in the specification's Appendix J (Appendices_V1.2_2024-11-18.docx): the largest of the four delta scores (donor loss, acceptor loss, donor gain, acceptor gain), Max Distance 10 000, 'unmasked' scores; SpliceAI is cited by its paper (Jaganathan et al. 2019), with no version, online tool or annotation named. Figure 1A (Specifications_V1.2_2024-11-18.docx) names SpliceAI and its cut points only",
    "direction": "<=",
    "cut": 0.1,
    "strength_allowed": [
@@ -170,6 +232,36 @@
     {
      "quote": "Following convention, this code is applied in addition to BP4 (no splicing prediction, Splice AI ≤0.1) to capture the low prior probability of pathogenicity of silent variants.",
      "section": "BP7, instructionsToUse"
+    },
+    {
+     "quote": "For splicing predictions, our recommendations are based on results from unpublished analyses conducted by the SVI Splicing subgroup.",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Calibration of predictors against functional and splicing assay results showed that the SpliceAI tool (Jaganathan et al 2019, PMID: 30661751) outperformed multiple other splicing predictors (including MaxEntScan).",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "For variants outside of the donor/acceptor ±1,2 positions, the optimal Splice AI cutpoints (based on the maximum ∆ score of donor loss, acceptor loss, donor gain or acceptor gain) to predict spliceogenicity were:",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "≤0.1 for BP4 for no predicted splicing impact",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants.",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
     }
    ]
   },
@@ -188,7 +280,7 @@
    "fetched_utc": "2026-10-26T10:00:17+00:00",
    "criterion": "PP3",
    "tool": "SpliceAI",
-   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "score_definition_stated": "not stated in the registry's criterion text; stated in the specification's Appendix J (Appendices_V1.2_2024-11-18.docx): the largest of the four delta scores (donor loss, acceptor loss, donor gain, acceptor gain), Max Distance 10 000, 'unmasked' scores; SpliceAI is cited by its paper (Jaganathan et al. 2019), with no version, online tool or annotation named. Figure 1A (Specifications_V1.2_2024-11-18.docx) names SpliceAI and its cut points only",
    "direction": ">=",
    "cut": 0.2,
    "strength_allowed": [
@@ -199,7 +291,38 @@
    "extra_conditions": [],
    "quote": "Apply PP3 for predicted splicing (SpliceAI ≥0.2) for silent, missense/in-frame (irrespective of location in clinically important functional domain) and for intronic variants outside of donor and acceptor 1,2 sites.",
    "section": "PP3, Supporting (strength text)",
-   "further_quotes": []
+   "further_quotes": [
+    {
+     "quote": "For splicing predictions, our recommendations are based on results from unpublished analyses conducted by the SVI Splicing subgroup.",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Calibration of predictors against functional and splicing assay results showed that the SpliceAI tool (Jaganathan et al 2019, PMID: 30661751) outperformed multiple other splicing predictors (including MaxEntScan).",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "For variants outside of the donor/acceptor ±1,2 positions, the optimal Splice AI cutpoints (based on the maximum ∆ score of donor loss, acceptor loss, donor gain or acceptor gain) to predict spliceogenicity were:",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "≥0.2 for PP3 for predicted splicing impact",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants.",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.",
+     "section": "PP3, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    }
+   ]
   },
   {
    "gene": "BRCA2",
@@ -216,7 +339,7 @@
    "fetched_utc": "2026-10-26T10:00:17+00:00",
    "criterion": "BP4",
    "tool": "SpliceAI",
-   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "score_definition_stated": "not stated in the registry's criterion text; stated in the specification's Appendix J (Appendices_V1.2_2024-11-18.docx): the largest of the four delta scores (donor loss, acceptor loss, donor gain, acceptor gain), Max Distance 10 000, 'unmasked' scores; SpliceAI is cited by its paper (Jaganathan et al. 2019), with no version, online tool or annotation named. Figure 1A (Specifications_V1.2_2024-11-18.docx) names SpliceAI and its cut points only",
    "direction": "<=",
    "cut": 0.1,
    "strength_allowed": [
@@ -227,7 +350,38 @@
    "extra_conditions": [],
    "quote": "Intronic variants outside of the native donor and acceptor splice sites (i.e. not +/- 1,2 positions) AND no predicted impact via splicing (SpliceAI ≤0.1).",
    "section": "BP4, Supporting (strength text)",
-   "further_quotes": []
+   "further_quotes": [
+    {
+     "quote": "For splicing predictions, our recommendations are based on results from unpublished analyses conducted by the SVI Splicing subgroup.",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Calibration of predictors against functional and splicing assay results showed that the SpliceAI tool (Jaganathan et al 2019, PMID: 30661751) outperformed multiple other splicing predictors (including MaxEntScan).",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "For variants outside of the donor/acceptor ±1,2 positions, the optimal Splice AI cutpoints (based on the maximum ∆ score of donor loss, acceptor loss, donor gain or acceptor gain) to predict spliceogenicity were:",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "≤0.1 for BP4 for no predicted splicing impact",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants.",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.",
+     "section": "BP4, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    }
+   ]
   },
   {
    "gene": "BRCA2",
@@ -244,7 +398,7 @@
    "fetched_utc": "2026-10-26T10:00:17+00:00",
    "criterion": "BP7",
    "tool": "SpliceAI, through BP4",
-   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "score_definition_stated": "not stated in the registry's criterion text; stated in the specification's Appendix J (Appendices_V1.2_2024-11-18.docx): the largest of the four delta scores (donor loss, acceptor loss, donor gain, acceptor gain), Max Distance 10 000, 'unmasked' scores; SpliceAI is cited by its paper (Jaganathan et al. 2019), with no version, online tool or annotation named. Figure 1A (Specifications_V1.2_2024-11-18.docx) names SpliceAI and its cut points only",
    "direction": "<=",
    "cut": 0.1,
    "strength_allowed": [
@@ -262,6 +416,36 @@
     {
      "quote": "Following convention, this code is applied in addition to BP4 (no splicing prediction, Splice AI ≤0.1) to capture the low prior probability of pathogenicity of silent variants.",
      "section": "BP7, instructionsToUse"
+    },
+    {
+     "quote": "For splicing predictions, our recommendations are based on results from unpublished analyses conducted by the SVI Splicing subgroup.",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Calibration of predictors against functional and splicing assay results showed that the SpliceAI tool (Jaganathan et al 2019, PMID: 30661751) outperformed multiple other splicing predictors (including MaxEntScan).",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "For variants outside of the donor/acceptor ±1,2 positions, the optimal Splice AI cutpoints (based on the maximum ∆ score of donor loss, acceptor loss, donor gain or acceptor gain) to predict spliceogenicity were:",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "≤0.1 for BP4 for no predicted splicing impact",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "We recommend setting the Max Distance to 10 000 and display ‘unmasked’ and REF & ALT scores when curating variants.",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
+    },
+    {
+     "quote": "Using ‘unmasked’ scores may require additional interpretation to determine predicted splicing impact.",
+     "section": "BP7, Appendix J",
+     "source": "Appendix_V1.2 (Appendices_V1.2_2024-11-18.docx), checked in phase1/data/evidence/vcep/raw/enigma_quote_check.json"
     }
    ]
   },

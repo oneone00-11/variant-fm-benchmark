@@ -1,0 +1,40 @@
+{
+ "commit": "E20b.2 (commit 2: the ENIGMA specification files)",
+ "reason": "ENIGMA's BRCA1 and BRCA2 specification files, which hold Figure 1A and Appendix J, as the registry serves them: the registry's pages committed, the files themselves kept in the gitignored cache (licence unclear) and recorded by URL and sha256, Crossref's record of the panel's paper read for its licences; the setting Appendix J states, quoted verbatim, written into the rules file's ENIGMA entries; no predictor score is read and no output changes",
+ "declared_from": "E20b.2: no existing output changes; the records and the rules file's fields it names",
+ "pairs": {},
+ "files": {
+  "phase1/data/evidence/vcep/raw/GN092_page.html": {
+   "kind": "file",
+   "why": "new input: the registry's page for GN092 (BRCA1), whose files panel lists the specification's files (scripts/stage_E20b/fetch_enigma_specification.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/GN097_page.html": {
+   "kind": "file",
+   "why": "new input: the registry's page for GN097 (BRCA2), whose files panel lists the specification's files (scripts/stage_E20b/fetch_enigma_specification.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/crossref_10.1016_j.ajhg.2024.07.013.json": {
+   "kind": "file",
+   "why": "new input: Crossref's record of the ENIGMA panel's paper, read for the publisher's licences (scripts/stage_E20b/fetch_enigma_specification.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/enigma_quote_check.json": {
+   "kind": "file",
+   "why": "new input: Appendix J's sentences on how SpliceAI is scored and Figure 1A's caption, checked verbatim in both specifications' cached files (scripts/stage_E20b/check_enigma_quotes.py); listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/manifest.json": {
+   "kind": "json",
+   "paths": [
+    [
+     "files"
+    ],
+    [
+     "enigma_specification"
+    ]
+   ],
+   "why": "the two registry pages and Crossref's record added to 'files'; the specification files, their cache paths, sha256, version, the licence and the sources searched in a new 'enigma_specification' section"
+  },
+  "phase1/data/evidence/vcep/vcep_rules.json": {
+   "kind": "file",
+   "why": "ENIGMA's six rules: score_definition_stated and further_quotes (Appendix J's sentences appended after the registry's), the description and the writer; write_vcep_rules.py stops on any other difference from HEAD"
+  }
+ }
+}
