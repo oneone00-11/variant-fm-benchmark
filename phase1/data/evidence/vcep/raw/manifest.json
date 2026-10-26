@@ -1,0 +1,313 @@
+{
+ "what": "the VCEP specifications of the seven training genes in ClinGen's Criteria Specification Registry, as served (E20.3)",
+ "written_by": "scripts/stage_E20/fetch_vcep_specs.py",
+ "genes_searched": [
+  "BAP1",
+  "BARD1",
+  "BRCA1",
+  "BRCA2",
+  "PALB2",
+  "RAD51C",
+  "VHL"
+ ],
+ "rule": "a specification whose rule set names the gene, read from the registry's list",
+ "found": {
+  "BAP1": [],
+  "BARD1": [],
+  "BRCA1": [
+   {
+    "id": "GN092",
+    "status": "Released",
+    "version": "1.2",
+    "vcep": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+    "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN092"
+   }
+  ],
+  "BRCA2": [
+   {
+    "id": "GN097",
+    "status": "Released",
+    "version": "1.2",
+    "vcep": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+    "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN097"
+   }
+  ],
+  "PALB2": [
+   {
+    "id": "GN077",
+    "status": "Released",
+    "version": "1.3",
+    "vcep": "Hereditary Breast, Ovarian and Pancreatic Cancer Variant Curation Expert Panel",
+    "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN077"
+   }
+  ],
+  "RAD51C": [
+   {
+    "id": "GN096",
+    "status": "Classification Rules In Prep",
+    "version": "1.0",
+    "vcep": "Hereditary Breast, Ovarian and Pancreatic Cancer Variant Curation Expert Panel",
+    "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN096"
+   }
+  ],
+  "VHL": [
+   {
+    "id": "GN078",
+    "status": "Released",
+    "version": "1.1",
+    "vcep": "VHL Variant Curation Expert Panel",
+    "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN078"
+   }
+  ]
+ },
+ "records": {
+  "GN077": {
+   "version": "1.3",
+   "approvedOn": "2026-09-18T16:00:30.869Z",
+   "doi": {
+    "conceptDoi": "10.5281/zenodo.21433964",
+    "docDoi": null
+   }
+  },
+  "GN078": {
+   "version": "1.1",
+   "approvedOn": "2025-01-10T22:36:48.784Z",
+   "doi": {
+    "conceptDoi": "10.5281/zenodo.21433969",
+    "docDoi": "10.5281/zenodo.21433974"
+   }
+  },
+  "GN092": {
+   "version": "1.2",
+   "approvedOn": "2025-01-09T01:11:34.495Z",
+   "doi": {
+    "conceptDoi": "10.5281/zenodo.21434310",
+    "docDoi": "10.5281/zenodo.21434315"
+   }
+  },
+  "GN096": {
+   "version": "1.0",
+   "approvedOn": null,
+   "doi": {
+    "conceptDoi": null,
+    "docDoi": null
+   }
+  },
+  "GN097": {
+   "version": "1.2",
+   "approvedOn": "2025-01-09T01:12:40.191Z",
+   "doi": {
+    "conceptDoi": "10.5281/zenodo.21434338",
+    "docDoi": "10.5281/zenodo.21434343"
+   }
+  }
+ },
+ "zenodo": {
+  "GN077": {
+   "doi_followed": "10.5281/zenodo.21433964",
+   "record": 21433968,
+   "version": "1.2",
+   "publication_date": "2025-07-14",
+   "license": "cc-pddc",
+   "files": [
+    "ClinGen_ACMG_Specifications_GN077_1.2.pdf",
+    "GN077_1.2.0.json"
+   ]
+  },
+  "GN078": {
+   "doi_followed": "10.5281/zenodo.21433974",
+   "record": 21433974,
+   "version": "1.1",
+   "publication_date": "2025-01-10",
+   "license": "cc-pddc",
+   "files": [
+    "GN078_1.1.0.json",
+    "ClinGen_ACMG_Specifications_GN078_1.1.pdf"
+   ]
+  },
+  "GN092": {
+   "doi_followed": "10.5281/zenodo.21434315",
+   "record": 21434315,
+   "version": "1.2",
+   "publication_date": "2025-01-09",
+   "license": "cc-pddc",
+   "files": [
+    "GN092_1.2.0.json",
+    "ClinGen_ACMG_Specifications_GN092_1.2.pdf"
+   ]
+  },
+  "GN097": {
+   "doi_followed": "10.5281/zenodo.21434343",
+   "record": 21434343,
+   "version": "1.2",
+   "publication_date": "2025-01-09",
+   "license": "cc-pddc",
+   "files": [
+    "GN097_1.2.0.json",
+    "ClinGen_ACMG_Specifications_GN097_1.2.pdf"
+   ]
+  }
+ },
+ "files": [
+  {
+   "url": "https://cspec.genome.network/cspec/api/svis",
+   "final_url": "https://cspec.genome.network/cspec/api/svis",
+   "http_status": 200,
+   "content_type": "application/json; charset=utf-8",
+   "fetched_utc": "2026-10-26T09:59:57+00:00",
+   "file": "phase1/data/evidence/vcep/raw/cspec_svis.json",
+   "bytes": 299930,
+   "sha256": "ee399631ae105d9cdd2b16e84b88c11697ad7cdabecccec43e471d8bd7e00efc"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/api/SequenceVariantInterpretation/id/GN077",
+   "final_url": "https://cspec.genome.network/cspec/api/SequenceVariantInterpretation/id/GN077",
+   "http_status": 200,
+   "content_type": "application/json; charset=utf-8",
+   "fetched_utc": "2026-10-26T09:59:59+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN077.json",
+   "bytes": 56155,
+   "sha256": "53beb241bcac2e32e2aee6741f31c22fb5b68a70e9be9f4c880b9b13727fddff"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1526222356",
+   "final_url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1526222356",
+   "http_status": 200,
+   "content_type": "application/json; charset=utf-8",
+   "fetched_utc": "2026-10-26T10:00:01+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN077_record.json",
+   "bytes": 172622,
+   "sha256": "3641b671b4ff3958dc4c2e8d79b543e848dca21c7134c0ffc343235131af9587"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/api/SequenceVariantInterpretation/id/GN078",
+   "final_url": "https://cspec.genome.network/cspec/api/SequenceVariantInterpretation/id/GN078",
+   "http_status": 200,
+   "content_type": "application/json; charset=utf-8",
+   "fetched_utc": "2026-10-26T10:00:03+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN078.json",
+   "bytes": 67202,
+   "sha256": "09ed733ebfb7c59d93d7082664426eec9b33356f9ef4dbf1e6a16e916b05c29c"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1527855755",
+   "final_url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1527855755",
+   "http_status": 200,
+   "content_type": "application/json; charset=utf-8",
+   "fetched_utc": "2026-10-26T10:00:06+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN078_record.json",
+   "bytes": 167523,
+   "sha256": "1d397b413069531933747c2d4ea9b912c3ef43b2a519f9f205a12d58f3c0e637"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/api/SequenceVariantInterpretation/id/GN092",
+   "final_url": "https://cspec.genome.network/cspec/api/SequenceVariantInterpretation/id/GN092",
+   "http_status": 200,
+   "content_type": "application/json; charset=utf-8",
+   "fetched_utc": "2026-10-26T10:00:08+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN092.json",
+   "bytes": 71002,
+   "sha256": "febc83a305ccf1ffb583eca24902e2286435849df289a2414f26227449879fb3"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1530970787",
+   "final_url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1530970787",
+   "http_status": 200,
+   "content_type": "application/json; charset=utf-8",
+   "fetched_utc": "2026-10-26T10:00:09+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN092_record.json",
+   "bytes": 143697,
+   "sha256": "f16e8322dcc79d7f3cf8404bb05e74086483638591b4a02a13b9f127c210ffe6"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/api/SequenceVariantInterpretation/id/GN096",
+   "final_url": "https://cspec.genome.network/cspec/api/SequenceVariantInterpretation/id/GN096",
+   "http_status": 200,
+   "content_type": "application/json; charset=utf-8",
+   "fetched_utc": "2026-10-26T10:00:11+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN096.json",
+   "bytes": 2703,
+   "sha256": "6434d5bf5eb26cb1e75f7d12740fda9945de2dfa5843237e9963cd2cc170f86a"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1535377178",
+   "final_url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1535377178",
+   "http_status": 200,
+   "content_type": "application/json; charset=utf-8",
+   "fetched_utc": "2026-10-26T10:00:13+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN096_record.json",
+   "bytes": 28303,
+   "sha256": "0faa200baa27a5942b04c9e749a479ef79fedc231f33b02cb1e848354e902850"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/api/SequenceVariantInterpretation/id/GN097",
+   "final_url": "https://cspec.genome.network/cspec/api/SequenceVariantInterpretation/id/GN097",
+   "http_status": 200,
+   "content_type": "application/json; charset=utf-8",
+   "fetched_utc": "2026-10-26T10:00:15+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN097.json",
+   "bytes": 70913,
+   "sha256": "855c7ad1050b7ae5ef7e059b850a334c6edd11b551666f0517cf010cfaa75223"
+  },
+  {
+   "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1535438831",
+   "final_url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1535438831",
+   "http_status": 200,
+   "content_type": "application/json; charset=utf-8",
+   "fetched_utc": "2026-10-26T10:00:17+00:00",
+   "file": "phase1/data/evidence/vcep/raw/GN097_record.json",
+   "bytes": 143045,
+   "sha256": "0821d70d9b8bc9cdc7529f6242b583fa3d0c5a7b1a8365ccf53424bc321aa7b4"
+  },
+  {
+   "url": "https://zenodo.org/api/records/21433964",
+   "final_url": "https://zenodo.org/api/records/21433968",
+   "http_status": 200,
+   "content_type": "application/json",
+   "fetched_utc": "2026-10-26T10:00:18+00:00",
+   "file": "phase1/data/evidence/vcep/raw/zenodo_GN077_21433964.json",
+   "bytes": 6322,
+   "sha256": "56aa1118e077138c7f2cd0d97b142c4e73c8259524dd257e4d9c88da098a7b30"
+  },
+  {
+   "url": "https://zenodo.org/api/records/21433974",
+   "final_url": "https://zenodo.org/api/records/21433974",
+   "http_status": 200,
+   "content_type": "application/json",
+   "fetched_utc": "2026-10-26T10:00:19+00:00",
+   "file": "phase1/data/evidence/vcep/raw/zenodo_GN078_21433974.json",
+   "bytes": 6050,
+   "sha256": "0b340a7e77affd712f6c016d0140087709f848189f1be9abdf9cce1b76b7fad2"
+  },
+  {
+   "url": "https://zenodo.org/api/records/21434315",
+   "final_url": "https://zenodo.org/api/records/21434315",
+   "http_status": 200,
+   "content_type": "application/json",
+   "fetched_utc": "2026-10-26T10:00:19+00:00",
+   "file": "phase1/data/evidence/vcep/raw/zenodo_GN092_21434315.json",
+   "bytes": 6147,
+   "sha256": "c7f32a1bf9b618b8215c3e3e46faf2dabbe9cf017f62959fc7e6ff3f6b7e1f1f"
+  },
+  {
+   "url": "https://zenodo.org/api/records/21434343",
+   "final_url": "https://zenodo.org/api/records/21434343",
+   "http_status": 200,
+   "content_type": "application/json",
+   "fetched_utc": "2026-10-26T10:00:20+00:00",
+   "file": "phase1/data/evidence/vcep/raw/zenodo_GN097_21434343.json",
+   "bytes": 6147,
+   "sha256": "6c767a54f3ff1901b097e1c115c0b249a12acfffee3e53515265128b809d4698"
+  },
+  {
+   "url": "https://www.clinicalgenome.org/docs/terms-of-use/",
+   "final_url": "https://www.clinicalgenome.org/docs/terms-of-use/",
+   "http_status": 200,
+   "content_type": "text/html; charset=UTF-8",
+   "fetched_utc": "2026-10-26T10:00:22+00:00",
+   "file": "phase1/data/evidence/vcep/raw/clingen_terms_of_use.html",
+   "bytes": 116813,
+   "sha256": "bbeed8bdb6ba5029ee803b17b2e9a46cc92c9787c2cc5420a9c93477c50dc6ec"
+  }
+ ]
+}

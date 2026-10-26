@@ -1838,3 +1838,23 @@ every existing output is unchanged (`scripts/stage_E20/scope_c12.json`).
 - The header states that the frame is inferred from the tools' output, that TP53's label is
   its primary label variant by variant, the bands, and that E6's false positives predate
   E16d's relabel (6 and 7 PALB2 variants would be added under the current labels).
+
+## Supplementary analyses, C13: the VCEP specifications' records and rules (stage E20, 2026-10-26)
+
+Why: E20.3 (修改单 v2.40 §4, C13). The VCEP specifications of the training genes, as records,
+before any predictor score is read. No stage is added, and every existing output is
+unchanged (`scripts/stage_E20/scope_c13_records.json`).
+
+- The records (`phase1/data/evidence/vcep/raw/`, with `manifest.json`): ClinGen's Criteria
+  Specification Registry's list of specifications; for each training gene, every
+  specification whose rule set names it, with its document and full record; their Zenodo
+  deposits' records (licence cc-pddc); ClinGen's terms of use (curated content under CC0 1.0).
+  Current and approved: ENIGMA GN092 v1.2 (BRCA1) and GN097 v1.2 (BRCA2), the Hereditary
+  Breast, Ovarian and Pancreatic Cancer panel's GN077 v1.3 (PALB2), the VHL panel's GN078
+  v1.1 (VHL). None for BAP1 and BARD1; RAD51C's GN096 v1.0 is "Classification Rules In Prep".
+- `vcep_rules.json`: 12 rules (PP3, BP4, BP7 of the four specifications), each quote checked
+  verbatim against the field of the record it cites; the strengths each allows are the
+  record's (Supporting for every PP3 and BP4). SpliceAI cut points: ENIGMA and PALB2 PP3 >=
+  0.2, BP4 <= 0.1; VHL PP3 > 0.5 and BP4 <= 0.1, each with VarSeak. PALB2's specification
+  names the SVI's thresholds (Walker et al. 2023); the others state no SpliceAI setting.
+- `reproduce_evidence.py --check` also reads the VCEP manifest.

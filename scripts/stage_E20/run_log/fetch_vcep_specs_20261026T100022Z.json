@@ -1,0 +1,114 @@
+{
+ "script": "scripts/stage_E20/fetch_vcep_specs.py",
+ "argv": [
+  "scripts/stage_E20/fetch_vcep_specs.py"
+ ],
+ "git_commit": "ac51de3ba64754d4260bb1f89af31a1f2bb0e814",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20/fetch_vcep_specs.py": "846c47b8d0c472eda39ac26097c78258e0b836296b233a5468cb240d953c0935",
+  "scripts/stage_E20/_runlog.py": "8483813f99d10e14cc678a7913c508515bf95b2963556b81d583b8e4e0c41a86"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T09:59:53+00:00",
+ "end_utc": "2026-10-26T10:00:22+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/vcep/raw/cspec_svis.json",
+   "bytes": 299930,
+   "sha256": "ee399631ae105d9cdd2b16e84b88c11697ad7cdabecccec43e471d8bd7e00efc"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN077.json",
+   "bytes": 56155,
+   "sha256": "53beb241bcac2e32e2aee6741f31c22fb5b68a70e9be9f4c880b9b13727fddff"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN077_record.json",
+   "bytes": 172622,
+   "sha256": "3641b671b4ff3958dc4c2e8d79b543e848dca21c7134c0ffc343235131af9587"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN078.json",
+   "bytes": 67202,
+   "sha256": "09ed733ebfb7c59d93d7082664426eec9b33356f9ef4dbf1e6a16e916b05c29c"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN078_record.json",
+   "bytes": 167523,
+   "sha256": "1d397b413069531933747c2d4ea9b912c3ef43b2a519f9f205a12d58f3c0e637"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN092.json",
+   "bytes": 71002,
+   "sha256": "febc83a305ccf1ffb583eca24902e2286435849df289a2414f26227449879fb3"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN092_record.json",
+   "bytes": 143697,
+   "sha256": "f16e8322dcc79d7f3cf8404bb05e74086483638591b4a02a13b9f127c210ffe6"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN096.json",
+   "bytes": 2703,
+   "sha256": "6434d5bf5eb26cb1e75f7d12740fda9945de2dfa5843237e9963cd2cc170f86a"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN096_record.json",
+   "bytes": 28303,
+   "sha256": "0faa200baa27a5942b04c9e749a479ef79fedc231f33b02cb1e848354e902850"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN097.json",
+   "bytes": 70913,
+   "sha256": "855c7ad1050b7ae5ef7e059b850a334c6edd11b551666f0517cf010cfaa75223"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN097_record.json",
+   "bytes": 143045,
+   "sha256": "0821d70d9b8bc9cdc7529f6242b583fa3d0c5a7b1a8365ccf53424bc321aa7b4"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/zenodo_GN077_21433964.json",
+   "bytes": 6322,
+   "sha256": "56aa1118e077138c7f2cd0d97b142c4e73c8259524dd257e4d9c88da098a7b30"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/zenodo_GN078_21433974.json",
+   "bytes": 6050,
+   "sha256": "0b340a7e77affd712f6c016d0140087709f848189f1be9abdf9cce1b76b7fad2"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/zenodo_GN092_21434315.json",
+   "bytes": 6147,
+   "sha256": "c7f32a1bf9b618b8215c3e3e46faf2dabbe9cf017f62959fc7e6ff3f6b7e1f1f"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/zenodo_GN097_21434343.json",
+   "bytes": 6147,
+   "sha256": "6c767a54f3ff1901b097e1c115c0b249a12acfffee3e53515265128b809d4698"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/clingen_terms_of_use.html",
+   "bytes": 116813,
+   "sha256": "bbeed8bdb6ba5029ee803b17b2e9a46cc92c9787c2cc5420a9c93477c50dc6ec"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/manifest.json",
+   "bytes": 10783,
+   "sha256": "3a951c00e8df8a7a916a9ba4797ef0577dc0fff9be8943cd279774328a21b396"
+  }
+ ],
+ "exception": null,
+ "notes": {}
+}

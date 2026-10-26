@@ -1,0 +1,489 @@
+{
+ "what": "the splicing-prediction rules (PP3, BP4, BP7) of the current, approved VCEP specifications of the seven training genes, as ClinGen's Criteria Specification Registry serves them (E20.3)",
+ "written_by": "scripts/stage_E20/write_vcep_rules.py",
+ "source_manifest": "phase1/data/evidence/vcep/raw/manifest.json",
+ "licence": "ClinGen's terms of use (raw/clingen_terms_of_use.html): curated content under CC0 1.0, attribution and access date requested; the registry's Zenodo deposits: cc-pddc",
+ "genes": {
+  "BAP1": {
+   "specification": null,
+   "registry_entries": [],
+   "note": "no current, approved specification in the registry"
+  },
+  "BARD1": {
+   "specification": null,
+   "registry_entries": [],
+   "note": "no current, approved specification in the registry"
+  },
+  "BRCA1": {
+   "specification": "GN092",
+   "registry_entries": [
+    {
+     "id": "GN092",
+     "status": "Released",
+     "version": "1.2",
+     "vcep": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+     "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN092"
+    }
+   ],
+   "note": ""
+  },
+  "BRCA2": {
+   "specification": "GN097",
+   "registry_entries": [
+    {
+     "id": "GN097",
+     "status": "Released",
+     "version": "1.2",
+     "vcep": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+     "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN097"
+    }
+   ],
+   "note": ""
+  },
+  "PALB2": {
+   "specification": "GN077",
+   "registry_entries": [
+    {
+     "id": "GN077",
+     "status": "Released",
+     "version": "1.3",
+     "vcep": "Hereditary Breast, Ovarian and Pancreatic Cancer Variant Curation Expert Panel",
+     "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN077"
+    }
+   ],
+   "note": ""
+  },
+  "RAD51C": {
+   "specification": null,
+   "registry_entries": [
+    {
+     "id": "GN096",
+     "status": "Classification Rules In Prep",
+     "version": "1.0",
+     "vcep": "Hereditary Breast, Ovarian and Pancreatic Cancer Variant Curation Expert Panel",
+     "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN096"
+    }
+   ],
+   "note": "no current, approved specification in the registry; the registry lists GN096 v1.0 (Classification Rules In Prep)"
+  },
+  "VHL": {
+   "specification": "GN078",
+   "registry_entries": [
+    {
+     "id": "GN078",
+     "status": "Released",
+     "version": "1.1",
+     "vcep": "VHL Variant Curation Expert Panel",
+     "url": "https://cspec.genome.network/cspec/ui/svi/doc/GN078"
+    }
+   ],
+   "note": ""
+  }
+ },
+ "rules": [
+  {
+   "gene": "BRCA1",
+   "vcep": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN092",
+    "record": "phase1/data/evidence/vcep/raw/GN092_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1530970787",
+    "doi": "10.5281/zenodo.21434315"
+   },
+   "version": "1.2",
+   "approved_on": "2025-01-09T01:11:34.495Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:09+00:00",
+   "criterion": "PP3",
+   "tool": "SpliceAI",
+   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "direction": ">=",
+   "cut": 0.2,
+   "strength_allowed": [
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "intronic variants outside the donor and acceptor 1,2 sites",
+   "extra_conditions": [],
+   "quote": "Apply PP3 for predicted splicing (SpliceAI ≥0.2) for silent, missense/in-frame (irrespective of location in clinically important functional domain) and for intronic variants outside of donor and acceptor 1,2 sites.",
+   "section": "PP3, Supporting (strength text)",
+   "further_quotes": []
+  },
+  {
+   "gene": "BRCA1",
+   "vcep": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN092",
+    "record": "phase1/data/evidence/vcep/raw/GN092_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1530970787",
+    "doi": "10.5281/zenodo.21434315"
+   },
+   "version": "1.2",
+   "approved_on": "2025-01-09T01:11:34.495Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:09+00:00",
+   "criterion": "BP4",
+   "tool": "SpliceAI",
+   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "direction": "<=",
+   "cut": 0.1,
+   "strength_allowed": [
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "intronic variants outside the native donor and acceptor splice sites (not the +/-1,2 positions)",
+   "extra_conditions": [],
+   "quote": "Intronic variants outside of the native donor and acceptor splice sites (i.e. not +/- 1,2 positions) AND no predicted impact via splicing (SpliceAI ≤0.1).",
+   "section": "BP4, Supporting (strength text)",
+   "further_quotes": []
+  },
+  {
+   "gene": "BRCA1",
+   "vcep": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN092",
+    "record": "phase1/data/evidence/vcep/raw/GN092_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1530970787",
+    "doi": "10.5281/zenodo.21434315"
+   },
+   "version": "1.2",
+   "approved_on": "2025-01-09T01:11:34.495Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:09+00:00",
+   "criterion": "BP7",
+   "tool": "SpliceAI, through BP4",
+   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "direction": "<=",
+   "cut": 0.1,
+   "strength_allowed": [
+    "Strong",
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "intronic variants at or beyond +7 (donor side) and -21 (acceptor side)",
+   "extra_conditions": [
+    "BP4 met (SpliceAI <= 0.1)"
+   ],
+   "quote": "Intronic variants located outside conserved donor or acceptor motif positions (at or beyond positions +7/-21) IF BP4 met.",
+   "section": "BP7, Supporting (strength text)",
+   "further_quotes": [
+    {
+     "quote": "Following convention, this code is applied in addition to BP4 (no splicing prediction, Splice AI ≤0.1) to capture the low prior probability of pathogenicity of silent variants.",
+     "section": "BP7, instructionsToUse"
+    }
+   ]
+  },
+  {
+   "gene": "BRCA2",
+   "vcep": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN097",
+    "record": "phase1/data/evidence/vcep/raw/GN097_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1535438831",
+    "doi": "10.5281/zenodo.21434343"
+   },
+   "version": "1.2",
+   "approved_on": "2025-01-09T01:12:40.191Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:17+00:00",
+   "criterion": "PP3",
+   "tool": "SpliceAI",
+   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "direction": ">=",
+   "cut": 0.2,
+   "strength_allowed": [
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "intronic variants outside the donor and acceptor 1,2 sites",
+   "extra_conditions": [],
+   "quote": "Apply PP3 for predicted splicing (SpliceAI ≥0.2) for silent, missense/in-frame (irrespective of location in clinically important functional domain) and for intronic variants outside of donor and acceptor 1,2 sites.",
+   "section": "PP3, Supporting (strength text)",
+   "further_quotes": []
+  },
+  {
+   "gene": "BRCA2",
+   "vcep": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN097",
+    "record": "phase1/data/evidence/vcep/raw/GN097_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1535438831",
+    "doi": "10.5281/zenodo.21434343"
+   },
+   "version": "1.2",
+   "approved_on": "2025-01-09T01:12:40.191Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:17+00:00",
+   "criterion": "BP4",
+   "tool": "SpliceAI",
+   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "direction": "<=",
+   "cut": 0.1,
+   "strength_allowed": [
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "intronic variants outside the native donor and acceptor splice sites (not the +/-1,2 positions)",
+   "extra_conditions": [],
+   "quote": "Intronic variants outside of the native donor and acceptor splice sites (i.e. not +/- 1,2 positions) AND no predicted impact via splicing (SpliceAI ≤0.1).",
+   "section": "BP4, Supporting (strength text)",
+   "further_quotes": []
+  },
+  {
+   "gene": "BRCA2",
+   "vcep": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN097",
+    "record": "phase1/data/evidence/vcep/raw/GN097_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1535438831",
+    "doi": "10.5281/zenodo.21434343"
+   },
+   "version": "1.2",
+   "approved_on": "2025-01-09T01:12:40.191Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:17+00:00",
+   "criterion": "BP7",
+   "tool": "SpliceAI, through BP4",
+   "score_definition_stated": "not stated: the criterion names SpliceAI and its cut point only, and refers to the specification's Figure 1A and Appendix J, which the registry's record does not carry",
+   "direction": "<=",
+   "cut": 0.1,
+   "strength_allowed": [
+    "Strong",
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "intronic variants at or beyond +7 (donor side) and -21 (acceptor side)",
+   "extra_conditions": [
+    "BP4 met (SpliceAI <= 0.1)"
+   ],
+   "quote": "Intronic variants located outside conserved donor or acceptor motif positions (at or beyond positions +7/-21) IF BP4 met.",
+   "section": "BP7, Supporting (strength text)",
+   "further_quotes": [
+    {
+     "quote": "Following convention, this code is applied in addition to BP4 (no splicing prediction, Splice AI ≤0.1) to capture the low prior probability of pathogenicity of silent variants.",
+     "section": "BP7, instructionsToUse"
+    }
+   ]
+  },
+  {
+   "gene": "PALB2",
+   "vcep": "Hereditary Breast, Ovarian and Pancreatic Cancer Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN077",
+    "record": "phase1/data/evidence/vcep/raw/GN077_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1526222356",
+    "doi": "10.5281/zenodo.21433964"
+   },
+   "version": "1.3",
+   "approved_on": "2026-09-18T16:00:30.869Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:01+00:00",
+   "criterion": "PP3",
+   "tool": "SpliceAI",
+   "score_definition_stated": "the SVI's thresholds, Walker et al. 2023 (instructions to use)",
+   "direction": ">=",
+   "cut": 0.2,
+   "strength_allowed": [
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "intronic variants outside the donor and acceptor 1,2 sites",
+   "extra_conditions": [
+    "not applied in addition to PVS1 or PVS1_Variable(RNA) (no PVS1 or RNA evidence enters this analysis)"
+   ],
+   "quote": "Splicing: Predicted impact via splicing (SpliceAI **≥0.2**) for silent, missense/in-frame and for intronic variants outside of donor and acceptor 1,2 sites.",
+   "section": "PP3, Supporting (strength text)",
+   "further_quotes": [
+    {
+     "quote": "This VCEP recommends SpliceAI thresholds set forth by the SVI in applying PP3 and BP4 to non-canonical splice variants: Apply PP3 for SpliceAI scores ≥0.2 and apply BP4 for SpliceAI scores ≤0.1 (Walker et al., 2023).",
+     "section": "PP3, instructionsToUse"
+    },
+    {
+     "quote": "NOTE: PP3 for splice predictions may not be applied in addition to PVS1 or PVS1\\_Variable(RNA) codes.",
+     "section": "PP3, instructionsToUse"
+    }
+   ]
+  },
+  {
+   "gene": "PALB2",
+   "vcep": "Hereditary Breast, Ovarian and Pancreatic Cancer Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN077",
+    "record": "phase1/data/evidence/vcep/raw/GN077_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1526222356",
+    "doi": "10.5281/zenodo.21433964"
+   },
+   "version": "1.3",
+   "approved_on": "2026-09-18T16:00:30.869Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:01+00:00",
+   "criterion": "BP4",
+   "tool": "SpliceAI",
+   "score_definition_stated": "the SVI's thresholds, Walker et al. 2023 (instructions to use)",
+   "direction": "<=",
+   "cut": 0.1,
+   "strength_allowed": [
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "non-canonical splice variants (instructions to use), missense variants excluded",
+   "extra_conditions": [
+    "with RNA data, the instructions to use allow BP4 with BP7_Variable(RNA) and the comments do not (the v1.3 release notes say it is allowed); no RNA evidence enters this analysis"
+   ],
+   "quote": "Splicing: No predicted impact via splicing (SpliceAI **≤0.1**). Do not apply for missense variants.",
+   "section": "BP4, Supporting (strength text)",
+   "further_quotes": [
+    {
+     "quote": "This VCEP recommends SpliceAI thresholds set forth by the SVI in applying PP3 and BP4 to non-canonical splice variants: Apply PP3 for SpliceAI scores ≥0.2 and apply BP4 for SpliceAI scores ≤0.1 (Walker et al., 2023).",
+     "section": "BP4, instructionsToUse"
+    },
+    {
+     "quote": "NOTE: BP4 for splice predictions may be applied in conjunction with BP7\\_Variable(RNA) (a lack of observed RNA defect)",
+     "section": "BP4, instructionsToUse"
+    },
+    {
+     "quote": "NOTE: BP4 for splice predictions may not be applied in conjunction with BP7_Variable(RNA) (a lack of observed RNA defect)",
+     "section": "BP4, additionalComments"
+    }
+   ]
+  },
+  {
+   "gene": "PALB2",
+   "vcep": "Hereditary Breast, Ovarian and Pancreatic Cancer Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN077",
+    "record": "phase1/data/evidence/vcep/raw/GN077_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1526222356",
+    "doi": "10.5281/zenodo.21433964"
+   },
+   "version": "1.3",
+   "approved_on": "2026-09-18T16:00:30.869Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:01+00:00",
+   "criterion": "BP7",
+   "tool": "none stated in the criterion's text",
+   "score_definition_stated": "not stated",
+   "direction": null,
+   "cut": null,
+   "strength_allowed": [
+    "Strong",
+    "Moderate",
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "deep intronic variants beyond +7 (donor side) and -21 (acceptor side), +7 and -21 not included: +8 and beyond, -22 and beyond",
+   "extra_conditions": [
+    "no splicing-prediction condition stated in the criterion's text; the instructions to use say BP4 may also be applied to reach Likely Benign"
+   ],
+   "quote": "BP7: Use for synonymous and deep intronic variants defined as further than (but not including) +7 and further than (but not including) -21 at donor and acceptor sites, respectively.",
+   "section": "BP7, Supporting (strength text)",
+   "further_quotes": [
+    {
+     "quote": "May also apply BP4 to achieve Likely Benign",
+     "section": "BP7, instructionsToUse"
+    }
+   ]
+  },
+  {
+   "gene": "VHL",
+   "vcep": "VHL Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN078",
+    "record": "phase1/data/evidence/vcep/raw/GN078_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1527855755",
+    "doi": "10.5281/zenodo.21433974"
+   },
+   "version": "1.1",
+   "approved_on": "2025-01-10T22:36:48.784Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:06+00:00",
+   "criterion": "PP3",
+   "tool": "SpliceAI",
+   "score_definition_stated": "not stated",
+   "direction": ">",
+   "cut": 0.5,
+   "strength_allowed": [
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "splice variants (no position stated)",
+   "extra_conditions": [
+    "VarSeak class 4 or class 5 (not in this study's panel: not evaluated; the instructions to use allow SpliceAI alone where VarSeak cannot take the variant)"
+   ],
+   "quote": "For splice variants, concordance of Splice AI (>0.5) and VarSeak (class 4 or class 5).",
+   "section": "PP3, Supporting (strength text)",
+   "further_quotes": [
+    {
+     "quote": "The Splice AI score alone can be applied if VarSeak is unable to accept the variant type.",
+     "section": "PP3, instructionsToUse"
+    }
+   ]
+  },
+  {
+   "gene": "VHL",
+   "vcep": "VHL Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN078",
+    "record": "phase1/data/evidence/vcep/raw/GN078_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1527855755",
+    "doi": "10.5281/zenodo.21433974"
+   },
+   "version": "1.1",
+   "approved_on": "2025-01-10T22:36:48.784Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:06+00:00",
+   "criterion": "BP4",
+   "tool": "SpliceAI",
+   "score_definition_stated": "not stated",
+   "direction": "<=",
+   "cut": 0.1,
+   "strength_allowed": [
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "variants assessed for splicing impact (no position stated)",
+   "extra_conditions": [
+    "VarSeak class 1 or class 2 (not in this study's panel: not evaluated; the instructions to use allow SpliceAI alone where VarSeak cannot take the variant)"
+   ],
+   "quote": "BP4 can be applied to assess lack of splicing impact, with concordance of Splice AI (≤0.1) and VarSeak (Class 1 or Class 2).",
+   "section": "BP4, Supporting (strength text)",
+   "further_quotes": [
+    {
+     "quote": "The Splice AI score alone can be applied if VarSeak is unable to accept the variant type.",
+     "section": "BP4, instructionsToUse"
+    }
+   ]
+  },
+  {
+   "gene": "VHL",
+   "vcep": "VHL Variant Curation Expert Panel",
+   "source": {
+    "cspec_id": "GN078",
+    "record": "phase1/data/evidence/vcep/raw/GN078_record.json",
+    "url": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1527855755",
+    "doi": "10.5281/zenodo.21433974"
+   },
+   "version": "1.1",
+   "approved_on": "2025-01-10T22:36:48.784Z",
+   "status": "Released",
+   "fetched_utc": "2026-10-26T10:00:06+00:00",
+   "criterion": "BP7",
+   "tool": "SpliceAI and VarSeak through BP4; PhyloP",
+   "score_definition_stated": "not stated",
+   "direction": "<=",
+   "cut": 0.1,
+   "strength_allowed": [
+    "Supporting"
+   ],
+   "strength_quoted": "Supporting",
+   "position_scope": "silent or intronic variants (no position stated)",
+   "extra_conditions": [
+    "BP4 met",
+    "PhyloP <= 0.2"
+   ],
+   "quote": "If BP4 is met for lack of splice effect, BP7 can be applied to silent or intronic variants where the PhyloP score is ≤0.2.",
+   "section": "BP7, Supporting (strength text)",
+   "further_quotes": []
+  }
+ ]
+}

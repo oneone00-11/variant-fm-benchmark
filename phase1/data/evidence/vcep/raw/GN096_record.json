@@ -1,0 +1,742 @@
+{
+  "data": {
+    "entContent": {
+      "namespace": "GN096",
+      "releaseNotes": "",
+      "shortTitle": "Hereditary Breast, Ovarian and Pancreatic Cancer Specification",
+      "specificationSource": "",
+      "states": [
+        {
+          "current": true,
+          "event": {
+            "name": "cspec-created",
+            "prevState": "START",
+            "timeStamp": "2022-11-30T15:49:10.369Z"
+          },
+          "name": "Classification Rules In Prep"
+        }
+      ],
+      "tagNameSpaces": [
+        "096"
+      ],
+      "title": "ClinGen Hereditary Breast, Ovarian and Pancreatic Cancer  Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for RAD51C Version 1.0",
+      "version": "1.0",
+      "versioned": true
+    },
+    "entId": "GN096",
+    "entType": "SequenceVariantInterpretation",
+    "ld": {
+      "Disease": [
+        {
+          "entContent": {
+            "MONDO": {
+              "id": "http://purl.obolibrary.org/obo/MONDO_0016419",
+              "lbl": "hereditary breast carcinoma",
+              "meta": {
+                "basicPropertyValues": [
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/IAO_0000233",
+                    "val": "https://github.com/monarch-initiative/mondo/issues/4521"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#curated_content_resource",
+                    "val": "https://search.clinicalgenome.org/kb/conditions/MONDO:0016419"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#curated_content_resource",
+                    "val": "https://www.malacards.org/card/hereditary_breast_carcinoma"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://identifiers.org/medgen/87542"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://identifiers.org/mesh/C562840"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://identifiers.org/snomedct/254843006"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://linkedlifedata.com/resource/umls/id/C0346153"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://purl.obolibrary.org/obo/NCIT_C4503"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://www.orpha.net/ORDO/Orphanet_227535"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "https://omim.org/entry/114480"
+                  }
+                ],
+                "comments": [
+                  "Editor note: check w clingen before merge https://github.com/monarch-initiative/mondo/issues/84"
+                ],
+                "definition": {
+                  "val": "Breast carcinoma that has developed in relatives of patients with history of breast carcinoma.",
+                  "xrefs": [
+                    "NCIT:P378"
+                  ]
+                },
+                "subsets": [
+                  "http://purl.obolibrary.org/obo/mondo#clingen",
+                  "http://purl.obolibrary.org/obo/mondo#gard_rare",
+                  "http://purl.obolibrary.org/obo/mondo#nord_rare",
+                  "http://purl.obolibrary.org/obo/mondo#omim_susceptibility",
+                  "http://purl.obolibrary.org/obo/mondo#ordo_disorder",
+                  "http://purl.obolibrary.org/obo/mondo#orphanet_rare",
+                  "http://purl.obolibrary.org/obo/mondo#otar",
+                  "http://purl.obolibrary.org/obo/mondo#rare"
+                ],
+                "synonyms": [
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "breast cancer susceptibility, autosomal dominant, somatic mutation"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "breast cancer, early-onset, susceptibility to, autosomal dominant, somatic mutation"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "breast cancer, invasive ductal, autosomal dominant, somatic mutation"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "breast cancer, lobular, somatic"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "breast cancer, male, susceptibility to, autosomal dominant, somatic mutation"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "breast cancer, protection against, autosomal dominant, somatic mutation"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "breast cancer, somatic"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "breast cancer, susceptibility to, autosomal dominant, somatic mutation"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "familial breast cancer",
+                    "xrefs": [
+                      "Orphanet:227535"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "familial breast carcinoma",
+                    "xrefs": [
+                      "NCIT:C4503",
+                      "Orphanet:227535"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "familial cancer of breast",
+                    "xrefs": [
+                      "NCIT:C4503"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "familial cancer of the breast",
+                    "xrefs": [
+                      "NCIT:C4503"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "hereditary breast cancer",
+                    "xrefs": [
+                      "NCIT:C4503",
+                      "Orphanet:227535"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "hereditary breast carcinoma",
+                    "xrefs": [
+                      "MONDO:patterns/hereditary",
+                      "NCIT:C4503",
+                      "Orphanet:227535"
+                    ]
+                  }
+                ],
+                "xrefs": [
+                  {
+                    "val": "GARD:0017142"
+                  },
+                  {
+                    "val": "MEDGEN:87542"
+                  },
+                  {
+                    "val": "MESH:C562840"
+                  },
+                  {
+                    "val": "NCIT:C4503"
+                  },
+                  {
+                    "val": "OMIM:114480"
+                  },
+                  {
+                    "val": "Orphanet:227535"
+                  },
+                  {
+                    "val": "SCTID:254843006"
+                  },
+                  {
+                    "val": "UMLS:C0346153"
+                  }
+                ]
+              },
+              "type": "CLASS"
+            },
+            "MONDOID": "MONDO:0016419",
+            "name": "hereditary breast carcinoma"
+          },
+          "entId": "MONDO:0016419",
+          "entIri": "http://purl.obolibrary.org/obo/MONDO_0016419",
+          "entType": "Disease",
+          "ldhId": "467880845",
+          "ldhIri": "https://cspec.genome.network/cspec/Disease/id/467880845",
+          "modified": "2026-10-17T21:34:29.981Z",
+          "modifier": "cspecAdministrator",
+          "rev": "_mStHosO---"
+        },
+        {
+          "entContent": {
+            "MONDO": {
+              "id": "http://purl.obolibrary.org/obo/MONDO_0019391",
+              "lbl": "Fanconi anemia",
+              "meta": {
+                "basicPropertyValues": [
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/IAO_0000233",
+                    "val": "https://github.com/monarch-initiative/mondo/issues/10692"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/IAO_0000233",
+                    "val": "https://github.com/monarch-initiative/mondo/issues/5682"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#curated_content_resource",
+                    "val": "https://search.clinicalgenome.org/kb/conditions/MONDO:0019391"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#excluded_subClassOf",
+                    "val": "http://purl.obolibrary.org/obo/MONDO_0018234"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#excluded_subClassOf",
+                    "val": "http://purl.obolibrary.org/obo/MONDO_0019289"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#excluded_subClassOf",
+                    "val": "http://purl.obolibrary.org/obo/MONDO_0100137"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#should_conform_to",
+                    "val": "http://purl.obolibrary.org/obo/mondo/patterns/OMIM_phenotypic_series.yaml"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#closeMatch",
+                    "val": "http://identifiers.org/meddra/10055206"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://identifiers.org/medgen/41967"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://identifiers.org/mesh/D005199"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://identifiers.org/snomedct/30575002"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://linkedlifedata.com/resource/umls/id/C0015625"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://purl.bioontology.org/ontology/ICD10CM/D61.03"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://purl.obolibrary.org/obo/DOID_13636"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://purl.obolibrary.org/obo/NCIT_C62505"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://www.orpha.net/ORDO/Orphanet_84"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "https://omim.org/phenotypicSeries/PS227650"
+                  }
+                ],
+                "definition": {
+                  "val": "Fanconi anemia (FA) is a hereditary DNA repair disorder characterized by progressive pancytopenia with bone marrow failure, variable congenital malformations and predisposition to develop hematological or solid tumors.",
+                  "xrefs": [
+                    "Orphanet:84"
+                  ]
+                },
+                "subsets": [
+                  "http://purl.obolibrary.org/obo/mondo#clingen",
+                  "http://purl.obolibrary.org/obo/mondo#doid_rare",
+                  "http://purl.obolibrary.org/obo/mondo#gard_rare",
+                  "http://purl.obolibrary.org/obo/mondo#ordo_disorder",
+                  "http://purl.obolibrary.org/obo/mondo#ordo_malformation_syndrome",
+                  "http://purl.obolibrary.org/obo/mondo#orphanet_rare",
+                  "http://purl.obolibrary.org/obo/mondo#otar",
+                  "http://purl.obolibrary.org/obo/mondo#rare"
+                ],
+                "synonyms": [
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "Fanconi anemia",
+                    "xrefs": [
+                      "DOID:13636",
+                      "NCIT:C62505",
+                      "OMIMPS:227650",
+                      "Orphanet:84"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "Fanconi pancytopenia",
+                    "xrefs": [
+                      "DOID:13636",
+                      "Orphanet:84"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "Fanconi's anemia",
+                    "xrefs": [
+                      "DOID:13636",
+                      "NCIT:C62505"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "Panmyelopathy, Fanconi",
+                    "xrefs": [
+                      "NCIT:C62505"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "pancytopenia, congenital",
+                    "xrefs": [
+                      "NCIT:C62505"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "primary erythroid hypoplasia",
+                    "xrefs": [
+                      "NCIT:C62505"
+                    ]
+                  }
+                ],
+                "xrefs": [
+                  {
+                    "val": "DOID:13636"
+                  },
+                  {
+                    "val": "GARD:0006425"
+                  },
+                  {
+                    "val": "ICD10CM:D61.03"
+                  },
+                  {
+                    "val": "ICD9:284.09"
+                  },
+                  {
+                    "val": "MEDGEN:41967"
+                  },
+                  {
+                    "val": "MESH:D005199"
+                  },
+                  {
+                    "val": "MedDRA:10055206"
+                  },
+                  {
+                    "val": "NANDO:1200303"
+                  },
+                  {
+                    "val": "NANDO:1200891"
+                  },
+                  {
+                    "val": "NANDO:2200652"
+                  },
+                  {
+                    "val": "NCIT:C62505"
+                  },
+                  {
+                    "val": "OMIMPS:227650"
+                  },
+                  {
+                    "val": "Orphanet:84"
+                  },
+                  {
+                    "val": "SCTID:30575002"
+                  },
+                  {
+                    "val": "UMLS:C0015625"
+                  }
+                ]
+              },
+              "type": "CLASS"
+            },
+            "MONDOID": "MONDO:0019391",
+            "name": "Fanconi anemia"
+          },
+          "entId": "MONDO:0019391",
+          "entIri": "http://purl.obolibrary.org/obo/MONDO_0019391",
+          "entType": "Disease",
+          "ldhId": "467891379",
+          "ldhIri": "https://cspec.genome.network/cspec/Disease/id/467891379",
+          "modified": "2026-10-17T21:35:11.897Z",
+          "modifier": "cspecAdministrator",
+          "rev": "_mStISBG---"
+        },
+        {
+          "entContent": {
+            "MONDO": {
+              "id": "http://purl.obolibrary.org/obo/MONDO_0016248",
+              "lbl": "familial ovarian cancer",
+              "meta": {
+                "basicPropertyValues": [
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/IAO_0000233",
+                    "val": "https://github.com/monarch-initiative/mondo/issues/4889"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#curated_content_resource",
+                    "val": "https://search.clinicalgenome.org/kb/conditions/MONDO:0016248"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#excluded_subClassOf",
+                    "val": "http://purl.obolibrary.org/obo/MONDO_0015981"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#excluded_subClassOf",
+                    "val": "http://purl.obolibrary.org/obo/MONDO_0018365"
+                  },
+                  {
+                    "pred": "http://purl.org/dc/terms/conformsTo",
+                    "val": "http://purl.obolibrary.org/obo/mondo/patterns/hereditary.yaml"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://id.who.int/icd/entity/1484739866"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://identifiers.org/medgen/1803368"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://linkedlifedata.com/resource/umls/id/C5679802"
+                  }
+                ],
+                "definition": {
+                  "val": "An instance of ovarian cancer that is caused by an inherited modification of the individual's genome.",
+                  "xrefs": [
+                    "MONDO:patterns/hereditary"
+                  ]
+                },
+                "subsets": [
+                  "http://purl.obolibrary.org/obo/mondo#clingen",
+                  "http://purl.obolibrary.org/obo/mondo#disease_grouping",
+                  "http://purl.obolibrary.org/obo/mondo#gard_rare",
+                  "http://purl.obolibrary.org/obo/mondo#otar",
+                  "http://purl.obolibrary.org/obo/mondo#rare"
+                ],
+                "synonyms": [
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "familial ovarian cancer",
+                    "xrefs": [
+                      "icd11.foundation:1484739866"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "familial ovarian malignant tumor"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "synonymType": "http://purl.obolibrary.org/obo/OMO_0003005",
+                    "val": "familial ovarian malignant tumour"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "hereditary ovarian cancer",
+                    "xrefs": [
+                      "MONDO:patterns/hereditary"
+                    ]
+                  }
+                ],
+                "xrefs": [
+                  {
+                    "val": "GARD:0020467"
+                  },
+                  {
+                    "val": "MEDGEN:1803368"
+                  },
+                  {
+                    "val": "Orphanet:213517"
+                  },
+                  {
+                    "val": "UMLS:C5679802"
+                  },
+                  {
+                    "val": "icd11.foundation:1484739866"
+                  }
+                ]
+              },
+              "type": "CLASS"
+            },
+            "MONDOID": "MONDO:0016248",
+            "name": "familial ovarian cancer"
+          },
+          "entId": "MONDO:0016248",
+          "entIri": "http://purl.obolibrary.org/obo/MONDO_0016248",
+          "entType": "Disease",
+          "ldhId": "467881877",
+          "ldhIri": "https://cspec.genome.network/cspec/Disease/id/467881877",
+          "modified": "2026-10-17T21:34:27.131Z",
+          "modifier": "cspecAdministrator",
+          "rev": "_mStHmC2---"
+        }
+      ],
+      "Gene": [
+        {
+          "entContent": {
+            "HGNC": {
+              "_version_": 1704056958847287300,
+              "agr": "HGNC:9820",
+              "alias_symbol": [
+                "RAD51L2",
+                "FANCO"
+              ],
+              "ccds_id": [
+                "CCDS11611",
+                "CCDS45745"
+              ],
+              "date_approved_reserved": "1998-02-26",
+              "date_modified": "2021-04-13",
+              "date_name_changed": "2013-07-02",
+              "ena": [
+                "AF029670"
+              ],
+              "ensembl_gene_id": "ENSG00000108384",
+              "entrez_id": "5889",
+              "gene_group": [
+                "FA complementation groups"
+              ],
+              "gene_group_id": [
+                548
+              ],
+              "hgnc_id": "HGNC:9820",
+              "location": "17q22",
+              "location_sortable": "17q22",
+              "locus_group": "protein-coding gene",
+              "locus_type": "gene with protein product",
+              "lsdb": [
+                "Fanconi Anaemia Mutation Database|http://www2.rockefeller.edu/fanconi",
+                "LRG_314|http://ftp.ebi.ac.uk/pub/databases/lrgex/LRG_314.xml"
+              ],
+              "mane_select": [
+                "ENST00000337432.9",
+                "NM_058216.3"
+              ],
+              "mgd_id": [
+                "MGI:2150020"
+              ],
+              "name": "RAD51 paralog C",
+              "omim_id": [
+                "602774"
+              ],
+              "orphanet": 229784,
+              "prev_name": [
+                "RAD51 (S. cerevisiae) homolog C",
+                "RAD51 homolog C (S. cerevisiae)"
+              ],
+              "pubmed_id": [
+                9469824,
+                22167183
+              ],
+              "refseq_accession": [
+                "NM_058216"
+              ],
+              "rgd_id": [
+                "RGD:1563765"
+              ],
+              "status": "Approved",
+              "symbol": "RAD51C",
+              "ucsc_id": "uc002iwu.5",
+              "uniprot_ids": [
+                "O43502"
+              ],
+              "uuid": "9fc13051-8d8d-4dcb-979e-c3ba3869be9e",
+              "vega_id": "OTTHUMG00000141292"
+            }
+          },
+          "entId": "RAD51C",
+          "entIri": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:9820",
+          "entType": "Gene",
+          "ldhId": "467847530",
+          "ldhIri": "https://cspec.genome.network/cspec/Gene/id/467847530",
+          "modified": "2021-10-14T11:37:00.424Z",
+          "modifier": "genbadmin",
+          "rev": "_inf5B1S--g"
+        }
+      ],
+      "RuleSet": [
+        {
+          "entContent": {
+            "_uniqueProp": "096_nuclear_RAD51C",
+            "geneType": "nuclear",
+            "genes": [
+              {
+                "diseases": [
+                  {
+                    "preferredModeOfInheritance": "Autosomal dominant inheritance",
+                    "preferredMondoId": "MONDO:0016248",
+                    "preferredTitle": "familial ovarian cancer"
+                  },
+                  {
+                    "preferredModeOfInheritance": "Autosomal dominant inheritance",
+                    "preferredMondoId": "MONDO:0016419",
+                    "preferredTitle": "hereditary breast carcinoma"
+                  },
+                  {
+                    "preferredModeOfInheritance": "Autosomal recessive inheritance",
+                    "preferredMondoId": "MONDO:0019391",
+                    "preferredTitle": "Fanconi anemia"
+                  }
+                ],
+                "gene": "RAD51C",
+                "preferredTranscript": "NM_058216.3"
+              }
+            ],
+            "ns": "096",
+            "references": []
+          },
+          "entType": "RuleSet",
+          "ldhId": "1535377192",
+          "ldhIri": "https://cspec.genome.network/cspec/RuleSet/id/1535377192",
+          "modified": "2023-01-27T21:39:11.248Z",
+          "modifier": "cspecAdministrator",
+          "rev": "_inf5BHW--Q"
+        }
+      ]
+    },
+    "ldFor": {
+      "Organization": [
+        {
+          "entContent": {
+            "abbreviation": "HBOP",
+            "approval": {
+              "step1": {
+                "approvalDate": "2018-11-28T00:00:00.000Z",
+                "approved": true
+              },
+              "step2": {
+                "approvalDate": "2019-10-31T00:00:00.000Z",
+                "approved": true
+              },
+              "step3": {
+                "approvalDate": "2022-01-20T00:00:00.000Z",
+                "approved": true
+              },
+              "step4": {
+                "approvalDate": "2022-01-25T00:00:00.000Z",
+                "approved": true
+              }
+            },
+            "curationActivity": "Variant Pathogenicity",
+            "fullBaseName": "Hereditary Breast, Ovarian and Pancreatic Cancer",
+            "shortBaseName": "HBOP",
+            "shortTitle": "Hereditary Breast, Ovarian and Pancreatic Cancer VCEP",
+            "title": "Hereditary Breast, Ovarian and Pancreatic Cancer Variant Curation Expert Panel",
+            "type": "Variant Curation Expert Panel"
+          },
+          "entId": "50039",
+          "entIri": "http://clinicalgenome.org/affiliation/50039",
+          "entType": "Organization",
+          "ldhId": "639508880",
+          "ldhIri": "https://cspec.genome.network/cspec/Organization/id/639508880",
+          "modified": "2023-04-07T14:55:06.014Z",
+          "modifier": "cspecAdministrator",
+          "rev": "_inf5B_G--X"
+        }
+      ],
+      "SequenceVariantInterpretation": [
+        {
+          "entContent": {
+            "approvedOn": "03-05-2015",
+            "description": "ACMG ISV guidelines 2015",
+            "namespace": "GN001",
+            "notes": "",
+            "references": [
+              {
+                "source": "PubMed",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/25741868"
+              }
+            ],
+            "shortTitle": "ACMG 2015-Guidelines",
+            "specificationSource": "https://www.acmg.net/docs/Standards_Guidelines_for_the_Interpretation_of_Sequence_Variants.pdf",
+            "tagNameSpaces": [
+              "001"
+            ],
+            "title": "Standards and guidelines for the interpretation of sequence variants: a joint consensus recommendation of the American College of Medical Genetics and Genomics and the Association for Molecular Pathology",
+            "version": "1.0.0"
+          },
+          "entId": "GN001",
+          "entType": "SequenceVariantInterpretation",
+          "ldhId": "135637585",
+          "ldhIri": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/135637585",
+          "modified": "2022-08-18T15:51:43.074Z",
+          "modifier": "cspecAdministrator",
+          "rev": "_inf5BXe---"
+        }
+      ]
+    },
+    "ldhId": "1535377178",
+    "ldhIri": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1535377178",
+    "modified": "2026-07-20T17:44:34.606Z",
+    "modifier": "cspecAdministrator",
+    "rev": "_l2AfJha---"
+  },
+  "metadata": {
+    "rendered": {
+      "by": "https://cspec.genome.network/cspec/srvc",
+      "when": "2026-10-26T10:00:12.868Z"
+    }
+  },
+  "status": {
+    "code": 200,
+    "name": "OK"
+  }
+}

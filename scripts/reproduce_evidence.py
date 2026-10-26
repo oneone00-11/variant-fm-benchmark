@@ -1028,12 +1028,13 @@ def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
     for rec in sorted((ev / "label_audit").glob("*_raw/paper_quote_check.json")):
         d = json.loads(rec.read_text())
         add(rec, REPO / d["paper_rule"], d["paper_rule_sha256"])
-    # E19's records as fetched or saved: each file of a manifest (a gzip-stored one by the
-    # stored file's sha256), the second set's label source (the cached one when it is
-    # here) and its paper rule as the quote check read it
+    # E19's and E20's records as fetched or saved: each file of a manifest (a gzip-stored
+    # one by the stored file's sha256), the second set's label source (the cached one when
+    # it is here) and its paper rule as the quote check read it
     for rec in [*sorted((ev / "e19").glob("*/manifest.json")),
                 ev / "e19" / "first_public_dates" / "preprint_search.json",
-                *sorted((ev / "second_set").glob("*_raw/manifest.json"))]:
+                *sorted((ev / "second_set").glob("*_raw/manifest.json")),
+                *sorted((ev / "vcep").glob("raw/manifest.json"))]:
         d = json.loads(rec.read_text())
         for entry in d.get("files") or []:
             if entry.get("file"):

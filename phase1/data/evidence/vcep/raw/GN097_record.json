@@ -1,0 +1,3068 @@
+{
+  "data": {
+    "entContent": {
+      "approvedOn": "2025-01-09T01:12:40.191Z",
+      "description": "ClinGen Internal VCEP ACMG/AMP specifications for BRCA1 and BRCA2",
+      "doi": {
+        "authors": [
+          {
+            "affiliations": [
+              {
+                "name": "National Institutes of Health (NIH)"
+              }
+            ],
+            "person_or_org": {
+              "name": "The Clinical Genome Resource (ClinGen)",
+              "type": "organizational"
+            },
+            "role": {
+              "id": "rightsholder"
+            }
+          },
+          {
+            "affiliations": [
+              {
+                "name": "The Clinical Genome Resource (ClinGen)"
+              }
+            ],
+            "person_or_org": {
+              "name": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+              "type": "organizational"
+            },
+            "role": {
+              "id": "researchgroup"
+            }
+          }
+        ],
+        "conceptDoi": "10.5281/zenodo.21434338",
+        "docDoi": "10.5281/zenodo.21434343",
+        "keywords": [
+          {
+            "subject": "human"
+          },
+          {
+            "subject": "biology"
+          },
+          {
+            "subject": "genomics"
+          },
+          {
+            "subject": "variant"
+          },
+          {
+            "subject": "variant classification"
+          },
+          {
+            "subject": "clingen"
+          },
+          {
+            "subject": "disease"
+          },
+          {
+            "subject": "standards"
+          },
+          {
+            "subject": "BRCA2"
+          },
+          {
+            "subject": "NM_000059.4"
+          },
+          {
+            "subject": "Autosomal dominant inheritance"
+          },
+          {
+            "subject": "BRCA2-related cancer predisposition"
+          }
+        ]
+      },
+      "namespace": "GN097",
+      "releaseNotes": "Updates in v1.2:\n\n*   Added a second online tool for co-segregation analysis (CAL-Leiden)\n*   Clarified thresholds for points assignment where likelihood ratio analysis is applicable\n*   Reworded population criteria for PM3\n*   Added PMIDs to Table 9 for cited mRNA splice assay results\n*   Corrected typos and formatting errors\n*   Added clarification for PM2\\_Supporting, PTC code for frameshift variant, mRNA data interpretation, SpliceAI, PP3 application if PVS1 is met, PS1 criteria, Table 9\n*   Updated PVS1 weight for splice sites and added PMID 31343793\n*   Updated PMIDs in ST16",
+      "releasedUnderRevision": true,
+      "shortTitle": "ENIGMA BRCA1 and BRCA2 Specification",
+      "specificationSource": "",
+      "states": [
+        {
+          "current": false,
+          "event": {
+            "name": "cspec-created",
+            "prevState": "START",
+            "timeStamp": "2022-12-01T05:58:55.256Z"
+          },
+          "name": "Pilot Rules In Prep"
+        },
+        {
+          "current": false,
+          "event": {
+            "name": "pilot-rules-submitted",
+            "prevState": "Pilot Rules In Prep",
+            "timeStamp": "2024-12-17T02:40:51.067Z"
+          },
+          "name": "Pilot Rules Submitted"
+        },
+        {
+          "current": false,
+          "event": {
+            "name": "pilot-rules-reviewed",
+            "prevState": "Pilot Rules Submitted",
+            "timeStamp": "2023-04-10T20:53:02.886Z"
+          },
+          "name": "Pilot Rules In Prep"
+        },
+        {
+          "current": false,
+          "event": {
+            "name": "pilot-rules-approved",
+            "prevState": "Pilot Rules Submitted",
+            "timeStamp": "2025-01-08T18:22:58.771Z"
+          },
+          "name": "Approved For Release"
+        },
+        {
+          "current": true,
+          "event": {
+            "name": "cspec-released",
+            "prevState": "Approved For Release",
+            "timeStamp": "2025-01-09T01:12:40.191Z"
+          },
+          "name": "Released"
+        },
+        {
+          "current": false,
+          "event": {
+            "name": "cspec-reopened",
+            "prevState": "Released",
+            "timeStamp": "2024-11-19T04:13:54.368Z"
+          },
+          "name": "Pilot Rules In Prep"
+        },
+        {
+          "current": false,
+          "event": {
+            "name": "pilot-rules-withdrawn",
+            "prevState": "Pilot Rules Submitted",
+            "timeStamp": "2024-12-17T02:39:23.382Z"
+          },
+          "name": "Pilot Rules In Prep"
+        }
+      ],
+      "tagNameSpaces": [
+        "097"
+      ],
+      "title": "ClinGen ENIGMA BRCA1 and BRCA2 Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for BRCA2 Version 1.2",
+      "version": "1.2",
+      "versioned": true
+    },
+    "entId": "GN097",
+    "entType": "SequenceVariantInterpretation",
+    "ld": {
+      "CriteriaCode": [
+        {
+          "entContent": {
+            "_uniqueProp": "097_PP4_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Supporting",
+            "evidenceCategory": "Other Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "Use in the context of clinically calibrated evidence types, with sufficient detail to review data sources, types and weights. Published data points may include co-segregation with disease, co-occurrence with a pathogenic variant in the same gene, reported family history, breast tumor pathology, and case-control data. Can also apply for unpublished data, where there is no appropriate ACMG/AMP code. Assign weight based on combined LR for clinical data.\n\nCombined LR >0.48 and \\<2.08  doesn't provide supporting evidence in either direction (PP4 and BP5 not applicable).\n\nSee Specifications Table7 for example application.",
+            "label": "PP4",
+            "ns": "097",
+            "originalACMGSummary": "Patient’s phenotype or family history is highly specific for a disease with a single genetic etiology.",
+            "sepioID": "SEPIO-CG:99036",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0239",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "002",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "005",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "Breast cancer is very common and has a high degree of genetic heterogeneity (caused by pathogenic variants in numerous genes). Use ONLY to capture combined LR towards pathogenicity, based on multifactorial likelihood clinical data.\n\nPP4\\_Strong – LR ≥18.7:1\n\nPP4\\_Very Strong – LR ≥350:1\n\nSee Specifications Table7 and Appendix B for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0018",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "Breast cancer is very common and has a high degree of genetic heterogeneity (caused by pathogenic variants in numerous genes). Use ONLY to capture combined LR towards pathogenicity, based on multifactorial likelihood clinical data.\n\nPP4\\_Moderate – LR ≥4.3:1\n\nSee Specifications Table7 and Appendix B for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0063",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "Breast cancer is very common and has a high degree of genetic heterogeneity (caused by pathogenic variants in numerous genes). Use ONLY to capture combined LR towards pathogenicity, based on multifactorial likelihood clinical data.\n\nPP4 - LR ≥2.08:1 \n\nSee Specifications Table7 and Appendix B for details.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166140",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166140",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5sW---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BP3_nuclear_BRCA2",
+            "additionalComments": "Captured by bioinformatic tool prediction, and domain analysis. See Appendix J for details",
+            "applicability": "Not applicable",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Supporting",
+            "evidenceCategory": "Computational And Predictive Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "label": "BP3",
+            "ns": "097",
+            "originalACMGSummary": "In frame-deletions/insertions in a repetitive region without a known function.",
+            "sepioID": "SEPIO-CG:99045",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0212",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000325",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0210",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0074",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0211",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000699",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0081",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166139",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166139",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5YW---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PVS1_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Very Strong",
+            "evidenceCategory": "Computational And Predictive Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "In alignment with SVI recommendations for PVS1 code application, evidence strength and description has been separated for different variant types.  Apply according to PVS1 flowchart, which considers knowledge of clinically important functional domains. For predicted protein termination codon (PTC) variants, apply with exon-specific weights derived for the PM5\\_PTC code (See Appendix D for details).\n\n**See Specifications Table 4, provided as a separate searchable excel file, for a comprehensive summary of codes applicable for all variants considered against the** _**BRCA1**_ **and** _**BRCA2**_ **PVS1 decision trees (initiation, nonsense/frameshift, deletion, duplication, splice site (donor/acceptor ±1,2)) – organized by exon.** See Appendix Figure 5,6 and Table 5 for further justification.\n\nSee **Specifications** **Figure 1B** for process to apply codes for splicing data, in content of location and predicted bioinformatic impact of the variant, and adaptive weighting according to assay methodology and proportion of functional transcript retained.",
+            "label": "PVS1",
+            "ns": "097",
+            "originalACMGSummary": "Null variant (nonsense, frameshift, canonical +/−1 or 2 splice sites, initiation codon, single or multi-exon deletion) in a gene where loss of function (LOF) is a known mechanism of disease.\nCaveats:\n * Beware of genes where LOF is not a known disease mechanism (e.g. GFAP, MYH7).\n * Use caution interpreting LOF variants at the extreme 3’ end of a gene.\n * Use caution with splice variants that are predicted to lead to exon skipping but leave the remainder of the protein intact.\n * Use caution in the presence of multiple transcripts.",
+            "sepioID": "SEPIO-CG:99022",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0245",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Caveats": [
+                    "Beware of genes where LOF is not a known disease mechanism (e.g., GFAP, MYH7)",
+                    "Use caution interpreting LOF variants at the extreme 3' end of a gene",
+                    "Use caution with splice variants that are predicted to lead to exon skipping but leave the remainder of the protein intact",
+                    "Use caution in the presence of multiple transcripts"
+                  ]
+                },
+                "applicability": "Applicable",
+                "id": "0017",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "Null variant (nonsense, frameshift, splice site (donor/acceptor +/−1,2), initiation codon, single or multi-exon deletion) in a gene where loss of function (LOF) is a known mechanism of disease. Apply at appropriate strength according to PVS1 flowchart, which considers knowledge of clinically important functional domains. See Specifications Table 4 and Appendix D for details.\n\nWell-established _in vitro_ or _in vivo_ functional studies supportive of a damaging effect _as measured by effect on mRNA transcript profile (mRNA assay only)._ Apply as PVS1 (RNA) at appropriate strength. See Specifications Figure1B and Appendix E for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0020",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "Null variant (nonsense, frameshift, splice site (donor/acceptor +/−1,2), initiation codon, single or multi-exon deletion) in a gene where loss of function (LOF) is a known mechanism of disease. Apply at appropriate strength according to PVS1 flowchart, which considers knowledge of clinically important functional domains. See Specifications Table 4 and Appendix D for details.\n\nWell-established _in vitro_ or _in vivo_ functional studies supportive of a damaging effect _as measured by effect on mRNA transcript profile (mRNA assay only)._ Apply as PVS1 (RNA) at appropriate strength. See Specifications Figure1B and Appendix E for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0026",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "Null variant (nonsense, frameshift, splice site (donor/acceptor +/−1,2), initiation codon, single or multi-exon deletion) in a gene where loss of function (LOF) is a known mechanism of disease. Apply at appropriate strength according to PVS1 flowchart, which considers knowledge of clinically important functional domains. See Specifications Table 4 and Appendix D for details.\n\nWell-established _in vitro_ or _in vivo_ functional studies supportive of a damaging effect _as measured by effect on mRNA transcript profile (mRNA assay only)._ Apply as PVS1 (RNA) at appropriate strength. See Specifications Figure1B and Appendix E for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "001",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "Null variant (nonsense, frameshift, splice site (donor/acceptor +/−1,2), initiation codon, single or multi-exon deletion) in a gene where loss of function (LOF) is a known mechanism of disease. Apply at appropriate strength according to PVS1 flowchart, which considers knowledge of clinically important functional domains. See Specifications Table 4 and Appendix D for details.\n\nWell-established _in vitro_ or _in vivo_ functional studies supportive of a damaging effect _as measured by effect on mRNA transcript profile (mRNA assay only)._ Apply as PVS1 (RNA) at appropriate strength. See Specifications Figure1B and Appendix E for details.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166130",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166130",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5uq---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PM1_nuclear_BRCA2",
+            "additionalComments": "Considered as component of bioinformatic analysis (PP3/BP4). ",
+            "applicability": "Not applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Moderate",
+            "evidenceCategory": "Functional Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "label": "PM1",
+            "ns": "097",
+            "originalACMGSummary": "Located in a mutational hot spot and/or critical and well-established functional domain (e.g. active site of an enzyme) without benign variation.",
+            "sepioID": "SEPIO-CG:99027",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0230",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0015",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0028",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "006",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0054",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166129",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166129",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5v2---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PP5_nuclear_BRCA2",
+            "additionalComments": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+            "applicability": "Not Applicable for this VCEP",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Supporting",
+            "evidenceCategory": "Other Database",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "",
+            "label": "PP5",
+            "ns": "097",
+            "originalACMGSummary": "Reputable source recently reports variant as pathogenic, but the evidence is not available to the laboratory to perform an independent evaluation.",
+            "references": [
+              {
+                "id": "29543229",
+                "source": "PubMed",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/29543229"
+              }
+            ],
+            "sepioID": "SEPIO-CG:99049",
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "instructionsToUse": "",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "instructionsToUse": "",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "instructionsToUse": "",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "instructionsToUse": "",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "instructionsToUse": "",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166127",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166127",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5dq---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BS2_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Strong",
+            "evidenceCategory": "Population Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "Co-occurrent P or LP variant should be assigned classification using VCEP specifications. \n\nSee **Specifications Table 8** for approach to assign points per proband, and final BS2 code assignment based on the sum of BS2-related points.\n\nAlso see **Specifications Table 8** for additional stipulations.",
+            "label": "BS2",
+            "ns": "097",
+            "originalACMGSummary": "Observed in a healthy adult individual for a recessive (homozygous), dominant (heterozygous), or X-linked (hemizygous) disorder, with full penetrance expected at an early age.",
+            "sepioID": "SEPIO-CG:99040",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0091",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000357",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0224",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0069",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "Applied in absence of features of recessive disease, namely Fanconi Anemia phenotype. See **Specifications Table 8** for additional stipulations, and approach to assign points per proband, and final BS2 code assignment based on the sum of BS2-related points. See Appendix H for additional details.\n\nBS2 = ≥ 4 points",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0098",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000699",
+                "text": "Applied in absence of features of recessive disease, namely Fanconi Anemia phenotype. See **Specifications Table 8** for additional stipulations, and approach to assign points per proband, and final BS2 code assignment based on the sum of BS2-related points. See Appendix H for additional details.\n\nBS2\\_Moderate = 2 points",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0076",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "Applied in absence of features of recessive disease, namely Fanconi Anemia phenotype. See **Specifications Table 8** for additional stipulations, and approach to assign points per proband, and final BS2 code assignment based on the sum of BS2-related points. See Appendix H for additional details.\n\nBS2\\_Supporting = 1 points",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166126",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166126",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5Se---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BP1_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Supporting",
+            "evidenceCategory": "Computational And Predictive Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "See **Specifications Figure 1A** for process to apply codes according to variant type, location and predicted bioinformatic impact. _Missense prediction not applicable_.",
+            "label": "BP1",
+            "ns": "097",
+            "originalACMGSummary": "Missense variant in a gene for which primarily truncating variants are known to cause disease.",
+            "sepioID": "SEPIO-CG:99043",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0206",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000325",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0204",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0075",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific",
+                  "Strength"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "**Apply BP1\\_Strong** for silent substitution, missense or in-frame insertion, deletion or delins variants outside a (potentially) clinically important functional domain AND no splicing predicted (SpliceAI ≤0.1). As justified in the appendices, (potentially) clinically important functional domains are defined as: BRCA2 PALB2 binding domain aa 10-40; BRCA2 DNA binding aa 2481-3186. See Specifications Figure1A and Appendix J for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0205",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000699",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0082",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166124",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166124",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5VK---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BS4_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Strong",
+            "evidenceCategory": "Segregation Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "Recommend use of online tools COOL ([http://bjfenglab.org/](http://bjfenglab.org/)) or CAL-Leiden ([https://bioexp.net/cosegregation/](https://bioexp.net/cosegregation/)).  \nLR >0.48 and \\<2.08 doesn't provide supporting evidence in either direction (PP1 and BS4 not applicable).",
+            "label": "BS4",
+            "ns": "097",
+            "originalACMGSummary": "Lack of segregation in affected members of a family.\nCaveat: The presence of phenocopies for common phenotypes (i.e. cancer, epilepsy) can mimic lack of segregation among affected individuals. Also, families may have more than one pathogenic variant contributing to an autosomal dominant disorder, further confounding an apparent lack of segregation.",
+            "sepioID": "SEPIO-CG:99042",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0229",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000325",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0227",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Caveats": [
+                    "The presence of phenocopies for common phenotypes (i.e., cancer, epilepsy) can mimic lack of segregation among affected individuals. Also, families may have more than one pathogenic variant contributing to an autosomal dominant disorder, further confounding an apparent lack of segregation."
+                  ]
+                },
+                "applicability": "Applicable",
+                "id": "0071",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "Lack of segregation in affected members of a family, as measured by a quantitative co-segregation analysis method. See Appendix I for details.\n\nApply weight as per Bayes Score:\n\nBS4 - LR ≤0.05:1\n\nBS4\\_VeryStrong – LR ≤0.00285:1",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0228",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000699",
+                "text": "Lack of segregation in affected members of a family, as measured by a quantitative co-segregation analysis method. See Appendix I for details.\n\nApply weight as per Bayes Score:\n\nBS4\\_Moderate - LR ≤0.23:1",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0077",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "Lack of segregation in affected members of a family, as measured by a quantitative co-segregation analysis method. See Appendix I for details.\n\nApply weight as per Bayes Score:\n\nBS4\\_Supporting  - LR ≤0.48:1",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166123",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166123",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5eu---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BS3_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Strong",
+            "evidenceCategory": "Functional Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "See **Specifications Figure 1C** for simplified flowchart/s to advise application of codes for functional data, in content of variant type and location within a (potentially) clinically important functional domain. Do not apply when conflicting results are present from well-established assays with sufficient controls, which cannot be explained by experimental design.\n\nSee **Specifications Figure 1B** for process to apply codes for splicing data, in content of location and predicted bioinformatic impact of the variant, and adaptive weighting according to assay methodology and proportion of functional transcript retained.\n\nSee **Specifications Table 9,** provided as a separate file in excel format to facilitate searches and look-ups by variant c. and p. nomenclature. It includes PS3 and BS3 code recommendations and rationale for code application of published functional assays data that has been calibrated, and considered against predicted/reported splicing. This is not an exhaustive list; there will be ongoing consideration of additional published functional assay results.",
+            "label": "BS3",
+            "ns": "097",
+            "originalACMGSummary": "Well-established in vitro or in vivo functional studies show no damaging effect on protein function or splicing.",
+            "sepioID": "SEPIO-CG:99041",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0226",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000325",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0225",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0072",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "Well-established in vitro or in vivo functional studies shows no damaging effect on protein function. Assay measures effect via protein only OR mRNA and protein combined. See Specifications Table 9 for code recommendations from calibrated published assays. Also see Figure1C and Appendix E for details.\n\nWell-established _in vitro_ or _in vivo_ functional studies supportive of no damaging effect _as measured by effect on mRNA transcript profile (mRNA assay only)._ Apply as BP7 (RNA) at appropriate strength. See Specifications Figure1B and Appendix E for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0100",
+                "instructionsToUse": "",
+                "specificationType": [],
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0001327",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0085",
+                "instructionsToUse": "",
+                "specificationType": [],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166122",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166122",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5WG---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BP4_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Supporting",
+            "evidenceCategory": "Computational And Predictive Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "See **Specifications Figure 1A** for process to apply codes according to variant type, location and predicted bioinformatic impact.",
+            "label": "BP4",
+            "ns": "097",
+            "originalACMGSummary": "Multiple lines of computational evidence suggest no impact on gene or gene product (conservation, evolutionary, splicing impact, etc)\nCaveat: As many in silico algorithms use the same or very similar input for their predictions, each algorithm cannot be counted as an independent criterion. BP4 can be used only once in any evaluation of a variant.",
+            "sepioID": "SEPIO-CG:99046",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0215",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000325",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0213",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0066",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0214",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000699",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Caveats": [
+                    "Because many in silico algorithms use the same or very similar input for their predictions, each algorithm cannot be counted as an independent criterion. BP4 can be used only once in any evaluation of a variant."
+                  ]
+                },
+                "applicability": "Applicable",
+                "id": "0080",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Clarification",
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "Missense or in-frame insertion, deletion or delins variants inside a (potentially) clinically important functional domain, and no predicted impact via protein change or splicing (BayesDel no-AF score ≤ 0.18 AND SpliceAI ≤0.1).\n\nSilent variant inside a (potentially) clinically important functional domain, if no predicted impact via splicing (SpliceAI ≤0.1).\n\nIntronic variants outside of the native donor and acceptor splice sites (i.e. not +/- 1,2 positions) AND no predicted impact via splicing (SpliceAI ≤0.1).\n\nAs justified in the appendices, (potentially) clinically important functional domains are defined as: BRCA2 PALB2 binding domain aa 10-40; BRCA2 DNA binding aa 2481-3186. See Specifications Figure1A and Appendix J for details.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166144",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166144",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5hu---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PP1_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Supporting",
+            "evidenceCategory": "Segregation Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "Recommend use of online tools COOL ([http://bjfenglab.org/](http://bjfenglab.org/)) or CAL-Leiden ([https://bioexp.net/cosegregation/](https://bioexp.net/cosegregation/)).\n\nLR >0.48 and \\<2.08  doesn't provide supporting evidence in either direction (PP1 and BS4 not applicable).\n\n**Stipulation**: to apply code as Pathogenic Very Strong, VUS should have bioinformatically predicted (or experimentally proven) effect on protein or mRNA splicing. If co-segregation score is from a single family, or several families from an isolated population, assess the possibility of a different causative pathogenic variant.",
+            "label": "PP1",
+            "ns": "097",
+            "originalACMGSummary": "Co-segregation with disease in multiple affected family members in a gene definitively known to cause the disease.\nNote: May be used as stronger evidence with increasing segregation data.",
+            "sepioID": "SEPIO-CG:99033",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0236",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0042",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0023",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "Co-segregation with disease in multiple affected family members in a gene definitively known to cause the disease, as measured by a quantitative co-segregation analysis method. See Appendix I for details.\n\nApply weight as per Bayes Score:\n\nPP1\\_Strong – LR ≥18.7:1\n\nPP1\\_Very Strong – LR ≥350:1",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0040",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "Co-segregation with disease in multiple affected family members in a gene definitively known to cause the disease, as measured by a quantitative co-segregation analysis method. See Appendix I for details.\n\nApply weight as per Bayes Score:\n\nPP1\\_Moderate – LR ≥4.3:1",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Notes": [
+                    "May be used as stronger evidence with increasing segregation data"
+                  ]
+                },
+                "applicability": "Applicable",
+                "id": "0060",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "Co-segregation with disease in multiple affected family members in a gene definitively known to cause the disease, as measured by a quantitative co-segregation analysis method. See Appendix I for details.\n\nApply weight as per Bayes Score:\n\nPP1 - LR ≥2.08:1",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166138",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166138",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5ZK---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BS1_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Strong",
+            "evidenceCategory": "Population Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "Apply based on maximum filter allele frequency in a gnomAD non-founder population, considering exome and genome data separately.\n\nDo not apply if read depth \\<20. Do not apply to well-established pathogenic founder variants.",
+            "label": "BS1",
+            "ns": "097",
+            "originalACMGSummary": "Allele frequency is greater than expected for disorder.",
+            "sepioID": "SEPIO-CG:99039",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not Applicable",
+                "id": "0090",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000325",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0222",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0070",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "Filter allele frequency (FAF) is above 0.01% (FAF > 0.0001) in gnomAD v2.1 (non-cancer, exome only subset) and/or gnomAD v3.1 (non-cancer), non-founder population(s). See Appendix G for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0223",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000699",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0086",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "Filter allele frequency (FAF) is above 0.002% (FAF > 0.00002) and less than or equal to 0.01% (FAF ≤ 0.0001) in gnomAD v2.1 (non-cancer, exome only subset) and/or gnomAD v3.1 (non-cancer), non-founder population(s). See Appendix G for details.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166136",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166136",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5bW---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PM3_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Moderate",
+            "evidenceCategory": "Allelic Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "Co-occurrent P or LP variant should be assigned classification using VCEP specifications. \n\nVariant under assessment must be sufficiently rare (not meeting a benign population evidence code).\n\nSee **Specifications Table 6** for approach to assign points per proband, and final PM3 code assignment based on the sum of PM3-related points.\n\nFor related individuals score only most severe presentation.\n\nAlso see **Specifications Table 6** for additional stipulations",
+            "label": "PM3",
+            "ns": "097",
+            "originalACMGSummary": "For recessive disorders, detected in trans with a pathogenic variant\nNote: This requires testing of parents (or offspring) to determine phase.",
+            "sepioID": "SEPIO-CG:99029",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0232",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0038",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0058",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "Apply for patient with phenotype consistent with BRCA1- or BRCA2-related Fanconi Anemia (FA), and co-occurrent variants in the same gene. Phenotype is considered consistent with BRCA1- or BRCA2-related FA if:\n\n(i) Increased chromosome breakage (DEB, MMC, or spontaneous) and at least one clinical feature indicative of BRCA1/2-related FA, categorized under: physical features, pathology and laboratory findings, cancer diagnosis _≤5yr_.\n\n(ii) Result unknown for chromosome breakage, and at least two clinical features indicative of BRCA1/2-related FA under at least two of the three categories: physical features, pathology and laboratory findings, cancer diagnosis ≤5yr.\n\nSee **Specifications Table 6** for approach to assign points per proband, and final PM3 code assignment based on the sum of PM3-related points. Also see Appendix H for additional details.\n\nPM3\\_Strong = ≥4 points",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Notes": [
+                    "This requires testing of parents (or offspring) to determine phase."
+                  ]
+                },
+                "applicability": "Applicable",
+                "id": "007",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "Apply for patient with phenotype consistent with BRCA1- or BRCA2-related Fanconi Anemia (FA), and co-occurrent variants in the same gene. Phenotype is considered consistent with BRCA1- or BRCA2-related FA if:\n\n(i) Increased chromosome breakage (DEB, MMC, or spontaneous) and at least one clinical feature indicative of BRCA1/2-related FA, categorized under: physical features, pathology and laboratory findings, cancer diagnosis _≤5yr_.\n\n(ii) Result unknown for chromosome breakage, and at least two clinical features indicative of BRCA1/2-related FA under at least two of the three categories: physical features, pathology and laboratory findings, cancer diagnosis ≤5yr.\n\nSee **Specifications Table 6** for approach to assign points per proband, and final PM3 code assignment based on the sum of PM3-related points. Also see Appendix H for additional details.\n\nPM3 = 2 points",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0027",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "Apply for patient with phenotype consistent with BRCA1- or BRCA2-related Fanconi Anemia (FA), and co-occurrent variants in the same gene.Phenotype is considered consistent with BRCA1- or BRCA2-related FA if:\n\n(i) Increased chromosome breakage (DEB, MMC, or spontaneous) and at least one clinical feature indicative of BRCA1/2-related FA, categorized under: physical features, pathology and laboratory findings, cancer diagnosis _≤5yr_.\n\n(ii) Result unknown for chromosome breakage, and at least two clinical features indicative of BRCA1/2-related FA under at least two of the three categories: physical features, pathology and laboratory findings, cancer diagnosis ≤5yr.\n\nSee **Specifications Table 6** for approach to assign points per proband, and final PM3 code assignment based on the sum of PM3-related points. Also see Appendix H for additional details.\n\nPM3\\_Supporting = 1 point",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166128",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166128",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5oO---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PM2_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Moderate",
+            "evidenceCategory": "Population Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "Observation of a variant only once in a gnomAD outbred population is not informative. Do not apply for insertion, deletion or delins variants. Do not apply if read depth \\<25 at region around the variant.",
+            "label": "PM2",
+            "ns": "097",
+            "originalACMGSummary": "Absent from controls (or at extremely low frequency if recessive) in Exome Sequencing Project, 1000 Genomes or Exome Aggregation Consortium.\nCaveat: Population data for indels may be poorly called by next generation sequencing.",
+            "sepioID": "SEPIO-CG:99028",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0231",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0044",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0013",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Caveats": [
+                    "Population data for insertions/deletions may be poorly called by next-generation sequencing."
+                  ]
+                },
+                "applicability": "Not Applicable",
+                "id": "0011",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0030",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "Absent from controls in an outbred population, from gnomAD v2.1 (non-cancer, exome only subset) and gnomAD v3.1 (non-cancer). Region around the variant must have an average read depth ≥25. See Appendix G for details.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166118",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166118",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5pW---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BP5_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Supporting",
+            "evidenceCategory": "Other Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "Use in the context of clinically calibrated evidence types, with sufficient detail to review data sources, types and weights. Published data points may include co-segregation with disease, co-occurrence with a pathogenic variant in the same gene, reported family history, breast tumor pathology, and case-control data. Can also apply for unpublished data, where there is no appropriate ACMG/AMP code. Assign weight based on combined LR for clinical data.\n\nCombined LR >0.48 and \\<2.08 doesn't provide supporting evidence in either direction (PP4 and BP5 not applicable).\n\nSee Specifications Table7 for example application.",
+            "label": "BP5",
+            "ns": "097",
+            "originalACMGSummary": "Variant found in a case with an alternate molecular basis for disease.",
+            "sepioID": "SEPIO-CG:99047",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0218",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000325",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0216",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0073",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "Use ONLY to capture combined LR against pathogenicity, based on multifactorial likelihood clinical data.\n\nBP5\\_VeryStrong – LR ≤0.00285:1\n\nBP5\\_Strong  - LR ≤0.05:1\n\nNot applicable for co-observation: cases with pathogenic variants in two (or more) different known breast–ovarian cancer risk genes have no specific phenotype.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0217",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000699",
+                "text": "Use ONLY to capture combined LR against pathogenicity, based on multifactorial likelihood clinical data.\n\nBP5\\_Moderate - LR ≤0.23:1\n\nNot applicable for co-observation: cases with pathogenic variants in two (or more) different known breast–ovarian cancer risk genes have no specific phenotype.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0078",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "Use ONLY to capture combined LR against pathogenicity, based on multifactorial likelihood clinical data.\n\nBP5 - LR ≤0.48:1\n\nNot applicable for co-observation: cases with pathogenic variants in two (or more) different known breast–ovarian cancer risk genes have no specific phenotype.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166137",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166137",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5ae---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PS3_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Strong",
+            "evidenceCategory": "Functional Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "See **Specifications Figure 1C** for simplified flowchart/s to advise application of codes for functional data, in content of variant type and location within a (potentially) clinically important functional domain. Do not apply when conflicting results are present from well-established assays with sufficient controls, which cannot be explained by experimental design.\n\nSee **Specifications Figure 1B** for process to apply codes for splicing data, in content of location and predicted bioinformatic impact of the variant, and adaptive weighting according to assay methodology and proportion of functional transcript retained.\n\nSee **Specifications Table 9,** provided as a separate file in excel format to facilitate searches and look-ups by variant c. and p. nomenclature. It includes PS3 and BS3 code recommendations and rationale for code application of published functional assays data that has been calibrated, and considered against predicted/reported splicing. This is not an exhaustive list; there will be ongoing consideration of additional published functional assay results.",
+            "label": "PS3",
+            "ns": "097",
+            "originalACMGSummary": "Well-established in vitro or in vivo functional studies supportive of a damaging effect on the gene or gene product.\nNote: Functional studies that have been validated and shown to be reproducible and robust in a clinical diagnostic laboratory setting are considered the most well-established.",
+            "sepioID": "SEPIO-CG:99025",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0242",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0031",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "General recommendation"
+                ],
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Notes": [
+                    "Functional studies that have been validated and shown to be reproducible and robust in a clinical diagnostic laboratory setting are considered the most well established."
+                  ]
+                },
+                "applicability": "Applicable",
+                "id": "0052",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "General recommendation"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "Well-established in vitro or in vivo functional studies supportive of a damaging effect. Apply PS3 for assays measuring effect via protein only OR mRNA and protein combined. See Specifications Table 9 for code recommendations from calibrated published assays. Also see Figure1C and Appendix E for details.\n\nWell-established _in vitro_ or _in vivo_ functional studies supportive of a damaging effect _as measured by effect on mRNA transcript profile (mRNA assay only)._ Apply as PVS1 (RNA) at appropriate strength. See Specifications Figure1B and Appendix E for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0039",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0045",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166135",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166135",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5te---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PM6_nuclear_BRCA2",
+            "additionalComments": "BRCA1/2-related cancers occur relatively commonly. No information to calibrate the predictive capacity of de novo occurrences.",
+            "applicability": "Not applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Moderate",
+            "evidenceCategory": "De novo Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "label": "PM6",
+            "ns": "097",
+            "originalACMGSummary": "Assumed de novo, but without confirmation of paternity and maternity.",
+            "sepioID": "SEPIO-CG:99032",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0235",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0014",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0037",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0010",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0022",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166132",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166132",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5j2---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PS4_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Strong",
+            "evidenceCategory": "Population Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "Case dataset should be ethnicity and country-matched to control dataset. If case-control LR estimates are available for a given dataset, these should be used in preference to case-control OR data, under code PP4 (or BP5, if appropriate). Do not use Proband Counting as originally described.",
+            "label": "PS4",
+            "ns": "097",
+            "originalACMGSummary": "The prevalence of the variant in affected individuals is significantly increased compared to the prevalence in controls.\nNote 1: Relative risk (RR) or odds ratio (OR), as obtained from case-control studies, is >5.0 and the confidence interval around the estimate of RR or OR does not include 1.0. See manuscript for detailed guidance.\nNote 2: In instances of very rare variants where case-control studies may not reach statistical significance, the prior observation of the variant in multiple unrelated patients with the same phenotype, and its absence in controls, may be used as moderate level of evidence.",
+            "sepioID": "SEPIO-CG:99026",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0243",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0029",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Notes": [
+                    "Relative risk or OR, as obtained from case–control studies, is >5.0, and the confidence interval around the estimate of relative risk or OR does not include 1.0. See the article for detailed guidance.",
+                    "In instances of very rare variants where case-control studies may not reach statistical significance, the prior observation of the variant in multiple unrelated patients with the same phenotype, and its absence in controls, may be used as moderate level of evidence."
+                  ]
+                },
+                "applicability": "Applicable",
+                "id": "0053",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Clarification",
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "The prevalence of the variant in affected individuals is significantly increased compared to the prevalence in controls. Case-control studies; p-value ≤0.05 and OR ≥4 (lower confidence interval excludes 2.0). See Appendix F for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0057",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0032",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166119",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166119",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5Xi---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PM4_nuclear_BRCA2",
+            "additionalComments": "Considered as component of bioinformatic analysis (PP3/BP4).",
+            "applicability": "Not applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Moderate",
+            "evidenceCategory": "Computational And Predictive Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "label": "PM4",
+            "ns": "097",
+            "originalACMGSummary": "Protein length changes due to in-frame deletions/insertions in a non-repeat region or stop-loss variants.",
+            "sepioID": "SEPIO-CG:99030",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0233",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0012",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0035",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "009",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0059",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166117",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166117",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5qW---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PS1_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Strong",
+            "evidenceCategory": "Computational And Predictive Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "For both missense and splicing scenarios, (Likely) Pathogenic variant classification should be assigned using VCEP specifications.\n\nFor application of PS1 for splicing predictions, **see Specifications Table 5.** The predicted event of the VUA must precisely match the predicted event of the known (likely) pathogenic variant (e.g. both predicted to lead to exon A skipping, or both to enhanced use of cryptic site B), AND the strength of the prediction for the VUA must be of similar or higher strength than the strength of the prediction for the known (likely) pathogenic variant. For an exonic variant, predicted or proven functional effect of missense substitution/s encoded by the variant and the established pathogenic variant should also be considered before PS1 code application for splicing prediction.",
+            "label": "PS1",
+            "ns": "097",
+            "originalACMGSummary": "Same amino acid change as a previously established pathogenic variant regardless of nucleotide change.\nExample: Val->Leu caused by either G>C or G>T in the same codon.\nCaveat: Beware of changes that impact splicing rather than at the amino acid/protein level.",
+            "sepioID": "SEPIO-CG:99023",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0240",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0021",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Caveats": [
+                    "Beware of changes that impact splicing rather than at the amino acid/protein level"
+                  ],
+                  "Example": [
+                    "Val=>Leu caused by either G>C or G>T in the same codon"
+                  ]
+                },
+                "applicability": "Applicable",
+                "id": "0050",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "General recommendation"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "Apply **PS1**, for predicted **missense** substitutions, where a previously classified **pathogenic** variant is considered to act via protein change (no confirmed or predicted effect on mRNA splicing (SpliceAI≤0.1)).\n\nApply **PS1**, for exonic and intronic variants with same predicted impact on **splicing,** as a previously classified **pathogenic** variant. Vary weight depending on relative positions, and confidence in classification of the reference variant. \n\nSee Specifications Table 5 and Appendix E, J and K for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0046",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "General recommendation"
+                ],
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "Apply **PS1\\_Moderate**, for predicted **missense** substitutions, where a previously classified **likely pathogenic** variant is considered to act via protein change (no confirmed or predicted effect on mRNA splicing (SpliceAI≤0.1)).\n\nApply **PS1\\_Moderate**, for exonic and intronic variants with same predicted impact on **splicing**, as a previously classified **(likely) pathogenic** variant. Vary weight depending on relative positions, and confidence in classification of the reference variant.\n\nSee Specifications Table 5 and Appendix E, J and K for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0036",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "General recommendation"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "Apply **PS1**, for exonic and intronic variants with same predicted impact on **splicing**, as a previously classified **(likely) pathogenic** variant. Vary weight depending on relative positions, and confidence in classification of the reference variant.\n\nSee Specifications Table 5 and Appendix E, J and K for details.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166142",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166142",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5mO---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BP7_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Supporting",
+            "evidenceCategory": "Computational And Predictive Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "See **Specifications Figure 1B** for process to apply codes for splicing data, in content of location and predicted bioinformatic impact of the variant, and adaptive weighting according to assay methodology and proportion of functional transcript retained. Not applicable for missense variants inside a (potentially) clinically important functional domain as they may still impact protein function through the amino acid change.\n\nFollowing convention, this code is applied in addition to BP4 (no splicing prediction, Splice AI ≤0.1) to capture the low prior probability of pathogenicity of silent variants. Nucleotide conservation is not considered relevant. See **Specifications Figure 1A** for process to apply codes according to variant type, location and predicted bioinformatic impact.",
+            "label": "BP7",
+            "ns": "097",
+            "originalACMGSummary": "A synonymous variant for which splicing prediction algorithms predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved.",
+            "sepioID": "SEPIO-CG:99049",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0221",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000325",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0219",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0065",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "General recommendation",
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "Well-established in vitro or in vivo functional studies shows no damaging effect on protein function _as measured by effect on mRNA transcript profile – mRNA assay only._ Apply as BP7\\_Strong (RNA) for intronic and silent variants, as well as missense/in-frame variants located outside a (potentially) clinically important functional domain. Missense variants located inside a (potentially) clinically important functional domain must meet BS3 to be eligible for BP7\\_Strong (RNA). See Specifications Figure1B and Appendix E for details.\n\nAs justified in the appendices, (potentially) clinically important functional domains are defined as: BRCA2 PALB2 binding domain aa 10-40; BRCA2 DNA binding aa 2481-3186. See Specifications Figure1A and Appendix J for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0220",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000699",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0079",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Clarification",
+                  "General recommendation"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "Silent variant inside a (potentially) clinically important functional domain, IF BP4 met.\n\nIntronic variants located outside conserved donor or acceptor motif positions (at or beyond positions +7/-21) IF BP4 met.\n\nSee Specifications Figure1A and Appendix J for additional details.\n\nAs justified in the appendices, (potentially) clinically important functional domains are defined as: BRCA2 PALB2 binding domain aa 10-40; BRCA2 DNA binding aa 2481-3186. See Specifications Figure1A and Appendix J for details.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166133",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166133",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5iy---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BA1_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Stand Alone",
+            "evidenceCategory": "Population Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "Apply based on maximum filter allele frequency observed in a gnomAD non-founder population, considering exome and genome data separately.\n\nDo not apply if read depth \\<20. Do not apply to well-established pathogenic founder variants.",
+            "label": "BA1",
+            "ns": "097",
+            "originalACMGSummary": "Allele frequency is above 5% in Exome Sequencing Project, 1000 Genomes or Exome Aggregation Consortium.",
+            "sepioID": "SEPIO-CG:99038",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Applicable",
+                "id": "0087",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000325",
+                "text": "Filter allele frequency (FAF) is above 0.1% (FAF > 0.001) in gnomAD v2.1 (non-cancer, exome only subset) and/or gnomAD v3.1 (non-cancer), non-founder population(s). See Appendix G for details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0201",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0202",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0203",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000699",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0089",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166131",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166131",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5nO---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PM5_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Moderate",
+            "evidenceCategory": "Computational And Predictive Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "Only applied to genomic PTC changes (not splicing). Weight determined by exon where the termination codon occurs (may not be the same exon as the variant position). See Specifications Table 4, provided as a separate searchable excel file, for PM5\\_PTC codes applicable for predicted termination codon variants - organized by exon.",
+            "label": "PM5",
+            "ns": "097",
+            "originalACMGSummary": "Novel missense change at an amino acid residue where a different missense change determined to be pathogenic has been seen before.\nExample: Arg156His is pathogenic; now you observe Arg156Cys.\nCaveat: Beware of changes that impact splicing rather than at the amino acid/protein level.",
+            "sepioID": "SEPIO-CG:99031",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0234",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0047",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0056",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Other"
+                ],
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "Protein termination codon (PTC) variant in an exon where a different proven pathogenic PTC variant has been seen before. Use to justify additional weight for PTC variants annotated as PVS1. See Specifications Table 4 for PM5\\_PTC code strengths applicable per exon. See Appendix D for additional details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Examples": [
+                    "Arg156His is pathogenic; now you observe Arg156Cys"
+                  ]
+                },
+                "applicability": "Applicable",
+                "id": "008",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Other"
+                ],
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "Protein termination codon (PTC) variant in an exon where a different proven pathogenic PTC variant has been seen before. Use to justify additional weight for PTC variants annotated as PVS1. See Specifications Table 4 for PM5\\_PTC code strengths applicable per exon. See Appendix D for additional details.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Applicable",
+                "id": "0048",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Other"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "Protein termination codon (PTC) variant in an exon where a different proven pathogenic PTC variant has been seen before. Use to justify additional weight for PTC variants annotated as PVS1. See Specifications Table 4 for PM5\\_PTC code strengths applicable per exon. See Appendix D for additional details.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166121",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166121",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5fq---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BP6_nuclear_BRCA2",
+            "additionalComments": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+            "applicability": "Not Applicable for this VCEP",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Supporting",
+            "evidenceCategory": "Other Database",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "",
+            "label": "BP6",
+            "ns": "097",
+            "originalACMGSummary": "Reputable source recently reports variant as benign, but the evidence is not available to the laboratory to perform an independent evaluation.",
+            "references": [
+              {
+                "id": "29543229",
+                "source": "PubMed",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/29543229"
+              }
+            ],
+            "sepioID": "SEPIO-CG:99048",
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "instructionsToUse": "",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000325",
+                "text": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "instructionsToUse": "",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "instructionsToUse": "",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "instructionsToUse": "",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "instructionsToUse": "",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000326",
+                "text": "This criterion is not for use as recommended by the ClinGen Sequence Variant Interpretation VCEP Review Committee.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166143",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166143",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5k6---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PS2_nuclear_BRCA2",
+            "additionalComments": "BRCA1/2-related cancers occur relatively commonly. No information to calibrate the predictive capacity of de novo occurrences.",
+            "applicability": "Not applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Strong",
+            "evidenceCategory": "De novo Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "label": "PS2",
+            "ns": "097",
+            "originalACMGSummary": "De novo (both maternity and paternity confirmed) in a patient with the disease and no family history.\nNote: Confirmation of paternity only is insufficient. Egg donation, surrogate motherhood, errors in embryo transfer, etc. can contribute to non-maternity.",
+            "sepioID": "SEPIO-CG:99024",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0241",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0016",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Notes": [
+                    "Confirmation of paternity only is insufficient. Egg donation, surrogate motherhood, errors in embryo transfer, and so on, can contribute to nonmaternity."
+                  ]
+                },
+                "applicability": "Not applicable",
+                "id": "0051",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "004",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0043",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166141",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166141",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5r----"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PP3_nuclear_BRCA2",
+            "additionalComments": "",
+            "applicability": "Applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Supporting",
+            "evidenceCategory": "Computational And Predictive Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "instructionsToUse": "See **Specifications** **Figure 1A** for process to apply codes according to variant type, location and predicted bioinformatic impact.",
+            "label": "PP3",
+            "ns": "097",
+            "originalACMGSummary": "Multiple lines of computational evidence support a deleterious effect on the gene or gene product (conservation, evolutionary, splicing impact, etc.).\nCaveat: As many in silico algorithms use the same or very similar input for their predictions, each algorithm should not be counted as an independent criterion. PP3 can be used only once in any evaluation of a variant.",
+            "sepioID": "SEPIO-CG:99035",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0238",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0024",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0019",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not Applicable",
+                "id": "0025",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "additionalComments": {
+                  "Caveats": [
+                    "Because many in silico algorithms use the same or very similar input for their predictions, each algorithm should not be counted as an independent criterion. PP3 can be used only once in any evaluation of a variant."
+                  ]
+                },
+                "applicability": "Applicable",
+                "id": "0062",
+                "instructionsToUse": "",
+                "specificationType": [
+                  "Gene-specific"
+                ],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "Apply PP3 for missense or in-frame insertion, deletion or delins variants inside a (potentially) clinically important functional domain and predicted impact via protein change (BayesDel no-AF score ≥0.30). As justified in the appendices, (potentially) clinically important functional domains are defined as: BRCA2 PALB2 binding domain aa 10-40; BRCA2 DNA binding aa 2481-3186.\n\nApply PP3 for predicted splicing (SpliceAI ≥0.2) for silent, missense/in-frame (irrespective of location in clinically important functional domain) and for intronic variants outside of donor and acceptor 1,2 sites.\n\nSee Specifications Figure1A and Appendix J for details.",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166134",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166134",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5ci---"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_PP2_nuclear_BRCA2",
+            "additionalComments": "High frequency of benign missense variants.",
+            "applicability": "Not applicable",
+            "baseStrength": "Pathogenic",
+            "defaultStrength": "Pathogenic Supporting",
+            "evidenceCategory": "Functional Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "label": "PP2",
+            "ns": "097",
+            "originalACMGSummary": "Missense variant in a gene that has a low rate of benign missense variation and where missense variants are a common mechanism of disease.",
+            "sepioID": "SEPIO-CG:99034",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0237",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0049",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "SEPIO:0000220",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0033",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000330",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0034",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000216",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0061",
+                "instructionsToUse": "",
+                "specificationType": [],
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000329",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166125",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166125",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5U----"
+        },
+        {
+          "entContent": {
+            "_uniqueProp": "097_BP2_nuclear_BRCA2",
+            "additionalComments": "Applied only in the context of BS2.",
+            "applicability": "Not applicable",
+            "baseStrength": "Benign",
+            "defaultStrength": "Benign Supporting",
+            "evidenceCategory": "Allelic Data",
+            "gene": [
+              "BRCA2"
+            ],
+            "geneType": "nuclear",
+            "label": "BP2",
+            "ns": "097",
+            "originalACMGSummary": "Observed in trans with a pathogenic variant for a fully penetrant dominant gene/disorder or observed in cis with a pathogenic variant in any inheritance pattern.",
+            "sepioID": "SEPIO-CG:99044",
+            "specificationType": [],
+            "status": {
+              "Pilot Rules In Prep": {
+                "completed": true
+              }
+            },
+            "strengthDescriptor": [
+              {
+                "applicability": "Not applicable",
+                "id": "0209",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Stand Alone",
+                "strengthSepioID": "SEPIO:0000325",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0207",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Very Strong",
+                "strengthSepioID": "",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0068",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Strong",
+                "strengthSepioID": "SEPIO:0000328",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0208",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Moderate",
+                "strengthSepioID": "SEPIO:0000699",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              },
+              {
+                "applicability": "Not applicable",
+                "id": "0084",
+                "instructionsToUse": "",
+                "status": "approved",
+                "strength": "Supporting",
+                "strengthSepioID": "SEPIO:0000327",
+                "text": "",
+                "type": "EvidenceLineStrength"
+              }
+            ]
+          },
+          "entType": "CriteriaCode",
+          "ldhId": "1614166120",
+          "ldhIri": "https://cspec.genome.network/cspec/CriteriaCode/id/1614166120",
+          "modified": "2025-01-09T01:12:42.529Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc5g6---"
+        }
+      ],
+      "Disease": [
+        {
+          "created": "2024-11-20T22:14:03.908Z",
+          "creator": "cspecAdministrator",
+          "entContent": {
+            "MONDO": {
+              "id": "http://purl.obolibrary.org/obo/MONDO_0700269",
+              "lbl": "BRCA2-related cancer predisposition",
+              "meta": {
+                "basicPropertyValues": [
+                  {
+                    "pred": "http://purl.org/dc/terms/creator",
+                    "val": "https://orcid.org/0000-0002-4142-7153"
+                  }
+                ],
+                "definition": {
+                  "val": "Hereditary cancer predisposition due to variation(s) in the BRCA2 gene. Germline pathogenic or likely pathogenic variants in the BRCA2 gene confer an autosomal dominant predisposition to hereditary breast and ovarian cancer. Tumor formation at other sites, including pancreatic and prostate cancer, have been described.",
+                  "xrefs": [
+                    "https://clinicalgenome.org/affiliation/40023/"
+                  ]
+                },
+                "subsets": [
+                  "http://purl.obolibrary.org/obo/mondo#gard_rare",
+                  "http://purl.obolibrary.org/obo/mondo#rare"
+                ],
+                "xrefs": [
+                  {
+                    "val": "GARD:0026409"
+                  }
+                ]
+              },
+              "type": "CLASS"
+            },
+            "MONDOID": "MONDO:0700269",
+            "name": "BRCA2-related cancer predisposition"
+          },
+          "entId": "MONDO:0700269",
+          "entIri": "http://purl.obolibrary.org/obo/MONDO_0700269",
+          "entType": "Disease",
+          "ldhId": "66816761",
+          "ldhIri": "https://cspec.genome.network/cspec/Disease/id/66816761",
+          "modified": "2026-10-17T21:36:49.263Z",
+          "modifier": "cspecAdministrator",
+          "rev": "_mStJxCe---"
+        },
+        {
+          "entContent": {
+            "MONDO": {
+              "id": "http://purl.obolibrary.org/obo/MONDO_0012933",
+              "lbl": "breast-ovarian cancer, familial, susceptibility to, 2",
+              "meta": {
+                "basicPropertyValues": [
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/IAO_0000233",
+                    "val": "https://github.com/monarch-initiative/mondo/issues/4521"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/IAO_0000233",
+                    "val": "https://github.com/monarch-initiative/mondo/issues/9285"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#curated_content_resource",
+                    "val": "https://search.clinicalgenome.org/kb/conditions/MONDO:0012933"
+                  },
+                  {
+                    "pred": "http://purl.obolibrary.org/obo/mondo#curated_content_resource",
+                    "val": "https://www.malacards.org/card/breast_ovarian_cancer_familial_2_2"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://identifiers.org/medgen/382625"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "http://linkedlifedata.com/resource/umls/id/C2675520"
+                  },
+                  {
+                    "pred": "http://www.w3.org/2004/02/skos/core#exactMatch",
+                    "val": "https://omim.org/entry/612555"
+                  }
+                ],
+                "definition": {
+                  "val": "Any hereditary breast ovarian cancer syndrome in which the cause of the disease is a mutation in the BRCA2 gene.",
+                  "xrefs": [
+                    "MONDO:patterns/disease_series_by_gene"
+                  ]
+                },
+                "subsets": [
+                  "http://purl.obolibrary.org/obo/mondo#clingen",
+                  "http://purl.obolibrary.org/obo/mondo#gard_rare",
+                  "http://purl.obolibrary.org/obo/mondo#omim_susceptibility",
+                  "http://purl.obolibrary.org/obo/mondo#predisposition",
+                  "http://purl.obolibrary.org/obo/mondo#rare"
+                ],
+                "synonyms": [
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "BRCA2 hereditary breast ovarian cancer syndrome",
+                    "xrefs": [
+                      "MONDO:design_pattern",
+                      "MONDO:patterns/disease_series_by_gene"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "breast-ovarian cancer, familial, 2"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "breast-ovarian cancer, familial, susceptibility to, 2",
+                    "xrefs": [
+                      "OMIM:612555"
+                    ]
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "breast-ovarian cancer, familial, susceptibility to, type 2"
+                  },
+                  {
+                    "pred": "hasExactSynonym",
+                    "val": "hereditary breast ovarian cancer syndrome caused by mutation in BRCA2",
+                    "xrefs": [
+                      "MONDO:design_pattern"
+                    ]
+                  },
+                  {
+                    "pred": "hasRelatedSynonym",
+                    "synonymType": "http://purl.obolibrary.org/obo/mondo#ABBREVIATION",
+                    "val": "BROVCA2"
+                  }
+                ],
+                "xrefs": [
+                  {
+                    "val": "GARD:0027821"
+                  },
+                  {
+                    "val": "MEDGEN:382625"
+                  },
+                  {
+                    "val": "OMIM:612555"
+                  },
+                  {
+                    "val": "UMLS:C2675520"
+                  }
+                ]
+              },
+              "type": "CLASS"
+            },
+            "MONDOID": "MONDO:0012933",
+            "name": "breast-ovarian cancer, familial, susceptibility to, 2"
+          },
+          "entId": "MONDO:0012933",
+          "entIri": "http://purl.obolibrary.org/obo/MONDO_0012933",
+          "entType": "Disease",
+          "ldhId": "467873801",
+          "ldhIri": "https://cspec.genome.network/cspec/Disease/id/467873801",
+          "modified": "2026-10-17T21:33:39.659Z",
+          "modifier": "cspecAdministrator",
+          "rev": "_mStG3p2---"
+        }
+      ],
+      "Gene": [
+        {
+          "entContent": {
+            "HGNC": {
+              "_version_": 1704056943391277000,
+              "agr": "HGNC:1101",
+              "alias_name": [
+                "BRCA1/BRCA2-containing complex, subunit 2"
+              ],
+              "alias_symbol": [
+                "FAD",
+                "FAD1",
+                "BRCC2",
+                "XRCC11"
+              ],
+              "ccds_id": [
+                "CCDS9344"
+              ],
+              "cosmic": "BRCA2",
+              "date_approved_reserved": "1994-10-17",
+              "date_modified": "2021-05-26",
+              "date_name_changed": "2019-01-22",
+              "ena": [
+                "U43746"
+              ],
+              "ensembl_gene_id": "ENSG00000139618",
+              "entrez_id": "675",
+              "gene_group": [
+                "FA complementation groups"
+              ],
+              "gene_group_id": [
+                548
+              ],
+              "hgnc_id": "HGNC:1101",
+              "location": "13q13.1",
+              "location_sortable": "13q13.1",
+              "locus_group": "protein-coding gene",
+              "locus_type": "gene with protein product",
+              "lsdb": [
+                "Breast Cancer|http://research.nhgri.nih.gov/bic/",
+                "Fanconi Anaemia Mutation Database|http://www2.rockefeller.edu/fanconi/",
+                "BRCA1 database at LOVD-China|http://genomed.org/LOVD/BC/home.php?select_db=BRCA2",
+                "Global Variome shared LOVD|https://databases.lovd.nl/shared/genes/BRCA2",
+                "LOVD - Leiden Open Variation Database|http://proteomics.bio21.unimelb.edu.au/lovd/genes/BRCA2",
+                "Global Variome shared LOVD|https://databases.lovd.nl/shared/genes/FANCD1",
+                "LRG_293|http://ftp.ebi.ac.uk/pub/databases/lrgex/LRG_293.xml"
+              ],
+              "mane_select": [
+                "ENST00000380152.8",
+                "NM_000059.4"
+              ],
+              "mgd_id": [
+                "MGI:109337"
+              ],
+              "name": "BRCA2 DNA repair associated",
+              "omim_id": [
+                "600185"
+              ],
+              "orphanet": 119072,
+              "prev_name": [
+                "Fanconi anemia, complementation group D1",
+                "breast cancer 2, early onset",
+                "breast cancer 2"
+              ],
+              "prev_symbol": [
+                "FANCD1",
+                "FACD",
+                "FANCD"
+              ],
+              "pubmed_id": [
+                8091231,
+                7581463,
+                15057823
+              ],
+              "refseq_accession": [
+                "NM_000059"
+              ],
+              "rgd_id": [
+                "RGD:2219"
+              ],
+              "status": "Approved",
+              "symbol": "BRCA2",
+              "symbol_report_tag": [
+                "Stable symbol"
+              ],
+              "ucsc_id": "uc001uub.2",
+              "uniprot_ids": [
+                "P51587"
+              ],
+              "uuid": "c1732bf3-cd86-42a2-b8e3-76e8da2d317c",
+              "vega_id": "OTTHUMG00000017411"
+            }
+          },
+          "entId": "BRCA2",
+          "entIri": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:1101",
+          "entType": "Gene",
+          "ldhId": "467818963",
+          "ldhIri": "https://cspec.genome.network/cspec/Gene/id/467818963",
+          "modified": "2021-10-14T11:36:31.267Z",
+          "modifier": "genbadmin",
+          "rev": "_inf5A8u--d"
+        }
+      ],
+      "RuleSet": [
+        {
+          "entContent": {
+            "_uniqueProp": "097_nuclear_BRCA2",
+            "geneType": "nuclear",
+            "generalComments": "Complete table of criteria combinations for variant classification is available in the Specifications word document attached.\n            ",
+            "genes": [
+              {
+                "diseases": [
+                  {
+                    "adjective": "None",
+                    "modesOfInheritance": [
+                      {
+                        "adjective": "None",
+                        "modeOfInheritance": "Autosomal dominant inheritance"
+                      }
+                    ],
+                    "preferredModeOfInheritance": "Autosomal dominant inheritance",
+                    "preferredMondoId": "MONDO:0700269",
+                    "preferredTitle": "BRCA2-related cancer predisposition"
+                  }
+                ],
+                "gene": "BRCA2",
+                "preferredTranscript": "NM_000059.4",
+                "transcripts": [
+                  "NM_000059.4"
+                ]
+              }
+            ],
+            "ns": "097",
+            "references": [],
+            "rules": {
+              "mainRules": [
+                {
+                  "conditions": [
+                    {
+                      "applicableCriteriaCodes": [
+                        "BA1"
+                      ],
+                      "condition": "==1",
+                      "getpartitionPath": "",
+                      "label": "Rule1, Condition1",
+                      "partitionPath": "Benign.Stand Alone"
+                    }
+                  ],
+                  "inference": "Benign",
+                  "rule": "Rule1"
+                }
+              ]
+            }
+          },
+          "entType": "RuleSet",
+          "ldhId": "1535438847",
+          "ldhIri": "https://cspec.genome.network/cspec/RuleSet/id/1535438847",
+          "modified": "2025-01-09T01:12:42.136Z",
+          "modifier": "michaelP",
+          "rev": "_jCgc45m---"
+        }
+      ]
+    },
+    "ldFor": {
+      "Organization": [
+        {
+          "entContent": {
+            "abbreviation": "BRCA1/BRCA2",
+            "approval": {
+              "step1": {
+                "approvalDate": "2020-12-12T00:00:00.000Z",
+                "approved": true
+              },
+              "step2": {
+                "approvalDate": "2021-12-13T00:00:00.000Z",
+                "approved": true
+              },
+              "step3": {
+                "approvalDate": "2023-04-28T00:00:00.000Z",
+                "approved": true
+              },
+              "step4": {
+                "approvalDate": "2023-08-08T00:00:00.000Z",
+                "approved": true
+              }
+            },
+            "curationActivity": "Variant Pathogenicity",
+            "fullBaseName": "ENIGMA BRCA1 and BRCA2",
+            "shortBaseName": "BRCA1/BRCA2",
+            "shortTitle": "ENIGMA BRCA1 and BRCA2 VCEP",
+            "title": "ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+            "type": "Variant Curation Expert Panel"
+          },
+          "entId": "50087",
+          "entIri": "http://clinicalgenome.org/affiliation/50087",
+          "entType": "Organization",
+          "ldhId": "639508895",
+          "ldhIri": "https://cspec.genome.network/cspec/Organization/id/639508895",
+          "modified": "2023-08-08T12:53:03.856Z",
+          "modifier": "cspecAdministrator",
+          "rev": "_inf5B-2--G"
+        }
+      ],
+      "SequenceVariantInterpretation": [
+        {
+          "entContent": {
+            "approvedOn": "03-05-2015",
+            "description": "ACMG ISV guidelines 2015",
+            "namespace": "GN001",
+            "notes": "",
+            "references": [
+              {
+                "source": "PubMed",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/25741868"
+              }
+            ],
+            "shortTitle": "ACMG 2015-Guidelines",
+            "specificationSource": "https://www.acmg.net/docs/Standards_Guidelines_for_the_Interpretation_of_Sequence_Variants.pdf",
+            "tagNameSpaces": [
+              "001"
+            ],
+            "title": "Standards and guidelines for the interpretation of sequence variants: a joint consensus recommendation of the American College of Medical Genetics and Genomics and the Association for Molecular Pathology",
+            "version": "1.0.0"
+          },
+          "entId": "GN001",
+          "entType": "SequenceVariantInterpretation",
+          "ldhId": "135637585",
+          "ldhIri": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/135637585",
+          "modified": "2022-08-18T15:51:43.074Z",
+          "modifier": "cspecAdministrator",
+          "rev": "_inf5BXe---"
+        }
+      ]
+    },
+    "ldhId": "1535438831",
+    "ldhIri": "https://cspec.genome.network/cspec/SequenceVariantInterpretation/id/1535438831",
+    "modified": "2026-07-20T17:44:34.775Z",
+    "modifier": "cspecAdministrator",
+    "rev": "_l2AfJsG---"
+  },
+  "metadata": {
+    "rendered": {
+      "by": "https://cspec.genome.network/cspec/srvc",
+      "when": "2026-10-26T10:00:16.319Z"
+    }
+  },
+  "status": {
+    "code": 200,
+    "name": "OK"
+  }
+}

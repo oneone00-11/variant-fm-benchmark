@@ -1,0 +1,92 @@
+{
+ "script": "scripts/stage_E20/write_vcep_rules.py",
+ "argv": [
+  "scripts/stage_E20/write_vcep_rules.py"
+ ],
+ "git_commit": "ac51de3ba64754d4260bb1f89af31a1f2bb0e814",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20/write_vcep_rules.py": "8fc2a578b774289e55e23ebd8fc8db2d86dc3ced882c855247d14096340f7278",
+  "scripts/stage_E20/_runlog.py": "8483813f99d10e14cc678a7913c508515bf95b2963556b81d583b8e4e0c41a86"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T10:00:43+00:00",
+ "end_utc": "2026-10-26T10:00:43+00:00",
+ "inputs": [
+  {
+   "path": "phase1/data/evidence/vcep/raw/manifest.json",
+   "bytes": 10783,
+   "sha256": "3a951c00e8df8a7a916a9ba4797ef0577dc0fff9be8943cd279774328a21b396"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN077_record.json",
+   "bytes": 172622,
+   "sha256": "3641b671b4ff3958dc4c2e8d79b543e848dca21c7134c0ffc343235131af9587"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN077.json",
+   "bytes": 56155,
+   "sha256": "53beb241bcac2e32e2aee6741f31c22fb5b68a70e9be9f4c880b9b13727fddff"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN078_record.json",
+   "bytes": 167523,
+   "sha256": "1d397b413069531933747c2d4ea9b912c3ef43b2a519f9f205a12d58f3c0e637"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN078.json",
+   "bytes": 67202,
+   "sha256": "09ed733ebfb7c59d93d7082664426eec9b33356f9ef4dbf1e6a16e916b05c29c"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN092_record.json",
+   "bytes": 143697,
+   "sha256": "f16e8322dcc79d7f3cf8404bb05e74086483638591b4a02a13b9f127c210ffe6"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN092.json",
+   "bytes": 71002,
+   "sha256": "febc83a305ccf1ffb583eca24902e2286435849df289a2414f26227449879fb3"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN096_record.json",
+   "bytes": 28303,
+   "sha256": "0faa200baa27a5942b04c9e749a479ef79fedc231f33b02cb1e848354e902850"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN096.json",
+   "bytes": 2703,
+   "sha256": "6434d5bf5eb26cb1e75f7d12740fda9945de2dfa5843237e9963cd2cc170f86a"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN097_record.json",
+   "bytes": 143045,
+   "sha256": "0821d70d9b8bc9cdc7529f6242b583fa3d0c5a7b1a8365ccf53424bc321aa7b4"
+  },
+  {
+   "path": "phase1/data/evidence/vcep/raw/GN097.json",
+   "bytes": 70913,
+   "sha256": "855c7ad1050b7ae5ef7e059b850a334c6edd11b551666f0517cf010cfaa75223"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/vcep/vcep_rules.json",
+   "bytes": 19264,
+   "sha256": "95d8efd13422a112095f129eb1f9d7d94f7d63130a22809192fa93a412614954"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "rules": 12
+ }
+}

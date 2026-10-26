@@ -1,0 +1,80 @@
+{
+ "commit": "E20.3 (C13: the VCEP specifications' records and rules)",
+ "reason": "C13's records, before any predictor score is read: the registry's specifications for the seven training genes as served, and the rules file read from them; no stage is added and no output changes",
+ "declared_from": "E20.3 and E20.0 rule 1: only new input files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/data/evidence/vcep/raw/GN077.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/GN077_record.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/GN078.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/GN078_record.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/GN092.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/GN092_record.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/GN096.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/GN096_record.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/GN097.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/GN097_record.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/clingen_terms_of_use.html": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/cspec_svis.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/manifest.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/zenodo_GN077_21433964.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/zenodo_GN078_21433974.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/zenodo_GN092_21434315.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/raw/zenodo_GN097_21434343.json": {
+   "kind": "file",
+   "why": "new input: a VCEP specification record as ClinGen's Criteria Specification Registry, Zenodo or ClinGen's site served it (scripts/stage_E20/fetch_vcep_specs.py), or its manifest; listed in reproduce_inputs.txt"
+  },
+  "phase1/data/evidence/vcep/vcep_rules.json": {
+   "kind": "file",
+   "why": "new input: the splicing-prediction rules (PP3, BP4, BP7) of the current, approved VCEP specifications, each quote checked verbatim against the record it cites, written in the reference image (scripts/stage_E20/write_vcep_rules.py) before any score is joined to it; listed in reproduce_inputs.txt"
+  }
+ }
+}
