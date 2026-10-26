@@ -1,0 +1,51 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E20/scope_c13.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "13f0955e7ac30c2668e177b2790f6a290738e5e3",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E20/_runlog.py": "8483813f99d10e14cc678a7913c508515bf95b2963556b81d583b8e4e0c41a86"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T10:49:09+00:00",
+ "end_utc": "2026-10-26T10:49:19+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E20/scope_c13.json",
+   "bytes": 1039,
+   "sha256": "c8ebd164c892bea921d33e240c8e72461fa84a51e52b1df01b810c977ed60c24"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E20/scope_c13.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/suppl_analyses/c13_vcep_band_lr.csv": {
+    "status": "declared",
+    "why": "new: part 'band_lr' (per gene x criterion x band: damaging and normal counts, the band's counts, the ratio with its interval, the tiers at the point estimate and at the conservative end, the strengths the specification allows), part 'bp7_from_c6' (c6's counts beside the specification's BP7 scope) and part 'no_specification'; the header names each rule's source and version, the score column and what is not evaluated",
+    "change": "added"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

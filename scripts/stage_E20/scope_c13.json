@@ -1,0 +1,9 @@
+{
+ "commit": "E20.4 (C13: the VCEP rules on this study's data)",
+ "reason": "C13: every PP3 and BP4 rule of vcep_rules.json applied within its gene on the 3-10, 11-50 and 3-50 nt bands by E2's band ratio, gates and zero-event rule, with the external genes' within-gene interval, and the BP7 counts read from c6_bp4_bp7.csv, a new stage (evid_suppl_c13) appended after every existing stage",
+ "declared_from": "E20.4 and E20.0 rule 1: only new files, every existing output byte for byte the same",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/c13_vcep_band_lr.csv": {"kind": "file", "why": "new: part 'band_lr' (per gene x criterion x band: damaging and normal counts, the band's counts, the ratio with its interval, the tiers at the point estimate and at the conservative end, the strengths the specification allows), part 'bp7_from_c6' (c6's counts beside the specification's BP7 scope) and part 'no_specification'; the header names each rule's source and version, the score column and what is not evaluated"}
+ }
+}

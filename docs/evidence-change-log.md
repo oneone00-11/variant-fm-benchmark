@@ -1858,3 +1858,21 @@ unchanged (`scripts/stage_E20/scope_c13_records.json`).
   0.2, BP4 <= 0.1; VHL PP3 > 0.5 and BP4 <= 0.1, each with VarSeak. PALB2's specification
   names the SVI's thresholds (Walker et al. 2023); the others state no SpliceAI setting.
 - `reproduce_evidence.py --check` also reads the VCEP manifest.
+
+## Supplementary analyses, C13: the VCEP rules on this study's data (stage E20, 2026-10-26)
+
+Why: E20.4, on the rules committed before it. A new stage, `evid_suppl_c13` (stage 40, after
+every existing stage), only adds a file under `phase1/reports/evidence/suppl_analyses/`;
+every existing output is unchanged (`scripts/stage_E20/scope_c13.json`).
+
+- Each PP3 and BP4 rule of `vcep_rules.json`, within its gene, on the 3-10, 11-50 and 3-50
+  nt bands (every rule's position scope covers them): E2's band ratio, gates and
+  zero-event rule (`evid_walker_thresholds._band_stats`), the external genes' within-gene
+  interval (`evid_external._band_detail`, 2,000 draws), the tier at the point estimate and
+  at the conservative end, beside the strengths the specification allows (Supporting for
+  every PP3 and BP4). The score column is the published basis (`spliceai_walker`) for every
+  rule; VHL's "> 0.5" selects the same variants as ">= 0.5" here. VarSeak, PhyloP, RNA
+  evidence and PVS1 are not evaluated.
+- `c13_vcep_band_lr.csv`: 24 band rows (18 evaluable; BRCA1 and BRCA2 at 11-50 nt and VHL's
+  PP3 at 3-10 and 11-50 nt are not), 12 BP7 rows read from `c6_bp4_bp7.csv` beside each
+  specification's own BP7 scope, and BAP1, BARD1 and RAD51C without a specification.
