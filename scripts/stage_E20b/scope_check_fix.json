@@ -1,0 +1,7 @@
+{
+ "commit": "E20b.4 (commit 4: --check reads a cached file where its manifest caches it)",
+ "reason": "reproduce_evidence.py --check reads a file kept only in a gitignored cache at its cached_at (sha256 checked when the cache holds it, absent otherwise); code and tests only",
+ "declared_from": "E20b.4: no output changes",
+ "pairs": {},
+ "files": {}
+}

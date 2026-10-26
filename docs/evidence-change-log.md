@@ -1962,3 +1962,19 @@ definitions are the specifications' own text (E20b.3), not chosen from the count
   variant (BRCA2 at 11-50 nt) now says so in its reason; ENIGMA's rows name the setting its
   Appendix J states (E20b.2), with the published basis kept; the header records the BP7
   definitions, PhyloP's source and ENIGMA's setting.
+
+## The quick check reads a cached file where its manifest caches it (stage E20b, 2026-10-26)
+
+Why: E20b.4 (E20's open item 3). `reproduce_evidence.py --check` read the top-level "file" of
+E19's ClinVar archive manifest as a path in the repository; it is the name as served, the
+archive being kept only in the gitignored cache, so the check reported it missing. Code and
+tests only; no output changes (`scripts/stage_E20b/scope_check_fix.json`).
+
+- A file that a manifest records with a `cached_at` (the cache path) and a sha256, wherever
+  the entry sits in E19's and E20's manifests (`cached_entries`), is checked at its cache
+  path when the cache holds it, and waited for, like the ClinVar release, when it does not:
+  E19's ClinVar archive and E20b's four ENIGMA specification files.
+- Tests: the archive read where the cache holds it and waited for where it does not (the
+  cache simulated either way, whatever this machine's holds), and entries found wherever a
+  manifest records them. `bash reproduce.sh --check` on this machine:
+  `scripts/stage_E20b/run_log/run_check_*.json`.

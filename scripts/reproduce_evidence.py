@@ -909,11 +909,25 @@ def _source_sha256(path: Path) -> str:
     return hashlib.sha256(blob).hexdigest()
 
 
+def cached_entries(manifest) -> list[dict]:
+    """The entries of a manifest, wherever they sit in it, for files that are not
+    committed but kept in a gitignored cache: those with a cached_at (the cache path)
+    and a sha256. E19's ClinVar archive is one (its manifest's top level); its "file" is
+    the name as served, not a path here (E20b.4)."""
+    if isinstance(manifest, list):
+        return [e for x in manifest for e in cached_entries(x)]
+    if not isinstance(manifest, dict):
+        return []
+    here = [manifest] if manifest.get("cached_at") and isinstance(manifest.get("sha256"), str) else []
+    return here + [e for x in manifest.values() for e in cached_entries(x)]
+
+
 def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
     """(record, file, expected, how) for every checksum a tracked manifest or
     provenance record carries about a file in this repository, and about the ClinVar
-    release, the atlas and the new external genes' chromosomes when they are here; and the
-    names of those inputs when they are not. `how` is "file" (sha256 of the bytes),
+    release, the atlas, the new external genes' chromosomes and the files kept in a
+    gitignored cache when they are here; and the names of those inputs when they are
+    not. `how` is "file" (sha256 of the bytes),
     "content" (the row-order-free hash of a table) or "source" (evid_supp_tables' hash
     of a source). Hashes of files that only existed where the model scores were made
     (the scorers' reference FASTAs, scorer modules, interpreters) are left out: nothing
@@ -1031,20 +1045,26 @@ def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
         d = json.loads(rec.read_text())
         add(rec, REPO / d["paper_rule"], d["paper_rule_sha256"])
     # E19's and E20's records as fetched or saved: each file of a manifest (a gzip-stored
-    # one by the stored file's sha256), the second set's label source (the cached one when
-    # it is here) and its paper rule as the quote check read it
+    # one by the stored file's sha256), each file kept only in a gitignored cache (where
+    # the cache holds it), the second set's label source (the cached one when it is here)
+    # and its paper rule as the quote check read it
     for rec in [*sorted((ev / "e19").glob("*/manifest.json")),
                 ev / "e19" / "first_public_dates" / "preprint_search.json",
                 *sorted((ev / "second_set").glob("*_raw/manifest.json")),
                 *sorted((ev / "vcep").glob("raw/manifest.json"))]:
         d = json.loads(rec.read_text())
         for entry in d.get("files") or []:
-            if entry.get("file"):
+            if entry.get("file") and not entry.get("cached_at"):
                 add(rec, REPO / entry["file"], entry.get("sha256_gz") or entry["sha256"])
-        if d.get("file") and d.get("sha256"):
+        if d.get("file") and d.get("sha256") and not d.get("cached_at"):
             add(rec, REPO / d["file"], d["sha256"])
         if d.get("extract"):
             add(rec, REPO / d["extract"]["file"], d["extract"]["sha256"])
+        for entry in cached_entries(d):
+            if (REPO / entry["cached_at"]).is_file():
+                add(rec, REPO / entry["cached_at"], entry["sha256"])
+            else:
+                absent.append(f"{entry['cached_at']} (kept in a gitignored cache, not committed)")
     for rec in sorted((ev / "second_set").glob("*_raw/label_source_manifest.json")):
         for entry in json.loads(rec.read_text())["files"]:
             if entry.get("cached") and not (REPO / entry["path"]).exists():

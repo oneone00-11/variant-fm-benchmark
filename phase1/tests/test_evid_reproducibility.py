@@ -542,6 +542,48 @@ def test_the_quick_check_waits_for_an_absent_clinvar(tmp_path, monkeypatch):
     assert not any(t == tmp_path / "not-downloaded.vcf.gz" for _, t, _, _ in rows)
 
 
+# E19's ClinVar archive is kept only in a gitignored cache: its manifest's "file" is the
+# name as served, its cached_at the path here (E20b.4)
+CLINVAR_ARCHIVE = DATA / "e19/clinvar_variant_summary/manifest.json"
+
+
+def _cache_holds(monkeypatch, path: Path, here: bool) -> None:
+    """The cache holds `path`, or does not, whatever this machine's cache holds."""
+    real = Path.is_file
+    monkeypatch.setattr(Path, "is_file", lambda self: here if self == path else real(self))
+
+
+def test_the_quick_check_reads_a_cached_file_where_the_cache_holds_it(monkeypatch):
+    d = json.loads(CLINVAR_ARCHIVE.read_text())
+    cached = REPO / d["cached_at"]
+    _cache_holds(monkeypatch, cached, True)
+    rows, absent = E.recorded_checksums()
+    record = str(CLINVAR_ARCHIVE.relative_to(REPO))
+    assert [(t, sha, how) for r, t, sha, how in rows if r == record and t == cached] == [
+        (cached, d["sha256"], "file")]
+    assert not any(t == REPO / d["file"] for _, t, _, _ in rows)
+    assert not any(d["cached_at"] in a for a in absent)
+
+
+def test_the_quick_check_waits_for_a_cached_file_the_cache_lacks(monkeypatch):
+    d = json.loads(CLINVAR_ARCHIVE.read_text())
+    cached = REPO / d["cached_at"]
+    _cache_holds(monkeypatch, cached, False)
+    rows, absent = E.recorded_checksums()
+    assert not any(t in (cached, REPO / d["file"]) for _, t, _, _ in rows)
+    assert [a for a in absent if d["cached_at"] in a] == [
+        f"{d['cached_at']} (kept in a gitignored cache, not committed)"]
+
+
+def test_cached_files_are_found_wherever_a_manifest_records_them():
+    m = {"file": "x.txt.gz", "cached_at": "cache/x.txt.gz", "sha256": "a" * 64,
+         "files": [{"file": "raw/page.html", "sha256": "b" * 64}],
+         "section": {"specs": {"G1": {"attachments": [
+             {"name": "z", "cached_at": "cache/G1/z.docx", "sha256": "c" * 64},
+             {"name": "w", "fetched": False}]}}}}
+    assert [e["cached_at"] for e in E.cached_entries(m)] == ["cache/x.txt.gz", "cache/G1/z.docx"]
+
+
 def test_a_text_report_is_read_number_by_number(tmp_path):
     a, b = tmp_path / "a.txt", tmp_path / "b.txt"
     a.write_text("interval_lr_x 720 102 0.142 1.9469957902793724\n")
