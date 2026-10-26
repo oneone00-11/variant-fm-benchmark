@@ -1937,3 +1937,28 @@ unchanged (`scripts/stage_E20b/scope_enigma.json`).
   and carry the sentences in `further_quotes` after the registry's; nothing else changes.
   Neither SpliceAI column of this study has that distance (published basis 4,999,
   `spliceai` 50).
+
+## Supplementary analyses, C13: BP7 as each specification defines it (stage E20b, 2026-10-26)
+
+Why: E20b.3 (E20's open items 5 and 6). E20.4 read every specification's BP7 from
+`c6_bp4_bp7.csv`, at Walker 2023's positions; PALB2's BP7 starts at +8 and -22 and carries no
+prediction condition, and VHL's names no position and asks for PhyloP <= 0.2. The
+definitions are the specifications' own text (E20b.3), not chosen from the counts. Only
+`c13_vcep_band_lr.csv` changes (`scripts/stage_E20b/scope_c13_fix.json`).
+
+- BP7 is computed in `evid_suppl_c13`, counted as C6 counts (`evid_suppl_c6_c7.labelled`:
+  the SGE labels, the signed offset, `spliceai_walker`). ENIGMA: donor +7 and beyond,
+  acceptor -21 and beyond, with BP4 (SpliceAI <= 0.1), per side and both; the same
+  definition as C6's condition (a), and the stage stops unless its rows equal C6's cell for
+  cell. PALB2: donor +8 and beyond, acceptor -22 and beyond; (i) with no prediction
+  condition, as the criterion reads, and (ii) with BP4 (SpliceAI <= 0.1), as the
+  instructions to use allow. VHL: the study's 3-10, 11-50 and 3-50 nt, with BP4's SpliceAI
+  half (<= 0.1) and PhyloP <= 0.2 (the analysis set's `phylop`, UCSC phyloP100way, hg38; no
+  variant lacks it). Each row gives the variants at the positions (or in the band), those
+  meeting the condition, the damaging and normal among them and the damaging share.
+- PALB2: 5 of 409 at the positions are damaging; all 5 meet (ii), among 368. VHL: none of
+  the 43 variants meeting the condition at 3-50 nt is damaging.
+- The band rows: every count, ratio, interval and tier as before. A band with no labelled
+  variant (BRCA2 at 11-50 nt) now says so in its reason; ENIGMA's rows name the setting its
+  Appendix J states (E20b.2), with the published basis kept; the header records the BP7
+  definitions, PhyloP's source and ENIGMA's setting.

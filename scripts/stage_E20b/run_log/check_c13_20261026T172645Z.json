@@ -1,0 +1,397 @@
+{
+ "script": "scripts/stage_E20b/check_c13.py",
+ "argv": [
+  "scripts/stage_E20b/check_c13.py"
+ ],
+ "git_commit": "6d39e4f0f607a32fe96497fd6b0729816f2199d4",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E20b/check_c13.py": "30dfd13db540b2d71ce0fb3f8303c72c0ad4170ca572250a7b2a4f1f295633ff",
+  "scripts/stage_E20b/_runlog.py": "365c3f499693097f81b9b67999c9be1f04e8ac03d3a54ebb41674b297c8c202c"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T17:26:45+00:00",
+ "end_utc": "2026-10-26T17:26:45+00:00",
+ "inputs": [
+  {
+   "path": "phase1/reports/evidence/suppl_analyses/c13_vcep_band_lr.csv",
+   "bytes": 23977,
+   "sha256": "a6f977247bb0782eb2ed455e32ff5595718044be0b9634a92a8774a4aeb8e83e"
+  },
+  {
+   "path": "phase1/reports/evidence/suppl_analyses/c6_bp4_bp7.csv",
+   "bytes": 7791,
+   "sha256": "4d42cd1209b352c6f48e56bdf3a5aa2d921281a5510f7a8fd506f1604619eeee"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "checks": {
+   "head_is_base": true,
+   "band_rows": {
+    "base": 24,
+    "new": 24
+   },
+   "band_cells_compared": 480,
+   "band_text_changed": [
+    {
+     "row": "BRCA1 PP3 s3_10",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    },
+    {
+     "row": "BRCA1 PP3 s11_50",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    },
+    {
+     "row": "BRCA1 PP3 s3_50",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    },
+    {
+     "row": "BRCA1 BP4 s3_10",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    },
+    {
+     "row": "BRCA1 BP4 s11_50",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    },
+    {
+     "row": "BRCA1 BP4 s3_50",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    },
+    {
+     "row": "BRCA2 PP3 s3_10",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    },
+    {
+     "row": "BRCA2 PP3 s11_50",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    },
+    {
+     "row": "BRCA2 PP3 s11_50",
+     "column": "reason",
+     "base": "fewer than 10 damaging or 10 normal variants",
+     "new": "no labelled variants at this distance in this gene's assay"
+    },
+    {
+     "row": "BRCA2 PP3 s3_50",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    },
+    {
+     "row": "BRCA2 BP4 s3_10",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    },
+    {
+     "row": "BRCA2 BP4 s11_50",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    },
+    {
+     "row": "BRCA2 BP4 s11_50",
+     "column": "reason",
+     "base": "fewer than 10 damaging or 10 normal variants",
+     "new": "no labelled variants at this distance in this gene's assay"
+    },
+    {
+     "row": "BRCA2 BP4 s3_50",
+     "column": "score_column_basis",
+     "base": "not stated in the specification: the published basis, as every cut-point result of this study (E20.4)",
+     "new": "stated in the specification's Appendix J, not in the criterion's text: Max Distance 10 000, which neither SpliceAI column of this study has (see the header); the published basis, as every cut-point result of this study"
+    }
+   ],
+   "enigma_bp7_against_c6_a": {
+    "rows": 6,
+    "cells": 42,
+    "differing": []
+   },
+   "bp7_rows": [
+    {
+     "gene": "BRCA1",
+     "side": "donor, +7 and beyond",
+     "stratum": null,
+     "bp7_condition": "BP4: SpliceAI at or below 0.1",
+     "n_at_positions": 318.0,
+     "n_damaging_at_positions": 5.0,
+     "n_normal_at_positions": 313.0,
+     "n_phylop_missing": null,
+     "n_meeting": 271.0,
+     "n_damaging": 1.0,
+     "n_normal": 270.0,
+     "share_damaging": 0.0036900369,
+     "reason": null
+    },
+    {
+     "gene": "BRCA1",
+     "side": "acceptor, -21 and beyond",
+     "stratum": null,
+     "bp7_condition": "BP4: SpliceAI at or below 0.1",
+     "n_at_positions": 42.0,
+     "n_damaging_at_positions": 0.0,
+     "n_normal_at_positions": 42.0,
+     "n_phylop_missing": null,
+     "n_meeting": 33.0,
+     "n_damaging": 0.0,
+     "n_normal": 33.0,
+     "share_damaging": 0.0,
+     "reason": null
+    },
+    {
+     "gene": "BRCA1",
+     "side": "both sides",
+     "stratum": null,
+     "bp7_condition": "BP4: SpliceAI at or below 0.1",
+     "n_at_positions": 360.0,
+     "n_damaging_at_positions": 5.0,
+     "n_normal_at_positions": 355.0,
+     "n_phylop_missing": null,
+     "n_meeting": 304.0,
+     "n_damaging": 1.0,
+     "n_normal": 303.0,
+     "share_damaging": 0.0032894737,
+     "reason": null
+    },
+    {
+     "gene": "BRCA2",
+     "side": "donor, +7 and beyond",
+     "stratum": null,
+     "bp7_condition": "BP4: SpliceAI at or below 0.1",
+     "n_at_positions": 128.0,
+     "n_damaging_at_positions": 4.0,
+     "n_normal_at_positions": 124.0,
+     "n_phylop_missing": null,
+     "n_meeting": 114.0,
+     "n_damaging": 3.0,
+     "n_normal": 111.0,
+     "share_damaging": 0.0263157895,
+     "reason": null
+    },
+    {
+     "gene": "BRCA2",
+     "side": "acceptor, -21 and beyond",
+     "stratum": null,
+     "bp7_condition": "BP4: SpliceAI at or below 0.1",
+     "n_at_positions": 0.0,
+     "n_damaging_at_positions": 0.0,
+     "n_normal_at_positions": 0.0,
+     "n_phylop_missing": null,
+     "n_meeting": 0.0,
+     "n_damaging": 0.0,
+     "n_normal": 0.0,
+     "share_damaging": null,
+     "reason": "no labelled variants at this distance in this gene's assay"
+    },
+    {
+     "gene": "BRCA2",
+     "side": "both sides",
+     "stratum": null,
+     "bp7_condition": "BP4: SpliceAI at or below 0.1",
+     "n_at_positions": 128.0,
+     "n_damaging_at_positions": 4.0,
+     "n_normal_at_positions": 124.0,
+     "n_phylop_missing": null,
+     "n_meeting": 114.0,
+     "n_damaging": 3.0,
+     "n_normal": 111.0,
+     "share_damaging": 0.0263157895,
+     "reason": null
+    },
+    {
+     "gene": "PALB2",
+     "side": "donor, +8 and beyond",
+     "stratum": null,
+     "bp7_condition": "(i) the criterion's text: no prediction condition",
+     "n_at_positions": 392.0,
+     "n_damaging_at_positions": 5.0,
+     "n_normal_at_positions": 387.0,
+     "n_phylop_missing": null,
+     "n_meeting": 392.0,
+     "n_damaging": 5.0,
+     "n_normal": 387.0,
+     "share_damaging": 0.012755102,
+     "reason": null
+    },
+    {
+     "gene": "PALB2",
+     "side": "acceptor, -22 and beyond",
+     "stratum": null,
+     "bp7_condition": "(i) the criterion's text: no prediction condition",
+     "n_at_positions": 17.0,
+     "n_damaging_at_positions": 0.0,
+     "n_normal_at_positions": 17.0,
+     "n_phylop_missing": null,
+     "n_meeting": 17.0,
+     "n_damaging": 0.0,
+     "n_normal": 17.0,
+     "share_damaging": 0.0,
+     "reason": null
+    },
+    {
+     "gene": "PALB2",
+     "side": "both sides",
+     "stratum": null,
+     "bp7_condition": "(i) the criterion's text: no prediction condition",
+     "n_at_positions": 409.0,
+     "n_damaging_at_positions": 5.0,
+     "n_normal_at_positions": 404.0,
+     "n_phylop_missing": null,
+     "n_meeting": 409.0,
+     "n_damaging": 5.0,
+     "n_normal": 404.0,
+     "share_damaging": 0.0122249389,
+     "reason": null
+    },
+    {
+     "gene": "PALB2",
+     "side": "donor, +8 and beyond",
+     "stratum": null,
+     "bp7_condition": "(ii) with BP4, SpliceAI at or below 0.1 (instructions to use: 'May also apply BP4 to achieve Likely Benign')",
+     "n_at_positions": 392.0,
+     "n_damaging_at_positions": 5.0,
+     "n_normal_at_positions": 387.0,
+     "n_phylop_missing": null,
+     "n_meeting": 355.0,
+     "n_damaging": 5.0,
+     "n_normal": 350.0,
+     "share_damaging": 0.014084507,
+     "reason": null
+    },
+    {
+     "gene": "PALB2",
+     "side": "acceptor, -22 and beyond",
+     "stratum": null,
+     "bp7_condition": "(ii) with BP4, SpliceAI at or below 0.1 (instructions to use: 'May also apply BP4 to achieve Likely Benign')",
+     "n_at_positions": 17.0,
+     "n_damaging_at_positions": 0.0,
+     "n_normal_at_positions": 17.0,
+     "n_phylop_missing": null,
+     "n_meeting": 13.0,
+     "n_damaging": 0.0,
+     "n_normal": 13.0,
+     "share_damaging": 0.0,
+     "reason": null
+    },
+    {
+     "gene": "PALB2",
+     "side": "both sides",
+     "stratum": null,
+     "bp7_condition": "(ii) with BP4, SpliceAI at or below 0.1 (instructions to use: 'May also apply BP4 to achieve Likely Benign')",
+     "n_at_positions": 409.0,
+     "n_damaging_at_positions": 5.0,
+     "n_normal_at_positions": 404.0,
+     "n_phylop_missing": null,
+     "n_meeting": 368.0,
+     "n_damaging": 5.0,
+     "n_normal": 363.0,
+     "share_damaging": 0.0135869565,
+     "reason": null
+    },
+    {
+     "gene": "VHL",
+     "side": null,
+     "stratum": "s3_10",
+     "bp7_condition": "BP4's SpliceAI half, at or below 0.1, and PhyloP at or below 0.2",
+     "n_at_positions": 70.0,
+     "n_damaging_at_positions": 10.0,
+     "n_normal_at_positions": 60.0,
+     "n_phylop_missing": 0.0,
+     "n_meeting": 22.0,
+     "n_damaging": 0.0,
+     "n_normal": 22.0,
+     "share_damaging": 0.0,
+     "reason": null
+    },
+    {
+     "gene": "VHL",
+     "side": null,
+     "stratum": "s11_50",
+     "bp7_condition": "BP4's SpliceAI half, at or below 0.1, and PhyloP at or below 0.2",
+     "n_at_positions": 75.0,
+     "n_damaging_at_positions": 13.0,
+     "n_normal_at_positions": 62.0,
+     "n_phylop_missing": 0.0,
+     "n_meeting": 21.0,
+     "n_damaging": 0.0,
+     "n_normal": 21.0,
+     "share_damaging": 0.0,
+     "reason": null
+    },
+    {
+     "gene": "VHL",
+     "side": null,
+     "stratum": "s3_50",
+     "bp7_condition": "BP4's SpliceAI half, at or below 0.1, and PhyloP at or below 0.2",
+     "n_at_positions": 145.0,
+     "n_damaging_at_positions": 23.0,
+     "n_normal_at_positions": 122.0,
+     "n_phylop_missing": 0.0,
+     "n_meeting": 43.0,
+     "n_damaging": 0.0,
+     "n_normal": 43.0,
+     "share_damaging": 0.0,
+     "reason": null
+    }
+   ],
+   "parts": {
+    "band_lr": 24,
+    "bp7": 15,
+    "no_specification": 3
+   },
+   "columns_removed": [
+    "c6_positions",
+    "c6_condition"
+   ],
+   "columns_added": [
+    "bp7_condition",
+    "checked_against",
+    "n_damaging_at_positions",
+    "n_normal_at_positions",
+    "phylop_source",
+    "n_phylop_missing"
+   ],
+   "header": {
+    "removed": [
+     "# E20 C13: the VCEP specifications' splicing rules applied to this study's data (src/evid_suppl_c13.py), from data/evidence/vcep/vcep_rules.json.",
+     "# Score column: spliceai_walker (published basis: SpliceAI 1.3.1, distance 4,999, unmasked, the largest of the four deltas), for every rule: none of the specifications states another setting; PALB2's names the SVI's thresholds (Walker et al. 2023). The rule's cut point is applied to that column as it stands.",
+     "# Not evaluated: VarSeak (VHL's PP3 and BP4: only the SpliceAI half is applied; the specification allows SpliceAI alone where VarSeak cannot take the variant), PhyloP (VHL's BP7), RNA evidence and PVS1 (PALB2). BP7 is read from c6_bp4_bp7.csv as it stands, at Walker 2023's BP7 positions; each row gives the specification's own BP7 scope beside it."
+    ],
+    "added": [
+     "# E20 C13: the VCEP specifications' splicing rules applied to this study's data (src/evid_suppl_c13.py), from data/evidence/vcep/vcep_rules.json; BP7 as each specification defines it (E20b).",
+     "# Score column: spliceai_walker (published basis: SpliceAI 1.3.1, distance 4,999, unmasked, the largest of the four deltas), for every rule. PALB2's specification names the SVI's thresholds (Walker et al. 2023); VHL's states no setting. ENIGMA's (BRCA1, BRCA2) states its setting in its Appendix J, not in the criterion's text (E20b; Appendices_V1.2_2024-11-18.docx, recorded in data/evidence/vcep/raw/manifest.json): the largest of the four deltas, 'unmasked' scores, Max Distance 10 000; SpliceAI is cited by its paper (Jaganathan et al. 2019), with no version, online tool or annotation named. Neither SpliceAI column of this study has that distance (spliceai_walker 4,999; spliceai 50), so no row is computed on another column. The rule's cut point is applied to the column as it stands.",
+     "# BP7, as each specification defines it, counted as c6_bp4_bp7.csv counts (the SGE labels, the signed offset read from the c. notation, spliceai_walker). ENIGMA: donor +7 and beyond, acceptor -21 and beyond, with BP4 (SpliceAI <= 0.1); the same definition as c6's condition (a), and equal to it cell for cell. PALB2: donor +8 and beyond, acceptor -22 and beyond (+7 and -21 not included); (i) the criterion's text, no prediction condition; (ii) with BP4 (SpliceAI <= 0.1), as the instructions to use allow ('May also apply BP4 to achieve Likely Benign'). VHL: no position stated, so this study's 3-10, 11-50 and 3-50 nt, with BP4's SpliceAI half (<= 0.1) and PhyloP <= 0.2; PhyloP is the analysis set's phylop: UCSC phyloP100way, hg38 (docs/column-provenance.md); the specification names no version; variants without it are not counted (0 in 3-50 nt). The +/-1-2 nt positions are outside this study's PP3 and BP4 bands and are not counted.",
+     "# Not evaluated: VarSeak (VHL's PP3, BP4 and BP7: only the SpliceAI half is applied; the specification allows SpliceAI alone where VarSeak cannot take the variant), RNA evidence and PVS1 (PALB2). A gene with no labelled variant in a band or at the positions: 'no labelled variants at this distance in this gene's assay'."
+    ]
+   }
+  },
+  "failures": []
+ }
+}

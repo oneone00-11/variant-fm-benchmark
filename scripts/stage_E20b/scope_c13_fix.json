@@ -1,0 +1,12 @@
+{
+ "commit": "E20b.3 (commit 3: C13's corrections)",
+ "reason": "BP7 computed as each specification defines it (ENIGMA, PALB2, VHL), replacing E20.4's reading from c6; the reason of a band without labelled variants; the header; the band rows' counts, ratios, intervals and tiers unchanged (check_c13.py)",
+ "declared_from": "E20b.3: only c13 changes",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/suppl_analyses/c13_vcep_band_lr.csv": {
+   "kind": "file",
+   "why": "C13: part 'bp7' (as each specification defines it) replaces part 'bp7_from_c6'; two band rows' reason, ENIGMA's band rows' score-column basis, the header; every band row's counts, ratios, intervals and tiers as at ebd6b50 (check_c13.py)"
+  }
+ }
+}

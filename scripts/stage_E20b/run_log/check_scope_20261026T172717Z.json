@@ -1,0 +1,51 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E20b/scope_c13_fix.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "6d39e4f0f607a32fe96497fd6b0729816f2199d4",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E20b/_runlog.py": "365c3f499693097f81b9b67999c9be1f04e8ac03d3a54ebb41674b297c8c202c"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-26T17:26:55+00:00",
+ "end_utc": "2026-10-26T17:27:17+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E20b/scope_c13_fix.json",
+   "bytes": 722,
+   "sha256": "0c1a7cab312a761ba0d0f2e09dde412295a76f5335b0120be4373aa69fd02507"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E20b/scope_c13_fix.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/suppl_analyses/c13_vcep_band_lr.csv": {
+    "status": "declared",
+    "why": "C13: part 'bp7' (as each specification defines it) replaces part 'bp7_from_c6'; two band rows' reason, ENIGMA's band rows' score-column basis, the header; every band row's counts, ratios, intervals and tiers as at ebd6b50 (check_c13.py)",
+    "change": "differs"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}
