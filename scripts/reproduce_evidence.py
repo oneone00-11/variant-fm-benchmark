@@ -188,6 +188,12 @@ RUN_INPUTS = REPO / "scripts" / "reproduce_inputs.txt"
 # (scripts/stage_E16d/compare_runs.py, E16d): --verify does not expect a run to
 # rewrite it, and compares it with the committed file like any other.
 COMPARISON_REPORTS = ["phase1/reports/evidence/label_change_effect.csv"]   # repository paths
+# What --check says of a file a manifest records with a cached_at, when the cache lacks
+# it: a one-off script fetched it (E19's ClinVar archive, E20b's ENIGMA specification
+# files), no stage reads it and the full run does not fetch it, so nothing waits for it.
+CACHE_ONLY = ("is not here: it is kept only in a gitignored cache, no stage reads it and the "
+              "full run does not fetch it, so its checksum is checked only where the cache "
+              "holds it")
 # The sha256 of every atlas file the stages read, as the release has them.
 ATLAS_PINS = REPO / "scripts" / f"atlas_release_v{ATLAS_ARCHIVE['version']}.sha256"
 # In a tree without .git (a release archive), where --verify keeps the tree as first
@@ -1064,7 +1070,7 @@ def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
             if (REPO / entry["cached_at"]).is_file():
                 add(rec, REPO / entry["cached_at"], entry["sha256"])
             else:
-                absent.append(f"{entry['cached_at']} (kept in a gitignored cache, not committed)")
+                absent.append(f"{entry['cached_at']} {CACHE_ONLY}")
     for rec in sorted((ev / "second_set").glob("*_raw/label_source_manifest.json")):
         for entry in json.loads(rec.read_text())["files"]:
             if entry.get("cached") and not (REPO / entry["path"]).exists():
@@ -1111,6 +1117,12 @@ def recorded_checksums() -> tuple[list[tuple[str, Path, str, str]], list[str]]:
     return out, absent
 
 
+def absent_line(name: str) -> str:
+    """--check's line for a recorded file that is not here."""
+    return name if name.endswith(CACHE_ONLY) else \
+        f"{name} is not here, so its checksums wait for the full run"
+
+
 def check() -> bool:
     """Every recorded checksum, then the test suite. No download, no stage run."""
     print(f"{'=' * 74}\nChecksums recorded in the manifests and provenance records\n"
@@ -1133,7 +1145,7 @@ def check() -> bool:
     for b in bad:
         print(f"      {b}")
     for name in absent:
-        print(f"  {name} is not here, so its checksums wait for the full run")
+        print(f"  {absent_line(name)}")
     print(f"\n{'=' * 74}\nThe test suite (pytest -q)\n{'=' * 74}", flush=True)
     env = dict(os.environ)
     atlas, missing = resolve_atlas()

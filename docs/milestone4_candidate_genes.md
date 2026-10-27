@@ -11,7 +11,7 @@ Candidates checked (in order): **VHL, BAP1, MSH2**; fallbacks TP53, PTEN, MLH1, 
 | Gene | SGE? | Primary set | N var | Transcript | License | PMID/source |
 |---|---|---|--:|---|---|---|
 | **BAP1** | ✅ SGE | urn:mavedb:00000662-0-1 | 18108 | ENST00000460680.6 | CC BY 4.0 | 38969833 (Waters 2024) — "CDS, splice-site intron, 3′UTR" |
-| **VHL** | ✅ SGE | urn:mavedb:00000675-a-1 | 2268 | ENST00000256474.3 | CC BY 4.0 | 38969834 (Buckley 2023) |
+| **VHL** | ✅ SGE | urn:mavedb:00000675-a-1 | 2268 | ENST00000256474.3 | CC BY 4.0 | 38969834 (Buckley 2024) |
 | MSH2 | ❌ | urn:mavedb:00000050-a-1 | 17746 | — | CC0 | 33357406 — missense LOF screen (HAP1), **not SGE, no splice/intron** |
 | TP53 | ❌ | (many) | — | — | CC0 | transactivation/DN assays, not SGE |
 | PTEN | ❌ | urn:mavedb:00000102 | — | — | CC0 | VAMP-seq abundance, not SGE |

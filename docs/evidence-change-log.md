@@ -2031,3 +2031,25 @@ the sentence means. Code, tests and documents only; no output changes
   test, on the v5 table against 72dbcb1's files (skipped where that commit is not in the
   clone), and on the v5 texts when `EVID_V5_MAIN` and `EVID_V5_SUPPLEMENT` name them (they
   are not in the repository).
+
+## The repository's documents brought up to date; --check on a cache-only file (stage E5, 2026-10-27)
+
+Why: E5.2 (修改单 v2.44 §3 B2, from E5.0 §5). Documents and code only; no output changes
+(`scripts/stage_E5/scope_docs.json`).
+
+- README: 8,501 labelled variants, not 8,453 (`set_counts.csv`, since the labels were rebuilt
+  from their cited sources, E16d); the five further external genes are scored and tested
+  (E18), not "none of the five is scored yet"; 40 stages, not 25; the VHL assay paper,
+  PMID 38969834, is Buckley 2024, as its MaveDB record gives it
+  (`phase1/data/evidence/e19/first_public_dates/mavedb/urn_3Amavedb_3A00000675-a-1.json`),
+  not 2023. `docs/milestone4_candidate_genes.md`: the same year.
+- `reproduce_evidence.py --check`: a file a manifest records with a `cached_at` (E19's
+  ClinVar archive, E20b's four ENIGMA specification files) was said to wait for the full
+  run when the cache lacks it. A one-off script fetched each, no stage reads it and the
+  full run does not fetch it, so the line now says that (`CACHE_ONLY`, `absent_line`;
+  E20b's open item 8). An input the full run fetches still waits for it. Tests: both lines.
+- Not changed: `supplementary/build_supplementary.py` line 68 calls the BAP1 deposit GRCh38;
+  that table is Supplementary Table S1 of Study B, the repository's other analysis, not this one's. `docs/practical-metrics-summary.md`
+  line 31 still names only DDX3X and TP53 in `practical_metrics_external.csv`, which holds
+  all seven external genes since E19: the file is an output of stage E15, so changing the
+  line changes an output, which this commit does not do.

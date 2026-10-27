@@ -21,7 +21,7 @@ splice-region predictors support against saturation genome editing data, by dist
 from the exon boundary, and do the thresholds hold in genes they were not fitted on?
 
 - **Analysis set:** `analysis_set_v1` (`phase1/data/evidence/`), 8,853 intron-side
-  SNVs within 50 nt of the exon boundary in the seven genes, 8,453 labelled by each
+  SNVs within 50 nt of the exon boundary in the seven genes, 8,501 labelled by each
   deposit's own functional classification; built from the companion atlas score
   matrix (release v2.5.0) and the ClinVar GRCh38 release of 15 June 2026.
 - **External genes:** DDX3X (1,857 intron-side SNVs to 25 nt; labelled by the
@@ -30,8 +30,10 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   labels from the deposits' own score ranges (stage E16,
   `docs/newgenes-record-check.md`), and a fifth, SBDS, its labels from the score
   table's per-variant class column, a source fixed before any predictor was run on
-  it (stage E16b, `docs/sbds-record-check.md`); none of the five is scored yet.
-- **Entry point:** `python scripts/reproduce_evidence.py` (25 stages; 22 in release
+  it (stage E16b, `docs/sbds-record-check.md`). The five were scored only after the
+  seven genes' thresholds were frozen (tag `frozen-thresholds-v1`), and all seven external
+  genes are tested at those thresholds (stage E18).
+- **Entry point:** `python scripts/reproduce_evidence.py` (40 stages; 22 in release
   3.0.1). Outputs:
   `phase1/reports/evidence/`, with the analysis set and the external-gene tables
   under `phase1/data/evidence/`.
@@ -415,7 +417,7 @@ Primary SGE/MAVE score set per gene (the independent gold standard):
 | BARD1 | urn:mavedb:00001250-a-2 | NM_000465.4 | CC0 | — |
 | PALB2 | urn:mavedb:00001259-a-2 | NM_024675.4 | CC0 | — |
 | RAD51C | urn:mavedb:00000673-0-1 | ENST00000337432.9 | CC BY 4.0 | 2024 (PMID 39299233) |
-| VHL | urn:mavedb:00000675-a-1 | ENST00000256474.3 | CC BY 4.0 | Buckley 2023 (PMID 38969834) |
+| VHL | urn:mavedb:00000675-a-1 | ENST00000256474.3 | CC BY 4.0 | Buckley 2024 (PMID 38969834) |
 | BAP1 | urn:mavedb:00000662-0-1 | ENST00000460680.6 | CC BY 4.0 | Waters 2024 (PMID 38969833) |
 
 ENST-based sets (BRCA2, RAD51C, VHL, BAP1) were coordinate-mapped to GRCh38 via

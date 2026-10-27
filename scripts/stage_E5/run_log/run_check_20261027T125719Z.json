@@ -1,0 +1,80 @@
+{
+ "script": "scripts/stage_E5/run_check.py",
+ "argv": [
+  "scripts/stage_E5/run_check.py"
+ ],
+ "git_commit": "12035cb72925a1459f09011f0844e1df0ddc2f6d",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E5/run_check.py": "be07e4f13f492fd6898a4b1898da41a77d6fb1037031a55341d3ce92aa195902",
+  "scripts/stage_E5/_runlog.py": "623aec9f20491f8625dfe5e4c324cff8006a5034d8d72de45faa7f4a3baca0ef"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-27T12:55:41+00:00",
+ "end_utc": "2026-10-27T12:57:19+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "command": "bash reproduce.sh --check",
+  "finished_utc": "2026-10-27T12:57:19+00:00",
+  "minutes": 1.6,
+  "returncode": 0,
+  "result_lines": [
+   "  710 checksums over 610 files in this repository and 2 outside it: 710 match, 0 do not",
+   "996 passed, 2 skipped, 449 warnings in 93.18s (0:01:33)",
+   "CHECKED: every recorded checksum matches and every test passes."
+  ],
+  "output_tail": [
+   ".venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85",
+   ".venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85",
+   ".venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85",
+   ".venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85",
+   "  /Users/cliffzhang/work/variant-fm-benchmark/.venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'",
+   "    parse = parser.parseString(pattern)",
+   "",
+   ".venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89",
+   ".venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89",
+   ".venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89",
+   ".venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89",
+   ".venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89",
+   ".venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89",
+   "  /Users/cliffzhang/work/variant-fm-benchmark/.venv/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'",
+   "    parser.resetCache()",
+   "",
+   ".venv/lib/python3.12/site-packages/matplotlib/_mathtext.py:45",
+   "  /Users/cliffzhang/work/variant-fm-benchmark/.venv/lib/python3.12/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'",
+   "    ParserElement.enablePackrat()",
+   "",
+   "phase1/tests/test_evid_fusion_stability.py: 49 warnings",
+   "  /Users/cliffzhang/work/variant-fm-benchmark/.venv/lib/python3.12/site-packages/sklearn/linear_model/_base.py:279: RuntimeWarning: divide by zero encountered in matmul",
+   "    return X @ coef_ + self.intercept_",
+   "",
+   "phase1/tests/test_evid_fusion_stability.py: 49 warnings",
+   "  /Users/cliffzhang/work/variant-fm-benchmark/.venv/lib/python3.12/site-packages/sklearn/linear_model/_base.py:279: RuntimeWarning: overflow encountered in matmul",
+   "    return X @ coef_ + self.intercept_",
+   "",
+   "phase1/tests/test_evid_fusion_stability.py: 49 warnings",
+   "  /Users/cliffzhang/work/variant-fm-benchmark/.venv/lib/python3.12/site-packages/sklearn/linear_model/_base.py:279: RuntimeWarning: invalid value encountered in matmul",
+   "    return X @ coef_ + self.intercept_",
+   "",
+   "phase1/tests/test_evid_suppl_twelve_gene.py: 288 warnings",
+   "  /Users/cliffzhang/work/variant-fm-benchmark/.venv/lib/python3.12/site-packages/pandas/core/internals/blocks.py:395: DeprecationWarning: Bitwise inversion '~' on bool is deprecated and will be removed in Python 3.16. This returns the bitwise inversion of the underlying int object and is usually not what you expect from negating a bool. Use the 'not' operator for boolean negation or ~int(x) if you really want the bitwise inversion of the underlying int.",
+   "    result = func(self.values, **kwargs)",
+   "",
+   "-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html",
+   "996 passed, 2 skipped, 449 warnings in 93.18s (0:01:33)",
+   "",
+   "CHECKED: every recorded checksum matches and every test passes."
+  ]
+ }
+}

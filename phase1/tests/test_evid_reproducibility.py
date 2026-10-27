@@ -565,14 +565,26 @@ def test_the_quick_check_reads_a_cached_file_where_the_cache_holds_it(monkeypatc
     assert not any(d["cached_at"] in a for a in absent)
 
 
-def test_the_quick_check_waits_for_a_cached_file_the_cache_lacks(monkeypatch):
+def test_the_quick_check_says_what_a_cached_file_the_cache_lacks_is(monkeypatch):
+    """No stage reads E19's ClinVar archive and the full run does not fetch it, so
+    --check does not say that its checksum waits for the full run (E5.2)."""
     d = json.loads(CLINVAR_ARCHIVE.read_text())
     cached = REPO / d["cached_at"]
     _cache_holds(monkeypatch, cached, False)
     rows, absent = E.recorded_checksums()
     assert not any(t in (cached, REPO / d["file"]) for _, t, _, _ in rows)
-    assert [a for a in absent if d["cached_at"] in a] == [
-        f"{d['cached_at']} (kept in a gitignored cache, not committed)"]
+    lines = [E.absent_line(a) for a in absent if d["cached_at"] in a]
+    assert lines == [f"{d['cached_at']} is not here: it is kept only in a gitignored cache, "
+                     "no stage reads it and the full run does not fetch it, so its "
+                     "checksum is checked only where the cache holds it"]
+
+
+def test_an_input_the_full_run_fetches_still_waits_for_it(tmp_path, monkeypatch):
+    monkeypatch.setattr(E, "CLINVAR_VCF", tmp_path / "not-downloaded.vcf.gz")
+    _, absent = E.recorded_checksums()
+    assert E.absent_line("the ClinVar release") == (
+        "the ClinVar release is not here, so its checksums wait for the full run")
+    assert "the ClinVar release" in absent
 
 
 def test_cached_files_are_found_wherever_a_manifest_records_them():
