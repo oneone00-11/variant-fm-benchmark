@@ -1978,3 +1978,56 @@ tests only; no output changes (`scripts/stage_E20b/scope_check_fix.json`).
   cache simulated either way, whatever this machine's holds), and entries found wherever a
   manifest records them. `bash reproduce.sh --check` on this machine:
   `scripts/stage_E20b/run_log/run_check_*.json`.
+
+## The manuscript numbers gate: three repairs and a cells mode (stage E5, 2026-10-27)
+
+Why: E5.1 (修改单 v2.44 §3 B2). E5.0, the read-only check of the v5 texts against 72dbcb1
+before the revision, found three holes in `scripts/check_evidence_manuscript_numbers.py`, and
+that a number found somewhere in the file its sentence names may still not be the number
+the sentence means. Code, tests and documents only; no output changes
+(`scripts/stage_E5/scope_gate.json`).
+
+- The self-test plants its numbers after the first sentence of the body that names a .csv
+  file, after confirming that none of them is a declared constant or a value those files
+  hold, and counts each planted number the bound mode reports: "caught k / n", PASSED only
+  when k = n. It used to pass whenever the text had any number the bound mode could not
+  find, whether or not the planted ones were caught; on v5 it caught five of six, 12.34
+  matching a stored proportion of 0.12336 times one hundred. Now six of six, on the main
+  text and on the supplementary notes.
+- A stored proportion times one hundred is compared only with a number printed as a
+  percentage ("%" or "per cent"), in the pool and the bound modes.
+- A token is declared by its context first (`CONTEXT_RULES`), then by the plain list. "95"
+  is the confidence level only beside "CI", "confidence" or a bound; v5's "in at least 95%
+  of evaluable cases" is a measurement. E5.0's thirteen constants with a wrong reason get
+  theirs: inline enumerations, the day of a date, the upper end of 3-10 nt, the scoring
+  distance of 50, gnomAD's 0.1% allele frequency, the TP53 scale's -1 and +1. The entries
+  "(1)" "(2)" "(3)", which no token ever matched, are gone. `--declared` lists each declared
+  token with its reason.
+- A text without "# Abstract" or "# References" (the supplementary notes) is read from the
+  top, or to the end, so the gate runs on it as it is.
+- Cells mode, `--cells TABLE --document main|supplement`: a binding table names, for every
+  number of the text, either why it is a constant or the file, rows, column and derivation
+  (value, sum, min, max, count, count_nonnull, all, text) of the one cell it is read from,
+  and the scale (100 for a proportion printed as a percentage). Each measured number is
+  compared with that cell at its printed precision; numbers that differ, rows that cannot
+  be resolved (no file, row or column; an excerpt that is not the sentence's; no number at
+  the row's place) and numbers with no row are listed, and any of the three fails the run.
+- `docs/manuscript_bindings_v5.tsv`: the 182 numbers of v5 (main text 120, supplementary
+  notes 62), from E5.0's number table, by `scripts/stage_E5/build_bindings_v5.py`; its
+  `tests/fixtures/manuscript_bindings_v5_expected.tsv` holds E5.0's verdict on each.
+- On v5 at 72dbcb1 the cells mode gives E5.0's verdicts number by number
+  (`scripts/stage_E5/check_bindings_v5.py`): main text 53 constants, 48 matching, 19 not
+  (E5.0's 14 that do not match and the 5 its bound mode could not find, each with E5.0's
+  value); supplementary notes 23 constants, 31 matching, 8 not (E5.0's 3, and the 5 of its
+  10 not found that have changed; the other 5 are E5.0 §2.3's four constants and the
+  derived 71, now read as a sum). Nothing cannot be bound or is missing from the table.
+  At 8e0d609, the release v5 cites, 104 of the 106 measured bindings round to their
+  printed number; the other two cannot be read there (a column E18 renamed, a scoring
+  record E17 added).
+- The bound mode on v5 at 72dbcb1 after the repairs: main text 62 matched, 53 declared,
+  5 not found, none unbound (61, 54, 5, 0 before: line 89's 95% is now measured, and its
+  file holds a value that rounds to it); supplementary notes 32, 18, 10, 2.
+- Tests: `tests/test_evidence_manuscript_numbers.py`, on small texts and tables made in the
+  test, on the v5 table against 72dbcb1's files (skipped where that commit is not in the
+  clone), and on the v5 texts when `EVID_V5_MAIN` and `EVID_V5_SUPPLEMENT` name them (they
+  are not in the repository).

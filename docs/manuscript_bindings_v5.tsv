@@ -1,0 +1,183 @@
+document	line	occurrence	printed	excerpt	kind	reason	file	rows	column	derive	scale
+main	19	1	0.2	en) calibrated SpliceAI scores of 0.2 or above to Moderate 	constant	PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
+main	19	1	7,612	ated thirteen predictor scores on 7,612 labelled intronic sin	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled	n	value	1
+main	19	1	8.3	liceAI gave a likelihood ratio of 8.3 (95% confidence inter	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled	lr_pp3	value	1
+main	19	1	95%	I gave a likelihood ratio of 8.3 (95% confidence interval 6	constant	confidence level					
+main	19	1	6.3	o of 8.3 (95% confidence interval 6.3–11.0), within the Mod	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled	lr_pp3_lo	value	1
+main	19	1	11.0	 8.3 (95% confidence interval 6.3–11.0), within the Moderate	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled	lr_pp3_hi	value	1
+main	27	1	2,736	maximum SpliceAI delta score from 2,736 variants outside the 	constant	size of Walker et al.'s calibration set, their p. 1051					
+main	27	1	0.2	A score of 0.2 or above reached Mode	constant	PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
+main	27	1	0.1	e evidence for PP3 and a score of 0.1 or below Moderate evi	constant	BP4 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
+main	27	1	0.5	ndlay and colleagues , a score of 0.5 or above gave Strong 	measured		phase1/config/walker2023.yaml		thresholds.applied_weight.higher_score_check_cut_point	value	1
+main	29	1	1	rd measured in cells, and we ask (1) what evidence streng	constant	inline enumeration, (1) (2) (3)					
+main	29	1	2	distance from the exon boundary, (2) whether a threshold 	constant	inline enumeration, (1) (2) (3)					
+main	29	1	3	ix genes holds in a seventh, and (3) whether it holds in 	constant	inline enumeration, (1) (2) (3)					
+main	29	1	8,853	We assembled 8,853 splice-region single-	measured		phase1/reports/evidence/set_counts.csv		n	sum	1
+main	37	1	8,853	MBL-EBI (MANE) Select transcript, 8,853 variants of which 8,4	measured		phase1/reports/evidence/set_counts.csv		n	sum	1
+main	37	1	8,453	anscript, 8,853 variants of which 8,453 are labelled .	measured		phase1/reports/evidence/set_counts.csv		n_labelled	sum	1
+main	37	1	804	hem to the PVS1 decision tree and 804 of their 841 labelled	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=pm12; clinvar_arm=all; scope=pooled	n_pos	value	1
+main	37	1	841	S1 decision tree and 804 of their 841 labelled variants are	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=pm12; clinvar_arm=all; scope=pooled	n	value	1
+main	37	1	224	 fifty in *BAP1* and *BARD1*, and 224 of the distal band's 	measured		phase1/reports/evidence/depth_counts.csv	gene=all; depth_nt=11-30	damaging	value	1
+main	37	1	225	D1*, and 224 of the distal band's 225 damaging variants lie	measured		phase1/reports/evidence/depth_counts.csv	gene=all; depth_nt=11-50	damaging	value	1
+main	41	1	4,999	dation specifies, unmasked within 4,999 nucleotides , and eve	constant	SpliceAI scoring distance, Walker's basis (provenance record)					
+main	47	1	0.10	leagues at a prior probability of 0.10 .	constant	prior probability of the Tavtigian point system					
+main	47	1	2.08	ng and Very strong boundaries are 2.08, 4.33, 18.7 and 350, 	constant	Supporting tier boundary (config/walker2023.yaml)					
+main	47	1	4.33	 Very strong boundaries are 2.08, 4.33, 18.7 and 350, with r	constant	Moderate tier boundary (config/walker2023.yaml)					
+main	47	1	18.7	strong boundaries are 2.08, 4.33, 18.7 and 350, with recipro	constant	Strong tier boundary (config/walker2023.yaml)					
+main	47	1	350	undaries are 2.08, 4.33, 18.7 and 350, with reciprocals on 	constant	Very strong tier boundary (config/walker2023.yaml)					
+main	51	1	95%	t score above which the one-sided 95% lower bound of that r	constant	confidence level					
+main	55	1	15	ed against the ClinVar release of 15 June 2026 as classifi	constant	day of the date 15 June 2026					
+main	55	1	548	Because 548 of the 555 in-scope v	measured		phase1/reports/evidence/clinvar_arm_no_assertion.csv	window_nt=3-50; clinvar_arm_strict=recorded_no_assertion; gene=BRCA1	n	value	1
+main	55	1	555	Because 548 of the 555 in-scope variants who	measured		phase1/reports/evidence/clinvar_arm_no_assertion.csv	window_nt=3-50; clinvar_arm_strict=recorded_no_assertion; gene=(all)	n	value	1
+main	59	1	1,857	Its deposit contributes 1,857 intron-side variants 	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		n_intronic_snv_mapped	value	1
+main	59	1	25	ntron-side variants to a depth of 25 nucleotides , labelle	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		max_intron_offset	value	1
+main	59	1	0.51	ls do not separate (control AUROC 0.51), and a false discove	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		"controls.per_scoreset[""urn:mavedb:00000658-q-1""].control_auroc"	value	1
+main	63	1	95%	Confidence intervals (CI) are 95% and come from 2,000 b	constant	confidence level					
+main	63	1	2,000	ervals (CI) are 95% and come from 2,000 bootstrap resamples c	constant	bootstrap resamples, gene-clustered (src/evid_walker_thresholds.py)					
+main	75	1	0.2	A score of 0.2 or above selected 14.	constant	PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
+main	75	1	14.8%	A score of 0.2 or above selected 14.8% of the variants .	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled	frac_pp3	value	100
+main	75	1	8.3	likelihood ratio of that band was 8.3 (95% CI 6.3 to 11.0),	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled	lr_pp3	value	1
+main	75	1	95%	ihood ratio of that band was 8.3 (95% CI 6.3 to 11.0), in t	constant	confidence level					
+main	75	1	6.3	atio of that band was 8.3 (95% CI 6.3 to 11.0), in the Mode	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled	lr_pp3_lo	value	1
+main	75	1	11.0	 that band was 8.3 (95% CI 6.3 to 11.0), in the Moderate ran	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled	lr_pp3_hi	value	1
+main	75	1	16.0	That calibration reported 16.0 for the same cut poin	measured		phase1/config/walker2023.yaml		thresholds.pp3.reported_lr	value	1
+main	77	1	5.1	the pooled window, with ratios of 5.1 in the proximal band 	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_10; clinvar_arm=all; scope=pooled	lr_pp3	value	1
+main	77	1	10.3	s of 5.1 in the proximal band and 10.3 in the distal band .	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s11_50; clinvar_arm=all; scope=pooled	lr_pp3	value	1
+main	77	1	0.17	side the BP4 band gave a ratio of 0.17 in the proximal band,	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_10; clinvar_arm=all; scope=pooled	lr_bp4	value	1
+main	77	1	0.48	d, within the Moderate range, and 0.48 in the distal band, j	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s11_50; clinvar_arm=all; scope=pooled	lr_bp4	value	1
+main	77	1	0.25	n the pooled window the ratio was 0.25, in the Supporting ra	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled	lr_bp4	value	1
+main	79	1	1.0	nt the local likelihood ratio was 1.0 in the proximal band 	measured		phase1/reports/evidence/walker_cutpoint_local_vs_band.csv	tool=spliceai_walker; stratum=s3_10	local_lr_at_cut	value	1
+main	79	1	1.8	 was 1.0 in the proximal band and 1.8 in the pooled window,	measured		phase1/reports/evidence/walker_cutpoint_local_vs_band.csv	tool=spliceai_walker; stratum=s3_50	local_lr_at_cut	value	1
+main	87	1	9.6	1* held out, and *BAP1* then gave 9.6 ( ).	measured		phase1/reports/evidence/tier_logo_table.csv	tool=spliceai_walker; stratum=s11_50; tier=strong	heldout_lr_median	value	1
+main	89	1	95%	the Moderate boundary in at least 95% of evaluable cases .	measured		phase1/reports/evidence/threshold_dilution_summary.csv	tier=moderate; k>=3	frac_pairs_cleared	min	100
+main	89	1	92%	Pangolin were cleared in at least 92% of evaluable cases an	measured		phase1/reports/evidence/threshold_dilution_summary.csv	tool=pangolin; tier=strong; stratum!=s11_50	frac_pairs_cleared	min	100
+main	89	1	52%	Those of SpliceAI were cleared in 52% to 83% .	measured		phase1/reports/evidence/threshold_dilution_summary.csv	tool=spliceai_walker; tier=strong; stratum!=s11_50	frac_pairs_cleared	min	100
+main	89	1	83%	f SpliceAI were cleared in 52% to 83% .	measured		phase1/reports/evidence/threshold_dilution_summary.csv	tool=spliceai_walker; tier=strong; stratum!=s11_50	frac_pairs_cleared	max	100
+main	93	1	16.4	 window, SpliceAI gave a ratio of 16.4 in the classified arm	measured		phase1/reports/evidence/arms_at_tool_threshold.csv	tool=spliceai_walker; threshold_basis=published cut point; gene_set=all_genes; stratum=s3_50; clinvar_arm=classified	band_lr	value	1
+main	93	1	5.0	io of 16.4 in the classified arm, 5.0 in the recorded but u	measured		phase1/reports/evidence/arms_at_tool_threshold.csv	tool=spliceai_walker; threshold_basis=published cut point; gene_set=all_genes; stratum=s3_50; clinvar_arm=recorded_unclassified	band_lr	value	1
+main	93	1	7.9	recorded but unclassified arm and 7.9 in the unrecorded arm	measured		phase1/reports/evidence/arms_at_tool_threshold.csv	tool=spliceai_walker; threshold_basis=published cut point; gene_set=all_genes; stratum=s3_50; clinvar_arm=unrecorded	band_lr	value	1
+main	93	1	96.3%	ge came from its normal variants, 96.3% of which scored below	measured		phase1/reports/evidence/arms_at_tool_threshold.csv	tool=spliceai_walker; threshold_basis=published cut point; gene_set=all_genes; stratum=s3_50; clinvar_arm=classified	spec	value	100
+main	93	1	92.0%	of which scored below it, against 92.0% in the unrecorded arm	measured		phase1/reports/evidence/arms_at_tool_threshold.csv	tool=spliceai_walker; threshold_basis=published cut point; gene_set=all_genes; stratum=s3_50; clinvar_arm=unrecorded	spec	value	100
+main	99	1	5.6	 point gave a likelihood ratio of 5.6 (95% CI 4.8 to 6.5) i	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s3_50; tool=spliceai_walker	walker_lr_pp3	value	1
+main	99	1	95%	t gave a likelihood ratio of 5.6 (95% CI 4.8 to 6.5) in the	constant	confidence level					
+main	99	1	4.8	a likelihood ratio of 5.6 (95% CI 4.8 to 6.5) in the pooled	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s3_50; tool=spliceai_walker	walker_lr_pp3_lo	value	1
+main	99	1	6.5	ihood ratio of 5.6 (95% CI 4.8 to 6.5) in the pooled window	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s3_50; tool=spliceai_walker	walker_lr_pp3_hi	value	1
+main	99	1	4.0	By band it gave 4.0 in the proximal band,	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s3_10; tool=spliceai_walker	walker_lr_pp3	value	1
+main	99	1	7.7	and, in the Supporting range, and 7.7 in the distal band ( 	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s11_50; tool=spliceai_walker	walker_lr_pp3	value	1
+main	101	1	51.8	las splice-site usage score, gave 51.8 with its lower bound 	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s11_50; tool=avi_splice_site_usage	pp3_logo_median_strong_lr_here	value	1
+main	103	1	3.1	he published cut point a ratio of 3.1, and of the five pred	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_control_anchored; stratum=s3_50; tool=spliceai_walker	walker_lr_pp3	value	1
+main	103	1	6.1	al-exon score set gave a ratio of 6.1 .	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_control_anchored_gated; stratum=s3_50; tool=spliceai_walker	walker_lr_pp3	value	1
+main	105	1	17	s the smaller external gene, with 17 damaging and 175 norm	measured		phase1/reports/evidence/external_tp53.csv	label_definition=y_control_anchored; stratum=s3_10; tool=spliceai_walker	n_pos	value	1
+main	105	1	175	ternal gene, with 17 damaging and 175 normal variants in th	measured		phase1/reports/evidence/external_tp53.csv	label_definition=y_control_anchored; stratum=s3_10; tool=spliceai_walker	n_neg	value	1
+main	105	1	6.2	here the published cut point gave 6.2 (95% CI 4.2 to 9.7), 	measured		phase1/reports/evidence/external_tp53.csv	label_definition=y_control_anchored; stratum=s3_10; tool=spliceai_walker	walker_lr_pp3	value	1
+main	105	1	95%	the published cut point gave 6.2 (95% CI 4.2 to 9.7), a poi	constant	confidence level					
+main	105	1	4.2	lished cut point gave 6.2 (95% CI 4.2 to 9.7), a point esti	measured		phase1/reports/evidence/external_tp53.csv	label_definition=y_control_anchored; stratum=s3_10; tool=spliceai_walker	walker_lr_pp3_lo	value	1
+main	105	1	9.7	cut point gave 6.2 (95% CI 4.2 to 9.7), a point estimate in	measured		phase1/reports/evidence/external_tp53.csv	label_definition=y_control_anchored; stratum=s3_10; tool=spliceai_walker	walker_lr_pp3_hi	value	1
+main	105	1	48	Its 48 variants at eleven an	measured		phase1/reports/evidence/external_tp53.csv	label_definition=y_control_anchored; stratum=s11_50; tool=spliceai_walker	n	value	1
+main	113	1	0.2	ng proximal-band variants scoring 0.2 or above that the ass	constant	PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
+main	113	1	40.1%	ove that the assay called normal, 40.1% had a SpliceAI-predic	measured		phase1/reports/evidence/inframe_attribution_summary.csv	tool=spliceai; stratum=s3_10	in_frame_share	value	100
+main	113	1	0.1	n side, damaging variants scoring 0.1 or below lowered the 	constant	BP4 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
+main	117	1	624	s hold one damaging variant among 624 labelled ones , so th	measured		phase1/reports/evidence/depth_counts.csv	gene=all; depth_nt=31-50	labelled	value	1
+main	119	1	2.2	ecimal places near its ceiling of 2.2 , which rounding at t	measured		phase1/reports/evidence/evidence_thresholds.csv	tool=alphagenome; stratum in s3_10|s11_50|s3_50; tier in supporting|moderate|strong	pp3_threshold_insample	max	1
+main	125	1	0.10	 solved at a prior probability of 0.10, so work at a differe	constant	prior probability of the Tavtigian point system					
+main	127	1	1	Further research is required to (1) calibrate Strong thr	constant	inline enumeration, (1) (2) (3)					
+main	127	1	2	 where they will be applied, and (2) generate denser func	constant	inline enumeration, (1) (2) (3)					
+main	133	1	15	s come from the GRCh38 release of 15 June 2026.	constant	day of the date 15 June 2026					
+main	133	1	11	e set analysed, was superseded on 11 September 2026 by a v	constant	day of the date 11 September 2026					
+main	159	1	0.2	 for (a) PP3, a SpliceAI score of 0.2 or above on the publi	constant	PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
+main	159	1	0.1	ed basis, and (b) BP4, a score of 0.1 or below.	constant	BP4 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
+main	159	1	95%	ed by ClinVar record status, with 95% CI from 2,000 bootstr	constant	confidence level					
+main	159	1	2,000	r record status, with 95% CI from 2,000 bootstrap resamples c	constant	bootstrap resamples, gene-clustered (src/evid_walker_thresholds.py)					
+main	159	2	95%	onds are the external genes, with 95% CI from 2,000 resampl	constant	confidence level					
+main	159	2	2,000	 external genes, with 95% CI from 2,000 resamples of variants	constant	bootstrap resamples, gene-clustered (src/evid_walker_thresholds.py)					
+main	159	1	0.10	ndaries at a prior probability of 0.10 (2.08, 4.33 and 18.7,	constant	prior probability of the Tavtigian point system					
+main	159	1	2.08	s at a prior probability of 0.10 (2.08, 4.33 and 18.7, and t	constant	Supporting tier boundary (config/walker2023.yaml)					
+main	159	1	4.33	 prior probability of 0.10 (2.08, 4.33 and 18.7, and their r	constant	Moderate tier boundary (config/walker2023.yaml)					
+main	159	1	18.7	obability of 0.10 (2.08, 4.33 and 18.7, and their reciprocal	constant	Strong tier boundary (config/walker2023.yaml)					
+main	161	1	100	n the smallest window of at least 100 labelled variants aro	constant	minimum window occupancy, Pejaver's procedure (src/evid_interval_lr.py)					
+main	161	1	2,000	ns the 5th to 95th percentiles of 2,000 bootstrap resamples c	constant	bootstrap resamples, gene-clustered (src/evid_walker_thresholds.py)					
+main	161	1	95%	and its lower edge, the one-sided 95% bound, defines each t	constant	confidence level					
+main	161	1	0.2	e published SpliceAI cut point of 0.2 (orange); the AlphaGe	constant	PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
+main	163	1	11	*BRCA2* has no variants at 11–50 bp, leaving six he	constant	stratum bound					
+main	163	1	50	*BRCA2* has no variants at 11–50 bp, leaving six held-	constant	stratum bound					
+main	165	1	95%	Intervals are 95% CI from 2,000 resampl	constant	confidence level					
+main	165	1	2,000	Intervals are 95% CI from 2,000 resamples of variants	constant	bootstrap resamples, gene-clustered (src/evid_walker_thresholds.py)					
+main	165	1	48	*DDX3X* has 48 damaging and 720 norm	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s3_10; tool=spliceai_walker	n_pos	value	1
+main	165	1	720	*DDX3X* has 48 damaging and 720 normal variants at 3–	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s3_10; tool=spliceai_walker	n_neg	value	1
+main	165	1	3	*DDX3X* has 48 damaging and	constant	stratum bound					
+main	165	1	10	ging and 720 normal variants at 3–10 bp, 17 and 880 at 11–	constant	stratum bound, the upper end of 3-10 nt					
+main	165	1	17	d 720 normal variants at 3–10 bp, 17 and 880 at 11–25 bp, 	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s11_50; tool=spliceai_walker	n_pos	value	1
+main	165	1	880	ormal variants at 3–10 bp, 17 and 880 at 11–25 bp, and 65 a	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s11_50; tool=spliceai_walker	n_neg	value	1
+main	165	1	11	ariants at 3–10 bp, 17 and 880 at 11–25 bp, and 65 and 1,6	constant	stratum bound					
+main	165	1	25	ants at 3–10 bp, 17 and 880 at 11–25 bp, and 65 and 1,600 	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		max_intron_offset	value	1
+main	165	1	65	0 bp, 17 and 880 at 11–25 bp, and 65 and 1,600 at 3–25 bp 	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s3_50; tool=spliceai_walker	n_pos	value	1
+main	165	1	1,600	7 and 880 at 11–25 bp, and 65 and 1,600 at 3–25 bp .	measured		phase1/reports/evidence/external_ddx3x.csv	label_definition=y_deposit; stratum=s3_50; tool=spliceai_walker	n_neg	value	1
+main	165	2	3	rmal variants at 3–10 bp, 17 and 880 at 	constant	stratum bound					
+main	165	2	25	ants at 3–10 bp, 17 and 880 at 11–25 bp, and 65 and 1,600 	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		max_intron_offset	value	1
+main	165	2	17	*TP53* has 17 damaging and 175 norm	measured		phase1/reports/evidence/external_tp53.csv	label_definition=y_control_anchored; stratum=s3_10; tool=spliceai_walker	n_pos	value	1
+main	165	1	175	*TP53* has 17 damaging and 175 normal variants at 3–	measured		phase1/reports/evidence/external_tp53.csv	label_definition=y_control_anchored; stratum=s3_10; tool=spliceai_walker	n_neg	value	1
+main	165	3	3	*TP53* has 17 damaging and 	constant	stratum bound					
+main	165	2	10	ging and 175 normal variants at 3–10 bp .	constant	stratum bound, the upper end of 3-10 nt					
+main	169	1	856	A further 856 variants at the canon	measured		phase1/reports/evidence/supplement/tableS2_analysis_set.csv	Stratum (intronic offset, bp) startswith Canonical; Gene=All genes; ClinVar record status=All variants	Variants	value	1
+supplement	5	1	4,999	 computed without masking, within 4,999 nucleotides of the va	constant	SpliceAI scoring distance, Walker's basis (provenance record)					
+supplement	7	1	0.2	PP3 applies at a score of 0.2 or above and BP4 at 0	constant	PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
+supplement	7	1	0.1	 score of 0.2 or above and BP4 at 0.1 or below, and the cal	constant	BP4 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
+supplement	7	1	15.99	ith reported likelihood ratios of 15.99 for the PP3 band and 	measured		phase1/config/walker2023.yaml		thresholds.pp3.reported_lr	value	1
+supplement	7	1	0.17	ios of 15.99 for the PP3 band and 0.17 for the BP4 band .	measured		phase1/config/walker2023.yaml		thresholds.bp4.reported_lr	value	1
+supplement	7	1	0.20	ust above the PP3 cut point, from 0.20 to 0.22, gave a likel	measured		phase1/config/walker2023.yaml		thresholds.applied_weight.narrow_band_scores[0]	value	1
+supplement	7	1	0.22	e the PP3 cut point, from 0.20 to 0.22, gave a likelihood ra	measured		phase1/config/walker2023.yaml		thresholds.applied_weight.narrow_band_scores[1]	value	1
+supplement	7	1	2.52	 0.22, gave a likelihood ratio of 2.52 .	measured		phase1/config/walker2023.yaml		thresholds.applied_weight.narrow_band_lr	value	1
+supplement	11	1	2,736	The cut points were calibrated on 2,736 variants in eight gen	constant	size of Walker et al.'s calibration set, their p. 1051					
+supplement	11	1	0.5	t higher scores, where a score of 0.5 or above gave Strong 	measured		phase1/config/walker2023.yaml		thresholds.applied_weight.higher_score_check_cut_point	value	1
+supplement	13	1	50	g but was scored at a distance of 50 nucleotides, so it mi	constant	SpliceAI scoring distance of 50 nt (the atlas column, the fusion input)					
+supplement	13	1	4,999	the analysis set at a distance of 4,999 with the same pinned 	constant	SpliceAI scoring distance, Walker's basis (provenance record)					
+supplement	13	1	0.91	olumns have a rank correlation of 0.91 across the 8,853 vari	measured		phase1/reports/evidence/column_concordance.csv	column_a=spliceai; column_b=spliceai_walker	spearman_rho	value	1
+supplement	13	1	8,853	nk correlation of 0.91 across the 8,853 variants .	measured		phase1/reports/evidence/column_concordance.csv	column_a=spliceai; column_b=spliceai_walker	n	value	1
+supplement	13	1	144	At the PP3 cut point, 144 variants move from be	measured		phase1/reports/evidence/column_concordance.csv	column_a=spliceai; column_b=spliceai_walker	n_a_below_b_at_or_above	value	1
+supplement	18	1	16,384	ver a variant-centred interval of 16,384 nucleotides .	measured		phase1/data/evidence/alphagenome_official/all_scores.tsv.provenance.json		code_run.per_variant_lines	text	1
+supplement	18	1	2.2	On this set the sum reaches 2.2 and no higher, a boun	measured		phase1/reports/evidence/external_tp53_column_basis.csv	tool=alphagenome	analysis_set_max	value	1
+supplement	20	1	20	tlas interface of client 0.9.0 on 20 September 2026 .	constant	day of the date 20 September 2026					
+supplement	20	1	22	The service offered 22 scorers that day, and	measured		phase1/data/evidence/avi_scorers_20260920.json		n_scorers	value	1
+supplement	22	1	0.1%	w a filtering allele frequency of 0.1% .	constant	gnomAD filtering allele frequency of 0.1% (the Atlas model's labels)					
+supplement	26	1	0.73	 score have a rank correlation of 0.73 across the 8,853 vari	measured		phase1/reports/evidence/column_concordance.csv	column_a=avi; column_b=alphagenome	spearman_rho	value	1
+supplement	26	1	8,853	nk correlation of 0.73 across the 8,853 variants, and the Atl	measured		phase1/reports/evidence/column_concordance.csv	column_a=avi; column_b=alphagenome	n	value	1
+supplement	26	1	0.87	l-computed score, SPLICE_SITES at 0.87 .	measured		phase1/reports/evidence/column_concordance.csv	column_a=avi_splice_sites; column_b=alphagenome	spearman_rho	value	1
+supplement	26	1	2.20	ross bands and tiers all round to 2.20; its pooled-window Su	measured		phase1/reports/evidence/evidence_thresholds.csv	tool=alphagenome; stratum in s3_10|s11_50|s3_50; tier in supporting|moderate|strong	pp3_threshold_insample	all	1
+supplement	26	1	2.1988	ed-window Supporting threshold is 2.1988 and its Strong thresh	measured		phase1/reports/evidence/evidence_thresholds.csv	tool=alphagenome; stratum=s3_50; tier=supporting	pp3_threshold_insample	value	1
+supplement	26	1	2.1999	s 2.1988 and its Strong threshold 2.1999 .	measured		phase1/reports/evidence/evidence_thresholds.csv	tool=alphagenome; stratum=s3_50; tier=strong	pp3_threshold_insample	value	1
+supplement	31	1	100	st half-width that holds at least 100 labelled variants .	constant	minimum window occupancy, Pejaver's procedure (src/evid_interval_lr.py)					
+supplement	33	1	95%	e at or above which the one-sided 95% lower bound of the lo	constant	confidence level					
+supplement	35	1	2,000	primary interval resamples genes, 2,000 times, because the se	constant	bootstrap resamples, gene-clustered (src/evid_walker_thresholds.py)					
+supplement	35	1	10,000	 bootstrap is run as well, at the 10,000 iterations of Pejaver	constant	variant-level bootstrap resamples, Pejaver et al.'s 10,000 (src/evid_interval_lr.py, N_BOOT_VARIANT)					
+supplement	37	1	0.10	leagues at a prior probability of 0.10, as the splicing reco	constant	prior probability of the Tavtigian point system					
+supplement	37	1	0.0441	heir own boundaries at a prior of 0.0441, and we do not use th	constant	prior of Pejaver et al.'s boundaries, quoted and not used (src/evid_interval_lr.py)					
+supplement	44	1	50	ven columns: SpliceAI at distance 50, Pangolin, CADD, phyl	constant	SpliceAI scoring distance of 50 nt (the atlas column, the fusion input)					
+supplement	50	1	25	ld-out ratio could be computed in 25 of its 60 combination	measured		phase1/reports/evidence/evidence_thresholds_logo_folds.csv	tool=fusion_enet; stratum in s3_10|s11_50|s3_50; tier in supporting|moderate|strong	heldout_lr	count_nonnull	1
+supplement	50	1	60	io could be computed in 25 of its 60 combinations of fold 	measured		phase1/reports/evidence/evidence_thresholds_logo_folds.csv	tool=fusion_enet; stratum in s3_10|s11_50|s3_50; tier in supporting|moderate|strong	heldout_lr	count	1
+supplement	55	1	1,857	enteen exon-level score sets give 1,857 intron-side single-nu	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		n_intronic_snv_mapped	value	1
+supplement	55	1	25	The deposit reaches 25 nucleotides from the 	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		max_intron_offset	value	1
+supplement	55	2	25	stal band is limited to eleven to 25 nucleotides, and 768 	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		max_intron_offset	value	1
+supplement	55	1	768	 to eleven to 25 nucleotides, and 768 of the variants lie i	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		strata.s3_10	value	1
+supplement	55	1	897	ants lie in the proximal band and 897 in the distal band .	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		strata.s11_50	value	1
+supplement	57	1	0.5	 of a random-forest model exceeds 0.5 .	constant	the deposit's own cut on its random-forest posterior (Radford et al.; src/evid_external.py)					
+supplement	57	1	209	It calls 209 of the 1,857 variants	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		labels.n_damaging_deposit	value	1
+supplement	57	1	1,857	It calls 209 of the 1,857 variants abnormal .	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		n_intronic_snv_mapped	value	1
+supplement	59	1	0.51	better than chance (control AUROC 0.51), against 0.99 to 1.0	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		"controls.per_scoreset[""urn:mavedb:00000658-q-1""].control_auroc"	value	1
+supplement	59	1	0.99	nce (control AUROC 0.51), against 0.99 to 1.0 in fifteen of 	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json	key not in urn:mavedb:00000658-q-1|urn:mavedb:00000658-p-1	controls.per_scoreset.*.control_auroc	min	1
+supplement	59	1	1.0	trol AUROC 0.51), against 0.99 to 1.0 in fifteen of the oth	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json	key!=urn:mavedb:00000658-q-1	controls.per_scoreset.*.control_auroc	max	1
+supplement	59	1	37	s no information, and it supplies 37 of the label's 71 in-	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		"controls.per_scoreset[""urn:mavedb:00000658-q-1""].n_damaging_control_anchored_in_scope"	value	1
+supplement	59	1	71	and it supplies 37 of the label's 71 in-scope damaging cal	measured		phase1/data/evidence/external/ddx3x_splice.manifest.json		controls.per_scoreset.*.n_damaging_control_anchored_in_scope	sum	1
+supplement	59	1	0.01	end false discovery rate is below 0.01 and its score below t	constant	false discovery rate cut for the external label definition					
+supplement	61	1	288	*TP53* contributes 288 intron-side variants 	measured		phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json		n_rows	value	1
+supplement	61	1	192	The 192 variants within eight	measured		phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json		n_frozen_rows	value	1
+supplement	61	1	96	chived in the repository, and the 96 at nine to twelve nuc	measured		phase1/data/evidence/external/tp53_splice_scored_12nt.manifest.json		n_new_rows	value	1
+supplement	61	1	1	ative fitness score, anchored at −1 for synonymous and +1	constant	anchor of the score scale, -1 synonymous and +1 nonsense controls					
+supplement	61	2	1	ative fitness score, anchored at −1 for synonymous and +1	constant	anchor of the score scale, -1 synonymous and +1 nonsense controls					
+supplement	61	1	0.5	ter setting aside variants within 0.5 of zero .	constant	margin around zero that the third TP53 label sets aside (src/evid_external.py)					
+supplement	61	1	48	The 48 variants at eleven an	measured		phase1/reports/evidence/external_tp53.csv	label_definition=y_control_anchored; stratum=s11_50; tool=spliceai_walker	n	value	1
+supplement	63	1	2,000	e its variants within each class, 2,000 times, and describe t	constant	bootstrap resamples, gene-clustered (src/evid_walker_thresholds.py)					
+supplement	74	1	387	SpliceAI's false positives number 387 in the seven genes an	measured		phase1/reports/evidence/inframe_attribution_summary.csv	tool=spliceai; stratum=s3_10	n	value	1
+supplement	74	1	162	number 387 in the seven genes and 162 in *DDX3X* under the 	measured		phase1/reports/evidence/inframe_attribution_ddx3x_summary.csv	label_definition=y_deposit; tool=spliceai; stratum=s3_10	n	value	1
+supplement	74	1	25	They number 25 in *TP53*, nine of th	measured		phase1/reports/evidence/inframe_attribution_tp53_summary.csv	tool=spliceai; stratum=s3_10	n	value	1
+supplement	81	1	15	The ClinVar release of 15 June 2026 is kept out	constant	day of the date 15 June 2026					
+supplement	85	1	9	ted value agreed to a relative 1e-9, figure files differe	constant	the exponent in 1e-9, a relative tolerance, not a measured number					

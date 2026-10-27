@@ -1,0 +1,7 @@
+{
+ "commit": "E5.1 (commit 1: the manuscript numbers gate: three repairs and a cells mode)",
+ "reason": "scripts/check_evidence_manuscript_numbers.py: the self-test counts each planted number, a proportion times one hundred is compared only with a printed percentage, declared tokens by their context; a cells mode with the v5 binding table (docs/) and its tests; code, tests and documents only",
+ "declared_from": "E5.1: no output changes",
+ "pairs": {},
+ "files": {}
+}

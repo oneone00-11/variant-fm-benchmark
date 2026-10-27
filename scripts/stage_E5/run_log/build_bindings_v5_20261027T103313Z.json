@@ -1,0 +1,80 @@
+{
+ "script": "scripts/stage_E5/build_bindings_v5.py",
+ "argv": [
+  "scripts/stage_E5/build_bindings_v5.py",
+  "--table",
+  "/Users/cliffzhang/Desktop/E5.0_数字表_20261027.tsv",
+  "--main",
+  "/Users/cliffzhang/Desktop/整理文件/calibration_manuscript_v5_round2_keyed.md",
+  "--supplement",
+  "/Users/cliffzhang/Desktop/整理文件/calibration_supplement_notes_v5_keyed.md"
+ ],
+ "git_commit": "72dbcb1d7418b168e84e5311b3f7ebc21711606f",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E5/build_bindings_v5.py": "fc88f31db5bc678d112c41c761a2f853102418e248519cf52f945e52d2f40999",
+  "scripts/stage_E5/_runlog.py": "623aec9f20491f8625dfe5e4c324cff8006a5034d8d72de45faa7f4a3baca0ef"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-27T10:33:13+00:00",
+ "end_utc": "2026-10-27T10:33:13+00:00",
+ "inputs": [
+  {
+   "path": "scripts/check_evidence_manuscript_numbers.py",
+   "bytes": 43519,
+   "sha256": "71b0f69bba26ab72b291fb9f25645aa29ef88b99ed2d2c0dc90b9c030c64b4b7"
+  },
+  {
+   "path": "~/Desktop/E5.0_数字表_20261027.tsv",
+   "bytes": 32422,
+   "sha256": "4745b79d387afa69361543876bd982d49a7b5905d94410f5f57b4f78fd173cf2"
+  },
+  {
+   "path": "~/Desktop/整理文件/calibration_manuscript_v5_round2_keyed.md",
+   "bytes": 48157,
+   "sha256": "6f76baa26b67bd726222e49804a8d6a93b095cb0ae69bd1ab3bb47d452fb7950"
+  },
+  {
+   "path": "~/Desktop/整理文件/calibration_supplement_notes_v5_keyed.md",
+   "bytes": 24414,
+   "sha256": "a9228c6d3d6c8c836228682218d8edeb666309586fb64bbb7cc6b41e71c7102b"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "docs/manuscript_bindings_v5.tsv",
+   "bytes": 31591,
+   "sha256": "b932f1c9ccf87dc237df83c939ac191937f4199ab769eb9f457a7bdd5aeea1e0"
+  },
+  {
+   "path": "tests/fixtures/manuscript_bindings_v5_expected.tsv",
+   "bytes": 7570,
+   "sha256": "cfc6363c6b2bf7d15d21916a5b858cb243202d0f654c489412e713ce46aa2514"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "rows": 182,
+  "e5_0_category_to_expected_status": {
+   "main / constant / constant": 53,
+   "main / not_found / mismatch": 5,
+   "main / match / match": 48,
+   "main / mismatch / mismatch": 14,
+   "supplement / constant / constant": 19,
+   "supplement / match / match": 30,
+   "supplement / mismatch / mismatch": 3,
+   "supplement / not_found / mismatch": 5,
+   "supplement / not_found / constant": 4,
+   "supplement / not_found / match": 1
+  }
+ }
+}
