@@ -15,20 +15,24 @@ for its content, so reordering figures or tables once the text is final changes 
 configuration alone. Titles, descriptions and notes in the configuration are
 placeholders until then.
 
-Figures follow the configuration's artwork block: no wider than its double-column width,
-type no smaller and no larger than its sizes, bitmaps at its resolution. A larger size
-set by evid_figures (its titles are 7.5 pt, its panel letters 9 pt) is brought down to
-the largest; a smaller one stops the run. Supplementary Figures S1-S3 are v3.0.1's,
-drawn again by their own functions in evid_figures, from the same outputs, at this
-width; the files under figures/ are not touched.
+Figures follow the configuration's artwork block: no wider than its double-column width
+and no taller than its height limit, type no smaller and no larger than its sizes,
+bitmaps at its resolution. A larger size set by evid_figures (its titles are 7.5 pt, its
+panel letters 9 pt) is brought down to the largest; a smaller one, or a figure too wide
+or too tall, stops the run. Supplementary Figures S1-S3 are v3.0.1's, drawn again by
+their own functions in evid_figures, from the same outputs, at this width (S1 also at
+the height limit, shorter than evid_figures draws it); the files under figures/ are not
+touched.
 
 Tables. A printed table (tables/, supplement/) is written as it stands, byte for byte.
 Every other table keeps all its columns, under the readable names its entry in the
 configuration gives, and each cell is printed by its column's type the way
 Supplementary Tables S1-S13 print it (evid_supp_tables' formatters); the source files
-keep their full precision. A table of several parts is written as one CSV per part. A
-source's comment lines above its header are kept as the part's notes, in the workbook
-above the part.
+keep their full precision. A part's entry can change what is printed, never the
+source: leave out a column that repeats another cell for cell, print "–" where a count
+has no definition, or add a column that marks the rows a rule picks (displayed()). A
+table of several parts is written as one CSV per part. A source's comment lines above
+its header are kept as the part's notes, in the workbook above the part.
 
 Outputs, under reports/evidence/layout/:
   main/<content>.pdf, .png                the main figures
@@ -108,6 +112,9 @@ def _save(fig, folder: Path, stem: str, cfg: dict) -> list[Path]:
     if fig.get_figwidth() > _width(cfg) + 1e-9:
         raise SystemExit(f"[layout] {stem}: {fig.get_figwidth() / F.MM:.1f} mm wide, wider "
                          f"than {art['double_column_mm']} mm")
+    if fig.get_figheight() > art["max_height_mm"] * F.MM + 1e-9:
+        raise SystemExit(f"[layout] {stem}: {fig.get_figheight() / F.MM:.1f} mm tall, taller "
+                         f"than {art['max_height_mm']} mm")
     fig.canvas.draw()                       # tick labels exist only once drawn
     for t in fig.findobj(mtext.Text):
         if not t.get_visible() or not t.get_text().strip():
@@ -201,12 +208,15 @@ def figure_published_cut_point(item: dict, folder: Path, cfg: dict) -> list[Path
 # Figure: held-out genes and external genes
 # ---------------------------------------------------------------------------
 # genes by marker; TP53's assay differs from the HAP1 deposits (tp53_raw/
-# scoreset_meta.json: HCT116 cells, Nutlin-3a), so it alone takes the second colour
+# scoreset_meta.json: HCT116 cells, Nutlin-3a), so it alone takes the second colour.
+# Every shape has an open form, drawn where a ratio is below its boundary (TP53 had a
+# cross until the author's review of 2026-10-28)
 EXTERNAL_GENES = ["DDX3X", "CTCF", "SFPQ", "RAD51D", "XRCC2", "SBDS", "TP53"]
 GENE_MARKER = {"DDX3X": "o", "CTCF": "s", "SFPQ": "D", "RAD51D": "^", "XRCC2": "v",
-               "SBDS": "p", "TP53": "X"}
+               "SBDS": "p", "TP53": "h"}
+OPEN_SHAPES = {"o", "s", "D", "^", "v", "p", "h"}
 # sizes that give the shapes about the same weight
-MARKER_SIZE = {"o": 3.6, "s": 3.3, "D": 3.0, "^": 4.0, "v": 4.0, "p": 4.0, "X": 4.0}
+MARKER_SIZE = {"o": 3.6, "s": 3.3, "D": 3.0, "^": 4.0, "v": 4.0, "p": 4.0, "h": 4.0}
 GENE_COLOUR = {g: (F.ORANGE if g == "TP53" else F.BLUE) for g in EXTERNAL_GENES}
 TP53_ASSAY = "HCT116 cells, Nutlin-3a"
 # the external genes' rows, the author's layout B (2026-10-28): SpliceAI on the published
@@ -633,7 +643,10 @@ def _drawn_by_figures(width: float, kept: list):
 
 @maker
 def redraw_figure(item: dict, folder: Path, cfg: dict) -> list[Path]:
-    """A figure of v3.0.1, by its own function in evid_figures, from the same outputs."""
+    """A figure of v3.0.1, by its own function in evid_figures, from the same outputs; at
+    the height the options give, if they give one. The figure is set to that height
+    before it is saved: its panels are placed in fractions of the figure, so they become
+    shorter and its type keeps its size, where scaling the page would shrink the type."""
     F._style()
     kept: list = []
     with _drawn_by_figures(_width(cfg), kept):
@@ -641,6 +654,8 @@ def redraw_figure(item: dict, folder: Path, cfg: dict) -> list[Path]:
     if len(kept) != 1:
         raise SystemExit(f"[layout] {item['content']}: evid_figures.{item['options']['function']} "
                          f"drew {len(kept)} figures, not one")
+    if "height_mm" in item["options"]:
+        kept[0].set_size_inches(_width(cfg), item["options"]["height_mm"] * F.MM)
     return _save(kept[0], folder, item["content"], cfg)
 
 
@@ -661,6 +676,15 @@ TIER_LABEL = {"supporting": "Supporting", "moderate": "Moderate", "strong": "Str
               "very_strong": "Very strong", "below supporting": "Below Supporting"}
 # the seven genes' label is each deposit's own classification, which S13 leaves blank
 LABEL_BLANK = {"y_assay"}
+# the rules a part's marks: name in the configuration. The combined Atlas score's model
+# was selected on the BRCA1 and RAD51C assays (evid_common.AVI_SEEN_IN_TRAINING, the
+# rule every held-out count follows), so its rows with one of them held out test
+# nothing independent of that choice
+MARK_RULES = {
+    "avi_seen_in_training": lambda r: r.get("tool") == "avi"
+                                      and r.get("heldout_gene") in K.AVI_SEEN_IN_TRAINING,
+}
+DASH = "–"
 
 
 def read_source(path: str | Path) -> tuple[pd.DataFrame, list[str]]:
@@ -775,9 +799,30 @@ def _external_band(gene: str, stratum: str) -> str:
     return _BANDS[(gene, stratum)]
 
 
+def _holds(row: dict, where: dict) -> bool:
+    """A row meets a condition: each named column holds the value, or one of the values
+    a list gives; an empty string is an empty cell."""
+    for c, want in where.items():
+        if c not in row:
+            raise SystemExit(f"config/layout.yaml: a condition names the column '{c}', which "
+                             "the table does not have")
+        if row[c].strip() not in (want if isinstance(want, list) else [want]):
+            return False
+    return True
+
+
 def displayed(df: pd.DataFrame, item: dict, part: dict, cfg: dict) -> pd.DataFrame:
     """A source table as the supplement prints it: every column, under its readable name,
-    each cell by its column's type."""
+    each cell by its column's type. The part's options change only what is printed:
+    `drop` leaves out a column that repeats another cell for cell (and stops the run if
+    it does not); `dashes` print "–" in the columns named, in the rows a condition picks;
+    `marks` add a column of text on the rows a named rule picks."""
+    where_ = f"{item['content']}.{part['part']}"
+    for gone, kept in part.get("drop", {}).items():
+        if not (df[gone] == df[kept]).all():
+            raise SystemExit(f"{where_}: '{gone}' is to be left out as a copy of '{kept}', "
+                             f"and {int((df[gone] != df[kept]).sum())} rows differ")
+    df = df.drop(columns=list(part.get("drop", {})))
     values = cfg["display"]["values"]
     specs = {c: _spec(item, part, c, cfg) for c in df.columns}
     names = [s[0] for s in specs.values()]
@@ -794,6 +839,20 @@ def displayed(df: pd.DataFrame, item: dict, part: dict, cfg: dict) -> pd.DataFra
     for c, (name, kind, *extra) in specs.items():
         where = f"{item['content']}.{part['part']}, column '{c}'"
         out[name] = [_cell(r[c], kind, r, extra, values, where) for r in rows]
+    for d in part.get("dashes", []):
+        hit = [_holds(r, d["where"]) for r in rows]
+        if not any(hit):
+            raise SystemExit(f"{where_}: no row meets the dashes' condition {d['where']}")
+        for c in d["columns"]:
+            out[specs[c][0]] = [DASH if h else v for h, v in zip(hit, out[specs[c][0]])]
+    for m in part.get("marks", []):
+        hit = [MARK_RULES[m["rule"]](r) for r in rows]
+        if not any(hit):
+            raise SystemExit(f"{where_}: the rule '{m['rule']}' marks no row")
+        if m["name"] in names:
+            raise SystemExit(f"{where_}: the mark's name '{m['name']}' is a column's already")
+        names.insert(names.index(specs[m["before"]][0]), m["name"])
+        out[m["name"]] = [m["text"] if h else "" for h in hit]
     return pd.DataFrame(out, columns=names)
 
 

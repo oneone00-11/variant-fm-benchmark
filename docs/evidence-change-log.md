@@ -2149,3 +2149,29 @@ wrote. It computes nothing new, and no earlier output changes: the v3.0.1 layout
   - `contents.csv`;
   - `manifest.csv`, with every file's sha256 and its sources' sha256.
 - README: 41 stages. Tests: `phase1/tests/test_evid_layout.py`.
+
+## The layout after the author's review: S30's mark, S1's height, three tables as printed, TP53's marker (stage E5, 2026-10-28)
+
+Why: the author's review of E5's second report (2026-10-28). Eleven files under
+`phase1/reports/evidence/layout/` change, and nothing else: no source table, no other
+output (`scripts/stage_E5/scope_layout_c4.json`).
+
+- Supplementary Table S30 keeps the combined Atlas score's rows with BRCA1 or RAD51C
+  held out. A new column marks each of them: "not an independent test: the combined
+  Atlas score's model was selected on this assay", in the wording of the note on DDX3X
+  in the external genes' rows. The rows are picked by the rule every held-out count
+  follows (`evid_common.AVI_SEEN_IN_TRAINING`). The table note stays.
+- Supplementary Figure S1 is drawn 240 mm tall, not 250 mm. The artwork block now has a
+  height limit (`max_height_mm: 240`), and a taller figure stops the run. S1 is drawn
+  shorter at that height, not scaled at assembly, which would shrink its 5 pt type. The
+  file under `figures/` is as it was.
+- Three tables change only in what is printed; their sources are as they were:
+  - S26 (a): the band counts print "–" where no threshold was fitted on the other genes;
+  - S17 (c): the fold counts print "–" on BP4 rows, where they are not defined;
+  - S16 (b): `e3_heldout_lr` is left out, as it repeats `band_lr_plus` in every row. The
+    stage stops if the two ever differ.
+
+  Each of the three has a provisional part note.
+- Figure 2: TP53's marker is a hexagon, still in the second colour. Its cross had no
+  open form for a ratio below the boundary; every marker now has one.
+- Tests in `phase1/tests/test_evid_layout.py`.

@@ -42,7 +42,8 @@ def _items() -> list[dict]:
 
 
 def _new_parts():
-    """(item, part, its source's columns) for every part the stage prints itself."""
+    """(item, part, its source's printed columns) for every part the stage prints itself:
+    every column but one a part's `drop` leaves out as a copy of another."""
     for it in _cfg()["supplementary"]:
         if it["make"] != "table_parts":
             continue
@@ -54,7 +55,7 @@ def _new_parts():
                 if str(srcs[0]).startswith(L.PRINTED):
                     continue
                 cols = list(L.read_source(PHASE1 / srcs[0])[0].columns)
-            yield it, part, cols
+            yield it, part, [c for c in cols if c not in part.get("drop", {})]
 
 
 def test_content_names_and_numbers_are_unique_and_names_carry_no_number():
@@ -288,7 +289,7 @@ def test_the_new_tables_keep_every_row_and_column_of_their_sources():
         srcs = part.get("sources") or [part["source"]]
         srcs = list(srcs.values()) if isinstance(srcs, dict) else srcs
         rows = sum(len(L.read_source(PHASE1 / s)[0]) for s in srcs)
-        assert printed.shape == (rows, len(cols)), name
+        assert printed.shape == (rows, len(cols) + len(part.get("marks", []))), name
 
 
 @need_out
@@ -348,3 +349,86 @@ def test_a_share_stored_rounded_prints_at_its_own_decimals():
     assert L._cell("0.3775", "proportion", {}, [4], values, "t") == "0.3775"
     spec = _cfg()["columns"]["inframe_true_positives"]["in_frame_share"]
     assert spec[1:] == ["proportion", 4]
+
+
+def test_every_external_gene_has_a_shape_with_an_open_form():
+    """A ratio below its boundary is drawn open; a cross has no open form, so TP53 is a
+    hexagon (the author's review of 2026-10-28), still in the second colour."""
+    assert set(L.GENE_MARKER.values()) <= L.OPEN_SHAPES
+    assert len(set(L.GENE_MARKER.values())) == len(L.GENE_MARKER)
+    assert L.GENE_MARKER["TP53"] == "h" and L.GENE_COLOUR["TP53"] != L.GENE_COLOUR["DDX3X"]
+    assert set(L.MARKER_SIZE) == set(L.GENE_MARKER.values())
+
+
+def test_a_figure_taller_than_the_limit_stops_the_run(tmp_path):
+    cfg = _cfg()
+    fig, ax = plt.subplots(figsize=(L._width(cfg), (cfg["artwork"]["max_height_mm"] + 1) / 25.4))
+    with pytest.raises(SystemExit):
+        L._save(fig, tmp_path, "tall", cfg)
+
+
+@need_out
+def test_every_figure_is_within_the_height_limit():
+    """Supplementary Figure S1, 250 mm tall as evid_figures draws it, is drawn at 240 mm."""
+    limit = _cfg()["artwork"]["max_height_mm"]
+    for pdf in sorted(OUT.rglob("*.pdf")):
+        box = re.search(rb"/MediaBox \[\s*([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)\s*\]", pdf.read_bytes())
+        assert float(box.group(4)) * MM_PER_PT <= limit + 0.01, pdf.name
+    box = re.search(rb"/MediaBox \[\s*([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)\s*\]",
+                    (OUT / "supplementary" / "local_lr_curves.pdf").read_bytes())
+    assert abs(float(box.group(4)) * MM_PER_PT - limit) < 0.01
+
+
+def _part_of(content, part):
+    it = next(i for i in _cfg()["supplementary"] if i["content"] == content)
+    return it, next(p for p in it["parts"] if p["part"] == part)
+
+
+def test_a_column_left_out_must_repeat_the_one_kept():
+    cfg = {"display": {"values": {}}, "columns": {"t": {"a": ["A", "count"], "b": ["B", "count"]}}}
+    part = {"part": "p", "drop": {"b": "a"}}
+    same = pd.DataFrame({"a": ["1", "2"], "b": ["1", "2"]})
+    assert list(L.displayed(same, {"content": "t"}, part, cfg).columns) == ["A"]
+    with pytest.raises(SystemExit):
+        L.displayed(same.assign(b=["1", "3"]), {"content": "t"}, part, cfg)
+
+
+@need_out
+def test_the_atlas_rows_held_out_on_its_selection_assays_are_marked():
+    """Supplementary Table S30 keeps the combined Atlas score's rows with BRCA1 or RAD51C
+    held out and marks each, by evid_common's rule, in (b)'s wording for DDX3X."""
+    from src import evid_common as K
+    it, part = _part_of("family_holdout", "holdout")
+    src = L.read_source(PHASE1 / part["source"])[0]
+    printed = pd.read_csv(OUT / "supplementary" / "family_holdout.csv", dtype=str, keep_default_na=False)
+    mark = part["marks"][0]
+    want = (src.tool == "avi") & src.heldout_gene.isin(K.AVI_SEEN_IN_TRAINING)
+    assert want.sum() == 12
+    assert (printed[mark["name"]] == mark["text"]).tolist() == want.tolist()
+    assert (printed[mark["name"]].isin([mark["text"], ""])).all()
+    cols = list(printed.columns)
+    assert cols.index(mark["name"]) == cols.index("Note") - 1
+    assert mark["text"].startswith("not an independent test: the combined Atlas score's model was selected")
+
+
+@need_out
+@pytest.mark.parametrize("content, part, file, condition", [
+    ("heldout_intervals", "intervals", "heldout_intervals.intervals.csv",
+     lambda s: s.threshold_from_other_genes == ""),
+    ("label_sources", "effect", "label_sources.effect.csv", lambda s: s.side == "bp4"),
+])
+def test_counts_without_a_definition_print_a_dash(content, part, file, condition):
+    """A count the row has no definition for prints "–", not 0: the band counts where no
+    threshold was fitted on the other genes (S26), the fold counts on BP4 rows (S17).
+    The source tables are as they were."""
+    it, p = _part_of(content, part)
+    src = L.read_source(PHASE1 / p["source"])[0]
+    printed = pd.read_csv(OUT / "supplementary" / file, dtype=str, keep_default_na=False)
+    hit = condition(src)
+    assert hit.any() and (~hit).any()
+    for c in p["dashes"][0]["columns"]:
+        name = L._spec(it, p, c, _cfg())[0]
+        assert (printed.loc[hit, name] == "–").all(), (file, name)
+        assert (printed.loc[~hit, name] != "–").all(), (file, name)
+        assert (src.loc[hit, c] == "0").all()
+

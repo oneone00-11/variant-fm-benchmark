@@ -13,10 +13,13 @@
 # The figures' size and type (the author's decision of 2026-10-28, from the target's
 # artwork guide, checked against the guide's text on 2026-10-28): no wider than the
 # double-column width, a one-column figure no wider than the single-column width; type
-# no smaller and no larger than these sizes; bitmaps at this resolution.
+# no smaller and no larger than these sizes; bitmaps at this resolution. No figure taller
+# than max_height_mm (the author's review of 2026-10-28): a taller one is drawn shorter,
+# not scaled at assembly, which would take its 5 pt type below 5 pt.
 artwork:
   double_column_mm: 175
   single_column_mm: 85
+  max_height_mm: 240
   text_pt: [5, 7]
   dpi: 300
 
@@ -146,7 +149,8 @@ supplementary:
     destination: pdf
     description: "provisional: Local likelihood ratio against score for each of the thirteen predictor columns in each distance band, with the fitted thresholds."
     make: redraw_figure
-    options: {function: figure_s1}
+    # evid_figures draws it 250 mm tall; drawn here at the artwork block's height limit
+    options: {function: figure_s1, height_mm: 240}
     sources: [reports/evidence/evidence_thresholds.csv,
               reports/evidence/interval_lr_spliceai_walker_s3_10.csv, reports/evidence/interval_lr_spliceai_walker_s11_50.csv, reports/evidence/interval_lr_spliceai_walker_s3_50.csv,
               reports/evidence/interval_lr_spliceai_s3_10.csv, reports/evidence/interval_lr_spliceai_s11_50.csv, reports/evidence/interval_lr_spliceai_s3_50.csv,
@@ -275,7 +279,14 @@ supplementary:
     make: table_parts
     parts:
       - {part: by_threshold, title: Seven genes, source: reports/evidence/practical_metrics_by_threshold.csv}
-      - {part: by_heldout_gene, title: Each held-out gene, source: reports/evidence/practical_metrics_logo_by_gene.csv}
+      - part: by_heldout_gene
+        title: Each held-out gene
+        source: reports/evidence/practical_metrics_logo_by_gene.csv
+        # the source gives the held-out ratio twice; printed once (the author's review of
+        # 2026-10-28). The stage stops if the two columns ever differ.
+        drop: {e3_heldout_lr: band_lr_plus}
+        notes:
+          - "provisional: the held-out likelihood ratio at the threshold is printed once, as the band LR; the source repeats it in a second column, equal in every row"
       - {part: external, title: External genes, source: reports/evidence/practical_metrics_external.csv}
       - part: curve_areas
         title: Areas under the curves
@@ -292,7 +303,14 @@ supplementary:
     parts:
       - {part: audit, title: Each label file against its cited source, source: reports/evidence/label_audit_summary.csv}
       - {part: versions, title: Against the archived versions, source: reports/evidence/label_version_check.csv}
-      - {part: effect, title: Thresholds and tiers before and after the rebuilt labels, source: reports/evidence/label_change_effect.csv}
+      - part: effect
+        title: Thresholds and tiers before and after the rebuilt labels
+        source: reports/evidence/label_change_effect.csv
+        # the fold counts are defined for PP3 only (the author's review of 2026-10-28)
+        dashes:
+          - {columns: [folds_reaching_old, folds_reaching_new], where: {side: bp4}}
+        notes:
+          - "provisional: –, the fold counts on BP4 rows: they are counted for PP3 only"
   - content: alphagenome_definitions
     kind: table
     number: Supplementary Table S18
@@ -404,7 +422,14 @@ supplementary:
     description: "provisional: Each held-out gene's ratio with its interval, held-out fold counts by point estimate and by lower bound, and the Strong thresholds with each gene left out."
     make: table_parts
     parts:
-      - {part: intervals, title: Held-out ratios with intervals, source: reports/evidence/suppl_analyses/c5_heldout_lr_ci.csv}
+      - part: intervals
+        title: Held-out ratios with intervals
+        source: reports/evidence/suppl_analyses/c5_heldout_lr_ci.csv
+        # no threshold, no band to count (the author's review of 2026-10-28)
+        dashes:
+          - {columns: [n_pos_band, n_neg_band], where: {threshold_from_other_genes: ""}}
+        notes:
+          - "provisional: –, the counts at or above the threshold where no threshold was fitted on the other genes"
       - {part: fold_counts, title: Fold counts by point estimate and by lower bound, source: reports/evidence/suppl_analyses/c5_fold_counts_point_vs_bound.csv}
       - {part: jackknife, title: Jackknife of the Strong thresholds, source: reports/evidence/suppl_analyses/c5_jackknife_strong.csv}
   - content: bp4_at_bp7_positions
@@ -442,7 +467,15 @@ supplementary:
     description: "provisional: Thresholds fitted on one gene family or function and applied to the genes held out, and to the external genes."
     make: table_parts
     parts:
-      - {part: holdout, source: reports/evidence/suppl_analyses/c9_family_holdout.csv}
+      - part: holdout
+        source: reports/evidence/suppl_analyses/c9_family_holdout.csv
+        # the combined Atlas score with BRCA1 or RAD51C held out, marked by the rule every
+        # held-out count follows, worded as (b) words DDX3X (the author's review of 2026-10-28)
+        marks:
+          - name: Independence of the test
+            rule: avi_seen_in_training
+            before: note
+            text: "not an independent test: the combined Atlas score's model was selected on this assay"
     notes:
       - "provisional: (a) holds the combined Atlas score's rows with BRCA1 or RAD51C held out, which the other held-out counts leave out: its model was selected on those two assays"
   - content: confusion_matrices
@@ -564,7 +597,6 @@ columns:
     "tier": ["Tier", "tier"]
     "heldout_gene": ["Held-out gene", "text"]
     "threshold_from_6_genes": ["Threshold fitted on the other genes", "threshold"]
-    "e3_heldout_lr": ["Held-out LR, from interval calibration", "lr"]
     "counted_in_logo_row": ["Counted in the held-out row", "boolean"]
     "gene": ["Gene", "text"]
     "label_definition": ["Label definition", "label"]

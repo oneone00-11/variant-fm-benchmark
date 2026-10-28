@@ -1,0 +1,52 @@
+{
+ "commit": "E5 commit 4 (the author's review of report part 2, 2026-10-28: S30's mark, S1's height, S16, S17 and S26 as printed, TP53's marker)",
+ "reason": "eleven layout files change; every other output, the other 72 layout files among them, stays byte for byte the same",
+ "declared_from": "the author's review of 2026-10-28, items 1, 6 and 9 and TP53's marker; the list is what a development run changed, before the stage runs in the reference image: its CSVs, workbook and PDFs, and the PNGs of the two figures whose PDFs changed (a native run draws every PNG a little differently)",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/layout/main/heldout_and_external_lr.pdf": {
+   "kind": "file",
+   "why": "Figure 2: TP53's marker a hexagon, which has an open form, in place of a cross (the author's review of 2026-10-28)"
+  },
+  "phase1/reports/evidence/layout/main/heldout_and_external_lr.png": {
+   "kind": "file",
+   "why": "Figure 2: TP53's marker a hexagon, as the PDF"
+  },
+  "phase1/reports/evidence/layout/supplementary/local_lr_curves.pdf": {
+   "kind": "file",
+   "why": "Supplementary Figure S1 drawn 240 mm tall, the artwork block's new height limit, in place of 250 mm"
+  },
+  "phase1/reports/evidence/layout/supplementary/local_lr_curves.png": {
+   "kind": "file",
+   "why": "Supplementary Figure S1 at 240 mm, as the PDF"
+  },
+  "phase1/reports/evidence/layout/supplementary/family_holdout.csv": {
+   "kind": "file",
+   "why": "Supplementary Table S30: a column marking the combined Atlas score's rows with BRCA1 or RAD51C held out (evid_common.AVI_SEEN_IN_TRAINING); no other cell changes"
+  },
+  "phase1/reports/evidence/layout/supplementary/heldout_intervals.intervals.csv": {
+   "kind": "file",
+   "why": "Supplementary Table S26 (a): the two band counts print '–' where no threshold was fitted on the other genes; no other cell changes"
+  },
+  "phase1/reports/evidence/layout/supplementary/label_sources.effect.csv": {
+   "kind": "file",
+   "why": "Supplementary Table S17 (c): the two fold counts print '–' on BP4 rows; no other cell changes"
+  },
+  "phase1/reports/evidence/layout/supplementary/practical_metrics.by_heldout_gene.csv": {
+   "kind": "file",
+   "why": "Supplementary Table S16 (b): e3_heldout_lr left out, a copy of band_lr_plus in every row; no other cell changes"
+  },
+  "phase1/reports/evidence/layout/supplementary_tables.xlsx": {
+   "kind": "file",
+   "why": "the workbook: S16, S17, S26 and S30 as their CSVs, and their part notes"
+  },
+  "phase1/reports/evidence/layout/contents.csv": {
+   "kind": "file",
+   "why": "S16, S17 and S26's new part notes, and the one-page estimates of S16, S17, S26 and S30"
+  },
+  "phase1/reports/evidence/layout/manifest.csv": {
+   "kind": "file",
+   "why": "the sha256 of the files above"
+  }
+ }
+}
