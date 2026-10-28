@@ -1,0 +1,19 @@
+"Stratum (intronic offset, bp)",Tier,Side,Tier LR cut,Official definition: status,Official definition: reached in-sample,Official definition: in-sample threshold,Official definition: band LR at the threshold,"Official definition: held-out genes clearing the cut, k/n (m)","Official definition: held-out LR, median over folds",Official definition: AUROC pooled over genes,Atlas quantile composite: status,Atlas quantile composite: reached in-sample,Atlas quantile composite: in-sample threshold,Atlas quantile composite: band LR at the threshold,"Atlas quantile composite: held-out genes clearing the cut, k/n (m)","Atlas quantile composite: held-out LR, median over folds",Atlas quantile composite: AUROC pooled over genes,Note
+3–10,Supporting,PP3,2.08,ok,Yes,1.638,20.2,6/7 (1),,0.922,ok,Yes,2.199,14.4,7/7,,0.915,
+3–10,Supporting,BP4,0.481,ok,Yes,0.1117,0.0778,,0,0.922,ok,Yes,2.143,0.116,,0.0919,0.915,no held-out threshold: E3 writes per-fold thresholds for the PP3 side only
+3–10,Moderate,PP3,4.33,ok,Yes,1.869,26.6,6/7 (1),,0.922,ok,Yes,2.200,22.8,6/7 (1),,0.915,
+3–10,Moderate,BP4,0.231,ok,Yes,0.04346,0.0553,,0,0.922,ok,Yes,1.247,0.0675,,0.476,0.915,no held-out threshold: E3 writes per-fold thresholds for the PP3 side only
+3–10,Strong,PP3,18.7,ok,Yes,2.673,53.2,6/7 (1),,0.922,ok,Yes,2.200,41.7,5/7 (1),,0.915,
+3–10,Strong,BP4,0.0535,ok,No,,,,,0.922,ok,No,,,,,0.915,no held-out threshold: E3 writes per-fold thresholds for the PP3 side only
+11–50,Supporting,PP3,2.08,ok,Yes,0.8003,13.5,4/6 (2),,0.851,ok,Yes,2.197,12.6,3/6 (3),,0.837,
+11–50,Supporting,BP4,0.481,ok,No,,,,,0.851,ok,No,,,,,0.837,no held-out threshold: E3 writes per-fold thresholds for the PP3 side only
+11–50,Moderate,PP3,4.33,ok,Yes,0.9600,16.6,4/6 (2),,0.851,ok,Yes,2.199,28.9,3/6 (3),,0.837,
+11–50,Moderate,BP4,0.231,ok,No,,,,,0.851,ok,No,,,,,0.837,no held-out threshold: E3 writes per-fold thresholds for the PP3 side only
+11–50,Strong,PP3,18.7,ok,Yes,2.653,128,0/6 (5),,0.851,ok,Yes,2.200,63.9,0/6 (6),,0.837,
+11–50,Strong,BP4,0.0535,ok,No,,,,,0.851,ok,No,,,,,0.837,no held-out threshold: E3 writes per-fold thresholds for the PP3 side only
+3–50,Supporting,PP3,2.08,ok,Yes,1.435,28.6,7/7,,0.923,ok,Yes,2.199,21.9,7/7,,0.913,
+3–50,Supporting,BP4,0.481,ok,Yes,0.02796,0.0440,,0.0508,0.923,ok,Yes,1.247,0.0583,,0,0.913,no held-out threshold: E3 writes per-fold thresholds for the PP3 side only
+3–50,Moderate,PP3,4.33,ok,Yes,1.673,37.5,7/7,,0.923,ok,Yes,2.199,30.9,7/7,,0.913,
+3–50,Moderate,BP4,0.231,ok,No,,,,,0.923,ok,No,,,,,0.913,no held-out threshold: E3 writes per-fold thresholds for the PP3 side only
+3–50,Strong,PP3,18.7,ok,Yes,2.543,82.6,5/7 (1),,0.923,ok,Yes,2.200,64.4,6/7 (1),,0.913,
+3–50,Strong,BP4,0.0535,ok,No,,,,,0.923,ok,No,,,,,0.913,no held-out threshold: E3 writes per-fold thresholds for the PP3 side only

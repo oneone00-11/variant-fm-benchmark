@@ -1,0 +1,1681 @@
+Prior probability of pathogenicity,Tool,"Stratum (intronic offset, bp)",Side,Tier,Tier LR cut,Tier LR cut at prior 0.10,Damaging,Normal,Status,Reason,In-sample threshold,Reached in-sample,In-sample threshold at prior 0.10,Reached in-sample at prior 0.10,Tier change from prior 0.10,Threshold changed from prior 0.10,Strong reached in-sample at prior 0.10,Strong reached in-sample,Strong still reached
+0.05,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,0.6783,Yes,,No,gained,Yes,No,No,
+0.05,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,0.5556567,Yes,0.3977,Yes,unchanged,Yes,Yes,No,No
+0.05,SpliceAI (distance 50),3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,0.8089,Yes,0.54938,Yes,unchanged,Yes,Yes,No,No
+0.05,SpliceAI (distance 50),3–10,PP3,Strong,39.5,18.7,570,2539,ok,,,No,0.8605,Yes,lost,Yes,Yes,No,No
+0.05,SpliceAI (distance 50),3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,Yes,No,No
+0.05,SpliceAI (distance 50),3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,0.0535245,Yes,0.006782,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (distance 50),3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,0.010304,Yes,0.0009789,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (distance 50),3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,0.2982,Yes,0.2340,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (distance 50),11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,0.7015867,Yes,0.290056,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (distance 50),11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,0.00028744,Yes,,No,gained,Yes,No,No,
+0.05,SpliceAI (distance 50),11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,0.38189,Yes,0.330177,Yes,unchanged,Yes,Yes,No,No
+0.05,SpliceAI (distance 50),3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,0.765885,Yes,0.37998,Yes,unchanged,Yes,Yes,No,No
+0.05,SpliceAI (distance 50),3–50,PP3,Strong,39.5,18.7,793,6867,ok,,,No,0.87846,Yes,lost,Yes,Yes,No,No
+0.05,SpliceAI (distance 50),3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,Yes,No,No
+0.05,SpliceAI (distance 50),3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,0.009696,Yes,0.00034595,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (distance 50),3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,0.00034595,Yes,,No,gained,Yes,No,No,
+0.05,SpliceAI (distance 50),3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,0.7510,Yes,0.38189,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,0.870559,Yes,0.7510,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,0.9976,Yes,0.9970,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,0.09133,Yes,0.001705,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,0.006728,Yes,0.0003135,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,0.4932,Yes,,No,gained,Yes,No,No,
+0.05,Pangolin,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,0.51267,Yes,0.3927895,Yes,unchanged,Yes,Yes,No,No
+0.05,Pangolin,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,0.6740,Yes,0.5108555555,Yes,unchanged,Yes,Yes,No,No
+0.05,Pangolin,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,,No,0.6972,Yes,lost,Yes,Yes,No,No
+0.05,Pangolin,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,Yes,No,No
+0.05,Pangolin,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,0.04296140000224114,Yes,0.0037785,Yes,unchanged,Yes,No,No,
+0.05,Pangolin,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,0.0037785,Yes,0.001562,Yes,unchanged,Yes,No,No,
+0.05,Pangolin,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,0.4146675,Yes,0.2021,Yes,unchanged,Yes,No,No,
+0.05,Pangolin,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,0.5082,Yes,0.4093,Yes,unchanged,Yes,No,No,
+0.05,Pangolin,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,0.002157,Yes,,No,gained,Yes,No,No,
+0.05,Pangolin,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,0.4146675,Yes,0.3605,Yes,unchanged,Yes,Yes,No,No
+0.05,Pangolin,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,0.62957,Yes,0.4146675,Yes,unchanged,Yes,Yes,No,No
+0.05,Pangolin,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,,No,0.6798,Yes,lost,Yes,Yes,No,No
+0.05,Pangolin,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,Yes,No,No
+0.05,Pangolin,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,0.004310,Yes,0.000795624,Yes,unchanged,Yes,No,No,
+0.05,Pangolin,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,0.000795624,Yes,,No,gained,Yes,No,No,
+0.05,Pangolin,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,0.6099,Yes,0.4160,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,0.6622,Yes,0.60399,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,0.8761,Yes,0.8747,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,0.04186,Yes,0.004332,Yes,unchanged,Yes,No,No,
+0.05,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,0.004339,Yes,0.0007733044331,Yes,unchanged,Yes,No,No,
+0.05,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,2.0152345,Yes,,No,gained,Yes,No,No,
+0.05,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,1.88955,Yes,1.638,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,AlphaGenome splice score,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,2.52998,Yes,1.86855,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,AlphaGenome splice score,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,3.536,Yes,2.673,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,AlphaGenome splice score,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,AlphaGenome splice score,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,0.2233,Yes,0.11172,Yes,unchanged,Yes,No,No,
+0.05,AlphaGenome splice score,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,0.11172,Yes,0.04346,Yes,unchanged,Yes,No,No,
+0.05,AlphaGenome splice score,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,0.9600,Yes,0.8003,Yes,unchanged,Yes,Yes,No,No
+0.05,AlphaGenome splice score,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,2.0565,Yes,0.9600,Yes,unchanged,Yes,Yes,No,No
+0.05,AlphaGenome splice score,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,2.6528,Yes,lost,Yes,Yes,No,No
+0.05,AlphaGenome splice score,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,Yes,No,No
+0.05,AlphaGenome splice score,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,0.02465,Yes,,No,gained,Yes,No,No,
+0.05,AlphaGenome splice score,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,1.673,Yes,1.435,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,AlphaGenome splice score,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,1.86855,Yes,1.673,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,AlphaGenome splice score,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,3.3409,Yes,2.543,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,AlphaGenome splice score,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,AlphaGenome splice score,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,0.101221,Yes,0.02796021,Yes,unchanged,Yes,No,No,
+0.05,AlphaGenome splice score,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,0.02796021,Yes,,No,gained,Yes,No,No,
+0.05,AlphaGenome splice score,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,1.88955,Yes,1.725,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,2.392,Yes,1.88955,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,3.3929,Yes,3.345,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,0.1780,Yes,0.1008301,Yes,unchanged,Yes,No,No,
+0.05,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,0.1008301,Yes,0.02796021,Yes,unchanged,Yes,No,No,
+0.05,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,,No,19.26,Yes,lost,Yes,No,No,
+0.05,CADD,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,10.41,Yes,0.7070,Yes,unchanged,Yes,No,No,
+0.05,CADD,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,0.7070,Yes,0.3430,Yes,unchanged,Yes,No,No,
+0.05,CADD,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,0.2690,Yes,,No,gained,Yes,No,No,
+0.05,CADD,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,22.60,Yes,19.27,Yes,unchanged,Yes,No,No,
+0.05,CADD,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,,No,22.60,Yes,lost,Yes,No,No,
+0.05,CADD,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,0.3300,Yes,0.2860,Yes,unchanged,Yes,No,No,
+0.05,CADD,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,0.2860,Yes,,No,gained,Yes,No,No,
+0.05,CADD,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,24.10,Yes,22.70,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,25.30,Yes,24.10,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,35.00,Yes,35.00,Yes,unchanged,No,Yes,Yes,Yes
+0.05,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,7.496,Yes,0.3270,Yes,unchanged,Yes,No,No,
+0.05,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,0.3270,Yes,0.2860,Yes,unchanged,Yes,No,No,
+0.05,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,1.536,Yes,,No,gained,Yes,No,No,
+0.05,phyloP,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,5.34067,Yes,4.4836,Yes,unchanged,Yes,No,No,
+0.05,phyloP,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,,No,5.34067,Yes,lost,Yes,No,No,
+0.05,phyloP,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,0.063284,Yes,-0.8509,Yes,unchanged,Yes,No,Yes,
+0.05,phyloP,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,-0.817299,Yes,-1.327,Yes,unchanged,Yes,No,Yes,
+0.05,phyloP,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,-1.58585,Yes,,No,gained,Yes,No,Yes,
+0.05,phyloP,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,Yes,
+0.05,phyloP,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,-1.43578,Yes,,No,gained,Yes,No,No,
+0.05,phyloP,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,5.5818,Yes,4.15258,Yes,unchanged,Yes,No,No,
+0.05,phyloP,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,,No,5.5818,Yes,lost,Yes,No,No,
+0.05,phyloP,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,-0.71398,Yes,-1.4978,Yes,unchanged,Yes,No,No,
+0.05,phyloP,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,-1.4978,Yes,,No,gained,Yes,No,No,
+0.05,phyloP,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,4.771,Yes,4.722,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,5.636,Yes,4.771,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,7.415,Yes,6.417,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,0.043575,Yes,-0.8159,Yes,unchanged,Yes,No,No,
+0.05,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,-0.8159,Yes,-1.554,Yes,unchanged,Yes,No,No,
+0.05,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,0.5197,Yes,,No,gained,Yes,No,No,
+0.05,phastCons,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,,No,1.000,Yes,lost,Yes,No,No,
+0.05,phastCons,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,0.1260,Yes,0,Yes,unchanged,Yes,No,No,
+0.05,phastCons,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,0,Yes,,No,gained,Yes,No,No,
+0.05,phastCons,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,0,Yes,,No,gained,Yes,No,No,
+0.05,phastCons,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,,No,0.9921,Yes,lost,Yes,No,No,
+0.05,phastCons,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,0.09449,Yes,,No,gained,Yes,No,No,
+0.05,phastCons,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,1.000,Yes,1.000,Yes,unchanged,No,No,No,
+0.05,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,,No,1.000,Yes,lost,Yes,No,No,
+0.05,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,0.299213,Yes,0.00787402,Yes,unchanged,Yes,No,No,
+0.05,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,0.00787402,Yes,,No,gained,Yes,No,No,
+0.05,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,9.010,Yes,7.470,Yes,unchanged,Yes,No,No,
+0.05,GPN-MSA,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,,No,9.010,Yes,lost,Yes,No,No,
+0.05,GPN-MSA,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,4.240,Yes,1.630,Yes,unchanged,Yes,No,No,
+0.05,GPN-MSA,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,1.640,Yes,-3.150,Yes,unchanged,Yes,No,No,
+0.05,GPN-MSA,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,,No,6.630,Yes,lost,Yes,No,No,
+0.05,GPN-MSA,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,8.270,Yes,6.840,Yes,unchanged,Yes,No,No,
+0.05,GPN-MSA,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,10.05,Yes,8.240,Yes,unchanged,Yes,No,No,
+0.05,GPN-MSA,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,-1.790,Yes,-2.590,Yes,unchanged,Yes,No,No,
+0.05,GPN-MSA,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,-2.590,Yes,,No,gained,Yes,No,No,
+0.05,GPN-MSA,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,8.310,Yes,7.290,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,9.470,Yes,8.300,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,11.06,Yes,10.78,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,4.310,Yes,-1.930,Yes,unchanged,Yes,No,No,
+0.05,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,-1.820,Yes,-2.590,Yes,unchanged,Yes,No,No,
+0.05,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,-0.720366,Yes,,No,gained,Yes,No,No,
+0.05,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,,No,3.26899,Yes,lost,Yes,No,No,
+0.05,Nucleotide Transformer,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,-0.69007778,Yes,-1.2618,Yes,unchanged,Yes,No,No,
+0.05,Nucleotide Transformer,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,-1.2618,Yes,,No,gained,Yes,No,No,
+0.05,Nucleotide Transformer,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,-0.960885,Yes,-2.141,Yes,unchanged,Yes,No,No,
+0.05,Nucleotide Transformer,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,-2.141,Yes,,No,gained,Yes,No,No,
+0.05,Nucleotide Transformer,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,-0.7662,Yes,-1.76287,Yes,unchanged,Yes,No,No,
+0.05,Nucleotide Transformer,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,-1.76287,Yes,,No,gained,Yes,No,No,
+0.05,Nucleotide Transformer,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,4.910,Yes,3.5488,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,5.3349,Yes,4.910,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,5.939,Yes,5.761,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,-0.55696678,Yes,-1.8058,Yes,unchanged,Yes,No,No,
+0.05,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,-1.8058,Yes,,No,gained,Yes,No,No,
+0.05,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,0.6783,Yes,,No,gained,Yes,No,No,
+0.05,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,0.5386,Yes,0.4195,Yes,unchanged,Yes,Yes,No,No
+0.05,SpliceAI (published basis),3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,0.8029,Yes,0.5281,Yes,unchanged,Yes,Yes,No,No
+0.05,SpliceAI (published basis),3–10,PP3,Strong,39.5,18.7,570,2539,ok,,,No,0.95946,Yes,lost,Yes,Yes,No,No
+0.05,SpliceAI (published basis),3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,Yes,No,No
+0.05,SpliceAI (published basis),3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,0.089754,Yes,0.02607,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (published basis),3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,0.02637321,Yes,0.00282902,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (published basis),3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,0.2920,Yes,0.24022,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (published basis),11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,0.7125,Yes,0.2920,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (published basis),11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,0.001733102,Yes,0.0012704134,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (published basis),11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,0.0012704134,Yes,,No,gained,Yes,No,No,
+0.05,SpliceAI (published basis),11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,0.4263,Yes,0.3158,Yes,unchanged,Yes,Yes,No,No
+0.05,SpliceAI (published basis),3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,0.757976,Yes,0.4263,Yes,unchanged,Yes,Yes,No,No
+0.05,SpliceAI (published basis),3–50,PP3,Strong,39.5,18.7,793,6867,ok,,,No,0.8773,Yes,lost,Yes,Yes,No,No
+0.05,SpliceAI (published basis),3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,Yes,No,No
+0.05,SpliceAI (published basis),3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,0.02702022,Yes,0.003409,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (published basis),3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,0.003409,Yes,,No,gained,Yes,No,No,
+0.05,SpliceAI (published basis),3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,0.744098,Yes,0.43619,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,0.8721567,Yes,0.744098,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,0.9976,Yes,0.9970,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,0.089174,Yes,0.026681,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,0.026681,Yes,0.003409,Yes,unchanged,Yes,No,No,
+0.05,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,1.8928,Yes,lost,Yes,No,No,
+0.05,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,1.2673,Yes,1.1785,Yes,unchanged,Yes,No,No,
+0.05,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,1.21414435,Yes,,No,gained,Yes,No,No,
+0.05,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,1.071,Yes,0.8246,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas combined score,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,1.17076766,Yes,1.071,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas combined score,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,1.48597,Yes,1.36455,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas combined score,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,Atlas combined score,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,0.26204,Yes,0.1919,Yes,unchanged,Yes,No,No,
+0.05,Atlas combined score,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,0.192725,Yes,-0.09194656,Yes,unchanged,Yes,No,No,
+0.05,Atlas combined score,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,0.69857,Yes,0.5888686776,Yes,unchanged,Yes,Yes,No,No
+0.05,Atlas combined score,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,0.9544,Yes,0.69857,Yes,unchanged,Yes,Yes,No,No
+0.05,Atlas combined score,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,1.127,Yes,lost,Yes,Yes,No,No
+0.05,Atlas combined score,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,Yes,No,No
+0.05,Atlas combined score,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,-0.09250599,Yes,,No,gained,Yes,No,No,
+0.05,Atlas combined score,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,0.8921,Yes,0.7119,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas combined score,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,1.08956,Yes,0.8921,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas combined score,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,1.360978,Yes,1.171,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas combined score,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,Atlas combined score,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,0.03869,Yes,-0.051729,Yes,unchanged,Yes,No,No,
+0.05,Atlas combined score,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,-0.051729,Yes,,No,gained,Yes,No,No,
+0.05,Atlas combined score,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,1.079,Yes,0.89637,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,1.1758668,Yes,1.079,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,1.6717,Yes,1.5457679,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,0.455601,Yes,0.03869,Yes,unchanged,Yes,No,No,
+0.05,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,0.03869,Yes,-0.083998,Yes,unchanged,Yes,No,No,
+0.05,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,0.65820313,Yes,0.4297,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,0.4297,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,0.4609,Yes,0.327255,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice sites,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,0.5720,Yes,0.4609,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice sites,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,0.07512,Yes,0.01520,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice sites,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,0.01520,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice sites,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,0.4608755,Yes,0.26948,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice sites,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,0.71875,Yes,0.4608755,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice sites,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,0.01270,Yes,0.0053711,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice sites,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,0.0053711,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice sites,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,0.4295,Yes,0.296875,Yes,unchanged,Yes,Yes,No,No
+0.05,Atlas splice sites,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,0.5097656,Yes,0.4295,Yes,unchanged,Yes,Yes,No,No
+0.05,Atlas splice sites,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,,No,0.84757,Yes,lost,Yes,Yes,No,No
+0.05,Atlas splice sites,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,Yes,No,No
+0.05,Atlas splice sites,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,0.02231,Yes,0.010254,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice sites,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,0.010254,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice sites,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,0.49609,Yes,0.4531,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,0.8369,Yes,0.49609,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,0.9954,Yes,0.9926,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,0.072754,Yes,0.01450,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,0.01450,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,0.46094,Yes,0.46094,Yes,unchanged,No,No,No,
+0.05,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,0.46094,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,0.65678,Yes,0.568359,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice-site usage,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,0.91188,Yes,0.65678,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice-site usage,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,0.9487,Yes,0.9189,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice-site usage,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,Atlas splice-site usage,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,0.06055,Yes,0.01758,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice-site usage,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,0.01758,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice-site usage,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,0.2539,Yes,0.1328,Yes,unchanged,Yes,Yes,No,No
+0.05,Atlas splice-site usage,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,0.5859,Yes,0.24609,Yes,unchanged,Yes,Yes,No,No
+0.05,Atlas splice-site usage,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,0.6875,Yes,lost,Yes,Yes,No,No
+0.05,Atlas splice-site usage,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,Yes,No,No
+0.05,Atlas splice-site usage,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,0.009766,Yes,0.009682,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice-site usage,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,0.009682,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice-site usage,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,0.484375,Yes,0.4355,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice-site usage,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,0.68359,Yes,0.484375,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice-site usage,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,0.9179,Yes,0.9124755859,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice-site usage,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,Atlas splice-site usage,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,0.0527344,Yes,0.009766,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice-site usage,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,0.009766,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice-site usage,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,0.06641,Yes,0.04297,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,0.04297,Yes,0.009766,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,2.805,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,5.41796875,Yes,3.4648,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice junctions,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,6.082,Yes,5.41796875,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice junctions,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,7.402,Yes,6.8398,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice junctions,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,Atlas splice junctions,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,1.311,Yes,0.3845215,Yes,unchanged,Yes,No,Yes,
+0.05,Atlas splice junctions,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,0.3845215,Yes,0.06229,Yes,unchanged,Yes,No,Yes,
+0.05,Atlas splice junctions,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,0.052765,Yes,,No,gained,Yes,No,Yes,
+0.05,Atlas splice junctions,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,Yes,
+0.05,Atlas splice junctions,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,4.441,Yes,3.3027,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice junctions,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,5.43359,Yes,4.441,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice junctions,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,0.0426941,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice junctions,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,3.857,Yes,3.1816,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice junctions,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,5.41796875,Yes,3.857,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice junctions,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,6.707,Yes,6.082,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice junctions,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,Atlas splice junctions,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,0.1978,Yes,0.07593,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice junctions,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,0.07593,Yes,,No,gained,Yes,No,No,
+0.05,Atlas splice junctions,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,3.7207,Yes,3.2539,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,5.2109,Yes,3.7207,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,7.72656,Yes,6.16796875,Yes,unchanged,Yes,Yes,Yes,Yes
+0.05,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.05,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,0.964844,Yes,0.1974,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,0.1974,Yes,0.06519,Yes,unchanged,Yes,No,No,
+0.05,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Very strong,739,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,804,37,ok,,0.6919,Yes,0.6389,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,804,37,ok,,0.6389,Yes,,No,gained,Yes,No,No,
+0.05,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,3–10,PP3,Supporting,4.39,2.08,570,2539,ok,,0.7437,Yes,0.6563,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,3–10,PP3,Moderate,9.14,4.33,570,2539,ok,,,No,0.7437,Yes,lost,Yes,No,No,
+0.05,Elastic-net combination,3–10,PP3,Strong,39.5,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,3–10,PP3,Very strong,739,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,3–10,BP4,Supporting,1.01,0.481,570,2539,ok,,0.5773,Yes,0.4389,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,3–10,BP4,Moderate,0.488,0.231,570,2539,ok,,0.4389,Yes,0.3238,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,3–10,BP4,Strong,0.113,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,3–10,BP4,Very strong,0.00603,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,11–50,PP3,Supporting,4.39,2.08,223,4328,ok,,0.6493,Yes,0.6218,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,11–50,PP3,Moderate,9.14,4.33,223,4328,ok,,0.7204,Yes,0.6493,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,11–50,PP3,Strong,39.5,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,11–50,PP3,Very strong,739,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,11–50,BP4,Supporting,1.01,0.481,223,4328,ok,,0.2986,Yes,,No,gained,Yes,No,No,
+0.05,Elastic-net combination,11–50,BP4,Moderate,0.488,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,11–50,BP4,Strong,0.113,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,11–50,BP4,Very strong,0.00603,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,3–50,PP3,Supporting,4.39,2.08,793,6867,ok,,0.7374,Yes,0.6396,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,3–50,PP3,Moderate,9.14,4.33,793,6867,ok,,0.7450,Yes,0.7374,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,3–50,PP3,Strong,39.5,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,3–50,PP3,Very strong,739,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,3–50,BP4,Supporting,1.01,0.481,793,6867,ok,,0.4467,Yes,0.2999,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,3–50,BP4,Moderate,0.488,0.231,793,6867,ok,,0.2999,Yes,,No,gained,Yes,No,No,
+0.05,Elastic-net combination,3–50,BP4,Strong,0.113,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,3–50,BP4,Very strong,0.00603,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,4.39,2.08,1597,6904,ok,,0.7122,Yes,0.6792,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,9.14,4.33,1597,6904,ok,,0.7401,Yes,0.7122,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,39.5,18.7,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,739,350,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,1.01,0.481,1597,6904,ok,,0.5839,Yes,0.4467,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.488,0.231,1597,6904,ok,,0.4467,Yes,0.2999,Yes,unchanged,Yes,No,No,
+0.05,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.113,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.05,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00603,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,0.3977,Yes,0.3977,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,0.54938,Yes,0.54938,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),3–10,PP3,Strong,18.7,18.7,570,2539,ok,,0.8605,Yes,0.8605,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,0.006782,Yes,0.006782,Yes,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,0.0009789,Yes,0.0009789,Yes,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,0.2340,Yes,0.2340,Yes,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,0.290056,Yes,0.290056,Yes,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),11–50,PP3,Strong,18.7,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,0.330177,Yes,0.330177,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,0.37998,Yes,0.37998,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),3–50,PP3,Strong,18.7,18.7,793,6867,ok,,0.87846,Yes,0.87846,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,0.00034595,Yes,0.00034595,Yes,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,0.38189,Yes,0.38189,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,0.7510,Yes,0.7510,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,0.9970,Yes,0.9970,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,0.001705,Yes,0.001705,Yes,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,0.0003135,Yes,0.0003135,Yes,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,0.3927895,Yes,0.3927895,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,0.5108555555,Yes,0.5108555555,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,0.6972,Yes,0.6972,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,0.0037785,Yes,0.0037785,Yes,unchanged,No,No,No,
+0.1,Pangolin,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,0.001562,Yes,0.001562,Yes,unchanged,No,No,No,
+0.1,Pangolin,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,0.2021,Yes,0.2021,Yes,unchanged,No,No,No,
+0.1,Pangolin,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,0.4093,Yes,0.4093,Yes,unchanged,No,No,No,
+0.1,Pangolin,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,0.3605,Yes,0.3605,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,0.4146675,Yes,0.4146675,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,0.6798,Yes,0.6798,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,0.000795624,Yes,0.000795624,Yes,unchanged,No,No,No,
+0.1,Pangolin,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,0.4160,Yes,0.4160,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,0.60399,Yes,0.60399,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,0.8747,Yes,0.8747,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,0.004332,Yes,0.004332,Yes,unchanged,No,No,No,
+0.1,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,0.0007733044331,Yes,0.0007733044331,Yes,unchanged,No,No,No,
+0.1,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,1.638,Yes,1.638,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,1.86855,Yes,1.86855,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,2.673,Yes,2.673,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,0.11172,Yes,0.11172,Yes,unchanged,No,No,No,
+0.1,AlphaGenome splice score,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,0.04346,Yes,0.04346,Yes,unchanged,No,No,No,
+0.1,AlphaGenome splice score,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,0.8003,Yes,0.8003,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,0.9600,Yes,0.9600,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,2.6528,Yes,2.6528,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,1.435,Yes,1.435,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,1.673,Yes,1.673,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,2.543,Yes,2.543,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,0.02796021,Yes,0.02796021,Yes,unchanged,No,No,No,
+0.1,AlphaGenome splice score,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,1.725,Yes,1.725,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,1.88955,Yes,1.88955,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,3.345,Yes,3.345,Yes,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,0.1008301,Yes,0.1008301,Yes,unchanged,No,No,No,
+0.1,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,0.02796021,Yes,0.02796021,Yes,unchanged,No,No,No,
+0.1,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,19.26,Yes,19.26,Yes,unchanged,No,No,No,
+0.1,CADD,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,0.7070,Yes,0.7070,Yes,unchanged,No,No,No,
+0.1,CADD,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,0.3430,Yes,0.3430,Yes,unchanged,No,No,No,
+0.1,CADD,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,19.27,Yes,19.27,Yes,unchanged,No,No,No,
+0.1,CADD,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,22.60,Yes,22.60,Yes,unchanged,No,No,No,
+0.1,CADD,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,0.2860,Yes,0.2860,Yes,unchanged,No,No,No,
+0.1,CADD,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,22.70,Yes,22.70,Yes,unchanged,No,Yes,Yes,Yes
+0.1,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,24.10,Yes,24.10,Yes,unchanged,No,Yes,Yes,Yes
+0.1,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,35.00,Yes,35.00,Yes,unchanged,No,Yes,Yes,Yes
+0.1,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,0.3270,Yes,0.3270,Yes,unchanged,No,No,No,
+0.1,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,0.2860,Yes,0.2860,Yes,unchanged,No,No,No,
+0.1,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,4.4836,Yes,4.4836,Yes,unchanged,No,No,No,
+0.1,phyloP,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,5.34067,Yes,5.34067,Yes,unchanged,No,No,No,
+0.1,phyloP,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,-0.8509,Yes,-0.8509,Yes,unchanged,No,No,No,
+0.1,phyloP,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,-1.327,Yes,-1.327,Yes,unchanged,No,No,No,
+0.1,phyloP,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,4.15258,Yes,4.15258,Yes,unchanged,No,No,No,
+0.1,phyloP,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,5.5818,Yes,5.5818,Yes,unchanged,No,No,No,
+0.1,phyloP,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,-1.4978,Yes,-1.4978,Yes,unchanged,No,No,No,
+0.1,phyloP,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,4.722,Yes,4.722,Yes,unchanged,No,Yes,Yes,Yes
+0.1,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,4.771,Yes,4.771,Yes,unchanged,No,Yes,Yes,Yes
+0.1,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,6.417,Yes,6.417,Yes,unchanged,No,Yes,Yes,Yes
+0.1,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,-0.8159,Yes,-0.8159,Yes,unchanged,No,No,No,
+0.1,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,-1.554,Yes,-1.554,Yes,unchanged,No,No,No,
+0.1,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,1.000,Yes,1.000,Yes,unchanged,No,No,No,
+0.1,phastCons,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,0,Yes,0,Yes,unchanged,No,No,No,
+0.1,phastCons,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,0.9921,Yes,0.9921,Yes,unchanged,No,No,No,
+0.1,phastCons,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,1.000,Yes,1.000,Yes,unchanged,No,No,No,
+0.1,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,1.000,Yes,1.000,Yes,unchanged,No,No,No,
+0.1,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,0.00787402,Yes,0.00787402,Yes,unchanged,No,No,No,
+0.1,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,7.470,Yes,7.470,Yes,unchanged,No,No,No,
+0.1,GPN-MSA,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,9.010,Yes,9.010,Yes,unchanged,No,No,No,
+0.1,GPN-MSA,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,1.630,Yes,1.630,Yes,unchanged,No,No,No,
+0.1,GPN-MSA,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,-3.150,Yes,-3.150,Yes,unchanged,No,No,No,
+0.1,GPN-MSA,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,6.630,Yes,6.630,Yes,unchanged,No,No,No,
+0.1,GPN-MSA,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,6.840,Yes,6.840,Yes,unchanged,No,No,No,
+0.1,GPN-MSA,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,8.240,Yes,8.240,Yes,unchanged,No,No,No,
+0.1,GPN-MSA,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,-2.590,Yes,-2.590,Yes,unchanged,No,No,No,
+0.1,GPN-MSA,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,7.290,Yes,7.290,Yes,unchanged,No,Yes,Yes,Yes
+0.1,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,8.300,Yes,8.300,Yes,unchanged,No,Yes,Yes,Yes
+0.1,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,10.78,Yes,10.78,Yes,unchanged,No,Yes,Yes,Yes
+0.1,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,-1.930,Yes,-1.930,Yes,unchanged,No,No,No,
+0.1,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,-2.590,Yes,-2.590,Yes,unchanged,No,No,No,
+0.1,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,3.26899,Yes,3.26899,Yes,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,-1.2618,Yes,-1.2618,Yes,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,-2.141,Yes,-2.141,Yes,unchanged,No,No,No,
+0.1,Nucleotide Transformer,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,-1.76287,Yes,-1.76287,Yes,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,3.5488,Yes,3.5488,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,4.910,Yes,4.910,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,5.761,Yes,5.761,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,-1.8058,Yes,-1.8058,Yes,unchanged,No,No,No,
+0.1,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,0.4195,Yes,0.4195,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,0.5281,Yes,0.5281,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),3–10,PP3,Strong,18.7,18.7,570,2539,ok,,0.95946,Yes,0.95946,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,0.02607,Yes,0.02607,Yes,unchanged,No,No,No,
+0.1,SpliceAI (published basis),3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,0.00282902,Yes,0.00282902,Yes,unchanged,No,No,No,
+0.1,SpliceAI (published basis),3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,0.24022,Yes,0.24022,Yes,unchanged,No,No,No,
+0.1,SpliceAI (published basis),11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,0.2920,Yes,0.2920,Yes,unchanged,No,No,No,
+0.1,SpliceAI (published basis),11–50,PP3,Strong,18.7,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,0.0012704134,Yes,0.0012704134,Yes,unchanged,No,No,No,
+0.1,SpliceAI (published basis),11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,0.3158,Yes,0.3158,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,0.4263,Yes,0.4263,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),3–50,PP3,Strong,18.7,18.7,793,6867,ok,,0.8773,Yes,0.8773,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,0.003409,Yes,0.003409,Yes,unchanged,No,No,No,
+0.1,SpliceAI (published basis),3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,0.43619,Yes,0.43619,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,0.744098,Yes,0.744098,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,0.9970,Yes,0.9970,Yes,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,0.026681,Yes,0.026681,Yes,unchanged,No,No,No,
+0.1,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,0.003409,Yes,0.003409,Yes,unchanged,No,No,No,
+0.1,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,1.8928,Yes,1.8928,Yes,unchanged,No,No,No,
+0.1,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,1.1785,Yes,1.1785,Yes,unchanged,No,No,No,
+0.1,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,0.8246,Yes,0.8246,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,1.071,Yes,1.071,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,1.36455,Yes,1.36455,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,0.1919,Yes,0.1919,Yes,unchanged,No,No,No,
+0.1,Atlas combined score,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,-0.09194656,Yes,-0.09194656,Yes,unchanged,No,No,No,
+0.1,Atlas combined score,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,0.5888686776,Yes,0.5888686776,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,0.69857,Yes,0.69857,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,1.127,Yes,1.127,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,0.7119,Yes,0.7119,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,0.8921,Yes,0.8921,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,1.171,Yes,1.171,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,-0.051729,Yes,-0.051729,Yes,unchanged,No,No,No,
+0.1,Atlas combined score,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,0.89637,Yes,0.89637,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,1.079,Yes,1.079,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,1.5457679,Yes,1.5457679,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,0.03869,Yes,0.03869,Yes,unchanged,No,No,No,
+0.1,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,-0.083998,Yes,-0.083998,Yes,unchanged,No,No,No,
+0.1,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,0.4297,Yes,0.4297,Yes,unchanged,No,No,No,
+0.1,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,0.327255,Yes,0.327255,Yes,unchanged,No,No,No,
+0.1,Atlas splice sites,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,0.4609,Yes,0.4609,Yes,unchanged,No,No,No,
+0.1,Atlas splice sites,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,0.01520,Yes,0.01520,Yes,unchanged,No,No,No,
+0.1,Atlas splice sites,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,0.26948,Yes,0.26948,Yes,unchanged,No,No,No,
+0.1,Atlas splice sites,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,0.4608755,Yes,0.4608755,Yes,unchanged,No,No,No,
+0.1,Atlas splice sites,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,0.0053711,Yes,0.0053711,Yes,unchanged,No,No,No,
+0.1,Atlas splice sites,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,0.296875,Yes,0.296875,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice sites,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,0.4295,Yes,0.4295,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice sites,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,0.84757,Yes,0.84757,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice sites,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice sites,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,0.010254,Yes,0.010254,Yes,unchanged,No,No,No,
+0.1,Atlas splice sites,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,0.4531,Yes,0.4531,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,0.49609,Yes,0.49609,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,0.9926,Yes,0.9926,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,0.01450,Yes,0.01450,Yes,unchanged,No,No,No,
+0.1,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,0.46094,Yes,0.46094,Yes,unchanged,No,No,No,
+0.1,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,0.568359,Yes,0.568359,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,0.65678,Yes,0.65678,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,0.9189,Yes,0.9189,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,0.01758,Yes,0.01758,Yes,unchanged,No,No,No,
+0.1,Atlas splice-site usage,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,0.1328,Yes,0.1328,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,0.24609,Yes,0.24609,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,0.6875,Yes,0.6875,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,0.009682,Yes,0.009682,Yes,unchanged,No,No,No,
+0.1,Atlas splice-site usage,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,0.4355,Yes,0.4355,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,0.484375,Yes,0.484375,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,0.9124755859,Yes,0.9124755859,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice-site usage,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,0.009766,Yes,0.009766,Yes,unchanged,No,No,No,
+0.1,Atlas splice-site usage,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,0.04297,Yes,0.04297,Yes,unchanged,No,No,No,
+0.1,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,0.009766,Yes,0.009766,Yes,unchanged,No,No,No,
+0.1,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,3.4648,Yes,3.4648,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,5.41796875,Yes,5.41796875,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,6.8398,Yes,6.8398,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,0.3845215,Yes,0.3845215,Yes,unchanged,No,No,No,
+0.1,Atlas splice junctions,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,0.06229,Yes,0.06229,Yes,unchanged,No,No,No,
+0.1,Atlas splice junctions,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,3.3027,Yes,3.3027,Yes,unchanged,No,No,No,
+0.1,Atlas splice junctions,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,4.441,Yes,4.441,Yes,unchanged,No,No,No,
+0.1,Atlas splice junctions,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,3.1816,Yes,3.1816,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,3.857,Yes,3.857,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,6.082,Yes,6.082,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,0.07593,Yes,0.07593,Yes,unchanged,No,No,No,
+0.1,Atlas splice junctions,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,3.2539,Yes,3.2539,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,3.7207,Yes,3.7207,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,6.16796875,Yes,6.16796875,Yes,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.1,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,0.1974,Yes,0.1974,Yes,unchanged,No,No,No,
+0.1,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,0.06519,Yes,0.06519,Yes,unchanged,No,No,No,
+0.1,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Very strong,350,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,804,37,ok,,0.6389,Yes,0.6389,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,3–10,PP3,Supporting,2.08,2.08,570,2539,ok,,0.6563,Yes,0.6563,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,3–10,PP3,Moderate,4.33,4.33,570,2539,ok,,0.7437,Yes,0.7437,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,3–10,PP3,Strong,18.7,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,3–10,PP3,Very strong,350,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,3–10,BP4,Supporting,0.481,0.481,570,2539,ok,,0.4389,Yes,0.4389,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,3–10,BP4,Moderate,0.231,0.231,570,2539,ok,,0.3238,Yes,0.3238,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,3–10,BP4,Strong,0.0535,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,3–10,BP4,Very strong,0.00286,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,11–50,PP3,Supporting,2.08,2.08,223,4328,ok,,0.6218,Yes,0.6218,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,11–50,PP3,Moderate,4.33,4.33,223,4328,ok,,0.6493,Yes,0.6493,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,11–50,PP3,Strong,18.7,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,11–50,PP3,Very strong,350,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,11–50,BP4,Supporting,0.481,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,11–50,BP4,Moderate,0.231,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,11–50,BP4,Strong,0.0535,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,11–50,BP4,Very strong,0.00286,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,3–50,PP3,Supporting,2.08,2.08,793,6867,ok,,0.6396,Yes,0.6396,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,3–50,PP3,Moderate,4.33,4.33,793,6867,ok,,0.7374,Yes,0.7374,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,3–50,PP3,Strong,18.7,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,3–50,PP3,Very strong,350,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,3–50,BP4,Supporting,0.481,0.481,793,6867,ok,,0.2999,Yes,0.2999,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,3–50,BP4,Moderate,0.231,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,3–50,BP4,Strong,0.0535,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,3–50,BP4,Very strong,0.00286,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,2.08,2.08,1597,6904,ok,,0.6792,Yes,0.6792,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,4.33,4.33,1597,6904,ok,,0.7122,Yes,0.7122,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,18.7,18.7,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,350,350,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.481,0.481,1597,6904,ok,,0.4467,Yes,0.4467,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.231,0.231,1597,6904,ok,,0.2999,Yes,0.2999,Yes,unchanged,No,No,No,
+0.1,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0535,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.1,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00286,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,0.3278,Yes,0.3977,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,0.3977,Yes,0.54938,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),3–10,PP3,Strong,9.15,18.7,570,2539,ok,,0.8089,Yes,0.8605,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,0.0009872,Yes,0.006782,Yes,unchanged,Yes,No,No,
+0.185,SpliceAI (distance 50),3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,,No,0.0009789,Yes,lost,Yes,No,No,
+0.185,SpliceAI (distance 50),3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,0.2255675,Yes,0.2340,Yes,unchanged,Yes,No,Yes,
+0.185,SpliceAI (distance 50),11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,0.23516,Yes,0.290056,Yes,unchanged,Yes,No,Yes,
+0.185,SpliceAI (distance 50),11–50,PP3,Strong,9.15,18.7,223,4328,ok,,0.7015867,Yes,,No,gained,Yes,No,Yes,
+0.185,SpliceAI (distance 50),11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,No,Yes,
+0.185,SpliceAI (distance 50),11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,0.3092,Yes,0.330177,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,0.330177,Yes,0.37998,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),3–50,PP3,Strong,9.15,18.7,793,6867,ok,,0.765885,Yes,0.87846,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,0.00034595,Yes,lost,Yes,No,No,
+0.185,SpliceAI (distance 50),3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,0.3360,Yes,0.38189,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,0.383578,Yes,0.7510,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,0.870559,Yes,0.9970,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,0.00033522,Yes,0.001705,Yes,unchanged,Yes,No,No,
+0.185,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,0.0003135,Yes,lost,Yes,No,No,
+0.185,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (distance 50),1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,0.35117769,Yes,0.3927895,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Pangolin,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,0.3927895,Yes,0.5108555555,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Pangolin,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,0.6740,Yes,0.6972,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Pangolin,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Pangolin,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,0.001562,Yes,0.0037785,Yes,unchanged,Yes,No,No,
+0.185,Pangolin,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,,No,0.001562,Yes,lost,Yes,No,No,
+0.185,Pangolin,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,0.1632,Yes,0.2021,Yes,unchanged,Yes,No,Yes,
+0.185,Pangolin,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,0.2021,Yes,0.4093,Yes,unchanged,Yes,No,Yes,
+0.185,Pangolin,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,0.5082,Yes,,No,gained,Yes,No,Yes,
+0.185,Pangolin,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,No,Yes,
+0.185,Pangolin,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,0.3449968,Yes,0.3605,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Pangolin,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,0.3605,Yes,0.4146675,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Pangolin,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,0.62957,Yes,0.6798,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Pangolin,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Pangolin,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,0.000795624,Yes,lost,Yes,No,No,
+0.185,Pangolin,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,0.36277589,Yes,0.4160,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,0.4160,Yes,0.60399,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,0.6622,Yes,0.8747,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Pangolin,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,0.0007733044331,Yes,0.004332,Yes,unchanged,Yes,No,No,
+0.185,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,0.0007733044331,Yes,lost,Yes,No,No,
+0.185,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Pangolin,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,3.52868,Yes,,No,gained,Yes,No,No,
+0.185,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,1.385687,Yes,1.638,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,1.638,Yes,1.86855,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,2.52998,Yes,2.673,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,AlphaGenome splice score,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,0.04357,Yes,0.11172,Yes,unchanged,Yes,No,No,
+0.185,AlphaGenome splice score,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,,No,0.04346,Yes,lost,Yes,No,No,
+0.185,AlphaGenome splice score,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,0.51347655,Yes,0.8003,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,0.8003,Yes,0.9600,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,2.0565,Yes,2.6528,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,AlphaGenome splice score,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,1.065685987,Yes,1.435,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,1.435,Yes,1.673,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,1.86855,Yes,2.543,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,AlphaGenome splice score,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,0.02796021,Yes,lost,Yes,No,No,
+0.185,AlphaGenome splice score,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,1.505,Yes,1.725,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,1.7318,Yes,1.88955,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,2.392,Yes,3.345,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,0.02796021,Yes,0.1008301,Yes,unchanged,Yes,No,No,
+0.185,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,0.02796021,Yes,lost,Yes,No,No,
+0.185,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,AlphaGenome splice score,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,16.44,Yes,19.26,Yes,unchanged,Yes,No,No,
+0.185,CADD,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,19.30,Yes,,No,gained,Yes,No,No,
+0.185,CADD,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,0.3430,Yes,0.7070,Yes,unchanged,Yes,No,No,
+0.185,CADD,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,,No,0.3430,Yes,lost,Yes,No,No,
+0.185,CADD,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,16.82,Yes,,No,gained,Yes,No,No,
+0.185,CADD,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,16.53,Yes,19.27,Yes,unchanged,Yes,No,No,
+0.185,CADD,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,19.28,Yes,22.60,Yes,unchanged,Yes,No,No,
+0.185,CADD,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,0.2860,Yes,lost,Yes,No,No,
+0.185,CADD,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,19.28,Yes,22.70,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,22.70,Yes,24.10,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,25.30,Yes,35.00,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,CADD,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,0.2860,Yes,0.3270,Yes,unchanged,Yes,No,No,
+0.185,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,0.2860,Yes,lost,Yes,No,No,
+0.185,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,CADD,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,2.927,Yes,4.4836,Yes,unchanged,Yes,No,No,
+0.185,phyloP,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,4.4836,Yes,5.34067,Yes,unchanged,Yes,No,No,
+0.185,phyloP,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,-1.327,Yes,-0.8509,Yes,unchanged,Yes,No,No,
+0.185,phyloP,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,-1.58585,Yes,-1.327,Yes,unchanged,Yes,No,No,
+0.185,phyloP,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,3.30777,Yes,,No,gained,Yes,No,No,
+0.185,phyloP,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,2.99665,Yes,4.15258,Yes,unchanged,Yes,No,No,
+0.185,phyloP,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,4.15258,Yes,5.5818,Yes,unchanged,Yes,No,No,
+0.185,phyloP,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,-1.4978,Yes,lost,Yes,No,No,
+0.185,phyloP,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,4.658,Yes,4.722,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,4.722,Yes,4.771,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,5.636,Yes,6.417,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,phyloP,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,-1.554,Yes,-0.8159,Yes,unchanged,Yes,No,No,
+0.185,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,-1.554,Yes,lost,Yes,No,No,
+0.185,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,phyloP,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,0.98425,Yes,1.000,Yes,unchanged,Yes,No,No,
+0.185,phastCons,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,1.000,Yes,,No,gained,Yes,No,No,
+0.185,phastCons,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,,No,0,Yes,lost,Yes,No,No,
+0.185,phastCons,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,0.9744,Yes,0.9921,Yes,unchanged,Yes,No,No,
+0.185,phastCons,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,1.000,Yes,,No,gained,Yes,No,No,
+0.185,phastCons,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,0.9921,Yes,1.000,Yes,unchanged,Yes,No,No,
+0.185,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,1.000,Yes,1.000,Yes,unchanged,No,No,No,
+0.185,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,,No,0.00787402,Yes,lost,Yes,No,No,
+0.185,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,phastCons,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,6.500,Yes,7.470,Yes,unchanged,Yes,No,No,
+0.185,GPN-MSA,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,7.520,Yes,9.010,Yes,unchanged,Yes,No,No,
+0.185,GPN-MSA,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,-3.150,Yes,1.630,Yes,unchanged,Yes,No,No,
+0.185,GPN-MSA,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,,No,-3.150,Yes,lost,Yes,No,No,
+0.185,GPN-MSA,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,6.100,Yes,6.630,Yes,unchanged,Yes,No,No,
+0.185,GPN-MSA,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,6.640,Yes,,No,gained,Yes,No,No,
+0.185,GPN-MSA,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,6.400,Yes,6.840,Yes,unchanged,Yes,No,Yes,
+0.185,GPN-MSA,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,6.840,Yes,8.240,Yes,unchanged,Yes,No,Yes,
+0.185,GPN-MSA,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,10.05,Yes,,No,gained,Yes,No,Yes,
+0.185,GPN-MSA,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,No,Yes,
+0.185,GPN-MSA,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,-2.590,Yes,lost,Yes,No,No,
+0.185,GPN-MSA,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,6.410,Yes,7.290,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,7.300,Yes,8.300,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,9.470,Yes,10.78,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,-2.590,Yes,-1.930,Yes,unchanged,Yes,No,No,
+0.185,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,-2.590,Yes,lost,Yes,No,No,
+0.185,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,GPN-MSA,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,2.8569,Yes,3.26899,Yes,unchanged,Yes,No,No,
+0.185,Nucleotide Transformer,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,3.26899,Yes,,No,gained,Yes,No,No,
+0.185,Nucleotide Transformer,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,,No,-1.2618,Yes,lost,Yes,No,No,
+0.185,Nucleotide Transformer,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,-2.141,Yes,lost,Yes,No,No,
+0.185,Nucleotide Transformer,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,4.5829,Yes,,No,gained,Yes,No,No,
+0.185,Nucleotide Transformer,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,-1.76287,Yes,lost,Yes,No,No,
+0.185,Nucleotide Transformer,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,3.129,Yes,3.5488,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,3.561,Yes,4.910,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,5.3349,Yes,5.761,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,,No,-1.8058,Yes,lost,Yes,No,No,
+0.185,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Nucleotide Transformer,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,0.3465,Yes,0.4195,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (published basis),3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,0.42467,Yes,0.5281,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (published basis),3–10,PP3,Strong,9.15,18.7,570,2539,ok,,0.8029,Yes,0.95946,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (published basis),3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,SpliceAI (published basis),3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,0.00282902,Yes,0.02607,Yes,unchanged,Yes,No,No,
+0.185,SpliceAI (published basis),3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,,No,0.00282902,Yes,lost,Yes,No,No,
+0.185,SpliceAI (published basis),3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,0.21706,Yes,0.24022,Yes,unchanged,Yes,No,Yes,
+0.185,SpliceAI (published basis),11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,0.24546,Yes,0.2920,Yes,unchanged,Yes,No,Yes,
+0.185,SpliceAI (published basis),11–50,PP3,Strong,9.15,18.7,223,4328,ok,,0.7125,Yes,,No,gained,Yes,No,Yes,
+0.185,SpliceAI (published basis),11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,No,Yes,
+0.185,SpliceAI (published basis),11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,0.0012704134,Yes,lost,Yes,No,No,
+0.185,SpliceAI (published basis),11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,0.293459,Yes,0.3158,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (published basis),3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,0.3158,Yes,0.4263,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (published basis),3–50,PP3,Strong,9.15,18.7,793,6867,ok,,0.757976,Yes,0.8773,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (published basis),3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,SpliceAI (published basis),3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,0.003409,Yes,lost,Yes,No,No,
+0.185,SpliceAI (published basis),3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,0.35475,Yes,0.43619,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,0.43636,Yes,0.744098,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,0.8721567,Yes,0.9970,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,0.003409,Yes,0.026681,Yes,unchanged,Yes,No,No,
+0.185,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,0.003409,Yes,lost,Yes,No,No,
+0.185,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,SpliceAI (published basis),1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,1.75788,Yes,1.8928,Yes,unchanged,Yes,No,No,
+0.185,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,1.896,Yes,,No,gained,Yes,No,No,
+0.185,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,1.1785,Yes,lost,Yes,No,No,
+0.185,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,0.7482,Yes,0.8246,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,0.8246,Yes,1.071,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,1.17076766,Yes,1.36455,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Atlas combined score,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,-0.09194656,Yes,0.1919,Yes,unchanged,Yes,No,No,
+0.185,Atlas combined score,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,-0.199298,Yes,-0.09194656,Yes,unchanged,Yes,No,No,
+0.185,Atlas combined score,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,0.4921957,Yes,0.5888686776,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,0.5888686776,Yes,0.69857,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,0.9544,Yes,1.127,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Atlas combined score,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,0.6853,Yes,0.7119,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,0.7119,Yes,0.8921,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,1.08956,Yes,1.171,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Atlas combined score,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,-0.051729,Yes,lost,Yes,No,No,
+0.185,Atlas combined score,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,0.7119,Yes,0.89637,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,0.89637,Yes,1.079,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,1.178,Yes,1.5457679,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,1.807,Yes,,No,gained,Yes,Yes,Yes,Yes
+0.185,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,-0.083998,Yes,0.03869,Yes,unchanged,Yes,No,No,
+0.185,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,-0.083998,Yes,lost,Yes,No,No,
+0.185,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas combined score,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,0.4297,Yes,lost,Yes,No,No,
+0.185,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,0.30859,Yes,0.327255,Yes,unchanged,Yes,No,Yes,
+0.185,Atlas splice sites,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,0.3320,Yes,0.4609,Yes,unchanged,Yes,No,Yes,
+0.185,Atlas splice sites,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,0.5720,Yes,,No,gained,Yes,No,Yes,
+0.185,Atlas splice sites,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,No,Yes,
+0.185,Atlas splice sites,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,,No,0.01520,Yes,lost,Yes,No,No,
+0.185,Atlas splice sites,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,0.2568,Yes,0.26948,Yes,unchanged,Yes,No,Yes,
+0.185,Atlas splice sites,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,0.26948,Yes,0.4608755,Yes,unchanged,Yes,No,Yes,
+0.185,Atlas splice sites,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,0.71875,Yes,,No,gained,Yes,No,Yes,
+0.185,Atlas splice sites,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,No,Yes,
+0.185,Atlas splice sites,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,0.0053711,Yes,lost,Yes,No,No,
+0.185,Atlas splice sites,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,0.2734,Yes,0.296875,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice sites,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,0.296875,Yes,0.4295,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice sites,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,0.5097656,Yes,0.84757,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice sites,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Atlas splice sites,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,0.010254,Yes,lost,Yes,No,No,
+0.185,Atlas splice sites,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,0.331787,Yes,0.4531,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,0.4531,Yes,0.49609,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,0.8369,Yes,0.9926,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,,No,0.01450,Yes,lost,Yes,No,No,
+0.185,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice sites,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,0.46094,Yes,lost,Yes,No,No,
+0.185,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,0.4492,Yes,0.568359,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice-site usage,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,0.568359,Yes,0.65678,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice-site usage,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,0.91188,Yes,0.9189,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice-site usage,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Atlas splice-site usage,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,0.013672,Yes,0.01758,Yes,unchanged,Yes,No,No,
+0.185,Atlas splice-site usage,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,0.091168,Yes,0.1328,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice-site usage,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,0.1328,Yes,0.24609,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice-site usage,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,0.5859,Yes,0.6875,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice-site usage,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Atlas splice-site usage,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,0.009682,Yes,lost,Yes,No,No,
+0.185,Atlas splice-site usage,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,0.296875,Yes,0.4355,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice-site usage,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,0.4355,Yes,0.484375,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice-site usage,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,0.68359,Yes,0.9124755859,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice-site usage,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Atlas splice-site usage,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,0.009766,Yes,lost,Yes,No,No,
+0.185,Atlas splice-site usage,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,0.009766,Yes,0.04297,Yes,unchanged,Yes,No,No,
+0.185,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,0.009766,Yes,lost,Yes,No,No,
+0.185,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice-site usage,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,7.457,Yes,,No,gained,Yes,No,No,
+0.185,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,3.05078,Yes,3.4648,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice junctions,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,3.494,Yes,5.41796875,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice junctions,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,6.082,Yes,6.8398,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice junctions,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Atlas splice junctions,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,0.06229,Yes,0.3845215,Yes,unchanged,Yes,No,No,
+0.185,Atlas splice junctions,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,0.052765,Yes,0.06229,Yes,unchanged,Yes,No,No,
+0.185,Atlas splice junctions,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,1.874,Yes,3.3027,Yes,unchanged,Yes,No,Yes,
+0.185,Atlas splice junctions,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,3.3027,Yes,4.441,Yes,unchanged,Yes,No,Yes,
+0.185,Atlas splice junctions,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,5.43359,Yes,,No,gained,Yes,No,Yes,
+0.185,Atlas splice junctions,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,No,Yes,
+0.185,Atlas splice junctions,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,2.5605,Yes,3.1816,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice junctions,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,3.191,Yes,3.857,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice junctions,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,5.41796875,Yes,6.082,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice junctions,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Atlas splice junctions,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,0.07593,Yes,lost,Yes,No,No,
+0.185,Atlas splice junctions,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,2.6816,Yes,3.2539,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,3.2539,Yes,3.7207,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,5.2109,Yes,6.16796875,Yes,unchanged,Yes,Yes,Yes,Yes
+0.185,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,Yes,Yes,Yes
+0.185,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,0.065552,Yes,0.1974,Yes,unchanged,Yes,No,No,
+0.185,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,0.06519,Yes,lost,Yes,No,No,
+0.185,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Atlas splice junctions,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,Canonical dinucleotides (out of scope),PP3,Very strong,171,350,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,804,37,ok,,,No,0.6389,Yes,lost,Yes,No,No,
+0.185,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,Canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,804,37,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,3–10,PP3,Supporting,1.02,2.08,570,2539,ok,,0.6140,Yes,0.6563,Yes,unchanged,Yes,No,No,
+0.185,Elastic-net combination,3–10,PP3,Moderate,2.12,4.33,570,2539,ok,,0.6576,Yes,0.7437,Yes,unchanged,Yes,No,No,
+0.185,Elastic-net combination,3–10,PP3,Strong,9.15,18.7,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,3–10,PP3,Very strong,171,350,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,3–10,BP4,Supporting,0.235,0.481,570,2539,ok,,0.3288,Yes,0.4389,Yes,unchanged,Yes,No,No,
+0.185,Elastic-net combination,3–10,BP4,Moderate,0.113,0.231,570,2539,ok,,,No,0.3238,Yes,lost,Yes,No,No,
+0.185,Elastic-net combination,3–10,BP4,Strong,0.0262,0.0535,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,3–10,BP4,Very strong,0.00140,0.00286,570,2539,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,11–50,PP3,Supporting,1.02,2.08,223,4328,ok,,0.6179,Yes,0.6218,Yes,unchanged,Yes,No,Yes,
+0.185,Elastic-net combination,11–50,PP3,Moderate,2.12,4.33,223,4328,ok,,0.6221,Yes,0.6493,Yes,unchanged,Yes,No,Yes,
+0.185,Elastic-net combination,11–50,PP3,Strong,9.15,18.7,223,4328,ok,,0.7204,Yes,,No,gained,Yes,No,Yes,
+0.185,Elastic-net combination,11–50,PP3,Very strong,171,350,223,4328,ok,,,No,,No,unchanged,No,No,Yes,
+0.185,Elastic-net combination,11–50,BP4,Supporting,0.235,0.481,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,11–50,BP4,Moderate,0.113,0.231,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,11–50,BP4,Strong,0.0262,0.0535,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,11–50,BP4,Very strong,0.00140,0.00286,223,4328,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,3–50,PP3,Supporting,1.02,2.08,793,6867,ok,,0.6138,Yes,0.6396,Yes,unchanged,Yes,No,Yes,
+0.185,Elastic-net combination,3–50,PP3,Moderate,2.12,4.33,793,6867,ok,,0.6396,Yes,0.7374,Yes,unchanged,Yes,No,Yes,
+0.185,Elastic-net combination,3–50,PP3,Strong,9.15,18.7,793,6867,ok,,0.7450,Yes,,No,gained,Yes,No,Yes,
+0.185,Elastic-net combination,3–50,PP3,Very strong,171,350,793,6867,ok,,,No,,No,unchanged,No,No,Yes,
+0.185,Elastic-net combination,3–50,BP4,Supporting,0.235,0.481,793,6867,ok,,,No,0.2999,Yes,lost,Yes,No,No,
+0.185,Elastic-net combination,3–50,BP4,Moderate,0.113,0.231,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,3–50,BP4,Strong,0.0262,0.0535,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,3–50,BP4,Very strong,0.00140,0.00286,793,6867,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Supporting,1.02,2.08,1597,6904,ok,,0.6222,Yes,0.6792,Yes,unchanged,Yes,No,Yes,
+0.185,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Moderate,2.12,4.33,1597,6904,ok,,0.6799,Yes,0.7122,Yes,unchanged,Yes,No,Yes,
+0.185,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Strong,9.15,18.7,1597,6904,ok,,0.7401,Yes,,No,gained,Yes,No,Yes,
+0.185,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),PP3,Very strong,171,350,1597,6904,ok,,,No,,No,unchanged,No,No,Yes,
+0.185,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Supporting,0.235,0.481,1597,6904,ok,,0.2999,Yes,0.4467,Yes,unchanged,Yes,No,No,
+0.185,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Moderate,0.113,0.231,1597,6904,ok,,,No,0.2999,Yes,lost,Yes,No,No,
+0.185,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Strong,0.0262,0.0535,1597,6904,ok,,,No,,No,unchanged,No,No,No,
+0.185,Elastic-net combination,1–50 including the canonical dinucleotides (out of scope),BP4,Very strong,0.00140,0.00286,1597,6904,ok,,,No,,No,unchanged,No,No,No,

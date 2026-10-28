@@ -1,0 +1,5 @@
+Predictor,Band,P/LP,B/LB,P/LP at or above: published 0.2,P/LP at or above: Supporting,P/LP at or above: Moderate,P/LP at or above: Strong,B/LB at or below: published 0.1,B/LB at or below: Supporting,B/LB at or below: Moderate
+SpliceAI (published basis),3–10 bp,74,645,1.00 (74/74),0.96 (71/74),0.89 (66/74),0.15 (11/74),0.83 (533/645),0.51 (327/645),0.07 (43/645)
+SpliceAI (published basis),3–50 bp,77,1410,1.00 (77/77),0.99 (76/77),0.95 (73/77),0.45 (35/77),0.87 (1223/1410),0.10 (138/1410),–
+Pangolin,3–10 bp,74,645,–,1.00 (74/74),0.91 (67/74),0.70 (52/74),–,0.39 (254/645),0.21 (133/645)
+Pangolin,3–50 bp,77,1410,–,1.00 (77/77),1.00 (77/77),0.73 (56/77),–,0.05 (68/1410),–

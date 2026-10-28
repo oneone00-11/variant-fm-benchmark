@@ -1,0 +1,25 @@
+Prior probability of pathogenicity,Prior odds,Side,Tier,Tier LR cut at prior 0.10,Tier LR cut,Posterior probability of pathogenicity at the cut
+0.05,0.0526,PP3,Supporting,2.08,4.39,0.188
+0.05,0.0526,PP3,Moderate,4.33,9.14,0.325
+0.05,0.0526,PP3,Strong,18.7,39.5,0.675
+0.05,0.0526,PP3,Very strong,350,739,0.975
+0.05,0.0526,BP4,Supporting,0.481,1.01,0.051
+0.05,0.0526,BP4,Moderate,0.231,0.488,0.025
+0.05,0.0526,BP4,Strong,0.0535,0.113,0.006
+0.05,0.0526,BP4,Very strong,0.00286,0.00603,0.000
+0.1,0.111,PP3,Supporting,2.08,2.08,0.188
+0.1,0.111,PP3,Moderate,4.33,4.33,0.325
+0.1,0.111,PP3,Strong,18.7,18.7,0.675
+0.1,0.111,PP3,Very strong,350,350,0.975
+0.1,0.111,BP4,Supporting,0.481,0.481,0.051
+0.1,0.111,BP4,Moderate,0.231,0.231,0.025
+0.1,0.111,BP4,Strong,0.0535,0.0535,0.006
+0.1,0.111,BP4,Very strong,0.00286,0.00286,0.000
+0.185,0.227,PP3,Supporting,2.08,1.02,0.188
+0.185,0.227,PP3,Moderate,4.33,2.12,0.325
+0.185,0.227,PP3,Strong,18.7,9.15,0.675
+0.185,0.227,PP3,Very strong,350,171,0.975
+0.185,0.227,BP4,Supporting,0.481,0.235,0.051
+0.185,0.227,BP4,Moderate,0.231,0.113,0.025
+0.185,0.227,BP4,Strong,0.0535,0.0262,0.006
+0.185,0.227,BP4,Very strong,0.00286,0.00140,0.000

@@ -1,0 +1,43 @@
+Tool,"Stratum (intronic offset, bp)",Strong reached in-sample,In-sample Strong threshold,Leave-one-gene-out folds,Folds reaching Strong,"Strong threshold over folds, minimum","Strong threshold over folds, median","Strong threshold over folds, maximum",Largest absolute shift from the in-sample threshold,Held-out gene of the largest shift
+SpliceAI (distance 50),3–10,Yes,0.8605,7,6,0.8332,0.8967,0.9091,0.04860,BARD1
+SpliceAI (distance 50),11–50,No,,6,1,0.6014,0.6014,0.6014,,
+SpliceAI (distance 50),3–50,Yes,0.87846,7,7,0.8085,0.8836,0.9002,0.06994,BAP1
+Pangolin,3–10,Yes,0.6972,7,7,0.6972,0.7039,0.7080,0.01076,BRCA1
+Pangolin,11–50,No,,6,0,,,,,
+Pangolin,3–50,Yes,0.6798,7,7,0.6670,0.6740,0.6849,0.01283,RAD51C
+AlphaGenome splice score,3–10,Yes,2.673,7,7,2.648,2.681,3.070,0.3970,BARD1
+AlphaGenome splice score,11–50,Yes,2.6528,6,1,2.280,2.280,2.280,0.3729,BAP1
+AlphaGenome splice score,3–50,Yes,2.543,7,7,2.115,2.578,2.611,0.4278,BAP1
+CADD,3–10,No,,7,0,,,,,
+CADD,11–50,No,,6,0,,,,,
+CADD,3–50,No,,7,0,,,,,
+phyloP,3–10,No,,7,0,,,,,
+phyloP,11–50,No,,6,0,,,,,
+phyloP,3–50,No,,7,0,,,,,
+phastCons,3–10,No,,7,0,,,,,
+phastCons,11–50,No,,6,0,,,,,
+phastCons,3–50,No,,7,0,,,,,
+GPN-MSA,3–10,No,,7,0,,,,,
+GPN-MSA,11–50,No,,6,0,,,,,
+GPN-MSA,3–50,No,,7,0,,,,,
+Nucleotide Transformer,3–10,No,,7,0,,,,,
+Nucleotide Transformer,11–50,No,,6,0,,,,,
+Nucleotide Transformer,3–50,No,,7,0,,,,,
+SpliceAI (published basis),3–10,Yes,0.95946,7,7,0.8222,0.8931,0.8963,0.1373,PALB2
+SpliceAI (published basis),11–50,No,,6,1,0.6346,0.6346,0.6346,,
+SpliceAI (published basis),3–50,Yes,0.8773,7,7,0.8029,0.8901,0.8967,0.07441,BAP1
+Atlas combined score,3–10,Yes,1.36455,7,7,1.203,1.368,1.434,0.1618,BAP1
+Atlas combined score,11–50,Yes,1.127,6,2,1.150,1.192,1.234,0.1072,BRCA1
+Atlas combined score,3–50,Yes,1.171,7,7,1.124,1.182,1.182,0.04719,BAP1
+Atlas splice sites,3–10,No,,7,1,0.8669,0.8669,0.8669,,
+Atlas splice sites,11–50,No,,6,0,,,,,
+Atlas splice sites,3–50,Yes,0.84757,7,7,0.7264,0.8584,0.9648,0.1211,BAP1
+Atlas splice-site usage,3–10,Yes,0.9189,7,7,0.9053,0.9189,0.9233,0.01367,BAP1
+Atlas splice-site usage,11–50,Yes,0.6875,6,2,0.6416,0.6455,0.6494,0.04590,PALB2
+Atlas splice-site usage,3–50,Yes,0.9124755859,7,7,0.7700,0.9137,0.9176,0.1425,BAP1
+Atlas splice junctions,3–10,Yes,6.8398,7,7,6.336,6.840,6.840,0.5039,BARD1
+Atlas splice junctions,11–50,No,,6,0,,,,,
+Atlas splice junctions,3–50,Yes,6.082,7,7,5.598,6.242,6.324,0.4844,BAP1
+Elastic-net combination,3–10,No,,7,1,0.7444,0.7444,0.7444,,
+Elastic-net combination,11–50,No,,6,0,,,,,
+Elastic-net combination,3–50,No,,7,1,0.7184,0.7184,0.7184,,

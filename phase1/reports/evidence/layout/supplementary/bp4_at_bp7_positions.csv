@@ -1,0 +1,49 @@
+Condition,Splice-site side,Gene,Labelled variants at BP7 positions,Damaging at BP7 positions,Normal at BP7 positions,Labelled variants meeting the condition,Damaging meeting the condition,Normal meeting the condition,Damaging share of variants meeting the condition
+"(a) SpliceAI at or below the published cut, 0.1","donor, +7 and beyond",BAP1,937,22,915,888,21,867,0.024
+"(a) SpliceAI at or below the published cut, 0.1","donor, +7 and beyond",BARD1,906,3,903,816,2,814,0.002
+"(a) SpliceAI at or below the published cut, 0.1","donor, +7 and beyond",BRCA1,318,5,313,271,1,270,0.004
+"(a) SpliceAI at or below the published cut, 0.1","donor, +7 and beyond",BRCA2,128,4,124,114,3,111,0.026
+"(a) SpliceAI at or below the published cut, 0.1","donor, +7 and beyond",PALB2,417,7,410,377,7,370,0.019
+"(a) SpliceAI at or below the published cut, 0.1","donor, +7 and beyond",RAD51C,485,7,478,446,2,444,0.004
+"(a) SpliceAI at or below the published cut, 0.1","donor, +7 and beyond",VHL,29,0,29,28,0,28,0.000
+"(a) SpliceAI at or below the published cut, 0.1","donor, +7 and beyond",Seven genes,3220,48,3172,2940,36,2904,0.012
+"(a) SpliceAI at or below the published cut, 0.1","acceptor, -21 and beyond",BAP1,247,37,210,172,18,154,0.105
+"(a) SpliceAI at or below the published cut, 0.1","acceptor, -21 and beyond",BARD1,391,3,388,348,0,348,0.000
+"(a) SpliceAI at or below the published cut, 0.1","acceptor, -21 and beyond",BRCA1,42,0,42,33,0,33,0.000
+"(a) SpliceAI at or below the published cut, 0.1","acceptor, -21 and beyond",BRCA2,0,0,0,0,0,0,
+"(a) SpliceAI at or below the published cut, 0.1","acceptor, -21 and beyond",PALB2,29,1,28,24,0,24,0.000
+"(a) SpliceAI at or below the published cut, 0.1","acceptor, -21 and beyond",RAD51C,135,4,131,127,1,126,0.008
+"(a) SpliceAI at or below the published cut, 0.1","acceptor, -21 and beyond",VHL,18,3,15,14,2,12,0.143
+"(a) SpliceAI at or below the published cut, 0.1","acceptor, -21 and beyond",Seven genes,862,48,814,718,21,697,0.029
+"(a) SpliceAI at or below the published cut, 0.1",both sides,BAP1,1184,59,1125,1060,39,1021,0.037
+"(a) SpliceAI at or below the published cut, 0.1",both sides,BARD1,1297,6,1291,1164,2,1162,0.002
+"(a) SpliceAI at or below the published cut, 0.1",both sides,BRCA1,360,5,355,304,1,303,0.003
+"(a) SpliceAI at or below the published cut, 0.1",both sides,BRCA2,128,4,124,114,3,111,0.026
+"(a) SpliceAI at or below the published cut, 0.1",both sides,PALB2,446,8,438,401,7,394,0.017
+"(a) SpliceAI at or below the published cut, 0.1",both sides,RAD51C,620,11,609,573,3,570,0.005
+"(a) SpliceAI at or below the published cut, 0.1",both sides,VHL,47,3,44,42,2,40,0.048
+"(a) SpliceAI at or below the published cut, 0.1",both sides,Seven genes,4082,96,3986,3658,57,3601,0.016
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","donor, +7 and beyond",BAP1,937,22,915,131,0,131,0.000
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","donor, +7 and beyond",BARD1,906,3,903,85,0,85,0.000
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","donor, +7 and beyond",BRCA1,318,5,313,65,1,64,0.015
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","donor, +7 and beyond",BRCA2,128,4,124,87,3,84,0.034
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","donor, +7 and beyond",PALB2,417,7,410,66,1,65,0.015
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","donor, +7 and beyond",RAD51C,485,7,478,44,0,44,0.000
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","donor, +7 and beyond",VHL,29,0,29,11,0,11,0.000
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","donor, +7 and beyond",Seven genes,3220,48,3172,489,5,484,0.010
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","acceptor, -21 and beyond",BAP1,247,37,210,0,0,0,
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","acceptor, -21 and beyond",BARD1,391,3,388,12,0,12,0.000
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","acceptor, -21 and beyond",BRCA1,42,0,42,1,0,1,0.000
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","acceptor, -21 and beyond",BRCA2,0,0,0,0,0,0,
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","acceptor, -21 and beyond",PALB2,29,1,28,0,0,0,
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","acceptor, -21 and beyond",RAD51C,135,4,131,0,0,0,
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","acceptor, -21 and beyond",VHL,18,3,15,0,0,0,
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758","acceptor, -21 and beyond",Seven genes,862,48,814,13,0,13,0.000
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758",both sides,BAP1,1184,59,1125,131,0,131,0.000
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758",both sides,BARD1,1297,6,1291,97,0,97,0.000
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758",both sides,BRCA1,360,5,355,66,1,65,0.015
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758",both sides,BRCA2,128,4,124,87,3,84,0.034
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758",both sides,PALB2,446,8,438,66,1,65,0.015
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758",both sides,RAD51C,620,11,609,44,0,44,0.000
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758",both sides,VHL,47,3,44,11,0,11,0.000
+"(b) SpliceAI at or below Table 3(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758",both sides,Seven genes,4082,96,3986,502,5,497,0.010

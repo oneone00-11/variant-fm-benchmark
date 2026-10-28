@@ -1,0 +1,98 @@
+Gene,Label definition,"Stratum (intronic offset, bp)",Tool,Damaging,Normal,Threshold,Threshold source,Threshold value,Normal at or above the threshold
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,SpliceAI (distance 50),0,48,Published cut point (≥ 0.2),Published,0.2,2
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,SpliceAI (distance 50),0,48,Supporting,In-sample,0.2340,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,SpliceAI (distance 50),0,48,Moderate,In-sample,0.290056,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Pangolin,0,48,Supporting,In-sample,0.2021,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Pangolin,0,48,Moderate,In-sample,0.4093,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,AlphaGenome splice score,0,48,Supporting,In-sample,0.8003,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,AlphaGenome splice score,0,48,Moderate,In-sample,0.9600,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,AlphaGenome splice score,0,48,Strong,In-sample,2.6528,0
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,GPN-MSA,0,48,Supporting,In-sample,6.630,0
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,SpliceAI (published basis),0,48,Published cut point (≥ 0.2),Published,0.2,2
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,SpliceAI (published basis),0,48,Supporting,In-sample,0.24022,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,SpliceAI (published basis),0,48,Moderate,In-sample,0.2920,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Atlas combined score,0,48,Supporting,In-sample,0.5888686776,0
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Atlas combined score,0,48,Moderate,In-sample,0.69857,0
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Atlas combined score,0,48,Strong,In-sample,1.127,0
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Atlas splice sites,0,48,Supporting,In-sample,0.26948,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Atlas splice sites,0,48,Moderate,In-sample,0.4608755,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Atlas splice-site usage,0,48,Supporting,In-sample,0.1328,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Atlas splice-site usage,0,48,Moderate,In-sample,0.24609,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Atlas splice-site usage,0,48,Strong,In-sample,0.6875,0
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Atlas splice junctions,0,48,Supporting,In-sample,3.3027,1
+TP53,Investigator-provided range (urn:mavedb:00001277-a-1),11–12,Atlas splice junctions,0,48,Moderate,In-sample,4.441,1
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,SpliceAI (distance 50),7,89,Published cut point (≥ 0.2),Published,0.2,17
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,SpliceAI (distance 50),7,89,Supporting,In-sample,0.3977,8
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,SpliceAI (distance 50),7,89,Moderate,In-sample,0.54938,4
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,SpliceAI (distance 50),7,89,Strong,In-sample,0.8605,1
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Pangolin,7,89,Supporting,In-sample,0.3927895,5
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Pangolin,7,89,Moderate,In-sample,0.5108555555,2
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Pangolin,7,89,Strong,In-sample,0.6972,1
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,AlphaGenome splice score,7,89,Supporting,In-sample,1.638,2
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,AlphaGenome splice score,7,89,Moderate,In-sample,1.86855,2
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,AlphaGenome splice score,7,89,Strong,In-sample,2.673,1
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,CADD,7,89,Supporting,In-sample,19.26,9
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,phyloP,7,89,Supporting,In-sample,4.4836,5
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,phyloP,7,89,Moderate,In-sample,5.34067,2
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,phastCons,7,89,Supporting,In-sample,1.000,16
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,GPN-MSA,7,89,Supporting,In-sample,7.470,10
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,GPN-MSA,7,89,Moderate,In-sample,9.010,2
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,SpliceAI (published basis),7,89,Published cut point (≥ 0.2),Published,0.2,19
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,SpliceAI (published basis),7,89,Supporting,In-sample,0.4195,10
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,SpliceAI (published basis),7,89,Moderate,In-sample,0.5281,4
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,SpliceAI (published basis),7,89,Strong,In-sample,0.95946,1
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Atlas combined score,7,89,Supporting,In-sample,0.8246,7
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Atlas combined score,7,89,Moderate,In-sample,1.071,2
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Atlas combined score,7,89,Strong,In-sample,1.36455,0
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Atlas splice sites,7,89,Supporting,In-sample,0.327255,3
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Atlas splice sites,7,89,Moderate,In-sample,0.4609,2
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Atlas splice-site usage,7,89,Supporting,In-sample,0.568359,5
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Atlas splice-site usage,7,89,Moderate,In-sample,0.65678,2
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Atlas splice-site usage,7,89,Strong,In-sample,0.9189,0
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Atlas splice junctions,7,89,Supporting,In-sample,3.4648,1
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Atlas splice junctions,7,89,Moderate,In-sample,5.41796875,0
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),3–10,Atlas splice junctions,7,89,Strong,In-sample,6.8398,0
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,SpliceAI (distance 50),3,291,Published cut point (≥ 0.2),Published,0.2,21
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,SpliceAI (distance 50),3,291,Supporting,In-sample,0.2340,16
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,SpliceAI (distance 50),3,291,Moderate,In-sample,0.290056,13
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Pangolin,3,291,Supporting,In-sample,0.2021,7
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Pangolin,3,291,Moderate,In-sample,0.4093,1
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,AlphaGenome splice score,3,291,Supporting,In-sample,0.8003,11
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,AlphaGenome splice score,3,291,Moderate,In-sample,0.9600,4
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,AlphaGenome splice score,3,291,Strong,In-sample,2.6528,0
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,GPN-MSA,3,291,Supporting,In-sample,6.630,11
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,SpliceAI (published basis),3,291,Published cut point (≥ 0.2),Published,0.2,23
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,SpliceAI (published basis),3,291,Supporting,In-sample,0.24022,19
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,SpliceAI (published basis),3,291,Moderate,In-sample,0.2920,17
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Atlas combined score,3,291,Supporting,In-sample,0.5888686776,5
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Atlas combined score,3,291,Moderate,In-sample,0.69857,2
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Atlas combined score,3,291,Strong,In-sample,1.127,0
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Atlas splice sites,3,291,Supporting,In-sample,0.26948,0
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Atlas splice sites,3,291,Moderate,In-sample,0.4608755,0
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Atlas splice-site usage,3,291,Supporting,In-sample,0.1328,26
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Atlas splice-site usage,3,291,Moderate,In-sample,0.24609,16
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Atlas splice-site usage,3,291,Strong,In-sample,0.6875,0
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Atlas splice junctions,3,291,Supporting,In-sample,3.3027,0
+XRCC2,Investigator-provided range (urn:mavedb:00001264-a-2),11–50,Atlas splice junctions,3,291,Moderate,In-sample,4.441,0
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,SpliceAI (distance 50),0,258,Published cut point (≥ 0.2),Published,0.2,3
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,SpliceAI (distance 50),0,258,Supporting,In-sample,0.2340,2
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,SpliceAI (distance 50),0,258,Moderate,In-sample,0.290056,2
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Pangolin,0,258,Supporting,In-sample,0.2021,6
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Pangolin,0,258,Moderate,In-sample,0.4093,3
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,AlphaGenome splice score,0,258,Supporting,In-sample,0.8003,5
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,AlphaGenome splice score,0,258,Moderate,In-sample,0.9600,4
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,AlphaGenome splice score,0,258,Strong,In-sample,2.6528,1
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,GPN-MSA,0,258,Supporting,In-sample,6.630,9
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,SpliceAI (published basis),0,258,Published cut point (≥ 0.2),Published,0.2,9
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,SpliceAI (published basis),0,258,Supporting,In-sample,0.24022,5
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,SpliceAI (published basis),0,258,Moderate,In-sample,0.2920,4
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Atlas combined score,0,258,Supporting,In-sample,0.5888686776,2
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Atlas combined score,0,258,Moderate,In-sample,0.69857,1
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Atlas combined score,0,258,Strong,In-sample,1.127,1
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Atlas splice sites,0,258,Supporting,In-sample,0.26948,8
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Atlas splice sites,0,258,Moderate,In-sample,0.4608755,3
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Atlas splice-site usage,0,258,Supporting,In-sample,0.1328,1
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Atlas splice-site usage,0,258,Moderate,In-sample,0.24609,1
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Atlas splice-site usage,0,258,Strong,In-sample,0.6875,1
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Atlas splice junctions,0,258,Supporting,In-sample,3.3027,1
+SBDS,Deposit classification (urn:mavedb:00001284-a-1),11–50,Atlas splice junctions,0,258,Moderate,In-sample,4.441,1

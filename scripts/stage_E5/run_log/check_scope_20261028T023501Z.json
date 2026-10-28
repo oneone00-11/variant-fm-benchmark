@@ -1,0 +1,461 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E5/scope_layout.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "b262b13b58e8f8b902d7fa4ffc46a65b5fbc1a5b",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E5/_runlog.py": "623aec9f20491f8625dfe5e4c324cff8006a5034d8d72de45faa7f4a3baca0ef"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-28T02:34:38+00:00",
+ "end_utc": "2026-10-28T02:35:01+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E5/scope_layout.json",
+   "bytes": 22368,
+   "sha256": "7cf4d8fb6d6004ec0ea5743459dfe0e88327fb3cbcd2ccdd79c524289fb8afc9"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E5/scope_layout.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/layout/contents.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/analysis_set_composition.by_clinvar_status.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/analysis_set_composition.by_gene.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/evidence_tiers_and_thresholds.thresholds.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/evidence_tiers_and_thresholds.tiers.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/heldout_and_external_lr.pdf": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/heldout_and_external_lr.png": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/practical_performance.clinvar.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/practical_performance.seven_genes.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/published_cut_point_by_band.pdf": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/published_cut_point_by_band.png": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/published_cut_point_by_clinvar_status.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/roc_curves.pdf": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/roc_curves.png": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/manifest.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/alphagenome_definitions.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/analysis_set_by_status.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/arms_at_fitted_thresholds.auroc.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/arms_at_fitted_thresholds.highest_arm.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/auroc_by_clinvar_status.pdf": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/auroc_by_clinvar_status.png": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/bp4_at_bp7_positions.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/by_splice_site_position.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_consistency.crosstab.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_consistency.first_public_dates.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_consistency.low_circularity_composition.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_consistency.low_circularity_metrics.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_consistency.reference_metrics.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_consistency.star_conversion.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_coverage.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_coverage_by_position.pdf": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_coverage_by_position.png": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_status.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/column_agreement.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/confusion_matrices.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/dilution.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/external_column_basis.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/external_genes.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/external_summary.normal_only.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/external_summary.tiers_reached.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/family_holdout.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/functional_standards.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/fusion.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/heldout_intervals.fold_counts.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/heldout_intervals.intervals.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/heldout_intervals.jackknife.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/inframe_attribution.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/inframe_true_positives.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sensitivity.brca2_concordance.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sensitivity.brca2_refits.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sensitivity.intermediate.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sensitivity.superseded.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sensitivity.without_bard1_palb2.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sources.audit.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sources.effect.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sources.versions.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/local_lr_curves.pdf": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/local_lr_curves.png": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/new_external_genes.controls.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/new_external_genes.counts_by_offset.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/new_external_genes.labels.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/new_external_genes.records.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.by_heldout_gene.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.by_threshold.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.curve_areas.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.external.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/precision_recall_curves.pdf": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/precision_recall_curves.png": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/predictor_columns.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/prior_sensitivity.band_edges.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/prior_sensitivity.tiers.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/published_cut_points.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/threshold_dilution.pdf": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/threshold_dilution.png": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/thresholds_benign.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/thresholds_pathogenic.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/training_signal.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/twelve_gene_refit.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/vcep_rules.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/within_gene_arms.by_gene.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/within_gene_arms.summary.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary/without_bap1.csv": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/supplementary_tables.xlsx": {
+    "status": "declared",
+    "why": "new: the layout layer (stage 41, src.evid_layout), from outputs earlier stages wrote; named for its content, numbered in phase1/config/layout.yaml",
+    "change": "added"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

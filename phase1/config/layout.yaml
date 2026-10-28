@@ -1,0 +1,1136 @@
+# The manuscript's figures and tables, main and supplementary (E5.3; read by
+# src/evid_layout.py). Numbers are set here and nowhere else: each item's content name is
+# stable and names its files, and its number, title and place in the list can change
+# with the text. Titles, descriptions and notes are provisional placeholders, not the
+# manuscript's wording: the titles of Supplementary Tables S1-S13 are
+# supplement/supplement_tables_manifest.csv's, the others a neutral description. A note
+# names another item as {content}, which the stage writes as that item's number.
+# Numbering is provisional, in the order of the v5 text; what v5 does not cite follows
+# it. Once the v6 text is final, the supplementary tables are numbered in the order the
+# text first cites them, here alone (the author's decision of 2026-10-28). Paths are from
+# phase1/.
+
+# The figures' size and type (the author's decision of 2026-10-28, from the target's
+# artwork guide, checked against the guide's text on 2026-10-28): no wider than the
+# double-column width, a one-column figure no wider than the single-column width; type
+# no smaller and no larger than these sizes; bitmaps at this resolution.
+artwork:
+  double_column_mm: 175
+  single_column_mm: 85
+  text_pt: [5, 7]
+  dpi: 300
+
+# How the supplement is to be assembled at submission (the author's decision of
+# 2026-10-28; recorded now, used then): the supplementary figures, the tables marked pdf
+# and the supplementary notes in one PDF; each table marked excel in Excel; every file
+# with a description of at most this many words. A table's destination defaults to
+# whether it fits on one page; contents.csv gives the stage's estimate beside it.
+supplementary_format:
+  rule: "Assembly at submission (provisional): the supplementary figures, the tables marked pdf and the supplementary notes in one PDF; the tables marked excel in Excel; every file with a description of at most 50 words."
+  description_words: 50
+  files:
+    - file: the supplementary PDF
+      description: "provisional: Supplementary figures, the shorter supplementary tables and the supplementary notes: methods, checks and analyses that support the main text."
+
+# How a new supplementary table prints its cells (the author's decision of 2026-10-28):
+# every column kept, under the name the table's map in `columns:` (at the end) gives;
+# each cell by the column's type, as Supplementary Tables S1-S13 print a cell of that
+# kind; the source files keep their full precision. Types: text (as written), count (a
+# whole number), proportion (three decimals, or the decimals a third entry names, for a
+# source that stores its shares rounded already: rounding them again would round twice),
+# lr (three significant figures), threshold (four significant figures, more where four
+# would move a variant across it; a published cut point as the configuration writes
+# it), score (four significant figures), percent (one decimal), constant (a fixed value
+# such as a prior, as the configuration writes it), number (three significant figures),
+# boolean (Yes or No), tool, stratum, tier, side and label (the names S1-S13 print; an
+# external gene's band cut at the depth its deposit reaches, as S12 and S13 cut it), or
+# one of the maps below, codes to names. An infinite value prints as ∞.
+display:
+  values:
+    threshold_kind: {walker_pp3: "Published cut point (≥ 0.2)", walker_bp4: "Published cut point (≤ 0.1)",
+                     supporting: Supporting, moderate: Moderate, strong: Strong, very_strong: Very strong,
+                     bp4_supporting: BP4 Supporting, bp4_moderate: BP4 Moderate}
+    threshold_source: {published: Published, in_sample: In-sample, logo: "Held out (leave one gene out)",
+                       logo_median: "Median of the leave-one-gene-out thresholds"}
+    star_level: {stars_ge_1: At least one star, stars_ge_2: At least two stars}
+    scope: {in_scope: In scope, out_of_scope_incl_pm12: Out of scope}
+    # C12 read SpliceAI's events on the published basis, as S13's "Events read from"
+    events_tool: {spliceai: SpliceAI (published basis), pangolin: Pangolin}
+    gene_set: {seven genes: Seven genes, DDX3X: DDX3X, TP53: TP53}
+    c12_group: {true_positive: True positives, false_positive: False positives}
+
+main:
+  - content: published_cut_point_by_band
+    kind: figure
+    number: Figure 1
+    title: "provisional: band likelihood ratios at the published SpliceAI cut points, PP3 (a) and BP4 (b), seven genes, by distance band and ClinVar record status"
+    make: figure_published_cut_point
+    sources: [reports/evidence/fig_data/fig1_walker_cutpoints.csv]
+  - content: heldout_and_external_lr
+    kind: figure
+    number: Figure 2
+    title: "provisional: likelihood ratios at the fitted thresholds in held-out genes (a, b) and in the seven external genes (c), with the published cut point"
+    make: figure_heldout_external
+    sources:
+      - reports/evidence/evidence_thresholds_logo_folds.csv
+      - reports/evidence/evidence_thresholds.csv
+      - reports/evidence/external_ddx3x.csv
+      - reports/evidence/external_ctcf.csv
+      - reports/evidence/external_sfpq.csv
+      - reports/evidence/external_rad51d.csv
+      - reports/evidence/external_xrcc2.csv
+      - reports/evidence/external_sbds.csv
+      - reports/evidence/external_tp53.csv
+    notes:
+      - "provisional: (c) the published cut point's row is judged against the Moderate boundary, 4.33: a marker is filled where the gene's ratio reaches it"
+      - "provisional: (c) external genes are drawn without intervals; their intervals are in {external_genes}"
+      - "provisional: TP53 is a different assay from the others' HAP1 cells: HCT116 cells, Nutlin-3a"
+  - content: roc_curves
+    kind: figure
+    number: Figure 3
+    title: "provisional: ROC curves of four predictors, seven genes pooled, by distance band, with the fitted thresholds and the published cut point"
+    make: figure_roc
+    sources:
+      - reports/evidence/practical_roc_curves.csv
+      - reports/evidence/practical_pr_curves.csv
+      - reports/evidence/practical_curve_auc.csv
+      - reports/evidence/practical_metrics_by_threshold.csv
+    notes:
+      - "provisional: the legend gives the area under each curve drawn, the seven genes pooled into one curve; the text's AUROC combines per-gene AUROCs, a different quantity; {practical_metrics} gives both"
+      - "provisional: the inset enlarges the high-specificity end"
+  - content: analysis_set_composition
+    kind: table
+    number: Table 1
+    title: "provisional: composition of the analysis set, by gene (a) and by ClinVar record status (b)"
+    make: table_parts
+    parts:
+      - {part: by_gene, title: By gene, source: reports/evidence/tables/table1a_composition_by_gene.csv}
+      - {part: by_clinvar_status, title: By ClinVar record status, source: reports/evidence/tables/table1b_composition_by_clinvar_status.csv}
+  - content: evidence_tiers_and_thresholds
+    kind: table
+    number: Table 2
+    title: "provisional: evidence tier of each predictor in-sample and in held-out genes (a); thresholds of SpliceAI (published basis) and Pangolin (b)"
+    make: table_parts
+    parts:
+      - {part: tiers, title: Tier reached in-sample and in held-out genes, source: reports/evidence/tables/table3_evidence_tiers.csv}
+      - {part: thresholds, title: Thresholds for SpliceAI (published basis) and Pangolin, source: reports/evidence/tables/table3b_thresholds.csv}
+  - content: published_cut_point_by_clinvar_status
+    kind: table
+    number: Table 3
+    title: "provisional: band likelihood ratios at the published SpliceAI cut point by ClinVar record status"
+    make: table_parts
+    parts:
+      - {part: band_lr, title: Band likelihood ratio by ClinVar record status, source: reports/evidence/tables/table4a_spliceai_published_cut_by_arm.csv}
+  - content: practical_performance
+    kind: table
+    number: Table 4
+    title: "provisional: sensitivity, specificity and coverage at the study's thresholds in held-out genes (a); agreement with ClinVar classifications of at least one star (b)"
+    make: table_practical_performance
+    options: {tools: [spliceai_walker, pangolin], clinvar_bands: [s3_10, s3_50]}
+    sources:
+      - reports/evidence/practical_metrics_by_threshold.csv
+      - reports/evidence/suppl_analyses/c1_clinvar_reference_metrics.csv
+    parts:
+      - {part: seven_genes, title: "The seven genes, held out"}
+      - {part: clinvar, title: "Against ClinVar, at least one star"}
+    notes:
+      - "provisional: (a) held-out values only; the in-sample values are in {practical_metrics}"
+      - "provisional: (a) last column: for each tier, the folds whose threshold reached it, of the genes held out; not the k/n of {evidence_tiers_and_thresholds}(a), which counts the folds with an evaluable ratio"
+
+supplementary:
+  # figures: v5's S1-S3 drawn again at the artwork width, then the new
+  - content: local_lr_curves
+    kind: figure
+    number: Supplementary Figure S1
+    title: "provisional: local likelihood ratio against score, all thirteen columns, by distance band"
+    destination: pdf
+    description: "provisional: Local likelihood ratio against score for each of the thirteen predictor columns in each distance band, with the fitted thresholds."
+    make: redraw_figure
+    options: {function: figure_s1}
+    sources: [reports/evidence/evidence_thresholds.csv,
+              reports/evidence/interval_lr_spliceai_walker_s3_10.csv, reports/evidence/interval_lr_spliceai_walker_s11_50.csv, reports/evidence/interval_lr_spliceai_walker_s3_50.csv,
+              reports/evidence/interval_lr_spliceai_s3_10.csv, reports/evidence/interval_lr_spliceai_s11_50.csv, reports/evidence/interval_lr_spliceai_s3_50.csv,
+              reports/evidence/interval_lr_pangolin_s3_10.csv, reports/evidence/interval_lr_pangolin_s11_50.csv, reports/evidence/interval_lr_pangolin_s3_50.csv,
+              reports/evidence/interval_lr_alphagenome_s3_10.csv, reports/evidence/interval_lr_alphagenome_s11_50.csv, reports/evidence/interval_lr_alphagenome_s3_50.csv,
+              reports/evidence/interval_lr_avi_s3_10.csv, reports/evidence/interval_lr_avi_s11_50.csv, reports/evidence/interval_lr_avi_s3_50.csv,
+              reports/evidence/interval_lr_avi_splice_sites_s3_10.csv, reports/evidence/interval_lr_avi_splice_sites_s11_50.csv, reports/evidence/interval_lr_avi_splice_sites_s3_50.csv,
+              reports/evidence/interval_lr_avi_splice_site_usage_s3_10.csv, reports/evidence/interval_lr_avi_splice_site_usage_s11_50.csv, reports/evidence/interval_lr_avi_splice_site_usage_s3_50.csv,
+              reports/evidence/interval_lr_avi_splice_junctions_s3_10.csv, reports/evidence/interval_lr_avi_splice_junctions_s11_50.csv, reports/evidence/interval_lr_avi_splice_junctions_s3_50.csv,
+              reports/evidence/interval_lr_cadd_s3_10.csv, reports/evidence/interval_lr_cadd_s11_50.csv, reports/evidence/interval_lr_cadd_s3_50.csv,
+              reports/evidence/interval_lr_phylop_s3_10.csv, reports/evidence/interval_lr_phylop_s11_50.csv, reports/evidence/interval_lr_phylop_s3_50.csv,
+              reports/evidence/interval_lr_phastcons_s3_10.csv, reports/evidence/interval_lr_phastcons_s11_50.csv, reports/evidence/interval_lr_phastcons_s3_50.csv,
+              reports/evidence/interval_lr_gpn_msa_s3_10.csv, reports/evidence/interval_lr_gpn_msa_s11_50.csv, reports/evidence/interval_lr_gpn_msa_s3_50.csv,
+              reports/evidence/interval_lr_nt_s3_10.csv, reports/evidence/interval_lr_nt_s11_50.csv, reports/evidence/interval_lr_nt_s3_50.csv]
+  - content: threshold_dilution
+    kind: figure
+    number: Supplementary Figure S2
+    title: "provisional: Strong thresholds and the number of training genes"
+    destination: pdf
+    description: "provisional: For the Strong tier, the share of training-gene subsets on which it is reached and the share of held-out genes clearing it, by the number of training genes."
+    make: redraw_figure
+    options: {function: figure_s2}
+    sources: [reports/evidence/threshold_dilution_summary.csv]
+  - content: auroc_by_clinvar_status
+    kind: figure
+    number: Supplementary Figure S3
+    title: "provisional: AUROC by ClinVar record status"
+    destination: pdf
+    description: "provisional: AUROC of each predictor column by ClinVar record status, at 3–50 bp with and without BRCA1, and at 1–50 bp."
+    make: redraw_figure
+    options: {function: figure_s3}
+    sources: [reports/evidence/territory_metrics_arms_noBRCA1.csv]
+  - content: clinvar_coverage_by_position
+    kind: figure
+    number: Supplementary Figure S4
+    title: "provisional: ClinVar coverage of the SGE variants by signed intronic offset, seven genes (C2)"
+    destination: pdf
+    description: "provisional: Share of the SGE variants with a ClinVar record, and their classifications, at each signed intronic offset in the seven genes."
+    make: figure_clinvar_coverage
+    sources: [reports/evidence/suppl_analyses/c2_clinvar_coverage_by_position.csv]
+  - content: precision_recall_curves
+    kind: figure
+    number: Supplementary Figure S5
+    title: "provisional: precision-recall curves of four predictors, seven genes pooled, by distance band"
+    destination: pdf
+    description: "provisional: Precision-recall curves of four predictors in each distance band, the seven genes pooled, with the fitted thresholds and the published cut point."
+    make: figure_precision_recall
+    sources:
+      - reports/evidence/practical_roc_curves.csv
+      - reports/evidence/practical_pr_curves.csv
+      - reports/evidence/practical_curve_auc.csv
+      - reports/evidence/practical_metrics_by_threshold.csv
+    notes:
+      - "provisional: the legend gives the area under each curve drawn, the seven genes pooled into one curve"
+  # tables: v5's S1-S13 as the outputs stand
+  - {content: functional_standards, kind: table, number: Supplementary Table S1, make: table_parts, destination: excel,
+     title: "Functional standards: assay, accession, transcript, published class labels and how each maps to damaging, normal or missing, with variant counts",
+     description: "provisional: Each gene's functional assay: publication, accession, transcript, class labels and their mapping to damaging, normal or missing, with variant counts.",
+     parts: [{part: standards, source: reports/evidence/supplement/tableS1_functional_standards.csv}]}
+  - {content: analysis_set_by_status, kind: table, number: Supplementary Table S2, make: table_parts, destination: excel,
+     title: "Analysis-set composition by gene, intronic-offset stratum and ClinVar record status",
+     description: "provisional: Variants, labelled variants, damaging and normal variants by gene, distance band and ClinVar record status.",
+     parts: [{part: composition, source: reports/evidence/supplement/tableS2_analysis_set.csv}]}
+  - {content: predictor_columns, kind: table, number: Supplementary Table S3, make: table_parts, destination: excel,
+     title: "Predictor score columns: definition, version and scoring configuration, source, access date, licence, orientation, coverage and training signal",
+     description: "provisional: Each predictor score column: what it is, its version and scoring configuration, source, licence, orientation, coverage and training data.",
+     parts: [{part: columns, source: reports/evidence/supplement/tableS3_predictor_columns.csv}]}
+  - {content: column_agreement, kind: table, number: Supplementary Table S4, make: table_parts, destination: pdf,
+     title: "Agreement between related score columns: the two SpliceAI bases, and the AlphaGenome Atlas columns against the model-computed AlphaGenome splice score",
+     description: "provisional: Agreement between related score columns: rank correlation and the variants on either side of the cut point.",
+     parts: [{part: agreement, source: reports/evidence/supplement/tableS4_column_agreement.csv}]}
+  - {content: published_cut_points, kind: table, number: Supplementary Table S5, make: table_parts, destination: excel,
+     title: "The published SpliceAI cut points on the published-basis column, by stratum and ClinVar record status, with per-gene point estimates",
+     description: "provisional: The published SpliceAI cut points by distance band and ClinVar record status, pooled and per gene: sensitivity, specificity, band likelihood ratios and tiers.",
+     parts: [{part: cut_points, source: reports/evidence/supplement/tableS5_published_cut_points.csv}]}
+  - {content: thresholds_pathogenic, kind: table, number: Supplementary Table S6, make: table_parts, destination: excel,
+     title: "Interval-calibration thresholds, pathogenic side: tier reached in-sample, thresholds under the gene-clustered and variant-level bootstraps, and leave-one-gene-out transfer",
+     description: "provisional: Pathogenic-side thresholds of every predictor column by band and tier, in-sample and held out by gene.",
+     parts: [{part: pp3, source: reports/evidence/supplement/tableS6_thresholds_pathogenic.csv}]}
+  - {content: thresholds_benign, kind: table, number: Supplementary Table S7, make: table_parts, destination: excel,
+     title: "Interval-calibration thresholds, benign side",
+     description: "provisional: Benign-side thresholds of every predictor column by band and tier, in-sample, with the median held-out ratio.",
+     parts: [{part: bp4, source: reports/evidence/supplement/tableS7_thresholds_benign.csv}]}
+  - {content: dilution, kind: table, number: Supplementary Table S8, make: table_parts, destination: excel,
+     title: "Thresholds refitted on every subset of training genes: share of subsets reaching each tier, the threshold across subsets, and the share of held-out genes clearing the cut",
+     description: "provisional: Thresholds refitted on every subset of the training genes: how often each tier is reached, the threshold's spread, and transfer to the genes held out.",
+     parts: [{part: subsets, source: reports/evidence/supplement/tableS8_dilution.csv}]}
+  - {content: fusion, kind: table, number: Supplementary Table S9, make: table_parts, destination: excel,
+     title: "Elastic-net combination: tier, per-fold thresholds and coefficient stability",
+     description: "provisional: The elastic-net combination of predictors: its tier against the best single column, per-fold thresholds and the stability of its coefficients.",
+     parts: [{part: fusion, source: reports/evidence/supplement/tableS9_fusion.csv}]}
+  - {content: clinvar_status, kind: table, number: Supplementary Table S10, make: table_parts, destination: excel,
+     title: "Band likelihood ratios and AUROC by ClinVar record status, with and without BRCA1",
+     description: "provisional: Band likelihood ratios and AUROC of each predictor by ClinVar record status, with and without BRCA1.",
+     parts: [{part: by_status, source: reports/evidence/supplement/tableS10_clinvar_status.csv}]}
+  - {content: within_gene_arms, kind: table, number: Supplementary Table S11, make: table_parts, destination: excel,
+     title: "Within-gene comparison of ClinVar record status arms: AUROC per gene, arm and column",
+     description: "provisional: Within each gene, AUROC of each predictor column by ClinVar record status, and which status has the highest.",
+     parts: [{part: by_gene, title: "Within-gene comparison of ClinVar record status arms: AUROC per gene, arm and column", source: reports/evidence/supplement/tableS11_within_gene_arms.csv},
+             {part: summary, title: "Within-gene comparison, summary: the arm with the highest AUROC, per gene, over all columns", source: reports/evidence/supplement/tableS11_within_gene_arms_summary.csv}]}
+  - {content: external_genes, kind: table, number: Supplementary Table S12, make: table_parts, destination: excel,
+     title: "External genes: the published cut point and the seven-gene fitted thresholds applied to DDX3X, TP53, CTCF, SFPQ, RAD51D, XRCC2 and SBDS under every label definition",
+     description: "provisional: The published cut point and the seven genes' fitted thresholds applied to the seven external genes under every label definition: ratios with intervals and tiers.",
+     parts: [{part: genes, source: reports/evidence/supplement/tableS12_external_genes.csv}]}
+  - {content: inframe_attribution, kind: table, number: Supplementary Table S13, make: table_parts, destination: excel,
+     title: "In-frame attribution of variants scored at or above the PP3 cut point and called normal by the assay",
+     description: "provisional: Variants scored at or above the PP3 cut point and called normal by the assay: how many the predicted splicing event leaves in frame.",
+     parts: [{part: attribution, source: reports/evidence/supplement/tableS13_inframe_attribution.csv}]}
+  # v5's main-text tables that move to the supplement (修改单 §3 B1)
+  - {content: training_signal, kind: table, number: Supplementary Table S14, make: table_parts, destination: pdf,
+     title: "provisional: each predictor's training signal, its relation to the functional readout and its terms of use (v5 Table 2)",
+     description: "provisional: What each predictor was trained on, how that relates to the functional readout, and its terms of use.",
+     parts: [{part: signal, source: reports/evidence/tables/table2_training_signal.csv}]}
+  - {content: arms_at_fitted_thresholds, kind: table, number: Supplementary Table S15, make: table_parts, destination: pdf,
+     title: "provisional: ClinVar record status at each column's fitted threshold (a) and by AUROC (b) (v5 Table 4(b), (c))",
+     description: "provisional: Which ClinVar record status has the highest ratio at each column's fitted threshold, and the highest AUROC.",
+     parts: [{part: highest_arm, title: Arm with the highest ratio at each column's fitted threshold, source: reports/evidence/tables/table4b_fitted_threshold_highest_arm.csv},
+             {part: auroc, title: Columns in which each arm has the highest AUROC, source: reports/evidence/tables/table4c_auroc_highest_arm.csv}]}
+  # outputs added after 2026-09-30 (E5.0 §4.4), each analysis one table
+  - content: practical_metrics
+    kind: table
+    number: Supplementary Table S16
+    title: "provisional: sensitivity, specificity and coverage at the study's thresholds, every column: seven genes, per held-out gene, the external genes, and the areas under the curves"
+    destination: excel
+    description: "provisional: Sensitivity, specificity, coverage and counts at every threshold of every predictor column: the seven genes in-sample and held out, each held-out gene, the external genes, and two AUROCs."
+    make: table_parts
+    parts:
+      - {part: by_threshold, title: Seven genes, source: reports/evidence/practical_metrics_by_threshold.csv}
+      - {part: by_heldout_gene, title: Each held-out gene, source: reports/evidence/practical_metrics_logo_by_gene.csv}
+      - {part: external, title: External genes, source: reports/evidence/practical_metrics_external.csv}
+      - part: curve_areas
+        title: Areas under the curves
+        source: reports/evidence/practical_curve_auc.csv
+        notes:
+          - "provisional: two AUROCs, different quantities. AUROC of the pooled curve: the area under the ROC curve of the seven genes pooled into one curve, drawn in {roc_curves}. AUROC pooled over genes: each gene's AUROC, combined on the logit scale with random effects, the AUROC the text reports"
+  - content: label_sources
+    kind: table
+    number: Supplementary Table S17
+    title: "provisional: the training genes' labels against their cited sources, and the effect of rebuilding them"
+    destination: excel
+    description: "provisional: Each training gene's label file checked against its cited source and the archived versions, and the thresholds and tiers before and after the labels were rebuilt."
+    make: table_parts
+    parts:
+      - {part: audit, title: Each label file against its cited source, source: reports/evidence/label_audit_summary.csv}
+      - {part: versions, title: Against the archived versions, source: reports/evidence/label_version_check.csv}
+      - {part: effect, title: Thresholds and tiers before and after the rebuilt labels, source: reports/evidence/label_change_effect.csv}
+  - content: alphagenome_definitions
+    kind: table
+    number: Supplementary Table S18
+    title: "provisional: the AlphaGenome splice score by the model's official definition and by the atlas's, side by side"
+    destination: excel
+    description: "provisional: Thresholds, ratios, held-out transfer and AUROC of the AlphaGenome splice score by the model's own definition beside the atlas's quantile score."
+    make: table_parts
+    parts:
+      - {part: comparison, source: reports/evidence/alphagenome_definition_comparison.csv}
+  - content: new_external_genes
+    kind: table
+    number: Supplementary Table S19
+    title: "provisional: the five further external genes: records, labels, counts by offset and controls"
+    destination: excel
+    description: "provisional: The five further external genes: their score-set records, labels by band, assay classes by intronic offset, and synonymous and nonsense controls."
+    make: table_parts
+    parts:
+      - part: records
+        title: Score-set records
+        sources: [reports/evidence/newgenes_record_check.csv, reports/evidence/sbds_record_check.csv]
+      - part: labels
+        title: Labels by band
+        sources: [reports/evidence/newgenes_label_summary.csv, reports/evidence/sbds_label_summary.csv]
+      - part: counts_by_offset
+        title: Classes by intronic offset
+        sources: [reports/evidence/newgenes_counts_by_offset.csv, reports/evidence/sbds_counts_by_offset.csv]
+      - part: controls
+        title: Synonymous and nonsense controls
+        sources: [reports/evidence/newgenes_controls.csv, reports/evidence/sbds_controls.csv]
+  - content: external_column_basis
+    kind: table
+    number: Supplementary Table S20
+    title: "provisional: each external gene's predictor columns against the analysis set's (the same variable)"
+    destination: excel
+    description: "provisional: For each external gene, whether each predictor column is the same variable as the analysis set's: score ranges, overlap and correlation."
+    make: table_parts
+    parts:
+      - part: columns
+        key: Gene
+        sources:
+          DDX3X: reports/evidence/external_ddx3x_column_basis.csv
+          TP53: reports/evidence/external_tp53_column_basis.csv
+          CTCF: reports/evidence/external_ctcf_column_basis.csv
+          SFPQ: reports/evidence/external_sfpq_column_basis.csv
+          RAD51D: reports/evidence/external_rad51d_column_basis.csv
+          XRCC2: reports/evidence/external_xrcc2_column_basis.csv
+          SBDS: reports/evidence/external_sbds_column_basis.csv
+  - content: external_summary
+    kind: table
+    number: Supplementary Table S21
+    title: "provisional: external genes reaching each tier, seven genes and DDX3X and TP53 only (a); bands with normal variants only (b)"
+    destination: excel
+    description: "provisional: How many external genes reach each tier at the seven genes' thresholds, and normal variants at or above the thresholds where a band has no damaging variant."
+    make: table_parts
+    parts:
+      - {part: tiers_reached, title: External genes reaching each tier, source: reports/evidence/external_summary.csv}
+      - {part: normal_only, title: Normal variants at or above the thresholds where a band has no damaging variant, source: reports/evidence/external_normal_only.csv}
+  - content: clinvar_consistency
+    kind: table
+    number: Supplementary Table S22
+    title: "provisional: the predictors against ClinVar classifications (C1)"
+    destination: excel
+    description: "provisional: The predictors against ClinVar P/LP and B/LB classifications: sensitivity, specificity and AUROC, the cross-tabulation with the assay's calls, a low-circularity subset, the assays' first public dates and the review-status stars."
+    make: table_parts
+    parts:
+      - {part: reference_metrics, title: Sensitivity, specificity and AUROC against ClinVar, source: reports/evidence/suppl_analyses/c1_clinvar_reference_metrics.csv}
+      - {part: crosstab, title: ClinVar classification against the SGE call, source: reports/evidence/suppl_analyses/c1_clinvar_sge_crosstab.csv}
+      - {part: low_circularity_metrics, title: The low-circularity subset, source: reports/evidence/suppl_analyses/c1_low_circularity_metrics.csv}
+      - {part: low_circularity_composition, title: Composition of the low-circularity subset, source: reports/evidence/suppl_analyses/c1_low_circularity_composition.csv}
+      - {part: first_public_dates, title: First public date of each assay, source: reports/evidence/suppl_analyses/c1_first_public_dates.csv}
+      - {part: star_conversion, title: Review status as stars, source: reports/evidence/suppl_analyses/c1_clinvar_star_conversion.csv}
+  - content: clinvar_coverage
+    kind: table
+    number: Supplementary Table S23
+    title: "provisional: ClinVar coverage of the SGE variants by gene and band (C2)"
+    destination: pdf
+    description: "provisional: Share of the SGE variants unrecorded in ClinVar, recorded without a classification, and classified, by gene and distance band."
+    make: table_parts
+    parts:
+      - {part: by_band, source: reports/evidence/suppl_analyses/c2_clinvar_coverage_by_stratum.csv}
+  - content: label_sensitivity
+    kind: table
+    number: Supplementary Table S24
+    title: "provisional: label sensitivity: intermediate classes, superseded labels, without BARD1 and PALB2, a second BRCA2 dataset (C3)"
+    destination: excel
+    description: "provisional: Thresholds and tiers refitted with intermediate classes counted either way, with superseded labels, without BARD1 and PALB2, and with a second BRCA2 dataset."
+    make: table_parts
+    parts:
+      - {part: intermediate, title: Intermediate classes counted as damaging or normal, source: reports/evidence/suppl_analyses/c3_intermediate.csv}
+      - {part: superseded, title: Superseded labels against the current, source: reports/evidence/suppl_analyses/c3_superseded_labels.csv}
+      - {part: without_bard1_palb2, title: Without BARD1 and PALB2, source: reports/evidence/suppl_analyses/c3_without_bard1_palb2.csv}
+      - {part: brca2_concordance, title: BRCA2 against a second dataset, source: reports/evidence/suppl_analyses/c3_brca2_concordance.csv}
+      - {part: brca2_refits, title: Refits with the second BRCA2 dataset, source: reports/evidence/suppl_analyses/c3_brca2_second_set.csv}
+  - content: prior_sensitivity
+    kind: table
+    number: Supplementary Table S25
+    title: "provisional: tiers at priors of 0.05, 0.10 and 0.185 (C4)"
+    destination: excel
+    description: "provisional: The in-sample thresholds and tiers at priors of 0.05, 0.10 and 0.185, and each tier's likelihood-ratio boundary at each prior."
+    make: table_parts
+    parts:
+      - {part: tiers, title: Tiers at each prior, source: reports/evidence/suppl_analyses/c4_prior_sensitivity.csv}
+      - {part: band_edges, title: Tier boundaries at each prior, source: reports/evidence/suppl_analyses/c4_band_edges.csv}
+  - content: heldout_intervals
+    kind: table
+    number: Supplementary Table S26
+    title: "provisional: held-out likelihood ratios with intervals; fold counts by point estimate and by lower bound; leave-one-gene-out jackknife of the Strong thresholds (C5)"
+    destination: excel
+    description: "provisional: Each held-out gene's ratio with its interval, held-out fold counts by point estimate and by lower bound, and the Strong thresholds with each gene left out."
+    make: table_parts
+    parts:
+      - {part: intervals, title: Held-out ratios with intervals, source: reports/evidence/suppl_analyses/c5_heldout_lr_ci.csv}
+      - {part: fold_counts, title: Fold counts by point estimate and by lower bound, source: reports/evidence/suppl_analyses/c5_fold_counts_point_vs_bound.csv}
+      - {part: jackknife, title: Jackknife of the Strong thresholds, source: reports/evidence/suppl_analyses/c5_jackknife_strong.csv}
+  - content: bp4_at_bp7_positions
+    kind: table
+    number: Supplementary Table S27
+    title: "provisional: BP4 at the BP7 positions (C6)"
+    destination: excel
+    description: "provisional: Variants at the BP7 positions meeting BP4, at the published cut point and at the fitted threshold, by gene and side of the exon."
+    make: table_parts
+    parts:
+      - {part: bp4_bp7, source: reports/evidence/suppl_analyses/c6_bp4_bp7.csv}
+  - content: by_splice_site_position
+    kind: table
+    number: Supplementary Table S28
+    title: "provisional: the published cut points by donor and acceptor position (C7)"
+    destination: excel
+    description: "provisional: Band likelihood ratios at the published cut points by position on the donor and acceptor sides."
+    make: table_parts
+    parts:
+      - {part: by_position, source: reports/evidence/suppl_analyses/c7_by_position.csv}
+  - content: without_bap1
+    kind: table
+    number: Supplementary Table S29
+    title: "provisional: the distal band without BAP1 (C8)"
+    destination: excel
+    description: "provisional: The 11–50 bp and 3–50 bp bands without BAP1: composition, refitted thresholds, and BAP1 held out."
+    make: table_parts
+    parts:
+      - {part: without_bap1, source: reports/evidence/suppl_analyses/c8_without_bap1.csv}
+  - content: family_holdout
+    kind: table
+    number: Supplementary Table S30
+    title: "provisional: thresholds held out by gene family and function (C9)"
+    destination: excel
+    description: "provisional: Thresholds fitted on one gene family or function and applied to the genes held out, and to the external genes."
+    make: table_parts
+    parts:
+      - {part: holdout, source: reports/evidence/suppl_analyses/c9_family_holdout.csv}
+    notes:
+      - "provisional: (a) holds the combined Atlas score's rows with BRCA1 or RAD51C held out, which the other held-out counts leave out: its model was selected on those two assays"
+  - content: confusion_matrices
+    kind: table
+    number: Supplementary Table S31
+    title: "provisional: confusion matrices, MCC and F1 at the study's thresholds (C10)"
+    destination: excel
+    description: "provisional: Confusion matrices, precision, recall, F1 and MCC at each fitted threshold, in-sample and held out."
+    make: table_parts
+    parts:
+      - {part: confusion, source: reports/evidence/suppl_analyses/c10_confusion_mcc_f1.csv}
+  - content: twelve_gene_refit
+    kind: table
+    number: Supplementary Table S32
+    title: "provisional: thresholds refitted on twelve genes"
+    destination: excel
+    description: "provisional: Thresholds and tiers refitted on the seven training genes and the five further genes, beside the seven-gene fit."
+    make: table_parts
+    parts:
+      - {part: refit, source: reports/evidence/suppl_analyses/twelve_gene_refit.csv}
+  - content: inframe_true_positives
+    kind: table
+    number: Supplementary Table S33
+    title: "provisional: in-frame attribution of the true positives beside the false positives (C12)"
+    destination: pdf
+    description: "provisional: The in-frame share of predicted splicing events among true positives beside false positives at the published cut point."
+    make: table_parts
+    parts:
+      - {part: tp_fp, source: reports/evidence/suppl_analyses/c12_inframe_tp_fp.csv}
+  - content: vcep_rules
+    kind: table
+    number: Supplementary Table S34
+    title: "provisional: the VCEP specifications' splicing rules on this study's data (C13)"
+    destination: excel
+    description: "provisional: The splicing rules of the expert panels' specifications applied to this study's data: band likelihood ratios and tiers, and BP7 as each defines it."
+    make: table_parts
+    parts:
+      - {part: band_lr, source: reports/evidence/suppl_analyses/c13_vcep_band_lr.csv}
+
+# Outputs added after 2026-09-30 that no table or figure numbers: the supplementary
+# materials' contents name them with their path.
+repository_only:
+  - {path: reports/evidence/figures/figure_practical.pdf, what: "ROC and precision-recall curves in one figure (E15); drawn here as {roc_curves} and {precision_recall_curves}"}
+  - {path: reports/evidence/figures/figure_practical.png, what: "the same, PNG"}
+  - {path: reports/evidence/figures/figure_practical_slides.png, what: "the same curves at slide size (E4.1)"}
+  - {path: reports/evidence/practical_roc_curves.csv, what: "the ROC curves' points (the source of {roc_curves})"}
+  - {path: reports/evidence/practical_pr_curves.csv, what: "the precision-recall curves' points (the source of {precision_recall_curves})"}
+  - {path: reports/evidence/suppl_analyses/c2_clinvar_coverage_by_position.csv, what: "ClinVar coverage by signed offset (the source of {clinvar_coverage_by_position})"}
+  - {path: reports/evidence/suppl_analyses/c2_clinvar_coverage_draft.png, what: "E19's draft of {clinvar_coverage_by_position}"}
+  - {path: reports/evidence/newgenes_coordinate_check.csv, what: "the four further genes' coordinate mapping, checked"}
+  - {path: reports/evidence/sbds_coordinate_check.csv, what: "SBDS's coordinate mapping, checked"}
+  - {path: reports/evidence/newgenes_offset_sample.csv, what: "rows sampled for the coordinate check"}
+  - {path: reports/evidence/sbds_offset_sample.csv, what: "rows sampled for the coordinate check"}
+  - {path: reports/evidence/sbds_igvf_crosscheck.csv, what: "SBDS against the IGVF copy of its scores, variant by variant"}
+  - {path: reports/evidence/label_audit_diff.csv, what: "the label audit's differing variants"}
+  - {path: reports/evidence/label_audit_unclassified.csv, what: "variants without a class in the archived sources"}
+  - {path: reports/evidence/label_audit_impact.csv, what: "the label audit's effect on the counts (no row)"}
+  - {path: reports/evidence/label_version_diff.csv, what: "variants whose class differs from the archived versions"}
+  - {path: reports/evidence/suppl_analyses/c1_low_circularity_variants.csv, what: "the low-circularity subset, variant by variant"}
+  - {path: reports/evidence/suppl_analyses/c1_preprint_search.csv, what: "the preprint search behind the first public dates"}
+
+# Each new supplementary table's columns: for every column of its sources, the name the
+# supplement prints and the column's type (display:, above). A part's own map, under
+# <content>.<part>, comes before its table's.
+columns:
+  practical_metrics:
+    "tool": ["Tool", "tool"]
+    "main_table": ["In the main tables", "boolean"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "scope": ["Scope of the recommendation", "scope"]
+    "side": ["Side", "side"]
+    "threshold_kind": ["Threshold", "threshold_kind"]
+    "threshold_source": ["Threshold source", "threshold_source"]
+    "status": ["Status", "text"]
+    "note": ["Note", "text"]
+    "in_sample_reached": ["Reached in-sample", "boolean"]
+    "threshold": ["Threshold value", "threshold"]
+    "threshold_fold_min": ["Fold threshold, minimum over counted folds", "threshold"]
+    "threshold_fold_max": ["Fold threshold, maximum over counted folds", "threshold"]
+    "folds_total": ["Held-out genes", "count"]
+    "folds_excluded": ["Genes left out of the held-out counts", "text"]
+    "folds_used": ["Folds with a fitted threshold, counted", "count"]
+    "folds_with_band_lr": ["Counted folds with an evaluable held-out LR", "count"]
+    "tier_by_interval_rule": ["Tier by interval calibration", "tier"]
+    "tier_by_band_lr": ["Tier by band LR", "tier"]
+    "n_scored": ["Scored variants (labelled or not)", "count"]
+    "n": ["Labelled", "count"]
+    "n_pos": ["Damaging", "count"]
+    "n_neg": ["Normal", "count"]
+    "prevalence": ["Prevalence (damaging / labelled)", "proportion"]
+    "n_scored_in_band": ["Scored variants in band (labelled or not)", "count"]
+    "coverage": ["Coverage (share of scored variants in band)", "proportion"]
+    "coverage_labelled": ["Coverage (share of labelled variants in band)", "proportion"]
+    "n_pos_above": ["Damaging at or above the threshold", "count"]
+    "n_neg_above": ["Normal at or above the threshold", "count"]
+    "n_pos_below": ["Damaging below the threshold", "count"]
+    "n_neg_below": ["Normal below the threshold", "count"]
+    "sensitivity": ["Sensitivity (damaging at or above)", "proportion"]
+    "sensitivity_lo": ["Sensitivity, lower 95% bound (Wilson)", "proportion"]
+    "sensitivity_hi": ["Sensitivity, upper 95% bound (Wilson)", "proportion"]
+    "specificity": ["Specificity (normal below)", "proportion"]
+    "specificity_lo": ["Specificity, lower 95% bound (Wilson)", "proportion"]
+    "specificity_hi": ["Specificity, upper 95% bound (Wilson)", "proportion"]
+    "ppv_observed": ["Observed PPV (damaging / labelled at or above)", "proportion"]
+    "band_lr_plus": ["Band LR (at or above the threshold)", "lr"]
+    "bp4_n_neg_at_or_below": ["BP4: normal at or below the threshold", "count"]
+    "bp4_n_pos_at_or_below": ["BP4: damaging at or below the threshold", "count"]
+    "bp4_n_neg_above": ["BP4: normal above the threshold", "count"]
+    "bp4_n_pos_above": ["BP4: damaging above the threshold", "count"]
+    "bp4_sensitivity": ["BP4: sensitivity (normal at or below)", "proportion"]
+    "bp4_sensitivity_lo": ["BP4: sensitivity, lower 95% bound (Wilson)", "proportion"]
+    "bp4_sensitivity_hi": ["BP4: sensitivity, upper 95% bound (Wilson)", "proportion"]
+    "bp4_specificity": ["BP4: specificity (damaging above)", "proportion"]
+    "bp4_specificity_lo": ["BP4: specificity, lower 95% bound (Wilson)", "proportion"]
+    "bp4_specificity_hi": ["BP4: specificity, upper 95% bound (Wilson)", "proportion"]
+    "bp4_npv_observed": ["BP4: observed NPV (normal / labelled at or below)", "proportion"]
+    "bp4_band_lr": ["BP4: band LR (at or below the threshold)", "lr"]
+    "posterior_at_prior_0.10": ["Posterior of pathogenicity at prior 0.10", "proportion"]
+    "tier": ["Tier", "tier"]
+    "heldout_gene": ["Held-out gene", "text"]
+    "threshold_from_6_genes": ["Threshold fitted on the other genes", "threshold"]
+    "e3_heldout_lr": ["Held-out LR, from interval calibration", "lr"]
+    "counted_in_logo_row": ["Counted in the held-out row", "boolean"]
+    "gene": ["Gene", "text"]
+    "label_definition": ["Label definition", "label"]
+    "external_test": ["External test", "boolean"]
+    "seven_gene_source": ["Threshold source of the seven-gene row", "threshold_source"]
+    "seven_gene_sensitivity": ["Sensitivity in the seven genes", "proportion"]
+    "seven_gene_specificity": ["Specificity in the seven genes", "proportion"]
+    "sensitivity_minus_seven_gene": ["Sensitivity, this gene minus the seven genes", "proportion"]
+    "specificity_minus_seven_gene": ["Specificity, this gene minus the seven genes", "proportion"]
+    "seven_gene_bp4_sensitivity": ["BP4: sensitivity in the seven genes", "proportion"]
+    "seven_gene_bp4_specificity": ["BP4: specificity in the seven genes", "proportion"]
+    "bp4_sensitivity_minus_seven_gene": ["BP4: sensitivity, this gene minus the seven genes", "proportion"]
+    "bp4_specificity_minus_seven_gene": ["BP4: specificity, this gene minus the seven genes", "proportion"]
+    "auroc_pooled_curve": ["AUROC of the pooled curve (the genes as one curve)", "proportion"]
+    "auprc_pooled_curve": ["AUPRC of the pooled curve (average precision)", "proportion"]
+    "auroc_same_gene_pairs": ["AUROC over same-gene pairs", "proportion"]
+    "auroc_same_gene_pairs_gene_pool_genes": ["AUROC over same-gene pairs, genes pooled for AUROC", "proportion"]
+    "auroc_cross_gene_pairs": ["AUROC over cross-gene pairs", "proportion"]
+    "share_cross_gene_pairs": ["Cross-gene share of damaging–normal pairs", "proportion"]
+    "sensitivity_at_specificity_0.90": ["Sensitivity at specificity ≥ 0.90 (pooled curve)", "proportion"]
+    "threshold_at_specificity_0.90": ["Threshold at specificity ≥ 0.90 (pooled curve)", "threshold"]
+    "sensitivity_at_specificity_0.95": ["Sensitivity at specificity ≥ 0.95 (pooled curve)", "proportion"]
+    "threshold_at_specificity_0.95": ["Threshold at specificity ≥ 0.95 (pooled curve)", "threshold"]
+    "auroc_gene_pooled": ["AUROC pooled over genes (random effects, logit scale)", "proportion"]
+    "auroc_gene_pooled_lo": ["AUROC pooled over genes, lower 95% bound", "proportion"]
+    "auroc_gene_pooled_hi": ["AUROC pooled over genes, upper 95% bound", "proportion"]
+    "auprc_median_per_gene": ["Median per-gene AUPRC, genes pooled for AUROC", "proportion"]
+    "k_genes_gene_pooled": ["Genes pooled for AUROC", "count"]
+    "n_pos_gene_pooled": ["Damaging, genes pooled for AUROC", "count"]
+    "n_neg_gene_pooled": ["Normal, genes pooled for AUROC", "count"]
+    "genes_not_in_gene_pool": ["Genes left out of the AUROC pool", "text"]
+    "n_pos_not_in_gene_pool": ["Damaging, genes left out of the AUROC pool", "count"]
+    "n_neg_not_in_gene_pool": ["Normal, genes left out of the AUROC pool", "count"]
+    "auroc_pooled_minus_gene_pooled": ["AUROC of the pooled curve minus AUROC pooled over genes", "proportion"]
+  label_sources:
+    "gene": ["Gene", "text"]
+    "label_file": ["Label file", "text"]
+    "urn": ["Cited MaveDB accession", "text"]
+    "version": ["Source compared (score-set version or paper table)", "text"]
+    "rule": ["Candidate rule", "text"]
+    "rule_detail": ["Rule as applied, or why not applicable", "text"]
+    "n_our_file": ["Rows in the label file", "count"]
+    "n_source": ["Rows in the source table", "count"]
+    "n_compared": ["Variants compared (in both)", "count"]
+    "n_identical": ["Same class (damaging / normal / intermediate)", "count"]
+    "n_differ": ["Different class", "count"]
+    "pct_differ_all": ["Different class (% of compared)", "percent"]
+    "pct_differ_3_50nt": ["Different class at 3–50 bp (% of compared)", "percent"]
+    "exact_match": ["Reproduced (every compared variant same class)", "text"]
+    "source_sha256": ["SHA-256 of the files the rule read", "text"]
+    "n_compared_3_50nt": ["Variants compared at 3–50 bp (analysis set)", "count"]
+    "n_differ_3_50nt": ["Different class at 3–50 bp (analysis set)", "count"]
+    "n_only_ours": ["Only in the label file", "count"]
+    "n_only_source": ["Only in the source", "count"]
+    "n_identical_as_written": ["Same class name, case and separators ignored", "count"]
+    "current": ["Current version", "boolean"]
+    "class_source": ["Class source in the version", "text"]
+    "align_key": ["Aligned on", "text"]
+    "n_ours": ["Analysis-set variants at 1–50 bp", "count"]
+    "n_found": ["Found in the version", "count"]
+    "n_agree": ["Agree with the label file", "count"]
+    "n_disagree": ["Disagree with the label file", "count"]
+    "n_found_without_class": ["Found, unclassified in the version or label file", "count"]
+    "n_only_archive": ["Only in the version, intron-side SNVs at 1–50 bp", "count"]
+    "tool": ["Tool", "tool"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "tier": ["Tier", "tier"]
+    "side": ["Side", "side"]
+    "status_old": ["Status, before relabelling", "text"]
+    "status_new": ["Status, after relabelling", "text"]
+    "cut_lr": ["Tier LR cut", "lr"]
+    "threshold_old": ["In-sample threshold, before relabelling", "threshold"]
+    "threshold_new": ["In-sample threshold, after relabelling", "threshold"]
+    "lr_at_threshold_old": ["Local LR at the threshold, before relabelling", "lr"]
+    "lr_at_threshold_new": ["Local LR at the threshold, after relabelling", "lr"]
+    "lr_bound_old": ["Local LR 95% bound (PP3 lower, BP4 upper), before relabelling", "lr"]
+    "lr_bound_new": ["Local LR 95% bound (PP3 lower, BP4 upper), after relabelling", "lr"]
+    "folds_reaching_old": ["Folds with a fitted threshold, before relabelling", "count"]
+    "folds_reaching_new": ["Folds with a fitted threshold, after relabelling", "count"]
+    "reached_old": ["Reached in-sample, before relabelling", "boolean"]
+    "reached_new": ["Reached in-sample, after relabelling", "boolean"]
+    "tier_change": ["In-sample tier change", "text"]
+    "n_pos_old": ["Damaging, before relabelling", "count"]
+    "n_pos_new": ["Damaging, after relabelling", "count"]
+    "n_neg_old": ["Normal, before relabelling", "count"]
+    "n_neg_new": ["Normal, after relabelling", "count"]
+    "n_labelled_between": ["Labelled variants between the two thresholds", "count"]
+  "label_sources.versions":
+    "version": ["Score-set version", "text"]
+    "n_compared": ["Compared (a class on both sides)", "count"]
+    "n_only_ours": ["Not found in the version", "count"]
+  alphagenome_definitions:
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "tier": ["Tier", "tier"]
+    "side": ["Side", "side"]
+    "tier_lr_cut": ["Tier LR cut", "lr"]
+    "alphagenome_status": ["Official definition: status", "text"]
+    "alphagenome_reached_in_sample": ["Official definition: reached in-sample", "boolean"]
+    "alphagenome_in_sample_threshold": ["Official definition: in-sample threshold", "threshold"]
+    "alphagenome_band_lr_at_threshold": ["Official definition: band LR at the threshold", "lr"]
+    "alphagenome_heldout_k_of_n": ["Official definition: held-out genes clearing the cut, k/n (m)", "text"]
+    "alphagenome_heldout_lr_median": ["Official definition: held-out LR, median over folds", "lr"]
+    "alphagenome_pooled_auroc": ["Official definition: AUROC pooled over genes", "proportion"]
+    "alphagenome_atlas_quantile_status": ["Atlas quantile composite: status", "text"]
+    "alphagenome_atlas_quantile_reached_in_sample": ["Atlas quantile composite: reached in-sample", "boolean"]
+    "alphagenome_atlas_quantile_in_sample_threshold": ["Atlas quantile composite: in-sample threshold", "threshold"]
+    "alphagenome_atlas_quantile_band_lr_at_threshold": ["Atlas quantile composite: band LR at the threshold", "lr"]
+    "alphagenome_atlas_quantile_heldout_k_of_n": ["Atlas quantile composite: held-out genes clearing the cut, k/n (m)", "text"]
+    "alphagenome_atlas_quantile_heldout_lr_median": ["Atlas quantile composite: held-out LR, median over folds", "lr"]
+    "alphagenome_atlas_quantile_pooled_auroc": ["Atlas quantile composite: AUROC pooled over genes", "proportion"]
+    "note": ["Note", "text"]
+  new_external_genes:
+    "gene": ["Gene", "text"]
+    "urn": ["MaveDB accession", "text"]
+    "title": ["Score set title", "text"]
+    "short_description": ["Score set short description", "text"]
+    "license": ["Licence", "text"]
+    "publication_identifiers": ["Publications linked to the score set", "text"]
+    "created_date": ["Created (this version)", "text"]
+    "first_published_date": ["First published (earliest version)", "text"]
+    "current_version_date": ["Published (this version)", "text"]
+    "target_gene": ["Target gene in MaveDB", "text"]
+    "target_accession": ["Target transcript accession", "text"]
+    "target_assembly": ["Target assembly", "text"]
+    "n_variants_total": ["Variants in the MaveDB metadata", "count"]
+    "score_ranges_present": ["Investigator-provided score ranges", "boolean"]
+    "fetched_utc": ["Metadata fetched (UTC)", "text"]
+    "source_url": ["Metadata URL (MaveDB API)", "text"]
+    "raw_sha256": ["Metadata file SHA-256", "text"]
+    "experiment_urn": ["MaveDB experiment accession", "text"]
+    "experiment_publication_identifiers": ["Publications linked to the experiment", "text"]
+    "superseded_versions": ["Versions it supersedes", "text"]
+    "mapping_state": ["MaveDB mapping state", "text"]
+    "n_score_rows": ["Rows in the score table", "count"]
+    "scores_csv_sha256": ["Score table SHA-256", "text"]
+    "calibration_title": ["Investigator-provided calibration (title)", "text"]
+    "api_version": ["MaveDB API version", "text"]
+    "mavedb_private": ["Private in MaveDB", "boolean"]
+    "processing_state": ["MaveDB processing state", "text"]
+    "selection": ["How the score set was selected", "text"]
+    "author_record_check": ["Check against the author's record", "text"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "n_total": ["Intron-side SNVs", "count"]
+    "n_damaging": ["Damaging", "count"]
+    "n_normal": ["Normal", "count"]
+    "n_uncertain": ["Indeterminate (neither damaging nor normal)", "count"]
+    "n_unassigned": ["Unassigned (no class)", "count"]
+    "damaging_rate": ["Positive rate (damaging / labelled)", "proportion"]
+    "evaluable_min10": ["Evaluable (at least 10 damaging and 10 normal)", "boolean"]
+    "scheme": ["Bin scheme", "text"]
+    "bin": ["Bin (offset in bp, or stratum)", "text"]
+    "range_class": ["Class in the deposit", "text"]
+    "n": ["Intron-side SNVs in the bin and class", "count"]
+    "control": ["Control type", "text"]
+    "variant_type": ["Variant type in the score table", "text"]
+    "score_table_rows_with_hgvs_pro": ["Score-table rows with a protein HGVS", "count"]
+    "variant_details_with_protein_projection": ["Current MaveDB variants with a protein projection", "count"]
+  "new_external_genes.controls":
+    "n": ["Control variants", "count"]
+  external_column_basis:
+    "Gene": ["Gene", "text"]
+    "tool": ["Tool", "tool"]
+    "comparable": ["Same variable as the fitted column", "boolean"]
+    "external_min": ["Minimum score, external gene", "score"]
+    "external_max": ["Maximum score, external gene", "score"]
+    "analysis_set_min": ["Minimum score, analysis set", "score"]
+    "analysis_set_max": ["Maximum score, analysis set", "score"]
+    "spearman_vs_pathogenicity": ["Spearman rho with functional pathogenicity, external gene", "proportion"]
+    "range_overlap": ["Range overlap (share of the analysis-set range)", "proportion"]
+    "fitted_q90": ["90th percentile score, analysis set", "score"]
+    "fitted_q90_percentile_here": ["Percentile of that score in the external gene", "proportion"]
+    "reason": ["Reason", "text"]
+  external_summary:
+    "Gene set": ["Gene set", "text"]
+    "Stratum (intronic offset, bp)": ["Stratum (intronic offset, bp)", "text"]
+    "Tool": ["Tool", "text"]
+    "Side": ["Side", "side"]
+    "Tier": ["Tier", "text"]
+    "External genes reaching the tier, k/n (m)": ["External genes reaching the tier, k/n (m)", "text"]
+    "Note": ["Note", "text"]
+    "gene": ["Gene", "text"]
+    "label_definition": ["Label definition", "label"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "tool": ["Tool", "tool"]
+    "n_pos": ["Damaging", "count"]
+    "n_neg": ["Normal", "count"]
+    "threshold_kind": ["Threshold", "threshold_kind"]
+    "threshold_source": ["Threshold source", "threshold_source"]
+    "threshold": ["Threshold value", "threshold"]
+    "n_neg_at_or_above": ["Normal at or above the threshold", "count"]
+  clinvar_consistency:
+    "star_level": ["ClinVar review status", "star_level"]
+    "analysis": ["Analysis (main or sensitivity analysis)", "text"]
+    "tool": ["Tool", "tool"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "measure": ["Measure (AUROC or threshold)", "text"]
+    "side": ["Side", "side"]
+    "threshold_kind": ["Threshold", "threshold_kind"]
+    "threshold_source": ["Threshold source", "threshold_source"]
+    "threshold": ["Threshold value", "threshold"]
+    "status": ["Status", "text"]
+    "note": ["Note", "text"]
+    "n_scored": ["P/LP or B/LB variants scored", "count"]
+    "n_plp": ["P/LP scored", "count"]
+    "n_blb": ["B/LB scored", "count"]
+    "n_pos_above": ["P/LP at or above the threshold", "count"]
+    "n_neg_above": ["B/LB at or above the threshold", "count"]
+    "n_pos_below": ["P/LP below the threshold", "count"]
+    "n_neg_below": ["B/LB below the threshold", "count"]
+    "sensitivity": ["Sensitivity for P/LP (share at or above)", "proportion"]
+    "sensitivity_lo": ["Sensitivity for P/LP, lower 95% bound (Wilson)", "proportion"]
+    "sensitivity_hi": ["Sensitivity for P/LP, upper 95% bound (Wilson)", "proportion"]
+    "specificity": ["Specificity for B/LB (share below)", "proportion"]
+    "specificity_lo": ["Specificity for B/LB, lower 95% bound (Wilson)", "proportion"]
+    "specificity_hi": ["Specificity for B/LB, upper 95% bound (Wilson)", "proportion"]
+    "bp4_n_neg_at_or_below": ["B/LB at or below the threshold", "count"]
+    "bp4_n_pos_at_or_below": ["P/LP at or below the threshold", "count"]
+    "bp4_n_neg_above": ["B/LB above the threshold", "count"]
+    "bp4_n_pos_above": ["P/LP above the threshold", "count"]
+    "bp4_sensitivity": ["BP4 sensitivity for B/LB (share at or below)", "proportion"]
+    "bp4_sensitivity_lo": ["BP4 sensitivity for B/LB, lower 95% bound (Wilson)", "proportion"]
+    "bp4_sensitivity_hi": ["BP4 sensitivity for B/LB, upper 95% bound (Wilson)", "proportion"]
+    "bp4_specificity": ["BP4 specificity for P/LP (share above)", "proportion"]
+    "bp4_specificity_lo": ["BP4 specificity for P/LP, lower 95% bound (Wilson)", "proportion"]
+    "bp4_specificity_hi": ["BP4 specificity for P/LP, upper 95% bound (Wilson)", "proportion"]
+    "auroc": ["Gene-pooled AUROC, P/LP against B/LB", "proportion"]
+    "auroc_lo": ["Gene-pooled AUROC, lower 95% bound (random effects)", "proportion"]
+    "auroc_hi": ["Gene-pooled AUROC, upper 95% bound (random effects)", "proportion"]
+    "auroc_k_genes": ["Genes pooled for AUROC", "count"]
+    "auroc_n_plp_used": ["P/LP in genes pooled for AUROC", "count"]
+    "auroc_n_blb_used": ["B/LB in genes pooled for AUROC", "count"]
+    "auroc_per_gene": ["AUROC per gene pooled (P/LP, B/LB counts)", "text"]
+    "clinvar_group": ["ClinVar group", "text"]
+    "n_sge_damaging": ["SGE damaging scored", "count"]
+    "n_sge_normal": ["SGE normal scored", "count"]
+    "gene": ["Gene", "text"]
+    "main_n_plp": ["P/LP, main analysis", "count"]
+    "main_n_blb": ["B/LB, main analysis", "count"]
+    "subset_n_plp": ["P/LP last evaluated before SGE data were public", "count"]
+    "subset_n_blb": ["B/LB last evaluated before SGE data were public", "count"]
+    "source": ["Date source", "text"]
+    "identifier": ["Identifier (MaveDB URN or DOI)", "text"]
+    "date": ["Date", "text"]
+    "field": ["Field the date is read from", "text"]
+    "record": ["Saved record (file path)", "text"]
+    "found_by": ["How the DOI was found", "text"]
+    "review_status": ["Review status (ClinVar page)", "text"]
+    "stars_as_written": ["Number of gold stars (as written)", "text"]
+    "stars": ["Number of gold stars", "count"]
+    "description": ["Description (ClinVar page)", "text"]
+    "table": ["Section of the ClinVar page", "text"]
+    "n_variants_in_set": ["Analysis-set variants with this status", "count"]
+  "clinvar_consistency.crosstab":
+    "n_scored": ["Variants scored in the group (SGE-labelled or not)", "count"]
+    "n_pos_above": ["SGE damaging at or above the threshold", "count"]
+    "n_pos_below": ["SGE damaging below the threshold", "count"]
+    "n_neg_above": ["SGE normal at or above the threshold", "count"]
+    "n_neg_below": ["SGE normal below the threshold", "count"]
+    "sensitivity": ["Sensitivity for SGE damaging (share at or above)", "proportion"]
+    "sensitivity_lo": ["Sensitivity for SGE damaging, lower 95% bound (Wilson)", "proportion"]
+    "sensitivity_hi": ["Sensitivity for SGE damaging, upper 95% bound (Wilson)", "proportion"]
+    "bp4_n_pos_at_or_below": ["SGE damaging at or below the threshold", "count"]
+    "bp4_n_pos_above": ["SGE damaging above the threshold", "count"]
+    "bp4_n_neg_at_or_below": ["SGE normal at or below the threshold", "count"]
+    "bp4_n_neg_above": ["SGE normal above the threshold", "count"]
+    "bp4_sensitivity": ["BP4 sensitivity for SGE normal (share at or below)", "proportion"]
+    "bp4_sensitivity_lo": ["BP4 sensitivity for SGE normal, lower 95% bound (Wilson)", "proportion"]
+    "bp4_sensitivity_hi": ["BP4 sensitivity for SGE normal, upper 95% bound (Wilson)", "proportion"]
+  clinvar_coverage:
+    "gene": ["Gene", "text"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "band_nt": ["Offset band (nt)", "text"]
+    "n_variants": ["Analysis-set variants", "count"]
+    "n_unrecorded": ["Unrecorded in ClinVar", "count"]
+    "share_unrecorded": ["Share unrecorded in ClinVar", "proportion"]
+    "n_recorded_unclassified": ["Recorded but not P/LP or B/LB", "count"]
+    "share_recorded_unclassified": ["Share recorded but not P/LP or B/LB", "proportion"]
+    "n_classified": ["Classified P/LP or B/LB", "count"]
+    "share_classified": ["Share classified P/LP or B/LB", "proportion"]
+  label_sensitivity:
+    "analysis": ["Labels used in the refit", "text"]
+    "tool": ["Tool", "tool"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "side": ["Side", "side"]
+    "tier": ["Tier", "tier"]
+    "cut_lr": ["Tier LR cut", "lr"]
+    "n_added": ["Labels added in the stratum", "count"]
+    "n_removed": ["Labels removed in the stratum", "count"]
+    "n_switched": ["Labels switched in the stratum", "count"]
+    "frozen_n_pos": ["Damaging, main analysis", "count"]
+    "frozen_n_neg": ["Normal, main analysis", "count"]
+    "n_pos": ["Damaging", "count"]
+    "n_neg": ["Normal", "count"]
+    "frozen_threshold": ["In-sample threshold, main analysis", "threshold"]
+    "threshold": ["In-sample threshold", "threshold"]
+    "frozen_reached": ["Reached in-sample, main analysis", "boolean"]
+    "reached": ["Reached in-sample", "boolean"]
+    "tier_change": ["Tier change from main analysis", "text"]
+    "threshold_changed": ["Threshold changed from main analysis", "boolean"]
+    "frozen_status": ["Status, main analysis", "text"]
+    "status": ["Status", "text"]
+    "reason": ["Reason", "text"]
+    "path_cut_lr": ["Tier LR cut", "lr"]
+    "subset": ["Training subset", "text"]
+    "n_genes": ["Training genes", "count"]
+    "training_genes": ["Genes in the training subset", "text"]
+    "tier_reached": ["Tier reached on the subset", "boolean"]
+    "threshold_every_gene": ["In-sample threshold, main analysis", "threshold"]
+    "tier_reached_every_gene": ["Reached in-sample, main analysis", "boolean"]
+    "huang_class": ["Class in the functional standard (Huang 2025)", "text"]
+    "second_set_class": ["Class in the second set (Sahu 2025)", "text"]
+    "n": ["Variants with this pair of classes", "count"]
+    "share_of_shared": ["Share of the variants in both sets", "proportion"]
+    "second_set": ["Second set, MaveDB accession", "text"]
+    "n_shared_3_50": ["Variants in both sets at 3–50 bp", "count"]
+    "n_agree": ["Variants with the same class in both sets", "count"]
+    "agree_refit_n_added_3_50": ["Agreed-labels refit: labels added at 3–50 bp", "count"]
+    "agree_refit_n_removed_3_50": ["Agreed-labels refit: labels removed at 3–50 bp", "count"]
+    "agree_refit_n_switched_3_50": ["Agreed-labels refit: labels switched at 3–50 bp", "count"]
+    "second_refit_n_added_3_50": ["Second-set refit: labels added at 3–50 bp", "count"]
+    "second_refit_n_removed_3_50": ["Second-set refit: labels removed at 3–50 bp", "count"]
+    "second_refit_n_switched_3_50": ["Second-set refit: labels switched at 3–50 bp", "count"]
+  "label_sensitivity.without_bard1_palb2":
+    "threshold": ["Threshold fitted on the subset", "threshold"]
+  prior_sensitivity:
+    "prior": ["Prior probability of pathogenicity", "constant"]
+    "tool": ["Tool", "tool"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "side": ["Side", "side"]
+    "tier": ["Tier", "tier"]
+    "cut_lr": ["Tier LR cut", "lr"]
+    "cut_lr_at_0_10": ["Tier LR cut at prior 0.10", "lr"]
+    "n_pos": ["Damaging", "count"]
+    "n_neg": ["Normal", "count"]
+    "status": ["Status", "text"]
+    "reason": ["Reason", "text"]
+    "threshold": ["In-sample threshold", "threshold"]
+    "reached": ["Reached in-sample", "boolean"]
+    "threshold_at_0_10": ["In-sample threshold at prior 0.10", "threshold"]
+    "reached_at_0_10": ["Reached in-sample at prior 0.10", "boolean"]
+    "tier_change": ["Tier change from prior 0.10", "text"]
+    "threshold_changed": ["Threshold changed from prior 0.10", "boolean"]
+    "strong_reached_at_0_10": ["Strong reached in-sample at prior 0.10", "boolean"]
+    "strong_reached": ["Strong reached in-sample", "boolean"]
+    "strong_still_reached": ["Strong still reached", "boolean"]
+    "prior_odds": ["Prior odds", "number"]
+    "lr_at_0_10": ["Tier LR cut at prior 0.10", "lr"]
+    "lr": ["Tier LR cut", "lr"]
+    "posterior": ["Posterior probability of pathogenicity at the cut", "proportion"]
+  heldout_intervals:
+    "tool": ["Tool", "tool"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "tier": ["Tier", "tier"]
+    "cut_lr": ["Tier LR cut", "lr"]
+    "heldout_gene": ["Held-out gene", "text"]
+    "threshold_from_other_genes": ["Threshold fitted on the other genes", "threshold"]
+    "heldout_n_pos": ["Held-out damaging", "count"]
+    "heldout_n_neg": ["Held-out normal", "count"]
+    "n_pos_band": ["Held-out damaging at or above the threshold", "count"]
+    "n_neg_band": ["Held-out normal at or above the threshold", "count"]
+    "heldout_lr": ["Held-out LR", "lr"]
+    "lr_lo": ["Held-out LR, lower 95% bound (within-class bootstrap)", "lr"]
+    "lr_hi": ["Held-out LR, upper 95% bound (within-class bootstrap)", "lr"]
+    "tier_at_point": ["Tier at the point estimate", "tier"]
+    "tier_at_bound": ["Tier at the lower bound", "tier"]
+    "clears_at_point": ["Held-out LR clears the cut", "boolean"]
+    "clears_at_bound": ["Lower bound clears the cut", "boolean"]
+    "logo_threshold_leakage": ["Leakage into the threshold", "text"]
+    "predictor": ["Predictor, as the main tables print it", "text"]
+    "in_sample_tier_reached": ["Reached in-sample", "boolean"]
+    "excluded_folds": ["Excluded folds (held-out genes)", "text"]
+    "n_folds": ["Held-out genes counted", "count"]
+    "point_evaluable": ["Folds with an evaluable held-out LR", "count"]
+    "point_k": ["Held-out genes clearing the cut", "count"]
+    "point_m": ["Folds without an evaluable held-out LR", "count"]
+    "point_cell": ["Count by the point estimate, k/n (m)", "text"]
+    "table3_cell": ["Count as the tiers table prints it, k/n (m)", "text"]
+    "bound_evaluable": ["Folds with a lower 95% bound", "count"]
+    "bound_k": ["Held-out genes whose lower bound clears the cut", "count"]
+    "bound_m": ["Folds without a lower 95% bound", "count"]
+    "bound_cell": ["Count by the lower bound, k/n (m)", "text"]
+    "in_sample_reached": ["Strong reached in-sample", "boolean"]
+    "in_sample_threshold": ["In-sample Strong threshold", "threshold"]
+    "n_folds_reaching": ["Folds reaching Strong", "count"]
+    "threshold_min": ["Strong threshold over folds, minimum", "score"]
+    "threshold_median": ["Strong threshold over folds, median", "score"]
+    "threshold_max": ["Strong threshold over folds, maximum", "score"]
+    "max_abs_shift": ["Largest absolute shift from the in-sample threshold", "score"]
+    "fold_of_max_shift": ["Held-out gene of the largest shift", "text"]
+  "heldout_intervals.jackknife":
+    "n_folds": ["Leave-one-gene-out folds", "count"]
+  bp4_at_bp7_positions:
+    "condition": ["Condition", "text"]
+    "side": ["Splice-site side", "text"]
+    "gene": ["Gene", "text"]
+    "n_at_positions": ["Labelled variants at BP7 positions", "count"]
+    "n_damaging_at_positions": ["Damaging at BP7 positions", "count"]
+    "n_normal_at_positions": ["Normal at BP7 positions", "count"]
+    "n_meeting": ["Labelled variants meeting the condition", "count"]
+    "n_damaging": ["Damaging meeting the condition", "count"]
+    "n_normal": ["Normal meeting the condition", "count"]
+    "share_damaging": ["Damaging share of variants meeting the condition", "proportion"]
+  by_splice_site_position:
+    "side": ["Splice-site side", "text"]
+    "group": ["Position group (signed intronic offset)", "text"]
+    "offset_from": ["Lowest signed offset", "text"]
+    "offset_to": ["Highest signed offset", "text"]
+    "n": ["Labelled variants", "count"]
+    "n_damaging": ["Damaging", "count"]
+    "n_normal": ["Normal", "count"]
+    "status": ["Status", "text"]
+    "reason": ["Reason", "text"]
+    "n_in_pp3_band": ["Labelled variants in PP3 band (≥ 0.2)", "count"]
+    "lr_pp3": ["PP3 band (≥ 0.2) LR", "lr"]
+    "lr_pp3_lo": ["PP3 band LR, lower 95% bound (gene-clustered bootstrap)", "lr"]
+    "lr_pp3_hi": ["PP3 band LR, upper 95% bound (gene-clustered bootstrap)", "lr"]
+    "n_in_bp4_band": ["Labelled variants in BP4 band (≤ 0.1)", "count"]
+    "lr_bp4": ["BP4 band (≤ 0.1) LR", "lr"]
+    "lr_bp4_lo": ["BP4 band LR, lower 95% bound (gene-clustered bootstrap)", "lr"]
+    "lr_bp4_hi": ["BP4 band LR, upper 95% bound (gene-clustered bootstrap)", "lr"]
+    "n_genes": ["Genes resampled in the bootstrap", "count"]
+    "ci_basis": ["CI basis", "text"]
+  without_bap1:
+    "part": ["Rows", "text"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "gene": ["Gene", "text"]
+    "n_labelled": ["Labelled", "count"]
+    "n_damaging": ["Damaging", "count"]
+    "n_normal": ["Normal", "count"]
+    "share_of_band_damaging": ["Share of the stratum's damaging variants", "proportion"]
+    "tool": ["Tool", "tool"]
+    "tier": ["Tier", "tier"]
+    "path_cut_lr": ["Tier LR cut", "lr"]
+    "threshold_every_gene": ["Threshold on all genes in the stratum", "threshold"]
+    "tier_reached_every_gene": ["Tier reached on all genes in the stratum", "boolean"]
+    "subset": ["Training subset", "text"]
+    "n_genes": ["Number of training genes", "count"]
+    "training_genes": ["Training genes", "text"]
+    "threshold": ["Threshold from the training genes", "threshold"]
+    "tier_reached": ["Tier reached on the training genes", "boolean"]
+    "heldout_gene": ["Held-out gene", "text"]
+    "heldout_n_damaging": ["Held-out damaging", "count"]
+    "heldout_n_normal": ["Held-out normal", "count"]
+    "heldout_n_in_band": ["Held-out variants at or above the threshold", "count"]
+    "heldout_n_damaging_in_band": ["Held-out damaging at or above the threshold", "count"]
+    "heldout_n_normal_in_band": ["Held-out normal at or above the threshold", "count"]
+    "heldout_lr": ["Held-out LR", "lr"]
+    "evaluable": ["Held-out LR evaluable", "boolean"]
+    "cleared_cut": ["Held-out LR clears the cut", "boolean"]
+    "not_evaluable_reason": ["Why no held-out LR", "text"]
+  family_holdout:
+    "part": ["Rows", "text"]
+    "split": ["Split (a) or gene set (b)", "text"]
+    "tool": ["Tool", "tool"]
+    "predictor": ["Predictor", "text"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "side": ["Side", "side"]
+    "tier": ["Tier", "tier"]
+    "path_cut_lr": ["Tier LR cut", "lr"]
+    "training_genes": ["Training genes", "text"]
+    "threshold": ["Threshold from the training genes", "threshold"]
+    "tier_reached": ["Tier reached on the training genes", "boolean"]
+    "threshold_every_gene": ["Threshold on all genes in the stratum", "threshold"]
+    "heldout_gene": ["Held-out gene", "text"]
+    "heldout_n_damaging": ["Held-out damaging", "count"]
+    "heldout_n_normal": ["Held-out normal", "count"]
+    "heldout_n_in_band": ["Held-out variants at or above the threshold", "count"]
+    "heldout_n_damaging_in_band": ["Held-out damaging at or above the threshold", "count"]
+    "heldout_n_normal_in_band": ["Held-out normal at or above the threshold", "count"]
+    "heldout_lr": ["Held-out LR", "lr"]
+    "evaluable": ["Held-out LR evaluable", "boolean"]
+    "cleared_cut": ["Held-out LR clears the cut", "boolean"]
+    "not_evaluable_reason": ["Why no held-out LR", "text"]
+    "stratum_label": ["External-gene stratum (intronic offset, bp)", "text"]
+    "genes_reaching_the_tier": ["External genes reaching the tier, k/n (m not evaluable)", "text"]
+    "note": ["Note", "text"]
+  confusion_matrices:
+    "tool": ["Tool", "tool"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "side": ["Side", "side"]
+    "threshold_kind": ["Threshold", "threshold_kind"]
+    "threshold_source": ["Threshold source", "threshold_source"]
+    "threshold": ["Threshold value", "threshold"]
+    "status": ["Status", "text"]
+    "positive_class": ["Positive class", "text"]
+    "call": ["Called positive when", "text"]
+    "tp": ["TP", "count"]
+    "fp": ["FP", "count"]
+    "fn": ["FN", "count"]
+    "tn": ["TN", "count"]
+    "precision": ["Precision", "proportion"]
+    "recall": ["Recall", "proportion"]
+    "f1": ["F1", "proportion"]
+    "mcc": ["MCC", "proportion"]
+  twelve_gene_refit:
+    "tool": ["Tool", "tool"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "side": ["Side", "side"]
+    "tier": ["Tier", "tier"]
+    "cut_lr": ["Tier LR cut", "lr"]
+    "n_genes_7": ["Genes contributing, seven-gene fit", "count"]
+    "n_pos_7": ["Damaging, seven-gene fit", "count"]
+    "n_neg_7": ["Normal, seven-gene fit", "count"]
+    "threshold_7": ["In-sample threshold, seven-gene fit", "threshold"]
+    "reached_7": ["Reached in-sample, seven-gene fit", "boolean"]
+    "status_7": ["Status, seven-gene fit", "text"]
+    "n_genes_12": ["Genes contributing, twelve-gene fit", "count"]
+    "n_pos_12": ["Damaging, twelve-gene fit", "count"]
+    "n_neg_12": ["Normal, twelve-gene fit", "count"]
+    "threshold_12": ["In-sample threshold, twelve-gene fit", "threshold"]
+    "reached_12": ["Reached in-sample, twelve-gene fit", "boolean"]
+    "status_12": ["Status, twelve-gene fit", "text"]
+    "abs_change": ["Threshold change, twelve-gene minus seven-gene", "score"]
+    "rel_change": ["Threshold change relative to the seven-gene threshold's magnitude", "number"]
+    "tier_change": ["Tier change from seven to twelve genes", "text"]
+    "reason": ["Reason", "text"]
+  inframe_true_positives:
+    "gene_set": ["Gene set", "gene_set"]
+    "label_definition": ["Label definition", "label"]
+    "tool": ["Events read from", "events_tool"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "group": ["True or false positive", "c12_group"]
+    "in_frame": ["In-frame", "count"]
+    "out_of_frame": ["Out-of-frame", "count"]
+    "undetermined": ["Undetermined", "count"]
+    "n": ["Total", "count"]
+    "in_frame_share": ["In-frame share", "proportion", 4]
+    "resolved_in_frame_share": ["In-frame share among resolved", "proportion", 4]
+    "in_frame_share_lo": ["In-frame share, lower 95% Wilson bound", "proportion", 4]
+    "in_frame_share_hi": ["In-frame share, upper 95% Wilson bound", "proportion", 4]
+  vcep_rules:
+    "part": ["Rows", "text"]
+    "gene": ["Gene", "text"]
+    "vcep": ["VCEP", "text"]
+    "cspec_id": ["CSpec identifier", "text"]
+    "version": ["CSpec version", "text"]
+    "criterion": ["Criterion", "text"]
+    "stratum": ["Stratum (intronic offset, bp)", "stratum"]
+    "rule": ["Rule in the specification", "text"]
+    "strength_allowed": ["Strengths the specification allows", "text"]
+    "score_column": ["Score column", "tool"]
+    "score_column_basis": ["Basis for the score column", "text"]
+    "not_evaluated": ["Conditions not evaluated", "text"]
+    "n_damaging": ["Damaging (in the stratum; BP7: meeting the condition)", "count"]
+    "n_normal": ["Normal (in the stratum; BP7: meeting the condition)", "count"]
+    "n_in_band": ["Variants in band", "count"]
+    "n_damaging_in_band": ["Damaging in band", "count"]
+    "n_normal_in_band": ["Normal in band", "count"]
+    "status": ["Status", "text"]
+    "reason": ["Reason", "text"]
+    "lr": ["Band LR", "lr"]
+    "lr_lo": ["Band LR, lower 95% bootstrap bound", "lr"]
+    "lr_hi": ["Band LR, upper 95% bootstrap bound", "lr"]
+    "lr_for_tier": ["LR for the tier at the point estimate", "lr"]
+    "tier_at_point": ["Tier at the point estimate", "tier"]
+    "bound_for_tier": ["Band LR, conservative bound (PP3 lower, BP4 upper)", "lr"]
+    "tier_at_bound": ["Tier at the conservative bound", "tier"]
+    "bp7_scope_in_specification": ["BP7 scope in the specification", "text"]
+    "bp7_conditions_in_specification": ["BP7 conditions in the specification", "text"]
+    "side": ["Side and positions counted", "text"]
+    "bp7_condition": ["BP7 condition as applied", "text"]
+    "checked_against": ["Checked cell for cell against", "text"]
+    "n_at_positions": ["Variants at the positions", "count"]
+    "n_damaging_at_positions": ["Damaging at the positions", "count"]
+    "n_normal_at_positions": ["Normal at the positions", "count"]
+    "n_meeting": ["Variants meeting the condition", "count"]
+    "share_damaging": ["Damaging share among variants meeting the condition", "proportion"]
+    "phylop_source": ["PhyloP source", "text"]
+    "n_phylop_missing": ["Variants without phyloP (not counted)", "count"]

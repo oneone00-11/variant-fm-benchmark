@@ -1,0 +1,79 @@
+Tool,"Predictor, as the main tables print it","Stratum (intronic offset, bp)",Tier,Reached in-sample,Excluded folds (held-out genes),Held-out genes counted,Folds with an evaluable held-out LR,Held-out genes clearing the cut,Folds without an evaluable held-out LR,"Count by the point estimate, k/n (m)","Count as the tiers table prints it, k/n (m)",Folds with a lower 95% bound,Held-out genes whose lower bound clears the cut,Folds without a lower 95% bound,"Count by the lower bound, k/n (m)"
+SpliceAI (published basis),SpliceAI (published basis),3–10,Moderate,Yes,,7,6,6,1,6/7 (1),6/7 (1),6,6,1,6/7 (1)
+SpliceAI (published basis),SpliceAI (published basis),3–10,Strong,Yes,,7,6,4,1,4/7 (1),4/7 (1),6,3,1,3/7 (1)
+SpliceAI (published basis),SpliceAI (published basis),11–50,Moderate,Yes,,6,4,4,2,4/6 (2),4/6 (2),4,3,2,3/6 (2)
+SpliceAI (published basis),SpliceAI (published basis),11–50,Strong,No,,,,,,–,–,,,,–
+SpliceAI (published basis),SpliceAI (published basis),3–50,Moderate,Yes,,7,7,7,0,7/7,7/7,7,7,0,7/7
+SpliceAI (published basis),SpliceAI (published basis),3–50,Strong,Yes,,7,6,5,1,5/7 (1),5/7 (1),6,3,1,3/7 (1)
+SpliceAI (distance 50),SpliceAI (distance 50),3–10,Moderate,Yes,,7,6,6,1,6/7 (1),6/7 (1),6,6,1,6/7 (1)
+SpliceAI (distance 50),SpliceAI (distance 50),3–10,Strong,Yes,,7,6,4,1,4/7 (1),4/7 (1),6,2,1,2/7 (1)
+SpliceAI (distance 50),SpliceAI (distance 50),11–50,Moderate,Yes,,6,4,4,2,4/6 (2),4/6 (2),4,3,2,3/6 (2)
+SpliceAI (distance 50),SpliceAI (distance 50),11–50,Strong,No,,,,,,–,–,,,,–
+SpliceAI (distance 50),SpliceAI (distance 50),3–50,Moderate,Yes,,7,7,7,0,7/7,7/7,7,7,0,7/7
+SpliceAI (distance 50),SpliceAI (distance 50),3–50,Strong,Yes,,7,6,5,1,5/7 (1),5/7 (1),6,2,1,2/7 (1)
+Pangolin,Pangolin,3–10,Moderate,Yes,,7,6,6,1,6/7 (1),6/7 (1),6,6,1,6/7 (1)
+Pangolin,Pangolin,3–10,Strong,Yes,,7,6,6,1,6/7 (1),6/7 (1),6,4,1,4/7 (1)
+Pangolin,Pangolin,11–50,Moderate,Yes,,6,4,4,2,4/6 (2),4/6 (2),4,4,2,4/6 (2)
+Pangolin,Pangolin,11–50,Strong,No,,,,,,–,–,,,,–
+Pangolin,Pangolin,3–50,Moderate,Yes,,7,7,7,0,7/7,7/7,7,7,0,7/7
+Pangolin,Pangolin,3–50,Strong,Yes,,7,6,6,1,6/7 (1),6/7 (1),6,6,1,6/7 (1)
+AlphaGenome splice score,AlphaGenome splice score,3–10,Moderate,Yes,,7,6,6,1,6/7 (1),6/7 (1),6,6,1,6/7 (1)
+AlphaGenome splice score,AlphaGenome splice score,3–10,Strong,Yes,,7,6,6,1,6/7 (1),6/7 (1),6,3,1,3/7 (1)
+AlphaGenome splice score,AlphaGenome splice score,11–50,Moderate,Yes,,6,4,4,2,4/6 (2),4/6 (2),4,4,2,4/6 (2)
+AlphaGenome splice score,AlphaGenome splice score,11–50,Strong,Yes,,6,1,0,5,0/6 (5),0/6 (5),1,0,5,0/6 (5)
+AlphaGenome splice score,AlphaGenome splice score,3–50,Moderate,Yes,,7,7,7,0,7/7,7/7,7,7,0,7/7
+AlphaGenome splice score,AlphaGenome splice score,3–50,Strong,Yes,,7,6,5,1,5/7 (1),5/7 (1),6,4,1,4/7 (1)
+Atlas combined score,Atlas combined score †,3–10,Moderate,Yes,BRCA1;RAD51C,5,4,4,1,4/5 (1),4/5 (1),4,4,1,4/5 (1)
+Atlas combined score,Atlas combined score †,3–10,Strong,Yes,BRCA1;RAD51C,5,3,3,2,3/5 (2),3/5 (2),3,2,2,2/5 (2)
+Atlas combined score,Atlas combined score †,11–50,Moderate,Yes,BRCA1;RAD51C,4,3,3,1,3/4 (1),3/4 (1),3,2,1,2/4 (1)
+Atlas combined score,Atlas combined score †,11–50,Strong,Yes,BRCA1;RAD51C,4,0,0,4,0/4 (4),0/4 (4),0,0,4,0/4 (4)
+Atlas combined score,Atlas combined score †,3–50,Moderate,Yes,BRCA1;RAD51C,5,5,5,0,5/5,5/5,5,5,0,5/5
+Atlas combined score,Atlas combined score †,3–50,Strong,Yes,BRCA1;RAD51C,5,5,5,0,5/5,5/5,5,4,0,4/5
+Atlas splice sites,Atlas splice sites,3–10,Moderate,Yes,,7,6,6,1,6/7 (1),6/7 (1),6,6,1,6/7 (1)
+Atlas splice sites,Atlas splice sites,3–10,Strong,No,,,,,,–,–,,,,–
+Atlas splice sites,Atlas splice sites,11–50,Moderate,Yes,,6,3,3,3,3/6 (3),3/6 (3),3,2,3,2/6 (3)
+Atlas splice sites,Atlas splice sites,11–50,Strong,No,,,,,,–,–,,,,–
+Atlas splice sites,Atlas splice sites,3–50,Moderate,Yes,,7,7,7,0,7/7,7/7,7,7,0,7/7
+Atlas splice sites,Atlas splice sites,3–50,Strong,Yes,,7,6,5,1,5/7 (1),5/7 (1),6,4,1,4/7 (1)
+Atlas splice-site usage,Atlas splice-site usage,3–10,Moderate,Yes,,7,7,7,0,7/7,7/7,7,7,0,7/7
+Atlas splice-site usage,Atlas splice-site usage,3–10,Strong,Yes,,7,5,5,2,5/7 (2),5/7 (2),5,3,2,3/7 (2)
+Atlas splice-site usage,Atlas splice-site usage,11–50,Moderate,Yes,,6,4,4,2,4/6 (2),4/6 (2),4,3,2,3/6 (2)
+Atlas splice-site usage,Atlas splice-site usage,11–50,Strong,Yes,,6,0,0,6,0/6 (6),0/6 (6),0,0,6,0/6 (6)
+Atlas splice-site usage,Atlas splice-site usage,3–50,Moderate,Yes,,7,7,7,0,7/7,7/7,7,7,0,7/7
+Atlas splice-site usage,Atlas splice-site usage,3–50,Strong,Yes,,7,5,5,2,5/7 (2),5/7 (2),5,4,2,4/7 (2)
+Atlas splice junctions,Atlas splice junctions,3–10,Moderate,Yes,,7,6,6,1,6/7 (1),6/7 (1),6,6,1,6/7 (1)
+Atlas splice junctions,Atlas splice junctions,3–10,Strong,Yes,,7,5,5,2,5/7 (2),5/7 (2),5,2,2,2/7 (2)
+Atlas splice junctions,Atlas splice junctions,11–50,Moderate,Yes,,6,2,2,4,2/6 (4),2/6 (4),2,2,4,2/6 (4)
+Atlas splice junctions,Atlas splice junctions,11–50,Strong,No,,,,,,–,–,,,,–
+Atlas splice junctions,Atlas splice junctions,3–50,Moderate,Yes,,7,7,7,0,7/7,7/7,7,7,0,7/7
+Atlas splice junctions,Atlas splice junctions,3–50,Strong,Yes,,7,5,5,2,5/7 (2),5/7 (2),5,3,2,3/7 (2)
+CADD,CADD,3–10,Moderate,No,,,,,,–,–,,,,–
+CADD,CADD,3–10,Strong,No,,,,,,–,–,,,,–
+CADD,CADD,11–50,Moderate,No,,,,,,–,–,,,,–
+CADD,CADD,11–50,Strong,No,,,,,,–,–,,,,–
+CADD,CADD,3–50,Moderate,Yes,,7,6,5,1,5/7 (1),5/7 (1),6,2,1,2/7 (1)
+CADD,CADD,3–50,Strong,No,,,,,,–,–,,,,–
+phyloP,phyloP,3–10,Moderate,Yes,,7,2,2,5,2/7 (5),2/7 (5),2,0,5,0/7 (5)
+phyloP,phyloP,3–10,Strong,No,,,,,,–,–,,,,–
+phyloP,phyloP,11–50,Moderate,No,,,,,,–,–,,,,–
+phyloP,phyloP,11–50,Strong,No,,,,,,–,–,,,,–
+phyloP,phyloP,3–50,Moderate,Yes,,7,3,3,4,3/7 (4),3/7 (4),3,2,4,2/7 (4)
+phyloP,phyloP,3–50,Strong,No,,,,,,–,–,,,,–
+phastCons,phastCons,3–10,Moderate,No,,,,,,–,–,,,,–
+phastCons,phastCons,3–10,Strong,No,,,,,,–,–,,,,–
+phastCons,phastCons,11–50,Moderate,No,,,,,,–,–,,,,–
+phastCons,phastCons,11–50,Strong,No,,,,,,–,–,,,,–
+phastCons,phastCons,3–50,Moderate,No,,,,,,–,–,,,,–
+phastCons,phastCons,3–50,Strong,No,,,,,,–,–,,,,–
+GPN-MSA,GPN-MSA,3–10,Moderate,Yes,,7,6,6,1,6/7 (1),6/7 (1),6,2,1,2/7 (1)
+GPN-MSA,GPN-MSA,3–10,Strong,No,,,,,,–,–,,,,–
+GPN-MSA,GPN-MSA,11–50,Moderate,No,,,,,,–,–,,,,–
+GPN-MSA,GPN-MSA,11–50,Strong,No,,,,,,–,–,,,,–
+GPN-MSA,GPN-MSA,3–50,Moderate,Yes,,7,6,6,1,6/7 (1),6/7 (1),6,4,1,4/7 (1)
+GPN-MSA,GPN-MSA,3–50,Strong,No,,,,,,–,–,,,,–
+Nucleotide Transformer,Nucleotide Transformer,3–10,Moderate,No,,,,,,–,–,,,,–
+Nucleotide Transformer,Nucleotide Transformer,3–10,Strong,No,,,,,,–,–,,,,–
+Nucleotide Transformer,Nucleotide Transformer,11–50,Moderate,No,,,,,,–,–,,,,–
+Nucleotide Transformer,Nucleotide Transformer,11–50,Strong,No,,,,,,–,–,,,,–
+Nucleotide Transformer,Nucleotide Transformer,3–50,Moderate,No,,,,,,–,–,,,,–
+Nucleotide Transformer,Nucleotide Transformer,3–50,Strong,No,,,,,,–,–,,,,–

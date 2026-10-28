@@ -91,10 +91,11 @@ Stages
  38  evid_suppl_c3_brca2     BRCA2 against a second dataset: concordance and two refits (E19 C3)
  39  evid_suppl_c12          the true positives' in-frame attribution beside the false positives' (E20 C12)
  40  evid_suppl_c13          the VCEP specifications' splicing rules on this study's data (E20 C13)
+ 41  evid_layout             the manuscript's figures and tables, under config/layout.yaml's numbers (E5)
 
 Outputs land in `phase1/reports/evidence/`; stages 23 to 27 also write a page under
-`docs/`, and the supplementary analyses of E19 and E20 (stages 29 on) write under its
-`suppl_analyses/`.
+`docs/`, the supplementary analyses of E19 and E20 (stages 29 to 40) write under its
+`suppl_analyses/`, and the layout layer (stage 41) under its `layout/`.
 
     bash reproduce.sh                                       # from a fresh clone: everything
     bash reproduce.sh --check                               # five minutes, no download
@@ -252,6 +253,8 @@ STAGES = [
     # E20, two further supplementary analyses, under reports/evidence/suppl_analyses/
     ("src.evid_suppl_c12",          "E20 C12 in-frame attribution of the true positives", []),
     ("src.evid_suppl_c13",          "E20 C13 the VCEP rules on this study's data", []),
+    # E5, the manuscript's figures and tables from the outputs above, under layout/
+    ("src.evid_layout",             "E5  the manuscript's layout, numbered by config/layout.yaml", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.

@@ -1,0 +1,25 @@
+Gene,"Stratum (intronic offset, bp)","P/LP, main analysis","B/LB, main analysis",P/LP last evaluated before SGE data were public,B/LB last evaluated before SGE data were public
+BAP1,3–10,3,150,1,58
+BAP1,11–50,0,277,0,78
+BAP1,3–50,3,427,1,136
+BARD1,3–10,1,102,0,91
+BARD1,11–50,2,153,2,127
+BARD1,3–50,3,255,2,218
+BRCA1,3–10,42,105,2,5
+BRCA1,11–50,0,96,0,6
+BRCA1,3–50,42,201,2,11
+BRCA2,3–10,13,98,1,44
+BRCA2,11–50,0,0,0,0
+BRCA2,3–50,13,98,1,44
+PALB2,3–10,7,89,5,85
+PALB2,11–50,0,93,0,88
+PALB2,3–50,7,182,5,173
+RAD51C,3–10,8,77,3,18
+RAD51C,11–50,0,129,0,44
+RAD51C,3–50,8,206,3,62
+VHL,3–10,0,24,0,4
+VHL,11–50,1,17,0,5
+VHL,3–50,1,41,0,9
+Seven genes,3–10,74,645,12,305
+Seven genes,11–50,3,765,2,348
+Seven genes,3–50,77,1410,14,653

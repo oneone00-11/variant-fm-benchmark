@@ -1,0 +1,7 @@
+Splice-site side,Position group (signed intronic offset),Lowest signed offset,Highest signed offset,Labelled variants,Damaging,Normal,Status,Reason,Labelled variants in PP3 band (≥ 0.2),PP3 band (≥ 0.2) LR,"PP3 band LR, lower 95% bound (gene-clustered bootstrap)","PP3 band LR, upper 95% bound (gene-clustered bootstrap)",Labelled variants in BP4 band (≤ 0.1),BP4 band (≤ 0.1) LR,"BP4 band LR, lower 95% bound (gene-clustered bootstrap)","BP4 band LR, upper 95% bound (gene-clustered bootstrap)",Genes resampled in the bootstrap,CI basis
+donor,+3...+6,3,6,789,282,507,ok,,403,3.16,2.44,4.06,287,0.0991,0.0302,0.190,7,gene-clustered bootstrap over 7 genes; 2000 of 2000 draws evaluable
+donor,+7...+10,7,10,776,18,758,ok,,52,6.55,1.55,10.8,657,0.651,0.365,1.02,7,gene-clustered bootstrap over 7 genes; 1905 of 2000 draws evaluable
+donor,+11...+50,11,50,2444,30,2414,ok,,49,5.25,0,31.2,2283,0.927,0.569,1.02,6,gene-clustered bootstrap over 6 genes; 1831 of 2000 draws evaluable
+acceptor,-3...-10,-10,-3,1544,270,1274,ok,,391,4.41,3.48,5.99,936,0.238,0.112,0.329,7,gene-clustered bootstrap over 7 genes; 2000 of 2000 draws evaluable
+acceptor,-11...-20,-20,-11,1245,145,1100,ok,,170,6.59,4.20,14.3,923,0.398,0.0452,0.535,6,gene-clustered bootstrap over 6 genes; 2000 of 2000 draws evaluable
+acceptor,-21...-50,-50,-21,862,48,814,ok,,67,6.23,2.75,21.1,718,0.511,0.130,0.661,6,gene-clustered bootstrap over 6 genes; 1878 of 2000 draws evaluable

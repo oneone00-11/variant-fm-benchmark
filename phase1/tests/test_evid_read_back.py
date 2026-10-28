@@ -74,6 +74,9 @@ DEFAULT_READS = {
         "AUROCs by ClinVar arm",
     "evid_figures.py: d = pd.read_csv(p)":
         "shares of dilution subsets for Supplementary Figure S2",
+    "evid_layout.py: df = pd.read_csv(io.StringIO(\"\".join(lines)), dtype=str, keep_default_na=False)":
+        "a source table as text (dtype=str), each cell printed from its text by its column's "
+        "type; a threshold through evid_supp_tables.fmt_thr, as Supplementary Table S6 prints one",
     "evid_newgenes.py: lab = pd.read_csv(Path(\"data/assay_labels\") / spec[\"file\"],":
         "two training genes' label files as text (dtype=str), for the E16b label check",
     "evid_supp_tables.py: return pd.read_csv(_need(p), **kw)":

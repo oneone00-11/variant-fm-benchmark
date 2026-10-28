@@ -1,0 +1,118 @@
+Tool,"Stratum (intronic offset, bp)",Tier,Benign tier LR cut,Reached in-sample,In-sample threshold (gene-clustered bootstrap),In-sample threshold (variant-level bootstrap),"Held-out LR, median over folds"
+SpliceAI (distance 50),3–10,Supporting,0.481,Yes,0.006782,0.0099815,0.0466
+SpliceAI (distance 50),3–10,Moderate,0.231,Yes,0.0009789,0.0008239,0.0571
+SpliceAI (distance 50),3–10,Strong,0.0535,No,,,
+SpliceAI (distance 50),11–50,Supporting,0.481,No,,,
+SpliceAI (distance 50),11–50,Moderate,0.231,No,,,
+SpliceAI (distance 50),11–50,Strong,0.0535,No,,,
+SpliceAI (distance 50),3–50,Supporting,0.481,Yes,0.00034595,0.00033522,0
+SpliceAI (distance 50),3–50,Moderate,0.231,No,,,
+SpliceAI (distance 50),3–50,Strong,0.0535,No,,,
+Pangolin,3–10,Supporting,0.481,Yes,0.0037785,0.004025,0.0424
+Pangolin,3–10,Moderate,0.231,Yes,0.001562,0.00231024,0
+Pangolin,3–10,Strong,0.0535,No,,,
+Pangolin,11–50,Supporting,0.481,No,,,
+Pangolin,11–50,Moderate,0.231,No,,,
+Pangolin,11–50,Strong,0.0535,No,,,
+Pangolin,3–50,Supporting,0.481,Yes,0.000795624,0.0007733044331,0.0187
+Pangolin,3–50,Moderate,0.231,No,,,
+Pangolin,3–50,Strong,0.0535,No,,,
+AlphaGenome splice score,3–10,Supporting,0.481,Yes,0.11172,0.11172,0
+AlphaGenome splice score,3–10,Moderate,0.231,Yes,0.04346,0.04187012,0
+AlphaGenome splice score,3–10,Strong,0.0535,No,,,
+AlphaGenome splice score,11–50,Supporting,0.481,No,,,
+AlphaGenome splice score,11–50,Moderate,0.231,No,,,
+AlphaGenome splice score,11–50,Strong,0.0535,No,,,
+AlphaGenome splice score,3–50,Supporting,0.481,Yes,0.02796021,0.02796021,0.0508
+AlphaGenome splice score,3–50,Moderate,0.231,No,,,
+AlphaGenome splice score,3–50,Strong,0.0535,No,,,
+CADD,3–10,Supporting,0.481,Yes,0.7070,0.5940,0.286
+CADD,3–10,Moderate,0.231,Yes,0.3430,0.3430,0
+CADD,3–10,Strong,0.0535,No,,,
+CADD,11–50,Supporting,0.481,No,,,
+CADD,11–50,Moderate,0.231,No,,,
+CADD,11–50,Strong,0.0535,No,,,
+CADD,3–50,Supporting,0.481,Yes,0.2860,0.2860,0
+CADD,3–50,Moderate,0.231,No,,,
+CADD,3–50,Strong,0.0535,No,,,
+phyloP,3–10,Supporting,0.481,Yes,-0.8509,-0.9580,0
+phyloP,3–10,Moderate,0.231,Yes,-1.327,-1.327,0
+phyloP,3–10,Strong,0.0535,No,,,
+phyloP,11–50,Supporting,0.481,No,,,
+phyloP,11–50,Moderate,0.231,No,,,
+phyloP,11–50,Strong,0.0535,No,,,
+phyloP,3–50,Supporting,0.481,Yes,-1.4978,-1.554,0
+phyloP,3–50,Moderate,0.231,No,,,
+phyloP,3–50,Strong,0.0535,No,,,
+phastCons,3–10,Supporting,0.481,Yes,0,0,0.265
+phastCons,3–10,Moderate,0.231,No,,,
+phastCons,3–10,Strong,0.0535,No,,,
+phastCons,11–50,Supporting,0.481,No,,,
+phastCons,11–50,Moderate,0.231,No,,,
+phastCons,11–50,Strong,0.0535,No,,,
+phastCons,3–50,Supporting,0.481,No,,0,
+phastCons,3–50,Moderate,0.231,No,,,
+phastCons,3–50,Strong,0.0535,No,,,
+GPN-MSA,3–10,Supporting,0.481,Yes,1.630,1.530,0.118
+GPN-MSA,3–10,Moderate,0.231,Yes,-3.150,,0
+GPN-MSA,3–10,Strong,0.0535,No,,,
+GPN-MSA,11–50,Supporting,0.481,No,,,
+GPN-MSA,11–50,Moderate,0.231,No,,,
+GPN-MSA,11–50,Strong,0.0535,No,,,
+GPN-MSA,3–50,Supporting,0.481,Yes,-2.590,-2.770,0
+GPN-MSA,3–50,Moderate,0.231,No,,,
+GPN-MSA,3–50,Strong,0.0535,No,,,
+Nucleotide Transformer,3–10,Supporting,0.481,Yes,-1.2618,-1.348,0.114
+Nucleotide Transformer,3–10,Moderate,0.231,No,,,
+Nucleotide Transformer,3–10,Strong,0.0535,No,,,
+Nucleotide Transformer,11–50,Supporting,0.481,Yes,-2.141,,0
+Nucleotide Transformer,11–50,Moderate,0.231,No,,,
+Nucleotide Transformer,11–50,Strong,0.0535,No,,,
+Nucleotide Transformer,3–50,Supporting,0.481,Yes,-1.76287,-1.76287,0.665
+Nucleotide Transformer,3–50,Moderate,0.231,No,,,
+Nucleotide Transformer,3–50,Strong,0.0535,No,,,
+SpliceAI (published basis),3–10,Supporting,0.481,Yes,0.02607,0.024794,0.0923
+SpliceAI (published basis),3–10,Moderate,0.231,Yes,0.00282902,0.00282902,0
+SpliceAI (published basis),3–10,Strong,0.0535,No,,,
+SpliceAI (published basis),11–50,Supporting,0.481,Yes,0.0012704134,,0
+SpliceAI (published basis),11–50,Moderate,0.231,No,,,
+SpliceAI (published basis),11–50,Strong,0.0535,No,,,
+SpliceAI (published basis),3–50,Supporting,0.481,Yes,0.003409,0.003409,0.109
+SpliceAI (published basis),3–50,Moderate,0.231,No,,,
+SpliceAI (published basis),3–50,Strong,0.0535,No,,,
+Atlas combined score,3–10,Supporting,0.481,Yes,0.1919,0.1596,0.0321
+Atlas combined score,3–10,Moderate,0.231,Yes,-0.09194656,-0.077236,0.114
+Atlas combined score,3–10,Strong,0.0535,No,,,
+Atlas combined score,11–50,Supporting,0.481,No,,,
+Atlas combined score,11–50,Moderate,0.231,No,,,
+Atlas combined score,11–50,Strong,0.0535,No,,,
+Atlas combined score,3–50,Supporting,0.481,Yes,-0.051729,-0.083998,0.0766
+Atlas combined score,3–50,Moderate,0.231,No,,,
+Atlas combined score,3–50,Strong,0.0535,No,,,
+Atlas splice sites,3–10,Supporting,0.481,Yes,0.01520,0.018372,0.0908
+Atlas splice sites,3–10,Moderate,0.231,No,,,
+Atlas splice sites,3–10,Strong,0.0535,No,,,
+Atlas splice sites,11–50,Supporting,0.481,Yes,0.0053711,0.0053711,0.280
+Atlas splice sites,11–50,Moderate,0.231,No,,,
+Atlas splice sites,11–50,Strong,0.0535,No,,,
+Atlas splice sites,3–50,Supporting,0.481,Yes,0.010254,,0.0490
+Atlas splice sites,3–50,Moderate,0.231,No,,,
+Atlas splice sites,3–50,Strong,0.0535,No,,,
+Atlas splice-site usage,3–10,Supporting,0.481,Yes,0.01758,0.01758,0.0525
+Atlas splice-site usage,3–10,Moderate,0.231,No,,0.0107422,
+Atlas splice-site usage,3–10,Strong,0.0535,No,,,
+Atlas splice-site usage,11–50,Supporting,0.481,Yes,0.009682,,0.380
+Atlas splice-site usage,11–50,Moderate,0.231,No,,,
+Atlas splice-site usage,11–50,Strong,0.0535,No,,,
+Atlas splice-site usage,3–50,Supporting,0.481,Yes,0.009766,0.01758,0.0416
+Atlas splice-site usage,3–50,Moderate,0.231,No,,,
+Atlas splice-site usage,3–50,Strong,0.0535,No,,,
+Atlas splice junctions,3–10,Supporting,0.481,Yes,0.3845215,0.3845215,0.0727
+Atlas splice junctions,3–10,Moderate,0.231,Yes,0.06229,0.06229,0
+Atlas splice junctions,3–10,Strong,0.0535,No,,,
+Atlas splice junctions,11–50,Supporting,0.481,No,,,
+Atlas splice junctions,11–50,Moderate,0.231,No,,,
+Atlas splice junctions,11–50,Strong,0.0535,No,,,
+Atlas splice junctions,3–50,Supporting,0.481,Yes,0.07593,0.06244,0.119
+Atlas splice junctions,3–50,Moderate,0.231,No,,,
+Atlas splice junctions,3–50,Strong,0.0535,No,,,

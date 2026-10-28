@@ -33,7 +33,7 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   it (stage E16b, `docs/sbds-record-check.md`). The five were scored only after the
   seven genes' thresholds were frozen (tag `frozen-thresholds-v1`), and all seven external
   genes are tested at those thresholds (stage E18).
-- **Entry point:** `python scripts/reproduce_evidence.py` (40 stages; 22 in release
+- **Entry point:** `python scripts/reproduce_evidence.py` (41 stages; 22 in release
   3.0.1). Outputs:
   `phase1/reports/evidence/`, with the analysis set and the external-gene tables
   under `phase1/data/evidence/`.

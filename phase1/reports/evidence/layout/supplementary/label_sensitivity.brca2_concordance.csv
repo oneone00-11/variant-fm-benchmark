@@ -1,0 +1,10 @@
+Class in the functional standard (Huang 2025),Class in the second set (Sahu 2025),Variants with this pair of classes,Share of the variants in both sets,"Second set, MaveDB accession",Variants in both sets at 3–50 bp,Variants with the same class in both sets,Agreed-labels refit: labels added at 3–50 bp,Agreed-labels refit: labels removed at 3–50 bp,Agreed-labels refit: labels switched at 3–50 bp,Second-set refit: labels added at 3–50 bp,Second-set refit: labels removed at 3–50 bp,Second-set refit: labels switched at 3–50 bp
+abnormal,abnormal,24,0.119,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+abnormal,normal,13,0.065,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+abnormal,intermediate,2,0.010,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+normal,abnormal,25,0.124,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+normal,normal,127,0.632,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+normal,intermediate,7,0.035,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+intermediate,abnormal,1,0.005,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+intermediate,normal,2,0.010,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38
+intermediate,intermediate,0,0.000,urn:mavedb:00001242-a-1,201,151,0,47,0,3,9,38

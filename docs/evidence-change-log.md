@@ -2078,3 +2078,74 @@ before the layout layer. One output changes, in one line
   - In a JSON or YAML file, conditions on a path with no "*" used to be ignored; such a row
     now cannot be bound.
   - Tests: both.
+
+## The manuscript's layout: its figures and tables under config/layout.yaml's numbers (stage E5, 2026-10-28)
+
+Why: E5.3, after the author's layout decisions of 2026-10-28 (修改单 v2.45 §3 B1). A new stage,
+the last (41, `src.evid_layout`), writes the manuscript's figures and tables, main and
+supplementary, under `phase1/reports/evidence/layout/`, from outputs that earlier stages
+wrote. It computes nothing new, and no earlier output changes: the v3.0.1 layout under
+`figures/`, `tables/` and `supplement/` stays as it was
+(`scripts/stage_E5/scope_layout.json` declares the new files and nothing else).
+
+- Numbers are set only in `phase1/config/layout.yaml`, and every file is named for its
+  content. Titles, descriptions and notes there are provisional placeholders, not the
+  text. A note names another item by its content name, and the stage writes that item's
+  number. The supplementary tables keep the preview's numbering until the v6 text is
+  final; then they are renumbered, in the configuration alone, in the order the text
+  first cites them.
+- Main text:
+  - Figure 1: the published cut point in the seven genes, without the external genes.
+    The groups are named by band alone.
+  - Figure 2: the held-out genes (a, b) and the seven external genes (c). Panel (c) shows
+    SpliceAI on the published basis and Pangolin, at the published cut point and at the
+    seven genes' fitted Moderate and Strong thresholds. The published cut point's row is
+    judged against Moderate, and both boundaries are named at the top. The stage lists,
+    for the caption, every external gene drawn without a marker, with the reason.
+  - Figure 3: the ROC curves, keeping the inset at the high-specificity end. The legend
+    gives the area under each curve drawn, under "Area under the curve".
+  - Tables 1–3: as printed.
+  - Table 4: held-out sensitivity, specificity and coverage (a); its last column is
+    "Folds with a fitted threshold (S, M, St)". Agreement with ClinVar at one star or
+    more (b), leaving out 11–50 bp, which has 3 P/LP variants.
+- Supplementary figures:
+  - S1–S3: v3.0.1's, drawn again by their own functions in `evid_figures` at the artwork
+    width; the files under `figures/` are not touched.
+  - S4: C2's final figure.
+  - S5: the precision-recall curves.
+- Supplementary tables:
+  - S1–S15: as printed.
+  - S16–S34: from the outputs added since 3.0.1. Every column is kept, under a readable
+    name from the table's map in the configuration (24 maps, 602 entries). Each cell is
+    printed by its column's type, as S1–S13 print a cell of that kind:
+    - tools, bands (an external gene's cut at the depth its deposit reaches), tiers and
+      Yes/No as S1–S13 name them;
+    - counts as whole numbers, proportions to three decimals, ratios to three significant
+      figures, thresholds to four or more;
+    - a published cut point or a prior as the configuration writes it.
+
+    C12's shares are stored rounded to four decimals, so they print at four: at three
+    they would be rounded twice (0.37746 to 0.3775 to 0.378, where S13 prints 0.377). The
+    source files keep their full precision.
+  - S30 gets a provisional note: its part (a) holds the combined Atlas score's rows with
+    BRCA1 or RAD51C held out, which the other held-out counts leave out (C9's output is
+    unchanged).
+- Figures follow the artwork guide, checked against its text: at most 175 mm wide, type of
+  5 to 7 pt, bitmaps at 300 dpi. In the redrawn figures, v3.0.1's titles (7.5 pt) and
+  panel letters (9 pt) are brought down to 7 pt.
+- The supplement's format at submission is recorded in the configuration:
+  - figures, one-page tables and the notes in one PDF;
+  - longer tables in Excel;
+  - each file with a description of at most 50 words.
+
+  Each supplementary table has a destination (pdf or excel) and a provisional
+  description. The destination defaults to whether the table fits on one A4 page,
+  upright or turned; `contents.csv` gives that estimate, with its lines and width,
+  beside each. Five fit: S4, S14, S15, S23 and S33.
+- One run writes everything:
+  - a CSV for each table part;
+  - the workbook, with its README sheet first and each number shown with its printed
+    decimals;
+  - `contents.csv`;
+  - `manifest.csv`, with every file's sha256 and its sources' sha256.
+- README: 41 stages. Tests: `phase1/tests/test_evid_layout.py`.

@@ -1,0 +1,31 @@
+Gene,"Stratum (intronic offset, bp)",Intron-side SNVs,Damaging,Normal,Indeterminate (neither damaging nor normal),Unassigned (no class),Positive rate (damaging / labelled),Evaluable (at least 10 damaging and 10 normal)
+CTCF,Canonical dinucleotides (out of scope),90,68,13,9,0,0.840,Yes
+CTCF,3–10,360,42,305,13,0,0.121,Yes
+CTCF,11–50,1010,34,952,24,0,0.034,Yes
+CTCF,3–50,1370,76,1257,37,0,0.057,Yes
+CTCF,Beyond 50 (out of scope),75,0,74,1,0,0.000,No
+SFPQ,Canonical dinucleotides (out of scope),102,91,7,4,0,0.929,No
+SFPQ,3–10,396,48,324,24,0,0.129,Yes
+SFPQ,11–44,623,52,550,21,0,0.086,Yes
+SFPQ,3–44,1019,100,874,45,0,0.103,Yes
+SFPQ,Beyond 50 (out of scope),0,0,0,0,0,,No
+RAD51D,Canonical dinucleotides (out of scope),108,97,9,2,0,0.915,No
+RAD51D,3–10,429,55,365,9,0,0.131,Yes
+RAD51D,11–50,867,19,844,4,0,0.022,Yes
+RAD51D,3–50,1296,74,1209,13,0,0.058,Yes
+RAD51D,Beyond 50 (out of scope),60,0,60,0,0,0.000,No
+XRCC2,Canonical dinucleotides (out of scope),24,24,0,0,0,1.000,No
+XRCC2,3–10,96,7,89,0,0,0.073,No
+XRCC2,11–50,294,3,291,0,0,0.010,No
+XRCC2,3–50,390,10,380,0,0,0.026,Yes
+XRCC2,Beyond 50 (out of scope),54,0,54,0,0,0.000,No
+ALL4,Canonical dinucleotides (out of scope),324,280,29,15,0,0.906,Yes
+ALL4,3–10,1281,152,1083,46,0,0.123,Yes
+ALL4,11–50,2794,108,2637,49,0,0.039,Yes
+ALL4,3–50,4075,260,3720,95,0,0.065,Yes
+ALL4,Beyond 50 (out of scope),189,0,188,1,0,0.000,No
+SBDS,Canonical dinucleotides (out of scope),45,37,8,0,0,0.822,No
+SBDS,3–10,189,10,177,2,0,0.053,Yes
+SBDS,11–50,258,0,258,0,0,0.000,No
+SBDS,3–50,447,10,435,2,0,0.022,Yes
+SBDS,Beyond 50 (out of scope),15,0,15,0,0,0.000,No

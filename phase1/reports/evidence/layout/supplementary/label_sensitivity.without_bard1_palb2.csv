@@ -1,0 +1,97 @@
+Tool,"Stratum (intronic offset, bp)",Tier,Tier LR cut,Training subset,Training genes,Genes in the training subset,Threshold fitted on the subset,Tier reached on the subset,"In-sample threshold, main analysis","Reached in-sample, main analysis",Tier change from main analysis,Threshold changed from main analysis
+SpliceAI (published basis),3–10,Moderate,4.33,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.5281,Yes,0.5281,Yes,unchanged,No
+SpliceAI (published basis),3–10,Moderate,4.33,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.4615,Yes,0.5281,Yes,unchanged,Yes
+SpliceAI (published basis),3–10,Moderate,4.33,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,0.5511,Yes,0.5281,Yes,unchanged,Yes
+SpliceAI (published basis),3–10,Moderate,4.33,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,0.4742,Yes,0.5281,Yes,unchanged,Yes
+SpliceAI (published basis),3–10,Strong,18.7,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.95946,Yes,0.95946,Yes,unchanged,No
+SpliceAI (published basis),3–10,Strong,18.7,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.8963,Yes,0.95946,Yes,unchanged,Yes
+SpliceAI (published basis),3–10,Strong,18.7,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,0.82216,Yes,0.95946,Yes,unchanged,Yes
+SpliceAI (published basis),3–10,Strong,18.7,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,0.9135,Yes,0.95946,Yes,unchanged,Yes
+SpliceAI (published basis),11–50,Moderate,4.33,every gene,6,BAP1;BARD1;BRCA1;PALB2;RAD51C;VHL,0.2920,Yes,0.2920,Yes,unchanged,No
+SpliceAI (published basis),11–50,Moderate,4.33,without BARD1,5,BAP1;BRCA1;PALB2;RAD51C;VHL,0.3153,Yes,0.2920,Yes,unchanged,Yes
+SpliceAI (published basis),11–50,Moderate,4.33,without PALB2,5,BAP1;BARD1;BRCA1;RAD51C;VHL,0.3187,Yes,0.2920,Yes,unchanged,Yes
+SpliceAI (published basis),11–50,Moderate,4.33,without BARD1 and PALB2,4,BAP1;BRCA1;RAD51C;VHL,0.3531,Yes,0.2920,Yes,unchanged,Yes
+SpliceAI (published basis),11–50,Strong,18.7,every gene,6,BAP1;BARD1;BRCA1;PALB2;RAD51C;VHL,,No,,No,unchanged,No
+SpliceAI (published basis),11–50,Strong,18.7,without BARD1,5,BAP1;BRCA1;PALB2;RAD51C;VHL,,No,,No,unchanged,No
+SpliceAI (published basis),11–50,Strong,18.7,without PALB2,5,BAP1;BARD1;BRCA1;RAD51C;VHL,,No,,No,unchanged,No
+SpliceAI (published basis),11–50,Strong,18.7,without BARD1 and PALB2,4,BAP1;BRCA1;RAD51C;VHL,,No,,No,unchanged,No
+SpliceAI (published basis),3–50,Moderate,4.33,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.4263,Yes,0.4263,Yes,unchanged,No
+SpliceAI (published basis),3–50,Moderate,4.33,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.42467,Yes,0.4263,Yes,unchanged,Yes
+SpliceAI (published basis),3–50,Moderate,4.33,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,0.4195,Yes,0.4263,Yes,unchanged,Yes
+SpliceAI (published basis),3–50,Moderate,4.33,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,0.4133,Yes,0.4263,Yes,unchanged,Yes
+SpliceAI (published basis),3–50,Strong,18.7,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.8773,Yes,0.8773,Yes,unchanged,No
+SpliceAI (published basis),3–50,Strong,18.7,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.89665,Yes,0.8773,Yes,unchanged,Yes
+SpliceAI (published basis),3–50,Strong,18.7,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,0.8415,Yes,0.8773,Yes,unchanged,Yes
+SpliceAI (published basis),3–50,Strong,18.7,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,0.8969,Yes,0.8773,Yes,unchanged,Yes
+Pangolin,3–10,Moderate,4.33,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.5108555555,Yes,0.5108555555,Yes,unchanged,No
+Pangolin,3–10,Moderate,4.33,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.5276,Yes,0.5108555555,Yes,unchanged,Yes
+Pangolin,3–10,Moderate,4.33,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,0.5473,Yes,0.5108555555,Yes,unchanged,Yes
+Pangolin,3–10,Moderate,4.33,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,0.5473,Yes,0.5108555555,Yes,unchanged,Yes
+Pangolin,3–10,Strong,18.7,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.6972,Yes,0.6972,Yes,unchanged,No
+Pangolin,3–10,Strong,18.7,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.7039,Yes,0.6972,Yes,unchanged,Yes
+Pangolin,3–10,Strong,18.7,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,0.701455,Yes,0.6972,Yes,unchanged,Yes
+Pangolin,3–10,Strong,18.7,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,0.7118,Yes,0.6972,Yes,unchanged,Yes
+Pangolin,11–50,Moderate,4.33,every gene,6,BAP1;BARD1;BRCA1;PALB2;RAD51C;VHL,0.4093,Yes,0.4093,Yes,unchanged,No
+Pangolin,11–50,Moderate,4.33,without BARD1,5,BAP1;BRCA1;PALB2;RAD51C;VHL,0.34819,Yes,0.4093,Yes,unchanged,Yes
+Pangolin,11–50,Moderate,4.33,without PALB2,5,BAP1;BARD1;BRCA1;RAD51C;VHL,0.3399,Yes,0.4093,Yes,unchanged,Yes
+Pangolin,11–50,Moderate,4.33,without BARD1 and PALB2,4,BAP1;BRCA1;RAD51C;VHL,0.329596,Yes,0.4093,Yes,unchanged,Yes
+Pangolin,11–50,Strong,18.7,every gene,6,BAP1;BARD1;BRCA1;PALB2;RAD51C;VHL,,No,,No,unchanged,No
+Pangolin,11–50,Strong,18.7,without BARD1,5,BAP1;BRCA1;PALB2;RAD51C;VHL,,No,,No,unchanged,No
+Pangolin,11–50,Strong,18.7,without PALB2,5,BAP1;BARD1;BRCA1;RAD51C;VHL,,No,,No,unchanged,No
+Pangolin,11–50,Strong,18.7,without BARD1 and PALB2,4,BAP1;BRCA1;RAD51C;VHL,,No,,No,unchanged,No
+Pangolin,3–50,Moderate,4.33,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.4146675,Yes,0.4146675,Yes,unchanged,No
+Pangolin,3–50,Moderate,4.33,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.4106,Yes,0.4146675,Yes,unchanged,Yes
+Pangolin,3–50,Moderate,4.33,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,0.43047,Yes,0.4146675,Yes,unchanged,Yes
+Pangolin,3–50,Moderate,4.33,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,0.4341,Yes,0.4146675,Yes,unchanged,Yes
+Pangolin,3–50,Strong,18.7,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.6798,Yes,0.6798,Yes,unchanged,No
+Pangolin,3–50,Strong,18.7,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.684879,Yes,0.6798,Yes,unchanged,Yes
+Pangolin,3–50,Strong,18.7,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,0.6740,Yes,0.6798,Yes,unchanged,Yes
+Pangolin,3–50,Strong,18.7,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,0.675775,Yes,0.6798,Yes,unchanged,Yes
+AlphaGenome splice score,3–10,Moderate,4.33,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,1.86855,Yes,1.86855,Yes,unchanged,No
+AlphaGenome splice score,3–10,Moderate,4.33,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,1.617578,Yes,1.86855,Yes,unchanged,Yes
+AlphaGenome splice score,3–10,Moderate,4.33,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,1.9956,Yes,1.86855,Yes,unchanged,Yes
+AlphaGenome splice score,3–10,Moderate,4.33,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,1.617578,Yes,1.86855,Yes,unchanged,Yes
+AlphaGenome splice score,3–10,Strong,18.7,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,2.673,Yes,2.673,Yes,unchanged,No
+AlphaGenome splice score,3–10,Strong,18.7,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,3.0702,Yes,2.673,Yes,unchanged,Yes
+AlphaGenome splice score,3–10,Strong,18.7,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,3.06387,Yes,2.673,Yes,unchanged,Yes
+AlphaGenome splice score,3–10,Strong,18.7,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,3.116,Yes,2.673,Yes,unchanged,Yes
+AlphaGenome splice score,11–50,Moderate,4.33,every gene,6,BAP1;BARD1;BRCA1;PALB2;RAD51C;VHL,0.9600,Yes,0.9600,Yes,unchanged,No
+AlphaGenome splice score,11–50,Moderate,4.33,without BARD1,5,BAP1;BRCA1;PALB2;RAD51C;VHL,1.050,Yes,0.9600,Yes,unchanged,Yes
+AlphaGenome splice score,11–50,Moderate,4.33,without PALB2,5,BAP1;BARD1;BRCA1;RAD51C;VHL,0.9530,Yes,0.9600,Yes,unchanged,Yes
+AlphaGenome splice score,11–50,Moderate,4.33,without BARD1 and PALB2,4,BAP1;BRCA1;RAD51C;VHL,1.139,Yes,0.9600,Yes,unchanged,Yes
+AlphaGenome splice score,11–50,Strong,18.7,every gene,6,BAP1;BARD1;BRCA1;PALB2;RAD51C;VHL,2.6528,Yes,2.6528,Yes,unchanged,No
+AlphaGenome splice score,11–50,Strong,18.7,without BARD1,5,BAP1;BRCA1;PALB2;RAD51C;VHL,,No,2.6528,Yes,lost,Yes
+AlphaGenome splice score,11–50,Strong,18.7,without PALB2,5,BAP1;BARD1;BRCA1;RAD51C;VHL,,No,2.6528,Yes,lost,Yes
+AlphaGenome splice score,11–50,Strong,18.7,without BARD1 and PALB2,4,BAP1;BRCA1;RAD51C;VHL,,No,2.6528,Yes,lost,Yes
+AlphaGenome splice score,3–50,Moderate,4.33,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,1.673,Yes,1.673,Yes,unchanged,No
+AlphaGenome splice score,3–50,Moderate,4.33,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,1.512695,Yes,1.673,Yes,unchanged,Yes
+AlphaGenome splice score,3–50,Moderate,4.33,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,1.70195,Yes,1.673,Yes,unchanged,Yes
+AlphaGenome splice score,3–50,Moderate,4.33,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,1.617578,Yes,1.673,Yes,unchanged,Yes
+AlphaGenome splice score,3–50,Strong,18.7,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,2.543,Yes,2.543,Yes,unchanged,No
+AlphaGenome splice score,3–50,Strong,18.7,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,2.57788,Yes,2.543,Yes,unchanged,Yes
+AlphaGenome splice score,3–50,Strong,18.7,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,2.605,Yes,2.543,Yes,unchanged,Yes
+AlphaGenome splice score,3–50,Strong,18.7,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,2.64846,Yes,2.543,Yes,unchanged,Yes
+Atlas combined score,3–10,Moderate,4.33,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,1.071,Yes,1.071,Yes,unchanged,No
+Atlas combined score,3–10,Moderate,4.33,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,1.0345,Yes,1.071,Yes,unchanged,Yes
+Atlas combined score,3–10,Moderate,4.33,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,1.0689,Yes,1.071,Yes,unchanged,Yes
+Atlas combined score,3–10,Moderate,4.33,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,1.004,Yes,1.071,Yes,unchanged,Yes
+Atlas combined score,3–10,Strong,18.7,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,1.36455,Yes,1.36455,Yes,unchanged,No
+Atlas combined score,3–10,Strong,18.7,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,1.43385,Yes,1.36455,Yes,unchanged,Yes
+Atlas combined score,3–10,Strong,18.7,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,1.4005,Yes,1.36455,Yes,unchanged,Yes
+Atlas combined score,3–10,Strong,18.7,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,1.430658,Yes,1.36455,Yes,unchanged,Yes
+Atlas combined score,11–50,Moderate,4.33,every gene,6,BAP1;BARD1;BRCA1;PALB2;RAD51C;VHL,0.69857,Yes,0.69857,Yes,unchanged,No
+Atlas combined score,11–50,Moderate,4.33,without BARD1,5,BAP1;BRCA1;PALB2;RAD51C;VHL,0.68428,Yes,0.69857,Yes,unchanged,Yes
+Atlas combined score,11–50,Moderate,4.33,without PALB2,5,BAP1;BARD1;BRCA1;RAD51C;VHL,0.67039,Yes,0.69857,Yes,unchanged,Yes
+Atlas combined score,11–50,Moderate,4.33,without BARD1 and PALB2,4,BAP1;BRCA1;RAD51C;VHL,0.671887,Yes,0.69857,Yes,unchanged,Yes
+Atlas combined score,11–50,Strong,18.7,every gene,6,BAP1;BARD1;BRCA1;PALB2;RAD51C;VHL,1.127,Yes,1.127,Yes,unchanged,No
+Atlas combined score,11–50,Strong,18.7,without BARD1,5,BAP1;BRCA1;PALB2;RAD51C;VHL,,No,1.127,Yes,lost,Yes
+Atlas combined score,11–50,Strong,18.7,without PALB2,5,BAP1;BARD1;BRCA1;RAD51C;VHL,1.150,Yes,1.127,Yes,unchanged,Yes
+Atlas combined score,11–50,Strong,18.7,without BARD1 and PALB2,4,BAP1;BRCA1;RAD51C;VHL,,No,1.127,Yes,lost,Yes
+Atlas combined score,3–50,Moderate,4.33,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.8921,Yes,0.8921,Yes,unchanged,No
+Atlas combined score,3–50,Moderate,4.33,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,0.84995,Yes,0.8921,Yes,unchanged,Yes
+Atlas combined score,3–50,Moderate,4.33,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,0.80486,Yes,0.8921,Yes,unchanged,Yes
+Atlas combined score,3–50,Moderate,4.33,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,0.80408,Yes,0.8921,Yes,unchanged,Yes
+Atlas combined score,3–50,Strong,18.7,every gene,7,BAP1;BARD1;BRCA1;BRCA2;PALB2;RAD51C;VHL,1.171,Yes,1.171,Yes,unchanged,No
+Atlas combined score,3–50,Strong,18.7,without BARD1,6,BAP1;BRCA1;BRCA2;PALB2;RAD51C;VHL,1.1815,Yes,1.171,Yes,unchanged,Yes
+Atlas combined score,3–50,Strong,18.7,without PALB2,6,BAP1;BARD1;BRCA1;BRCA2;RAD51C;VHL,1.1788,Yes,1.171,Yes,unchanged,Yes
+Atlas combined score,3–50,Strong,18.7,without BARD1 and PALB2,5,BAP1;BRCA1;BRCA2;RAD51C;VHL,1.208,Yes,1.171,Yes,unchanged,Yes

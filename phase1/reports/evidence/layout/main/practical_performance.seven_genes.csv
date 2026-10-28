@@ -1,0 +1,7 @@
+Predictor,Band,Supporting: sensitivity,Supporting: specificity,Supporting: coverage,Moderate: sensitivity,Moderate: specificity,Moderate: coverage,Strong: sensitivity,Strong: specificity,Strong: coverage,"Folds with a fitted threshold (S, M, St)"
+SpliceAI (published basis),3–10 bp,0.61,0.95,0.15,0.56,0.97,0.13,0.22,0.99,0.05,"7, 7, 7 of 7"
+SpliceAI (published basis),11–50 bp,0.41,0.97,0.05,0.35,0.98,0.04,–,–,–,"6, 6, 1 of 6"
+SpliceAI (published basis),3–50 bp,0.62,0.96,0.10,0.55,0.97,0.08,0.20,>0.99,0.02,"7, 7, 7 of 7"
+Pangolin,3–10 bp,0.66,0.95,0.16,0.55,0.97,0.12,0.38,0.99,0.07,"7, 7, 7 of 7"
+Pangolin,11–50 bp,0.41,0.96,0.06,0.27,0.99,0.02,–,–,–,"6, 6, 0 of 6"
+Pangolin,3–50 bp,0.59,0.97,0.09,0.55,0.98,0.08,0.34,>0.99,0.04,"7, 7, 7 of 7"

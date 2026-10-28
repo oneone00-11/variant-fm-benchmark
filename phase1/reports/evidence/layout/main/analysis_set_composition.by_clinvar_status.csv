@@ -1,0 +1,5 @@
+ClinVar record status (3–50 bp),Variants,Labelled,Damaging (%),Genes
+Classified pathogenic or benign,"1,497","1,426",127 (8.9%),7
+Recorded without such a classification,"1,195","1,115",220 (19.7%),7
+   of which no clinical assertion,555,517,43 (8.3%),4
+Unrecorded (not in the ClinVar release),"5,305","5,119",446 (8.7%),6
