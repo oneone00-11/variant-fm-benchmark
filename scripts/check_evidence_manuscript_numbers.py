@@ -591,9 +591,11 @@ def selftest(md_path: Path, planted: list[str] = PLANTED) -> int:
 #   file        the output that holds the value, from the repository root
 #   rows        which rows: conditions joined by "; ", each "column=value",
 #               "column!=value", "column>=number" (also <=, >, <),
-#               "column in a|b|c", "column not in a|b" or "column startswith text";
-#               in a JSON or YAML file they test the key a "*" in the path matched
-#               ("key in a|b")
+#               "column in a|b|c", "column not in a|b" or "column startswith text",
+#               each split at its first operator, so that a value may hold another
+#               ("note = present in ClinVar"); in a JSON or YAML file they test the
+#               key a "*" in the path matched ("key in a|b"), and a path with no "*"
+#               takes no condition
 #   column      the column of a table, or the path of keys in a JSON or YAML file
 #               (dots between keys, [n] for an item of a list, ["key"] for a key with
 #               a dot or a colon, * for every key at that level)
@@ -612,8 +614,8 @@ def selftest(md_path: Path, planted: list[str] = PLANTED) -> int:
 BINDING_COLUMNS = ["document", "line", "occurrence", "printed", "excerpt", "kind", "reason",
                    "file", "rows", "column", "derive", "scale"]
 DERIVES = {"value", "sum", "min", "max", "count", "count_nonnull", "all", "text"}
-CONDITION = re.compile(r"^(?P<col>.+?)\s*(?P<op>!=|>=|<=|=|>|<)\s*(?P<val>.*)$")
-WORD_CONDITION = re.compile(r"^(?P<col>.+?)\s+(?P<op>not in|in|startswith)\s+(?P<val>.+)$")
+# a row condition's operator: the first in it, a sign or a word between spaces
+OPERATOR = re.compile(r"\s+(?:not in|in|startswith)\s+|!=|>=|<=|=|>|<")
 
 
 class BindError(Exception):
@@ -684,12 +686,14 @@ def _decimal(x) -> Decimal | None:
 
 
 def _conditions(spec: str) -> list[tuple[str, str, str]]:
+    """(column, operator, value) for each condition, split at the first operator, so
+    that "note = present in ClinVar" tests the column note."""
     out = []
     for part in [p.strip() for p in spec.split(";") if p.strip()]:
-        m = WORD_CONDITION.match(part) or CONDITION.match(part)
-        if not m:
+        m = OPERATOR.search(part)
+        if not m or not part[:m.start()].strip():
             raise BindError(f"cannot read the row condition '{part}'")
-        out.append((m["col"].strip(), m["op"], m["val"].strip()))
+        out.append((part[:m.start()].strip(), m.group(0).strip(), part[m.end():].strip()))
     return out
 
 
@@ -794,7 +798,10 @@ def resolve(b: Binding, root: Path = REPO) -> list:
         blob = _load(path)
         if conds and any(col != "key" for col, _, _ in conds):
             raise BindError("in a JSON or YAML file the rows can only test the key")
-        found = list(_walk(blob, _path(b.column), conds))
+        parts = _path(b.column)
+        if conds and "*" not in parts:
+            raise BindError("the rows test the key a '*' matches, and the path has no '*'")
+        found = list(_walk(blob, parts, conds))
         if b.derive == "count":
             return [Decimal(len(found))]
         cells = [v for _, v in found]

@@ -1,0 +1,15 @@
+{
+ "commit": "E5 (before commit 3: the practical-metrics summary's legend names the seven external genes; the README on the AlphaGenome scores; the cells mode's two gaps)",
+ "reason": "stage E15's legend line on practical_metrics_external.csv named DDX3X and TP53 alone, and the file holds the seven external genes since E19.1; the stage now writes the genes from its own list. README and the numbers gate are documents, code and tests",
+ "declared_from": "the author's review of E5's first report (2026-10-28): the line is changed where it is generated and the summary written again in the reference image, and the scope declares this one output file; within it only line 31, the legend's line on the tables, may change",
+ "pairs": {},
+ "files": {
+  "docs/practical-metrics-summary.md": {
+   "kind": "lines",
+   "patterns": [
+    "^- Wilson intervals, the BP4 side, the other ten columns and the fusion are in `practical_metrics_by_threshold\\.csv`; each fold in `practical_metrics_logo_by_gene\\.csv`; "
+   ],
+   "why": "the legend names the genes practical_metrics_external.csv holds: DDX3X, TP53, CTCF, SFPQ, RAD51D, XRCC2 and SBDS, not DDX3X and TP53 alone"
+  }
+ }
+}

@@ -2053,3 +2053,28 @@ Why: E5.2 (修改单 v2.44 §3 B2, from E5.0 §5). Documents and code only; no o
   line 31 still names only DDX3X and TP53 in `practical_metrics_external.csv`, which holds
   all seven external genes since E19: the file is an output of stage E15, so changing the
   line changes an output, which this commit does not do.
+
+## The practical-metrics summary names the seven external genes; the AlphaGenome scores in the README; two gaps of the cells mode (stage E5, 2026-10-28)
+
+Why: the author's review of E5's first report (修改单 v2.45 §8, stage 4b), a small commit
+before the layout layer. One output changes, in one line
+(`scripts/stage_E5/scope_summary.json`).
+
+- `docs/practical-metrics-summary.md`, line 31: the legend said that
+  `practical_metrics_external.csv` holds DDX3X and TP53; since E19.1 it holds the seven
+  external genes. Stage E15 now names the genes from its own list (`EXTERNAL`): DDX3X,
+  TP53, CTCF, SFPQ, RAD51D, XRCC2 and SBDS. The page was written again in the reference
+  image (`scripts/stage_E5/pipeline_from.py`, from stage 23); no other line and no other
+  output changes. Test: the legend names every gene of the external table.
+- README: where the `alphagenome` column's scores come from (修改单 B2, after E17). They are
+  AlphaGenome's splice score by the definition of the model's own notebook, committed with
+  their provenance records under `phase1/data/evidence/alphagenome_official/` and read as
+  they stand; scoring them again needs an API key held outside the repository.
+- Cells mode, the two gaps E5's first report recorded. Neither touches the v5 table, whose
+  verdicts are unchanged.
+  - A row condition is split at its first operator, so that a value may hold an
+    operator's word or sign. "note = present in ClinVar" used to be read as the column
+    "note = present".
+  - In a JSON or YAML file, conditions on a path with no "*" used to be ignored; such a row
+    now cannot be bound.
+  - Tests: both.

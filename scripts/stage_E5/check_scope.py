@@ -1,9 +1,11 @@
 """E5: scripts/stage_E18/check_scope.py, run as it stands, its run record written here.
 
-E5 checks every commit's outputs against the previous commit the way E18 did. Its three
-commits change no output: commits 1 and 2 change code, tests and documents only, so their
-scope declares no file and every output must stay byte for byte the same; commit 3 adds
-the layout stage's files and declares exactly those (E5's rules, E19.0 rule 1). This runs
+E5 checks every commit's outputs against the previous commit the way E18 did. Commits 1
+and 2 change code, tests and documents only, so their scope declares no file and every
+output must stay byte for byte the same; the commit after them changes one line of one
+output, the practical-metrics summary's legend, at the author's request, and declares that
+line (scope_summary.json); commit 3 adds the layout stage's files and declares exactly
+those (E5's rules, E19.0 rule 1). This runs
 E18's script unchanged; only the run record goes to this folder's run_log/, because this
 folder's _runlog is imported first and E18's script then finds it already loaded.
 

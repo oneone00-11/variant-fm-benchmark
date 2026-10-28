@@ -52,6 +52,12 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   the five further deposits with their transcript models, the IGVF copy of the SBDS
   scores and the archived versions of the BARD1 and PALB2 score sets
   (`scripts/stage_E16/`). The entry point's docstring lists how each is produced.
+  The `alphagenome` column itself is AlphaGenome's splice score by the definition of
+  the model's own variant-scoring notebook (stage E17): its scores, for the analysis
+  set and the external genes, are committed with their provenance records under
+  `phase1/data/evidence/alphagenome_official/` and read as they stand, and scoring them
+  again (`scripts/stage_E17/score_official.py`) needs an AlphaGenome API key, read from
+  `ALPHAGENOME_API_KEY` or `~/.config/alphagenome/key` and never kept in the repository.
 - **Environment:** Python 3.12 with the package set in
   `requirements-evidence.lock.txt`. Changes between rounds are recorded in
   `docs/evidence-change-log.md`; data terms per column in `LICENSE-DATA`.

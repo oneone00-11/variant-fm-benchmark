@@ -492,6 +492,16 @@ def test_the_summary_is_written_from_the_tables(table, auc, curves):
         assert len(numbers) <= 2, sentence
 
 
+@need
+def test_the_legend_names_every_gene_of_the_external_table():
+    """The legend names the genes practical_metrics_external.csv holds, all seven
+    since E19.1, not DDX3X and TP53 alone (E5)."""
+    md = SUMMARY.read_text(encoding="utf-8")
+    m = re.search(r"; the external genes, ([^;]+?), in `practical_metrics_external\.csv`", md)
+    assert m
+    assert re.split(r", | and ", m.group(1)) == list(dict.fromkeys(_csv(EXTERNAL).gene))
+
+
 def test_summary_sentences_follow_the_data():
     """The sentence helpers on made-up tables: ties, no common leader, no gene."""
     from src import evid_practical_metrics as P

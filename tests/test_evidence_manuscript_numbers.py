@@ -230,6 +230,7 @@ def test_a_cell_is_compared_at_the_printed_precision(tmp_path):
     (dict(derive="mean"), "is not one of"),
     (dict(file="out/r.json", rows="", column='sets["urn:x:z-1"].n'), "no key 'urn:x:z-1'"),
     (dict(file="out/r.json", rows="tool=a", column='sets.*.n'), "the rows can only test the key"),
+    (dict(file="out/r.json", rows="key in urn:x:q-1", column='sets["urn:x:q-1"].n'), "the path has no '*'"),
 ])
 def test_a_row_that_cannot_be_resolved_is_reported(tmp_path, change, why):
     root = _toy_root(tmp_path)
@@ -238,6 +239,24 @@ def test_a_row_that_cannot_be_resolved_is_reported(tmp_path, change, why):
         setattr(b, k, v)
     r = gate.cells_results(_md("The ratio was 8.3 [t.csv]."), [b], root)[0]
     assert r.status == "cannot_bind" and why in r.why
+
+
+def test_a_condition_splits_at_its_first_operator(tmp_path):
+    """A value may hold another operator's word or sign: "note = present in ClinVar"
+    tests the column note."""
+    assert gate._conditions("note = present in ClinVar; tool in a|b; label startswith x = y") == [
+        ("note", "=", "present in ClinVar"), ("tool", "in", "a|b"), ("label", "startswith", "x = y")]
+    assert gate._conditions("n>=3; kind not in a|b; lo=") == [
+        ("n", ">=", "3"), ("kind", "not in", "a|b"), ("lo", "=", "")]
+    for bad in ("= a", "tool a", "tool in"):
+        with pytest.raises(gate.BindError, match="cannot read the row condition"):
+            gate._conditions(bad)
+    root = tmp_path / "repo"
+    (root / "out").mkdir(parents=True)
+    (root / "out" / "t.csv").write_text("note,lr\npresent in ClinVar,8.3\nabsent,7.0\n")
+    r = gate.cells_results(_md("The ratio was 8.3 [t.csv]."),
+                           [_binding(rows="note = present in ClinVar")], root)[0]
+    assert (r.status, r.now) == ("match", "8.3")
 
 
 def test_numbers_without_a_row_and_rows_without_a_number_are_reported(tmp_path):

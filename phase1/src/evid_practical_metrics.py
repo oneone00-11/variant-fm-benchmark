@@ -1238,7 +1238,8 @@ def summary(table: pd.DataFrame, auc: pd.DataFrame, ext: pd.DataFrame,
            "- Two decimals; >0.99 marks a value from 0.995 up to, not including, 1.",
            "- Wilson intervals, the BP4 side, the other ten columns and the fusion are "
            "in `practical_metrics_by_threshold.csv`; each fold in "
-           "`practical_metrics_logo_by_gene.csv`; DDX3X and TP53 in "
+           "`practical_metrics_logo_by_gene.csv`; the external genes, "
+           f"{', '.join(g for g, _ in EXTERNAL[:-1])} and {EXTERNAL[-1][0]}, in "
            "`practical_metrics_external.csv`. The curve tables start at threshold "
            "+inf, where nothing is called; the precision-recall table's first row is "
            "the conventional (recall 0, precision 1), not an observation.",

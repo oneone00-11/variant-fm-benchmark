@@ -1,0 +1,51 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E5/scope_summary.json",
+  "--base",
+  "HEAD"
+ ],
+ "git_commit": "cc4f36e9916928ccc67bf4921131113614f7e46a",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E5/_runlog.py": "623aec9f20491f8625dfe5e4c324cff8006a5034d8d72de45faa7f4a3baca0ef"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5"
+ },
+ "start_utc": "2026-10-27T23:58:55+00:00",
+ "end_utc": "2026-10-27T23:59:16+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E5/scope_summary.json",
+   "bytes": 1172,
+   "sha256": "6cd2cef335bc1aa675689364e690c7b2cb961275910459d6ed4631b14bb1e0bf"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E5/scope_summary.json",
+  "base": "HEAD",
+  "head": "working tree",
+  "files": {
+   "docs/practical-metrics-summary.md": {
+    "changed": 2,
+    "outside": [],
+    "status": "within the scope"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}
