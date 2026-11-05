@@ -215,6 +215,20 @@ def test_the_training_rows_that_come_from_the_atlas_are_not_restated():
     assert checked == len(FROM_ATLAS)
 
 
+def test_the_fusion_row_names_its_seven_columns_and_its_target():
+    """The fusion is an elastic net over evid_common.FUSION_FEATURES, the panel without the
+    AlphaGenome splice score, fitted on the within-gene rank of the training genes'
+    continuous functional scores (logo_fusion). Its row said "the eight panel columns"
+    and "functional labels" until E7 (2026-11-05)."""
+    t = pd.read_csv(REPORTS / "predictor_training_provenance.csv")
+    text = t.loc[t.score_column == "fusion_enet", "training_data"].iloc[0]
+    assert len(K.FUSION_FEATURES) == 7
+    assert [c for c in K.PANEL if c not in K.FUSION_FEATURES] == ["alphagenome"]
+    assert text == ("Elastic net over seven panel columns, the panel without the AlphaGenome "
+                    "splice score, refitted within each leave-one-gene-out fold on the "
+                    "within-gene rank of the training genes' continuous functional scores")
+
+
 def test_no_panel_column_is_trained_on_clinical_classifications():
     """The claim the manuscript makes from this table. It is a statement about
     the panel as assembled, so it is asserted against the file, not in prose."""

@@ -12,5 +12,7 @@ On 2026-10-21 the author replaced them, under the same names one folder up, with
 built from those ranges (`scripts/stage_E16d/build_labels.py`; the record is
 `../PROVENANCE.json`). The decision was made before the refit was seen.
 
-These two are kept for the sensitivity comparison (revision item C3). No stage reads
-them.
+These two are kept for the sensitivity comparison (revision item C3). Stage 30 of
+`scripts/reproduce_evidence.py`, C3 (`src/evid_suppl_c3.py`), reads them: it refits the
+thresholds under these labels and sets the result beside the current labels' fit
+(`reports/evidence/suppl_analyses/c3_superseded_labels.csv`). No other stage reads them.

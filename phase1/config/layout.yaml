@@ -3,8 +3,10 @@
 # stable and names its files, and its number, title and place in the list can change
 # with the text. Titles, descriptions and notes are provisional placeholders, not the
 # manuscript's wording: the titles of Supplementary Tables S1-S13 are
-# supplement/supplement_tables_manifest.csv's, the others a neutral description. A note
-# names another item as {content}, which the stage writes as that item's number.
+# supplement/supplement_tables_manifest.csv's, but S6's and S7's, which name the method
+# as the text now does (local likelihood-ratio calibration, the author's decision of
+# 2026-11-04), and the others a neutral description. A note names another item as
+# {content}, which the stage writes as that item's number.
 # Numbering is provisional, in the order of the v5 text; what v5 does not cite follows
 # it. Once the v6 text is final, the supplementary tables are numbered in the order the
 # text first cites them, here alone (the author's decision of 2026-10-28). Paths are from
@@ -160,8 +162,10 @@ supplementary:
     destination: pdf
     description: "provisional: Local likelihood ratio against score for each of the thirteen predictor columns in each distance band, with the fitted thresholds."
     make: redraw_figure
-    # evid_figures draws it 250 mm tall; drawn here at the artwork block's height limit
-    options: {function: figure_s1, height_mm: 240}
+    # evid_figures draws it 250 mm tall; drawn here at the artwork block's height limit,
+    # its caption line at the foot at least caption_gap_mm below the last row's tick
+    # labels, the panels shorter in proportion (the author's decision of 2026-11-05)
+    options: {function: figure_s1, height_mm: 240, caption_gap_mm: 2}
     sources: [reports/evidence/evidence_thresholds.csv,
               reports/evidence/interval_lr_spliceai_walker_s3_10.csv, reports/evidence/interval_lr_spliceai_walker_s11_50.csv, reports/evidence/interval_lr_spliceai_walker_s3_50.csv,
               reports/evidence/interval_lr_spliceai_s3_10.csv, reports/evidence/interval_lr_spliceai_s11_50.csv, reports/evidence/interval_lr_spliceai_s3_50.csv,
@@ -237,14 +241,34 @@ supplementary:
      title: "The published SpliceAI cut points on the published-basis column, by stratum and ClinVar record status, with per-gene point estimates",
      description: "provisional: The published SpliceAI cut points by distance band and ClinVar record status, pooled and per gene: sensitivity, specificity, band likelihood ratios and tiers.",
      parts: [{part: cut_points, source: reports/evidence/supplement/tableS5_published_cut_points.csv}]}
-  - {content: thresholds_pathogenic, kind: table, number: Supplementary Table S6, make: table_parts, destination: excel,
-     title: "Interval-calibration thresholds, pathogenic side: tier reached in-sample, thresholds under the gene-clustered and variant-level bootstraps, and leave-one-gene-out transfer",
-     description: "provisional: Pathogenic-side thresholds of every predictor column by band and tier, in-sample and held out by gene.",
-     parts: [{part: pp3, source: reports/evidence/supplement/tableS6_thresholds_pathogenic.csv}]}
-  - {content: thresholds_benign, kind: table, number: Supplementary Table S7, make: table_parts, destination: excel,
-     title: "Interval-calibration thresholds, benign side",
-     description: "provisional: Benign-side thresholds of every predictor column by band and tier, in-sample, with the median held-out ratio.",
-     parts: [{part: bp4, source: reports/evidence/supplement/tableS7_thresholds_benign.csv}]}
+  # S6 lists the combined Atlas score's folds with BRCA1 or RAD51C held out, marked, and
+  # counts its rows over the other genes, by the rule Table 2(a) counts by; S7's medians
+  # are over every fold, as evid_interval_lr wrote them, the per-fold BP4 ratios being in
+  # no output, and its note says so (the author's decision of 2026-11-05)
+  - content: thresholds_pathogenic
+    kind: table
+    number: Supplementary Table S6
+    make: table_parts
+    destination: excel
+    title: "Local likelihood-ratio calibration thresholds, pathogenic side: tier reached in-sample, thresholds under the gene-clustered and variant-level bootstraps, and leave-one-gene-out transfer"
+    description: "provisional: Pathogenic-side thresholds of every predictor column by band and tier, in-sample and held out by gene."
+    parts:
+      - part: pp3
+        source: reports/evidence/supplement/tableS6_thresholds_pathogenic.csv
+        not_counted: {rule: avi_seen_in_training, folds: reports/evidence/evidence_thresholds_logo_folds.csv, side: pp3}
+    notes:
+      - "provisional: †, a fold not counted: the combined Atlas score's model was selected on the BRCA1 and RAD51C assays, so its rows' counts, median, minimum and maximum are over the other held-out genes, as in {evidence_tiers_and_thresholds}(a)"
+  - content: thresholds_benign
+    kind: table
+    number: Supplementary Table S7
+    make: table_parts
+    destination: excel
+    title: "Local likelihood-ratio calibration thresholds, benign side"
+    description: "provisional: Benign-side thresholds of every predictor column by band and tier, in-sample, with the median held-out ratio."
+    parts:
+      - {part: bp4, source: reports/evidence/supplement/tableS7_thresholds_benign.csv}
+    notes:
+      - "provisional: in the combined Atlas score's rows, the median held-out ratio includes the folds with BRCA1 and RAD51C held out"
   - {content: dilution, kind: table, number: Supplementary Table S8, make: table_parts, destination: excel,
      title: "Thresholds refitted on every subset of training genes: share of subsets reaching each tier, the threshold across subsets, and the share of held-out genes clearing the cut",
      description: "provisional: Thresholds refitted on every subset of the training genes: how often each tier is reached, the threshold's spread, and transfer to the genes held out.",
@@ -506,7 +530,14 @@ supplementary:
     description: "provisional: Thresholds and tiers refitted on the seven training genes and the five further genes, beside the seven-gene fit."
     make: table_parts
     parts:
-      - {part: refit, source: reports/evidence/suppl_analyses/twelve_gene_refit.csv}
+      - part: refit
+        source: reports/evidence/suppl_analyses/twelve_gene_refit.csv
+        # the text reports the change of tier only (the author's decision of 2026-10-25):
+        # the absolute change is the difference of the two thresholds printed beside it,
+        # and the relative change has no meaning where the threshold changes sign (GPN-MSA
+        # and AVI at 3-10 bp, BP4 Supporting) or is zero (phastCons there). The source
+        # keeps both (E7, 2026-11-05)
+        omit: [abs_change, rel_change]
   - content: inframe_true_positives
     kind: table
     number: Supplementary Table S33
@@ -570,7 +601,7 @@ columns:
     "folds_excluded": ["Genes left out of the held-out counts", "text"]
     "folds_used": ["Folds with a fitted threshold, counted", "count"]
     "folds_with_band_lr": ["Counted folds with an evaluable held-out LR", "count"]
-    "tier_by_interval_rule": ["Tier by interval calibration", "tier"]
+    "tier_by_interval_rule": ["Tier by the calibration rule", "tier"]
     "tier_by_band_lr": ["Tier by band LR", "tier"]
     "n_scored": ["Scored variants (labelled or not)", "count"]
     "n": ["Labelled", "count"]
@@ -1120,8 +1151,6 @@ columns:
     "threshold_12": ["In-sample threshold, twelve-gene fit", "threshold"]
     "reached_12": ["Reached in-sample, twelve-gene fit", "boolean"]
     "status_12": ["Status, twelve-gene fit", "text"]
-    "abs_change": ["Threshold change, twelve-gene minus seven-gene", "score"]
-    "rel_change": ["Threshold change relative to the seven-gene threshold's magnitude", "number"]
     "tier_change": ["Tier change from seven to twelve genes", "text"]
     "reason": ["Reason", "text"]
   inframe_true_positives:

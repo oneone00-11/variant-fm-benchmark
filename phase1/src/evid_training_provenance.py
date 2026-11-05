@@ -54,6 +54,7 @@ from pathlib import Path
 import pandas as pd
 
 from .evid_common import ATLAS_REPO as _atlas_repo_default  # noqa: E402
+from .evid_common import FUSION_FEATURES, PANEL  # noqa: E402
 ATLAS_REPO = _atlas_repo_default  # EVID_ATLAS_REPO overrides; see evid_common
 REPORT_DIR = Path("reports/evidence")
 OUT = REPORT_DIR / "predictor_training_provenance.csv"
@@ -130,9 +131,13 @@ ATLAS_COLUMNS = {
         f"{_AG_TRAINING}. Precomputed SPLICE_JUNCTIONS scorer, retrieved by lookup",
         "No", _NONE_DOC,
         "https://www.alphagenomedocs.com/"),
+    # its features are evid_common.FUSION_FEATURES (build() stops if they are not the
+    # seven this names) and its target is evid_common.logo_fusion's; the text said
+    # "the eight panel columns" and "functional labels" until E7 (2026-11-05)
     "fusion_enet": (
-        "Elastic net over the eight panel columns, refitted within each "
-        "leave-one-gene-out fold on the training genes' functional labels",
+        "Elastic net over seven panel columns, the panel without the AlphaGenome splice "
+        "score, refitted within each leave-one-gene-out fold on the within-gene rank of "
+        "the training genes' continuous functional scores",
         "No",
         "By construction: the fitted weights come from this study's own "
         "saturation genome editing labels",
@@ -219,6 +224,11 @@ def _atlas_training() -> dict:
 def build() -> pd.DataFrame:
     """One row per score column, in the order the panel is reported."""
     training = _atlas_training()
+    # the fusion row names its features: seven panel columns, the AlphaGenome splice
+    # score left out
+    if [t for t in PANEL if t not in FUSION_FEATURES] != ["alphagenome"] or len(FUSION_FEATURES) != 7:
+        raise SystemExit("[E9] the fusion row describes seven panel columns, the panel without "
+                         "the AlphaGenome splice score; evid_common.FUSION_FEATURES differs")
     order = list(SIGNAL_CLASS)
     rows = []
     for col in order:

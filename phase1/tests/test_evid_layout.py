@@ -45,7 +45,8 @@ def _items() -> list[dict]:
 
 def _new_parts():
     """(item, part, its source's printed columns) for every part the stage prints itself:
-    every column but one a part's `drop` leaves out as a copy of another."""
+    every column but one a part's `drop` leaves out as a copy of another, or its `omit`
+    leaves out."""
     for it in _cfg()["supplementary"]:
         if it["make"] != "table_parts":
             continue
@@ -57,7 +58,8 @@ def _new_parts():
                 if str(srcs[0]).startswith(L.PRINTED):
                     continue
                 cols = list(L.read_source(PHASE1 / srcs[0])[0].columns)
-            yield it, part, [c for c in cols if c not in part.get("drop", {})]
+            yield it, part, [c for c in cols if c not in part.get("drop", {})
+                             and c not in part.get("omit", [])]
 
 
 def test_content_names_and_numbers_are_unique_and_names_carry_no_number():
@@ -273,10 +275,11 @@ def test_the_external_genes_without_a_marker_are_named_for_the_caption():
 
 @need_out
 def test_the_printed_tables_are_written_byte_for_byte():
+    """But for the folds a rule leaves out of the counts (S6, tested below)."""
     for it in _items():
         for part in it.get("parts", []):
             src = part.get("source")
-            if not src or not src.startswith(L.PRINTED):
+            if not src or not src.startswith(L.PRINTED) or "not_counted" in part:
                 continue
             section = "main" if it in _cfg()["main"] else "supplementary"
             name = f"{it['content']}.csv" if len(it["parts"]) == 1 else f"{it['content']}.{part['part']}.csv"
@@ -560,3 +563,229 @@ def test_c_stops_the_run_when_the_sources_do_not_list_its_curve(tmp_path):
     finally:
         mp.undo()
         plt.close("all")
+
+
+# ---------------------------------------------------------------------------
+# E7 (the author's decisions of 2026-11-05): the combined Atlas score's folds that the
+# held-out counts leave out, S32's change columns, S1's caption line, the method's name
+# ---------------------------------------------------------------------------
+AVI = "Atlas combined score"
+
+
+def _table2a_cells() -> dict:
+    """Table 2(a)'s held-out cells of the combined Atlas score, k/n (m), by (band, tier)."""
+    t = pd.read_csv(PHASE1 / "reports/evidence/tables/table3_evidence_tiers.csv", dtype=str,
+                    keep_default_na=False)
+    row = t[t.Predictor.str.startswith(AVI)].iloc[0]
+    return {(band, tier): row[f"{band} bp: {tier}, held out"]
+            for band in ("3–10", "11–50", "3–50") for tier in ("Moderate", "Strong")}
+
+
+@need_out
+def test_s6_counts_the_atlas_rows_without_the_two_folds_as_table_2a_counts_them():
+    """Supplementary Table S6: the combined Atlas score's rows list every fold, BRCA1's
+    and RAD51C's marked "†", and count and summarise the others, so that their Moderate
+    and Strong counts are Table 2(a)'s k/n (m) cell for cell; every other row, and every
+    other cell of these rows, is the printed table's, line for line."""
+    from src import evid_common as K
+    from src import evid_supp_tables as S
+    it, part = _part_of("thresholds_pathogenic", "pp3")
+    src = L.read_source(PHASE1 / part["source"])[0]
+    printed = pd.read_csv(OUT / "supplementary" / "thresholds_pathogenic.csv", dtype=str,
+                          keep_default_na=False)
+    assert list(printed.columns) == list(src.columns) and len(printed) == len(src)
+    atlas = (src.Tool == AVI).to_numpy()
+    assert atlas.sum() == 9
+    before = (PHASE1 / part["source"]).read_text().splitlines()
+    after = (OUT / "supplementary" / "thresholds_pathogenic.csv").read_text().splitlines()
+    assert len(before) == len(after) and before[0] == after[0]
+    assert all(b == a for b, a, x in zip(before[1:], after[1:], atlas) if not x)
+    folds = K.read_back(PHASE1 / part["not_counted"]["folds"])
+    folds = folds[(folds.side == "pp3") & (folds.tool == "avi")
+                  & ~folds.heldout_gene.isin(K.AVI_SEEN_IN_TRAINING)]
+    band = {S.STRATUM_LABEL[s]: s for s in S.IN_SCOPE}
+    cells = _table2a_cells()
+    for i in np.flatnonzero(atlas):
+        r, s = printed.loc[i], src.loc[i]
+        entries = s[L.S6_FOLDS].split("; ")
+        assert r[L.S6_FOLDS] == "; ".join(e + ("†" if e.split("=")[0] in K.AVI_SEEN_IN_TRAINING else "")
+                                          for e in entries)
+        for c in printed.columns:
+            if c not in L.S6_OVER_FOLDS and c != L.S6_FOLDS:
+                assert r[c] == s[c], c
+        f = folds[(folds.stratum == band[r["Stratum (intronic offset, bp)"]]) & (folds.tier == r.Tier.lower())]
+        lr = f.heldout_lr.dropna()
+        assert r["Held-out genes"] == str(len(f))
+        assert r["Folds with an evaluable held-out LR"] == str(len(lr))
+        assert r["Held-out genes clearing the cut"] == str(int((lr >= float(r["Tier LR cut"])).sum()))
+        assert [r["Held-out LR, median"], r["Held-out LR, minimum"], r["Held-out LR, maximum"]] == \
+            [S.fmt_lr(lr.median()), S.fmt_lr(lr.min()), S.fmt_lr(lr.max())]
+        if r.Tier != "Supporting":
+            n, ev, k = (int(r["Held-out genes"]), int(r["Folds with an evaluable held-out LR"]),
+                        int(r["Held-out genes clearing the cut"]))
+            assert f"{k}/{n}" + (f" ({n - ev})" if ev < n else "") == \
+                cells[(r["Stratum (intronic offset, bp)"], r.Tier)]
+
+
+def test_s6_stops_where_the_printed_row_and_the_folds_disagree_or_no_fold_is_picked(monkeypatch):
+    monkeypatch.chdir(PHASE1)
+    it, part = _part_of("thresholds_pathogenic", "pp3")
+    src = L.read_source(PHASE1 / part["source"])[0]
+    out, changed = L.not_counted(src, it, part)
+    assert len(changed) == 9 and {k[0] for k in changed} == {AVI}
+    bad = src.copy()
+    bad.at[bad.index[bad.Tool == AVI][0], "Held-out genes clearing the cut"] = "0"
+    with pytest.raises(SystemExit, match="disagree"):
+        L.not_counted(bad, it, part)
+    monkeypatch.setitem(L.MARK_RULES, "avi_seen_in_training", lambda r: False)
+    with pytest.raises(SystemExit, match="picks no fold"):
+        L.not_counted(src, it, part)
+
+
+@need_out
+def test_s7_is_printed_as_it_stands_with_a_note_on_the_atlas_medians():
+    it, part = _part_of("thresholds_benign", "bp4")
+    assert (OUT / "supplementary" / "thresholds_benign.csv").read_bytes() == \
+        (PHASE1 / part["source"]).read_bytes()
+    c = pd.read_csv(OUT / "contents.csv", dtype=str, keep_default_na=False)
+    note = c[c.content == "thresholds_benign"].notes.iloc[0]
+    assert "combined Atlas score" in note and "BRCA1 and RAD51C" in note and "median" in note
+
+
+def test_a_column_to_leave_out_must_be_in_the_source():
+    cfg = {"display": {"values": {}}, "columns": {"t": {"a": ["A", "count"]}}}
+    df = pd.DataFrame({"a": ["1"], "b": ["2"]})
+    assert list(L.displayed(df, {"content": "t"}, {"part": "p", "omit": ["b"]}, cfg).columns) == ["A"]
+    with pytest.raises(SystemExit, match="no such column"):
+        L.displayed(df, {"content": "t"}, {"part": "p", "omit": ["c"]}, cfg)
+
+
+@need_out
+def test_s32_leaves_out_the_two_change_columns_which_its_source_keeps():
+    """The text reports the change of tier only (the author's decision of 2026-10-25): the
+    absolute change is the difference of the two thresholds printed beside it, and the
+    relative change has no meaning where the threshold changes sign, as it does for
+    GPN-MSA and the combined Atlas score at 3-10 bp, BP4 Supporting."""
+    from src import evid_common as K
+    it, part = _part_of("twelve_gene_refit", "refit")
+    assert part["omit"] == ["abs_change", "rel_change"]
+    d = K.read_back(PHASE1 / part["source"])
+    both = d.threshold_7.notna() & d.threshold_12.notna()
+    assert ((d.abs_change - (d.threshold_12 - d.threshold_7)).abs()[both] == 0).all()
+    assert d.loc[~both, "abs_change"].isna().all()
+    flips = d[both & (np.sign(d.threshold_7) * np.sign(d.threshold_12) < 0)]
+    assert sorted(zip(flips.tool, flips.stratum, flips.side, flips.tier)) == \
+        [("avi", "s3_10", "bp4", "supporting"), ("gpn_msa", "s3_10", "bp4", "supporting")]
+    printed = pd.read_csv(OUT / "supplementary" / "twelve_gene_refit.csv", dtype=str,
+                          keep_default_na=False)
+    cols = [c for c in L.read_source(PHASE1 / part["source"])[0].columns if c not in part["omit"]]
+    assert list(printed.columns) == [L._spec(it, part, c, _cfg())[0] for c in cols]
+    assert len(printed) == len(d)
+
+
+@need_out
+def test_the_layout_names_the_method_as_the_text_does():
+    """Local likelihood-ratio calibration (the author's decision of 2026-11-04): no
+    spelling of the old name, interval calibration, in the configuration, the stage or
+    any text the stage writes, the workbook's parts among them (the figures' text is
+    checked in their PDFs by scripts/stage_E7/check_e7.py)."""
+    old = re.compile(r"(?i)interval[\s_-]*calibration")
+    texts = {"config/layout.yaml": CONFIG.read_text(),
+             "src/evid_layout.py": (PHASE1 / "src/evid_layout.py").read_text()}
+    for p in sorted(OUT.rglob("*.csv")):
+        texts[str(p.relative_to(OUT))] = p.read_text()
+    with zipfile.ZipFile(OUT / "supplementary_tables.xlsx") as z:
+        for n in z.namelist():
+            texts[f"supplementary_tables.xlsx:{n}"] = z.read(n).decode()
+    assert not [k for k, v in texts.items() if old.search(v)]
+    c = pd.read_csv(OUT / "contents.csv", dtype=str, keep_default_na=False).set_index("content")
+    assert c.loc["thresholds_pathogenic", "title"].startswith(
+        "Local likelihood-ratio calibration thresholds, pathogenic side")
+    assert c.loc["thresholds_benign", "title"] == "Local likelihood-ratio calibration thresholds, benign side"
+    head = pd.read_csv(OUT / "supplementary" / "practical_metrics.by_threshold.csv", nrows=0).columns
+    assert "Tier by the calibration rule" in head
+
+
+@pytest.fixture(scope="module")
+def figure_two(tmp_path_factory):
+    """Figure 2 as the stage draws it, into a temporary folder."""
+    import matplotlib
+    out = tmp_path_factory.mktemp("layout2")
+    kept, save = [], L._save
+    mp = pytest.MonkeyPatch()
+    mp.chdir(PHASE1)
+    mp.setattr(L, "_save", lambda fig, folder, stem, cfg: (kept.append(fig), save(fig, folder, stem, cfg))[1])
+    try:
+        with matplotlib.rc_context():
+            cfg = L.load_config()
+            item = dict(next(i for i in cfg["main"] if i["content"] == "heldout_and_external_lr"))
+            L.figure_heldout_external(item, out, cfg)
+    finally:
+        mp.undo()
+    return kept[0]
+
+
+def test_figure_two_draws_the_folds_not_counted_in_grey_and_leaves_them_out_of_the_median(figure_two):
+    """(a) and (b): the combined Atlas score's folds with BRCA1 or RAD51C held out are
+    drawn where they were, in grey; the median is the other folds'; no other row has a
+    grey point; the key names them, in the first column with the other held-out entries."""
+    from matplotlib.colors import to_rgba
+    from src import evid_common as K
+    from src import evid_figures as F
+    folds = K.read_back(PHASE1 / "reports/evidence/evidence_thresholds_logo_folds.csv")
+    folds = folds[(folds.side == "pp3") & np.isfinite(folds.heldout_lr)]
+    grey, blue = to_rgba(F.MUTED), to_rgba(F.BLUE)
+    row = F.COLUMNS.index("avi")
+    seen_grey = 0
+    for k, ax in enumerate(figure_two.axes[:6]):
+        tier, st = ("moderate", "strong")[k // 3], F.STRATA[k % 3]
+        pts = []
+        for coll in ax.collections:
+            fc = [tuple(c) for c in coll.get_facecolor()]
+            ec = [tuple(c) for c in coll.get_edgecolor()]
+            for j, (x, y) in enumerate(coll.get_offsets()):
+                colour = fc[j % len(fc)] if fc and fc[j % len(fc)] != (1, 1, 1, 1) else ec[j % len(ec)]
+                pts.append((round(float(y)), float(x), colour))
+        assert not [p for p in pts if p[0] != row and p[2] == grey]
+        assert [p for p in pts if p[2] == blue]
+        f = folds[(folds.tool == "avi") & (folds.stratum == st) & (folds.tier == tier)]
+        out = f.heldout_gene.isin(K.AVI_SEEN_IN_TRAINING)
+        drawn_grey = sorted(x for r_, x, c in pts if r_ == row and c == grey)
+        assert drawn_grey == sorted(np.clip(f.heldout_lr[out], 0.3, 1000).tolist())
+        seen_grey += len(drawn_grey)
+        medians = [ln.get_xdata()[0] for ln in ax.lines
+                   if len(ln.get_ydata()) == 2 and abs(np.mean(ln.get_ydata()) - row) < 1e-9]
+        counted = np.clip(f.heldout_lr[~out], 0.3, 1000)
+        assert medians == ([float(np.median(counted))] if len(counted) else [])
+    assert seen_grey == 9          # (a) 2 + 1 + 2, (b) 2 + 0 + 2: n.e. and no threshold draw none
+    leg = figure_two.legends[0]
+    names = [t.get_text() for t in leg.get_texts()]
+    assert names[:4] == ["Held-out gene, clears the boundary", "Held-out gene, below it",
+                         "Median of held-out genes", "Fold not counted (†)"]
+    import matplotlib
+    with matplotlib.rc_context():               # laid out in the stage's font, as drawn
+        F._style()
+        figure_two.canvas.draw()
+        x0 = [t.get_window_extent().x0 for t in leg.get_texts()]
+    assert x0[0] == x0[3] < x0[4]
+
+
+def test_s1_keeps_its_caption_line_two_mm_clear_of_the_panels_at_240_mm(figure_one):
+    """Supplementary Figure S1 at 240 mm: the panels' lower edge raised until the caption
+    line stands at least 2 mm below the last row's tick labels, by the font boxes of the
+    bitmap and of the PDF, no further than the rounding of the edge; every panel as tall
+    as the others, the top where it was, the type as it was."""
+    import matplotlib
+    s1, cfg = figure_one["s1"], figure_one["cfg"]
+    assert abs(s1.get_figheight() * 25.4 - 240) < 1e-9 and abs(s1.get_figwidth() * 25.4 - 175) < 1e-9
+    with matplotlib.rc_context():               # measured in the stage's font, as drawn
+        L.F._style()
+        gap = L.caption_gap_mm(s1, cfg["artwork"]["dpi"])
+    assert 2 <= gap < 2 + 1e-4 * 240 + 1e-9
+    assert s1.subplotpars.top == 0.97 and s1.subplotpars.bottom > 0.03
+    heights = {round(ax.get_position().height, 12) for ax in s1.axes}
+    assert len(heights) == 1
+    assert abs(min(ax.get_position().y0 for ax in s1.axes) - s1.subplotpars.bottom) < 1e-12
+    sizes = {t.get_fontsize() for t in s1.findobj(matplotlib.text.Text)
+             if t.get_visible() and t.get_text().strip()}
+    assert sizes <= {5.5, 6.5, 7.0}

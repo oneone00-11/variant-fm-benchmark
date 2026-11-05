@@ -1,0 +1,96 @@
+{
+ "commit": "E7 commit 1 (the layout's last four printing changes and the old name, the author's decisions of 2026-11-05; the fusion row's text and the superseded labels' README)",
+ "reason": "S32 leaves out its two threshold-change columns; S6 counts the combined Atlas score's rows without the folds with BRCA1 or RAD51C held out, as Table 2(a) does, and marks those folds; S7 gains a note; Figure 2 draws those folds in grey, its medians without them, with a key entry; Supplementary Figure S1's panels give up 2 mm under the caption line at 240 mm; S6, S7 and S16 name the method as the text does; the fusion row of predictor_training_provenance.csv says what the fusion is fitted on, a recorded exception to the rule that existing outputs do not change (one text cell, no number), and the supplement's manifest records that file's new hash. No number of any analysis changes",
+ "declared_from": "E7.1-E7.5 of the instruction, declared before the stages run in the reference image, each output to the cell or row that check_scope can name: the CSVs by their key columns and fields, contents.csv by its lines, the manifests by their rows and fields; the figures and the workbook as files, checked pixel by pixel and cell by cell by scripts/stage_E7/check_e7.py",
+ "pairs": {
+  "S6": ["avi"],
+  "S16": [],
+  "S32": ["spliceai", "pangolin", "alphagenome", "cadd", "phylop", "phastcons", "gpn_msa", "nt", "spliceai_walker", "avi", "avi_splice_sites", "avi_splice_site_usage", "avi_splice_junctions", "Elastic-net combination"]
+ },
+ "files": {
+  "phase1/reports/evidence/layout/supplementary/twelve_gene_refit.csv": {
+   "kind": "rows",
+   "key": ["Tool", "Stratum (intronic offset, bp)", "Side", "Tier"],
+   "tool": "Tool",
+   "tool_labels": true,
+   "gene_const": "S32",
+   "columns_may_change": true,
+   "fields": ["Threshold change, twelve-gene minus seven-gene", "Threshold change relative to the seven-gene threshold's magnitude"],
+   "why": "E7.1: Supplementary Table S32 without its two threshold-change columns, absolute and relative; every row keeps every other cell (the pairs list every tool S32 prints, the fusion under its printed name, which the supplement's label table does not hold); the source table is not changed"
+  },
+  "phase1/reports/evidence/layout/supplementary/thresholds_pathogenic.csv": {
+   "kind": "rows",
+   "key": ["Tool", "Stratum (intronic offset, bp)", "Tier"],
+   "tool": "Tool",
+   "tool_labels": true,
+   "gene_const": "S6",
+   "fields": ["Held-out genes", "Folds with a fitted threshold", "Folds with an evaluable held-out LR", "Held-out genes clearing the cut", "Held-out LR, median", "Held-out LR, minimum", "Held-out LR, maximum", "Held-out LR per fold"],
+   "why": "E7.2: Supplementary Table S6's nine rows of the combined Atlas score: the counts and the median, minimum and maximum over the folds other than BRCA1's and RAD51C's (Table 2(a)'s rule), and those two folds marked † in the per-fold column; every other row as printed, byte for byte"
+  },
+  "phase1/reports/evidence/layout/supplementary/practical_metrics.by_threshold.csv": {
+   "kind": "rows",
+   "key": ["Tool", "Stratum (intronic offset, bp)", "Side", "Threshold", "Threshold source"],
+   "tool": "Tool",
+   "tool_labels": true,
+   "gene_const": "S16",
+   "column_renames": [["Tier by interval calibration", "Tier by the calibration rule"]],
+   "fields": [],
+   "why": "E7.4: Supplementary Table S16 (a), one column renamed, every cell as before"
+  },
+  "phase1/reports/evidence/layout/main/heldout_and_external_lr.pdf": {
+   "kind": "file",
+   "why": "E7.2: Figure 2 (a) and (b), the combined Atlas score's folds with BRCA1 or RAD51C held out in grey and its medians over the other folds; the key with an entry for them, in three columns; every other row as it was"
+  },
+  "phase1/reports/evidence/layout/main/heldout_and_external_lr.png": {
+   "kind": "file",
+   "why": "E7.2: Figure 2, as the PDF; against the previous PNG, pixels differ only in the combined Atlas score's rows of (a) and (b) and in the key (scripts/stage_E7/check_e7.py)"
+  },
+  "phase1/reports/evidence/layout/supplementary/local_lr_curves.pdf": {
+   "kind": "file",
+   "why": "E7.3: Supplementary Figure S1 at 175 x 240 mm, its panels' lower edge raised from 0.030 to 0.039 of the height so that the caption line stands at least 2 mm below the last row's tick labels; every panel shorter in proportion, the type as it was"
+  },
+  "phase1/reports/evidence/layout/supplementary/local_lr_curves.png": {
+   "kind": "file",
+   "why": "E7.3: Supplementary Figure S1, as the PDF"
+  },
+  "phase1/reports/evidence/layout/supplementary_tables.xlsx": {
+   "kind": "file",
+   "why": "the workbook's sheets README (S6's and S7's titles, S6's sources and their hashes), S6 (title, note, the nine rows), S7 (title, note), S16 (one header cell) and S32 (two columns fewer); every other sheet cell for cell as before (scripts/stage_E7/check_e7.py)"
+  },
+  "phase1/reports/evidence/layout/contents.csv": {
+   "kind": "lines",
+   "patterns": ["^Supplementary Table S6,supplementary,table,thresholds_pathogenic,",
+                "^Supplementary Table S7,supplementary,table,thresholds_benign,",
+                "^Supplementary Table S32,supplementary,table,twelve_gene_refit,"],
+   "why": "the lines of S6 (title, note, the per-fold file among its sources), S7 (title, note) and S32 (its one-page estimate, two columns narrower)"
+  },
+  "phase1/reports/evidence/layout/manifest.csv": {
+   "kind": "fields",
+   "key": ["file"],
+   "rows": {
+    "phase1/reports/evidence/layout/main/heldout_and_external_lr.pdf": ["bytes", "sha256"],
+    "phase1/reports/evidence/layout/main/heldout_and_external_lr.png": ["bytes", "sha256"],
+    "phase1/reports/evidence/layout/supplementary/local_lr_curves.pdf": ["bytes", "sha256"],
+    "phase1/reports/evidence/layout/supplementary/local_lr_curves.png": ["bytes", "sha256"],
+    "phase1/reports/evidence/layout/supplementary/thresholds_pathogenic.csv": ["bytes", "sha256", "sources", "sources_sha256"],
+    "phase1/reports/evidence/layout/supplementary/practical_metrics.by_threshold.csv": ["bytes", "sha256"],
+    "phase1/reports/evidence/layout/supplementary/twelve_gene_refit.csv": ["bytes", "sha256"],
+    "phase1/reports/evidence/layout/supplementary_tables.xlsx": ["bytes", "sha256", "sources", "sources_sha256"],
+    "phase1/reports/evidence/layout/contents.csv": ["bytes", "sha256"]
+   },
+   "why": "the rows of the files above; S6's and the workbook's sources gain the per-fold file S6 now counts from"
+  },
+  "phase1/reports/evidence/predictor_training_provenance.csv": {
+   "kind": "fields",
+   "key": ["score_column"],
+   "rows": {"fusion_enet": ["training_data"]},
+   "why": "E7.5: the fusion row's training data, one text cell: seven panel columns, the AlphaGenome splice score left out (evid_common.FUSION_FEATURES), on the within-gene rank of the training genes' continuous functional scores; a recorded exception to the rule that existing outputs do not change (docs/evidence-change-log.md), no number changes"
+  },
+  "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+   "kind": "fields",
+   "key": ["Table"],
+   "rows": {"S3": {"Source sha256": ["phase1/reports/evidence/predictor_training_provenance.csv"]}},
+   "why": "E7.5: S3 reads predictor_training_provenance.csv, and the manifest records its hash; S3 itself prints no cell of the fusion row and does not change"
+  }
+ }
+}

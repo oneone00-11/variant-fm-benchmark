@@ -2200,3 +2200,72 @@ Why: the author's decision of 2026-11-04. Four files under
   1,086 rows are the previous PNG's, pixel for pixel. The figure is 175 × 152.03 mm.
 - Tests in `phase1/tests/test_evid_layout.py`; the point-by-point check against S1 is
   `scripts/stage_E6/check_figure1c.py`.
+
+## The layout's last printing changes; the fusion row's text and the superseded labels' README (stage E7, 2026-11-05)
+
+Why: the author's decisions of 2026-11-05. They cover the four layout items left open
+when E6 closed, and the method's old name. Two texts that the code contradicts are also
+corrected (the analysis-flow check of 2026-10-30, §7). No number of any analysis
+changes. The outputs that change (`scripts/stage_E7/scope_e7.json`):
+- under `phase1/reports/evidence/layout/`: Figure 2's PDF and PNG, Supplementary
+  Figure S1's PDF and PNG, the CSVs of S6, S16 (a) and S32, the workbook,
+  `contents.csv` and `manifest.csv`;
+- outside it: one cell of `predictor_training_provenance.csv`, and one hash in the
+  supplement's `supplement_tables_manifest.csv`.
+
+- **S32** leaves out its two threshold-change columns, the absolute and the relative.
+  The text reports the change of tier only (the author's decision of 2026-10-25).
+  - The absolute change is the difference of the two thresholds printed beside it.
+  - The relative change has no meaning where the threshold changes sign (GPN-MSA and
+    the combined Atlas score at 3–10 bp, BP4 Supporting) or is zero (phastCons there).
+  - The source, `suppl_analyses/twelve_gene_refit.csv`, keeps both columns. A part's new
+    option, `omit`, names the columns to leave out; the stage stops if the source lacks
+    one.
+- **The combined Atlas score's folds with BRCA1 or RAD51C held out** now follow one rule
+  everywhere. Its model was selected on those two assays
+  (`evid_common.AVI_SEEN_IN_TRAINING`), and Table 2, Table 4 and S8 already count without
+  them.
+  - S6 still lists both folds, each marked "†". In the combined Atlas score's nine rows,
+    the count columns and the held-out median, minimum and maximum are taken over the
+    other genes, from the per-fold file at full precision. The Moderate and Strong
+    counts are now Table 2(a)'s k/n (m), cell for cell.
+  - Before S6 is changed, each row's printed cells are recounted over all its folds and
+    must come out as printed; the stage stops if they do not. Every other row is printed
+    byte for byte. The source, `supplement/tableS6_thresholds_pathogenic.csv` (one of the
+    frozen files), is as it was. S6 has a provisional note.
+  - S7's medians are over every fold. The per-fold BP4 ratios are in no output, so
+    nothing is recounted; a note says so, and the table is as it was.
+  - Figure 2 (a) and (b) draw the two folds where they were, in grey, filled or open by
+    the same rule as the others, and the median over the other folds. The key gains
+    "Fold not counted (†)" and runs in three columns, so that the held-out entries fill
+    the first. Every other row is as it was, pixel for pixel.
+- **Supplementary Figure S1** keeps its caption line at least 2 mm below the last row's
+  tick labels.
+  - The figure is still 240 mm tall and the type is unchanged. The panels' lower edge
+    rises from 0.030 to 0.039 of the height, and every panel is shorter in proportion.
+  - The gap is measured in both the bitmap and the PDF, from the top of the caption's
+    box to the foot of the labels' boxes, each box spanning its font's full ascent and
+    descent, as a PDF reader boxes words. That is the strictest of the measures: the
+    gap in ink is 2.8 mm.
+- **The method's name.** S6's and S7's titles now say "Local likelihood-ratio
+  calibration thresholds", and S16's column says "Tier by the calibration rule". No
+  spelling of "interval calibration" is left in `layout.yaml`, `evid_layout.py` or the
+  layout's outputs. The v3.0.1 tables under `supplement/` keep their titles.
+- **The fusion row of `predictor_training_provenance.csv`**
+  (`evid_training_provenance.py`).
+  - It said "Elastic net over the eight panel columns … on the training genes'
+    functional labels". The fusion is fitted over seven columns, the panel without the
+    AlphaGenome splice score (`evid_common.FUSION_FEATURES`). Its target is the
+    within-gene rank of the training genes' continuous functional scores
+    (`evid_common.logo_fusion`).
+  - The cell now says so, and the stage stops if `FUSION_FEATURES` no longer matches it.
+  - This is a recorded exception to the rule that an existing output does not change:
+    one text cell changes, and no number. The supplement's manifest records that file's
+    hash for S3, which reads it, so S3's entry there changes too. S3 itself prints no
+    cell of the fusion row. Neither does S14 (`tables/table2_training_signal.csv`),
+    which prints the row's training-signal class.
+- **`data/assay_labels/superseded/README.md`** said "No stage reads them". Since E19,
+  stage 30 (C3, `src/evid_suppl_c3.py`) reads them, to refit the thresholds under the
+  superseded labels. The README now says so.
+- Tests are in `phase1/tests/test_evid_layout.py` and `test_evid_e2.py`. The cell-,
+  row- and pixel-level check is `scripts/stage_E7/check_e7.py`.

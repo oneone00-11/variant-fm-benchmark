@@ -1,0 +1,114 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/Users/cliffzhang/work/variant-fm-benchmark/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E7/scope_e7.json",
+  "--base",
+  "9b8eae4"
+ ],
+ "git_commit": "9b8eae445b710dbbf4fb38bf0a1270d21de7c9c3",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E7/_runlog.py": "b11170ff2759fd62351f0db1bc98fae4a1c2df2bb7ceb49754a2f44401c6b996"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-05T12:15:36+00:00",
+ "end_utc": "2026-11-05T12:16:02+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E7/scope_e7.json",
+   "bytes": 7419,
+   "sha256": "384c25f5bc0f660f61d3a6d241d95a779f83dc83292d635be606afaf13855542"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E7/scope_e7.json",
+  "base": "9b8eae4",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/layout/contents.csv": {
+    "changed": 6,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/main/heldout_and_external_lr.pdf": {
+    "status": "declared",
+    "why": "E7.2: Figure 2 (a) and (b), the combined Atlas score's folds with BRCA1 or RAD51C held out in grey and its medians over the other folds; the key with an entry for them, in three columns; every other row as it was",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/main/heldout_and_external_lr.png": {
+    "status": "declared",
+    "why": "E7.2: Figure 2, as the PDF; against the previous PNG, pixels differ only in the combined Atlas score's rows of (a) and (b) and in the key (scripts/stage_E7/check_e7.py)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/manifest.csv": {
+    "changed": 9,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/local_lr_curves.pdf": {
+    "status": "declared",
+    "why": "E7.3: Supplementary Figure S1 at 175 x 240 mm, its panels' lower edge raised from 0.030 to 0.039 of the height so that the caption line stands at least 2 mm below the last row's tick labels; every panel shorter in proportion, the type as it was",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/local_lr_curves.png": {
+    "status": "declared",
+    "why": "E7.3: Supplementary Figure S1, as the PDF",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.by_threshold.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/thresholds_pathogenic.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 9,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/twelve_gene_refit.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 336,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary_tables.xlsx": {
+    "status": "declared",
+    "why": "the workbook's sheets README (S6's and S7's titles, S6's sources and their hashes), S6 (title, note, the nine rows), S7 (title, note), S16 (one header cell) and S32 (two columns fewer); every other sheet cell for cell as before (scripts/stage_E7/check_e7.py)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/predictor_training_provenance.csv": {
+    "changed": 1,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/supplement/supplement_tables_manifest.csv": {
+    "changed": 1,
+    "outside": [],
+    "status": "within the scope"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

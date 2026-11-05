@@ -80,15 +80,15 @@ SpliceAI (published basis),11–50,Strong,18.7,No,,,6,1,1,0,9.61,9.61,9.61,BAP1=
 SpliceAI (published basis),3–50,Supporting,2.08,Yes,0.3158,0.30246,7,7,7,7,15.9,7.70,29.7,BAP1=7.70; BARD1=23.1; BRCA1=29.7; BRCA2=10.9; PALB2=18.9; RAD51C=14.6; VHL=15.9
 SpliceAI (published basis),3–50,Moderate,4.33,Yes,0.4263,0.40355688,7,7,7,7,24.8,9.15,48.1,BAP1=9.15; BARD1=34.5; BRCA1=48.1; BRCA2=17.9; PALB2=24.1; RAD51C=26.4; VHL=24.8
 SpliceAI (published basis),3–50,Strong,18.7,Yes,0.8773,0.82697,7,7,6,5,46.7,15.2,291,BAP1=15.2; BARD1=291; BRCA1=57.8; BRCA2=35.6; PALB2=29.5; RAD51C=214; VHL=n.e.
-Atlas combined score,3–10,Supporting,2.08,Yes,0.8246,0.80486,7,7,6,6,11.7,9.75,33.4,BAP1=9.75; BARD1=11.0; BRCA1=33.4; BRCA2=31.9; PALB2=12.1; RAD51C=11.2; VHL=n.e.
-Atlas combined score,3–10,Moderate,4.33,Yes,1.071,1.071,7,7,6,6,35.2,11.1,60.4,BAP1=11.1; BARD1=25.8; BRCA1=44.5; BRCA2=46.7; PALB2=60.4; RAD51C=18.5; VHL=n.e.
-Atlas combined score,3–10,Strong,18.7,Yes,1.36455,1.2806,7,7,5,5,74.3,24.3,149,BAP1=24.3; BARD1=149; BRCA1=130; BRCA2=n.e.; PALB2=74.3; RAD51C=28.4; VHL=n.e.
-Atlas combined score,11–50,Supporting,2.08,Yes,0.5888686776,0.57095,6,6,4,4,8.39,7.70,56.8,BAP1=7.84; BARD1=56.8; BRCA1=n.e.; PALB2=7.70; RAD51C=8.93; VHL=n.e.
-Atlas combined score,11–50,Moderate,4.33,Yes,0.69857,0.6963,6,6,4,4,23.1,10.3,65.3,BAP1=13.3; BARD1=65.3; BRCA1=n.e.; PALB2=10.3; RAD51C=32.9; VHL=n.e.
-Atlas combined score,11–50,Strong,18.7,Yes,1.127,1.127,6,2,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=n.e.; PALB2=n.e.; RAD51C=no threshold; VHL=no threshold
-Atlas combined score,3–50,Supporting,2.08,Yes,0.7119,0.72116,7,7,7,7,23.4,11.6,42.4,BAP1=11.6; BARD1=26.9; BRCA1=23.4; BRCA2=25.0; PALB2=15.6; RAD51C=14.9; VHL=42.4
-Atlas combined score,3–50,Moderate,4.33,Yes,0.8921,0.8280,7,7,7,7,31.9,17.2,63.7,BAP1=17.2; BARD1=40.9; BRCA1=42.9; BRCA2=31.9; PALB2=18.6; RAD51C=30.0; VHL=63.7
-Atlas combined score,3–50,Strong,18.7,Yes,1.171,1.171,7,7,7,7,69.9,36.7,312,BAP1=36.7; BARD1=312; BRCA1=218; BRCA2=46.7; PALB2=290; RAD51C=69.9; VHL=53.5
+Atlas combined score,3–10,Supporting,2.08,Yes,0.8246,0.80486,5,5,4,4,11.6,9.75,31.9,BAP1=9.75; BARD1=11.0; BRCA1=33.4†; BRCA2=31.9; PALB2=12.1; RAD51C=11.2†; VHL=n.e.
+Atlas combined score,3–10,Moderate,4.33,Yes,1.071,1.071,5,5,4,4,36.2,11.1,60.4,BAP1=11.1; BARD1=25.8; BRCA1=44.5†; BRCA2=46.7; PALB2=60.4; RAD51C=18.5†; VHL=n.e.
+Atlas combined score,3–10,Strong,18.7,Yes,1.36455,1.2806,5,5,3,3,74.3,24.3,149,BAP1=24.3; BARD1=149; BRCA1=130†; BRCA2=n.e.; PALB2=74.3; RAD51C=28.4†; VHL=n.e.
+Atlas combined score,11–50,Supporting,2.08,Yes,0.5888686776,0.57095,4,4,3,3,7.84,7.70,56.8,BAP1=7.84; BARD1=56.8; BRCA1=n.e.†; PALB2=7.70; RAD51C=8.93†; VHL=n.e.
+Atlas combined score,11–50,Moderate,4.33,Yes,0.69857,0.6963,4,4,3,3,13.3,10.3,65.3,BAP1=13.3; BARD1=65.3; BRCA1=n.e.†; PALB2=10.3; RAD51C=32.9†; VHL=n.e.
+Atlas combined score,11–50,Strong,18.7,Yes,1.127,1.127,4,1,0,0,,,,BAP1=no threshold; BARD1=no threshold; BRCA1=n.e.†; PALB2=n.e.; RAD51C=no threshold†; VHL=no threshold
+Atlas combined score,3–50,Supporting,2.08,Yes,0.7119,0.72116,5,5,5,5,25.0,11.6,42.4,BAP1=11.6; BARD1=26.9; BRCA1=23.4†; BRCA2=25.0; PALB2=15.6; RAD51C=14.9†; VHL=42.4
+Atlas combined score,3–50,Moderate,4.33,Yes,0.8921,0.8280,5,5,5,5,31.9,17.2,63.7,BAP1=17.2; BARD1=40.9; BRCA1=42.9†; BRCA2=31.9; PALB2=18.6; RAD51C=30.0†; VHL=63.7
+Atlas combined score,3–50,Strong,18.7,Yes,1.171,1.171,5,5,5,5,53.5,36.7,312,BAP1=36.7; BARD1=312; BRCA1=218†; BRCA2=46.7; PALB2=290; RAD51C=69.9†; VHL=53.5
 Atlas splice sites,3–10,Supporting,2.08,Yes,0.327255,0.321289,7,7,7,7,16.2,9.00,37.6,BAP1=10.4; BARD1=16.2; BRCA1=37.6; BRCA2=19.2; PALB2=18.5; RAD51C=13.0; VHL=9.00
 Atlas splice sites,3–10,Moderate,4.33,Yes,0.4609,0.46875,7,7,6,6,23.8,11.0,48.9,BAP1=11.0; BARD1=25.2; BRCA1=48.9; BRCA2=27.9; PALB2=22.4; RAD51C=15.2; VHL=n.e.
 Atlas splice sites,3–10,Strong,18.7,No,,0.8193,7,1,1,0,12.1,12.1,12.1,BAP1=12.1; BARD1=no threshold; BRCA1=no threshold; BRCA2=no threshold; PALB2=no threshold; RAD51C=no threshold; VHL=no threshold

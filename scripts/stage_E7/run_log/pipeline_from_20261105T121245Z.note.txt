@@ -1,0 +1,9 @@
+This run (in the reference image, stages 17 to 41, 2026-11-05 11:35:43Z to 12:12:47Z)
+wrote the two files of E7.5 that the commit carries:
+reports/evidence/predictor_training_provenance.csv (the fusion row's text) and
+reports/evidence/supplement/supplement_tables_manifest.csv (S3's hash of that file).
+Every other output it wrote was the committed one, byte for byte, but five provenance
+records of stages 24 and 25 that differ only in their built_utc, which were restored.
+Its stage 41 ran on the layout code before E7's changes, so it rewrote the layout as it
+stood at 9b8eae4; the commit's layout files are from the run of 12:15:25Z, from stage 41
+(pipeline_from_20261105T121525Z.json). The record is kept as written.

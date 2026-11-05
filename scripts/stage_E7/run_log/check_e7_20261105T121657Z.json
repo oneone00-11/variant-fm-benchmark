@@ -1,0 +1,1744 @@
+{
+ "script": "scripts/stage_E7/check_e7.py",
+ "argv": [
+  "scripts/stage_E7/check_e7.py",
+  "--base",
+  "9b8eae4"
+ ],
+ "git_commit": "9b8eae445b710dbbf4fb38bf0a1270d21de7c9c3",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E7/check_e7.py": "28647f4d3d82936963f50971864fe06fecb7f66c6d07718d8f9c3401905f13be",
+  "scripts/stage_E7/_runlog.py": "b11170ff2759fd62351f0db1bc98fae4a1c2df2bb7ceb49754a2f44401c6b996"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-05T12:16:13+00:00",
+ "end_utc": "2026-11-05T12:16:57+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "base": "9b8eae4",
+  "s32_columns_left_out": {
+   "ok": true,
+   "value": [
+    "Threshold change, twelve-gene minus seven-gene",
+    "Threshold change relative to the seven-gene threshold's magnitude"
+   ]
+  },
+  "s32_other_cells_as_before": {
+   "ok": true,
+   "value": {
+    "rows": 336,
+    "columns": [
+     21,
+     19
+    ]
+   }
+  },
+  "s32_source_keeps_them_derived": {
+   "ok": true,
+   "value": {
+    "sign_changes": [
+     "gpn_msa s3_10 bp4 supporting: 1.63 -> -1.53",
+     "avi s3_10 bp4 supporting: 0.191895 -> -0.0611537"
+    ],
+    "seven_gene_threshold_zero_relative_change_empty": [
+     "phastcons s3_10 bp4 supporting"
+    ]
+   }
+  },
+  "s32_source_unchanged": true,
+  "s6_source_unchanged": true,
+  "s6_before_was_the_source": true,
+  "s6_other_rows_byte_for_byte": {
+   "ok": true,
+   "value": {
+    "rows": 117,
+    "atlas_rows": 9
+   }
+  },
+  "s6_atlas_rows_change_only_the_counts_summaries_and_per_fold": {
+   "ok": true,
+   "value": [
+    "Held-out genes",
+    "Folds with a fitted threshold",
+    "Folds with an evaluable held-out LR",
+    "Held-out genes clearing the cut",
+    "Held-out LR, median",
+    "Held-out LR, maximum",
+    "Held-out LR per fold"
+   ]
+  },
+  "s6_two_folds_marked": true,
+  "s6_atlas_rows": [
+   {
+    "band": "3–10",
+    "tier": "Supporting",
+    "before": {
+     "Held-out genes": "7",
+     "Folds with a fitted threshold": "7",
+     "Folds with an evaluable held-out LR": "6",
+     "Held-out genes clearing the cut": "6",
+     "Held-out LR, median": "11.7",
+     "Held-out LR, minimum": "9.75",
+     "Held-out LR, maximum": "33.4",
+     "k/n (m)": "6/7 (1)"
+    },
+    "after": {
+     "Held-out genes": "5",
+     "Folds with a fitted threshold": "5",
+     "Folds with an evaluable held-out LR": "4",
+     "Held-out genes clearing the cut": "4",
+     "Held-out LR, median": "11.6",
+     "Held-out LR, minimum": "9.75",
+     "Held-out LR, maximum": "31.9",
+     "k/n (m)": "4/5 (1)"
+    },
+    "table_2a": "",
+    "per_fold_after": "BAP1=9.75; BARD1=11.0; BRCA1=33.4†; BRCA2=31.9; PALB2=12.1; RAD51C=11.2†; VHL=n.e."
+   },
+   {
+    "band": "3–10",
+    "tier": "Moderate",
+    "before": {
+     "Held-out genes": "7",
+     "Folds with a fitted threshold": "7",
+     "Folds with an evaluable held-out LR": "6",
+     "Held-out genes clearing the cut": "6",
+     "Held-out LR, median": "35.2",
+     "Held-out LR, minimum": "11.1",
+     "Held-out LR, maximum": "60.4",
+     "k/n (m)": "6/7 (1)"
+    },
+    "after": {
+     "Held-out genes": "5",
+     "Folds with a fitted threshold": "5",
+     "Folds with an evaluable held-out LR": "4",
+     "Held-out genes clearing the cut": "4",
+     "Held-out LR, median": "36.2",
+     "Held-out LR, minimum": "11.1",
+     "Held-out LR, maximum": "60.4",
+     "k/n (m)": "4/5 (1)"
+    },
+    "table_2a": "4/5 (1)",
+    "per_fold_after": "BAP1=11.1; BARD1=25.8; BRCA1=44.5†; BRCA2=46.7; PALB2=60.4; RAD51C=18.5†; VHL=n.e."
+   },
+   {
+    "band": "3–10",
+    "tier": "Strong",
+    "before": {
+     "Held-out genes": "7",
+     "Folds with a fitted threshold": "7",
+     "Folds with an evaluable held-out LR": "5",
+     "Held-out genes clearing the cut": "5",
+     "Held-out LR, median": "74.3",
+     "Held-out LR, minimum": "24.3",
+     "Held-out LR, maximum": "149",
+     "k/n (m)": "5/7 (2)"
+    },
+    "after": {
+     "Held-out genes": "5",
+     "Folds with a fitted threshold": "5",
+     "Folds with an evaluable held-out LR": "3",
+     "Held-out genes clearing the cut": "3",
+     "Held-out LR, median": "74.3",
+     "Held-out LR, minimum": "24.3",
+     "Held-out LR, maximum": "149",
+     "k/n (m)": "3/5 (2)"
+    },
+    "table_2a": "3/5 (2)",
+    "per_fold_after": "BAP1=24.3; BARD1=149; BRCA1=130†; BRCA2=n.e.; PALB2=74.3; RAD51C=28.4†; VHL=n.e."
+   },
+   {
+    "band": "11–50",
+    "tier": "Supporting",
+    "before": {
+     "Held-out genes": "6",
+     "Folds with a fitted threshold": "6",
+     "Folds with an evaluable held-out LR": "4",
+     "Held-out genes clearing the cut": "4",
+     "Held-out LR, median": "8.39",
+     "Held-out LR, minimum": "7.70",
+     "Held-out LR, maximum": "56.8",
+     "k/n (m)": "4/6 (2)"
+    },
+    "after": {
+     "Held-out genes": "4",
+     "Folds with a fitted threshold": "4",
+     "Folds with an evaluable held-out LR": "3",
+     "Held-out genes clearing the cut": "3",
+     "Held-out LR, median": "7.84",
+     "Held-out LR, minimum": "7.70",
+     "Held-out LR, maximum": "56.8",
+     "k/n (m)": "3/4 (1)"
+    },
+    "table_2a": "",
+    "per_fold_after": "BAP1=7.84; BARD1=56.8; BRCA1=n.e.†; PALB2=7.70; RAD51C=8.93†; VHL=n.e."
+   },
+   {
+    "band": "11–50",
+    "tier": "Moderate",
+    "before": {
+     "Held-out genes": "6",
+     "Folds with a fitted threshold": "6",
+     "Folds with an evaluable held-out LR": "4",
+     "Held-out genes clearing the cut": "4",
+     "Held-out LR, median": "23.1",
+     "Held-out LR, minimum": "10.3",
+     "Held-out LR, maximum": "65.3",
+     "k/n (m)": "4/6 (2)"
+    },
+    "after": {
+     "Held-out genes": "4",
+     "Folds with a fitted threshold": "4",
+     "Folds with an evaluable held-out LR": "3",
+     "Held-out genes clearing the cut": "3",
+     "Held-out LR, median": "13.3",
+     "Held-out LR, minimum": "10.3",
+     "Held-out LR, maximum": "65.3",
+     "k/n (m)": "3/4 (1)"
+    },
+    "table_2a": "3/4 (1)",
+    "per_fold_after": "BAP1=13.3; BARD1=65.3; BRCA1=n.e.†; PALB2=10.3; RAD51C=32.9†; VHL=n.e."
+   },
+   {
+    "band": "11–50",
+    "tier": "Strong",
+    "before": {
+     "Held-out genes": "6",
+     "Folds with a fitted threshold": "2",
+     "Folds with an evaluable held-out LR": "0",
+     "Held-out genes clearing the cut": "0",
+     "Held-out LR, median": "",
+     "Held-out LR, minimum": "",
+     "Held-out LR, maximum": "",
+     "k/n (m)": "0/6 (6)"
+    },
+    "after": {
+     "Held-out genes": "4",
+     "Folds with a fitted threshold": "1",
+     "Folds with an evaluable held-out LR": "0",
+     "Held-out genes clearing the cut": "0",
+     "Held-out LR, median": "",
+     "Held-out LR, minimum": "",
+     "Held-out LR, maximum": "",
+     "k/n (m)": "0/4 (4)"
+    },
+    "table_2a": "0/4 (4)",
+    "per_fold_after": "BAP1=no threshold; BARD1=no threshold; BRCA1=n.e.†; PALB2=n.e.; RAD51C=no threshold†; VHL=no threshold"
+   },
+   {
+    "band": "3–50",
+    "tier": "Supporting",
+    "before": {
+     "Held-out genes": "7",
+     "Folds with a fitted threshold": "7",
+     "Folds with an evaluable held-out LR": "7",
+     "Held-out genes clearing the cut": "7",
+     "Held-out LR, median": "23.4",
+     "Held-out LR, minimum": "11.6",
+     "Held-out LR, maximum": "42.4",
+     "k/n (m)": "7/7"
+    },
+    "after": {
+     "Held-out genes": "5",
+     "Folds with a fitted threshold": "5",
+     "Folds with an evaluable held-out LR": "5",
+     "Held-out genes clearing the cut": "5",
+     "Held-out LR, median": "25.0",
+     "Held-out LR, minimum": "11.6",
+     "Held-out LR, maximum": "42.4",
+     "k/n (m)": "5/5"
+    },
+    "table_2a": "",
+    "per_fold_after": "BAP1=11.6; BARD1=26.9; BRCA1=23.4†; BRCA2=25.0; PALB2=15.6; RAD51C=14.9†; VHL=42.4"
+   },
+   {
+    "band": "3–50",
+    "tier": "Moderate",
+    "before": {
+     "Held-out genes": "7",
+     "Folds with a fitted threshold": "7",
+     "Folds with an evaluable held-out LR": "7",
+     "Held-out genes clearing the cut": "7",
+     "Held-out LR, median": "31.9",
+     "Held-out LR, minimum": "17.2",
+     "Held-out LR, maximum": "63.7",
+     "k/n (m)": "7/7"
+    },
+    "after": {
+     "Held-out genes": "5",
+     "Folds with a fitted threshold": "5",
+     "Folds with an evaluable held-out LR": "5",
+     "Held-out genes clearing the cut": "5",
+     "Held-out LR, median": "31.9",
+     "Held-out LR, minimum": "17.2",
+     "Held-out LR, maximum": "63.7",
+     "k/n (m)": "5/5"
+    },
+    "table_2a": "5/5",
+    "per_fold_after": "BAP1=17.2; BARD1=40.9; BRCA1=42.9†; BRCA2=31.9; PALB2=18.6; RAD51C=30.0†; VHL=63.7"
+   },
+   {
+    "band": "3–50",
+    "tier": "Strong",
+    "before": {
+     "Held-out genes": "7",
+     "Folds with a fitted threshold": "7",
+     "Folds with an evaluable held-out LR": "7",
+     "Held-out genes clearing the cut": "7",
+     "Held-out LR, median": "69.9",
+     "Held-out LR, minimum": "36.7",
+     "Held-out LR, maximum": "312",
+     "k/n (m)": "7/7"
+    },
+    "after": {
+     "Held-out genes": "5",
+     "Folds with a fitted threshold": "5",
+     "Folds with an evaluable held-out LR": "5",
+     "Held-out genes clearing the cut": "5",
+     "Held-out LR, median": "53.5",
+     "Held-out LR, minimum": "36.7",
+     "Held-out LR, maximum": "312",
+     "k/n (m)": "5/5"
+    },
+    "table_2a": "5/5",
+    "per_fold_after": "BAP1=36.7; BARD1=312; BRCA1=218†; BRCA2=46.7; PALB2=290; RAD51C=69.9†; VHL=53.5"
+   }
+  ],
+  "s6_moderate_strong_counts_equal_table_2a": true,
+  "s7_byte_for_byte": true,
+  "s16_one_column_renamed": {
+   "ok": true,
+   "value": [
+    [
+     "Tier by interval calibration",
+     "Tier by the calibration rule"
+    ]
+   ]
+  },
+  "s16_cells_as_before": {
+   "ok": true,
+   "value": [
+    680,
+    52
+   ]
+  },
+  "contents_lines_changed": {
+   "ok": true,
+   "value": [
+    "thresholds_benign",
+    "thresholds_pathogenic",
+    "twelve_gene_refit"
+   ]
+  },
+  "contents_cells": {
+   "Supplementary Table S6": {
+    "title": [
+     "Interval-calibration thresholds, pathogenic side: tier reached in-sample, thresholds under the gene-clustered and variant-level bootstraps, and leave-one-gene-out transfer",
+     "Local likelihood-ratio calibration thresholds, pathogenic side: tier reached in-sample, thresholds under the gene-clustered and variant-level bootstraps, and leave-one-gene-out transfer"
+    ],
+    "notes": [
+     "",
+     "provisional: †, a fold not counted: the combined Atlas score's model was selected on the BRCA1 and RAD51C assays, so its rows' counts, median, minimum and maximum are over the other held-out genes, as in Table 2(a)"
+    ],
+    "sources": [
+     "phase1/reports/evidence/supplement/tableS6_thresholds_pathogenic.csv",
+     "phase1/reports/evidence/supplement/tableS6_thresholds_pathogenic.csv; phase1/reports/evidence/evidence_thresholds_logo_folds.csv"
+    ]
+   },
+   "Supplementary Table S7": {
+    "title": [
+     "Interval-calibration thresholds, benign side",
+     "Local likelihood-ratio calibration thresholds, benign side"
+    ],
+    "notes": [
+     "",
+     "provisional: in the combined Atlas score's rows, the median held-out ratio includes the folds with BRCA1 and RAD51C held out"
+    ]
+   },
+   "Supplementary Table S32": {
+    "fits_one_page_estimate": [
+     "no (338 lines, 370 mm wide)",
+     "no (338 lines, 337 mm wide)"
+    ]
+   }
+  },
+  "manifest_same_files": {
+   "ok": true,
+   "value": 82
+  },
+  "manifest_rows": {
+   "phase1/reports/evidence/layout/main/heldout_and_external_lr.pdf": [
+    "bytes",
+    "sha256"
+   ],
+   "phase1/reports/evidence/layout/main/heldout_and_external_lr.png": [
+    "bytes",
+    "sha256"
+   ],
+   "phase1/reports/evidence/layout/supplementary/local_lr_curves.pdf": [
+    "bytes",
+    "sha256"
+   ],
+   "phase1/reports/evidence/layout/supplementary/local_lr_curves.png": [
+    "bytes",
+    "sha256"
+   ],
+   "phase1/reports/evidence/layout/supplementary/thresholds_pathogenic.csv": [
+    "bytes",
+    "sha256",
+    "sources",
+    "sources_sha256"
+   ],
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.by_threshold.csv": [
+    "sha256"
+   ],
+   "phase1/reports/evidence/layout/supplementary/twelve_gene_refit.csv": [
+    "bytes",
+    "sha256"
+   ],
+   "phase1/reports/evidence/layout/supplementary_tables.xlsx": [
+    "bytes",
+    "sha256",
+    "sources",
+    "sources_sha256"
+   ],
+   "phase1/reports/evidence/layout/contents.csv": [
+    "bytes",
+    "sha256"
+   ]
+  },
+  "workbook_same_sheets": {
+   "ok": true,
+   "value": 35
+  },
+  "workbook_rows": {
+   "README": {
+    "rows_before": 59,
+    "rows_after": 59,
+    "changes": [
+     {
+      "op": "replace",
+      "rows_before": [
+       10,
+       11
+      ],
+      "rows_after": [
+       10,
+       11
+      ],
+      "first_before": [
+       "Supplementary Table S6",
+       "S6",
+       "thresholds_pathogenic"
+      ],
+      "first_after": [
+       "Supplementary Table S6",
+       "S6",
+       "thresholds_pathogenic"
+      ]
+     }
+    ]
+   },
+   "S6": {
+    "rows_before": 120,
+    "rows_after": 121,
+    "changes": [
+     {
+      "op": "replace",
+      "rows_before": [
+       1,
+       1
+      ],
+      "rows_after": [
+       1,
+       2
+      ],
+      "first_before": [
+       "Supplementary Table S6. Interval-calibration thresholds, pathogenic side: tier reached in-sample, thresholds under the gene-clustered and variant-level bootstraps, and leave-one-gene-out transfer"
+      ],
+      "first_after": [
+       "Supplementary Table S6. Local likelihood-ratio calibration thresholds, pathogenic side: tier reached in-sample, thresholds under the gene-clustered and variant-level bootstraps, and leave-one-gene-out transfer"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       85,
+       93
+      ],
+      "rows_after": [
+       86,
+       94
+      ],
+      "first_before": [
+       "Atlas combined score",
+       "3–10",
+       "Supporting"
+      ],
+      "first_after": [
+       "Atlas combined score",
+       "3–10",
+       "Supporting"
+      ]
+     }
+    ]
+   },
+   "S7": {
+    "rows_before": 120,
+    "rows_after": 121,
+    "changes": [
+     {
+      "op": "replace",
+      "rows_before": [
+       1,
+       1
+      ],
+      "rows_after": [
+       1,
+       2
+      ],
+      "first_before": [
+       "Supplementary Table S7. Interval-calibration thresholds, benign side"
+      ],
+      "first_after": [
+       "Supplementary Table S7. Local likelihood-ratio calibration thresholds, benign side"
+      ]
+     }
+    ]
+   },
+   "S16": {
+    "rows_before": 4480,
+    "rows_after": 4480,
+    "changes": [
+     {
+      "op": "replace",
+      "rows_before": [
+       4,
+       4
+      ],
+      "rows_after": [
+       4,
+       4
+      ],
+      "first_before": [
+       "Tool",
+       "In the main tables",
+       "Stratum (intronic offset, bp)"
+      ],
+      "first_after": [
+       "Tool",
+       "In the main tables",
+       "Stratum (intronic offset, bp)"
+      ]
+     }
+    ]
+   },
+   "S32": {
+    "rows_before": 339,
+    "rows_after": 339,
+    "changes": [
+     {
+      "op": "replace",
+      "rows_before": [
+       3,
+       5
+      ],
+      "rows_after": [
+       3,
+       5
+      ],
+      "first_before": [
+       "Tool",
+       "Stratum (intronic offset, bp)",
+       "Side"
+      ],
+      "first_after": [
+       "Tool",
+       "Stratum (intronic offset, bp)",
+       "Side"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       8,
+       9
+      ],
+      "rows_after": [
+       8,
+       9
+      ],
+      "first_before": [
+       "SpliceAI (distance 50)",
+       "11–50",
+       "PP3"
+      ],
+      "first_after": [
+       "SpliceAI (distance 50)",
+       "11–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       12,
+       14
+      ],
+      "rows_after": [
+       12,
+       14
+      ],
+      "first_before": [
+       "SpliceAI (distance 50)",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "SpliceAI (distance 50)",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       16,
+       17
+      ],
+      "rows_after": [
+       16,
+       17
+      ],
+      "first_before": [
+       "Pangolin",
+       "3–10",
+       "PP3"
+      ],
+      "first_after": [
+       "Pangolin",
+       "3–10",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       20,
+       21
+      ],
+      "rows_after": [
+       20,
+       21
+      ],
+      "first_before": [
+       "Pangolin",
+       "11–50",
+       "PP3"
+      ],
+      "first_after": [
+       "Pangolin",
+       "11–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       24,
+       26
+      ],
+      "rows_after": [
+       24,
+       26
+      ],
+      "first_before": [
+       "Pangolin",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "Pangolin",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       28,
+       30
+      ],
+      "rows_after": [
+       28,
+       30
+      ],
+      "first_before": [
+       "AlphaGenome splice score",
+       "3–10",
+       "PP3"
+      ],
+      "first_after": [
+       "AlphaGenome splice score",
+       "3–10",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       32,
+       34
+      ],
+      "rows_after": [
+       32,
+       34
+      ],
+      "first_before": [
+       "AlphaGenome splice score",
+       "11–50",
+       "PP3"
+      ],
+      "first_after": [
+       "AlphaGenome splice score",
+       "11–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       36,
+       38
+      ],
+      "rows_after": [
+       36,
+       38
+      ],
+      "first_before": [
+       "AlphaGenome splice score",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "AlphaGenome splice score",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       48,
+       49
+      ],
+      "rows_after": [
+       48,
+       49
+      ],
+      "first_before": [
+       "CADD",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "CADD",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       52,
+       52
+      ],
+      "rows_after": [
+       52,
+       52
+      ],
+      "first_before": [
+       "phyloP",
+       "3–10",
+       "PP3"
+      ],
+      "first_after": [
+       "phyloP",
+       "3–10",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       60,
+       61
+      ],
+      "rows_after": [
+       60,
+       61
+      ],
+      "first_before": [
+       "phyloP",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "phyloP",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       64,
+       64
+      ],
+      "rows_after": [
+       64,
+       64
+      ],
+      "first_before": [
+       "phastCons",
+       "3–10",
+       "PP3"
+      ],
+      "first_after": [
+       "phastCons",
+       "3–10",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       72,
+       72
+      ],
+      "rows_after": [
+       72,
+       72
+      ],
+      "first_before": [
+       "phastCons",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "phastCons",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       76,
+       77
+      ],
+      "rows_after": [
+       76,
+       77
+      ],
+      "first_before": [
+       "GPN-MSA",
+       "3–10",
+       "PP3"
+      ],
+      "first_after": [
+       "GPN-MSA",
+       "3–10",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       84,
+       85
+      ],
+      "rows_after": [
+       84,
+       85
+      ],
+      "first_before": [
+       "GPN-MSA",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "GPN-MSA",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       88,
+       89
+      ],
+      "rows_after": [
+       88,
+       89
+      ],
+      "first_before": [
+       "SpliceAI (published basis)",
+       "3–10",
+       "PP3"
+      ],
+      "first_after": [
+       "SpliceAI (published basis)",
+       "3–10",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       92,
+       93
+      ],
+      "rows_after": [
+       92,
+       93
+      ],
+      "first_before": [
+       "SpliceAI (published basis)",
+       "11–50",
+       "PP3"
+      ],
+      "first_after": [
+       "SpliceAI (published basis)",
+       "11–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       96,
+       98
+      ],
+      "rows_after": [
+       96,
+       98
+      ],
+      "first_before": [
+       "SpliceAI (published basis)",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "SpliceAI (published basis)",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       100,
+       102
+      ],
+      "rows_after": [
+       100,
+       102
+      ],
+      "first_before": [
+       "Atlas combined score",
+       "3–10",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas combined score",
+       "3–10",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       104,
+       106
+      ],
+      "rows_after": [
+       104,
+       106
+      ],
+      "first_before": [
+       "Atlas combined score",
+       "11–50",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas combined score",
+       "11–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       108,
+       110
+      ],
+      "rows_after": [
+       108,
+       110
+      ],
+      "first_before": [
+       "Atlas combined score",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas combined score",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       112,
+       113
+      ],
+      "rows_after": [
+       112,
+       113
+      ],
+      "first_before": [
+       "Atlas splice sites",
+       "3–10",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas splice sites",
+       "3–10",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       116,
+       117
+      ],
+      "rows_after": [
+       116,
+       117
+      ],
+      "first_before": [
+       "Atlas splice sites",
+       "11–50",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas splice sites",
+       "11–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       120,
+       122
+      ],
+      "rows_after": [
+       120,
+       122
+      ],
+      "first_before": [
+       "Atlas splice sites",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas splice sites",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       124,
+       125
+      ],
+      "rows_after": [
+       124,
+       125
+      ],
+      "first_before": [
+       "Atlas splice-site usage",
+       "3–10",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas splice-site usage",
+       "3–10",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       128,
+       130
+      ],
+      "rows_after": [
+       128,
+       130
+      ],
+      "first_before": [
+       "Atlas splice-site usage",
+       "11–50",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas splice-site usage",
+       "11–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       132,
+       134
+      ],
+      "rows_after": [
+       132,
+       134
+      ],
+      "first_before": [
+       "Atlas splice-site usage",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas splice-site usage",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       136,
+       137
+      ],
+      "rows_after": [
+       136,
+       137
+      ],
+      "first_before": [
+       "Atlas splice junctions",
+       "3–10",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas splice junctions",
+       "3–10",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       140,
+       141
+      ],
+      "rows_after": [
+       140,
+       141
+      ],
+      "first_before": [
+       "Atlas splice junctions",
+       "11–50",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas splice junctions",
+       "11–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       144,
+       146
+      ],
+      "rows_after": [
+       144,
+       146
+      ],
+      "first_before": [
+       "Atlas splice junctions",
+       "3–50",
+       "PP3"
+      ],
+      "first_after": [
+       "Atlas splice junctions",
+       "3–50",
+       "PP3"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       160,
+       161
+      ],
+      "rows_after": [
+       160,
+       161
+      ],
+      "first_before": [
+       "Pangolin",
+       "3–10",
+       "BP4"
+      ],
+      "first_after": [
+       "Pangolin",
+       "3–10",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       168,
+       168
+      ],
+      "rows_after": [
+       168,
+       168
+      ],
+      "first_before": [
+       "Pangolin",
+       "3–50",
+       "BP4"
+      ],
+      "first_after": [
+       "Pangolin",
+       "3–50",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       184,
+       185
+      ],
+      "rows_after": [
+       184,
+       185
+      ],
+      "first_before": [
+       "CADD",
+       "3–10",
+       "BP4"
+      ],
+      "first_after": [
+       "CADD",
+       "3–10",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       192,
+       192
+      ],
+      "rows_after": [
+       192,
+       192
+      ],
+      "first_before": [
+       "CADD",
+       "3–50",
+       "BP4"
+      ],
+      "first_after": [
+       "CADD",
+       "3–50",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       196,
+       197
+      ],
+      "rows_after": [
+       196,
+       197
+      ],
+      "first_before": [
+       "phyloP",
+       "3–10",
+       "BP4"
+      ],
+      "first_after": [
+       "phyloP",
+       "3–10",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       208,
+       208
+      ],
+      "rows_after": [
+       208,
+       208
+      ],
+      "first_before": [
+       "phastCons",
+       "3–10",
+       "BP4"
+      ],
+      "first_after": [
+       "phastCons",
+       "3–10",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       220,
+       221
+      ],
+      "rows_after": [
+       220,
+       221
+      ],
+      "first_before": [
+       "GPN-MSA",
+       "3–10",
+       "BP4"
+      ],
+      "first_after": [
+       "GPN-MSA",
+       "3–10",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       228,
+       228
+      ],
+      "rows_after": [
+       228,
+       228
+      ],
+      "first_before": [
+       "GPN-MSA",
+       "3–50",
+       "BP4"
+      ],
+      "first_after": [
+       "GPN-MSA",
+       "3–50",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       244,
+       245
+      ],
+      "rows_after": [
+       244,
+       245
+      ],
+      "first_before": [
+       "Atlas combined score",
+       "3–10",
+       "BP4"
+      ],
+      "first_after": [
+       "Atlas combined score",
+       "3–10",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       252,
+       252
+      ],
+      "rows_after": [
+       252,
+       252
+      ],
+      "first_before": [
+       "Atlas combined score",
+       "3–50",
+       "BP4"
+      ],
+      "first_after": [
+       "Atlas combined score",
+       "3–50",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       256,
+       256
+      ],
+      "rows_after": [
+       256,
+       256
+      ],
+      "first_before": [
+       "Atlas splice sites",
+       "3–10",
+       "BP4"
+      ],
+      "first_after": [
+       "Atlas splice sites",
+       "3–10",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       268,
+       268
+      ],
+      "rows_after": [
+       268,
+       268
+      ],
+      "first_before": [
+       "Atlas splice-site usage",
+       "3–10",
+       "BP4"
+      ],
+      "first_after": [
+       "Atlas splice-site usage",
+       "3–10",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       276,
+       276
+      ],
+      "rows_after": [
+       276,
+       276
+      ],
+      "first_before": [
+       "Atlas splice-site usage",
+       "3–50",
+       "BP4"
+      ],
+      "first_after": [
+       "Atlas splice-site usage",
+       "3–50",
+       "BP4"
+      ]
+     },
+     {
+      "op": "replace",
+      "rows_before": [
+       280,
+       280
+      ],
+      "rows_after": [
+       280,
+       280
+      ],
+      "first_before": [
+       "Atlas splice junctions",
+       "3–10",
+       "BP4"
+      ],
+      "first_after": [
+       "Atlas splice junctions",
+       "3–10",
+       "BP4"
+      ]
+     }
+    ]
+   }
+  },
+  "workbook_sheets_changed": {
+   "ok": true,
+   "value": [
+    "README",
+    "S16",
+    "S32",
+    "S6",
+    "S7"
+   ]
+  },
+  "workbook_tables_are_the_csvs": {
+   "ok": true,
+   "value": {
+    "S6": true,
+    "S7": true,
+    "S32": true,
+    "S16": true
+   }
+  },
+  "heldout_and_external_lr.pdf_is_this_drawing": {
+   "ok": true,
+   "value": "a2c6444c878bb5b15e537783e83b83088c0c52c25b3a5970b79aa3a99dd26408"
+  },
+  "heldout_and_external_lr.png_is_this_drawing": {
+   "ok": true,
+   "value": "d1a6572a6a2f22ecc34879d0cba81e05476820a9b53652e64235212fbe209351"
+  },
+  "local_lr_curves.pdf_is_this_drawing": {
+   "ok": true,
+   "value": "5a42017544edd36f566b85a407c6ac64199f7daaf6d7a361aba93c438051b526"
+  },
+  "local_lr_curves.png_is_this_drawing": {
+   "ok": true,
+   "value": "9ff269fb8b619dad5764a8dad60afd9d3a1d671c535817c9f17be81b4eddd734"
+  },
+  "figure2_atlas_rows": [
+   {
+    "panel": "a 3–10 bp",
+    "grey": [
+     "BRCA1=44.5",
+     "RAD51C=18.5"
+    ],
+    "median_before": 35.1707,
+    "median_after": 36.2348
+   },
+   {
+    "panel": "a 11–50 bp",
+    "grey": [
+     "RAD51C=32.9"
+    ],
+    "median_before": 23.0857,
+    "median_after": 13.2652
+   },
+   {
+    "panel": "a 3–50 bp",
+    "grey": [
+     "BRCA1=42.9",
+     "RAD51C=30"
+    ],
+    "median_before": 31.8519,
+    "median_after": 31.8519
+   },
+   {
+    "panel": "b 3–10 bp",
+    "grey": [
+     "BRCA1=130",
+     "RAD51C=28.4"
+    ],
+    "median_before": 74.2759,
+    "median_after": 74.2759
+   },
+   {
+    "panel": "b 11–50 bp",
+    "grey": [],
+    "median_before": null,
+    "median_after": null
+   },
+   {
+    "panel": "b 3–50 bp",
+    "grey": [
+     "BRCA1=218",
+     "RAD51C=69.9"
+    ],
+    "median_before": 69.9194,
+    "median_after": 53.4783
+   }
+  ],
+  "figure2_two_folds_in_grey_only_in_the_atlas_rows": true,
+  "figure2_medians_over_the_counted_folds": true,
+  "figure2_key_entry_in_the_first_column": {
+   "ok": true,
+   "value": [
+    "Held-out gene, clears the boundary",
+    "Held-out gene, below it",
+    "Median of held-out genes",
+    "Fold not counted (†)",
+    "$\\it{DDX3X}$",
+    "$\\it{CTCF}$",
+    "$\\it{SFPQ}$",
+    "$\\it{RAD51D}$",
+    "$\\it{XRCC2}$",
+    "$\\it{SBDS}$",
+    "$\\it{TP53}$ (HCT116 cells, Nutlin-3a)",
+    "Open: below the boundary"
+   ]
+  },
+  "figure2_pixels_differ_only_in_the_atlas_rows_and_the_key": {
+   "ok": true,
+   "value": {
+    "png": [
+     2244,
+     2066,
+     3
+    ],
+    "differing": 39782,
+    "outside": 0,
+    "key_from_row": 2014
+   }
+  },
+  "figure2_png_shapes": {
+   "before": [
+    2244,
+    2066,
+    3
+   ],
+   "after": [
+    2244,
+    2066,
+    3
+   ]
+  },
+  "s1_pdf_mm": {
+   "ok": true,
+   "value": [
+    175.0,
+    240.0
+   ]
+  },
+  "s1_caption_gap_at_least_2_mm": {
+   "ok": true,
+   "value": {
+    "stage_measure_font_boxes_bitmap_and_pdf": [
+     -0.136,
+     2.024
+    ],
+    "matplotlib_text_boxes_at_300_dpi": [
+     0.243,
+     2.403
+    ],
+    "ink_in_the_png": [
+     0.593,
+     2.794
+    ]
+   }
+  },
+  "s1_panels_one_height_shorter_in_proportion": {
+   "ok": true,
+   "value": {
+    "panel_mm": [
+     10.2545,
+     10.1564
+    ],
+    "bottom": [
+     0.03,
+     0.039
+    ],
+    "top": 0.97,
+    "png_px": [
+     [
+      2834,
+      2066
+     ],
+     [
+      2834,
+      2066
+     ]
+    ]
+   }
+  },
+  "s1_type_as_before": {
+   "ok": true,
+   "value": [
+    5.5,
+    6.5,
+    7.0
+   ]
+  },
+  "no_interval_calibration": {
+   "ok": true,
+   "value": {
+    "files_and_workbook_parts": 108,
+    "figures": 8,
+    "figure_texts": 2476,
+    "hits": []
+   }
+  },
+  "provenance_one_cell": {
+   "ok": true,
+   "value": [
+    [
+     "fusion_enet",
+     "training_data"
+    ]
+   ]
+  },
+  "provenance_cell": {
+   "before": "Elastic net over the eight panel columns, refitted within each leave-one-gene-out fold on the training genes' functional labels",
+   "after": "Elastic net over seven panel columns, the panel without the AlphaGenome splice score, refitted within each leave-one-gene-out fold on the within-gene rank of the training genes' continuous functional scores"
+  },
+  "supplement_manifest_one_entry": {
+   "ok": true,
+   "value": [
+    [
+     "phase1/reports/evidence/predictor_training_provenance.csv",
+     "23051fc29a8b7d7f2a4d7712aea5f5e8aafaff2d8bdf562cae21e5ae94bdb504",
+     "a3cf7ff1378ae7cd451cfee4f42d49a74e818a5e7919f7c4e20ca648df094da8"
+    ]
+   ]
+  },
+  "readme_diff": [
+   "@@ -15,2 +15,4 @@",
+   "-These two are kept for the sensitivity comparison (revision item C3). No stage reads",
+   "-them.",
+   "+These two are kept for the sensitivity comparison (revision item C3). Stage 30 of",
+   "+`scripts/reproduce_evidence.py`, C3 (`src/evid_suppl_c3.py`), reads them: it refits the",
+   "+thresholds under these labels and sets the result beside the current labels' fit",
+   "+(`reports/evidence/suppl_analyses/c3_superseded_labels.csv`). No other stage reads them."
+  ],
+  "readme_names_the_stage": {
+   "ok": true,
+   "value": [
+    "@@ -15,2 +15,4 @@",
+    "-These two are kept for the sensitivity comparison (revision item C3). No stage reads",
+    "-them.",
+    "+These two are kept for the sensitivity comparison (revision item C3). Stage 30 of",
+    "+`scripts/reproduce_evidence.py`, C3 (`src/evid_suppl_c3.py`), reads them: it refits the",
+    "+thresholds under these labels and sets the result beside the current labels' fit",
+    "+(`reports/evidence/suppl_analyses/c3_superseded_labels.csv`). No other stage reads them."
+   ]
+  },
+  "failed": []
+ }
+}

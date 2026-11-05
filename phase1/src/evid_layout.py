@@ -21,18 +21,21 @@ bitmaps at its resolution. A larger size set by evid_figures (its titles are 7.5
 panel letters 9 pt) is brought down to the largest; a smaller one, or a figure too wide
 or too tall, stops the run. Supplementary Figures S1-S3 are v3.0.1's, drawn again by
 their own functions in evid_figures, from the same outputs, at this width (S1 also at
-the height limit, shorter than evid_figures draws it); the files under figures/ are not
-touched.
+the height limit, shorter than evid_figures draws it, its panels raised clear of the
+caption line at its foot); the files under figures/ are not touched.
 
-Tables. A printed table (tables/, supplement/) is written as it stands, byte for byte.
-Every other table keeps all its columns, under the readable names its entry in the
-configuration gives, and each cell is printed by its column's type the way
-Supplementary Tables S1-S13 print it (evid_supp_tables' formatters); the source files
-keep their full precision. A part's entry can change what is printed, never the
-source: leave out a column that repeats another cell for cell, print "–" where a count
-has no definition, or add a column that marks the rows a rule picks (displayed()). A
-table of several parts is written as one CSV per part. A source's comment lines above
-its header are kept as the part's notes, in the workbook above the part.
+Tables. A printed table (tables/, supplement/) is written as it stands, byte for byte,
+except where its entry names folds a rule leaves out of the counts: Supplementary Table
+S6 lists the combined Atlas score's folds that Table 2(a) does not count, marked, and
+counts its rows without them (not_counted()). Every other table keeps all its columns
+under the readable names its entry in the configuration gives, and each cell is printed
+by its column's type the way Supplementary Tables S1-S13 print it (evid_supp_tables'
+formatters); the source files keep their full precision. A part's entry can change what
+is printed, never the source: leave out a column that repeats another cell for cell, or
+one the text does not use, print "–" where a count has no definition, or add a column
+that marks the rows a rule picks (displayed()). A table of several parts is written as
+one CSV per part. A source's comment lines above its header are kept as the part's
+notes, in the workbook above the part.
 
 Outputs, under reports/evidence/layout/:
   main/<content>.pdf, .png                the main figures
@@ -326,13 +329,23 @@ TIER_CUT = {"walker": 4.33, "moderate": 4.33, "strong": 18.7}
 EXTERNAL_CUTS = [("Moderate", 4.33), ("Strong", 18.7)]
 
 
+# the held-out folds Table 2(a) does not count, as Supplementary Table S6 marks them:
+# the combined Atlas score's with BRCA1 or RAD51C held out (MARK_RULES); drawn where
+# they were, in grey, and left out of the median (the author's decision of 2026-11-05)
+FOLD_NOT_COUNTED = "avi_seen_in_training"
+
+
 def _heldout_panel(ax, folds: pd.DataFrame, thr: pd.DataFrame, tier: str, cut: float,
-                   st: str, floor: float, ceil: float) -> bool:
-    """v3.0.1's Figure 3, one panel: each held-out gene's ratio at the fitted threshold."""
+                   st: str, floor: float, ceil: float) -> tuple[bool, bool]:
+    """v3.0.1's Figure 3, one panel: each held-out gene's ratio at the fitted threshold,
+    and the median of the folds counted. A fold not counted is drawn in grey by the same
+    rule, filled where it clears the boundary, open where it does not. Returns whether a
+    ratio of zero, and a fold not counted, were drawn."""
     ax.set_xscale("log")
     ax.set_xlim(floor, ceil)
     ax.axvline(cut, color=F.INK2, lw=0.8, ls=(0, (1.5, 1.5)), zorder=0)
-    any_zero = False
+    any_zero = any_grey = False
+    rule = MARK_RULES[FOLD_NOT_COUNTED]
     for yy, c in enumerate(F.COLUMNS):
         if yy % 2 == 0:
             ax.axhspan(yy - 0.5, yy + 0.5, color=F.BAND, zorder=-1, lw=0)
@@ -340,27 +353,44 @@ def _heldout_panel(ax, folds: pd.DataFrame, thr: pd.DataFrame, tier: str, cut: f
             ax.text(floor * 1.15, yy, "not reached in-sample", fontsize=5.5, color=F.MUTED,
                     va="center", zorder=5, bbox=dict(facecolor="white", edgecolor="none", pad=0.4))
             continue
-        v = folds[(folds.tool == c) & (folds.stratum == st) & (folds.tier == tier)]["heldout_lr"]
-        v = v[np.isfinite(v)].to_numpy()
+        f = folds[(folds.tool == c) & (folds.stratum == st) & (folds.tier == tier)]
+        f = f[np.isfinite(f["heldout_lr"])]
+        v = f["heldout_lr"].to_numpy()
         if not len(v):
             ax.text(floor * 1.15, yy, "no evaluable fold", fontsize=5.5, color=F.MUTED,
                     va="center", zorder=5, bbox=dict(facecolor="white", edgecolor="none", pad=0.4))
             continue
+        counted = ~np.array([bool(rule(r)) for _, r in f.iterrows()], dtype=bool)
         jitter = (np.arange(len(v)) - (len(v) - 1) / 2) * 0.09
         above, zero = v >= cut, v <= 0
         pos = np.clip(v, floor, ceil)
-        ax.scatter(pos[above & ~zero], yy + jitter[above & ~zero], s=9, color=F.BLUE,
+        draw = counted & ~zero
+        ax.scatter(pos[above & draw], yy + jitter[above & draw], s=9, color=F.BLUE,
                    edgecolor="white", linewidth=0.3, zorder=3)
-        ax.scatter(pos[~above & ~zero], yy + jitter[~above & ~zero], s=9, facecolor="white",
+        ax.scatter(pos[~above & draw], yy + jitter[~above & draw], s=9, facecolor="white",
                    edgecolor=F.BLUE, linewidth=0.7, zorder=3)
-        if zero.any():
+        if (zero & counted).any():
             any_zero = True
-            ax.scatter(np.full(zero.sum(), floor), yy + jitter[zero], s=9, facecolor="white",
-                       edgecolor=F.INK2, linewidth=0.7, zorder=3, clip_on=False)
-        ax.plot([np.median(pos)] * 2, [yy - 0.32, yy + 0.32], color=F.INK, lw=1.0, zorder=4)
+            ax.scatter(np.full((zero & counted).sum(), floor), yy + jitter[zero & counted], s=9,
+                       facecolor="white", edgecolor=F.INK2, linewidth=0.7, zorder=3, clip_on=False)
+        if (~counted).any():
+            any_grey = True
+            grey = ~counted & ~zero
+            ax.scatter(pos[above & grey], yy + jitter[above & grey], s=9, color=F.MUTED,
+                       edgecolor="white", linewidth=0.3, zorder=3)
+            ax.scatter(pos[~above & grey], yy + jitter[~above & grey], s=9, facecolor="white",
+                       edgecolor=F.MUTED, linewidth=0.7, zorder=3)
+            if (zero & ~counted).any():
+                any_zero = True
+                ax.scatter(np.full((zero & ~counted).sum(), floor), yy + jitter[zero & ~counted],
+                           s=9, facecolor="white", edgecolor=F.MUTED, linewidth=0.7, zorder=3,
+                           clip_on=False)
+        if counted.any():
+            ax.plot([np.median(pos[counted])] * 2, [yy - 0.32, yy + 0.32], color=F.INK, lw=1.0,
+                    zorder=4)
     F._logfmt(ax)
     ax.tick_params(axis="y", length=0)
-    return any_zero
+    return any_zero, any_grey
 
 
 def _external_tables() -> dict[str, pd.DataFrame]:
@@ -492,12 +522,13 @@ def figure_heldout_external(item: dict, folder: Path, cfg: dict) -> list[Path]:
     gs = fig.add_gridspec(len(heights), 3, height_ratios=heights, hspace=0.42, wspace=0.08,
                           left=0.24, right=0.98, top=0.965, bottom=0.145)
     floor, ceil = 0.3, 1000
-    any_zero = False
+    any_zero = any_grey = False
     letters = iter("abc")
     for i, (tier, cut) in enumerate((("moderate", 4.33), ("strong", 18.7))):
         axes = [fig.add_subplot(gs[i, j]) for j in range(3)]
         for j, (ax, st) in enumerate(zip(axes, F.STRATA)):
-            any_zero |= _heldout_panel(ax, folds, thr, tier, cut, st, floor, ceil)
+            zero, grey = _heldout_panel(ax, folds, thr, tier, cut, st, floor, ceil)
+            any_zero, any_grey = any_zero or zero, any_grey or grey
             ax.set_ylim(len(F.COLUMNS) - 0.5, -0.5)
             if i == 0:
                 ax.set_title(F.STRATUM_LABEL[st], fontweight="bold")
@@ -531,6 +562,10 @@ def figure_heldout_external(item: dict, folder: Path, cfg: dict) -> list[Path]:
                Line2D([], [], marker="o", ls="", mfc="white", mec=F.BLUE, ms=4,
                       label="Held-out gene, below it"),
                Line2D([], [], color=F.INK, lw=1.0, label="Median of held-out genes")]
+    if any_grey:
+        # the row's † names why (Table 2(a)'s †); the median leaves these folds out
+        handles.append(Line2D([], [], marker="o", ls="", color=F.MUTED, mec="white", ms=4,
+                              label=f"Fold not counted ({NOT_COUNTED})"))
     if any_zero:
         handles.append(Line2D([], [], marker="o", ls="", mfc="white", mec=F.INK2, ms=4,
                               label="Ratio of zero (at the axis floor)"))
@@ -540,7 +575,10 @@ def figure_heldout_external(item: dict, folder: Path, cfg: dict) -> list[Path]:
              for g in EXTERNAL_GENES]
     genes.append(Line2D([], [], marker="o", ls="", mfc="white", mec=F.INK2, ms=4,
                         label="Open: below the boundary"))
-    fig.legend(handles=handles + genes, loc="lower center", ncol=4,
+    # the key is filled column by column: the held-out entries fill the first column and
+    # the genes the columns after it (four columns for three entries, as before E7)
+    fig.legend(handles=handles + genes, loc="lower center",
+               ncol=1 + -(-len(genes) // len(handles)),
                bbox_to_anchor=(0.55, 0.0), handletextpad=0.3, columnspacing=1.0)
     item["_notes"] = _missing_notes(missing)
     return _save(fig, folder, item["content"], cfg)
@@ -738,12 +776,63 @@ def _drawn_by_figures(width: float, kept: list):
         F.DOUBLE, F._save = double, save
 
 
+def caption_gap_mm(fig, dpi: float) -> float:
+    """The space between a figure's caption line, the lowest of its own texts, and the
+    tick labels of its panels above it, in mm: from the top of the caption's box to the
+    foot of the lowest label's, each box spanning its font's full ascent and descent, as
+    a PDF reader boxes a word. That is the most such a measure takes off the blank
+    between them; matplotlib's own text boxes, and the ink, leave more. Text is laid out
+    a little differently in the bitmap, at `dpi`, and in the PDF, by the PDF backend's
+    metrics; the lesser of the two is returned."""
+    from matplotlib.backends.backend_pdf import PdfFile, RendererPdf
+    from matplotlib.font_manager import findfont, get_font
+    screen, gaps = fig.dpi, []
+    for at, pdf in ((dpi, False), (72, True)):
+        fig.set_dpi(at)
+        try:
+            fig.canvas.draw()                        # places the ticks and their labels
+            r = fig.canvas.get_renderer()
+            if pdf:
+                w, h = fig.get_size_inches()
+                r = RendererPdf(PdfFile(io.BytesIO()), 72, h, w)
+
+            def span(t) -> tuple[float, float]:
+                """A one-line text's font box, foot and top, in display units:
+                matplotlib boxes it from its baseline less the descent of the text or of
+                "lp"."""
+                prop = t.get_fontproperties()
+                font = get_font(findfont(prop))
+                em = r.points_to_pixels(prop.get_size_in_points())
+                d = max(r.get_text_width_height_descent(s, prop, ismath=False)[2]
+                        for s in (t.get_text(), "lp"))
+                base = t.get_window_extent(r).y0 + d
+                return (base + font.descender / font.units_per_EM * em,
+                        base + font.ascender / font.units_per_EM * em)
+
+            labels = []
+            for ax in fig.axes:
+                lo, hi = sorted(ax.get_xlim())
+                labels += [tick.label1 for tick, x in zip(ax.xaxis.get_major_ticks(),
+                                                           ax.xaxis.get_majorticklocs())
+                           if lo - 1e-9 <= x <= hi + 1e-9 and tick.label1.get_visible()
+                           and tick.label1.get_text().strip()]
+            cap = min(fig.texts, key=lambda t: t.get_window_extent(r).y0)
+            # display y runs upwards: the labels' lowest foot less the caption's top
+            gaps.append((min(span(t)[0] for t in labels) - span(cap)[1]) / at * 25.4)
+        finally:
+            fig.set_dpi(screen)
+    return min(gaps)
+
+
 @maker
 def redraw_figure(item: dict, folder: Path, cfg: dict) -> list[Path]:
     """A figure of v3.0.1, by its own function in evid_figures, from the same outputs; at
     the height the options give, if they give one. The figure is set to that height
     before it is saved: its panels are placed in fractions of the figure, so they become
-    shorter and its type keeps its size, where scaling the page would shrink the type."""
+    shorter and its type keeps its size, where scaling the page would shrink the type.
+    With a caption gap in the options, the panels' lower edge is raised until the
+    caption line at the foot stands that far below their lowest text: every panel and
+    the space between them shorter in proportion, the height and the type as they were."""
     F._style()
     kept: list = []
     with _drawn_by_figures(_width(cfg), kept):
@@ -751,9 +840,22 @@ def redraw_figure(item: dict, folder: Path, cfg: dict) -> list[Path]:
     if len(kept) != 1:
         raise SystemExit(f"[layout] {item['content']}: evid_figures.{item['options']['function']} "
                          f"drew {len(kept)} figures, not one")
+    fig = kept[0]
     if "height_mm" in item["options"]:
-        kept[0].set_size_inches(_width(cfg), item["options"]["height_mm"] * F.MM)
-    return _save(kept[0], folder, item["content"], cfg)
+        fig.set_size_inches(_width(cfg), item["options"]["height_mm"] * F.MM)
+    want = item["options"].get("caption_gap_mm")
+    if want is not None:
+        dpi = cfg["artwork"]["dpi"]
+        gap = caption_gap_mm(fig, dpi)
+        if gap < want:
+            raise_by = (want - gap) / (fig.get_figheight() / F.MM)
+            # rounded up at the fourth decimal, so that the gap is not short of it by a hair
+            fig.subplots_adjust(bottom=np.ceil((fig.subplotpars.bottom + raise_by) * 1e4) / 1e4)
+            gap = caption_gap_mm(fig, dpi)
+        if gap < want - 1e-9:
+            raise SystemExit(f"[layout] {item['content']}: the caption line is {gap:.2f} mm below "
+                             f"the panels' lowest text, less than {want} mm")
+    return _save(fig, folder, item["content"], cfg)
 
 
 # ---------------------------------------------------------------------------
@@ -782,6 +884,7 @@ MARK_RULES = {
                                       and r.get("heldout_gene") in K.AVI_SEEN_IN_TRAINING,
 }
 DASH = "–"
+NOT_COUNTED = "†"          # a fold listed but left out of its row's counts (S6, Figure 2)
 
 
 def read_source(path: str | Path) -> tuple[pd.DataFrame, list[str]]:
@@ -912,14 +1015,20 @@ def displayed(df: pd.DataFrame, item: dict, part: dict, cfg: dict) -> pd.DataFra
     """A source table as the supplement prints it: every column, under its readable name,
     each cell by its column's type. The part's options change only what is printed:
     `drop` leaves out a column that repeats another cell for cell (and stops the run if
-    it does not); `dashes` print "–" in the columns named, in the rows a condition picks;
-    `marks` add a column of text on the rows a named rule picks."""
+    it does not); `omit` leaves out the columns it names, which the configuration says
+    why the text does not use (and stops the run if the source lacks one); `dashes`
+    print "–" in the columns named, in the rows a condition picks; `marks` add a column
+    of text on the rows a named rule picks."""
     where_ = f"{item['content']}.{part['part']}"
     for gone, kept in part.get("drop", {}).items():
         if not (df[gone] == df[kept]).all():
             raise SystemExit(f"{where_}: '{gone}' is to be left out as a copy of '{kept}', "
                              f"and {int((df[gone] != df[kept]).sum())} rows differ")
-    df = df.drop(columns=list(part.get("drop", {})))
+    absent = [c for c in part.get("omit", []) if c not in df.columns]
+    if absent:
+        raise SystemExit(f"{where_}: the columns {absent} are to be left out, and the source "
+                         "has no such column")
+    df = df.drop(columns=list(part.get("drop", {})) + list(part.get("omit", [])))
     values = cfg["display"]["values"]
     specs = {c: _spec(item, part, c, cfg) for c in df.columns}
     names = [s[0] for s in specs.values()]
@@ -951,6 +1060,73 @@ def displayed(df: pd.DataFrame, item: dict, part: dict, cfg: dict) -> pd.DataFra
         names.insert(names.index(specs[m["before"]][0]), m["name"])
         out[m["name"]] = [m["text"] if h else "" for h in hit]
     return pd.DataFrame(out, columns=names)
+
+
+# Supplementary Table S6 as evid_supp_tables.s6 prints it: a row per (tool, band, tier),
+# its counts and summaries over the held-out folds, and each fold's ratio in one column
+S6_KEY = ("Tool", "Stratum (intronic offset, bp)", "Tier")
+S6_CUT = "Tier LR cut"
+S6_FOLDS = "Held-out LR per fold"
+S6_OVER_FOLDS = {
+    "Held-out genes": lambda f, cut: str(len(f)),
+    "Folds with a fitted threshold": lambda f, cut: str(int(f.threshold_from_6_genes.notna().sum())),
+    "Folds with an evaluable held-out LR": lambda f, cut: str(int(f.heldout_lr.notna().sum())),
+    "Held-out genes clearing the cut": lambda f, cut: str(int((f.heldout_lr >= cut).sum())),
+    "Held-out LR, median": lambda f, cut: S.fmt_lr(f.heldout_lr.dropna().median()),
+    "Held-out LR, minimum": lambda f, cut: S.fmt_lr(f.heldout_lr.dropna().min()),
+    "Held-out LR, maximum": lambda f, cut: S.fmt_lr(f.heldout_lr.dropna().max()),
+}
+
+
+def not_counted(df: pd.DataFrame, item: dict, part: dict) -> tuple[pd.DataFrame, list[tuple]]:
+    """Supplementary Table S6 with the folds a named rule picks listed but not counted,
+    by the rule Table 2(a) counts by (evid_tables._folds_excluding): in a row with such a
+    fold, the held-out genes, the folds with a fitted threshold, with an evaluable
+    held-out ratio and clearing the cut, and the median, minimum and maximum held-out
+    ratio are taken over the other folds, from the per-fold file at full precision and
+    printed as S6 prints them; each picked fold keeps its entry in the per-fold column,
+    followed by "†". Every other row and cell is printed as it stands.
+
+    A row's printed cells are first recomputed over all its folds and must come out as
+    printed, so that the two files tell one story; its cut is the tier's boundary, which
+    prints in full. The run stops if they do not, if the rule picks no fold, or if it
+    picks every fold of a row. Returns the table and the keys of the rows it changed."""
+    spec = part["not_counted"]
+    where_ = f"{item['content']}.{part['part']}"
+    rule = MARK_RULES[spec["rule"]]
+    folds = K.read_back(spec["folds"])
+    folds = folds[folds.side == spec["side"]]
+    picked_all = folds.apply(lambda r: bool(rule(r)), axis=1)
+    if not picked_all.any():
+        raise SystemExit(f"{where_}: the rule '{spec['rule']}' picks no fold")
+    codes = {(S._tool(t), S.STRATUM_LABEL[st], tier.capitalize()): (t, st, tier)
+             for t in S.TOOLS for st in S.IN_SCOPE for tier in S.TIERS}
+    boundaries = {v for _, v in F.PATH_CUTS}
+    out, changed = df.copy(), []
+    for i, r in df.iterrows():
+        key = tuple(r[c] for c in S6_KEY)
+        tool, st, tier = codes[key]
+        f = folds[(folds.tool == tool) & (folds.stratum == st) & (folds.tier == tier)]
+        picked = picked_all.loc[f.index]
+        if not picked.any():
+            continue
+        if picked.all():
+            raise SystemExit(f"{where_}: {key}: the rule '{spec['rule']}' picks every fold")
+        cut = float(r[S6_CUT])
+        if cut not in boundaries or S.fmt_lr(cut) != r[S6_CUT]:
+            raise SystemExit(f"{where_}: {key}: the cut {r[S6_CUT]} is no tier boundary as printed")
+        f = f.sort_values("heldout_gene")
+        entries = [S._fold_string(f.loc[[j]]) for j in f.index]
+        recount = {c: fn(f, cut) for c, fn in S6_OVER_FOLDS.items()} | {S6_FOLDS: "; ".join(entries)}
+        if recount != {c: r[c] for c in recount} or recount[S6_FOLDS] != S._fold_string(f):
+            raise SystemExit(f"{where_}: {key}: the printed row and {spec['folds']} disagree")
+        counted = f[~picked.loc[f.index]]
+        for c, fn in S6_OVER_FOLDS.items():
+            out.at[i, c] = fn(counted, cut)
+        out.at[i, S6_FOLDS] = "; ".join(e + (NOT_COUNTED if picked.loc[j] else "")
+                                        for e, j in zip(entries, f.index))
+        changed.append(key)
+    return out, changed
 
 
 def _write_csv(df: pd.DataFrame, path: Path) -> Path:
@@ -992,7 +1168,10 @@ def table_parts(item: dict, folder: Path, cfg: dict) -> list[Path]:
             df, notes = read_source(part["source"])
             printed = str(part["source"]).startswith(PRINTED)
         p = _part_path(folder, item, part)
-        if printed:
+        if printed and "not_counted" in part:
+            df = not_counted(df, item, part)[0]
+            _write_csv(df, p)
+        elif printed:
             p.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(part["source"], p)
         else:
@@ -1284,6 +1463,8 @@ def _sources(item: dict) -> list[str]:
             out.append(part["source"])
         srcs = part.get("sources", [])
         out += list(srcs.values()) if isinstance(srcs, dict) else list(srcs)
+        if "not_counted" in part:                    # the per-fold file it counts from
+            out.append(part["not_counted"]["folds"])
     return list(dict.fromkeys(out))
 
 
