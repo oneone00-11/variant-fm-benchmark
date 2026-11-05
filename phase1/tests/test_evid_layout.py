@@ -2,7 +2,8 @@
 named for their content, every table and figure from an output already written, the
 printed tables as they stand, the new tables under readable names and S1-S13's number
 formats, the figures within the artwork guide, and a place for every output added since
-release 3.0.1."""
+release 3.0.1. Figure 1 (c), E6: one axis, the curve Supplementary Figure S1 draws for the
+same predictor and band, point for point, in greys, with (a) and (b) where they were."""
 from __future__ import annotations
 
 import hashlib
@@ -13,6 +14,7 @@ import zipfile
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import pytest
 import yaml
@@ -432,3 +434,129 @@ def test_counts_without_a_definition_print_a_dash(content, part, file, condition
         assert (printed.loc[~hit, name] != "–").all(), (file, name)
         assert (src.loc[hit, c] == "0").all()
 
+
+# ---------------------------------------------------------------------------
+# Figure 1 (c) (E6, the author's decision of 2026-11-04)
+# ---------------------------------------------------------------------------
+@pytest.fixture(scope="module")
+def figure_one(tmp_path_factory):
+    """Figure 1 and Supplementary Figure S1 as the stage draws them, into a temporary
+    folder, each kept after the stage's own _save."""
+    import matplotlib
+    out = tmp_path_factory.mktemp("layout")
+    kept, save = [], L._save
+    mp = pytest.MonkeyPatch()
+    mp.chdir(PHASE1)                         # the makers read reports/evidence/...
+    mp.setattr(L, "_save", lambda fig, folder, stem, cfg: (kept.append(fig), save(fig, folder, stem, cfg))[1])
+    try:
+        with matplotlib.rc_context():
+            cfg = L.load_config()
+            item = next(i for i in cfg["main"] if i["content"] == "published_cut_point_by_band")
+            s1 = next(i for i in cfg["supplementary"] if i["content"] == "local_lr_curves")
+            L.figure_published_cut_point(item, out, cfg)
+            L.redraw_figure(s1, out, cfg)
+    finally:
+        mp.undo()
+    return {"cfg": cfg, "item": item, "fig": kept[0], "s1": kept[1]}
+
+
+def _curve_drawn(ax):
+    """A panel's curve as drawn (score; local likelihood ratio, clipped to the axis) and
+    its shade's polygon."""
+    from matplotlib.collections import PolyCollection
+    line = [ln for ln in ax.lines if len(ln.get_xdata()) > 2]
+    shade = [c for c in ax.collections if isinstance(c, PolyCollection)]
+    assert len(line) == 1 and len(shade) == 1 and len(shade[0].get_paths()) == 1
+    return (np.asarray(line[0].get_xdata(), dtype=float), np.asarray(line[0].get_ydata(), dtype=float),
+            shade[0].get_paths()[0].vertices)
+
+
+def test_figure_one_has_three_axes_and_c_draws_s1s_curve_point_for_point(figure_one):
+    """(c) is one axis, so that Figure 1 has three (each axis counts as a figure, and a
+    composite of more than three as two), and it draws S1's curve of the same predictor
+    and band, every row of its file, with S1's clipping and S1's shade."""
+    from src import evid_figures as F
+    fig, s1, opts = figure_one["fig"], figure_one["s1"], figure_one["item"]["options"]
+    assert len(fig.axes) == 3
+    tool, st = opts["c_tool"], opts["c_stratum"]
+    panel = s1.axes[F.COLUMNS.index(tool) * len(F.STRATA) + F.STRATA.index(st)]
+    c, s = _curve_drawn(fig.axes[2]), _curve_drawn(panel)
+    rows = len((PHASE1 / "reports" / "evidence" / f"interval_lr_{tool}_{st}.csv").read_text().splitlines()) - 1
+    assert len(c[0]) == rows
+    for drawn_c, drawn_s1 in zip(c, s):
+        assert np.array_equal(drawn_c, drawn_s1)
+    assert fig.axes[2].get_ylim() == panel.get_ylim() == (L.C_FLOOR, L.C_CEIL)
+
+
+def test_c_marks_each_in_sample_threshold_on_its_tier_at_full_precision(figure_one):
+    from src import evid_common as K
+    from src import evid_figures as F
+    opts = figure_one["item"]["options"]
+    t = K.read_back(PHASE1 / "reports" / "evidence" / "evidence_thresholds.csv")
+    t = t[(t.tool == opts["c_tool"]) & (t.stratum == opts["c_stratum"]) & (t.status == "ok")
+          & t.pp3_threshold_reachable.astype(bool)]
+    want = [(float(t[t.tier == name.lower()].pp3_threshold_insample.iloc[0]), v)
+            for name, v in F.PATH_CUTS if (t.tier == name.lower()).any()]
+    marks = [(float(m.get_xdata()[0]), float(m.get_ydata()[0]))
+             for m in figure_one["fig"].axes[2].lines if m.get_marker() == "|"]
+    assert want and marks == want
+
+
+def test_c_is_drawn_in_greys_and_names_its_table_by_the_configurations_number(figure_one):
+    """The colours of (a) and (b) mark ClinVar record status; (c) draws every variant, in
+    black and grey. Its key names the table of the thresholds by the configuration's
+    number, which may change while the content name stays."""
+    import matplotlib.colors as mcolors
+    import matplotlib.text as mtext
+    fig, cfg = figure_one["fig"], figure_one["cfg"]
+    ax, key = fig.axes[2], fig.legends[-1]
+    colours = [ln.get_color() for ln in ax.lines]
+    colours += [tuple(x) for c in ax.collections for x in c.get_facecolor()]
+    colours += [t.get_color() for t in ax.findobj(mtext.Text) if t.get_text().strip()]
+    colours += [h.get_color() if hasattr(h, "get_color") else h.get_facecolor() for h in key.legend_handles]
+    assert len(colours) > 10
+    for x in colours:
+        r, g, b = mcolors.to_rgb(x)
+        assert max(r, g, b) - min(r, g, b) <= 0.03, x
+    table = next(i for i in cfg["main"] if i["content"] == "evidence_tiers_and_thresholds")
+    letter = "abcdefghij"[[p["part"] for p in table["parts"]].index("thresholds")]
+    assert key.get_texts()[-1].get_text() == f"In-sample PP3 threshold ({table['number']}({letter}))"
+    renumbered = {"main": [{"content": "t", "number": "Table 9", "parts": [{"part": "x"}, {"part": "y"}]}],
+                  "supplementary": []}
+    assert L._part_ref(renumbered, "t", "y") == "Table 9(b)"
+
+
+def test_a_and_b_keep_their_place_from_the_top_and_c_takes_whole_pixels(figure_one):
+    """(a) and (b) stay where they were in the figure before (c), measured from the top,
+    at the same size, and (c)'s block is a whole number of pixels: the bitmap counts its
+    rows from the top, so (a) and (b) fall on the pixels they fell on before."""
+    fig, cfg = figure_one["fig"], figure_one["cfg"]
+    height = fig.get_size_inches()[1] * 25.4
+    fig0, axes0 = plt.subplots(1, 2, figsize=(L._width(cfg), L.AB_MM / 25.4), sharey=True,
+                               gridspec_kw={"wspace": 0.08})
+    fig0.subplots_adjust(left=0.2, right=0.97, top=0.94, bottom=0.2)
+    for ax, ax0 in zip(fig.axes[:2], axes0):
+        p, p0 = ax.get_position(), ax0.get_position()
+        assert abs(p.x0 - p0.x0) < 1e-12 and abs(p.width - p0.width) < 1e-12
+        assert abs((1 - p.y1) * height - (1 - p0.y1) * L.AB_MM) < 1e-9
+        assert abs(p.height * height - p0.height * L.AB_MM) < 1e-9
+    plt.close(fig0)
+    pixels = (height - L.AB_MM) / 25.4 * cfg["artwork"]["dpi"]
+    assert abs(pixels - round(pixels)) < 1e-6
+    assert height <= cfg["artwork"]["max_height_mm"]
+
+
+def test_c_stops_the_run_when_the_sources_do_not_list_its_curve(tmp_path):
+    """The options name the predictor and band; the curve file they name must be among
+    the item's sources, which contents.csv and manifest.csv list."""
+    mp = pytest.MonkeyPatch()
+    mp.chdir(PHASE1)
+    try:
+        cfg = L.load_config()
+        item = dict(next(i for i in cfg["main"] if i["content"] == "published_cut_point_by_band"))
+        item["options"] = dict(item["options"], c_stratum="s3_50")
+        with pytest.raises(SystemExit, match="do not list"):
+            L.figure_published_cut_point(item, tmp_path, cfg)
+    finally:
+        mp.undo()
+        plt.close("all")

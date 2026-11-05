@@ -1,0 +1,300 @@
+{
+ "script": "scripts/stage_E6/check_figure1c.py",
+ "argv": [
+  "scripts/stage_E6/check_figure1c.py",
+  "--base",
+  "6ce66eb"
+ ],
+ "git_commit": "6ce66eb591a38f3bd04dcf3834a212c993bc2930",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E6/check_figure1c.py": "311664744a5bb7d3b27b24988eba98df719239f6af6bbd014f2a7062ec6a6bee",
+  "scripts/stage_E6/_runlog.py": "69df818ba061308097edad64aa4fa55981c60806b91d193bb97ef70260fe54dd"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-05T02:26:26+00:00",
+ "end_utc": "2026-11-05T02:26:31+00:00",
+ "inputs": [
+  {
+   "path": "phase1/config/layout.yaml",
+   "bytes": 78915,
+   "sha256": "f7e72330358c798eb3dfcb421c754f023b52781acb1ed2d6577aa552a2c46f03"
+  },
+  {
+   "path": "phase1/config/walker2023.yaml",
+   "bytes": 15704,
+   "sha256": "afdcb4e2f57be6e1028252340584cd0443b224606044e06474d3a6cd87d43c02"
+  },
+  {
+   "path": "phase1/reports/evidence/fig_data/fig1_walker_cutpoints.csv",
+   "bytes": 6538,
+   "sha256": "b97a7dd7f3c5af27b6f6f0580f7acae71ffa63daca25a023cf153152394513b4"
+  },
+  {
+   "path": "phase1/reports/evidence/interval_lr_spliceai_walker_s3_10.csv",
+   "bytes": 536458,
+   "sha256": "241eac721753769cbe05f855330e392edc6e28318bdad20ad11236c1f5877fd4"
+  },
+  {
+   "path": "phase1/reports/evidence/evidence_thresholds.csv",
+   "bytes": 58607,
+   "sha256": "adc7bee836561a354ff8ba6e5f32a3ff05fdbc06d1acd3ff6ba6e51e79199e73"
+  },
+  {
+   "path": "phase1/reports/evidence/layout/main/published_cut_point_by_band.pdf",
+   "bytes": 71864,
+   "sha256": "4ed3251760a1050e24698f6e64e024b80b9babcc456789a57573e8be0720d017"
+  },
+  {
+   "path": "phase1/reports/evidence/layout/main/published_cut_point_by_band.png",
+   "bytes": 269903,
+   "sha256": "6d5d65c16729d72b7aff1e0e9a8e46e8bd8460bd5dad6941b5735a0c694c9c55"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "base": "6ce66eb",
+  "predictor_and_band": {
+   "c_tool": "spliceai_walker",
+   "c_stratum": "s3_10"
+  },
+  "axes_in_figure_1": {
+   "ok": true,
+   "value": 3
+  },
+  "figure_mm": {
+   "ok": true,
+   "value": {
+    "width": 175.0,
+    "height": 152.0287
+   }
+  },
+  "c_block_whole_pixels": {
+   "ok": true,
+   "value": {
+    "mm": 60.0287,
+    "pixels": 709.0
+   }
+  },
+  "ab_axes_as_before": {
+   "ok": true,
+   "value": {
+    "a": {
+     "left_width_top_height_mm": [
+      35.0,
+      64.7837,
+      5.52,
+      68.08
+     ],
+     "largest_difference_mm": 5.329070518200751e-15
+    },
+    "b": {
+     "left_width_top_height_mm": [
+      104.9663,
+      64.7837,
+      5.52,
+      68.08
+     ],
+     "largest_difference_mm": 5.329070518200751e-15
+    }
+   }
+  },
+  "c_axes_mm": {
+   "ok": true,
+   "value": {
+    "left": 16.0,
+    "width": 145.0,
+    "bottom": 15.0,
+    "height": 40.0
+   }
+  },
+  "type_pt": {
+   "ok": true,
+   "value": [
+    6.0,
+    6.5,
+    7.0
+   ]
+  },
+  "texts_inside_the_figure": {
+   "ok": true,
+   "value": {
+    "texts": 55,
+    "outside": []
+   }
+  },
+  "texts_apart": {
+   "ok": true,
+   "value": []
+  },
+  "threshold_key_names_its_table": {
+   "ok": true,
+   "value": [
+    "In-sample PP3 threshold (Table 2(b))"
+   ]
+  },
+  "s1_panel_is_the_options": {
+   "ok": true,
+   "value": {
+    "row": 0,
+    "column": 0,
+    "title": "3–10 bp",
+    "ylabel": "SpliceAI (published basis)"
+   }
+  },
+  "score_equals_s1": {
+   "ok": true,
+   "value": {
+    "points": 3108,
+    "differing": 0
+   }
+  },
+  "score_equals_the_file": true,
+  "local_lr_equals_s1": {
+   "ok": true,
+   "value": {
+    "points": 3108,
+    "differing": 0
+   }
+  },
+  "local_lr_equals_the_file": true,
+  "shade_lower_equals_s1": {
+   "ok": true,
+   "value": {
+    "points": 3108,
+    "differing": 0
+   }
+  },
+  "shade_lower_equals_the_file": true,
+  "shade_upper_equals_s1": {
+   "ok": true,
+   "value": {
+    "points": 3108,
+    "differing": 0
+   }
+  },
+  "shade_upper_equals_the_file": true,
+  "shade_x_is_the_score": true,
+  "shade_polygon_equals_s1": {
+   "ok": true,
+   "value": {
+    "vertices": 6219
+   }
+  },
+  "rows_drawn": {
+   "ok": true,
+   "value": {
+    "file_rows": 3108,
+    "finite_local_lr": 3108,
+    "points_drawn": 3108
+   }
+  },
+  "clipped_to_the_axis": {
+   "floor_ceiling": [
+    0.05,
+    1000
+   ],
+   "local_lr_below_floor": 543,
+   "local_lr_zero": 121,
+   "local_lr_above_ceiling": 0,
+   "lower_edge_below_floor": 1107,
+   "upper_edge_above_ceiling": 0
+  },
+  "default_parser_against_read_back": {
+   "score": {
+    "values_differing": 2368,
+    "largest_relative": 1.8370116006889793e-13
+   },
+   "local_lr": {
+    "values_differing": 1384,
+    "largest_relative": 1.5421889838420044e-15
+   },
+   "lr_lo_gene_boot": {
+    "values_differing": 1102,
+    "largest_relative": 1.8271205740800686e-15
+   },
+   "lr_hi_gene_boot": {
+    "values_differing": 1130,
+    "largest_relative": 1.0750347179062373e-15
+   }
+  },
+  "threshold_marks": {
+   "ok": true,
+   "value": [
+    {
+     "threshold": "0.4195183515548706",
+     "on_boundary": 2.08
+    },
+    {
+     "threshold": "0.5281116366386414",
+     "on_boundary": 4.33
+    },
+    {
+     "threshold": "0.9594634771347046",
+     "on_boundary": 18.7
+    }
+   ]
+  },
+  "cut_point_line": {
+   "ok": true,
+   "value": 0.2
+  },
+  "c_in_greys_only": {
+   "ok": true,
+   "value": [
+    "#000000ff",
+    "#0b0b0bff",
+    "#52514eff",
+    "#8a898445",
+    "#8a8984ff",
+    "#d9d8d4ff"
+   ]
+  },
+  "c_without_the_record_status_colours": true,
+  "stage_pdf_is_this_drawing": {
+   "ok": true,
+   "value": "4ed3251760a1050e24698f6e64e024b80b9babcc456789a57573e8be0720d017"
+  },
+  "stage_png_is_this_drawing": {
+   "ok": true,
+   "value": "6d5d65c16729d72b7aff1e0e9a8e46e8bd8460bd5dad6941b5735a0c694c9c55"
+  },
+  "pdf_mm": {
+   "ok": true,
+   "value": [
+    175.0,
+    152.029
+   ]
+  },
+  "base_png_sha256": "db980839ffc52a514b1a07143748a4d824e2dddb49520618abd412fc071051dc",
+  "ab_pixels_as_before": {
+   "ok": true,
+   "value": {
+    "base_png": [
+     1086,
+     2066,
+     4
+    ],
+    "png": [
+     1795,
+     2066,
+     4
+    ],
+    "rows_compared": 1086
+   }
+  },
+  "failed": []
+ }
+}

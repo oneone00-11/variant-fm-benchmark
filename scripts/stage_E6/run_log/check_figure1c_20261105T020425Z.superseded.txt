@@ -1,0 +1,6 @@
+check_figure1c_20261105T020425Z.json: a development run, natively on macOS, in a worktree
+outside the repository (~/work/vfb-e6, detached at 6ce66eb, the commit's code not yet
+committed), before the stage ran in the reference image. Its figure was drawn by the
+native interpreter, so the PDF and PNG hashes it records are not the committed files'.
+Superseded by the run in the reference image, whose record is beside it and whose results
+the report cites. Kept, as every run keeps its run record (the author's rule of 2026-10-27).

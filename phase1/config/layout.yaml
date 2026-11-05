@@ -63,12 +63,23 @@ display:
     c12_group: {true_positive: True positives, false_positive: False positives}
 
 main:
+  # (c): one predictor's local likelihood ratio along its score in one distance band, the
+  # curve local_lr_curves draws for them, on one axis (the author's decision of
+  # 2026-11-04). The options name the predictor and the band; the band's curve file and
+  # the thresholds' file are among the sources, and the stage stops if the curve file of
+  # the options is not.
   - content: published_cut_point_by_band
     kind: figure
     number: Figure 1
-    title: "provisional: band likelihood ratios at the published SpliceAI cut points, PP3 (a) and BP4 (b), seven genes, by distance band and ClinVar record status"
+    title: "provisional: band likelihood ratios at the published SpliceAI cut points, PP3 (a) and BP4 (b), seven genes, by distance band and ClinVar record status; local likelihood ratio of SpliceAI (published basis) along its score at 3–10 bp, with its in-sample PP3 thresholds and the published cut point (c)"
     make: figure_published_cut_point
-    sources: [reports/evidence/fig_data/fig1_walker_cutpoints.csv]
+    options: {c_tool: spliceai_walker, c_stratum: s3_10}
+    sources:
+      - reports/evidence/fig_data/fig1_walker_cutpoints.csv
+      - reports/evidence/interval_lr_spliceai_walker_s3_10.csv
+      - reports/evidence/evidence_thresholds.csv
+    notes:
+      - "provisional: (c) one distance band of one predictor; {local_lr_curves} draws every predictor in all three bands"
   - content: heldout_and_external_lr
     kind: figure
     number: Figure 2

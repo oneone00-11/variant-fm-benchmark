@@ -68,6 +68,7 @@ import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 import yaml  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
+from matplotlib.patches import Patch  # noqa: E402
 
 from . import evid_common as K  # noqa: E402
 from . import evid_external as X  # noqa: E402
@@ -134,12 +135,101 @@ def _save(fig, folder: Path, stem: str, cfg: dict) -> list[Path]:
 
 
 # ---------------------------------------------------------------------------
-# Figure: the published cut points, seven genes
+# Figure: the published cut points, seven genes (a, b); the local likelihood ratio of
+# one predictor along its score, in one distance band (c)
 # ---------------------------------------------------------------------------
+# (a) and (b) keep the block they filled before (c) was added (E6, 2026-11-04): AB_MM
+# tall at the top of the figure, every mark in it as far from the top as it was, the
+# axes the same size. (c) and its key take about C_MM below, rounded to whole pixels at
+# the artwork's resolution: the bitmap's rows are counted from the top, so (a) and (b)
+# then fall on the pixel grid they fell on before, pixel for pixel. (c) is one axis, so
+# that the figure has three: read strictly, the target's rule on composite figures counts
+# each axis as a figure and a composite of more than three as two (the author's decision
+# of 2026-11-04).
+AB_MM = 92
+C_MM = 60
+C_AXES_MM = {"left": 16.0, "right": 161.0, "bottom": 15.0, "top": 55.0}   # from the figure's lower left
+A_LETTER_X = -0.42                 # (a)'s panel letter, in (a)'s width; (c)'s stands in its column
+C_FLOOR, C_CEIL = 0.05, 1000       # Supplementary Figure S1's axis (evid_figures.figure_s1)
+C_SHADE = {"color": F.MUTED, "alpha": 0.27, "lw": 0}
+C_CUT = {"color": F.INK, "lw": 0.9, "ls": "-."}
+C_MARK = {"marker": "|", "ms": 7, "mew": 1.2, "color": F.INK, "ls": ""}
+
+
+def _part_ref(cfg: dict, content: str, part: str) -> str:
+    """An item's part as the text names it, from the configuration: 'Table 2(b)'."""
+    it = next(i for i in cfg["main"] + cfg["supplementary"] if i["content"] == content)
+    return f"{it['number']}({'abcdefghij'[[p['part'] for p in it['parts']].index(part)]})"
+
+
+def _score_axis(tool: str) -> str:
+    """A predictor's score as an axis label: SpliceAI score (published basis)."""
+    name = F.NAME[tool]
+    if name.endswith("score"):
+        return name
+    head, sep, tail = name.partition(" (")
+    return f"{head} score{sep}{tail}"
+
+
+def _local_lr_panel(fig, item: dict, cfg: dict, height: float, ax_a) -> None:
+    """(c): the options' predictor and band, its local likelihood ratio along the score,
+    as Supplementary Figure S1 draws it for them: the same file read by the same
+    function (evid_figures._curve), the same floor and ceiling, a value below the floor
+    (zero among them) drawn on it and one above the ceiling at it. In black and grey:
+    the colours of (a) and (b) mark ClinVar record status, and (c) draws every variant.
+    On each tier's line, a mark at the predictor's in-sample PP3 threshold for that tier,
+    where one was fitted (evidence_thresholds.csv, at full precision, as S1 reads it)."""
+    tool, st = item["options"]["c_tool"], item["options"]["c_stratum"]
+    needs = [F.REPORT_DIR / f"interval_lr_{tool}_{st}.csv", F.REPORT_DIR / "evidence_thresholds.csv"]
+    unlisted = [str(p) for p in needs if str(p) not in item["sources"]]
+    if unlisted:
+        raise SystemExit(f"[layout] {item['content']}: (c) reads {unlisted}, which its sources "
+                         f"in config/layout.yaml do not list")
+    c = F._curve(tool, st)
+    thr = F._thresholds()
+    thr = thr[(thr.tool == tool) & (thr.stratum == st)]
+    walker = yaml.safe_load(Path(P.CONFIG_PATH).read_text())
+    cut = float(walker["thresholds"]["pp3"]["value"])
+    width = cfg["artwork"]["double_column_mm"]
+    box = C_AXES_MM
+    ax = fig.add_axes([box["left"] / width, box["bottom"] / height,
+                       (box["right"] - box["left"]) / width, (box["top"] - box["bottom"]) / height])
+    ax.set_yscale("log")
+    ax.set_ylim(C_FLOOR, C_CEIL)
+    ax.set_xlim(0, 1)
+    F._tier_lines(ax, F.PATH_CUTS, vertical=False)
+    ax.axhline(1.0, color=F.GRID, lw=0.6, zorder=0)
+    lo = c["lr_lo_gene_boot"].clip(lower=C_FLOOR).to_numpy()
+    hi = c["lr_hi_gene_boot"].clip(upper=C_CEIL).to_numpy()
+    ax.fill_between(c.score, lo, hi, zorder=1, **C_SHADE)
+    ax.plot(c.score, c.local_lr.clip(lower=C_FLOOR, upper=C_CEIL), color=F.INK, lw=1.0, zorder=2)
+    ax.axvline(cut, zorder=1, **C_CUT)
+    for name, v in F.PATH_CUTS:
+        r = thr[thr.tier == name.lower()]
+        if len(r):
+            ax.plot(float(r.pp3_threshold_insample.iloc[0]), v, zorder=4, **C_MARK)
+    F._logfmt(ax, "y")
+    ax.set_xlabel(_score_axis(tool))
+    ax.set_ylabel("Local likelihood ratio")
+    # the band, as (a) and (b) name their bands
+    ax.text(0.012, 0.965, F.STRATUM_LABEL[st], transform=ax.transAxes, fontsize=7,
+            fontweight="bold", color=F.INK, ha="left", va="top")
+    pa, pc = ax_a.get_position(), ax.get_position()
+    F._panel_letter(ax, "c", x=(pa.x0 + A_LETTER_X * pa.width - pc.x0) / pc.width)
+    handles = [Line2D([], [], color=F.INK, lw=1.0, label="Local likelihood ratio"),
+               Patch(label="5th–95th percentile, gene-clustered bootstrap", **C_SHADE),
+               Line2D([], [], label=f"Published PP3 cut point, {cut:g}", **C_CUT),
+               Line2D([], [], label="In-sample PP3 threshold "
+                      f"({_part_ref(cfg, 'evidence_tiers_and_thresholds', 'thresholds')})", **C_MARK)]
+    fig.legend(handles=handles, loc="lower center", ncol=len(handles), bbox_to_anchor=(0.5, 0.0),
+               handletextpad=0.4, columnspacing=1.6)
+
+
 @maker
 def figure_published_cut_point(item: dict, folder: Path, cfg: dict) -> list[Path]:
     """v3.0.1's Figure 1 without the external genes, which the figure of the held-out
-    and external genes draws instead."""
+    and external genes draws instead (a, b), and below it the local likelihood ratio
+    along the score (c)."""
     F._style()
     d = K.read_back(item["sources"][0])
     seven = d[(d.source == "seven_genes") & (d.gene == "seven_genes")]
@@ -155,7 +245,10 @@ def figure_published_cut_point(item: dict, folder: Path, cfg: dict) -> list[Path
                 y += 1
         y += 0.4
     ymax = y - 0.4
-    fig, axes = plt.subplots(1, 2, figsize=(_width(cfg), 92 * F.MM), sharey=True,
+    dpi = cfg["artwork"]["dpi"]
+    c_mm = round(C_MM / 25.4 * dpi) * 25.4 / dpi
+    height = AB_MM + c_mm
+    fig, axes = plt.subplots(1, 2, figsize=(_width(cfg), height * F.MM), sharey=True,
                              gridspec_kw={"wspace": 0.08})
     specs = [("lr_pp3", "lr_pp3_lo", "lr_pp3_hi", F.PATH_CUTS, (0.8, 60),
               "Likelihood ratio of the PP3 band (score ≥ 0.2)"),
@@ -185,7 +278,7 @@ def figure_published_cut_point(item: dict, folder: Path, cfg: dict) -> list[Path
         ax.set_xlabel(xlabel)
         F._logfmt(ax)
         ax.tick_params(axis="y", length=0)
-        F._panel_letter(ax, letter, x=-0.01 if letter == "b" else -0.42)
+        F._panel_letter(ax, letter, x=-0.01 if letter == "b" else A_LETTER_X)
     ax0 = axes[0]
     ax0.set_yticks([r[0] for r in rows if r[1] is not None])
     ax0.set_yticklabels([r[1] for r in rows if r[1] is not None])
@@ -198,9 +291,13 @@ def figure_published_cut_point(item: dict, folder: Path, cfg: dict) -> list[Path
     if zero:
         handles += [Line2D([], [], marker="o", ls="", mfc="white", mec=F.INK2,
                            label="Ratio of zero (drawn at the axis floor)", ms=4.5)]
+    # the key and the margins (a) and (b) had in a figure AB_MM tall, kept from the top:
+    # the key's foot on the block's lower edge
     fig.legend(handles=handles, loc="lower center", ncol=len(handles),
-               bbox_to_anchor=(0.6, 0.0), handletextpad=0.3, columnspacing=1.2)
-    fig.subplots_adjust(left=0.2, right=0.97, top=0.94, bottom=0.2)
+               bbox_to_anchor=(0.6, c_mm / height), handletextpad=0.3, columnspacing=1.2)
+    fig.subplots_adjust(left=0.2, right=0.97, top=1 - (1 - 0.94) * AB_MM / height,
+                        bottom=1 - (1 - 0.2) * AB_MM / height)
+    _local_lr_panel(fig, item, cfg, height, axes[0])
     return _save(fig, folder, item["content"], cfg)
 
 

@@ -2175,3 +2175,28 @@ output (`scripts/stage_E5/scope_layout_c4.json`).
 - Figure 2: TP53's marker is a hexagon, still in the second colour. Its cross had no
   open form for a ratio below the boundary; every marker now has one.
 - Tests in `phase1/tests/test_evid_layout.py`.
+
+## Figure 1 (c): the local likelihood ratio along the score, on one axis (stage E6, 2026-11-05)
+
+Why: the author's decision of 2026-11-04. Four files under
+`phase1/reports/evidence/layout/` change, and nothing else
+(`scripts/stage_E6/scope_figure1c.json`): Figure 1's PDF and PNG, its line in
+`contents.csv`, and in `manifest.csv` the rows of those three files.
+
+- Figure 1 gains (c): the local likelihood ratio of SpliceAI on the published basis
+  along its score at 3–10 bp, the curve Supplementary Figure S1 draws for it. It is the
+  same file (`interval_lr_spliceai_walker_s3_10.csv`, 3,108 rows), read by the same
+  function, with S1's floor and ceiling and its shade, the 5th–95th percentile of the
+  gene-clustered bootstrap. On each tier's line a mark stands at the in-sample PP3
+  threshold for that tier (`evidence_thresholds.csv`, at full precision); the published
+  PP3 cut point is dash-dotted. Black and grey only: in (a) and (b) colour marks ClinVar
+  record status, and (c) draws every variant.
+- One axis, so that Figure 1 has three: read strictly, the target's rule on composite
+  figures counts each axis as a figure and a composite of more than three as two. The
+  predictor and the band are options of the item in `config/layout.yaml`; the stage
+  stops if the item's sources do not list the curve file they name.
+- (a) and (b) are as they were, in the same 92 mm block at the top of the figure. (c)'s
+  block is a whole number of pixels at 300 dpi (709, 60.03 mm), so the PNG's first
+  1,086 rows are the previous PNG's, pixel for pixel. The figure is 175 × 152.03 mm.
+- Tests in `phase1/tests/test_evid_layout.py`; the point-by-point check against S1 is
+  `scripts/stage_E6/check_figure1c.py`.

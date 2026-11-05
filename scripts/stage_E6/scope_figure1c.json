@@ -1,0 +1,31 @@
+{
+ "commit": "E6 commit 1 (Figure 1 (c), the author's decision of 2026-11-04)",
+ "reason": "Figure 1 gains (c); four layout files change, contents.csv in Figure 1's line only and manifest.csv in the rows of the files that change; every other output, the supplementary-table workbook among them, stays byte for byte the same",
+ "declared_from": "E6.3 of the instruction (Figure 1's PDF and PNG, contents.csv, manifest.csv), declared before the stage runs in the reference image; in manifest.csv also the row of contents.csv, as the manifest records the sha256 of contents.csv, which E6.3 changes",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/layout/main/published_cut_point_by_band.pdf": {
+   "kind": "file",
+   "why": "Figure 1 with (c) below (a) and (b): SpliceAI (published basis), 3-10 bp, its local likelihood ratio along the score on one axis; (a) and (b) as they were"
+  },
+  "phase1/reports/evidence/layout/main/published_cut_point_by_band.png": {
+   "kind": "file",
+   "why": "Figure 1 with (c), as the PDF; the PNG's first rows, the previous PNG's height, are the previous PNG's pixel for pixel (scripts/stage_E6/check_figure1c.py)"
+  },
+  "phase1/reports/evidence/layout/contents.csv": {
+   "kind": "lines",
+   "patterns": ["^Figure 1,main,figure,published_cut_point_by_band,"],
+   "why": "Figure 1's line only: its title with (c), a provisional note, and the two sources (c) reads"
+  },
+  "phase1/reports/evidence/layout/manifest.csv": {
+   "kind": "fields",
+   "key": ["file"],
+   "rows": {
+    "phase1/reports/evidence/layout/main/published_cut_point_by_band.pdf": ["bytes", "sha256", "sources", "sources_sha256"],
+    "phase1/reports/evidence/layout/main/published_cut_point_by_band.png": ["bytes", "sha256", "sources", "sources_sha256"],
+    "phase1/reports/evidence/layout/contents.csv": ["bytes", "sha256"]
+   },
+   "why": "the rows of the three files above: Figure 1's PDF and PNG with their two new sources, and contents.csv"
+  }
+ }
+}
