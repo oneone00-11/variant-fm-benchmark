@@ -1,0 +1,391 @@
+{
+ "commit": "E8 commit 1 (the supplementary items numbered in the order the text first cites them; the provisional marks, revision codes and v5 pointers out of what is printed; the author's decisions of 2026-11-07)",
+ "pairs": {
+  "training_signal": [],
+  "external_genes": [],
+  "bp4_at_bp7_positions": [],
+  "alphagenome_definitions": [],
+  "practical_metrics": [],
+  "clinvar_consistency": []
+ },
+ "files": {
+  "phase1/reports/evidence/layout/supplementary/training_signal.csv": {
+   "kind": "rows",
+   "key": [
+    "Score columns"
+   ],
+   "tool": "Score columns",
+   "gene_const": "training_signal",
+   "fields": [],
+   "why": "E8.1: the fusion row names its table by its number, now printed as the configuration numbers it (layout.yaml's replace); every other cell as it was",
+   "renames": [
+    [
+     "(Supplementary Table S9)",
+     "(Supplementary Table S24)"
+    ]
+   ]
+  },
+  "phase1/reports/evidence/layout/supplementary/external_genes.csv": {
+   "kind": "rows",
+   "key": [
+    "Gene",
+    "Label definition",
+    "Stratum (intronic offset, bp)",
+    "Tool"
+   ],
+   "tool": "Tool",
+   "gene_const": "external_genes",
+   "fields": [],
+   "why": "E8.2: five headers named the in-sample thresholds' table by its v5 number, Table 3(b), now Table 2(b); every row as it was",
+   "tool_labels": true,
+   "column_renames": [
+    [
+     "Supporting: threshold (in-sample, Table 3(b))",
+     "Supporting: threshold (in-sample, Table 2(b))"
+    ],
+    [
+     "Moderate: threshold (in-sample, Table 3(b))",
+     "Moderate: threshold (in-sample, Table 2(b))"
+    ],
+    [
+     "Strong: threshold (in-sample, Table 3(b))",
+     "Strong: threshold (in-sample, Table 2(b))"
+    ],
+    [
+     "BP4 Supporting: threshold (in-sample, Table 3(b))",
+     "BP4 Supporting: threshold (in-sample, Table 2(b))"
+    ],
+    [
+     "BP4 Moderate: threshold (in-sample, Table 3(b))",
+     "BP4 Moderate: threshold (in-sample, Table 2(b))"
+    ]
+   ]
+  },
+  "phase1/reports/evidence/layout/supplementary/bp4_at_bp7_positions.csv": {
+   "kind": "rows",
+   "key": [
+    "Condition",
+    "Splice-site side",
+    "Gene"
+   ],
+   "tool": "Gene",
+   "gene_const": "bp4_at_bp7_positions",
+   "fields": [],
+   "why": "E8.2: the condition named the in-sample thresholds' table Table 3(b), now Table 2(b); every other cell as it was",
+   "renames": [
+    [
+     "Table 3(b)",
+     "Table 2(b)"
+    ]
+   ]
+  },
+  "phase1/reports/evidence/layout/supplementary/alphagenome_definitions.csv": {
+   "kind": "rows",
+   "key": [
+    "Stratum (intronic offset, bp)",
+    "Tier",
+    "Side"
+   ],
+   "tool": "Tier",
+   "gene_const": "alphagenome_definitions",
+   "fields": [],
+   "why": "E8.2: a note's revision code (E3) out, reworded where it would not read",
+   "renames": [
+    [
+     "E3 writes per-fold thresholds for the PP3 side only",
+     "per-fold thresholds are kept for the PP3 side only"
+    ]
+   ]
+  },
+  "phase1/reports/evidence/layout/supplementary/practical_metrics.by_threshold.csv": {
+   "kind": "rows",
+   "key": [
+    "Tool",
+    "Stratum (intronic offset, bp)",
+    "Side",
+    "Threshold",
+    "Threshold source"
+   ],
+   "tool": "Tool",
+   "gene_const": "practical_metrics",
+   "fields": [],
+   "why": "E8.2: two notes' revision code (E3) out",
+   "tool_labels": true,
+   "renames": [
+    [
+     "E3 writes per-fold thresholds for the PP3 side only",
+     "per-fold thresholds are kept for the PP3 side only"
+    ],
+    [
+     "adapted from E3: fusion",
+     "fusion"
+    ]
+   ]
+  },
+  "phase1/reports/evidence/layout/supplementary/practical_metrics.by_heldout_gene.csv": {
+   "kind": "rows",
+   "key": [
+    "Tool",
+    "Stratum (intronic offset, bp)",
+    "Tier",
+    "Held-out gene"
+   ],
+   "tool": "Tool",
+   "gene_const": "practical_metrics",
+   "fields": [],
+   "why": "E8.2: a note's revision code (E3) out",
+   "tool_labels": true,
+   "renames": [
+    [
+     "adapted from E3: fusion",
+     "fusion"
+    ]
+   ]
+  },
+  "phase1/reports/evidence/layout/supplementary/clinvar_consistency.reference_metrics.csv": {
+   "kind": "rows",
+   "key": [
+    "ClinVar review status",
+    "Analysis (main or sensitivity analysis)",
+    "Tool",
+    "Stratum (intronic offset, bp)",
+    "Measure (AUROC or threshold)",
+    "Side",
+    "Threshold",
+    "Threshold source"
+   ],
+   "tool": "Tool",
+   "gene_const": "clinvar_consistency",
+   "fields": [],
+   "why": "E8.2: a note's revision code (E4) out",
+   "tool_labels": true,
+   "renames": [
+    [
+     "E4's logit pooling",
+     "the logit pooling"
+    ]
+   ]
+  },
+  "phase1/reports/evidence/layout/supplementary/vcep_rules.csv": {
+   "kind": "lines",
+   "patterns": [
+    "not stated in the specification: the published basis, as every cut-point result of this study"
+   ],
+   "why": "E8.2: one cell's revision code ' (E20.4)' out, in the six rows that carry it (the table has no unique key); checked cell by cell by check_e8.py"
+  },
+  "phase1/reports/evidence/layout/contents.csv": {
+   "kind": "file",
+   "why": "E8.1-E8.2: every row placed and numbered by the first citation in the text; titles, descriptions and notes without 'provisional:', the titles without their revision codes and v5 pointers, the notes' references renumbered, three repository-only texts without their codes; checked field by field by check_e8.py"
+  },
+  "phase1/reports/evidence/layout/supplementary_tables.xlsx": {
+   "kind": "file",
+   "why": "E8.1-E8.2: the sheets named and ordered by the new numbers; README (the numbering stated, no 'provisional', rows in the new order, three repository-only texts); each sheet's title and notes as contents.csv's, and the parts' replaced texts; every other cell as before (check_e8.py)"
+  },
+  "phase1/reports/evidence/layout/manifest.csv": {
+   "kind": "fields",
+   "key": [
+    "file"
+   ],
+   "rows": {
+    "phase1/reports/evidence/layout/supplementary/auroc_by_clinvar_status.pdf": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/auroc_by_clinvar_status.png": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/precision_recall_curves.pdf": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/precision_recall_curves.png": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/analysis_set_by_status.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/predictor_columns.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/column_agreement.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/published_cut_points.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/thresholds_pathogenic.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/thresholds_benign.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/dilution.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/fusion.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/external_genes.csv": [
+     "number",
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/inframe_attribution.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/training_signal.csv": [
+     "number",
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/arms_at_fitted_thresholds.highest_arm.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/arms_at_fitted_thresholds.auroc.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/practical_metrics.by_threshold.csv": [
+     "number",
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/practical_metrics.by_heldout_gene.csv": [
+     "number",
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/practical_metrics.external.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/practical_metrics.curve_areas.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sources.audit.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sources.versions.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sources.effect.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/alphagenome_definitions.csv": [
+     "number",
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/new_external_genes.records.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/new_external_genes.labels.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/new_external_genes.counts_by_offset.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/new_external_genes.controls.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/external_column_basis.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/external_summary.tiers_reached.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/external_summary.normal_only.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_consistency.reference_metrics.csv": [
+     "number",
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_consistency.crosstab.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_consistency.low_circularity_metrics.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_consistency.low_circularity_composition.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_consistency.first_public_dates.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_consistency.star_conversion.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_coverage.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sensitivity.intermediate.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sensitivity.superseded.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sensitivity.without_bard1_palb2.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sensitivity.brca2_concordance.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sensitivity.brca2_refits.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/prior_sensitivity.tiers.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/prior_sensitivity.band_edges.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/heldout_intervals.intervals.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/heldout_intervals.fold_counts.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/heldout_intervals.jackknife.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/bp4_at_bp7_positions.csv": [
+     "number",
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/by_splice_site_position.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/without_bap1.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/family_holdout.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/confusion_matrices.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/twelve_gene_refit.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/inframe_true_positives.csv": [
+     "number"
+    ],
+    "phase1/reports/evidence/layout/supplementary/vcep_rules.csv": [
+     "number",
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary_tables.xlsx": [
+     "bytes",
+     "sha256",
+     "sources",
+     "sources_sha256"
+    ],
+    "phase1/reports/evidence/layout/contents.csv": [
+     "bytes",
+     "sha256"
+    ]
+   },
+   "why": "E8.1: each renumbered item's files carry its new number; the changed files' size and hash; the workbook's sources in its tables' new order (same files and hashes)"
+  }
+ }
+}

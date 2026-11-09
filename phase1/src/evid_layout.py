@@ -9,33 +9,39 @@ tables, the supplementary figures, every supplementary table as CSV and the work
 so that the text and its supplement come from one commit.
 
 Numbers live only in config/layout.yaml, and in what this stage writes from it: the
-workbook's README sheet and sheet names, contents.csv and manifest.csv, and the notes
-that name another item (written {content} in the configuration). Every file is named
-for its content, so reordering figures or tables once the text is final changes the
-configuration alone. Titles, descriptions and notes in the configuration are
-placeholders until then.
+workbook's README sheet and sheet names, contents.csv and manifest.csv, and every text
+that names another item (written {content} in the configuration: a title, a
+description, a note, or a part's replacement of a source's text). Every file is named
+for its content, so renumbering figures or tables changes the configuration alone; each
+list there is in its number's order (the supplementary items numbered in the order the
+text first cites them, E8, 2026-11-08). Titles, descriptions and notes in the
+configuration are not yet the manuscript's wording.
 
 Figures follow the configuration's artwork block: no wider than its double-column width
 and no taller than its height limit, type no smaller and no larger than its sizes,
 bitmaps at its resolution. A larger size set by evid_figures (its titles are 7.5 pt, its
 panel letters 9 pt) is brought down to the largest; a smaller one, or a figure too wide
-or too tall, stops the run. Supplementary Figures S1-S3 are v3.0.1's, drawn again by
-their own functions in evid_figures, from the same outputs, at this width (S1 also at
-the height limit, shorter than evid_figures draws it, its panels raised clear of the
-caption line at its foot); the files under figures/ are not touched.
+or too tall, stops the run. The three supplementary figures of v3.0.1 (the local
+likelihood-ratio curves, the threshold dilution, AUROC by ClinVar record status) are
+drawn again by their own functions in evid_figures, from the same outputs, at this width
+(the curves also at the height limit, shorter than evid_figures draws them, the panels
+raised clear of the caption line at the foot); the files under figures/ are not touched.
 
 Tables. A printed table (tables/, supplement/) is written as it stands, byte for byte,
-except where its entry names folds a rule leaves out of the counts: Supplementary Table
-S6 lists the combined Atlas score's folds that Table 2(a) does not count, marked, and
-counts its rows without them (not_counted()). Every other table keeps all its columns
-under the readable names its entry in the configuration gives, and each cell is printed
-by its column's type the way Supplementary Tables S1-S13 print it (evid_supp_tables'
-formatters); the source files keep their full precision. A part's entry can change what
-is printed, never the source: leave out a column that repeats another cell for cell, or
-one the text does not use, print "–" where a count has no definition, or add a column
-that marks the rows a rule picks (displayed()). A table of several parts is written as
-one CSV per part. A source's comment lines above its header are kept as the part's
-notes, in the workbook above the part.
+except where its entry names folds a rule leaves out of the counts: the pathogenic-side
+thresholds (thresholds_pathogenic) list the combined Atlas score's folds that Table 2(a)
+does not count, marked, and count their rows without them (not_counted()). Every other
+table keeps all its columns under the readable names its entry in the configuration
+gives, and each cell is printed by its column's type the way the tables v3.0.1 printed
+print it (evid_supp_tables' formatters); the source files keep their full precision. A
+part's entry can change what is printed, never the source: leave out a column that
+repeats another cell for cell, or one the text does not use, print "–" where a count has
+no definition, or add a column that marks the rows a rule picks (displayed()); and print
+a text of its own in place of a source's, in its headers, cells and notes, each exactly
+as often as the entry says (replaced(): a printed table's copy differs from its source
+in those texts alone). A table of several parts is written as one CSV per part. A
+source's comment lines above its header are kept as the part's notes, in the workbook
+above the part.
 
 Outputs, under reports/evidence/layout/:
   main/<content>.pdf, .png                the main figures
@@ -329,9 +335,10 @@ TIER_CUT = {"walker": 4.33, "moderate": 4.33, "strong": 18.7}
 EXTERNAL_CUTS = [("Moderate", 4.33), ("Strong", 18.7)]
 
 
-# the held-out folds Table 2(a) does not count, as Supplementary Table S6 marks them:
-# the combined Atlas score's with BRCA1 or RAD51C held out (MARK_RULES); drawn where
-# they were, in grey, and left out of the median (the author's decision of 2026-11-05)
+# the held-out folds Table 2(a) does not count, as the pathogenic-side thresholds
+# (thresholds_pathogenic) mark them: the combined Atlas score's with BRCA1 or RAD51C held
+# out (MARK_RULES); drawn where they were, in grey, and left out of the median (the
+# author's decision of 2026-11-05)
 FOLD_NOT_COUNTED = "avi_seen_in_training"
 
 
@@ -868,12 +875,14 @@ CODED = {"tool", "stratum", "tier", "side", "label", "boolean"}
 # the types the code prints; a column can also name one of the configuration's maps of
 # codes to names (display: values:)
 TYPES = {"text"} | NUMERIC | CODED
-# the codes the study's tables print as S1-S13 print them, beyond evid_supp_tables'
+# the codes the study's tables print as the tables v3.0.1 printed print them, beyond
+# evid_supp_tables'
 TOOL_EXTRA = {"fusion_enet": "Elastic-net combination"}
 STRATUM_EXTRA = {"out_of_scope_deep": "Beyond 50 (out of scope)"}
 TIER_LABEL = {"supporting": "Supporting", "moderate": "Moderate", "strong": "Strong",
               "very_strong": "Very strong", "below supporting": "Below Supporting"}
-# the seven genes' label is each deposit's own classification, which S13 leaves blank
+# the seven genes' label is each deposit's own classification, which the printed
+# in-frame attribution table leaves blank
 LABEL_BLANK = {"y_assay"}
 # the rules a part's marks: name in the configuration. The combined Atlas score's model
 # was selected on the BRCA1 and RAD51C assays (evid_common.AVI_SEEN_IN_TRAINING, the
@@ -884,17 +893,73 @@ MARK_RULES = {
                                       and r.get("heldout_gene") in K.AVI_SEEN_IN_TRAINING,
 }
 DASH = "–"
-NOT_COUNTED = "†"          # a fold listed but left out of its row's counts (S6, Figure 2)
+NOT_COUNTED = "†"          # a fold listed but left out of its row's counts (thresholds_pathogenic, Figure 2)
 
 
 def read_source(path: str | Path) -> tuple[pd.DataFrame, list[str]]:
     """A table as text cells, with the comment lines above its header as notes."""
-    lines = Path(path).read_text().splitlines(keepends=True)
+    return _parse_source(Path(path).read_text())
+
+
+def _parse_source(text: str) -> tuple[pd.DataFrame, list[str]]:
+    lines = text.splitlines(keepends=True)
     notes = []
     while lines and lines[0].startswith("#"):
         notes.append(lines.pop(0).lstrip("#").strip())
     df = pd.read_csv(io.StringIO("".join(lines)), dtype=str, keep_default_na=False)
     return df, notes
+
+
+def _replacements(part: dict, numbers: dict) -> list[tuple[str, str, int]]:
+    """A part's `replace` entries: the source's text, the text printed in its place (its
+    {content} references written as the items' numbers), and how often the part holds it."""
+    return [(r["old"], _resolve(r["new"], numbers), int(r["count"])) for r in part.get("replace", [])]
+
+
+def replaced(df: pd.DataFrame, notes: list[str], reps: list[tuple[str, str, int]],
+             where_: str) -> tuple[pd.DataFrame, list[str]]:
+    """A part's table and its source's notes with each replacement made in the headers,
+    the cells and the notes, in order, each counted on the text the ones before it left;
+    the run stops where a text is not held exactly as often as its entry says."""
+    if not reps:
+        return df, notes
+    cols, data = list(df.columns), [list(r) for r in df.itertuples(index=False)]
+    notes = list(notes)
+    for old, new, count in reps:
+        held = (sum(c.count(old) for c in cols) + sum(v.count(old) for r in data for v in r)
+                + sum(n.count(old) for n in notes))
+        if held != count:
+            raise SystemExit(f"{where_}: '{old}' is to be printed as '{new}' {count} times, and "
+                             f"the part holds it {held} times")
+        cols = [c.replace(old, new) for c in cols]
+        data = [[v.replace(old, new) for v in r] for r in data]
+        notes = [n.replace(old, new) for n in notes]
+    if len(set(cols)) != len(cols):
+        raise SystemExit(f"{where_}: the replacements give two columns one name")
+    return pd.DataFrame(data, columns=cols, dtype=str), notes
+
+
+def _copy_replaced(src: str | Path, dst: Path, reps: list[tuple[str, str, int]],
+                   where_: str) -> tuple[pd.DataFrame, list[str]]:
+    """A printed table's copy with its part's replacements: the source's bytes with each
+    text replaced where it stands, which must read as the source does with the same
+    replacements made cell by cell (replaced()), so that nothing else in the copy differs
+    from the source. Returns the copy's table and notes."""
+    text = Path(src).read_bytes().decode("utf-8")
+    out = text
+    for old, new, count in reps:
+        if out.count(old) != count:
+            raise SystemExit(f"{where_}: '{old}' is to be printed as '{new}' {count} times, and "
+                             f"the source holds it {out.count(old)} times")
+        out = out.replace(old, new)
+    want_df, want_notes = replaced(*_parse_source(text), reps, where_)
+    got_df, got_notes = _parse_source(out)
+    if not (got_df.equals(want_df) and got_notes == want_notes):
+        raise SystemExit(f"{where_}: a replacement in the source's text does not read as the same "
+                         "replacement in its cells (it spans a delimiter or a quote)")
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    dst.write_bytes(out.encode("utf-8"))
+    return got_df, got_notes
 
 
 def _spec(item: dict, part: dict, column: str, cfg: dict) -> list:
@@ -916,7 +981,8 @@ def _side(row: dict) -> str:
 
 
 def _cell(text: str, kind: str, row: dict, extra: list, values: dict, where: str) -> str:
-    """One cell as S1-S13 print a cell of its type; an empty cell stays empty."""
+    """One cell as the tables v3.0.1 printed print a cell of its type; an empty cell
+    stays empty."""
     if text == "" or kind == "text":
         return text
     if kind in NUMERIC:
@@ -961,8 +1027,8 @@ def _cell(text: str, kind: str, row: dict, extra: list, values: dict, where: str
             raise SystemExit(f"{where}: no printed name for the tool '{text}'")
         return names[text]
     if kind == "stratum":
-        # an external gene's band is cut at the depth its deposit reaches, as S12 and S13
-        # print it (DDX3X's 11-50 is 11-25)
+        # an external gene's band is cut at the depth its deposit reaches, as the printed
+        # external-gene tables print it (DDX3X's 11-50 is 11-25)
         gene = row.get("gene") or row.get("gene_set") or row.get("Gene")
         if gene in S.S12_GENES and text in ("s3_10", "s11_50", "s3_50"):
             return _external_band(gene, text)
@@ -1062,8 +1128,9 @@ def displayed(df: pd.DataFrame, item: dict, part: dict, cfg: dict) -> pd.DataFra
     return pd.DataFrame(out, columns=names)
 
 
-# Supplementary Table S6 as evid_supp_tables.s6 prints it: a row per (tool, band, tier),
-# its counts and summaries over the held-out folds, and each fold's ratio in one column
+# The pathogenic-side thresholds (thresholds_pathogenic) as evid_supp_tables.s6 prints
+# them: a row per (tool, band, tier), its counts and summaries over the held-out folds,
+# and each fold's ratio in one column
 S6_KEY = ("Tool", "Stratum (intronic offset, bp)", "Tier")
 S6_CUT = "Tier LR cut"
 S6_FOLDS = "Held-out LR per fold"
@@ -1079,8 +1146,8 @@ S6_OVER_FOLDS = {
 
 
 def not_counted(df: pd.DataFrame, item: dict, part: dict) -> tuple[pd.DataFrame, list[tuple]]:
-    """Supplementary Table S6 with the folds a named rule picks listed but not counted,
-    by the rule Table 2(a) counts by (evid_tables._folds_excluding): in a row with such a
+    """The pathogenic-side thresholds with the folds a named rule picks listed but not
+    counted, by the rule Table 2(a) counts by (evid_tables._folds_excluding): in a row with such a
     fold, the held-out genes, the folds with a fitted threshold, with an evaluable
     held-out ratio and clearing the cut, and the median, minimum and maximum held-out
     ratio are taken over the other folds, from the per-fold file at full precision and
@@ -1146,10 +1213,14 @@ def table_parts(item: dict, folder: Path, cfg: dict) -> list[Path]:
     """Each part from its source, or from several sources of one shape stacked: a list
     of sources as they stand, or a mapping from a value of a new first column ("key",
     its name) to a source, for files that do not name what they are about. A printed
-    source is copied; any other is printed as displayed() prints it."""
+    source is copied; any other is printed as displayed() prints it. A part's
+    replacements are made in what is printed, a printed source's copy included."""
     out = []
     item["_frames"] = []
+    numbers = _numbers(cfg)
     for part in item["parts"]:
+        reps = _replacements(part, numbers)
+        where_ = f"{item['content']}.{part['part']}"
         if "sources" in part:
             srcs = part["sources"]
             pairs = srcs.items() if isinstance(srcs, dict) else [(None, x) for x in srcs]
@@ -1170,12 +1241,16 @@ def table_parts(item: dict, folder: Path, cfg: dict) -> list[Path]:
         p = _part_path(folder, item, part)
         if printed and "not_counted" in part:
             df = not_counted(df, item, part)[0]
+            df, notes = replaced(df, notes, reps, where_)
             _write_csv(df, p)
+        elif printed and reps:
+            df, notes = _copy_replaced(part["source"], p, reps, where_)
         elif printed:
             p.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(part["source"], p)
         else:
             df = displayed(df, item, part, cfg)
+            df, notes = replaced(df, notes, reps, where_)
             _write_csv(df, p)
         out.append(p)
         item["_frames"].append((part, df, notes + list(part.get("notes", []))))
@@ -1398,25 +1473,26 @@ def _sheet_name(number: str) -> str:
 def workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
     fmt = cfg["supplementary_format"]
     readme: list[tuple[list, bool]] = [
-        (["Supplementary tables (provisional numbering, titles and descriptions: config/layout.yaml)"], True),
+        ([f"Supplementary tables ({fmt['numbering']}; titles and descriptions: config/layout.yaml)"], True),
         ([_resolve(fmt["rule"], numbers)], False),
         ([], False),
-        (["Table", "Sheet", "Content", "Title (provisional)", "Destination",
-          "Description (provisional)", "Parts", "Source files", "Source sha256"], True)]
+        (["Table", "Sheet", "Content", "Title", "Destination",
+          "Description", "Parts", "Source files", "Source sha256"], True)]
     sheets = []
     for it in items:
         srcs = _sources(it)
-        readme.append(([it["number"], _sheet_name(it["number"]), it["content"], it["title"],
-                        it["destination"], it["description"],
+        title = _resolve(it["title"], numbers)
+        readme.append(([it["number"], _sheet_name(it["number"]), it["content"], title,
+                        it["destination"], _resolve(it["description"], numbers),
                         "; ".join(p["part"] for p in it["parts"]) if len(it["parts"]) > 1 else "",
                         "; ".join(_rel(s) for s in srcs), "; ".join(_sha256(s) for s in srcs)], False))
-        rows: list[tuple[list, bool]] = [([f"{it['number']}. {it['title']}"], True)]
+        rows: list[tuple[list, bool]] = [([f"{it['number']}. {title}"], True)]
         for n in _notes(it, numbers):
             rows.append(([n], False))
         for k, (part, df, notes) in enumerate(it["_frames"]):
             rows.append(([], False))
             if len(it["parts"]) > 1:
-                rows.append(([f"({chr(97 + k)}) {part.get('title', part['part'])}"], True))
+                rows.append(([f"({chr(97 + k)}) {_resolve(str(part.get('title', part['part'])), numbers)}"], True))
             for n in notes:
                 rows.append(([_resolve(n, numbers)], False))
             rows.append((list(df.columns), True))
@@ -1436,8 +1512,13 @@ def workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
 REFERENCE = re.compile(r"\{([a-z0-9_]+)\}")
 
 
+def _numbers(cfg: dict) -> dict:
+    """Each item's number by its content name."""
+    return {it["content"]: it["number"] for it in cfg["main"] + cfg["supplementary"]}
+
+
 def _resolve(text: str, numbers: dict) -> str:
-    """A note's {content} references, as the items' numbers."""
+    """A text's {content} references, as the items' numbers."""
     def number(m):
         if m.group(1) not in numbers:
             raise SystemExit(f"config/layout.yaml: a note names '{m.group(1)}', which is no item")
@@ -1480,6 +1561,31 @@ def load_config(path: Path = CONFIG) -> dict:
     missing += [r["path"] for r in cfg.get("repository_only", []) if not Path(r["path"]).is_file()]
     if missing:
         raise SystemExit(f"{path}: sources not found: {missing}")
+    # each list in its number's order, numbered from 1 without a gap: the place of an item
+    # in contents.csv and of a table's sheet in the workbook follow its number
+    for section, prefix in (("main", ""), ("supplementary", "Supplementary ")):
+        for kind in ("figure", "table"):
+            have = [it["number"] for it in cfg[section] if it["kind"] == kind]
+            s = "S" if section == "supplementary" else ""
+            want = [f"{prefix}{kind.capitalize()} {s}{k}" for k in range(1, len(have) + 1)]
+            if have != want:
+                raise SystemExit(f"{path}: the {section} {kind}s are listed as {have}, not "
+                                 f"numbered in their list's order")
+    numbers = _numbers(cfg)
+    for it in items:
+        for part in it.get("parts", []):
+            for r in part.get("replace", []):
+                if (set(r) != {"old", "new", "count"} or not isinstance(r["old"], str) or not r["old"]
+                        or not isinstance(r["new"], str) or not isinstance(r["count"], int)
+                        or r["count"] < 1):
+                    raise SystemExit(f"{path}: {it['content']}.{part['part']}: a replacement is "
+                                     "{old: text, new: text, count: a whole number from 1}")
+                _resolve(r["new"], numbers)
+        for key in ("title", "description"):
+            if key in it:
+                _resolve(it[key], numbers)
+    if not cfg["supplementary_format"].get("numbering"):
+        raise SystemExit(f"{path}: supplementary_format names no numbering")
     limit = cfg["supplementary_format"]["description_words"]
     for it in items:
         if it["make"] not in MAKERS:
@@ -1494,7 +1600,7 @@ def load_config(path: Path = CONFIG) -> dict:
 
 def main(config: Path = CONFIG, out: Path = OUT) -> None:
     cfg = load_config(config)
-    numbers = {it["content"]: it["number"] for it in cfg["main"] + cfg["supplementary"]}
+    numbers = _numbers(cfg)
     if out.exists():
         shutil.rmtree(out)
     written: list[tuple[Path, dict]] = []
@@ -1516,10 +1622,10 @@ def main(config: Path = CONFIG, out: Path = OUT) -> None:
                 fits, lines, wide = one_page(it["_frames"], width)
                 estimate = f"{'yes' if fits else 'no'} ({lines} lines, {wide} mm wide)"
             contents.append({"number": it["number"], "section": section, "kind": it["kind"],
-                             "content": it["content"], "title": it["title"],
+                             "content": it["content"], "title": _resolve(it["title"], numbers),
                              "destination": it.get("destination", ""),
                              "fits_one_page_estimate": estimate,
-                             "description": it.get("description", ""),
+                             "description": _resolve(it.get("description", ""), numbers),
                              "notes": " | ".join(_notes(it, numbers) + _part_notes(it, numbers)),
                              "files": "; ".join(_rel(p) for p in files),
                              "sources": "; ".join(_rel(s) for s in _sources(it)),

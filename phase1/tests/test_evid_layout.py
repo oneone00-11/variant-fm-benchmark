@@ -1,7 +1,7 @@
 """The layout layer (src/evid_layout.py, E5.3): numbers only in config/layout.yaml, files
 named for their content, every table and figure from an output already written, the
-printed tables as they stand, the new tables under readable names and S1-S13's number
-formats, the figures within the artwork guide, and a place for every output added since
+printed tables as they stand, the new tables under readable names and the number formats
+of the tables v3.0.1 printed, the figures within the artwork guide, and a place for every output added since
 release 3.0.1. Figure 1 (c), E6: one axis, the curve Supplementary Figure S1 draws for the
 same predictor and band, point for point, in greys, with (a) and (b) where they were."""
 from __future__ import annotations
@@ -149,13 +149,13 @@ def test_every_new_column_has_one_readable_name_and_a_known_type():
     ("", "count", {}, ""),
     ("anything at all", "text", {}, "anything at all"),
 ])
-def test_a_cell_prints_as_s1_s13_print_its_type(text, kind, row, want):
+def test_a_cell_prints_as_the_printed_tables_print_its_type(text, kind, row, want):
     values = _cfg()["display"]["values"]
     assert L._cell(text, kind, row, [], values, "test") == want
 
 
 def test_a_threshold_keeps_the_digits_that_keep_its_band():
-    """evid_supp_tables.fmt_thr, as S6 prints a threshold: four significant figures, and
+    """evid_supp_tables.fmt_thr, as thresholds_pathogenic prints a threshold: four significant figures, and
     more where four would move a variant across it (here, the side decides which way)."""
     values = _cfg()["display"]["values"]
     from src import evid_supp_tables as S
@@ -275,7 +275,11 @@ def test_the_external_genes_without_a_marker_are_named_for_the_caption():
 
 @need_out
 def test_the_printed_tables_are_written_byte_for_byte():
-    """But for the folds a rule leaves out of the counts (S6, tested below)."""
+    """But for the folds a rule leaves out of the counts (thresholds_pathogenic, tested
+    below), and the texts a part prints in place of its source's (its `replace`, E8): the
+    copy is then the source's bytes with those texts replaced, and nothing else."""
+    numbers = L._numbers(_cfg())
+    replaced = 0
     for it in _items():
         for part in it.get("parts", []):
             src = part.get("source")
@@ -283,7 +287,11 @@ def test_the_printed_tables_are_written_byte_for_byte():
                 continue
             section = "main" if it in _cfg()["main"] else "supplementary"
             name = f"{it['content']}.csv" if len(it["parts"]) == 1 else f"{it['content']}.{part['part']}.csv"
-            assert (OUT / section / name).read_bytes() == (PHASE1 / src).read_bytes(), name
+            want = (PHASE1 / src).read_bytes()
+            for old_, new_, _ in L._replacements(part, numbers):
+                want, replaced = want.replace(old_.encode(), new_.encode()), replaced + 1
+            assert (OUT / section / name).read_bytes() == want, name
+    assert replaced == 2            # training_signal's fusion row, external_genes' five headers
 
 
 @need_out
@@ -347,7 +355,7 @@ def test_the_workbook_holds_every_supplementary_table_with_its_printed_decimals(
 
 def test_a_share_stored_rounded_prints_at_its_own_decimals():
     """C12 stores its shares rounded to four decimals; printed at three they would be
-    rounded twice (0.37746 -> 0.3775 -> 0.378, where Supplementary Table S13 prints
+    rounded twice (0.37746 -> 0.3775 -> 0.378, where inframe_attribution prints
     0.377), so the configuration names four."""
     values = _cfg()["display"]["values"]
     assert L._cell("0.366", "proportion", {}, [4], values, "t") == "0.3660"
@@ -400,7 +408,7 @@ def test_a_column_left_out_must_repeat_the_one_kept():
 
 @need_out
 def test_the_atlas_rows_held_out_on_its_selection_assays_are_marked():
-    """Supplementary Table S30 keeps the combined Atlas score's rows with BRCA1 or RAD51C
+    """family_holdout keeps the combined Atlas score's rows with BRCA1 or RAD51C
     held out and marks each, by evid_common's rule, in (b)'s wording for DDX3X."""
     from src import evid_common as K
     it, part = _part_of("family_holdout", "holdout")
@@ -424,7 +432,8 @@ def test_the_atlas_rows_held_out_on_its_selection_assays_are_marked():
 ])
 def test_counts_without_a_definition_print_a_dash(content, part, file, condition):
     """A count the row has no definition for prints "–", not 0: the band counts where no
-    threshold was fitted on the other genes (S26), the fold counts on BP4 rows (S17).
+    threshold was fitted on the other genes (heldout_intervals), the fold counts on BP4
+    rows (label_sources).
     The source tables are as they were."""
     it, p = _part_of(content, part)
     src = L.read_source(PHASE1 / p["source"])[0]
@@ -567,7 +576,8 @@ def test_c_stops_the_run_when_the_sources_do_not_list_its_curve(tmp_path):
 
 # ---------------------------------------------------------------------------
 # E7 (the author's decisions of 2026-11-05): the combined Atlas score's folds that the
-# held-out counts leave out, S32's change columns, S1's caption line, the method's name
+# held-out counts leave out, twelve_gene_refit's change columns, S1's caption line, the
+# method's name
 # ---------------------------------------------------------------------------
 AVI = "Atlas combined score"
 
@@ -582,8 +592,8 @@ def _table2a_cells() -> dict:
 
 
 @need_out
-def test_s6_counts_the_atlas_rows_without_the_two_folds_as_table_2a_counts_them():
-    """Supplementary Table S6: the combined Atlas score's rows list every fold, BRCA1's
+def test_thresholds_pathogenic_counts_the_atlas_rows_without_the_two_folds_as_table_2a_counts_them():
+    """thresholds_pathogenic: the combined Atlas score's rows list every fold, BRCA1's
     and RAD51C's marked "†", and count and summarise the others, so that their Moderate
     and Strong counts are Table 2(a)'s k/n (m) cell for cell; every other row, and every
     other cell of these rows, is the printed table's, line for line."""
@@ -627,7 +637,7 @@ def test_s6_counts_the_atlas_rows_without_the_two_folds_as_table_2a_counts_them(
                 cells[(r["Stratum (intronic offset, bp)"], r.Tier)]
 
 
-def test_s6_stops_where_the_printed_row_and_the_folds_disagree_or_no_fold_is_picked(monkeypatch):
+def test_thresholds_pathogenic_stops_where_the_printed_row_and_the_folds_disagree_or_no_fold_is_picked(monkeypatch):
     monkeypatch.chdir(PHASE1)
     it, part = _part_of("thresholds_pathogenic", "pp3")
     src = L.read_source(PHASE1 / part["source"])[0]
@@ -643,7 +653,7 @@ def test_s6_stops_where_the_printed_row_and_the_folds_disagree_or_no_fold_is_pic
 
 
 @need_out
-def test_s7_is_printed_as_it_stands_with_a_note_on_the_atlas_medians():
+def test_thresholds_benign_is_printed_as_it_stands_with_a_note_on_the_atlas_medians():
     it, part = _part_of("thresholds_benign", "bp4")
     assert (OUT / "supplementary" / "thresholds_benign.csv").read_bytes() == \
         (PHASE1 / part["source"]).read_bytes()
@@ -661,7 +671,7 @@ def test_a_column_to_leave_out_must_be_in_the_source():
 
 
 @need_out
-def test_s32_leaves_out_the_two_change_columns_which_its_source_keeps():
+def test_twelve_gene_refit_leaves_out_the_two_change_columns_which_its_source_keeps():
     """The text reports the change of tier only (the author's decision of 2026-10-25): the
     absolute change is the difference of the two thresholds printed beside it, and the
     relative change has no meaning where the threshold changes sign, as it does for
@@ -789,3 +799,120 @@ def test_s1_keeps_its_caption_line_two_mm_clear_of_the_panels_at_240_mm(figure_o
     sizes = {t.get_fontsize() for t in s1.findobj(matplotlib.text.Text)
              if t.get_visible() and t.get_text().strip()}
     assert sizes <= {5.5, 6.5, 7.0}
+
+
+# ---------------------------------------------------------------------------
+# E8: the supplementary items numbered in the order the text first cites them, and
+# what is printed cleaned of the provisional marks, revision codes and v5 pointers
+# (E8.1, E8.2, the author's decisions of 2026-11-07)
+# ---------------------------------------------------------------------------
+def _printed_config_texts(cfg: dict) -> list[str]:
+    """Every text of the configuration the stage prints: titles, descriptions, an item's
+    and a part's notes, part titles, a mark's text, what a replacement prints, the
+    supplement's rule and numbering, and the repository-only entries."""
+    fmt = cfg["supplementary_format"]
+    out = [fmt["rule"], fmt["numbering"]] + [f["description"] for f in fmt["files"]]
+    for it in cfg["main"] + cfg["supplementary"]:
+        out += [it.get("title", ""), it.get("description", "")] + list(it.get("notes", []))
+        for p in it.get("parts", []):
+            out += [str(p.get("title", ""))] + list(p.get("notes", []))
+            out += [r["new"] for r in p.get("replace", [])] + [m["text"] for m in p.get("marks", [])]
+    out += [r["what"] for r in cfg["repository_only"]]
+    return [t for t in out if t]
+
+
+def test_each_list_is_in_its_numbers_order_from_one(tmp_path, monkeypatch):
+    """Tables 1-4 and Figures 1-3, and the supplementary tables and figures, each listed in
+    its numbers' order from 1 without a gap (E8.1), so that contents.csv and the
+    workbook's sheets follow the numbers; a list out of order stops the run."""
+    cfg = _cfg()
+    for section, prefix, s in (("main", "", ""), ("supplementary", "Supplementary ", "S")):
+        for kind in ("figure", "table"):
+            have = [it["number"] for it in cfg[section] if it["kind"] == kind]
+            assert have == [f"{prefix}{kind.capitalize()} {s}{k}" for k in range(1, len(have) + 1)]
+    text = CONFIG.read_text()
+    swapped = re.sub(r"number: Supplementary Table S(2|3)\b",
+                     lambda m: f"number: Supplementary Table S{5 - int(m.group(1))}", text)
+    assert len(re.findall(r"number: Supplementary Table S3\b", swapped)) == 1 and swapped != text
+    (tmp_path / "layout.yaml").write_text(swapped)
+    monkeypatch.chdir(PHASE1)
+    with pytest.raises(SystemExit, match="not numbered in their list's order"):
+        L.load_config(tmp_path / "layout.yaml")
+
+
+def test_what_the_configuration_prints_names_items_only_as_content():
+    """No printed text of the configuration writes a number of this paper by hand: every
+    item it names is named as {content} and resolves (E8.1). None carries "provisional",
+    a revision code (C1-C13, an E number) or a v5 number (E8.2)."""
+    cfg = _cfg()
+    numbers = L._numbers(cfg)
+    texts = _printed_config_texts(cfg)
+    assert len(texts) > 100
+    for t in texts:
+        assert not NUMBERED.search(t), t
+        assert not re.search(r"(?i)provisional|\bv5\b", t), t
+        assert not re.search(r"\b[CE]\d{1,2}(?:\.\d+)?\b|\b[CE]\d{1,2}'s", t), t
+        L._resolve(t, numbers)
+
+
+def test_a_replacement_prints_its_text_exactly_as_often_as_declared(tmp_path):
+    """A part's replacement is made in the headers, the cells and the notes above the
+    part, in order; the run stops where the part holds the text more or less often than
+    declared. A printed table's copy differs from its source's bytes in the replaced texts
+    alone, its line endings and quoting kept."""
+    src = tmp_path / "s.csv"
+    src.write_bytes(b"# E9 note, see Table 9(b)\r\nA (Table 9(b)),B\r\n\"x, E9's\",Table 9(b)\r\n2,3\r\n")
+    reps = L._replacements({"replace": [{"old": "Table 9(b)", "new": "{t}(b)", "count": 3},
+                                        {"old": "E9's", "new": "the", "count": 1}]}, {"t": "Table 2"})
+    assert reps == [("Table 9(b)", "Table 2(b)", 3), ("E9's", "the", 1)]
+    df, notes = L._copy_replaced(src, tmp_path / "out.csv", reps, "t.p")
+    assert (tmp_path / "out.csv").read_bytes() == \
+        src.read_bytes().replace(b"Table 9(b)", b"Table 2(b)").replace(b"E9's", b"the")
+    assert list(df.columns) == ["A (Table 2(b))", "B"]
+    assert df.iloc[0].tolist() == ["x, the", "Table 2(b)"] and notes == ["E9 note, see Table 2(b)"]
+    with pytest.raises(SystemExit, match="3 times"):
+        L._copy_replaced(src, tmp_path / "o.csv", [("Table 9(b)", "x", 2)], "t.p")
+    with pytest.raises(SystemExit):                 # across a delimiter: no cell holds it
+        L._copy_replaced(src, tmp_path / "o.csv", [(",B", ";B", 1)], "t.p")
+    df2, notes2 = L.replaced(pd.DataFrame({"a": ["E9's x"]}), ["E9's"], [("E9's", "the", 2)], "t.p")
+    assert df2.a.tolist() == ["the x"] and notes2 == ["the"]
+    with pytest.raises(SystemExit, match="1 times"):
+        L.replaced(pd.DataFrame({"a": ["E9's x"]}), [], [("E9's", "the", 2)], "t.p")
+    unchanged = pd.DataFrame({"a": ["1"]})
+    assert L.replaced(unchanged, ["n"], [], "t.p")[0] is unchanged
+
+
+@need_out
+def test_the_replaced_texts_are_gone_from_what_is_printed():
+    """Each part's replaced text is printed nowhere, CSV or workbook; what replaced it is."""
+    cfg = _cfg()
+    numbers = L._numbers(cfg)
+    with zipfile.ZipFile(OUT / "supplementary_tables.xlsx") as z:
+        book = "".join(z.read(n).decode() for n in z.namelist() if n.startswith("xl/worksheets/"))
+    seen = 0
+    for it in cfg["supplementary"]:
+        for p in it.get("parts", []):
+            for old, new, count in L._replacements(p, numbers):
+                csv_text = (OUT / "supplementary" / L._part_path(Path("."), it, p).name).read_text()
+                assert old not in csv_text, (it["content"], old)
+                assert escape_xml(old) not in book, (it["content"], old)
+                if new:
+                    assert escape_xml(new) in book, (it["content"], new)
+                seen += 1
+    assert seen >= 30
+
+
+def escape_xml(s: str) -> str:
+    from xml.sax.saxutils import escape
+    return escape(s)
+
+
+@need_out
+def test_the_readme_states_the_numbering_and_nothing_printed_is_provisional():
+    fmt = _cfg()["supplementary_format"]
+    with zipfile.ZipFile(OUT / "supplementary_tables.xlsx") as z:
+        book = "".join(z.read(n).decode() for n in z.namelist())
+    assert f"Supplementary tables ({fmt['numbering']}; titles and descriptions: config/layout.yaml)" in book
+    assert "provisional" not in book.lower()
+    contents = (OUT / "contents.csv").read_text()
+    assert "provisional" not in contents.lower()

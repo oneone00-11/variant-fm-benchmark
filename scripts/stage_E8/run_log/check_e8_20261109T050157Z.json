@@ -1,0 +1,288 @@
+{
+ "script": "scripts/stage_E8/check_e8.py",
+ "argv": [
+  "scripts/stage_E8/check_e8.py",
+  "--commit",
+  "1",
+  "--base",
+  "d6f7bc5"
+ ],
+ "git_commit": "d6f7bc56b320699e97a634d25c245bc3e9fd23cf",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E8/check_e8.py": "38c401192375f0943f3533bed053bc4dc83060059f1a80e8bde6d25927b6fcfe",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-09T05:01:10+00:00",
+ "end_utc": "2026-11-09T05:01:57+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "base": "d6f7bc5",
+  "commit": 1,
+  "tables_numbered_as_the_instruction": {
+   "ok": true,
+   "value": []
+  },
+  "figures_numbered_as_the_instruction": true,
+  "old_numbers_as_the_instruction": true,
+  "main_numbers_unchanged": true,
+  "new_from_old": {
+   "Supplementary Figure S3": "Supplementary Figure S5",
+   "Supplementary Figure S5": "Supplementary Figure S3",
+   "Supplementary Table S2": "Supplementary Table S17",
+   "Supplementary Table S3": "Supplementary Table S2",
+   "Supplementary Table S4": "Supplementary Table S3",
+   "Supplementary Table S5": "Supplementary Table S14",
+   "Supplementary Table S6": "Supplementary Table S4",
+   "Supplementary Table S7": "Supplementary Table S5",
+   "Supplementary Table S8": "Supplementary Table S6",
+   "Supplementary Table S9": "Supplementary Table S7",
+   "Supplementary Table S12": "Supplementary Table S15",
+   "Supplementary Table S13": "Supplementary Table S12",
+   "Supplementary Table S14": "Supplementary Table S19",
+   "Supplementary Table S15": "Supplementary Table S20",
+   "Supplementary Table S16": "Supplementary Table S21",
+   "Supplementary Table S17": "Supplementary Table S16",
+   "Supplementary Table S18": "Supplementary Table S31",
+   "Supplementary Table S19": "Supplementary Table S29",
+   "Supplementary Table S20": "Supplementary Table S26",
+   "Supplementary Table S21": "Supplementary Table S8",
+   "Supplementary Table S22": "Supplementary Table S24",
+   "Supplementary Table S23": "Supplementary Table S30",
+   "Supplementary Table S24": "Supplementary Table S9",
+   "Supplementary Table S25": "Supplementary Table S23",
+   "Supplementary Table S26": "Supplementary Table S22",
+   "Supplementary Table S27": "Supplementary Table S13",
+   "Supplementary Table S28": "Supplementary Table S33",
+   "Supplementary Table S29": "Supplementary Table S32",
+   "Supplementary Table S30": "Supplementary Table S25",
+   "Supplementary Table S31": "Supplementary Table S27",
+   "Supplementary Table S32": "Supplementary Table S34",
+   "Supplementary Table S33": "Supplementary Table S18",
+   "Supplementary Table S34": "Supplementary Table S28"
+  },
+  "same_files_as_the_base": {
+   "ok": true,
+   "value": []
+  },
+  "csv_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "csv_changed_cells": {
+   "supplementary/alphagenome_definitions.csv": 9,
+   "supplementary/bp4_at_bp7_positions.csv": 24,
+   "supplementary/clinvar_consistency.reference_metrics.csv": 36,
+   "supplementary/external_genes.csv": 5,
+   "supplementary/practical_metrics.by_heldout_gene.csv": 108,
+   "supplementary/practical_metrics.by_threshold.csv": 128,
+   "supplementary/training_signal.csv": 1,
+   "supplementary/vcep_rules.csv": 6
+  },
+  "contents_same_rows": true,
+  "contents_in_number_order": true,
+  "contents_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "contents_changed_fields": {
+   "title": 37,
+   "notes": 11,
+   "description": 39,
+   "number": 33
+  },
+  "manifest_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "manifest_hashes_true": true,
+  "manifest_changed_fields": {
+   "number": 57,
+   "sha256": 10,
+   "bytes": 8,
+   "sources": 1,
+   "sources_sha256": 1
+  },
+  "files_that_differ_from_the_base": [
+   "contents.csv",
+   "manifest.csv",
+   "supplementary/alphagenome_definitions.csv",
+   "supplementary/bp4_at_bp7_positions.csv",
+   "supplementary/clinvar_consistency.reference_metrics.csv",
+   "supplementary/external_genes.csv",
+   "supplementary/practical_metrics.by_heldout_gene.csv",
+   "supplementary/practical_metrics.by_threshold.csv",
+   "supplementary/training_signal.csv",
+   "supplementary/vcep_rules.csv",
+   "supplementary_tables.xlsx"
+  ],
+  "sheets_in_number_order": true,
+  "readme_header_as_declared": {
+   "ok": true,
+   "value": []
+  },
+  "readme_rows_in_number_order": true,
+  "readme_repository_rows_as_declared": {
+   "ok": true,
+   "value": []
+  },
+  "workbook_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "workbook_changed_cells": {
+   "S2 (label_sources, was S17)": 2,
+   "S3 (analysis_set_by_status, was S2)": 1,
+   "S4 (predictor_columns, was S3)": 1,
+   "S5 (training_signal, was S14)": 2,
+   "S6 (column_agreement, was S4)": 1,
+   "S7 (published_cut_points, was S5)": 1,
+   "S8 (thresholds_pathogenic, was S6)": 2,
+   "S9 (thresholds_benign, was S7)": 2,
+   "S12 (arms_at_fitted_thresholds, was S15)": 1,
+   "S13 (external_genes, was S12)": 6,
+   "S14 (new_external_genes, was S19)": 1,
+   "S15 (external_column_basis, was S20)": 1,
+   "S16 (external_summary, was S21)": 1,
+   "S17 (practical_metrics, was S16)": 239,
+   "S18 (confusion_matrices, was S31)": 2,
+   "S19 (without_bap1, was S29)": 1,
+   "S20 (heldout_intervals, was S26)": 2,
+   "S21 (dilution, was S8)": 1,
+   "S22 (label_sensitivity, was S24)": 5,
+   "S23 (family_holdout, was S30)": 2,
+   "S24 (fusion, was S9)": 1,
+   "S25 (clinvar_coverage, was S23)": 1,
+   "S26 (clinvar_consistency, was S22)": 37,
+   "S27 (inframe_attribution, was S13)": 1,
+   "S28 (inframe_true_positives, was S33)": 8,
+   "S29 (twelve_gene_refit, was S32)": 1,
+   "S30 (prior_sensitivity, was S25)": 5,
+   "S31 (bp4_at_bp7_positions, was S27)": 28,
+   "S32 (vcep_rules, was S34)": 10,
+   "S33 (alphagenome_definitions, was S18)": 10,
+   "S34 (by_splice_site_position, was S28)": 1,
+   "README": 125
+  },
+  "figures_pixel_for_pixel_as_before": {
+   "ok": true,
+   "value": []
+  },
+  "no_provisional": {
+   "ok": true,
+   "value": []
+  },
+  "no_revision_code": {
+   "ok": true,
+   "value": []
+  },
+  "no_v5": {
+   "ok": true,
+   "value": []
+  },
+  "no_Table_3b": {
+   "ok": true,
+   "value": []
+  },
+  "no_number_of_this_paper_left_fixed": {
+   "ok": true,
+   "value": []
+  },
+  "numbers_left_when_renumbered": [
+   [
+    "supplementary/label_sources.audit.csv",
+    "Figure 3",
+    "paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a)"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "Figure 3a",
+    "paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a)"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "Figure 4e",
+    "paper rule 'Results and Methods: FDR and sign, depleted split at the printed median' (PMID 38969833; PMC11250367; doi:10.1038/s41588-024-01799-3; Results and Methods; Figure 4e legend)"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "Supplementary Table 3",
+    "supplementary table: Supplementary Table 3 'Functional category', grouped as the Results group it (Results, paragraph beginning 'The combined benign')"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "Table S1",
+    "Table S1 cites no paper: not applicable"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "Table S3",
+    "PMC11821525 41586_2024_8388_MOESM3_ESM.xlsx sheet 'Table S3'"
+   ],
+   [
+    "supplementary_tables.xlsx:Q2",
+    "Figure 3",
+    "paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a)"
+   ],
+   [
+    "supplementary_tables.xlsx:Q2",
+    "Figure 3a",
+    "paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a)"
+   ],
+   [
+    "supplementary_tables.xlsx:Q2",
+    "Figure 4e",
+    "paper rule 'Results and Methods: FDR and sign, depleted split at the printed median' (PMID 38969833; PMC11250367; doi:10.1038/s41588-024-01799-3; Results and Methods; Figure 4e legend)"
+   ],
+   [
+    "supplementary_tables.xlsx:Q2",
+    "Supplementary Table 3",
+    "supplementary table: Supplementary Table 3 'Functional category', grouped as the Results group it (Results, paragraph beginning 'The combined benign')"
+   ],
+   [
+    "supplementary_tables.xlsx:Q2",
+    "Table S1",
+    "Table S1 cites no paper: not applicable"
+   ],
+   [
+    "supplementary_tables.xlsx:Q2",
+    "Table S3",
+    "PMC11821525 41586_2024_8388_MOESM3_ESM.xlsx sheet 'Table S3'"
+   ],
+   [
+    "supplementary_tables.xlsx:Q22",
+    "Supplementary Table 5",
+    "Second set: urn:mavedb:00001242-a-1 (Sahu et al. 2025), classes by rule R6: Supplementary Table 5's Classification, abnormal / normal / intermediate by side (paper_rule.json)."
+   ],
+   [
+    "supplementary_tables.xlsx:Q22",
+    "Table 5",
+    "Joined on the genomic coordinate (the author's decisions of 2026-10-26). Table 5's 6,551 rows were checked one by one: each row's c., mapped as the further external genes' variants are mapped, gives i"
+   ],
+   [
+    "supplementary_tables.xlsx:Q22",
+    "Table 5",
+    "Shared with the analysis set's 551 BRCA2 variants at 3-10 nt: 201 by Table 5 (the screening record's 198, by MaveDB's score table, is unchanged)."
+   ],
+   [
+    "supplementary_tables.xlsx:Q22",
+    "Table 5",
+    "c.9505A>C/G/T thus stands twice in Table 5 (for g.32394937, the set's c.9501+4A>C/G/T, and for the exonic g.32396901); MaveDB's urn:mavedb:00001242-a-1 lacks all six rows."
+   ]
+  ]
+ }
+}

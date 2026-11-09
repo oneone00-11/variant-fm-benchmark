@@ -1,15 +1,17 @@
 # The manuscript's figures and tables, main and supplementary (E5.3; read by
 # src/evid_layout.py). Numbers are set here and nowhere else: each item's content name is
 # stable and names its files, and its number, title and place in the list can change
-# with the text. Titles, descriptions and notes are provisional placeholders, not the
-# manuscript's wording: the titles of Supplementary Tables S1-S13 are
-# supplement/supplement_tables_manifest.csv's, but S6's and S7's, which name the method
-# as the text now does (local likelihood-ratio calibration, the author's decision of
-# 2026-11-04), and the others a neutral description. A note names another item as
-# {content}, which the stage writes as that item's number.
-# Numbering is provisional, in the order of the v5 text; what v5 does not cite follows
-# it. Once the v6 text is final, the supplementary tables are numbered in the order the
-# text first cites them, here alone (the author's decision of 2026-10-28). Paths are from
+# with the text. Every text the stage prints that names another item names it as
+# {content} (a title, a description, a note, a part's replacement of a source's text),
+# which the stage writes as that item's number.
+# Numbering follows the text: the supplementary figures and tables are numbered in the
+# order the text first cites them (2026-11-08; the author's decision of 2026-10-28), each
+# list in its number's order; Tables 1-4 and Figures 1-3 keep theirs. Titles,
+# descriptions and notes are not yet the manuscript's wording, which is written in here
+# once the text is final: the titles of the tables v3.0.1 printed (supplement/) are
+# supplement/supplement_tables_manifest.csv's, but those of the two threshold tables,
+# which name the method as the text now does (local likelihood-ratio calibration, the
+# author's decision of 2026-11-04), and the others a neutral description. Paths are from
 # phase1/.
 
 # The figures' size and type (the author's decision of 2026-10-28, from the target's
@@ -31,25 +33,31 @@ artwork:
 # with a description of at most this many words. A table's destination defaults to
 # whether it fits on one page; contents.csv gives the stage's estimate beside it.
 supplementary_format:
-  rule: "Assembly at submission (provisional): the supplementary figures, the tables marked pdf and the supplementary notes in one PDF; the tables marked excel in Excel; every file with a description of at most 50 words."
+  # how the README sheet states the numbering
+  numbering: "numbered in the order the text first cites them (2026-11-08)"
+  rule: "Assembly at submission: the supplementary figures, the tables marked pdf and the supplementary notes in one PDF; the tables marked excel in Excel; every file with a description of at most 50 words."
   description_words: 50
   files:
     - file: the supplementary PDF
-      description: "provisional: Supplementary figures, the shorter supplementary tables and the supplementary notes: methods, checks and analyses that support the main text."
+      description: "Supplementary figures, the shorter supplementary tables and the supplementary notes: methods, checks and analyses that support the main text."
 
 # How a new supplementary table prints its cells (the author's decision of 2026-10-28):
-# every column kept, under the name the table's map in `columns:` (at the end) gives;
-# each cell by the column's type, as Supplementary Tables S1-S13 print a cell of that
-# kind; the source files keep their full precision. Types: text (as written), count (a
-# whole number), proportion (three decimals, or the decimals a third entry names, for a
+# every column kept, under the name the table's map in `columns:` (at the end) gives; each
+# cell by the column's type, as the tables v3.0.1 printed (supplement/) print a cell of
+# that kind; the source files keep their full precision. Types: text (as written), count
+# (a whole number), proportion (three decimals, or the decimals a third entry names, for a
 # source that stores its shares rounded already: rounding them again would round twice),
 # lr (three significant figures), threshold (four significant figures, more where four
-# would move a variant across it; a published cut point as the configuration writes
-# it), score (four significant figures), percent (one decimal), constant (a fixed value
-# such as a prior, as the configuration writes it), number (three significant figures),
-# boolean (Yes or No), tool, stratum, tier, side and label (the names S1-S13 print; an
-# external gene's band cut at the depth its deposit reaches, as S12 and S13 cut it), or
-# one of the maps below, codes to names. An infinite value prints as ∞.
+# would move a variant across it; a published cut point as the configuration writes it),
+# score (four significant figures), percent (one decimal), constant (a fixed value such as
+# a prior, as the configuration writes it), number (three significant figures), boolean
+# (Yes or No), tool, stratum, tier, side and label (the names those tables print; an
+# external gene's band cut at the depth its deposit reaches, as they cut it), or one of
+# the maps below, codes to names. An infinite value prints as ∞. A part's `replace` prints
+# a text of its own in place of a source's, in the headers, the cells and the notes above
+# the part, each `old` exactly `count` times (the stage stops otherwise), so that a number
+# or a stage's code in a source is printed as the text needs it; the source stays as it
+# is.
 display:
   values:
     threshold_kind: {walker_pp3: "Published cut point (≥ 0.2)", walker_bp4: "Published cut point (≤ 0.1)",
@@ -59,7 +67,8 @@ display:
                        logo_median: "Median of the leave-one-gene-out thresholds"}
     star_level: {stars_ge_1: At least one star, stars_ge_2: At least two stars}
     scope: {in_scope: In scope, out_of_scope_incl_pm12: Out of scope}
-    # C12 read SpliceAI's events on the published basis, as S13's "Events read from"
+    # the in-frame attribution read SpliceAI's events on the published basis, as
+    # inframe_attribution's "Events read from"
     events_tool: {spliceai: SpliceAI (published basis), pangolin: Pangolin}
     gene_set: {seven genes: Seven genes, DDX3X: DDX3X, TP53: TP53}
     c12_group: {true_positive: True positives, false_positive: False positives}
@@ -73,7 +82,7 @@ main:
   - content: published_cut_point_by_band
     kind: figure
     number: Figure 1
-    title: "provisional: band likelihood ratios at the published SpliceAI cut points, PP3 (a) and BP4 (b), seven genes, by distance band and ClinVar record status; local likelihood ratio of SpliceAI (published basis) along its score at 3–10 bp, with its in-sample PP3 thresholds and the published cut point (c)"
+    title: "band likelihood ratios at the published SpliceAI cut points, PP3 (a) and BP4 (b), seven genes, by distance band and ClinVar record status; local likelihood ratio of SpliceAI (published basis) along its score at 3–10 bp, with its in-sample PP3 thresholds and the published cut point (c)"
     make: figure_published_cut_point
     options: {c_tool: spliceai_walker, c_stratum: s3_10}
     sources:
@@ -81,11 +90,11 @@ main:
       - reports/evidence/interval_lr_spliceai_walker_s3_10.csv
       - reports/evidence/evidence_thresholds.csv
     notes:
-      - "provisional: (c) one distance band of one predictor; {local_lr_curves} draws every predictor in all three bands"
+      - "(c) one distance band of one predictor; {local_lr_curves} draws every predictor in all three bands"
   - content: heldout_and_external_lr
     kind: figure
     number: Figure 2
-    title: "provisional: likelihood ratios at the fitted thresholds in held-out genes (a, b) and in the seven external genes (c), with the published cut point"
+    title: "likelihood ratios at the fitted thresholds in held-out genes (a, b) and in the seven external genes (c), with the published cut point"
     make: figure_heldout_external
     sources:
       - reports/evidence/evidence_thresholds_logo_folds.csv
@@ -98,13 +107,13 @@ main:
       - reports/evidence/external_sbds.csv
       - reports/evidence/external_tp53.csv
     notes:
-      - "provisional: (c) the published cut point's row is judged against the Moderate boundary, 4.33: a marker is filled where the gene's ratio reaches it"
-      - "provisional: (c) external genes are drawn without intervals; their intervals are in {external_genes}"
-      - "provisional: TP53 is a different assay from the others' HAP1 cells: HCT116 cells, Nutlin-3a"
+      - "(c) the published cut point's row is judged against the Moderate boundary, 4.33: a marker is filled where the gene's ratio reaches it"
+      - "(c) external genes are drawn without intervals; their intervals are in {external_genes}"
+      - "TP53 is a different assay from the others' HAP1 cells: HCT116 cells, Nutlin-3a"
   - content: roc_curves
     kind: figure
     number: Figure 3
-    title: "provisional: ROC curves of four predictors, seven genes pooled, by distance band, with the fitted thresholds and the published cut point"
+    title: "ROC curves of four predictors, seven genes pooled, by distance band, with the fitted thresholds and the published cut point"
     make: figure_roc
     sources:
       - reports/evidence/practical_roc_curves.csv
@@ -112,12 +121,12 @@ main:
       - reports/evidence/practical_curve_auc.csv
       - reports/evidence/practical_metrics_by_threshold.csv
     notes:
-      - "provisional: the legend gives the area under each curve drawn, the seven genes pooled into one curve; the text's AUROC combines per-gene AUROCs, a different quantity; {practical_metrics} gives both"
-      - "provisional: the inset enlarges the high-specificity end"
+      - "the legend gives the area under each curve drawn, the seven genes pooled into one curve; the text's AUROC combines per-gene AUROCs, a different quantity; {practical_metrics} gives both"
+      - "the inset enlarges the high-specificity end"
   - content: analysis_set_composition
     kind: table
     number: Table 1
-    title: "provisional: composition of the analysis set, by gene (a) and by ClinVar record status (b)"
+    title: "composition of the analysis set, by gene (a) and by ClinVar record status (b)"
     make: table_parts
     parts:
       - {part: by_gene, title: By gene, source: reports/evidence/tables/table1a_composition_by_gene.csv}
@@ -125,7 +134,7 @@ main:
   - content: evidence_tiers_and_thresholds
     kind: table
     number: Table 2
-    title: "provisional: evidence tier of each predictor in-sample and in held-out genes (a); thresholds of SpliceAI (published basis) and Pangolin (b)"
+    title: "evidence tier of each predictor in-sample and in held-out genes (a); thresholds of SpliceAI (published basis) and Pangolin (b)"
     make: table_parts
     parts:
       - {part: tiers, title: Tier reached in-sample and in held-out genes, source: reports/evidence/tables/table3_evidence_tiers.csv}
@@ -133,14 +142,14 @@ main:
   - content: published_cut_point_by_clinvar_status
     kind: table
     number: Table 3
-    title: "provisional: band likelihood ratios at the published SpliceAI cut point by ClinVar record status"
+    title: "band likelihood ratios at the published SpliceAI cut point by ClinVar record status"
     make: table_parts
     parts:
       - {part: band_lr, title: Band likelihood ratio by ClinVar record status, source: reports/evidence/tables/table4a_spliceai_published_cut_by_arm.csv}
   - content: practical_performance
     kind: table
     number: Table 4
-    title: "provisional: sensitivity, specificity and coverage at the study's thresholds in held-out genes (a); agreement with ClinVar classifications of at least one star (b)"
+    title: "sensitivity, specificity and coverage at the study's thresholds in held-out genes (a); agreement with ClinVar classifications of at least one star (b)"
     make: table_practical_performance
     options: {tools: [spliceai_walker, pangolin], clinvar_bands: [s3_10, s3_50]}
     sources:
@@ -150,17 +159,17 @@ main:
       - {part: seven_genes, title: "The seven genes, held out"}
       - {part: clinvar, title: "Against ClinVar, at least one star"}
     notes:
-      - "provisional: (a) held-out values only; the in-sample values are in {practical_metrics}"
-      - "provisional: (a) last column: for each tier, the folds whose threshold reached it, of the genes held out; not the k/n of {evidence_tiers_and_thresholds}(a), which counts the folds with an evaluable ratio"
+      - "(a) held-out values only; the in-sample values are in {practical_metrics}"
+      - "(a) last column: for each tier, the folds whose threshold reached it, of the genes held out; not the k/n of {evidence_tiers_and_thresholds}(a), which counts the folds with an evaluable ratio"
 
 supplementary:
-  # figures: v5's S1-S3 drawn again at the artwork width, then the new
+  # figures, numbered in the order the text first cites them (2026-11-08)
   - content: local_lr_curves
     kind: figure
     number: Supplementary Figure S1
-    title: "provisional: local likelihood ratio against score, all thirteen columns, by distance band"
+    title: "local likelihood ratio against score, all thirteen columns, by distance band"
     destination: pdf
-    description: "provisional: Local likelihood ratio against score for each of the thirteen predictor columns in each distance band, with the fitted thresholds."
+    description: "Local likelihood ratio against score for each of the thirteen predictor columns in each distance band, with the fitted thresholds."
     make: redraw_figure
     # evid_figures draws it 250 mm tall; drawn here at the artwork block's height limit,
     # its caption line at the foot at least caption_gap_mm below the last row's tick
@@ -183,35 +192,18 @@ supplementary:
   - content: threshold_dilution
     kind: figure
     number: Supplementary Figure S2
-    title: "provisional: Strong thresholds and the number of training genes"
+    title: "Strong thresholds and the number of training genes"
     destination: pdf
-    description: "provisional: For the Strong tier, the share of training-gene subsets on which it is reached and the share of held-out genes clearing it, by the number of training genes."
+    description: "For the Strong tier, the share of training-gene subsets on which it is reached and the share of held-out genes clearing it, by the number of training genes."
     make: redraw_figure
     options: {function: figure_s2}
     sources: [reports/evidence/threshold_dilution_summary.csv]
-  - content: auroc_by_clinvar_status
-    kind: figure
-    number: Supplementary Figure S3
-    title: "provisional: AUROC by ClinVar record status"
-    destination: pdf
-    description: "provisional: AUROC of each predictor column by ClinVar record status, at 3–50 bp with and without BRCA1, and at 1–50 bp."
-    make: redraw_figure
-    options: {function: figure_s3}
-    sources: [reports/evidence/territory_metrics_arms_noBRCA1.csv]
-  - content: clinvar_coverage_by_position
-    kind: figure
-    number: Supplementary Figure S4
-    title: "provisional: ClinVar coverage of the SGE variants by signed intronic offset, seven genes (C2)"
-    destination: pdf
-    description: "provisional: Share of the SGE variants with a ClinVar record, and their classifications, at each signed intronic offset in the seven genes."
-    make: figure_clinvar_coverage
-    sources: [reports/evidence/suppl_analyses/c2_clinvar_coverage_by_position.csv]
   - content: precision_recall_curves
     kind: figure
-    number: Supplementary Figure S5
-    title: "provisional: precision-recall curves of four predictors, seven genes pooled, by distance band"
+    number: Supplementary Figure S3
+    title: "precision-recall curves of four predictors, seven genes pooled, by distance band"
     destination: pdf
-    description: "provisional: Precision-recall curves of four predictors in each distance band, the seven genes pooled, with the fitted thresholds and the published cut point."
+    description: "Precision-recall curves of four predictors in each distance band, the seven genes pooled, with the fitted thresholds and the published cut point."
     make: figure_precision_recall
     sources:
       - reports/evidence/practical_roc_curves.csv
@@ -219,121 +211,35 @@ supplementary:
       - reports/evidence/practical_curve_auc.csv
       - reports/evidence/practical_metrics_by_threshold.csv
     notes:
-      - "provisional: the legend gives the area under each curve drawn, the seven genes pooled into one curve"
-  # tables: v5's S1-S13 as the outputs stand
+      - "the legend gives the area under each curve drawn, the seven genes pooled into one curve"
+  - content: clinvar_coverage_by_position
+    kind: figure
+    number: Supplementary Figure S4
+    title: "ClinVar coverage of the SGE variants by signed intronic offset, seven genes"
+    destination: pdf
+    description: "Share of the SGE variants with a ClinVar record, and their classifications, at each signed intronic offset in the seven genes."
+    make: figure_clinvar_coverage
+    sources: [reports/evidence/suppl_analyses/c2_clinvar_coverage_by_position.csv]
+  - content: auroc_by_clinvar_status
+    kind: figure
+    number: Supplementary Figure S5
+    title: "AUROC by ClinVar record status"
+    destination: pdf
+    description: "AUROC of each predictor column by ClinVar record status, at 3–50 bp with and without BRCA1, and at 1–50 bp."
+    make: redraw_figure
+    options: {function: figure_s3}
+    sources: [reports/evidence/territory_metrics_arms_noBRCA1.csv]
+  # tables, numbered in the order the text first cites them (2026-11-08)
   - {content: functional_standards, kind: table, number: Supplementary Table S1, make: table_parts, destination: excel,
      title: "Functional standards: assay, accession, transcript, published class labels and how each maps to damaging, normal or missing, with variant counts",
-     description: "provisional: Each gene's functional assay: publication, accession, transcript, class labels and their mapping to damaging, normal or missing, with variant counts.",
+     description: "Each gene's functional assay: publication, accession, transcript, class labels and their mapping to damaging, normal or missing, with variant counts.",
      parts: [{part: standards, source: reports/evidence/supplement/tableS1_functional_standards.csv}]}
-  - {content: analysis_set_by_status, kind: table, number: Supplementary Table S2, make: table_parts, destination: excel,
-     title: "Analysis-set composition by gene, intronic-offset stratum and ClinVar record status",
-     description: "provisional: Variants, labelled variants, damaging and normal variants by gene, distance band and ClinVar record status.",
-     parts: [{part: composition, source: reports/evidence/supplement/tableS2_analysis_set.csv}]}
-  - {content: predictor_columns, kind: table, number: Supplementary Table S3, make: table_parts, destination: excel,
-     title: "Predictor score columns: definition, version and scoring configuration, source, access date, licence, orientation, coverage and training signal",
-     description: "provisional: Each predictor score column: what it is, its version and scoring configuration, source, licence, orientation, coverage and training data.",
-     parts: [{part: columns, source: reports/evidence/supplement/tableS3_predictor_columns.csv}]}
-  - {content: column_agreement, kind: table, number: Supplementary Table S4, make: table_parts, destination: pdf,
-     title: "Agreement between related score columns: the two SpliceAI bases, and the AlphaGenome Atlas columns against the model-computed AlphaGenome splice score",
-     description: "provisional: Agreement between related score columns: rank correlation and the variants on either side of the cut point.",
-     parts: [{part: agreement, source: reports/evidence/supplement/tableS4_column_agreement.csv}]}
-  - {content: published_cut_points, kind: table, number: Supplementary Table S5, make: table_parts, destination: excel,
-     title: "The published SpliceAI cut points on the published-basis column, by stratum and ClinVar record status, with per-gene point estimates",
-     description: "provisional: The published SpliceAI cut points by distance band and ClinVar record status, pooled and per gene: sensitivity, specificity, band likelihood ratios and tiers.",
-     parts: [{part: cut_points, source: reports/evidence/supplement/tableS5_published_cut_points.csv}]}
-  # S6 lists the combined Atlas score's folds with BRCA1 or RAD51C held out, marked, and
-  # counts its rows over the other genes, by the rule Table 2(a) counts by; S7's medians
-  # are over every fold, as evid_interval_lr wrote them, the per-fold BP4 ratios being in
-  # no output, and its note says so (the author's decision of 2026-11-05)
-  - content: thresholds_pathogenic
-    kind: table
-    number: Supplementary Table S6
-    make: table_parts
-    destination: excel
-    title: "Local likelihood-ratio calibration thresholds, pathogenic side: tier reached in-sample, thresholds under the gene-clustered and variant-level bootstraps, and leave-one-gene-out transfer"
-    description: "provisional: Pathogenic-side thresholds of every predictor column by band and tier, in-sample and held out by gene."
-    parts:
-      - part: pp3
-        source: reports/evidence/supplement/tableS6_thresholds_pathogenic.csv
-        not_counted: {rule: avi_seen_in_training, folds: reports/evidence/evidence_thresholds_logo_folds.csv, side: pp3}
-    notes:
-      - "provisional: †, a fold not counted: the combined Atlas score's model was selected on the BRCA1 and RAD51C assays, so its rows' counts, median, minimum and maximum are over the other held-out genes, as in {evidence_tiers_and_thresholds}(a)"
-  - content: thresholds_benign
-    kind: table
-    number: Supplementary Table S7
-    make: table_parts
-    destination: excel
-    title: "Local likelihood-ratio calibration thresholds, benign side"
-    description: "provisional: Benign-side thresholds of every predictor column by band and tier, in-sample, with the median held-out ratio."
-    parts:
-      - {part: bp4, source: reports/evidence/supplement/tableS7_thresholds_benign.csv}
-    notes:
-      - "provisional: in the combined Atlas score's rows, the median held-out ratio includes the folds with BRCA1 and RAD51C held out"
-  - {content: dilution, kind: table, number: Supplementary Table S8, make: table_parts, destination: excel,
-     title: "Thresholds refitted on every subset of training genes: share of subsets reaching each tier, the threshold across subsets, and the share of held-out genes clearing the cut",
-     description: "provisional: Thresholds refitted on every subset of the training genes: how often each tier is reached, the threshold's spread, and transfer to the genes held out.",
-     parts: [{part: subsets, source: reports/evidence/supplement/tableS8_dilution.csv}]}
-  - {content: fusion, kind: table, number: Supplementary Table S9, make: table_parts, destination: excel,
-     title: "Elastic-net combination: tier, per-fold thresholds and coefficient stability",
-     description: "provisional: The elastic-net combination of predictors: its tier against the best single column, per-fold thresholds and the stability of its coefficients.",
-     parts: [{part: fusion, source: reports/evidence/supplement/tableS9_fusion.csv}]}
-  - {content: clinvar_status, kind: table, number: Supplementary Table S10, make: table_parts, destination: excel,
-     title: "Band likelihood ratios and AUROC by ClinVar record status, with and without BRCA1",
-     description: "provisional: Band likelihood ratios and AUROC of each predictor by ClinVar record status, with and without BRCA1.",
-     parts: [{part: by_status, source: reports/evidence/supplement/tableS10_clinvar_status.csv}]}
-  - {content: within_gene_arms, kind: table, number: Supplementary Table S11, make: table_parts, destination: excel,
-     title: "Within-gene comparison of ClinVar record status arms: AUROC per gene, arm and column",
-     description: "provisional: Within each gene, AUROC of each predictor column by ClinVar record status, and which status has the highest.",
-     parts: [{part: by_gene, title: "Within-gene comparison of ClinVar record status arms: AUROC per gene, arm and column", source: reports/evidence/supplement/tableS11_within_gene_arms.csv},
-             {part: summary, title: "Within-gene comparison, summary: the arm with the highest AUROC, per gene, over all columns", source: reports/evidence/supplement/tableS11_within_gene_arms_summary.csv}]}
-  - {content: external_genes, kind: table, number: Supplementary Table S12, make: table_parts, destination: excel,
-     title: "External genes: the published cut point and the seven-gene fitted thresholds applied to DDX3X, TP53, CTCF, SFPQ, RAD51D, XRCC2 and SBDS under every label definition",
-     description: "provisional: The published cut point and the seven genes' fitted thresholds applied to the seven external genes under every label definition: ratios with intervals and tiers.",
-     parts: [{part: genes, source: reports/evidence/supplement/tableS12_external_genes.csv}]}
-  - {content: inframe_attribution, kind: table, number: Supplementary Table S13, make: table_parts, destination: excel,
-     title: "In-frame attribution of variants scored at or above the PP3 cut point and called normal by the assay",
-     description: "provisional: Variants scored at or above the PP3 cut point and called normal by the assay: how many the predicted splicing event leaves in frame.",
-     parts: [{part: attribution, source: reports/evidence/supplement/tableS13_inframe_attribution.csv}]}
-  # v5's main-text tables that move to the supplement (修改单 §3 B1)
-  - {content: training_signal, kind: table, number: Supplementary Table S14, make: table_parts, destination: pdf,
-     title: "provisional: each predictor's training signal, its relation to the functional readout and its terms of use (v5 Table 2)",
-     description: "provisional: What each predictor was trained on, how that relates to the functional readout, and its terms of use.",
-     parts: [{part: signal, source: reports/evidence/tables/table2_training_signal.csv}]}
-  - {content: arms_at_fitted_thresholds, kind: table, number: Supplementary Table S15, make: table_parts, destination: pdf,
-     title: "provisional: ClinVar record status at each column's fitted threshold (a) and by AUROC (b) (v5 Table 4(b), (c))",
-     description: "provisional: Which ClinVar record status has the highest ratio at each column's fitted threshold, and the highest AUROC.",
-     parts: [{part: highest_arm, title: Arm with the highest ratio at each column's fitted threshold, source: reports/evidence/tables/table4b_fitted_threshold_highest_arm.csv},
-             {part: auroc, title: Columns in which each arm has the highest AUROC, source: reports/evidence/tables/table4c_auroc_highest_arm.csv}]}
-  # outputs added after 2026-09-30 (E5.0 §4.4), each analysis one table
-  - content: practical_metrics
-    kind: table
-    number: Supplementary Table S16
-    title: "provisional: sensitivity, specificity and coverage at the study's thresholds, every column: seven genes, per held-out gene, the external genes, and the areas under the curves"
-    destination: excel
-    description: "provisional: Sensitivity, specificity, coverage and counts at every threshold of every predictor column: the seven genes in-sample and held out, each held-out gene, the external genes, and two AUROCs."
-    make: table_parts
-    parts:
-      - {part: by_threshold, title: Seven genes, source: reports/evidence/practical_metrics_by_threshold.csv}
-      - part: by_heldout_gene
-        title: Each held-out gene
-        source: reports/evidence/practical_metrics_logo_by_gene.csv
-        # the source gives the held-out ratio twice; printed once (the author's review of
-        # 2026-10-28). The stage stops if the two columns ever differ.
-        drop: {e3_heldout_lr: band_lr_plus}
-        notes:
-          - "provisional: the held-out likelihood ratio at the threshold is printed once, as the band LR; the source repeats it in a second column, equal in every row"
-      - {part: external, title: External genes, source: reports/evidence/practical_metrics_external.csv}
-      - part: curve_areas
-        title: Areas under the curves
-        source: reports/evidence/practical_curve_auc.csv
-        notes:
-          - "provisional: two AUROCs, different quantities. AUROC of the pooled curve: the area under the ROC curve of the seven genes pooled into one curve, drawn in {roc_curves}. AUROC pooled over genes: each gene's AUROC, combined on the logit scale with random effects, the AUROC the text reports"
   - content: label_sources
     kind: table
-    number: Supplementary Table S17
-    title: "provisional: the training genes' labels against their cited sources, and the effect of rebuilding them"
+    number: Supplementary Table S2
+    title: "the training genes' labels against their cited sources, and the effect of rebuilding them"
     destination: excel
-    description: "provisional: Each training gene's label file checked against its cited source and the archived versions, and the thresholds and tiers before and after the labels were rebuilt."
+    description: "Each training gene's label file checked against its cited source and the archived versions, and the thresholds and tiers before and after the labels were rebuilt."
     make: table_parts
     parts:
       - {part: audit, title: Each label file against its cited source, source: reports/evidence/label_audit_summary.csv}
@@ -345,22 +251,99 @@ supplementary:
         dashes:
           - {columns: [folds_reaching_old, folds_reaching_new], where: {side: bp4}}
         notes:
-          - "provisional: –, the fold counts on BP4 rows: they are counted for PP3 only"
-  - content: alphagenome_definitions
+          - "–, the fold counts on BP4 rows: they are counted for PP3 only"
+  - {content: analysis_set_by_status, kind: table, number: Supplementary Table S3, make: table_parts, destination: excel,
+     title: "Analysis-set composition by gene, intronic-offset stratum and ClinVar record status",
+     description: "Variants, labelled variants, damaging and normal variants by gene, distance band and ClinVar record status.",
+     parts: [{part: composition, source: reports/evidence/supplement/tableS2_analysis_set.csv}]}
+  - {content: predictor_columns, kind: table, number: Supplementary Table S4, make: table_parts, destination: excel,
+     title: "Predictor score columns: definition, version and scoring configuration, source, access date, licence, orientation, coverage and training signal",
+     description: "Each predictor score column: what it is, its version and scoring configuration, source, licence, orientation, coverage and training data.",
+     parts: [{part: columns, source: reports/evidence/supplement/tableS3_predictor_columns.csv}]}
+  - content: training_signal
     kind: table
-    number: Supplementary Table S18
-    title: "provisional: the AlphaGenome splice score by the model's official definition and by the atlas's, side by side"
-    destination: excel
-    description: "provisional: Thresholds, ratios, held-out transfer and AUROC of the AlphaGenome splice score by the model's own definition beside the atlas's quantile score."
+    number: Supplementary Table S5
     make: table_parts
+    destination: pdf
+    title: "each predictor's training signal, its relation to the functional readout and its terms of use"
+    description: "What each predictor was trained on, how that relates to the functional readout, and its terms of use."
     parts:
-      - {part: comparison, source: reports/evidence/alphagenome_definition_comparison.csv}
+      - part: signal
+        source: reports/evidence/tables/table2_training_signal.csv
+        # the fusion's row names its table by number: printed as the configuration numbers it
+        replace:
+          - {old: "(Supplementary Table S9)", new: "({fusion})", count: 1}
+  - {content: column_agreement, kind: table, number: Supplementary Table S6, make: table_parts, destination: pdf,
+     title: "Agreement between related score columns: the two SpliceAI bases, and the AlphaGenome Atlas columns against the model-computed AlphaGenome splice score",
+     description: "Agreement between related score columns: rank correlation and the variants on either side of the cut point.",
+     parts: [{part: agreement, source: reports/evidence/supplement/tableS4_column_agreement.csv}]}
+  - {content: published_cut_points, kind: table, number: Supplementary Table S7, make: table_parts, destination: excel,
+     title: "The published SpliceAI cut points on the published-basis column, by stratum and ClinVar record status, with per-gene point estimates",
+     description: "The published SpliceAI cut points by distance band and ClinVar record status, pooled and per gene: sensitivity, specificity, band likelihood ratios and tiers.",
+     parts: [{part: cut_points, source: reports/evidence/supplement/tableS5_published_cut_points.csv}]}
+  # thresholds_pathogenic lists the combined Atlas score's folds with BRCA1 or RAD51C held
+  # out, marked, and counts its rows over the other genes, by the rule Table 2(a) counts
+  # by; thresholds_benign's medians
+  # are over every fold, as evid_interval_lr wrote them, the per-fold BP4 ratios being in
+  # no output, and its note says so (the author's decision of 2026-11-05)
+  - content: thresholds_pathogenic
+    kind: table
+    number: Supplementary Table S8
+    make: table_parts
+    destination: excel
+    title: "Local likelihood-ratio calibration thresholds, pathogenic side: tier reached in-sample, thresholds under the gene-clustered and variant-level bootstraps, and leave-one-gene-out transfer"
+    description: "Pathogenic-side thresholds of every predictor column by band and tier, in-sample and held out by gene."
+    parts:
+      - part: pp3
+        source: reports/evidence/supplement/tableS6_thresholds_pathogenic.csv
+        not_counted: {rule: avi_seen_in_training, folds: reports/evidence/evidence_thresholds_logo_folds.csv, side: pp3}
+    notes:
+      - "†, a fold not counted: the combined Atlas score's model was selected on the BRCA1 and RAD51C assays, so its rows' counts, median, minimum and maximum are over the other held-out genes, as in {evidence_tiers_and_thresholds}(a)"
+  - content: thresholds_benign
+    kind: table
+    number: Supplementary Table S9
+    make: table_parts
+    destination: excel
+    title: "Local likelihood-ratio calibration thresholds, benign side"
+    description: "Benign-side thresholds of every predictor column by band and tier, in-sample, with the median held-out ratio."
+    parts:
+      - {part: bp4, source: reports/evidence/supplement/tableS7_thresholds_benign.csv}
+    notes:
+      - "in the combined Atlas score's rows, the median held-out ratio includes the folds with BRCA1 and RAD51C held out"
+  - {content: clinvar_status, kind: table, number: Supplementary Table S10, make: table_parts, destination: excel,
+     title: "Band likelihood ratios and AUROC by ClinVar record status, with and without BRCA1",
+     description: "Band likelihood ratios and AUROC of each predictor by ClinVar record status, with and without BRCA1.",
+     parts: [{part: by_status, source: reports/evidence/supplement/tableS10_clinvar_status.csv}]}
+  - {content: within_gene_arms, kind: table, number: Supplementary Table S11, make: table_parts, destination: excel,
+     title: "Within-gene comparison of ClinVar record status arms: AUROC per gene, arm and column",
+     description: "Within each gene, AUROC of each predictor column by ClinVar record status, and which status has the highest.",
+     parts: [{part: by_gene, title: "Within-gene comparison of ClinVar record status arms: AUROC per gene, arm and column", source: reports/evidence/supplement/tableS11_within_gene_arms.csv},
+             {part: summary, title: "Within-gene comparison, summary: the arm with the highest AUROC, per gene, over all columns", source: reports/evidence/supplement/tableS11_within_gene_arms_summary.csv}]}
+  - {content: arms_at_fitted_thresholds, kind: table, number: Supplementary Table S12, make: table_parts, destination: pdf,
+     title: "ClinVar record status at each column's fitted threshold (a) and by AUROC (b)",
+     description: "Which ClinVar record status has the highest ratio at each column's fitted threshold, and the highest AUROC.",
+     parts: [{part: highest_arm, title: Arm with the highest ratio at each column's fitted threshold, source: reports/evidence/tables/table4b_fitted_threshold_highest_arm.csv},
+             {part: auroc, title: Columns in which each arm has the highest AUROC, source: reports/evidence/tables/table4c_auroc_highest_arm.csv}]}
+  - content: external_genes
+    kind: table
+    number: Supplementary Table S13
+    make: table_parts
+    destination: excel
+    title: "External genes: the published cut point and the seven-gene fitted thresholds applied to DDX3X, TP53, CTCF, SFPQ, RAD51D, XRCC2 and SBDS under every label definition"
+    description: "The published cut point and the seven genes' fitted thresholds applied to the seven external genes under every label definition: ratios with intervals and tiers."
+    parts:
+      - part: genes
+        source: reports/evidence/supplement/tableS12_external_genes.csv
+        # five threshold headers name the table of in-sample thresholds by its v5 number,
+        # Table 3(b): printed as the configuration numbers it
+        replace:
+          - {old: "(in-sample, Table 3(b))", new: "(in-sample, {evidence_tiers_and_thresholds}(b))", count: 5}
   - content: new_external_genes
     kind: table
-    number: Supplementary Table S19
-    title: "provisional: the five further external genes: records, labels, counts by offset and controls"
+    number: Supplementary Table S14
+    title: "the five further external genes: records, labels, counts by offset and controls"
     destination: excel
-    description: "provisional: The five further external genes: their score-set records, labels by band, assay classes by intronic offset, and synonymous and nonsense controls."
+    description: "The five further external genes: their score-set records, labels by band, assay classes by intronic offset, and synonymous and nonsense controls."
     make: table_parts
     parts:
       - part: records
@@ -377,10 +360,10 @@ supplementary:
         sources: [reports/evidence/newgenes_controls.csv, reports/evidence/sbds_controls.csv]
   - content: external_column_basis
     kind: table
-    number: Supplementary Table S20
-    title: "provisional: each external gene's predictor columns against the analysis set's (the same variable)"
+    number: Supplementary Table S15
+    title: "each external gene's predictor columns against the analysis set's (the same variable)"
     destination: excel
-    description: "provisional: For each external gene, whether each predictor column is the same variable as the analysis set's: score ranges, overlap and correlation."
+    description: "For each external gene, whether each predictor column is the same variable as the analysis set's: score ranges, overlap and correlation."
     make: table_parts
     parts:
       - part: columns
@@ -395,66 +378,66 @@ supplementary:
           SBDS: reports/evidence/external_sbds_column_basis.csv
   - content: external_summary
     kind: table
-    number: Supplementary Table S21
-    title: "provisional: external genes reaching each tier, seven genes and DDX3X and TP53 only (a); bands with normal variants only (b)"
+    number: Supplementary Table S16
+    title: "external genes reaching each tier, seven genes and DDX3X and TP53 only (a); bands with normal variants only (b)"
     destination: excel
-    description: "provisional: How many external genes reach each tier at the seven genes' thresholds, and normal variants at or above the thresholds where a band has no damaging variant."
+    description: "How many external genes reach each tier at the seven genes' thresholds, and normal variants at or above the thresholds where a band has no damaging variant."
     make: table_parts
     parts:
       - {part: tiers_reached, title: External genes reaching each tier, source: reports/evidence/external_summary.csv}
       - {part: normal_only, title: Normal variants at or above the thresholds where a band has no damaging variant, source: reports/evidence/external_normal_only.csv}
-  - content: clinvar_consistency
+  - content: practical_metrics
     kind: table
-    number: Supplementary Table S22
-    title: "provisional: the predictors against ClinVar classifications (C1)"
+    number: Supplementary Table S17
+    title: "sensitivity, specificity and coverage at the study's thresholds, every column: seven genes, per held-out gene, the external genes, and the areas under the curves"
     destination: excel
-    description: "provisional: The predictors against ClinVar P/LP and B/LB classifications: sensitivity, specificity and AUROC, the cross-tabulation with the assay's calls, a low-circularity subset, the assays' first public dates and the review-status stars."
+    description: "Sensitivity, specificity, coverage and counts at every threshold of every predictor column: the seven genes in-sample and held out, each held-out gene, the external genes, and two AUROCs."
     make: table_parts
     parts:
-      - {part: reference_metrics, title: Sensitivity, specificity and AUROC against ClinVar, source: reports/evidence/suppl_analyses/c1_clinvar_reference_metrics.csv}
-      - {part: crosstab, title: ClinVar classification against the SGE call, source: reports/evidence/suppl_analyses/c1_clinvar_sge_crosstab.csv}
-      - {part: low_circularity_metrics, title: The low-circularity subset, source: reports/evidence/suppl_analyses/c1_low_circularity_metrics.csv}
-      - {part: low_circularity_composition, title: Composition of the low-circularity subset, source: reports/evidence/suppl_analyses/c1_low_circularity_composition.csv}
-      - {part: first_public_dates, title: First public date of each assay, source: reports/evidence/suppl_analyses/c1_first_public_dates.csv}
-      - {part: star_conversion, title: Review status as stars, source: reports/evidence/suppl_analyses/c1_clinvar_star_conversion.csv}
-  - content: clinvar_coverage
+      - {part: by_threshold, title: Seven genes, source: reports/evidence/practical_metrics_by_threshold.csv,
+         replace: [{old: "E3 writes per-fold thresholds for the PP3 side only", new: "per-fold thresholds are kept for the PP3 side only", count: 112},
+                   {old: "adapted from E3: fusion", new: "fusion", count: 16}]}
+      - part: by_heldout_gene
+        title: Each held-out gene
+        source: reports/evidence/practical_metrics_logo_by_gene.csv
+        # the source gives the held-out ratio twice; printed once (the author's review of
+        # 2026-10-28). The stage stops if the two columns ever differ.
+        drop: {e3_heldout_lr: band_lr_plus}
+        notes:
+          - "the held-out likelihood ratio at the threshold is printed once, as the band LR; the source repeats it in a second column, equal in every row"
+        replace:
+          - {old: "adapted from E3: fusion", new: "fusion", count: 108}
+      - {part: external, title: External genes, source: reports/evidence/practical_metrics_external.csv}
+      - part: curve_areas
+        title: Areas under the curves
+        source: reports/evidence/practical_curve_auc.csv
+        notes:
+          - "two AUROCs, different quantities. AUROC of the pooled curve: the area under the ROC curve of the seven genes pooled into one curve, drawn in {roc_curves}. AUROC pooled over genes: each gene's AUROC, combined on the logit scale with random effects, the AUROC the text reports"
+  - content: confusion_matrices
     kind: table
-    number: Supplementary Table S23
-    title: "provisional: ClinVar coverage of the SGE variants by gene and band (C2)"
-    destination: pdf
-    description: "provisional: Share of the SGE variants unrecorded in ClinVar, recorded without a classification, and classified, by gene and distance band."
-    make: table_parts
-    parts:
-      - {part: by_band, source: reports/evidence/suppl_analyses/c2_clinvar_coverage_by_stratum.csv}
-  - content: label_sensitivity
-    kind: table
-    number: Supplementary Table S24
-    title: "provisional: label sensitivity: intermediate classes, superseded labels, without BARD1 and PALB2, a second BRCA2 dataset (C3)"
+    number: Supplementary Table S18
+    title: "confusion matrices, MCC and F1 at the study's thresholds"
     destination: excel
-    description: "provisional: Thresholds and tiers refitted with intermediate classes counted either way, with superseded labels, without BARD1 and PALB2, and with a second BRCA2 dataset."
+    description: "Confusion matrices, precision, recall, F1 and MCC at each fitted threshold, in-sample and held out."
     make: table_parts
     parts:
-      - {part: intermediate, title: Intermediate classes counted as damaging or normal, source: reports/evidence/suppl_analyses/c3_intermediate.csv}
-      - {part: superseded, title: Superseded labels against the current, source: reports/evidence/suppl_analyses/c3_superseded_labels.csv}
-      - {part: without_bard1_palb2, title: Without BARD1 and PALB2, source: reports/evidence/suppl_analyses/c3_without_bard1_palb2.csv}
-      - {part: brca2_concordance, title: BRCA2 against a second dataset, source: reports/evidence/suppl_analyses/c3_brca2_concordance.csv}
-      - {part: brca2_refits, title: Refits with the second BRCA2 dataset, source: reports/evidence/suppl_analyses/c3_brca2_second_set.csv}
-  - content: prior_sensitivity
+      - {part: confusion, source: reports/evidence/suppl_analyses/c10_confusion_mcc_f1.csv,
+         replace: [{old: "E19 C10: confusion matrices", new: "Confusion matrices", count: 1}]}
+  - content: without_bap1
     kind: table
-    number: Supplementary Table S25
-    title: "provisional: tiers at priors of 0.05, 0.10 and 0.185 (C4)"
+    number: Supplementary Table S19
+    title: "the distal band without BAP1"
     destination: excel
-    description: "provisional: The in-sample thresholds and tiers at priors of 0.05, 0.10 and 0.185, and each tier's likelihood-ratio boundary at each prior."
+    description: "The 11–50 bp and 3–50 bp bands without BAP1: composition, refitted thresholds, and BAP1 held out."
     make: table_parts
     parts:
-      - {part: tiers, title: Tiers at each prior, source: reports/evidence/suppl_analyses/c4_prior_sensitivity.csv}
-      - {part: band_edges, title: Tier boundaries at each prior, source: reports/evidence/suppl_analyses/c4_band_edges.csv}
+      - {part: without_bap1, source: reports/evidence/suppl_analyses/c8_without_bap1.csv}
   - content: heldout_intervals
     kind: table
-    number: Supplementary Table S26
-    title: "provisional: held-out likelihood ratios with intervals; fold counts by point estimate and by lower bound; leave-one-gene-out jackknife of the Strong thresholds (C5)"
+    number: Supplementary Table S20
+    title: "held-out likelihood ratios with intervals; fold counts by point estimate and by lower bound; leave-one-gene-out jackknife of the Strong thresholds"
     destination: excel
-    description: "provisional: Each held-out gene's ratio with its interval, held-out fold counts by point estimate and by lower bound, and the Strong thresholds with each gene left out."
+    description: "Each held-out gene's ratio with its interval, held-out fold counts by point estimate and by lower bound, and the Strong thresholds with each gene left out."
     make: table_parts
     parts:
       - part: intervals
@@ -464,42 +447,36 @@ supplementary:
         dashes:
           - {columns: [n_pos_band, n_neg_band], where: {threshold_from_other_genes: ""}}
         notes:
-          - "provisional: –, the counts at or above the threshold where no threshold was fitted on the other genes"
+          - "–, the counts at or above the threshold where no threshold was fitted on the other genes"
       - {part: fold_counts, title: Fold counts by point estimate and by lower bound, source: reports/evidence/suppl_analyses/c5_fold_counts_point_vs_bound.csv}
       - {part: jackknife, title: Jackknife of the Strong thresholds, source: reports/evidence/suppl_analyses/c5_jackknife_strong.csv}
-  - content: bp4_at_bp7_positions
+  - {content: dilution, kind: table, number: Supplementary Table S21, make: table_parts, destination: excel,
+     title: "Thresholds refitted on every subset of training genes: share of subsets reaching each tier, the threshold across subsets, and the share of held-out genes clearing the cut",
+     description: "Thresholds refitted on every subset of the training genes: how often each tier is reached, the threshold's spread, and transfer to the genes held out.",
+     parts: [{part: subsets, source: reports/evidence/supplement/tableS8_dilution.csv}]}
+  - content: label_sensitivity
     kind: table
-    number: Supplementary Table S27
-    title: "provisional: BP4 at the BP7 positions (C6)"
+    number: Supplementary Table S22
+    title: "label sensitivity: intermediate classes, superseded labels, without BARD1 and PALB2, a second BRCA2 dataset"
     destination: excel
-    description: "provisional: Variants at the BP7 positions meeting BP4, at the published cut point and at the fitted threshold, by gene and side of the exon."
+    description: "Thresholds and tiers refitted with intermediate classes counted either way, with superseded labels, without BARD1 and PALB2, and with a second BRCA2 dataset."
     make: table_parts
     parts:
-      - {part: bp4_bp7, source: reports/evidence/suppl_analyses/c6_bp4_bp7.csv}
-  - content: by_splice_site_position
-    kind: table
-    number: Supplementary Table S28
-    title: "provisional: the published cut points by donor and acceptor position (C7)"
-    destination: excel
-    description: "provisional: Band likelihood ratios at the published cut points by position on the donor and acceptor sides."
-    make: table_parts
-    parts:
-      - {part: by_position, source: reports/evidence/suppl_analyses/c7_by_position.csv}
-  - content: without_bap1
-    kind: table
-    number: Supplementary Table S29
-    title: "provisional: the distal band without BAP1 (C8)"
-    destination: excel
-    description: "provisional: The 11–50 bp and 3–50 bp bands without BAP1: composition, refitted thresholds, and BAP1 held out."
-    make: table_parts
-    parts:
-      - {part: without_bap1, source: reports/evidence/suppl_analyses/c8_without_bap1.csv}
+      - {part: intermediate, title: Intermediate classes counted as damaging or normal, source: reports/evidence/suppl_analyses/c3_intermediate.csv}
+      - {part: superseded, title: Superseded labels against the current, source: reports/evidence/suppl_analyses/c3_superseded_labels.csv}
+      - {part: without_bard1_palb2, title: Without BARD1 and PALB2, source: reports/evidence/suppl_analyses/c3_without_bard1_palb2.csv}
+      - {part: brca2_concordance, title: BRCA2 against a second dataset, source: reports/evidence/suppl_analyses/c3_brca2_concordance.csv,
+         replace: [{old: "E19 C3, BRCA2", new: "BRCA2", count: 1},
+                   {old: "mapped as E16 maps coordinates", new: "mapped as the further external genes' variants are mapped", count: 1}]}
+      - {part: brca2_refits, title: Refits with the second BRCA2 dataset, source: reports/evidence/suppl_analyses/c3_brca2_second_set.csv,
+         replace: [{old: "E19 C3, BRCA2", new: "BRCA2", count: 1},
+                   {old: "mapped as E16 maps coordinates", new: "mapped as the further external genes' variants are mapped", count: 1}]}
   - content: family_holdout
     kind: table
-    number: Supplementary Table S30
-    title: "provisional: thresholds held out by gene family and function (C9)"
+    number: Supplementary Table S23
+    title: "thresholds held out by gene family and function"
     destination: excel
-    description: "provisional: Thresholds fitted on one gene family or function and applied to the genes held out, and to the external genes."
+    description: "Thresholds fitted on one gene family or function and applied to the genes held out, and to the external genes."
     make: table_parts
     parts:
       - part: holdout
@@ -512,22 +489,64 @@ supplementary:
             before: note
             text: "not an independent test: the combined Atlas score's model was selected on this assay"
     notes:
-      - "provisional: (a) holds the combined Atlas score's rows with BRCA1 or RAD51C held out, which the other held-out counts leave out: its model was selected on those two assays"
-  - content: confusion_matrices
+      - "(a) holds the combined Atlas score's rows with BRCA1 or RAD51C held out, which the other held-out counts leave out: its model was selected on those two assays"
+  - {content: fusion, kind: table, number: Supplementary Table S24, make: table_parts, destination: excel,
+     title: "Elastic-net combination: tier, per-fold thresholds and coefficient stability",
+     description: "The elastic-net combination of predictors: its tier against the best single column, per-fold thresholds and the stability of its coefficients.",
+     parts: [{part: fusion, source: reports/evidence/supplement/tableS9_fusion.csv}]}
+  - content: clinvar_coverage
     kind: table
-    number: Supplementary Table S31
-    title: "provisional: confusion matrices, MCC and F1 at the study's thresholds (C10)"
-    destination: excel
-    description: "provisional: Confusion matrices, precision, recall, F1 and MCC at each fitted threshold, in-sample and held out."
+    number: Supplementary Table S25
+    title: "ClinVar coverage of the SGE variants by gene and band"
+    destination: pdf
+    description: "Share of the SGE variants unrecorded in ClinVar, recorded without a classification, and classified, by gene and distance band."
     make: table_parts
     parts:
-      - {part: confusion, source: reports/evidence/suppl_analyses/c10_confusion_mcc_f1.csv}
+      - {part: by_band, source: reports/evidence/suppl_analyses/c2_clinvar_coverage_by_stratum.csv}
+  - content: clinvar_consistency
+    kind: table
+    number: Supplementary Table S26
+    title: "the predictors against ClinVar classifications"
+    destination: excel
+    description: "The predictors against ClinVar P/LP and B/LB classifications: sensitivity, specificity and AUROC, the cross-tabulation with the assay's calls, a low-circularity subset, the assays' first public dates and the review-status stars."
+    make: table_parts
+    parts:
+      - {part: reference_metrics, title: Sensitivity, specificity and AUROC against ClinVar, source: reports/evidence/suppl_analyses/c1_clinvar_reference_metrics.csv,
+         replace: [{old: "E4's logit pooling", new: "the logit pooling", count: 36}]}
+      - {part: crosstab, title: ClinVar classification against the SGE call, source: reports/evidence/suppl_analyses/c1_clinvar_sge_crosstab.csv}
+      - {part: low_circularity_metrics, title: The low-circularity subset, source: reports/evidence/suppl_analyses/c1_low_circularity_metrics.csv}
+      - {part: low_circularity_composition, title: Composition of the low-circularity subset, source: reports/evidence/suppl_analyses/c1_low_circularity_composition.csv}
+      - {part: first_public_dates, title: First public date of each assay, source: reports/evidence/suppl_analyses/c1_first_public_dates.csv}
+      - {part: star_conversion, title: Review status as stars, source: reports/evidence/suppl_analyses/c1_clinvar_star_conversion.csv}
+  - {content: inframe_attribution, kind: table, number: Supplementary Table S27, make: table_parts, destination: excel,
+     title: "In-frame attribution of variants scored at or above the PP3 cut point and called normal by the assay",
+     description: "Variants scored at or above the PP3 cut point and called normal by the assay: how many the predicted splicing event leaves in frame.",
+     parts: [{part: attribution, source: reports/evidence/supplement/tableS13_inframe_attribution.csv}]}
+  - content: inframe_true_positives
+    kind: table
+    number: Supplementary Table S28
+    title: "in-frame attribution of the true positives beside the false positives"
+    destination: pdf
+    description: "The in-frame share of predicted splicing events among true positives beside false positives at the published cut point."
+    make: table_parts
+    parts:
+      - {part: tp_fp, source: reports/evidence/suppl_analyses/c12_inframe_tp_fp.csv,
+         replace: [{old: "E20 C12: the in-frame", new: "The in-frame", count: 1},
+                   {old: "(evid_inframe, E6)", new: "(evid_inframe)", count: 1},
+                   {old: "the event records of E20.1, E6's scorers in E6's environments", new: "the event records made by the false positives' scorers in their environments", count: 1},
+                   {old: "E6's and E2.7's attribution files", new: "the attribution files of the seven genes and of DDX3X and TP53", count: 1},
+                   {old: "E6's subsets were drawn again under the current labels in E20b (2026-10-26), after E16d had switched PALB2 and BARD1", new: "The seven genes' subsets were drawn again under the current labels on 2026-10-26, after PALB2 and BARD1 had been switched", count: 1},
+                   {old: "(y_tp53_control_anchored, as E2.7 derives it)", new: "(y_tp53_control_anchored)", count: 1},
+                   {old: "(checked in E18: 288 of 288)", new: "(checked: 288 of 288)", count: 1},
+                   {old: "E2.7's DDX3X Pangolin rows", new: "the false positives' DDX3X Pangolin rows", count: 1},
+                   {old: " (E15's)", new: "", count: 1},
+                   {old: "as E6's summaries are", new: "as the false positives' summaries are", count: 1}]}
   - content: twelve_gene_refit
     kind: table
-    number: Supplementary Table S32
-    title: "provisional: thresholds refitted on twelve genes"
+    number: Supplementary Table S29
+    title: "thresholds refitted on twelve genes"
     destination: excel
-    description: "provisional: Thresholds and tiers refitted on the seven training genes and the five further genes, beside the seven-gene fit."
+    description: "Thresholds and tiers refitted on the seven training genes and the five further genes, beside the seven-gene fit."
     make: table_parts
     parts:
       - part: refit
@@ -538,35 +557,75 @@ supplementary:
         # and AVI at 3-10 bp, BP4 Supporting) or is zero (phastCons there). The source
         # keeps both (E7, 2026-11-05)
         omit: [abs_change, rel_change]
-  - content: inframe_true_positives
+  - content: prior_sensitivity
     kind: table
-    number: Supplementary Table S33
-    title: "provisional: in-frame attribution of the true positives beside the false positives (C12)"
-    destination: pdf
-    description: "provisional: The in-frame share of predicted splicing events among true positives beside false positives at the published cut point."
+    number: Supplementary Table S30
+    title: "tiers at priors of 0.05, 0.10 and 0.185"
+    destination: excel
+    description: "The in-sample thresholds and tiers at priors of 0.05, 0.10 and 0.185, and each tier's likelihood-ratio boundary at each prior."
     make: table_parts
     parts:
-      - {part: tp_fp, source: reports/evidence/suppl_analyses/c12_inframe_tp_fp.csv}
+      - {part: tiers, title: Tiers at each prior, source: reports/evidence/suppl_analyses/c4_prior_sensitivity.csv,
+         replace: [{old: "E19 C4: prior sensitivity of E3's in-sample thresholds", new: "Prior sensitivity of the in-sample thresholds", count: 1},
+                   {old: " (E19.6)", new: "", count: 1}]}
+      - {part: band_edges, title: Tier boundaries at each prior, source: reports/evidence/suppl_analyses/c4_band_edges.csv,
+         replace: [{old: "E19 C4: prior sensitivity of E3's in-sample thresholds", new: "Prior sensitivity of the in-sample thresholds", count: 1},
+                   {old: " (E19.6)", new: "", count: 1}]}
+  - content: bp4_at_bp7_positions
+    kind: table
+    number: Supplementary Table S31
+    title: "BP4 at the BP7 positions"
+    destination: excel
+    description: "Variants at the BP7 positions meeting BP4, at the published cut point and at the fitted threshold, by gene and side of the exon."
+    make: table_parts
+    parts:
+      - {part: bp4_bp7, source: reports/evidence/suppl_analyses/c6_bp4_bp7.csv,
+         replace: [{old: "E19 C6: BP4", new: "BP4", count: 1},
+                   {old: "Table 3(b)", new: "{evidence_tiers_and_thresholds}(b)", count: 26}]}
   - content: vcep_rules
     kind: table
-    number: Supplementary Table S34
-    title: "provisional: the VCEP specifications' splicing rules on this study's data (C13)"
+    number: Supplementary Table S32
+    title: "the VCEP specifications' splicing rules on this study's data"
     destination: excel
-    description: "provisional: The splicing rules of the expert panels' specifications applied to this study's data: band likelihood ratios and tiers, and BP7 as each defines it."
+    description: "The splicing rules of the expert panels' specifications applied to this study's data: band likelihood ratios and tiers, and BP7 as each defines it."
     make: table_parts
     parts:
-      - {part: band_lr, source: reports/evidence/suppl_analyses/c13_vcep_band_lr.csv}
+      - {part: band_lr, source: reports/evidence/suppl_analyses/c13_vcep_band_lr.csv,
+         replace: [{old: "E20 C13: the VCEP", new: "The VCEP", count: 1},
+                   {old: "defines it (E20b)", new: "defines it", count: 1},
+                   {old: "(E20b; Appendices", new: "(Appendices", count: 1},
+                   {old: "E2's (evid_walker_thresholds._band_stats)", new: "evid_walker_thresholds._band_stats", count: 1},
+                   {old: " (E20.4)", new: "", count: 6}]}
+  - content: alphagenome_definitions
+    kind: table
+    number: Supplementary Table S33
+    title: "the AlphaGenome splice score by the model's official definition and by the atlas's, side by side"
+    destination: excel
+    description: "Thresholds, ratios, held-out transfer and AUROC of the AlphaGenome splice score by the model's own definition beside the atlas's quantile score."
+    make: table_parts
+    parts:
+      - {part: comparison, source: reports/evidence/alphagenome_definition_comparison.csv,
+         replace: [{old: "E3 writes per-fold thresholds for the PP3 side only", new: "per-fold thresholds are kept for the PP3 side only", count: 9}]}
+  - content: by_splice_site_position
+    kind: table
+    number: Supplementary Table S34
+    title: "the published cut points by donor and acceptor position"
+    destination: excel
+    description: "Band likelihood ratios at the published cut points by position on the donor and acceptor sides."
+    make: table_parts
+    parts:
+      - {part: by_position, source: reports/evidence/suppl_analyses/c7_by_position.csv}
 
 # Outputs added after 2026-09-30 that no table or figure numbers: the supplementary
 # materials' contents name them with their path.
 repository_only:
-  - {path: reports/evidence/figures/figure_practical.pdf, what: "ROC and precision-recall curves in one figure (E15); drawn here as {roc_curves} and {precision_recall_curves}"}
+  - {path: reports/evidence/figures/figure_practical.pdf, what: "ROC and precision-recall curves in one figure; drawn here as {roc_curves} and {precision_recall_curves}"}
   - {path: reports/evidence/figures/figure_practical.png, what: "the same, PNG"}
-  - {path: reports/evidence/figures/figure_practical_slides.png, what: "the same curves at slide size (E4.1)"}
+  - {path: reports/evidence/figures/figure_practical_slides.png, what: "the same curves at slide size"}
   - {path: reports/evidence/practical_roc_curves.csv, what: "the ROC curves' points (the source of {roc_curves})"}
   - {path: reports/evidence/practical_pr_curves.csv, what: "the precision-recall curves' points (the source of {precision_recall_curves})"}
   - {path: reports/evidence/suppl_analyses/c2_clinvar_coverage_by_position.csv, what: "ClinVar coverage by signed offset (the source of {clinvar_coverage_by_position})"}
-  - {path: reports/evidence/suppl_analyses/c2_clinvar_coverage_draft.png, what: "E19's draft of {clinvar_coverage_by_position}"}
+  - {path: reports/evidence/suppl_analyses/c2_clinvar_coverage_draft.png, what: "an earlier draft of {clinvar_coverage_by_position}"}
   - {path: reports/evidence/newgenes_coordinate_check.csv, what: "the four further genes' coordinate mapping, checked"}
   - {path: reports/evidence/sbds_coordinate_check.csv, what: "SBDS's coordinate mapping, checked"}
   - {path: reports/evidence/newgenes_offset_sample.csv, what: "rows sampled for the coordinate check"}

@@ -1,0 +1,38 @@
+{
+ "script": "scripts/stage_E8/first_citations.py",
+ "argv": [
+  "scripts/stage_E8/first_citations.py",
+  "/manuscript/CALInewversion.docx",
+  "--base",
+  "d6f7bc5"
+ ],
+ "git_commit": "d6f7bc56b320699e97a634d25c245bc3e9fd23cf",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E8/first_citations.py": "f6b3905e3f0639377a53541c4aefdb55d379b655c59a798378676e3c44f61e63",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-09T05:01:58+00:00",
+ "end_utc": "2026-11-09T05:01:58+00:00",
+ "inputs": [
+  {
+   "path": "/manuscript/CALInewversion.docx",
+   "exists": false
+  }
+ ],
+ "outputs": [],
+ "exception": "Traceback (most recent call last):\n  File \"/repo/scripts/stage_E8/first_citations.py\", line 101, in main\n    bl = blocks(args.docx)\n         ^^^^^^^^^^^^^^^^^\n  File \"/repo/scripts/stage_E8/first_citations.py\", line 41, in blocks\n    root = ET.fromstring(zipfile.ZipFile(docx).read(\"word/document.xml\"))\n                         ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/zipfile/__init__.py\", line 1352, in __init__\n    self.fp = io.open(file, filemode)\n              ^^^^^^^^^^^^^^^^^^^^^^^\nIsADirectoryError: [Errno 21] Is a directory: '/manuscript/CALInewversion.docx'\n",
+ "notes": {}
+}

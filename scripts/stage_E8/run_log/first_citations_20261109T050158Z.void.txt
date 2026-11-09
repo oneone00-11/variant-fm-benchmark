@@ -1,0 +1,8 @@
+Void (E8, 2026-11-09): this run did not read the manuscript. It was given the path
+/manuscript/CALInewversion.docx, a bind mount of the file on the author's Desktop, but the
+Colima VM that runs the reference image shares the repository folder only, so the mount
+arrived as an empty directory and the script stopped before reading anything
+(IsADirectoryError). The run that counts is first_citations_20261109T050243Z.json: the
+same script on a temporary copy of the same file (sha256 05725072e7bd908e...) placed in
+results/scratch/ (ignored by git) for that run and removed after it. This record is kept
+as the rule for voided runs asks.

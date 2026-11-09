@@ -1,0 +1,117 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/repo/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E8/scope_e8_c1.json",
+  "--base",
+  "d6f7bc5"
+ ],
+ "git_commit": "d6f7bc56b320699e97a634d25c245bc3e9fd23cf",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-09T04:59:41+00:00",
+ "end_utc": "2026-11-09T05:00:55+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E8/scope_e8_c1.json",
+   "bytes": 12376,
+   "sha256": "898927981e70fb9aa4887e4b3e470657949f34e36a6a08f938d5667e947246ea"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E8/scope_e8_c1.json",
+  "base": "d6f7bc5",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/layout/contents.csv": {
+    "status": "declared",
+    "why": "E8.1-E8.2: every row placed and numbered by the first citation in the text; titles, descriptions and notes without 'provisional:', the titles without their revision codes and v5 pointers, the notes' references renumbered, three repository-only texts without their codes; checked field by field by check_e8.py",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/manifest.csv": {
+    "changed": 59,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/alphagenome_definitions.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/bp4_at_bp7_positions.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_consistency.reference_metrics.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/external_genes.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.by_heldout_gene.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.by_threshold.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/training_signal.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/vcep_rules.csv": {
+    "changed": 12,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary_tables.xlsx": {
+    "status": "declared",
+    "why": "E8.1-E8.2: the sheets named and ordered by the new numbers; README (the numbering stated, no 'provisional', rows in the new order, three repository-only texts); each sheet's title and notes as contents.csv's, and the parts' replaced texts; every other cell as before (check_e8.py)",
+    "change": "differs"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

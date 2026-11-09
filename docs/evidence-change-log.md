@@ -2269,3 +2269,64 @@ changes. The outputs that change (`scripts/stage_E7/scope_e7.json`):
   superseded labels. The README now says so.
 - Tests are in `phase1/tests/test_evid_layout.py` and `test_evid_e2.py`. The cell-,
   row- and pixel-level check is `scripts/stage_E7/check_e7.py`.
+
+## The supplementary items numbered in the order the text first cites them; the provisional marks, revision codes and v5 pointers out of what is printed (stage E8, commit 1, 2026-11-09)
+
+Why: the author's decisions of 2026-11-07 (the change list's B8: F5, D2-D5). The text's
+body, its references and the order in which it first cites the supplementary items are
+final. No number of any analysis changes, and no source output changes. The outputs that
+change are all under `phase1/reports/evidence/layout/` (`scripts/stage_E8/scope_e8_c1.json`):
+`contents.csv`, `manifest.csv`, the workbook, and eight supplementary tables' CSVs
+(`training_signal`, `external_genes`, `bp4_at_bp7_positions`, `alphagenome_definitions`,
+`practical_metrics` (two parts), `clinvar_consistency` (the reference metrics), and
+`vcep_rules`). No figure changes.
+
+- **Numbering.** The supplementary tables, figures and notes are numbered in the order
+  the text first cites them: the text first, a figure's legend where it stands; then the
+  tables' titles and notes; a list in the order it is written; what only the
+  supplementary notes cite follows, in the notes' order. Tables 1-4 and Figures 1-3 keep
+  their numbers. Content names, file names and each table's destination (PDF or Excel)
+  are unchanged.
+  - Tables, new <- old: S1 <- S1, S2 <- S17, S3 <- S2, S4 <- S3, S5 <- S14, S6 <- S4,
+    S7 <- S5, S8 <- S6, S9 <- S7, S10 <- S10, S11 <- S11, S12 <- S15, S13 <- S12,
+    S14 <- S19, S15 <- S20, S16 <- S21, S17 <- S16, S18 <- S31, S19 <- S29, S20 <- S26,
+    S21 <- S8, S22 <- S24, S23 <- S30, S24 <- S9, S25 <- S23, S26 <- S22, S27 <- S13,
+    S28 <- S33, S29 <- S32, S30 <- S25, S31 <- S27, S32 <- S34, S33 <- S18, S34 <- S28.
+  - Figures: S1 <- S1, S2 <- S2, S3 <- S5, S4 <- S4, S5 <- S3. The notes (1 <- 1, 2 <- 2,
+    3 <- 4, 4 <- 3, 5 <- 6, 6 <- 5) are renumbered in the manuscript; no text the layout
+    prints names a note.
+  - `config/layout.yaml` lists each kind in its numbers' order, from 1 without a gap,
+    and the stage stops otherwise; so `contents.csv` and the workbook's sheets follow the
+    numbers. `scripts/stage_E8/first_citations.py` recomputes the order from the
+    manuscript itself (read only; it records numbers and paragraph indices, no text): it
+    matches.
+- **Every number of this paper printed through the configuration.** A part's new option,
+  `replace`, prints a text of its own in place of a source's: in the headers, the cells
+  and the notes above the part, each exactly as often as declared (the stage stops
+  otherwise), the new text naming an item as {content}. A printed table's copy then
+  differs from its source in those texts alone. Titles and descriptions resolve
+  {content} too.
+  - `training_signal`'s fusion row named its table "Supplementary Table S9"; it now
+    prints `{fusion}`, S24.
+  - Five headers of `external_genes` and the condition and two notes of
+    `bp4_at_bp7_positions` named the in-sample thresholds by their v5 number, Table 3(b);
+    they now print `{evidence_tiers_and_thresholds}(b)`, Table 2(b).
+  - Drawn again with every item renumbered (`scripts/stage_E8/check_e8.py`), the layout
+    prints no number of this paper that the configuration does not set, in a figure
+    either. What remains are the source papers' numbers (the label audit's rules and
+    source sheets, the second BRCA2 dataset's Supplementary Table 5) and the label
+    audit's "Table S1", which is this paper's and keeps its number.
+- **What is printed is cleaned** (a mechanical clean-up; titles, descriptions and notes
+  are written from the final text later).
+  - "provisional" is gone from every title, description and note, and from the README
+    sheet, which states the numbering: "numbered in the order the text first cites them
+    (2026-11-08)" (`supplementary_format.numbering`).
+  - The revision codes are gone: C1-C13 from the titles; E15, E4.1 and "E19's draft"
+    ("an earlier draft") from the repository-only entries; and, through `replace`, the
+    C and E numbers in the sources' notes and cells (E2, E3, E4, E6, E2.7, E15, E16, E16d, E18,
+    E19, E19.6, E20, E20.1, E20.4, E20b), with the few words a sentence then needs.
+  - "(v5 Table 2)" and "(v5 Table 4(b), (c))" are gone from two titles.
+- The configuration's comments and the stage's docstrings name the items by content
+  where they named them by number. Five tests that carried a number in their name now
+  carry the content's; the tests gain the list order, a configuration that writes no
+  number by hand, the replacements' counts and copies, and the README's statement.

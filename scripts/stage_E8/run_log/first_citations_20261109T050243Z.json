@@ -1,0 +1,311 @@
+{
+ "script": "scripts/stage_E8/first_citations.py",
+ "argv": [
+  "scripts/stage_E8/first_citations.py",
+  "results/scratch/e8_manuscript/CALInewversion.docx",
+  "--base",
+  "d6f7bc5"
+ ],
+ "git_commit": "d6f7bc56b320699e97a634d25c245bc3e9fd23cf",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E8/first_citations.py": "f6b3905e3f0639377a53541c4aefdb55d379b655c59a798378676e3c44f61e63",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-09T05:02:42+00:00",
+ "end_utc": "2026-11-09T05:02:43+00:00",
+ "inputs": [
+  {
+   "path": "results/scratch/e8_manuscript/CALInewversion.docx",
+   "bytes": 928609,
+   "sha256": "05725072e7bd908ebb8636eba911e69e253512a5db7b5041bf79fdeba1960ac5"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "tables": [
+   {
+    "old": 1,
+    "place": 1,
+    "block": 7,
+    "where": "text"
+   },
+   {
+    "old": 17,
+    "place": 2,
+    "block": 7,
+    "where": "text"
+   },
+   {
+    "old": 2,
+    "place": 3,
+    "block": 8,
+    "where": "text"
+   },
+   {
+    "old": 3,
+    "place": 4,
+    "block": 10,
+    "where": "text"
+   },
+   {
+    "old": 14,
+    "place": 5,
+    "block": 10,
+    "where": "text"
+   },
+   {
+    "old": 4,
+    "place": 6,
+    "block": 10,
+    "where": "text"
+   },
+   {
+    "old": 5,
+    "place": 7,
+    "block": 12,
+    "where": "text"
+   },
+   {
+    "old": 6,
+    "place": 8,
+    "block": 15,
+    "where": "text"
+   },
+   {
+    "old": 7,
+    "place": 9,
+    "block": 15,
+    "where": "text"
+   },
+   {
+    "old": 10,
+    "place": 10,
+    "block": 18,
+    "where": "text"
+   },
+   {
+    "old": 11,
+    "place": 11,
+    "block": 18,
+    "where": "text"
+   },
+   {
+    "old": 15,
+    "place": 12,
+    "block": 18,
+    "where": "text"
+   },
+   {
+    "old": 12,
+    "place": 13,
+    "block": 20,
+    "where": "text"
+   },
+   {
+    "old": 19,
+    "place": 14,
+    "block": 20,
+    "where": "text"
+   },
+   {
+    "old": 20,
+    "place": 15,
+    "block": 21,
+    "where": "text"
+   },
+   {
+    "old": 21,
+    "place": 16,
+    "block": 21,
+    "where": "text"
+   },
+   {
+    "old": 16,
+    "place": 17,
+    "block": 23,
+    "where": "text"
+   },
+   {
+    "old": 31,
+    "place": 18,
+    "block": 23,
+    "where": "text"
+   },
+   {
+    "old": 29,
+    "place": 19,
+    "block": 38,
+    "where": "text"
+   },
+   {
+    "old": 26,
+    "place": 20,
+    "block": 39,
+    "where": "text"
+   },
+   {
+    "old": 8,
+    "place": 21,
+    "block": 39,
+    "where": "text"
+   },
+   {
+    "old": 24,
+    "place": 22,
+    "block": 39,
+    "where": "text"
+   },
+   {
+    "old": 30,
+    "place": 23,
+    "block": 39,
+    "where": "text"
+   },
+   {
+    "old": 9,
+    "place": 24,
+    "block": 41,
+    "where": "text"
+   },
+   {
+    "old": 23,
+    "place": 25,
+    "block": 45,
+    "where": "text"
+   },
+   {
+    "old": 22,
+    "place": 26,
+    "block": 47,
+    "where": "text"
+   },
+   {
+    "old": 13,
+    "place": 27,
+    "block": 55,
+    "where": "text"
+   },
+   {
+    "old": 33,
+    "place": 28,
+    "block": 55,
+    "where": "text"
+   },
+   {
+    "old": 32,
+    "place": 29,
+    "block": 56,
+    "where": "text"
+   },
+   {
+    "old": 25,
+    "place": 30,
+    "block": 60,
+    "where": "text"
+   },
+   {
+    "old": 27,
+    "place": 31,
+    "block": 61,
+    "where": "text"
+   },
+   {
+    "old": 34,
+    "place": 32,
+    "block": 61,
+    "where": "text"
+   },
+   {
+    "old": 18,
+    "place": 33,
+    "block": 139,
+    "where": "note 2"
+   },
+   {
+    "old": 28,
+    "place": 34,
+    "block": 166,
+    "where": "note 6"
+   }
+  ],
+  "figures": [
+   {
+    "old": 1,
+    "place": 1,
+    "block": 30,
+    "where": "text"
+   },
+   {
+    "old": 2,
+    "place": 2,
+    "block": 39,
+    "where": "text"
+   },
+   {
+    "old": 5,
+    "place": 3,
+    "block": 41,
+    "where": "text"
+   },
+   {
+    "old": 4,
+    "place": 4,
+    "block": 45,
+    "where": "text"
+   },
+   {
+    "old": 3,
+    "place": 5,
+    "block": 46,
+    "where": "text"
+   }
+  ],
+  "notes": [
+   {
+    "old": 1,
+    "place": 1,
+    "block": 10
+   },
+   {
+    "old": 2,
+    "place": 2,
+    "block": 10
+   },
+   {
+    "old": 4,
+    "place": 3,
+    "block": 10
+   },
+   {
+    "old": 3,
+    "place": 4,
+    "block": 13
+   },
+   {
+    "old": 6,
+    "place": 5,
+    "block": 18
+   },
+   {
+    "old": 5,
+    "place": 6,
+    "block": 20
+   }
+  ],
+  "matches_layout": true
+ }
+}
