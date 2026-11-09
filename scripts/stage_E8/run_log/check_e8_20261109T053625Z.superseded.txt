@@ -1,0 +1,8 @@
+Superseded (E8, 2026-11-09): this run's checks all passed ("0 check(s) failed"), but its
+--list path, given relative to the repository root, was read from phase1/ (the script
+changes to it before writing), so the list of grouped cells landed in
+phase1/results/scratch/, untracked; it was moved to the author's Desktop and the folder
+removed. check_e8.py now resolves --list from the folder it is run in. The same checks
+were run again with the corrected script, check_e8_20261109T053840Z.json, with the same
+result and the same list; that record is the one that counts.
+This record is kept as the rule for voided runs asks.

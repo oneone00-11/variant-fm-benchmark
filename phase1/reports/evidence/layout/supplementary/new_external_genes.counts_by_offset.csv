@@ -217,7 +217,7 @@ CTCF,stratum,s11_50,Functionally Normal,952
 CTCF,stratum,s11_50,unassigned,0
 CTCF,stratum,s3_50,Functionally Abnormal,76
 CTCF,stratum,s3_50,Indeterminate,37
-CTCF,stratum,s3_50,Functionally Normal,1257
+CTCF,stratum,s3_50,Functionally Normal,"1,257"
 CTCF,stratum,s3_50,unassigned,0
 CTCF,stratum,out_of_scope_deep,Functionally Abnormal,0
 CTCF,stratum,out_of_scope_deep,Indeterminate,1
@@ -665,7 +665,7 @@ RAD51D,stratum,s11_50,Functionally Normal,844
 RAD51D,stratum,s11_50,unassigned,0
 RAD51D,stratum,s3_50,Functionally Abnormal,74
 RAD51D,stratum,s3_50,Indeterminate,13
-RAD51D,stratum,s3_50,Functionally Normal,1209
+RAD51D,stratum,s3_50,Functionally Normal,"1,209"
 RAD51D,stratum,s3_50,unassigned,0
 RAD51D,stratum,out_of_scope_deep,Functionally Abnormal,0
 RAD51D,stratum,out_of_scope_deep,Indeterminate,0

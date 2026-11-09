@@ -21,6 +21,10 @@
 # than max_height_mm (the author's review of 2026-10-28): a taller one is drawn shorter,
 # not scaled at assembly, which would take its 5 pt type below 5 pt.
 artwork:
+  # the main figures' axes, ticks and lines, reference lines, medians and error bars
+  # included, at least this wide in points; a marker's edge is not a line (the author's
+  # decision of 2026-11-07, D3; the supplementary figures as drawn)
+  main_lines_pt: 1.0
   double_column_mm: 175
   single_column_mm: 85
   max_height_mm: 240
@@ -230,10 +234,22 @@ supplementary:
     options: {function: figure_s3}
     sources: [reports/evidence/territory_metrics_arms_noBRCA1.csv]
   # tables, numbered in the order the text first cites them (2026-11-08)
-  - {content: functional_standards, kind: table, number: Supplementary Table S1, make: table_parts, destination: excel,
-     title: "Functional standards: assay, accession, transcript, published class labels and how each maps to damaging, normal or missing, with variant counts",
-     description: "Each gene's functional assay: publication, accession, transcript, class labels and their mapping to damaging, normal or missing, with variant counts.",
-     parts: [{part: standards, source: reports/evidence/supplement/tableS1_functional_standards.csv}]}
+  - content: functional_standards
+    kind: table
+    number: Supplementary Table S1
+    make: table_parts
+    destination: excel
+    title: "Functional standards: assay, accession, transcript, published class labels and how each maps to damaging, normal or missing, with variant counts"
+    description: "Each gene's functional assay: publication, accession, transcript, class labels and their mapping to damaging, normal or missing, with variant counts."
+    parts:
+      - part: standards
+        source: reports/evidence/supplement/tableS1_functional_standards.csv
+        # every transcript as RefSeq accession.version, read from the MANE summary on the
+        # gene's MANE Select row; DDX3X's deposit names the Ensembl transcript, printed
+        # after it (the author's decision of 2026-11-07, D2; the source as it is)
+        transcripts: {column: Transcript, gene: Gene, mane: data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz}
+    notes:
+      - "Transcripts are MANE Select (v1.5); for DDX3X, the Ensembl transcript named by the deposit is given in parentheses."
   - content: label_sources
     kind: table
     number: Supplementary Table S2
@@ -345,10 +361,14 @@ supplementary:
     destination: excel
     description: "The five further external genes: their score-set records, labels by band, assay classes by intronic offset, and synonymous and nonsense controls."
     make: table_parts
+    notes:
+      - "Transcripts are MANE Select (v1.5); for SBDS, the Ensembl transcript named by the deposit is given in parentheses."
     parts:
       - part: records
         title: Score-set records
         sources: [reports/evidence/newgenes_record_check.csv, reports/evidence/sbds_record_check.csv]
+        # as in functional_standards: SBDS's deposit names the Ensembl transcript
+        transcripts: {column: Target transcript accession, gene: Gene, mane: data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz}
       - part: labels
         title: Labels by band
         sources: [reports/evidence/newgenes_label_summary.csv, reports/evidence/sbds_label_summary.csv]

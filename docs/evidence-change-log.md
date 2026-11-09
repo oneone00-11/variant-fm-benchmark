@@ -2330,3 +2330,57 @@ change are all under `phase1/reports/evidence/layout/` (`scripts/stage_E8/scope_
   where they named them by number. Five tests that carried a number in their name now
   carry the content's; the tests gain the list order, a configuration that writes no
   number by hand, the replacements' counts and copies, and the README's statement.
+
+## Thousands grouped, RefSeq transcripts in two supplementary tables, heavier lines in the main figures, Figure 3's letters and crosses for the folds not counted (stage E8, commit 2, 2026-11-09)
+
+Why: the author's decisions of 2026-11-07 (the change list's B8: D2-D4; the format check
+of 2026-11-07, items 7, 9 and 16-19). No number of any analysis changes, and no source
+output changes. Only files under `phase1/reports/evidence/layout/` change
+(`scripts/stage_E8/scope_e8_c2.json`): the three main figures, the main and
+supplementary CSVs that print a number of 1,000 or more, `contents.csv`, `manifest.csv`
+and the workbook. The supplementary figures are as they were, byte for byte.
+
+- **Thousands.** Every number of 1,000 or more the layout prints is grouped in thousands
+  with commas: a count or a value, a cell that is a number, a ratio of counts
+  ("1,223/1,410") or a number in a text ("2,000 of 2,000 draws"). Years, dates and times,
+  versions, coordinates and identifiers are left as written: a four-digit year from 1900
+  to 2099 in a text unless "of" stands next to it, and a number of seven digits or more
+  in a text, or one joined to a letter, a point, a colon, a slash, a hyphen, an
+  underscore or a quote (`evid_layout.grouped`).
+  - Table 4(b)'s five cells are made so where the stage writes them: "1,410",
+    "0.87 (1,223/1,410)", "0.10 (138/1,410)", "1,410", "0.05 (68/1,410)".
+  - Every other table is finished cell by cell as it is printed (`finished()`), the
+    tables v3.0.1 printed included: their copies are parsed and written back with the
+    same CSV quoting, and the stage stops if a copy does not read back as written, so
+    that a cell without such a number keeps its bytes.
+  - In the workbook a grouped number stays a number, shown with a thousands format
+    ("#,##0", "#,##0.000"); a number below 1,000 keeps its style.
+  - `contents.csv`'s one-page estimate is grouped too; no table's estimate changes
+    from yes to no or back.
+- **RefSeq transcripts** (S1, S14). A part's new option, `transcripts`, prints its
+  transcript column as RefSeq accession.version, read from the MANE summary on the
+  gene's MANE Select row, never written by hand
+  (`data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz`, now among
+  the two tables' sources). DDX3X prints "NM_001356.5 (ENST00000644876.2)" and SBDS
+  "NM_016038.4 (ENST00000246868.7)", the Ensembl transcript their deposits name in
+  parentheses; the stage stops if a transcript is neither its gene's MANE Select RefSeq
+  nor the Ensembl transcript of the same row. Each table gains its note:
+  "Transcripts are MANE Select (v1.5); for DDX3X (SBDS), the Ensembl transcript named
+  by the deposit is given in parentheses."
+- **Italics in the workbook.** A gene marked *BRCA1* in a cell is an italic run there,
+  without the marks; the CSVs keep the marks.
+- **The main figures** (Figures 1-3; `artwork.main_lines_pt`, 1.0):
+  - Axes, ticks and lines at least 1 pt wide: reference lines, medians, intervals,
+    curves and the keys' lines (from 0.5-0.9 pt). A marker's edge is not a line and is
+    unchanged. The supplementary figures keep their widths.
+  - Figure 2 draws no row shading. Its folds not counted (the combined Atlas score's
+    folds with BRCA1 or RAD51C held out) are grey crosses, filled where they clear the
+    boundary and open where they do not, told from the dots by shape in colour and in
+    grey alike; the key's entry is a cross.
+  - Figure 3's panels are lettered a-c, as Figures 1 and 2 letter theirs.
+  - A tick label of 1,000 or more is grouped ("1,000" on Figure 1 (c) and Figure 2).
+    No supplementary figure draws such a label, so none changes.
+- Tests gain the grouping's cases, the transcripts, the workbook's number styles and
+  italics, the main figures' widths, Figure 2's shading and crosses and Figure 3's
+  letters; three tests read the new forms. The cell-, row- and pixel-level check is
+  `scripts/stage_E8/check_e8.py --commit 2`.

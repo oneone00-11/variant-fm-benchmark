@@ -58,6 +58,8 @@ Run (PYTHONPATH=phase1):  python -m src.evid_layout
 """
 from __future__ import annotations
 
+import csv
+import gzip
 import hashlib
 import io
 import re
@@ -70,8 +72,11 @@ from xml.sax.saxutils import escape
 import matplotlib
 
 matplotlib.use("Agg")
+import matplotlib.axes  # noqa: E402
+import matplotlib.collections  # noqa: E402
 import matplotlib.pyplot as plt  # noqa: E402
 import matplotlib.text as mtext  # noqa: E402
+import matplotlib.ticker  # noqa: E402
 import matplotlib.transforms as mtransforms  # noqa: E402
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
@@ -125,6 +130,7 @@ def _save(fig, folder: Path, stem: str, cfg: dict) -> list[Path]:
     if fig.get_figheight() > art["max_height_mm"] * F.MM + 1e-9:
         raise SystemExit(f"[layout] {stem}: {fig.get_figheight() / F.MM:.1f} mm tall, taller "
                          f"than {art['max_height_mm']} mm")
+    _grouped_ticks(fig)
     fig.canvas.draw()                       # tick labels exist only once drawn
     for t in fig.findobj(mtext.Text):
         if not t.get_visible() or not t.get_text().strip():
@@ -141,6 +147,63 @@ def _save(fig, folder: Path, stem: str, cfg: dict) -> list[Path]:
     fig.savefig(png, dpi=art["dpi"], metadata={"Software": None})
     plt.close(fig)
     return [pdf, png]
+
+
+class _GroupedTicks(matplotlib.ticker.Formatter):
+    """An axis's own tick labels, each number of 1,000 or more grouped in thousands
+    (1000 -> 1,000), the labels below 1,000 as they were."""
+
+    def __init__(self, inner):
+        self.inner = inner
+
+    def __call__(self, x, pos=None):
+        return grouped(self.inner(x, pos))
+
+    def format_ticks(self, values):
+        return [grouped(s) for s in self.inner.format_ticks(values)]
+
+    def set_locs(self, locs):
+        self.inner.set_locs(locs)
+
+    def get_offset(self):
+        return self.inner.get_offset()
+
+    def set_axis(self, axis):
+        super().set_axis(axis)
+        self.inner.set_axis(axis)
+
+
+def _grouped_ticks(fig) -> None:
+    """Every axis of a figure, insets included, with its tick labels grouped in
+    thousands (E8.4: the target's style), whatever drew it; a figure without such a
+    label is drawn as it was."""
+    for ax in fig.findobj(matplotlib.axes.Axes):
+        for axis in (ax.xaxis, ax.yaxis):
+            for get, put in ((axis.get_major_formatter, axis.set_major_formatter),
+                             (axis.get_minor_formatter, axis.set_minor_formatter)):
+                f = get()
+                if not isinstance(f, _GroupedTicks):
+                    put(_GroupedTicks(f))
+
+
+def _heavier(fig, pt: float) -> None:
+    """A main figure's axes, ticks and lines at least `pt` wide (E8.4, the author's
+    decision of 2026-11-07, D3): the spines and ticks of every axis, insets included,
+    and every drawn line, reference lines, medians, intervals and the key's lines among
+    them; a line drawn only as markers keeps its markers' edges, which are not lines."""
+    for ax in fig.findobj(matplotlib.axes.Axes):
+        for s in ax.spines.values():
+            s.set_linewidth(max(s.get_linewidth(), pt))
+        for axis in (ax.xaxis, ax.yaxis):
+            for tick in axis.get_major_ticks() + axis.get_minor_ticks():
+                for line in (tick.tick1line, tick.tick2line):
+                    line.set_markeredgewidth(max(line.get_markeredgewidth(), pt))
+            axis.set_tick_params(which="both", width=max(pt, 0))
+    for line in fig.findobj(Line2D):
+        if line.get_linestyle() not in ("None", "", " ") and line.get_linewidth() < pt:
+            line.set_linewidth(pt)
+    for col in fig.findobj(matplotlib.collections.LineCollection):
+        col.set_linewidths([max(w, pt) for w in col.get_linewidths()])
 
 
 # ---------------------------------------------------------------------------
@@ -307,6 +370,7 @@ def figure_published_cut_point(item: dict, folder: Path, cfg: dict) -> list[Path
     fig.subplots_adjust(left=0.2, right=0.97, top=1 - (1 - 0.94) * AB_MM / height,
                         bottom=1 - (1 - 0.2) * AB_MM / height)
     _local_lr_panel(fig, item, cfg, height, axes[0])
+    _heavier(fig, cfg["artwork"]["main_lines_pt"])
     return _save(fig, folder, item["content"], cfg)
 
 
@@ -340,6 +404,7 @@ EXTERNAL_CUTS = [("Moderate", 4.33), ("Strong", 18.7)]
 # out (MARK_RULES); drawn where they were, in grey, and left out of the median (the
 # author's decision of 2026-11-05)
 FOLD_NOT_COUNTED = "avi_seen_in_training"
+CROSS, CROSS_S = "X", 12              # its marker, and its area beside the dots' 9
 
 
 def _heldout_panel(ax, folds: pd.DataFrame, thr: pd.DataFrame, tier: str, cut: float,
@@ -354,8 +419,6 @@ def _heldout_panel(ax, folds: pd.DataFrame, thr: pd.DataFrame, tier: str, cut: f
     any_zero = any_grey = False
     rule = MARK_RULES[FOLD_NOT_COUNTED]
     for yy, c in enumerate(F.COLUMNS):
-        if yy % 2 == 0:
-            ax.axhspan(yy - 0.5, yy + 0.5, color=F.BAND, zorder=-1, lw=0)
         if not len(thr[(thr.tool == c) & (thr.stratum == st) & (thr.tier == tier)]):
             ax.text(floor * 1.15, yy, "not reached in-sample", fontsize=5.5, color=F.MUTED,
                     va="center", zorder=5, bbox=dict(facecolor="white", edgecolor="none", pad=0.4))
@@ -381,17 +444,20 @@ def _heldout_panel(ax, folds: pd.DataFrame, thr: pd.DataFrame, tier: str, cut: f
             ax.scatter(np.full((zero & counted).sum(), floor), yy + jitter[zero & counted], s=9,
                        facecolor="white", edgecolor=F.INK2, linewidth=0.7, zorder=3, clip_on=False)
         if (~counted).any():
+            # a fold not counted is a grey cross, told from the counted dots by its shape
+            # in colour and in grey alike (the author's decision of 2026-11-07, D4):
+            # filled where it clears the boundary, open where it does not, as the dots
             any_grey = True
             grey = ~counted & ~zero
-            ax.scatter(pos[above & grey], yy + jitter[above & grey], s=9, color=F.MUTED,
-                       edgecolor="white", linewidth=0.3, zorder=3)
-            ax.scatter(pos[~above & grey], yy + jitter[~above & grey], s=9, facecolor="white",
-                       edgecolor=F.MUTED, linewidth=0.7, zorder=3)
+            ax.scatter(pos[above & grey], yy + jitter[above & grey], marker=CROSS, s=CROSS_S,
+                       color=F.MUTED, edgecolor="white", linewidth=0.3, zorder=3)
+            ax.scatter(pos[~above & grey], yy + jitter[~above & grey], marker=CROSS, s=CROSS_S,
+                       facecolor="white", edgecolor=F.MUTED, linewidth=0.7, zorder=3)
             if (zero & ~counted).any():
                 any_zero = True
                 ax.scatter(np.full((zero & ~counted).sum(), floor), yy + jitter[zero & ~counted],
-                           s=9, facecolor="white", edgecolor=F.MUTED, linewidth=0.7, zorder=3,
-                           clip_on=False)
+                           marker=CROSS, s=CROSS_S, facecolor="white", edgecolor=F.MUTED,
+                           linewidth=0.7, zorder=3, clip_on=False)
         if counted.any():
             ax.plot([np.median(pos[counted])] * 2, [yy - 0.32, yy + 0.32], color=F.INK, lw=1.0,
                     zorder=4)
@@ -446,8 +512,6 @@ def _external_panel(ax, ext: dict, st: str, rows: list[tuple[str, str]], floor: 
     slot = {g: (i - (len(EXTERNAL_GENES) - 1) / 2) * 0.1 for i, g in enumerate(EXTERNAL_GENES)}
     missing = []
     for yy, (tool, kind) in enumerate(rows):
-        if yy % 2 == 0:
-            ax.axhspan(yy - 0.5, yy + 0.5, color=F.BAND, zorder=-1, lw=0)
         drawn, reachable = 0, False
         for g in EXTERNAL_GENES:
             r = ext[g][(ext[g].stratum == st) & (ext[g].tool == tool)]
@@ -571,7 +635,7 @@ def figure_heldout_external(item: dict, folder: Path, cfg: dict) -> list[Path]:
                Line2D([], [], color=F.INK, lw=1.0, label="Median of held-out genes")]
     if any_grey:
         # the row's † names why (Table 2(a)'s †); the median leaves these folds out
-        handles.append(Line2D([], [], marker="o", ls="", color=F.MUTED, mec="white", ms=4,
+        handles.append(Line2D([], [], marker=CROSS, ls="", color=F.MUTED, mec="white", ms=4.6,
                               label=f"Fold not counted ({NOT_COUNTED})"))
     if any_zero:
         handles.append(Line2D([], [], marker="o", ls="", mfc="white", mec=F.INK2, ms=4,
@@ -588,12 +652,16 @@ def figure_heldout_external(item: dict, folder: Path, cfg: dict) -> list[Path]:
                ncol=1 + -(-len(genes) // len(handles)),
                bbox_to_anchor=(0.55, 0.0), handletextpad=0.3, columnspacing=1.0)
     item["_notes"] = _missing_notes(missing)
+    _heavier(fig, cfg["artwork"]["main_lines_pt"])
     return _save(fig, folder, item["content"], cfg)
 
 
 # ---------------------------------------------------------------------------
 # Figures: ROC curves, precision-recall curves (v3.0.1's practical figure, one row each)
 # ---------------------------------------------------------------------------
+ROC_LETTER_X = -0.06                  # the ROC panels' letters, in each panel's width
+
+
 def _curves_figure(item: dict, folder: Path, cfg: dict, row: str) -> list[Path]:
     F._style()
     roc = K.read_back(REPORT_DIR / "practical_roc_curves.csv")
@@ -690,6 +758,8 @@ def _curves_figure(item: dict, folder: Path, cfg: dict, row: str) -> list[Path]:
         ax.set_yticklabels(["0", "0.25", "0.5", "0.75", "1"])
         ax.set_aspect("equal")
         ax.set_title(F.STRATUM_LABEL[st], fontweight="bold")
+        if row == "roc":
+            F._panel_letter(ax, "abc"[j], x=ROC_LETTER_X)
         ax.set_xlabel("1 − specificity" if row == "roc" else "Sensitivity (recall)")
         if j == 0:
             ax.set_ylabel("Sensitivity" if row == "roc" else "Precision")
@@ -708,6 +778,8 @@ def _curves_figure(item: dict, folder: Path, cfg: dict, row: str) -> list[Path]:
                bbox_to_anchor=(0.5, 0.0), handletextpad=0.4, columnspacing=1.0, handlelength=2.4)
     fig.subplots_adjust(left=0.07, right=0.99, top=0.92 if row == "roc" else 0.94,
                         bottom=0.25 if row == "roc" else 0.4)
+    if row == "roc":
+        _heavier(fig, cfg["artwork"]["main_lines_pt"])
     return _save(fig, folder, item["content"], cfg)
 
 
@@ -962,6 +1034,114 @@ def _copy_replaced(src: str | Path, dst: Path, reps: list[tuple[str, str, int]],
     return got_df, got_notes
 
 
+# ---------------------------------------------------------------------------
+# How every table finishes what it prints (E8.3): thousands, transcripts
+# ---------------------------------------------------------------------------
+# A number of 1,000 or more is printed with commas between its thousands, the target's
+# style, a count or a value alike: a cell that is a number, a ratio of counts, a number
+# in a text. Not a year (four digits from 1900 to 2099 in a text, unless "of" stands
+# next to it, as in "2000 of 2000 draws"), a date or a time, a version, a coordinate or
+# an identifier: a number of seven digits or more in a text, or one joined to a letter,
+# a point, a colon, a slash, a hyphen, an underscore or a quote (PMID 30209399,
+# g.32394937, urn:mavedb:00001250-a-3, 2026-10-19, ENST00000644876.2, 0.10.0).
+PLAIN_NUMBER = re.compile(r"^(-?)(\d+)(\.\d+)?$")
+NUMBER_IN_TEXT = re.compile(r"(?<![\w.,/:#+*\-−–'])(\d{4,6})(\.\d+)?(?![\w'’]|[.,]\d|\s?[-–/:]\s?\d)")
+RATIO_IN_TEXT = re.compile(r"(?<![\w.,/:#+*\-−–])(\d+)/(\d+)(?![\w.,/])")
+YEARS = (1900, 2099)
+
+
+def grouped(text: str) -> str:
+    """A printed text with every number of 1,000 or more grouped in thousands, by the
+    rule above; any other text as it was."""
+    m = PLAIN_NUMBER.match(text)
+    if m:
+        sign, whole, frac = m.groups()
+        return text if len(whole) < 4 else f"{sign}{int(whole):,}{frac or ''}"
+    text = RATIO_IN_TEXT.sub(lambda r: f"{int(r.group(1)):,}/{int(r.group(2)):,}", text)
+
+    def one(n):
+        whole, frac = n.group(1), n.group(2) or ""
+        if (len(whole) == 4 and not frac and YEARS[0] <= int(whole) <= YEARS[1]
+                and not text[n.end():].startswith(" of ") and not text[:n.start()].endswith("of ")):
+            return n.group(0)                                   # a year
+        return f"{int(whole):,}{frac}"
+    return NUMBER_IN_TEXT.sub(one, text)
+
+
+def _mane_select(path) -> dict:
+    """The MANE summary's MANE Select rows, by gene symbol."""
+    with gzip.open(path, "rt") as f:
+        header = f.readline().lstrip("#").rstrip("\n").split("\t")
+        rows = [dict(zip(header, line.rstrip("\n").split("\t"))) for line in f]
+    return {r["symbol"]: r for r in rows if r["MANE_status"] == "MANE Select"}
+
+
+def transcripts(df: pd.DataFrame, part: dict, where_: str) -> pd.DataFrame:
+    """A part's transcript column (its `transcripts` entry) as RefSeq accession.version,
+    read from the MANE summary it names, never written by hand: a gene's MANE Select
+    RefSeq prints as it stands; its Ensembl transcript, which a deposit may name instead,
+    prints after the RefSeq of the same row, in parentheses. Any other transcript, or a
+    gene without a MANE Select row, stops the run."""
+    spec = part.get("transcripts")
+    if not spec:
+        return df
+    mane = _mane_select(spec["mane"])
+    out = []
+    for gene, tx in zip(df[spec["gene"]], df[spec["column"]]):
+        r = mane.get(gene)
+        if r is None:
+            raise SystemExit(f"{where_}: {gene} has no MANE Select row in {spec['mane']}")
+        if tx == r["RefSeq_nuc"]:
+            out.append(tx)
+        elif tx == r["Ensembl_nuc"]:
+            out.append(f"{r['RefSeq_nuc']} ({tx})")
+        else:
+            raise SystemExit(f"{where_}: {gene}'s transcript {tx} is neither its MANE Select "
+                             f"RefSeq ({r['RefSeq_nuc']}) nor the Ensembl transcript of the same "
+                             f"row ({r['Ensembl_nuc']})")
+    df = df.copy()
+    df[spec["column"]] = out
+    return df
+
+
+def finished(df: pd.DataFrame, notes: list[str], part: dict,
+             where_: str) -> tuple[pd.DataFrame, list[str]]:
+    """What a part prints, finished: its transcripts as RefSeq, and every number of 1,000
+    or more in its headers, cells and notes grouped in thousands."""
+    df = transcripts(df, part, where_)
+    data = [[grouped(v) for v in r] for r in df.itertuples(index=False)]
+    return (pd.DataFrame(data, columns=[grouped(c) for c in df.columns], dtype=str),
+            [grouped(n) for n in notes])
+
+
+def _csv_text(rows: list[list[str]]) -> str:
+    out = io.StringIO()
+    csv.writer(out, lineterminator="\n", quoting=csv.QUOTE_MINIMAL).writerows(rows)
+    return out.getvalue()
+
+
+def _finish_copy(path: Path, part: dict, where_: str) -> tuple[pd.DataFrame, list[str]]:
+    """A printed table's copy, finished cell by cell (finished()), its comment lines with
+    their numbers grouped too. The copy must read back as it was written, so that every
+    cell finished() leaves alone keeps its bytes; the run stops otherwise. Returns the
+    table and notes as printed."""
+    text = path.read_bytes().decode("utf-8")
+    lines = text.splitlines(keepends=True)
+    head = []
+    while lines and lines[0].startswith("#"):
+        head.append(lines.pop(0))
+    body = "".join(lines)
+    rows = list(csv.reader(io.StringIO(body, newline="")))
+    if _csv_text(rows) != body:
+        raise SystemExit(f"{where_}: the printed table does not read back as it is written, so "
+                         "its copy cannot be finished cell by cell")
+    df = pd.DataFrame(rows[1:], columns=rows[0], dtype=str)
+    df, _ = finished(df, [], part, where_)
+    head = [grouped(h) for h in head]
+    path.write_bytes(("".join(head) + _csv_text([list(df.columns)] + df.values.tolist())).encode("utf-8"))
+    return df, [h.lstrip("#").strip() for h in head]
+
+
 def _spec(item: dict, part: dict, column: str, cfg: dict) -> list:
     """A column's readable name and type: the part's own entry under `columns:` first,
     then the table's."""
@@ -1214,7 +1394,8 @@ def table_parts(item: dict, folder: Path, cfg: dict) -> list[Path]:
     of sources as they stand, or a mapping from a value of a new first column ("key",
     its name) to a source, for files that do not name what they are about. A printed
     source is copied; any other is printed as displayed() prints it. A part's
-    replacements are made in what is printed, a printed source's copy included."""
+    replacements are made in what is printed, a printed source's copy included, and
+    every part is then finished (finished(): thousands grouped, transcripts as RefSeq)."""
     out = []
     item["_frames"] = []
     numbers = _numbers(cfg)
@@ -1241,16 +1422,18 @@ def table_parts(item: dict, folder: Path, cfg: dict) -> list[Path]:
         p = _part_path(folder, item, part)
         if printed and "not_counted" in part:
             df = not_counted(df, item, part)[0]
-            df, notes = replaced(df, notes, reps, where_)
+            df, notes = finished(*replaced(df, notes, reps, where_), part, where_)
             _write_csv(df, p)
-        elif printed and reps:
-            df, notes = _copy_replaced(part["source"], p, reps, where_)
         elif printed:
-            p.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(part["source"], p)
+            if reps:
+                _copy_replaced(part["source"], p, reps, where_)
+            else:
+                p.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(part["source"], p)
+            df, notes = _finish_copy(p, part, where_)
         else:
             df = displayed(df, item, part, cfg)
-            df, notes = replaced(df, notes, reps, where_)
+            df, notes = finished(*replaced(df, notes, reps, where_), part, where_)
             _write_csv(df, p)
         out.append(p)
         item["_frames"].append((part, df, notes + list(part.get("notes", []))))
@@ -1304,7 +1487,7 @@ def table_practical_performance(item: dict, folder: Path, cfg: dict) -> list[Pat
             if not len(sub):
                 continue
             r = {"Predictor": F.NAME[tool], "Band": F.STRATUM_LABEL[st],
-                 "P/LP": str(int(sub.n_plp.iloc[0])), "B/LB": str(int(sub.n_blb.iloc[0]))}
+                 "P/LP": f"{int(sub.n_plp.iloc[0]):,}", "B/LB": f"{int(sub.n_blb.iloc[0]):,}"}
             for side, kind, name in cols:
                 x = sub[(sub.side == side) & (sub.threshold_kind == kind)]
                 if not len(x):
@@ -1314,9 +1497,9 @@ def table_practical_performance(item: dict, folder: Path, cfg: dict) -> list[Pat
                 if x.status != "ok":
                     r[name] = "not evaluable"
                 elif side == "pp3":
-                    r[name] = f"{P._two(x.sensitivity)} ({int(x.n_pos_above)}/{int(x.n_plp)})"
+                    r[name] = f"{P._two(x.sensitivity)} ({int(x.n_pos_above):,}/{int(x.n_plp):,})"
                 else:
-                    r[name] = f"{P._two(x.bp4_sensitivity)} ({int(x.bp4_n_neg_at_or_below)}/{int(x.n_blb)})"
+                    r[name] = f"{P._two(x.bp4_sensitivity)} ({int(x.bp4_n_neg_at_or_below):,}/{int(x.n_blb):,})"
             rows.append(r)
     clinvar = pd.DataFrame(rows)
     # the bands left out of (b), from the same file: how many P/LP variants, and why
@@ -1362,12 +1545,18 @@ def one_page(frames: list, width_mm: float) -> tuple[bool, int, int]:
 # ---------------------------------------------------------------------------
 # The workbook: a minimal Office Open XML writer, so that the file is the same bytes
 # on every run (fixed member order and times, no document properties). A cell that
-# prints a plain decimal is a number shown with the decimals it prints; any other is text.
+# prints a plain decimal is a number shown with the decimals it prints, and one that
+# prints it grouped in thousands (1,410) is the same number shown so; any other is text,
+# with a gene's italics, marked *BRCA1* in the text (the CSV keeps the marks), as an
+# italic run.
 # ---------------------------------------------------------------------------
 DECIMAL = re.compile(r"^-?\d+(?:\.(\d+))?$")
+GROUPED_DECIMAL = re.compile(r"^-?\d{1,3}(?:,\d{3})+(?:\.(\d+))?$")
+ITALIC = re.compile(r"(?<![\w*])\*([A-Z][A-Za-z0-9-]*)\*(?![\w*])")
 ZIP_TIME = (1980, 1, 1, 0, 0, 0)
 MAX_DECIMALS = 15
 NUMBER_STYLE = 2         # cellXfs index of 0 decimals; d decimals at NUMBER_STYLE + d
+GROUPED_STYLE = NUMBER_STYLE + MAX_DECIMALS + 1      # the same, grouped in thousands
 
 
 def _col(i: int) -> str:
@@ -1379,17 +1568,34 @@ def _col(i: int) -> str:
     return s
 
 
+def _runs_xml(text: str, bold: bool) -> str:
+    """An inline string's runs: the text, with each *GENE* as an italic run without its
+    marks; a single plain run where there is none."""
+    if not ITALIC.search(text):
+        return f'<t xml:space="preserve">{escape(text)}</t>'
+    font = ("<b/>" if bold else "") + '<sz val="10"/><rFont val="Arial"/>'
+    runs, at = [], 0
+    for m in ITALIC.finditer(text):
+        runs += [(text[at:m.start()], False), (m.group(1), True)]
+        at = m.end()
+    runs.append((text[at:], False))
+    return "".join(f'<r><rPr>{"<i/>" if it else ""}{font}</rPr><t xml:space="preserve">{escape(s)}</t></r>'
+                   for s, it in runs if s)
+
+
 def _cell_xml(ref: str, value, bold: bool) -> str:
     text = "" if value is None else str(value)
     if text == "":
         return ""
-    m = DECIMAL.match(text)
-    if not bold and m and len(text.lstrip("-").replace(".", "").lstrip("0")) <= 15:
-        places = len(m.group(1) or "")
-        if places <= MAX_DECIMALS:
-            return f'<c r="{ref}" s="{NUMBER_STYLE + places}"><v>{text}</v></c>'
+    for pattern, style, digits in ((DECIMAL, NUMBER_STYLE, text),
+                                   (GROUPED_DECIMAL, GROUPED_STYLE, text.replace(",", ""))):
+        m = pattern.match(text)
+        if not bold and m and len(digits.lstrip("-").replace(".", "").lstrip("0")) <= 15:
+            places = len(m.group(1) or "")
+            if places <= MAX_DECIMALS:
+                return f'<c r="{ref}" s="{style + places}"><v>{digits}</v></c>'
     style = ' s="1"' if bold else ""
-    return f'<c r="{ref}"{style} t="inlineStr"><is><t xml:space="preserve">{escape(text)}</t></is></c>'
+    return f'<c r="{ref}"{style} t="inlineStr"><is>{_runs_xml(text, bold)}</is></c>'
 
 
 def _sheet_xml(rows: list[tuple[list, bool]]) -> str:
@@ -1403,18 +1609,20 @@ def _sheet_xml(rows: list[tuple[list, bool]]) -> str:
 
 
 def _styles_xml(ns: str) -> str:
-    formats = "".join(f'<numFmt numFmtId="{164 + d}" formatCode="{"0" if d == 0 else "0." + "0" * d}"/>'
-                      for d in range(MAX_DECIMALS + 1))
-    numbers = "".join(f'<xf numFmtId="{164 + d}" fontId="0" fillId="0" borderId="0" xfId="0" '
-                      'applyNumberFormat="1"/>' for d in range(MAX_DECIMALS + 1))
+    # d decimals at numFmtId 164 + d; the same grouped in thousands after them
+    codes = [("0" if d == 0 else "0." + "0" * d) for d in range(MAX_DECIMALS + 1)]
+    codes += ["#,##" + c for c in codes]
+    formats = "".join(f'<numFmt numFmtId="{164 + k}" formatCode="{c}"/>' for k, c in enumerate(codes))
+    numbers = "".join(f'<xf numFmtId="{164 + k}" fontId="0" fillId="0" borderId="0" xfId="0" '
+                      'applyNumberFormat="1"/>' for k in range(len(codes)))
     return ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-            f'<styleSheet xmlns="{ns}"><numFmts count="{MAX_DECIMALS + 1}">{formats}</numFmts>'
+            f'<styleSheet xmlns="{ns}"><numFmts count="{len(codes)}">{formats}</numFmts>'
             '<fonts count="2"><font><sz val="10"/><name val="Arial"/></font>'
             '<font><b/><sz val="10"/><name val="Arial"/></font></fonts>'
             '<fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills>'
             '<borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders>'
             '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>'
-            f'<cellXfs count="{NUMBER_STYLE + MAX_DECIMALS + 1}"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>'
+            f'<cellXfs count="{GROUPED_STYLE + MAX_DECIMALS + 1}"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>'
             '<xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/>'
             f'{numbers}</cellXfs>'
             '<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>'
@@ -1481,9 +1689,9 @@ def workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
     sheets = []
     for it in items:
         srcs = _sources(it)
-        title = _resolve(it["title"], numbers)
+        title = grouped(_resolve(it["title"], numbers))
         readme.append(([it["number"], _sheet_name(it["number"]), it["content"], title,
-                        it["destination"], _resolve(it["description"], numbers),
+                        it["destination"], grouped(_resolve(it["description"], numbers)),
                         "; ".join(p["part"] for p in it["parts"]) if len(it["parts"]) > 1 else "",
                         "; ".join(_rel(s) for s in srcs), "; ".join(_sha256(s) for s in srcs)], False))
         rows: list[tuple[list, bool]] = [([f"{it['number']}. {title}"], True)]
@@ -1492,9 +1700,9 @@ def workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
         for k, (part, df, notes) in enumerate(it["_frames"]):
             rows.append(([], False))
             if len(it["parts"]) > 1:
-                rows.append(([f"({chr(97 + k)}) {_resolve(str(part.get('title', part['part'])), numbers)}"], True))
+                rows.append(([f"({chr(97 + k)}) {grouped(_resolve(str(part.get('title', part['part'])), numbers))}"], True))
             for n in notes:
-                rows.append(([_resolve(n, numbers)], False))
+                rows.append(([grouped(_resolve(n, numbers))], False))
             rows.append((list(df.columns), True))
             rows += [(list(r), False) for r in df.itertuples(index=False)]
         sheets.append((_sheet_name(it["number"]), rows))
@@ -1527,13 +1735,13 @@ def _resolve(text: str, numbers: dict) -> str:
 
 
 def _notes(item: dict, numbers: dict) -> list[str]:
-    return [_resolve(n, numbers) for n in list(item.get("notes", [])) + item.get("_notes", [])]
+    return [grouped(_resolve(n, numbers)) for n in list(item.get("notes", [])) + item.get("_notes", [])]
 
 
 def _part_notes(item: dict, numbers: dict) -> list[str]:
     """The configuration's notes on a part, named by the part (the workbook writes them
     above it)."""
-    return [f"{p['part']}: {_resolve(n, numbers)}" for p in item.get("parts", [])
+    return [f"{p['part']}: {grouped(_resolve(n, numbers))}" for p in item.get("parts", [])
             for n in p.get("notes", [])]
 
 
@@ -1546,6 +1754,8 @@ def _sources(item: dict) -> list[str]:
         out += list(srcs.values()) if isinstance(srcs, dict) else list(srcs)
         if "not_counted" in part:                    # the per-fold file it counts from
             out.append(part["not_counted"]["folds"])
+        if "transcripts" in part:                    # the MANE summary it reads them from
+            out.append(part["transcripts"]["mane"])
     return list(dict.fromkeys(out))
 
 
@@ -1620,12 +1830,12 @@ def main(config: Path = CONFIG, out: Path = OUT) -> None:
             estimate = ""
             if it["kind"] == "table" and section == "supplementary":
                 fits, lines, wide = one_page(it["_frames"], width)
-                estimate = f"{'yes' if fits else 'no'} ({lines} lines, {wide} mm wide)"
+                estimate = f"{'yes' if fits else 'no'} ({lines:,} lines, {wide:,} mm wide)"
             contents.append({"number": it["number"], "section": section, "kind": it["kind"],
-                             "content": it["content"], "title": _resolve(it["title"], numbers),
+                             "content": it["content"], "title": grouped(_resolve(it["title"], numbers)),
                              "destination": it.get("destination", ""),
                              "fits_one_page_estimate": estimate,
-                             "description": _resolve(it.get("description", ""), numbers),
+                             "description": grouped(_resolve(it.get("description", ""), numbers)),
                              "notes": " | ".join(_notes(it, numbers) + _part_notes(it, numbers)),
                              "files": "; ".join(_rel(p) for p in files),
                              "sources": "; ".join(_rel(s) for s in _sources(it)),

@@ -1,0 +1,387 @@
+{
+ "commit": "E8 commit 2 (thousands grouped; RefSeq transcripts in S1 and S14; the main figures' lines at least 1 pt, Figure 2 without shading and with crosses, Figure 3 lettered; the author's decisions of 2026-11-07)",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/layout/main/practical_performance.clinvar.csv": {
+   "kind": "file",
+   "why": "E8.3: 5 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/analysis_set_by_status.csv": {
+   "kind": "file",
+   "why": "E8.3: 37 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/bp4_at_bp7_positions.csv": {
+   "kind": "file",
+   "why": "E8.3: 24 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/by_splice_site_position.csv": {
+   "kind": "file",
+   "why": "E8.3: 13 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/clinvar_consistency.crosstab.csv": {
+   "kind": "file",
+   "why": "E8.3: 972 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/clinvar_consistency.low_circularity_composition.csv": {
+   "kind": "file",
+   "why": "E8.3: 1 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/clinvar_consistency.reference_metrics.csv": {
+   "kind": "file",
+   "why": "E8.3: 178 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/clinvar_consistency.star_conversion.csv": {
+   "kind": "file",
+   "why": "E8.3: 2 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/clinvar_coverage.csv": {
+   "kind": "file",
+   "why": "E8.3: 8 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/clinvar_status.csv": {
+   "kind": "file",
+   "why": "E8.3: 160 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/column_agreement.csv": {
+   "kind": "file",
+   "why": "E8.3: 5 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/confusion_matrices.csv": {
+   "kind": "file",
+   "why": "E8.3: 229 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/external_genes.csv": {
+   "kind": "file",
+   "why": "E8.3: 72 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/family_holdout.csv": {
+   "kind": "file",
+   "why": "E8.3: 40 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/functional_standards.csv": {
+   "kind": "file",
+   "why": "E8.3: DDX3X's transcript as NM_001356.5 (ENST00000644876.2), read from the MANE summary; 16 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/fusion.csv": {
+   "kind": "file",
+   "why": "E8.3: 30 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/heldout_intervals.intervals.csv": {
+   "kind": "file",
+   "why": "E8.3: 283 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/label_sensitivity.brca2_refits.csv": {
+   "kind": "file",
+   "why": "E8.3: 1344 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/label_sensitivity.intermediate.csv": {
+   "kind": "file",
+   "why": "E8.3: 1456 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/label_sensitivity.superseded.csv": {
+   "kind": "file",
+   "why": "E8.3: 672 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/label_sources.audit.csv": {
+   "kind": "file",
+   "why": "E8.3: 145 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/label_sources.effect.csv": {
+   "kind": "file",
+   "why": "E8.3: 1120 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/label_sources.versions.csv": {
+   "kind": "file",
+   "why": "E8.3: 17 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/new_external_genes.controls.csv": {
+   "kind": "file",
+   "why": "E8.3: 120 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/new_external_genes.counts_by_offset.csv": {
+   "kind": "file",
+   "why": "E8.3: 2 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/new_external_genes.labels.csv": {
+   "kind": "file",
+   "why": "E8.3: 12 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/new_external_genes.records.csv": {
+   "kind": "file",
+   "why": "E8.3: SBDS's transcript as NM_016038.4 (ENST00000246868.7), read from the MANE summary; 10 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/practical_metrics.by_heldout_gene.csv": {
+   "kind": "file",
+   "why": "E8.3: 1031 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/practical_metrics.by_threshold.csv": {
+   "kind": "file",
+   "why": "E8.3: 1309 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/practical_metrics.curve_areas.csv": {
+   "kind": "file",
+   "why": "E8.3: 84 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/practical_metrics.external.csv": {
+   "kind": "file",
+   "why": "E8.3: 1283 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/predictor_columns.csv": {
+   "kind": "file",
+   "why": "E8.3: 27 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/prior_sensitivity.tiers.csv": {
+   "kind": "file",
+   "why": "E8.3: 1680 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/published_cut_points.csv": {
+   "kind": "file",
+   "why": "E8.3: 35 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/twelve_gene_refit.csv": {
+   "kind": "file",
+   "why": "E8.3: 720 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/within_gene_arms.by_gene.csv": {
+   "kind": "file",
+   "why": "E8.3: 26 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/supplementary/without_bap1.csv": {
+   "kind": "file",
+   "why": "E8.3: 20 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)"
+  },
+  "phase1/reports/evidence/layout/main/published_cut_point_by_band.pdf": {
+   "kind": "file",
+   "why": "E8.4: Figure 1: axes, ticks and lines at least 1 pt; (c)'s top tick label 1,000"
+  },
+  "phase1/reports/evidence/layout/main/published_cut_point_by_band.png": {
+   "kind": "file",
+   "why": "E8.4: Figure 1: axes, ticks and lines at least 1 pt; (c)'s top tick label 1,000"
+  },
+  "phase1/reports/evidence/layout/main/heldout_and_external_lr.pdf": {
+   "kind": "file",
+   "why": "E8.4: Figure 2: no row shading; the folds not counted as grey crosses, the key's entry too; axes, ticks and lines at least 1 pt; tick labels 1,000"
+  },
+  "phase1/reports/evidence/layout/main/heldout_and_external_lr.png": {
+   "kind": "file",
+   "why": "E8.4: Figure 2: no row shading; the folds not counted as grey crosses, the key's entry too; axes, ticks and lines at least 1 pt; tick labels 1,000"
+  },
+  "phase1/reports/evidence/layout/main/roc_curves.pdf": {
+   "kind": "file",
+   "why": "E8.4: Figure 3: panels lettered a-c; axes, ticks and lines (insets included) at least 1 pt"
+  },
+  "phase1/reports/evidence/layout/main/roc_curves.png": {
+   "kind": "file",
+   "why": "E8.4: Figure 3: panels lettered a-c; axes, ticks and lines (insets included) at least 1 pt"
+  },
+  "phase1/reports/evidence/layout/contents.csv": {
+   "kind": "file",
+   "why": "E8.3: the one-page estimates grouped in thousands; functional_standards' and new_external_genes' notes (the transcripts) and sources (the MANE summary); checked field by field by check_e8.py"
+  },
+  "phase1/reports/evidence/layout/supplementary_tables.xlsx": {
+   "kind": "file",
+   "why": "E8.3: numbers of 1,000 or more shown grouped (number cells keep their values, with a thousands format; text cells as the CSVs); S1's and S14's transcript cells and notes (each sheet one row longer); README's sources of S1 and S14; the italic marks as italic runs; checked cell by cell by check_e8.py"
+  },
+  "phase1/reports/evidence/layout/manifest.csv": {
+   "kind": "fields",
+   "key": [
+    "file"
+   ],
+   "rows": {
+    "phase1/reports/evidence/layout/main/published_cut_point_by_band.pdf": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/main/published_cut_point_by_band.png": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/main/heldout_and_external_lr.pdf": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/main/heldout_and_external_lr.png": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/main/roc_curves.pdf": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/main/roc_curves.png": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/main/practical_performance.clinvar.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/functional_standards.csv": [
+     "bytes",
+     "sha256",
+     "sources",
+     "sources_sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sources.audit.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sources.versions.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sources.effect.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/analysis_set_by_status.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/predictor_columns.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/column_agreement.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/published_cut_points.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_status.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/within_gene_arms.by_gene.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/external_genes.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/new_external_genes.records.csv": [
+     "bytes",
+     "sha256",
+     "sources",
+     "sources_sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/new_external_genes.labels.csv": [
+     "bytes",
+     "sha256",
+     "sources",
+     "sources_sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/new_external_genes.counts_by_offset.csv": [
+     "bytes",
+     "sha256",
+     "sources",
+     "sources_sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/new_external_genes.controls.csv": [
+     "bytes",
+     "sha256",
+     "sources",
+     "sources_sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/practical_metrics.by_threshold.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/practical_metrics.by_heldout_gene.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/practical_metrics.external.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/practical_metrics.curve_areas.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/confusion_matrices.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/without_bap1.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/heldout_intervals.intervals.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sensitivity.intermediate.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sensitivity.superseded.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/label_sensitivity.brca2_refits.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/family_holdout.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/fusion.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_coverage.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_consistency.reference_metrics.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_consistency.crosstab.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_consistency.low_circularity_composition.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/clinvar_consistency.star_conversion.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/twelve_gene_refit.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/prior_sensitivity.tiers.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/bp4_at_bp7_positions.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary/by_splice_site_position.csv": [
+     "bytes",
+     "sha256"
+    ],
+    "phase1/reports/evidence/layout/supplementary_tables.xlsx": [
+     "bytes",
+     "sha256",
+     "sources",
+     "sources_sha256"
+    ],
+    "phase1/reports/evidence/layout/contents.csv": [
+     "bytes",
+     "sha256"
+    ]
+   },
+   "why": "E8.3-E8.4: the changed files' size and hash; the MANE summary among the sources of functional_standards' and new_external_genes' files and of the workbook"
+  }
+ }
+}

@@ -54,15 +54,15 @@ Canonical dinucleotides (out of scope),All genes,All variants,856,841,804,37,0.9
 3–10,All genes,Classified (P/LP or B/LB),721,685,95,590,0.139
 3–10,All genes,"Recorded: VUS, conflicting or other",565,524,160,364,0.305
 3–10,All genes,Recorded: no clinical assertion,305,280,41,239,0.146
-3–10,All genes,Unrecorded,1699,1620,274,1346,0.169
-3–10,All genes,All variants,3290,3109,570,2539,0.183
+3–10,All genes,Unrecorded,"1,699","1,620",274,"1,346",0.169
+3–10,All genes,All variants,"3,290","3,109",570,"2,539",0.183
 11–50,BAP1,Classified (P/LP or B/LB),278,261,19,242,0.073
 11–50,BAP1,"Recorded: VUS, conflicting or other",18,18,7,11,0.389
-11–50,BAP1,Unrecorded,1204,1174,111,1063,0.095
+11–50,BAP1,Unrecorded,"1,204","1,174",111,"1,063",0.095
 11–50,BARD1,Classified (P/LP or B/LB),156,154,2,152,0.013
 11–50,BARD1,"Recorded: VUS, conflicting or other",17,17,3,14,0.176
 11–50,BARD1,Recorded: no clinical assertion,1,1,0,1,0.000
-11–50,BARD1,Unrecorded,1284,1264,14,1250,0.011
+11–50,BARD1,Unrecorded,"1,284","1,264",14,"1,250",0.011
 11–50,BRCA1,Classified (P/LP or B/LB),98,96,0,96,0.000
 11–50,BRCA1,"Recorded: VUS, conflicting or other",14,13,1,12,0.077
 11–50,BRCA1,Recorded: no clinical assertion,249,236,2,234,0.008
@@ -77,15 +77,15 @@ Canonical dinucleotides (out of scope),All genes,All variants,856,841,804,37,0.9
 11–50,All genes,Classified (P/LP or B/LB),776,741,32,709,0.043
 11–50,All genes,"Recorded: VUS, conflicting or other",75,74,17,57,0.230
 11–50,All genes,Recorded: no clinical assertion,250,237,2,235,0.008
-11–50,All genes,Unrecorded,3606,3499,172,3327,0.049
-11–50,All genes,All variants,4707,4551,223,4328,0.049
-3–50,All genes,Classified (P/LP or B/LB),1497,1426,127,1299,0.089
+11–50,All genes,Unrecorded,"3,606","3,499",172,"3,327",0.049
+11–50,All genes,All variants,"4,707","4,551",223,"4,328",0.049
+3–50,All genes,Classified (P/LP or B/LB),"1,497","1,426",127,"1,299",0.089
 3–50,All genes,"Recorded: VUS, conflicting or other",640,598,177,421,0.296
 3–50,All genes,Recorded: no clinical assertion,555,517,43,474,0.083
-3–50,All genes,Unrecorded,5305,5119,446,4673,0.087
-3–50,All genes,All variants,7997,7660,793,6867,0.104
-1–50 including the canonical dinucleotides (out of scope),All genes,Classified (P/LP or B/LB),1985,1906,596,1310,0.313
+3–50,All genes,Unrecorded,"5,305","5,119",446,"4,673",0.087
+3–50,All genes,All variants,"7,997","7,660",793,"6,867",0.104
+1–50 including the canonical dinucleotides (out of scope),All genes,Classified (P/LP or B/LB),"1,985","1,906",596,"1,310",0.313
 1–50 including the canonical dinucleotides (out of scope),All genes,"Recorded: VUS, conflicting or other",706,663,238,425,0.359
 1–50 including the canonical dinucleotides (out of scope),All genes,Recorded: no clinical assertion,588,547,68,479,0.124
-1–50 including the canonical dinucleotides (out of scope),All genes,Unrecorded,5574,5385,695,4690,0.129
-1–50 including the canonical dinucleotides (out of scope),All genes,All variants,8853,8501,1597,6904,0.188
+1–50 including the canonical dinucleotides (out of scope),All genes,Unrecorded,"5,574","5,385",695,"4,690",0.129
+1–50 including the canonical dinucleotides (out of scope),All genes,All variants,"8,853","8,501","1,597","6,904",0.188

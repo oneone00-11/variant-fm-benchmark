@@ -1,0 +1,278 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/repo/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E8/scope_e8_c2.json",
+  "--base",
+  "5a33fde"
+ ],
+ "git_commit": "5a33fdeff774e36c96633d7d9331dc9ff2a8fc0a",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-09T05:33:39+00:00",
+ "end_utc": "2026-11-09T05:35:01+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E8/scope_e8_c2.json",
+   "bytes": 16851,
+   "sha256": "02ce355cd04456d6be2932dfed86db3c91092766d49b315f7df5aa574eec4e1b"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E8/scope_e8_c2.json",
+  "base": "5a33fde",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/layout/contents.csv": {
+    "status": "declared",
+    "why": "E8.3: the one-page estimates grouped in thousands; functional_standards' and new_external_genes' notes (the transcripts) and sources (the MANE summary); checked field by field by check_e8.py",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/main/heldout_and_external_lr.pdf": {
+    "status": "declared",
+    "why": "E8.4: Figure 2: no row shading; the folds not counted as grey crosses, the key's entry too; axes, ticks and lines at least 1 pt; tick labels 1,000",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/main/heldout_and_external_lr.png": {
+    "status": "declared",
+    "why": "E8.4: Figure 2: no row shading; the folds not counted as grey crosses, the key's entry too; axes, ticks and lines at least 1 pt; tick labels 1,000",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/main/practical_performance.clinvar.csv": {
+    "status": "declared",
+    "why": "E8.3: 5 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/main/published_cut_point_by_band.pdf": {
+    "status": "declared",
+    "why": "E8.4: Figure 1: axes, ticks and lines at least 1 pt; (c)'s top tick label 1,000",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/main/published_cut_point_by_band.png": {
+    "status": "declared",
+    "why": "E8.4: Figure 1: axes, ticks and lines at least 1 pt; (c)'s top tick label 1,000",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/main/roc_curves.pdf": {
+    "status": "declared",
+    "why": "E8.4: Figure 3: panels lettered a-c; axes, ticks and lines (insets included) at least 1 pt",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/main/roc_curves.png": {
+    "status": "declared",
+    "why": "E8.4: Figure 3: panels lettered a-c; axes, ticks and lines (insets included) at least 1 pt",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/manifest.csv": {
+    "changed": 45,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary/analysis_set_by_status.csv": {
+    "status": "declared",
+    "why": "E8.3: 37 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/bp4_at_bp7_positions.csv": {
+    "status": "declared",
+    "why": "E8.3: 24 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/by_splice_site_position.csv": {
+    "status": "declared",
+    "why": "E8.3: 13 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_consistency.crosstab.csv": {
+    "status": "declared",
+    "why": "E8.3: 972 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_consistency.low_circularity_composition.csv": {
+    "status": "declared",
+    "why": "E8.3: 1 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_consistency.reference_metrics.csv": {
+    "status": "declared",
+    "why": "E8.3: 178 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_consistency.star_conversion.csv": {
+    "status": "declared",
+    "why": "E8.3: 2 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_coverage.csv": {
+    "status": "declared",
+    "why": "E8.3: 8 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/clinvar_status.csv": {
+    "status": "declared",
+    "why": "E8.3: 160 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/column_agreement.csv": {
+    "status": "declared",
+    "why": "E8.3: 5 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/confusion_matrices.csv": {
+    "status": "declared",
+    "why": "E8.3: 229 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/external_genes.csv": {
+    "status": "declared",
+    "why": "E8.3: 72 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/family_holdout.csv": {
+    "status": "declared",
+    "why": "E8.3: 40 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/functional_standards.csv": {
+    "status": "declared",
+    "why": "E8.3: DDX3X's transcript as NM_001356.5 (ENST00000644876.2), read from the MANE summary; 16 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/fusion.csv": {
+    "status": "declared",
+    "why": "E8.3: 30 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/heldout_intervals.intervals.csv": {
+    "status": "declared",
+    "why": "E8.3: 283 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sensitivity.brca2_refits.csv": {
+    "status": "declared",
+    "why": "E8.3: 1344 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sensitivity.intermediate.csv": {
+    "status": "declared",
+    "why": "E8.3: 1456 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sensitivity.superseded.csv": {
+    "status": "declared",
+    "why": "E8.3: 672 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sources.audit.csv": {
+    "status": "declared",
+    "why": "E8.3: 145 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sources.effect.csv": {
+    "status": "declared",
+    "why": "E8.3: 1120 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/label_sources.versions.csv": {
+    "status": "declared",
+    "why": "E8.3: 17 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/new_external_genes.controls.csv": {
+    "status": "declared",
+    "why": "E8.3: 120 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/new_external_genes.counts_by_offset.csv": {
+    "status": "declared",
+    "why": "E8.3: 2 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/new_external_genes.labels.csv": {
+    "status": "declared",
+    "why": "E8.3: 12 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/new_external_genes.records.csv": {
+    "status": "declared",
+    "why": "E8.3: SBDS's transcript as NM_016038.4 (ENST00000246868.7), read from the MANE summary; 10 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.by_heldout_gene.csv": {
+    "status": "declared",
+    "why": "E8.3: 1031 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.by_threshold.csv": {
+    "status": "declared",
+    "why": "E8.3: 1309 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.curve_areas.csv": {
+    "status": "declared",
+    "why": "E8.3: 84 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/practical_metrics.external.csv": {
+    "status": "declared",
+    "why": "E8.3: 1283 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/predictor_columns.csv": {
+    "status": "declared",
+    "why": "E8.3: 27 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/prior_sensitivity.tiers.csv": {
+    "status": "declared",
+    "why": "E8.3: 1680 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/published_cut_points.csv": {
+    "status": "declared",
+    "why": "E8.3: 35 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/twelve_gene_refit.csv": {
+    "status": "declared",
+    "why": "E8.3: 720 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/within_gene_arms.by_gene.csv": {
+    "status": "declared",
+    "why": "E8.3: 26 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/without_bap1.csv": {
+    "status": "declared",
+    "why": "E8.3: 20 cells with a number of 1,000 or more, grouped in thousands; every other cell as it was (check_e8.py --commit 2)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary_tables.xlsx": {
+    "status": "declared",
+    "why": "E8.3: numbers of 1,000 or more shown grouped (number cells keep their values, with a thousands format; text cells as the CSVs); S1's and S14's transcript cells and notes (each sheet one row longer); README's sources of S1 and S14; the italic marks as italic runs; checked cell by cell by check_e8.py",
+    "change": "differs"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

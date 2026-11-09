@@ -258,7 +258,7 @@ def test_the_contents_hold_every_item_and_the_repository_only_outputs():
     assert list(c[c.number != "repository only"].content) == [it["content"] for it in _items()]
     assert len(c[c.number == "repository only"]) == len(_cfg()["repository_only"])
     supp = c[(c.section == "supplementary") & (c.kind == "table")]
-    assert supp.fits_one_page_estimate.str.match(r"^(yes|no) \(\d+ lines, \d+ mm wide\)$").all()
+    assert supp.fits_one_page_estimate.str.match(r"^(yes|no) \((\d{1,3}(,\d{3})*) lines, (\d{1,3}(,\d{3})*) mm wide\)$").all()
     # the destination defaults to the estimate (the author's decision of 2026-10-28)
     assert ((supp.destination == "pdf") == supp.fits_one_page_estimate.str.startswith("yes")).all()
     assert not c.notes.str.contains(r"\{", regex=True).any()
@@ -276,10 +276,13 @@ def test_the_external_genes_without_a_marker_are_named_for_the_caption():
 @need_out
 def test_the_printed_tables_are_written_byte_for_byte():
     """But for the folds a rule leaves out of the counts (thresholds_pathogenic, tested
-    below), and the texts a part prints in place of its source's (its `replace`, E8): the
-    copy is then the source's bytes with those texts replaced, and nothing else."""
+    below), the texts a part prints in place of its source's (its `replace`, E8.1), the
+    thousands grouped and the transcripts as RefSeq (E8.3): each cell of the copy is the
+    source's with those texts replaced and its numbers grouped (ungrouped, it is the
+    source's), or its transcript as the MANE summary gives it; and a copy whose source
+    has no such text, number or transcript is the source byte for byte."""
     numbers = L._numbers(_cfg())
-    replaced = 0
+    replaced = untouched = 0
     for it in _items():
         for part in it.get("parts", []):
             src = part.get("source")
@@ -287,11 +290,31 @@ def test_the_printed_tables_are_written_byte_for_byte():
                 continue
             section = "main" if it in _cfg()["main"] else "supplementary"
             name = f"{it['content']}.csv" if len(it["parts"]) == 1 else f"{it['content']}.{part['part']}.csv"
-            want = (PHASE1 / src).read_bytes()
+            text = (PHASE1 / src).read_bytes().decode()
             for old_, new_, _ in L._replacements(part, numbers):
-                want, replaced = want.replace(old_.encode(), new_.encode()), replaced + 1
-            assert (OUT / section / name).read_bytes() == want, name
+                text, replaced = text.replace(old_, new_), replaced + 1
+            got = (OUT / section / name).read_bytes().decode()
+            if got == text:
+                untouched += 1
+                continue
+            a, b = L._parse_source(text), L._parse_source(got)
+            assert [ungroup(n) for n in b[1]] == [ungroup(n) for n in a[1]], name
+            assert [ungroup(c) for c in b[0].columns] == [ungroup(c) for c in a[0].columns], name
+            assert a[0].shape == b[0].shape, name
+            tx = part.get("transcripts", {}).get("column")
+            for col in a[0].columns:
+                for x, y in zip(a[0][col], b[0][col]):
+                    if col == tx:
+                        assert y == x or (y.endswith(f" ({x})") and y.startswith("NM_")), (name, x, y)
+                    else:
+                        assert ungroup(y) == ungroup(x) and y == L.grouped(x), (name, col, x, y)
     assert replaced == 2            # training_signal's fusion row, external_genes' five headers
+    assert untouched >= 5           # Tables 1-3's parts, among others
+
+
+def ungroup(text: str) -> str:
+    """A text with the commas between digit groups taken out."""
+    return re.sub(r"(?<=\d),(?=\d{3}\b)", "", text)
 
 
 @need_out
@@ -350,7 +373,12 @@ def test_the_workbook_holds_every_supplementary_table_with_its_printed_decimals(
     # a cell printed 0.500 is the number 0.5 shown with three decimals
     assert 'formatCode="0.000"' in styles
     cells = re.findall(r'<c r="[A-Z]+\d+" s="(\d+)"><v>([^<]+)</v></c>', sheet)
-    assert cells and all(int(s) - L.NUMBER_STYLE == len((v.split(".") + [""])[1]) for s, v in cells)
+    assert cells
+    for s, v in cells:
+        # a number of 1,000 or more shown grouped in thousands (E8.3), with its decimals
+        base = L.GROUPED_STYLE if abs(float(v)) >= 1000 else L.NUMBER_STYLE
+        assert int(s) - base == len((v.split(".") + [""])[1]), (s, v)
+    assert 'formatCode="#,##0"' in styles and 'formatCode="#,##0.000"' in styles
 
 
 def test_a_share_stored_rounded_prints_at_its_own_decimals():
@@ -916,3 +944,156 @@ def test_the_readme_states_the_numbering_and_nothing_printed_is_provisional():
     assert "provisional" not in book.lower()
     contents = (OUT / "contents.csv").read_text()
     assert "provisional" not in contents.lower()
+
+
+# ---------------------------------------------------------------------------
+# E8.3: thousands, RefSeq transcripts, italics in the workbook; E8.4: the main figures
+# (the author's decisions of 2026-11-07, D2-D4)
+# ---------------------------------------------------------------------------
+@pytest.mark.parametrize("text, want", [
+    ("1410", "1,410"), ("999", "999"), ("-1234.5", "-1,234.5"), ("8853", "8,853"), ("11022", "11,022"),
+    ("0.0012704133987426758", "0.0012704133987426758"), ("2014", "2,014"),
+    ("0.87 (1223/1410)", "0.87 (1,223/1,410)"), ("0.10 (138/1410)", "0.10 (138/1,410)"),
+    ("over 7 genes; 2000 of 2000 draws evaluable", "over 7 genes; 2,000 of 2,000 draws evaluable"),
+    ("PP3 LR 1935 of 2000, BP4 LR 0 of 2000", "PP3 LR 1,935 of 2,000, BP4 LR 0 of 2,000"),
+    ("209 damaging, 1648 normal", "209 damaging, 1,648 normal"), ("distance 4999; unmasked", "distance 4,999; unmasked"),
+    ("no (4475 lines, 1023 mm wide)", "no (4,475 lines, 1,023 mm wide)"),
+    # not numbers to group: years, dates and times, identifiers, coordinates, versions
+    ("2026-02-24", "2026-02-24"), ("2026-10-19T16:27:59+00:00", "2026-10-19T16:27:59+00:00"),
+    ("Waters 2024", "Waters 2024"), ("(Sahu et al. 2025)", "(Sahu et al. 2025)"),
+    ("(Google DeepMind, 2026), Methods", "(Google DeepMind, 2026), Methods"),
+    ("Superseded on 11 September 2026 by urn:mavedb:00001250-a-3", "Superseded on 11 September 2026 by urn:mavedb:00001250-a-3"),
+    ("(PMID 30209399; PMC6181777)", "(PMID 30209399; PMC6181777)"), ("ipynb at 55943112", "ipynb at 55943112"),
+    ("for g.32394937, the set's c.9501+4A>C", "for g.32394937, the set's c.9501+4A>C"),
+    ("API client 0.10.0", "API client 0.10.0"), ("ENST00000644876.2", "ENST00000644876.2"),
+    ("Table 5's 6,551 rows", "Table 5's 6,551 rows"), ("Max Distance 10 000", "Max Distance 10 000"),
+])
+def test_numbers_of_a_thousand_or_more_are_grouped_but_not_years_dates_or_identifiers(text, want):
+    assert L.grouped(text) == want
+
+
+def test_transcripts_are_read_from_the_mane_summary_not_written_by_hand():
+    """A MANE Select RefSeq prints as it stands; the Ensembl transcript a deposit names
+    prints after the RefSeq of the same row of the summary; any other stops the run."""
+    mane = "data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz"
+    part = {"transcripts": {"column": "T", "gene": "G", "mane": str(PHASE1 / mane)}}
+    df = pd.DataFrame({"G": ["DDX3X", "SBDS", "BRCA1"], "T": ["ENST00000644876.2", "ENST00000246868.7", "NM_007294.4"]})
+    assert L.transcripts(df, part, "t")["T"].tolist() == [
+        "NM_001356.5 (ENST00000644876.2)", "NM_016038.4 (ENST00000246868.7)", "NM_007294.4"]
+    for bad in (["DDX3X", "ENST00000644876.1"], ["BRCA1", "NM_007294.3"], ["NOSUCHGENE", "NM_1.1"]):
+        with pytest.raises(SystemExit):
+            L.transcripts(pd.DataFrame({"G": [bad[0]], "T": [bad[1]]}), part, "t")
+    for content, part_name, column in (("functional_standards", "standards", "Transcript"),
+                                       ("new_external_genes", "records", "Target transcript accession")):
+        it, p = _part_of(content, part_name)
+        assert p["transcripts"]["column"] == column and p["transcripts"]["mane"] == mane
+        assert any("Transcripts are MANE Select (v1.5)" in n for n in it["notes"])
+
+
+@need_out
+def test_the_printed_transcripts_are_refseq_with_the_deposits_ensembl_in_parentheses():
+    s1 = pd.read_csv(OUT / "supplementary" / "functional_standards.csv", dtype=str, keep_default_na=False)
+    s14 = pd.read_csv(OUT / "supplementary" / "new_external_genes.records.csv", dtype=str, keep_default_na=False)
+    got = dict(zip(s1.Gene, s1.Transcript)) | dict(zip(s14.Gene, s14["Target transcript accession"]))
+    assert got["DDX3X"] == "NM_001356.5 (ENST00000644876.2)" and got["SBDS"] == "NM_016038.4 (ENST00000246868.7)"
+    assert all(v.startswith("NM_") for v in got.values()) and len(got) == 14
+
+
+@need_out
+def test_table_4b_groups_its_counts_in_thousands():
+    t = pd.read_csv(OUT / "main" / "practical_performance.clinvar.csv", dtype=str, keep_default_na=False)
+    cells = t.values.ravel().tolist()
+    for want in ("1,410", "0.87 (1,223/1,410)", "0.10 (138/1,410)", "0.05 (68/1,410)"):
+        assert want in cells, want
+    assert not any(re.search(r"(?<![\d,.])\d{4,}", c) for c in cells)
+
+
+def test_a_gene_marked_in_italics_is_an_italic_run_and_a_grouped_number_stays_a_number():
+    xml = L._runs_xml("Direct for *BRCA1*, *RAD51C* and *DDX3X*", False)
+    assert "*" not in xml and xml.count("<i/>") == 3 and "<t xml:space=\"preserve\">BRCA1</t>" in xml
+    assert L._runs_xml("c.*123A>G at 0.2", False) == '<t xml:space="preserve">c.*123A&gt;G at 0.2</t>'
+    assert L._cell_xml("A1", "1,410", False) == f'<c r="A1" s="{L.GROUPED_STYLE}"><v>1410</v></c>'
+    assert L._cell_xml("A1", "1,040.5", False) == f'<c r="A1" s="{L.GROUPED_STYLE + 1}"><v>1040.5</v></c>'
+    assert L._cell_xml("A1", "410", False) == f'<c r="A1" s="{L.NUMBER_STYLE}"><v>410</v></c>'
+    assert 't="inlineStr"' in L._cell_xml("A1", "1,410", True)          # a header is text
+
+
+@need_out
+def test_the_workbook_prints_no_italic_mark_and_the_csv_keeps_them():
+    with zipfile.ZipFile(OUT / "supplementary_tables.xlsx") as z:
+        book = "".join(z.read(n).decode() for n in z.namelist() if n.startswith("xl/worksheets/"))
+    assert not L.ITALIC.search(book) and "<i/>" in book
+    assert "*BRCA1*" in (OUT / "supplementary" / "training_signal.csv").read_text()
+
+
+@pytest.fixture(scope="module")
+def main_figures(tmp_path_factory):
+    """Figures 1-3 and the precision-recall figure as the stage draws them, each kept
+    after the stage's own _save, into a temporary folder."""
+    import matplotlib
+    out = tmp_path_factory.mktemp("main")
+    kept, save = {}, L._save
+    mp = pytest.MonkeyPatch()
+    mp.chdir(PHASE1)
+    mp.setattr(L, "_save", lambda fig, folder, stem, cfg: (kept.__setitem__(stem, fig), save(fig, folder, stem, cfg))[1])
+    try:
+        with matplotlib.rc_context():
+            cfg = L.load_config()
+            for it in cfg["main"] + cfg["supplementary"]:
+                if it["content"] in ("published_cut_point_by_band", "heldout_and_external_lr",
+                                     "roc_curves", "precision_recall_curves"):
+                    L.MAKERS[it["make"]](it, out, cfg)
+    finally:
+        mp.undo()
+    return kept
+
+
+def _line_widths(fig) -> list[float]:
+    """Every spine's, tick's and drawn line's width in a figure (a marker's edge aside)."""
+    import matplotlib.axes
+    from matplotlib.lines import Line2D
+    out = []
+    for ax in fig.findobj(matplotlib.axes.Axes):
+        out += [s.get_linewidth() for s in ax.spines.values() if s.get_visible()]
+        for axis in (ax.xaxis, ax.yaxis):
+            out += [t.tick1line.get_markeredgewidth() for t in axis.get_major_ticks() if t.tick1line.get_visible()]
+    out += [ln.get_linewidth() for ln in fig.findobj(Line2D)
+            if ln.get_linestyle() not in ("None", "", " ") and ln.get_visible()]
+    return out
+
+
+def test_the_main_figures_lines_are_at_least_one_point_and_the_supplements_as_they_were(main_figures):
+    pt = _cfg()["artwork"]["main_lines_pt"]
+    assert pt == 1.0
+    for stem in ("published_cut_point_by_band", "heldout_and_external_lr", "roc_curves"):
+        ws = _line_widths(main_figures[stem])
+        assert ws and min(ws) >= pt, (stem, min(ws))
+    assert min(_line_widths(main_figures["precision_recall_curves"])) < pt   # drawn as before
+
+
+def test_figure_2_has_no_row_shading_and_crosses_for_the_folds_not_counted(main_figures):
+    from matplotlib.colors import to_hex
+    from matplotlib.markers import MarkerStyle
+    from src import evid_figures as F
+    fig = main_figures["heldout_and_external_lr"]
+    band = to_hex(F.BAND)
+    assert not [p for ax in fig.axes for p in ax.patches if to_hex(p.get_facecolor()) == band]
+    m = MarkerStyle(L.CROSS)
+    cross = m.get_path().transformed(m.get_transform()).vertices
+    grey = [c for ax in fig.axes for c in ax.collections
+            if len(c.get_offsets()) and to_hex(c.get_edgecolor()[0] if not len(c.get_facecolor())
+                                              or to_hex(c.get_facecolor()[0]) == "#ffffff"
+                                              else c.get_facecolor()[0]) == to_hex(F.MUTED)]
+    assert grey and all(np.allclose(c.get_paths()[0].vertices, cross) for c in grey)
+    key = [h for lg in fig.legends for h in lg.legend_handles if h.get_label().startswith("Fold not counted")]
+    assert len(key) == 1 and key[0].get_marker() == L.CROSS
+
+
+def test_figure_3_letters_its_panels_and_ticks_of_a_thousand_are_grouped(main_figures):
+    fig = main_figures["roc_curves"]
+    letters = [t.get_text() for ax in fig.axes for t in ax.texts if t.get_text() in ("a", "b", "c")]
+    assert letters == ["a", "b", "c"]
+    for stem in ("published_cut_point_by_band", "heldout_and_external_lr"):
+        labels = {t.get_text() for t in main_figures[stem].findobj(plt.Text)}
+        assert "1,000" in labels and "1000" not in labels, stem
+    assert not any(re.fullmatch(r"\d{4,}", t.get_text()) for f in main_figures.values() for t in f.findobj(plt.Text))

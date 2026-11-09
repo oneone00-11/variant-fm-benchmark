@@ -1,0 +1,1391 @@
+{
+ "script": "scripts/stage_E8/check_e8.py",
+ "argv": [
+  "scripts/stage_E8/check_e8.py",
+  "--commit",
+  "2",
+  "--base",
+  "5a33fde",
+  "--list",
+  "results/scratch/E8_grouped_cells.tsv"
+ ],
+ "git_commit": "5a33fdeff774e36c96633d7d9331dc9ff2a8fc0a",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E8/check_e8.py": "0227f7bb438327ae2475e331061d77ea9f5616f6d70eaadb9bb98a83850dadb9",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-09T05:37:20+00:00",
+ "end_utc": "2026-11-09T05:38:40+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "base": "5a33fde",
+  "commit": 2,
+  "same_files_as_the_base": {
+   "ok": true,
+   "value": []
+  },
+  "csv_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "csv_changed_cells": {
+   "main/practical_performance.clinvar.csv": 5,
+   "supplementary/analysis_set_by_status.csv": 37,
+   "supplementary/bp4_at_bp7_positions.csv": 24,
+   "supplementary/by_splice_site_position.csv": 13,
+   "supplementary/clinvar_consistency.crosstab.csv": 972,
+   "supplementary/clinvar_consistency.low_circularity_composition.csv": 1,
+   "supplementary/clinvar_consistency.reference_metrics.csv": 178,
+   "supplementary/clinvar_consistency.star_conversion.csv": 2,
+   "supplementary/clinvar_coverage.csv": 8,
+   "supplementary/clinvar_status.csv": 160,
+   "supplementary/column_agreement.csv": 5,
+   "supplementary/confusion_matrices.csv": 229,
+   "supplementary/external_genes.csv": 72,
+   "supplementary/family_holdout.csv": 40,
+   "supplementary/functional_standards.csv": 17,
+   "supplementary/fusion.csv": 30,
+   "supplementary/heldout_intervals.intervals.csv": 283,
+   "supplementary/label_sensitivity.brca2_refits.csv": 1344,
+   "supplementary/label_sensitivity.intermediate.csv": 1456,
+   "supplementary/label_sensitivity.superseded.csv": 672,
+   "supplementary/label_sources.audit.csv": 145,
+   "supplementary/label_sources.effect.csv": 1120,
+   "supplementary/label_sources.versions.csv": 17,
+   "supplementary/new_external_genes.controls.csv": 120,
+   "supplementary/new_external_genes.counts_by_offset.csv": 2,
+   "supplementary/new_external_genes.labels.csv": 12,
+   "supplementary/new_external_genes.records.csv": 11,
+   "supplementary/practical_metrics.by_heldout_gene.csv": 1031,
+   "supplementary/practical_metrics.by_threshold.csv": 1309,
+   "supplementary/practical_metrics.curve_areas.csv": 84,
+   "supplementary/practical_metrics.external.csv": 1283,
+   "supplementary/predictor_columns.csv": 27,
+   "supplementary/prior_sensitivity.tiers.csv": 1680,
+   "supplementary/published_cut_points.csv": 35,
+   "supplementary/twelve_gene_refit.csv": 720,
+   "supplementary/within_gene_arms.by_gene.csv": 26,
+   "supplementary/without_bap1.csv": 20
+  },
+  "table_4b_five_cells": {
+   "ok": true,
+   "value": [
+    [
+     "1410",
+     "1,410"
+    ],
+    [
+     "0.87 (1223/1410)",
+     "0.87 (1,223/1,410)"
+    ],
+    [
+     "0.10 (138/1410)",
+     "0.10 (138/1,410)"
+    ],
+    [
+     "1410",
+     "1,410"
+    ],
+    [
+     "0.05 (68/1410)",
+     "0.05 (68/1,410)"
+    ]
+   ]
+  },
+  "transcript_cells": {
+   "ok": true,
+   "value": [
+    [
+     "supplementary/functional_standards.csv",
+     "DDX3X",
+     "ENST00000644876.2",
+     "NM_001356.5 (ENST00000644876.2)"
+    ],
+    [
+     "supplementary/new_external_genes.records.csv",
+     "SBDS",
+     "ENST00000246868.7",
+     "NM_016038.4 (ENST00000246868.7)"
+    ],
+    [
+     "supplementary_tables.xlsx",
+     "DDX3X",
+     "ENST00000644876.2",
+     "NM_001356.5 (ENST00000644876.2)"
+    ],
+    [
+     "supplementary_tables.xlsx",
+     "SBDS",
+     "ENST00000246868.7",
+     "NM_016038.4 (ENST00000246868.7)"
+    ]
+   ]
+  },
+  "mane_rows": {
+   "DDX3X": [
+    "NM_001356.5",
+    "ENST00000644876.2",
+    "MANE Select"
+   ],
+   "SBDS": [
+    "NM_016038.4",
+    "ENST00000246868.7",
+    "MANE Select"
+   ]
+  },
+  "ddx3x_and_sbds_on_one_mane_select_row": {
+   "ok": true,
+   "value": {
+    "DDX3X": [
+     "NM_001356.5",
+     "ENST00000644876.2",
+     "MANE Select"
+    ],
+    "SBDS": [
+     "NM_016038.4",
+     "ENST00000246868.7",
+     "MANE Select"
+    ]
+   }
+  },
+  "contents_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "no_destination_estimate_flips": true,
+  "contents_changed_fields": {
+   "fits_one_page_estimate": 9,
+   "notes": 2,
+   "sources": 2
+  },
+  "contents_estimates": [
+   [
+    "functional_standards",
+    "no (11 lines, 405 mm wide)",
+    "no (11 lines, 422 mm wide)"
+   ],
+   [
+    "external_genes",
+    "no (434 lines, 1069 mm wide)",
+    "no (434 lines, 1,069 mm wide)"
+   ],
+   [
+    "new_external_genes",
+    "no (1283 lines, 751 mm wide)",
+    "no (1,283 lines, 768 mm wide)"
+   ],
+   [
+    "practical_metrics",
+    "no (4475 lines, 1023 mm wide)",
+    "no (4,475 lines, 1,023 mm wide)"
+   ],
+   [
+    "confusion_matrices",
+    "no (683 lines, 312 mm wide)",
+    "no (683 lines, 316 mm wide)"
+   ],
+   [
+    "heldout_intervals",
+    "no (1247 lines, 318 mm wide)",
+    "no (1,247 lines, 318 mm wide)"
+   ],
+   [
+    "label_sensitivity",
+    "no (1817 lines, 335 mm wide)",
+    "no (1,817 lines, 335 mm wide)"
+   ],
+   [
+    "clinvar_consistency",
+    "no (1454 lines, 698 mm wide)",
+    "no (1,454 lines, 698 mm wide)"
+   ],
+   [
+    "prior_sensitivity",
+    "no (1730 lines, 325 mm wide)",
+    "no (1,730 lines, 325 mm wide)"
+   ]
+  ],
+  "manifest_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "manifest_changed_fields": {
+   "bytes": 45,
+   "sha256": 45,
+   "sources": 6,
+   "sources_sha256": 6
+  },
+  "files_that_differ_from_the_base": [
+   "contents.csv",
+   "main/heldout_and_external_lr.pdf",
+   "main/heldout_and_external_lr.png",
+   "main/practical_performance.clinvar.csv",
+   "main/published_cut_point_by_band.pdf",
+   "main/published_cut_point_by_band.png",
+   "main/roc_curves.pdf",
+   "main/roc_curves.png",
+   "manifest.csv",
+   "supplementary/analysis_set_by_status.csv",
+   "supplementary/bp4_at_bp7_positions.csv",
+   "supplementary/by_splice_site_position.csv",
+   "supplementary/clinvar_consistency.crosstab.csv",
+   "supplementary/clinvar_consistency.low_circularity_composition.csv",
+   "supplementary/clinvar_consistency.reference_metrics.csv",
+   "supplementary/clinvar_consistency.star_conversion.csv",
+   "supplementary/clinvar_coverage.csv",
+   "supplementary/clinvar_status.csv",
+   "supplementary/column_agreement.csv",
+   "supplementary/confusion_matrices.csv",
+   "supplementary/external_genes.csv",
+   "supplementary/family_holdout.csv",
+   "supplementary/functional_standards.csv",
+   "supplementary/fusion.csv",
+   "supplementary/heldout_intervals.intervals.csv",
+   "supplementary/label_sensitivity.brca2_refits.csv",
+   "supplementary/label_sensitivity.intermediate.csv",
+   "supplementary/label_sensitivity.superseded.csv",
+   "supplementary/label_sources.audit.csv",
+   "supplementary/label_sources.effect.csv",
+   "supplementary/label_sources.versions.csv",
+   "supplementary/new_external_genes.controls.csv",
+   "supplementary/new_external_genes.counts_by_offset.csv",
+   "supplementary/new_external_genes.labels.csv",
+   "supplementary/new_external_genes.records.csv",
+   "supplementary/practical_metrics.by_heldout_gene.csv",
+   "supplementary/practical_metrics.by_threshold.csv",
+   "supplementary/practical_metrics.curve_areas.csv",
+   "supplementary/practical_metrics.external.csv",
+   "supplementary/predictor_columns.csv",
+   "supplementary/prior_sensitivity.tiers.csv",
+   "supplementary/published_cut_points.csv",
+   "supplementary/twelve_gene_refit.csv",
+   "supplementary/within_gene_arms.by_gene.csv",
+   "supplementary/without_bap1.csv",
+   "supplementary_tables.xlsx"
+  ],
+  "same_sheets": true,
+  "S1_note_row": {
+   "ok": true,
+   "value": [
+    "Transcripts are MANE Select (v1.5); for DDX3X, the Ensembl transcript named by the deposit is given in parentheses.",
+    []
+   ]
+  },
+  "S14_note_row": {
+   "ok": true,
+   "value": [
+    "Transcripts are MANE Select (v1.5); for SBDS, the Ensembl transcript named by the deposit is given in parentheses.",
+    []
+   ]
+  },
+  "workbook_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "workbook_changed_cells": {
+   "README": 4,
+   "S1": 17,
+   "S2": 1282,
+   "S3": 37,
+   "S4": 27,
+   "S5": 2,
+   "S6": 5,
+   "S7": 35,
+   "S10": 160,
+   "S11": 26,
+   "S12": 5,
+   "S13": 72,
+   "S14": 145,
+   "S17": 3707,
+   "S18": 229,
+   "S19": 20,
+   "S20": 283,
+   "S22": 3472,
+   "S23": 40,
+   "S24": 30,
+   "S25": 8,
+   "S26": 1153,
+   "S29": 720,
+   "S30": 1680,
+   "S31": 24,
+   "S34": 13
+  },
+  "workbook_numbers_now_shown_grouped": 13130,
+  "workbook_italic_runs": [
+   [
+    "S5",
+    "D7",
+    [
+     "BRCA1",
+     "RAD51C",
+     "DDX3X"
+    ]
+   ],
+   [
+    "S5",
+    "E7",
+    [
+     "BRCA1",
+     "RAD51C",
+     "DDX3X"
+    ]
+   ],
+   [
+    "S12",
+    "A8",
+    [
+     "BRCA1"
+    ]
+   ],
+   [
+    "S12",
+    "A9",
+    [
+     "BRCA1"
+    ]
+   ],
+   [
+    "S12",
+    "A10",
+    [
+     "BRCA1"
+    ]
+   ],
+   [
+    "S12",
+    "B15",
+    [
+     "BRCA1"
+    ]
+   ],
+   [
+    "S12",
+    "B17",
+    [
+     "BRCA1"
+    ]
+   ]
+  ],
+  "printed_text_is_grouped": {
+   "ok": true,
+   "value": []
+  },
+  "left_alone": [
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2018",
+    "2018-04-05"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2018",
+    "2018-09-12"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2023",
+    "2023-06-10"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2023",
+    "2023-12-15"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2023",
+    "2023-12-19"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2024",
+    "2024-04-25"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2024",
+    "2024-07-05"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2024",
+    "2024-09-18"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2025",
+    "2025-01-08"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2025",
+    "2025-05-08"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2025",
+    "2025-10-21"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2025",
+    "2025-11-06"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2026",
+    "2026-01-10"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2026",
+    "2026-02-13"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2026",
+    "2026-02-24"
+   ],
+   [
+    "supplementary/clinvar_consistency.first_public_dates.csv",
+    "2026",
+    "ine; the author's decision of 2026-10-25)"
+   ],
+   [
+    "supplementary/external_column_basis.csv",
+    "2026",
+    "run (the author's decision of 2026-10-23) it d"
+   ],
+   [
+    "supplementary/external_summary.tiers_reached.csv",
+    "2026",
+    "run (the author's decision of 2026-10-23) it d"
+   ],
+   [
+    "supplementary/family_holdout.csv",
+    "2026",
+    "run (the author's decision of 2026-10-23) it d"
+   ],
+   [
+    "supplementary/functional_standards.csv",
+    "2018",
+    "Findlay 2018"
+   ],
+   [
+    "supplementary/functional_standards.csv",
+    "2023",
+    "Radford 2023"
+   ],
+   [
+    "supplementary/functional_standards.csv",
+    "2024",
+    "Buckley 2024"
+   ],
+   [
+    "supplementary/functional_standards.csv",
+    "2024",
+    "Olvera-León 2024"
+   ],
+   [
+    "supplementary/functional_standards.csv",
+    "2024",
+    "Waters 2024"
+   ],
+   [
+    "supplementary/functional_standards.csv",
+    "2025",
+    "Funk 2025"
+   ],
+   [
+    "supplementary/functional_standards.csv",
+    "2025",
+    "Huang 2025"
+   ],
+   [
+    "supplementary/functional_standards.csv",
+    "2025",
+    "Woo 2025 (preprint)"
+   ],
+   [
+    "supplementary/functional_standards.csv",
+    "2026",
+    "Tejura 2026 (preprint)"
+   ],
+   [
+    "supplementary/functional_standards.csv",
+    "2026",
+    "e. Superseded on 11 September 2026 by urn:mave"
+   ],
+   [
+    "supplementary/functional_standards.csv",
+    "2026",
+    "he version analysed in Tejura 2026, with more "
+   ],
+   [
+    "supplementary/label_sensitivity.brca2_concordance.csv",
+    "2025",
+    "Class in the second set (Sahu 2025)"
+   ],
+   [
+    "supplementary/label_sensitivity.brca2_concordance.csv",
+    "2025",
+    "he functional standard (Huang 2025)"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "2026",
+    "nly (the author's decision of 2026-10-21)"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "2026",
+    "ols: All Variants (superseded 2026-10-20)' (4 "
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "30209399",
+    " on the function score' (PMID 30209399; PMC6181777"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "30209399",
+    "e-model posterior P_nf' (PMID 30209399; PMC6181777"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "38969833",
+    " at the printed median' (PMID 38969833; PMC1125036"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "38969834",
+    "e, in the stated order' (PMID 38969834; PMC1125043"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "39299233",
+    " of the D4-D14 z-score' (PMID 39299233; PMC1214794"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "39299233",
+    "ut p<0.01 for enriched' (PMID 39299233; PMC1214794"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "39779857",
+    "paper rule not_stated (PMID 39779857; PMC1182152"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "2026-01-10"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "2026-01-13"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "2026-06-02"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "2026-06-08"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "2026-06-17"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "2026-08-24"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "2026-10-19T16:27"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "2026-10-19T16:28"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "2026-10-20T10:39"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "e author's SGE survey report (2026-10-20)"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "given by the author (verified 2026-10-19)"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "not_provided, first_published 2026-01"
+   ],
+   [
+    "supplementary/new_external_genes.records.csv",
+    "2026",
+    "not_provided, first_published 2026-08"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2018",
+    "ng assays, the BRCA1 (Findlay 2018), RAD51C (O"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2023",
+    "León 2024) and DDX3X (Radford 2023) saturation"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2023",
+    "n grch38; basis Walker et al. 2023 Methods"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2024",
+    "ay 2018), RAD51C (Olvera-León 2024) and DDX3X "
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2025",
+    "ATM prime-editing screen (Lee 2025); BRCA2, BA"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2026",
+    " client 0.9.0; Atlas released 2026-09-08; scor"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2026",
+    "2026-07-28"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2026",
+    "2026-07-30"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2026",
+    "2026-07-31; full"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2026",
+    "2026-07-31; full-precision 2026-08-04"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2026",
+    "2026-08-01"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2026",
+    "2026-09-17"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2026",
+    "2026-09-20"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2026",
+    "2026-10-22"
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "2026",
+    "ng variants (Google DeepMind, 2026), Methods; "
+   ],
+   [
+    "supplementary/predictor_columns.csv",
+    "55943112",
+    "cing_variant_scoring.ipynb at 55943112"
+   ],
+   [
+    "supplementary/twelve_gene_refit.csv",
+    "2026",
+    "ors; the author's decision of 2026-10-23)"
+   ],
+   [
+    "supplementary/vcep_rules.csv",
+    "2023",
+    "I's thresholds, Walker et al. 2023, whose basi"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2018",
+    "2018-04-05"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2018",
+    "2018-09-12"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2018",
+    "Findlay 2018"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2018",
+    "ng assays, the BRCA1 (Findlay 2018), RAD51C (O"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2019",
+    " its paper (Jaganathan et al. 2019), with no v"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2023",
+    "2023-06-10"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2023",
+    "2023-12-15"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2023",
+    "2023-12-19"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2023",
+    "BP4 at Walker 2023's BP7 posit"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2023",
+    "I's thresholds (Walker et al. 2023); VHL's sta"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2023",
+    "I's thresholds, Walker et al. 2023, whose basi"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2023",
+    "León 2024) and DDX3X (Radford 2023) saturation"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2023",
+    "Radford 2023"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2023",
+    "n grch38; basis Walker et al. 2023 Methods"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2024",
+    "2024-04-25"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2024",
+    "2024-07-05"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2024",
+    "2024-09-18"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2024",
+    "Buckley 2024"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2024",
+    "Olvera-León 2024"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2024",
+    "Waters 2024"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2024",
+    "ay 2018), RAD51C (Olvera-León 2024) and DDX3X "
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "2025-01-08"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "2025-05-08"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "2025-10-21"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "2025-11-06"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "ATM prime-editing screen (Lee 2025); BRCA2, BA"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "Class in the second set (Sahu 2025)"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "Funk 2025"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "Huang 2025"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "N078 v1.1 (Released, approved 2025-01-10; fetc"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "N092 v1.2 (Released, approved 2025-01-09; fetc"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "N097 v1.2 (Released, approved 2025-01-09; fetc"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "Woo 2025 (preprint)"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "edb:00001242-a-1 (Sahu et al. 2025), classes b"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2025",
+    "he functional standard (Huang 2025)"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    " approved 2025-01-09; fetched 2026-10-26)."
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    " approved 2025-01-10; fetched 2026-10-26)."
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    " approved 2026-09-18; fetched 2026-10-26)."
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    " client 0.9.0; Atlas released 2026-09-08; scor"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-01-10"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-01-13"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-02-13"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-02-24"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-06-02"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-06-08"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-06-17"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-07-28"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-07-30"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-07-31; full"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-07-31; full-precision 2026-08-04"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-08-01"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-08-24"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-09-17"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-09-20"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-10-19T16:27"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-10-19T16:28"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-10-20T10:39"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "2026-10-22"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "N077 v1.3 (Released, approved 2026-09-18; fetc"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "Tejura 2026 (preprint)"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "e author's SGE survey report (2026-10-20)"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "e. Superseded on 11 September 2026 by urn:mave"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "er the text first cites them (2026-11-08); tit"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "given by the author (verified 2026-10-19)"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "he version analysed in Tejura 2026, with more "
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "ine; the author's decision of 2026-10-25)"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "n under the current labels on 2026-10-26, afte"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "ng variants (Google DeepMind, 2026), Methods; "
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "nly (the author's decision of 2026-10-21)"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "not_provided, first_published 2026-01"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "not_provided, first_published 2026-08"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "ols: All Variants (superseded 2026-10-20)' (4 "
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "ors; the author's decision of 2026-10-23)"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "run (the author's decision of 2026-10-23) it d"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "2026",
+    "te (the author's decisions of 2026-10-26). Tab"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "30209399",
+    " on the function score' (PMID 30209399; PMC6181777"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "30209399",
+    "e-model posterior P_nf' (PMID 30209399; PMC6181777"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "38969833",
+    " at the printed median' (PMID 38969833; PMC1125036"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "38969834",
+    "e, in the stated order' (PMID 38969834; PMC1125043"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "39299233",
+    " of the D4-D14 z-score' (PMID 39299233; PMC1214794"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "39299233",
+    "ut p<0.01 for enriched' (PMID 39299233; PMC1214794"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "39779857",
+    "paper rule not_stated (PMID 39779857; PMC1182152"
+   ],
+   [
+    "supplementary_tables.xlsx",
+    "55943112",
+    "cing_variant_scoring.ipynb at 55943112"
+   ]
+  ],
+  "grouped_cells": 13241,
+  "auroc_by_clinvar_status_differs_only_at_its_1000_labels": {
+   "ok": true,
+   "value": {
+    "pixels_differing": 0,
+    "labels": 0
+   }
+  },
+  "clinvar_coverage_by_position_differs_only_at_its_1000_labels": {
+   "ok": true,
+   "value": {
+    "pixels_differing": 0,
+    "labels": 0
+   }
+  },
+  "local_lr_curves_differs_only_at_its_1000_labels": {
+   "ok": true,
+   "value": {
+    "pixels_differing": 0,
+    "labels": 0
+   }
+  },
+  "precision_recall_curves_differs_only_at_its_1000_labels": {
+   "ok": true,
+   "value": {
+    "pixels_differing": 0,
+    "labels": 0
+   }
+  },
+  "threshold_dilution_differs_only_at_its_1000_labels": {
+   "ok": true,
+   "value": {
+    "pixels_differing": 0,
+    "labels": 0
+   }
+  },
+  "main_line_widths": {
+   "published_cut_point_by_band": {
+    "before": {
+     "key lines": [
+      0.9,
+      1.0
+     ],
+     "spines": [
+      0.6,
+      0.6
+     ],
+     "ticks": [
+      0.6,
+      0.6
+     ],
+     "reference lines": [
+      0.6,
+      0.9
+     ],
+     "data, medians, intervals": [
+      0.6,
+      1.5
+     ]
+    },
+    "after": {
+     "key lines": [
+      1.0,
+      1.0
+     ],
+     "spines": [
+      1.0,
+      1.0
+     ],
+     "ticks": [
+      1.0,
+      1.0
+     ],
+     "reference lines": [
+      1.0,
+      1.0
+     ],
+     "data, medians, intervals": [
+      1.0,
+      1.5
+     ]
+    }
+   },
+   "heldout_and_external_lr": {
+    "before": {
+     "key lines": [
+      1.0,
+      1.0
+     ],
+     "spines": [
+      0.6,
+      0.6
+     ],
+     "ticks": [
+      0.6,
+      0.6
+     ],
+     "reference lines": [
+      0.6,
+      0.8
+     ],
+     "data, medians, intervals": [
+      1.0,
+      1.0
+     ]
+    },
+    "after": {
+     "key lines": [
+      1.0,
+      1.0
+     ],
+     "spines": [
+      1.0,
+      1.0
+     ],
+     "ticks": [
+      1.0,
+      1.0
+     ],
+     "reference lines": [
+      1.0,
+      1.0
+     ],
+     "data, medians, intervals": [
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "roc_curves": {
+    "before": {
+     "key lines": [
+      1.0,
+      1.0
+     ],
+     "spines": [
+      0.5,
+      0.6
+     ],
+     "ticks": [
+      0.6,
+      0.6
+     ],
+     "data, medians, intervals": [
+      0.8,
+      1.0
+     ],
+     "reference lines": [
+      0.6,
+      1.0
+     ]
+    },
+    "after": {
+     "key lines": [
+      1.0,
+      1.0
+     ],
+     "spines": [
+      1.0,
+      1.0
+     ],
+     "ticks": [
+      1.0,
+      1.0
+     ],
+     "data, medians, intervals": [
+      1.0,
+      1.0
+     ],
+     "reference lines": [
+      1.0,
+      1.0
+     ]
+    }
+   }
+  },
+  "published_cut_point_by_band_lines_at_least_1.0_pt": true,
+  "heldout_and_external_lr_lines_at_least_1.0_pt": true,
+  "roc_curves_lines_at_least_1.0_pt": true,
+  "figure2_no_row_shading": true,
+  "figure2_folds_not_counted_as_crosses": {
+   "ok": true,
+   "value": [
+    "X"
+   ]
+  },
+  "figure3_letters_a_to_c": {
+   "ok": true,
+   "value": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  "figure_texts_grouped": {
+   "published_cut_point_by_band": [
+    "1,000"
+   ],
+   "heldout_and_external_lr": [
+    "1,000"
+   ],
+   "roc_curves": [],
+   "local_lr_curves": [],
+   "threshold_dilution": [],
+   "precision_recall_curves": [],
+   "clinvar_coverage_by_position": [],
+   "auroc_by_clinvar_status": []
+  },
+  "figure_numbers_of_1000_grouped": {
+   "ok": true,
+   "value": {
+    "published_cut_point_by_band": [
+     "1,000"
+    ],
+    "heldout_and_external_lr": [
+     "1,000"
+    ],
+    "roc_curves": [],
+    "local_lr_curves": [],
+    "threshold_dilution": [],
+    "precision_recall_curves": [],
+    "clinvar_coverage_by_position": [],
+    "auroc_by_clinvar_status": []
+   }
+  }
+ }
+}

@@ -1,10 +1,10 @@
 Gene,"Stratum (intronic offset, bp)",Offset band (nt),Analysis-set variants,Unrecorded in ClinVar,Share unrecorded in ClinVar,Recorded but not P/LP or B/LB,Share recorded but not P/LP or B/LB,Classified P/LP or B/LB,Share classified P/LP or B/LB
 BAP1,Canonical dinucleotides (out of scope),1–2,192,112,0.583,11,0.057,69,0.359
 BAP1,3–10,3–10,768,507,0.660,108,0.141,153,0.199
-BAP1,11–50,11–50,1500,1204,0.803,18,0.012,278,0.185
+BAP1,11–50,11–50,"1,500","1,204",0.803,18,0.012,278,0.185
 BARD1,Canonical dinucleotides (out of scope),1–2,119,43,0.361,19,0.160,57,0.479
 BARD1,3–10,3–10,473,278,0.588,92,0.195,103,0.218
-BARD1,11–50,11–50,1458,1284,0.881,18,0.012,156,0.107
+BARD1,11–50,11–50,"1,458","1,284",0.881,18,0.012,156,0.107
 BRCA1,Canonical dinucleotides (out of scope),1–2,143,0,0.000,34,0.238,109,0.762
 BRCA1,3–10,3–10,530,0,0.000,383,0.723,147,0.277
 BRCA1,11–50,11–50,361,0,0.000,263,0.729,98,0.271
@@ -21,5 +21,5 @@ VHL,Canonical dinucleotides (out of scope),1–2,24,3,0.125,1,0.042,20,0.833
 VHL,3–10,3–10,83,38,0.458,21,0.253,24,0.289
 VHL,11–50,11–50,80,62,0.775,0,0.000,18,0.225
 Seven genes,Canonical dinucleotides (out of scope),1–2,856,269,0.314,99,0.116,488,0.570
-Seven genes,3–10,3–10,3290,1699,0.516,870,0.264,721,0.219
-Seven genes,11–50,11–50,4707,3606,0.766,325,0.069,776,0.165
+Seven genes,3–10,3–10,"3,290","1,699",0.516,870,0.264,721,0.219
+Seven genes,11–50,11–50,"4,707","3,606",0.766,325,0.069,776,0.165
