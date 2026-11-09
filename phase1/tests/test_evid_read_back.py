@@ -46,6 +46,8 @@ need_supp = pytest.mark.skipif(not ((SUPP / "tableS6_thresholds_pathogenic.csv")
 # leave alone). A new read, or a change to one of these, fails the test below until it
 # is either routed through read_back or added here with its reason.
 DEFAULT_READS = {
+    "evid_variant_list.py: dep = pd.read_csv(TP53_DEPOSIT, sep=\"\\t\", dtype=str, keep_default_na=False)":
+        "TP53's deposit copy as text, its c. and variant URNs joined as written (E8.5); no number read",
     "evid_build_set.py: lab = pd.read_csv(path, sep=None, engine=\"python\")":
         "the deposits' label files, before any threshold exists",
     "evid_delta.py: return pd.read_csv(p) if p.exists() else pd.DataFrame()":

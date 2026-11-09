@@ -1,0 +1,29 @@
+{
+ "commit": "E8 commit 3 (a list of every analysed variant with its HGVS description; the author's decision of 2026-11-07)",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/layout/variants/analysed_variants.csv": {
+   "kind": "file",
+   "why": "E8.5: new, the list of every analysed variant with its HGVS description (src/evid_variant_list.py; six checks before it is written; check_e8.py --commit 3)"
+  },
+  "phase1/reports/evidence/layout/variants/analysed_variants_counts.csv": {
+   "kind": "file",
+   "why": "E8.5: new, the list's counts by set, gene, range, band and class"
+  },
+  "phase1/reports/evidence/layout/contents.csv": {
+   "kind": "lines",
+   "patterns": [
+    "^Variant list,variants,list,analysed_variants,"
+   ],
+   "why": "E8.5: one row more, the variant list's"
+  },
+  "phase1/reports/evidence/layout/manifest.csv": {
+   "kind": "lines",
+   "patterns": [
+    "^phase1/reports/evidence/layout/variants/analysed_variants(_counts)?\\.csv,",
+    "^phase1/reports/evidence/layout/contents\\.csv,"
+   ],
+   "why": "E8.5: the two new files' rows, and contents.csv's size and hash"
+  }
+ }
+}

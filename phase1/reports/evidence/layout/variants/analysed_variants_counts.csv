@@ -1,0 +1,103 @@
+Set,Gene,In the analysis range,Distance band,Functional class in the main analysis,Variants
+Analysis set,BAP1,No,1–2 bp (canonical dinucleotides),damaging,177
+Analysis set,BAP1,No,1–2 bp (canonical dinucleotides),normal,15
+Analysis set,BAP1,Yes,3–10 bp,normal,591
+Analysis set,BAP1,Yes,3–10 bp,damaging,146
+Analysis set,BAP1,Yes,3–10 bp,not labelled,31
+Analysis set,BAP1,Yes,11–50 bp,normal,"1,316"
+Analysis set,BAP1,Yes,11–50 bp,damaging,137
+Analysis set,BAP1,Yes,11–50 bp,not labelled,47
+Analysis set,BARD1,No,1–2 bp (canonical dinucleotides),damaging,119
+Analysis set,BARD1,Yes,3–10 bp,normal,393
+Analysis set,BARD1,Yes,3–10 bp,damaging,66
+Analysis set,BARD1,Yes,3–10 bp,not labelled,14
+Analysis set,BARD1,Yes,11–50 bp,normal,"1,417"
+Analysis set,BARD1,Yes,11–50 bp,not labelled,22
+Analysis set,BARD1,Yes,11–50 bp,damaging,19
+Analysis set,BRCA1,No,1–2 bp (canonical dinucleotides),damaging,128
+Analysis set,BRCA1,No,1–2 bp (canonical dinucleotides),not labelled,8
+Analysis set,BRCA1,No,1–2 bp (canonical dinucleotides),normal,7
+Analysis set,BRCA1,Yes,3–10 bp,normal,386
+Analysis set,BRCA1,Yes,3–10 bp,damaging,104
+Analysis set,BRCA1,Yes,3–10 bp,not labelled,40
+Analysis set,BRCA1,Yes,11–50 bp,normal,342
+Analysis set,BRCA1,Yes,11–50 bp,not labelled,16
+Analysis set,BRCA1,Yes,11–50 bp,damaging,3
+Analysis set,BRCA2,No,1–2 bp (canonical dinucleotides),normal,13
+Analysis set,BRCA2,No,1–2 bp (canonical dinucleotides),not labelled,4
+Analysis set,BRCA2,No,1–2 bp (canonical dinucleotides),damaging,121
+Analysis set,BRCA2,Yes,3–10 bp,normal,460
+Analysis set,BRCA2,Yes,3–10 bp,not labelled,22
+Analysis set,BRCA2,Yes,3–10 bp,damaging,69
+Analysis set,PALB2,No,1–2 bp (canonical dinucleotides),damaging,139
+Analysis set,PALB2,No,1–2 bp (canonical dinucleotides),normal,2
+Analysis set,PALB2,No,1–2 bp (canonical dinucleotides),not labelled,3
+Analysis set,PALB2,Yes,3–10 bp,normal,358
+Analysis set,PALB2,Yes,3–10 bp,damaging,87
+Analysis set,PALB2,Yes,3–10 bp,not labelled,56
+Analysis set,PALB2,Yes,11–50 bp,normal,462
+Analysis set,PALB2,Yes,11–50 bp,not labelled,63
+Analysis set,PALB2,Yes,11–50 bp,damaging,15
+Analysis set,RAD51C,No,1–2 bp (canonical dinucleotides),damaging,96
+Analysis set,RAD51C,Yes,3–10 bp,damaging,88
+Analysis set,RAD51C,Yes,3–10 bp,normal,291
+Analysis set,RAD51C,Yes,3–10 bp,not labelled,5
+Analysis set,RAD51C,Yes,11–50 bp,normal,729
+Analysis set,RAD51C,Yes,11–50 bp,damaging,36
+Analysis set,RAD51C,Yes,11–50 bp,not labelled,3
+Analysis set,VHL,No,1–2 bp (canonical dinucleotides),damaging,24
+Analysis set,VHL,Yes,3–10 bp,normal,60
+Analysis set,VHL,Yes,3–10 bp,not labelled,13
+Analysis set,VHL,Yes,3–10 bp,damaging,10
+Analysis set,VHL,Yes,11–50 bp,normal,62
+Analysis set,VHL,Yes,11–50 bp,damaging,13
+Analysis set,VHL,Yes,11–50 bp,not labelled,5
+External gene,DDX3X,No,1–2 bp (canonical dinucleotides),damaging,144
+External gene,DDX3X,No,1–2 bp (canonical dinucleotides),normal,48
+External gene,DDX3X,Yes,3–10 bp,normal,720
+External gene,DDX3X,Yes,3–10 bp,damaging,48
+External gene,DDX3X,Yes,11–25 bp,normal,880
+External gene,DDX3X,Yes,11–25 bp,damaging,17
+External gene,TP53,No,1–2 bp (canonical dinucleotides),damaging,47
+External gene,TP53,No,1–2 bp (canonical dinucleotides),normal,1
+External gene,TP53,Yes,3–10 bp,normal,175
+External gene,TP53,Yes,3–10 bp,damaging,17
+External gene,TP53,Yes,11–12 bp,normal,48
+External gene,CTCF,No,1–2 bp (canonical dinucleotides),not labelled,9
+External gene,CTCF,No,1–2 bp (canonical dinucleotides),damaging,68
+External gene,CTCF,No,1–2 bp (canonical dinucleotides),normal,13
+External gene,CTCF,Yes,3–10 bp,normal,305
+External gene,CTCF,Yes,3–10 bp,damaging,42
+External gene,CTCF,Yes,3–10 bp,not labelled,13
+External gene,CTCF,Yes,11–50 bp,normal,952
+External gene,CTCF,Yes,11–50 bp,not labelled,24
+External gene,CTCF,Yes,11–50 bp,damaging,34
+External gene,SFPQ,No,1–2 bp (canonical dinucleotides),damaging,91
+External gene,SFPQ,No,1–2 bp (canonical dinucleotides),not labelled,4
+External gene,SFPQ,No,1–2 bp (canonical dinucleotides),normal,7
+External gene,SFPQ,Yes,3–10 bp,normal,324
+External gene,SFPQ,Yes,3–10 bp,not labelled,24
+External gene,SFPQ,Yes,3–10 bp,damaging,48
+External gene,SFPQ,Yes,11–44 bp,normal,550
+External gene,SFPQ,Yes,11–44 bp,not labelled,21
+External gene,SFPQ,Yes,11–44 bp,damaging,52
+External gene,RAD51D,No,1–2 bp (canonical dinucleotides),normal,9
+External gene,RAD51D,No,1–2 bp (canonical dinucleotides),not labelled,2
+External gene,RAD51D,No,1–2 bp (canonical dinucleotides),damaging,97
+External gene,RAD51D,Yes,3–10 bp,normal,365
+External gene,RAD51D,Yes,3–10 bp,damaging,55
+External gene,RAD51D,Yes,3–10 bp,not labelled,9
+External gene,RAD51D,Yes,11–50 bp,normal,844
+External gene,RAD51D,Yes,11–50 bp,not labelled,4
+External gene,RAD51D,Yes,11–50 bp,damaging,19
+External gene,XRCC2,No,1–2 bp (canonical dinucleotides),damaging,24
+External gene,XRCC2,Yes,3–10 bp,normal,89
+External gene,XRCC2,Yes,3–10 bp,damaging,7
+External gene,XRCC2,Yes,11–50 bp,normal,291
+External gene,XRCC2,Yes,11–50 bp,damaging,3
+External gene,SBDS,No,1–2 bp (canonical dinucleotides),damaging,37
+External gene,SBDS,No,1–2 bp (canonical dinucleotides),normal,8
+External gene,SBDS,Yes,3–10 bp,normal,177
+External gene,SBDS,Yes,3–10 bp,damaging,10
+External gene,SBDS,Yes,3–10 bp,not labelled,2
+External gene,SBDS,Yes,11–50 bp,normal,258

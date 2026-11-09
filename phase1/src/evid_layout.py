@@ -62,6 +62,7 @@ import csv
 import gzip
 import hashlib
 import io
+import os
 import re
 import shutil
 import zipfile
@@ -104,7 +105,8 @@ def maker(fn):
 
 
 def _rel(path) -> str:
-    return REPO_PREFIX + Path(path).as_posix()
+    """A path from phase1/ as the repository names it (a file above phase1/ too)."""
+    return os.path.normpath(REPO_PREFIX + Path(path).as_posix())
 
 
 def _sha256(path) -> str:
@@ -1441,6 +1443,18 @@ def table_parts(item: dict, folder: Path, cfg: dict) -> list[Path]:
 
 
 @maker
+def variant_list(item: dict, folder: Path, cfg: dict) -> list[Path]:
+    """Every analysed variant with its HGVS description, and their counts
+    (src/evid_variant_list.py, E8.5): written after the list's six checks, and only if
+    the item's sources are the ones the list reads."""
+    from . import evid_variant_list as V
+    if sorted(item["sources"]) != sorted(V.SOURCES):
+        raise SystemExit(f"[layout] {item['content']}: the sources in config/layout.yaml are "
+                         f"not the ones the list reads ({sorted(V.SOURCES)})")
+    return V.write(folder)
+
+
+@maker
 def table_practical_performance(item: dict, folder: Path, cfg: dict) -> list[Path]:
     """The practical-performance table: (a) at the study's thresholds in the seven genes,
     held out, as docs/practical-metrics-summary.md prints its held-out values (its
@@ -1720,9 +1734,12 @@ def workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
 REFERENCE = re.compile(r"\{([a-z0-9_]+)\}")
 
 
+SECTIONS = ("main", "supplementary", "variants")   # each a folder of layout/
+
+
 def _numbers(cfg: dict) -> dict:
     """Each item's number by its content name."""
-    return {it["content"]: it["number"] for it in cfg["main"] + cfg["supplementary"]}
+    return {it["content"]: it["number"] for s in SECTIONS for it in cfg.get(s, [])}
 
 
 def _resolve(text: str, numbers: dict) -> str:
@@ -1761,7 +1778,7 @@ def _sources(item: dict) -> list[str]:
 
 def load_config(path: Path = CONFIG) -> dict:
     cfg = yaml.safe_load(path.read_text())
-    items = cfg["main"] + cfg["supplementary"]
+    items = [it for s in SECTIONS for it in cfg.get(s, [])]
     for key in ("content", "number"):
         seen = [it[key] for it in items]
         twice = sorted({c for c in seen if seen.count(c) > 1})
@@ -1814,9 +1831,9 @@ def main(config: Path = CONFIG, out: Path = OUT) -> None:
     if out.exists():
         shutil.rmtree(out)
     written: list[tuple[Path, dict]] = []
-    for section in ("main", "supplementary"):
+    for section in SECTIONS:
         folder = out / section
-        for it in cfg[section]:
+        for it in cfg.get(section, []):
             for p in MAKERS[it["make"]](it, folder, cfg):
                 written.append((p, it))
             print(f"[layout] {it['number']}: {it['content']}")
@@ -1824,8 +1841,8 @@ def main(config: Path = CONFIG, out: Path = OUT) -> None:
     book = workbook(supp_tables, cfg, numbers, out / "supplementary_tables.xlsx")
     width = cfg["artwork"]["double_column_mm"]
     contents = []
-    for section in ("main", "supplementary"):
-        for it in cfg[section]:
+    for section in SECTIONS:
+        for it in cfg.get(section, []):
             files = [p for p, i in written if i is it]
             estimate = ""
             if it["kind"] == "table" and section == "supplementary":

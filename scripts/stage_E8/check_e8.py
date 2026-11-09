@@ -4,6 +4,13 @@ layout prints. It reads the outputs, and for the numbering check draws the whole
 again into a temporary folder with every item numbered in another scheme; it writes only
 its run record.
 
+  --commit 3  E8.5. Against commit 2 only the variant list's two files are new, and
+              contents.csv and manifest.csv change only in their rows; every other output is
+              byte for byte (a PNG pixel for pixel) as it was. The list is what
+              evid_variant_list.build() gives, it passes its six checks, its counts file
+              counts it, and it is reconciled with Table 1(a), the analysis set by status,
+              the external genes' table and the new genes' labels and counts by offset; the
+              second BRCA2 dataset's group is empty; the two files' sha256.
   --commit 2  E8.3-E8.4. Every CSV, contents.csv, manifest.csv and every sheet of the
               workbook against commit 1, each change explained: a number of 1,000 or more
               grouped in thousands (evid_layout.grouped), DDX3X's and SBDS's transcripts
@@ -193,6 +200,8 @@ def main() -> None:
             commit1(cfg, old_cfg, numbers, old_numbers, base, check, log, np, Image, L)
         if args.commit == 2:
             commit2(cfg, base, check, log, np, Image, L, args.list)
+        if args.commit == 3:
+            commit3(cfg, base, check, log, np, Image, L)
         if failed:
             print(f"{len(failed)} check(s) failed: {failed}")
             raise SystemExit(1)
@@ -815,6 +824,126 @@ def line_classes(fig) -> dict:
             add("reference lines" if ln.get_linestyle() not in ("-", "solid") else "data, medians, intervals",
                 ln.get_linewidth())
     return out
+
+
+# ------------------------------------------------------------------------- commit 3
+def commit3(cfg, base, check, log, np, Image, L) -> None:
+    import pandas as pd
+    from src import evid_external as X
+    from src import evid_supp_tables as S
+    from src import evid_variant_list as V
+    print("E8.6 against commit 2: only the list is new")
+    base_files = {p.split("layout/", 1)[1] for p in _git_ls(base, f"phase1/{OUT}")}
+    here_files = {str(p.relative_to(OUT)) for p in OUT.rglob("*") if p.is_file()}
+    new = sorted(here_files - base_files)
+    check("new_files_are_the_list", new == ["variants/analysed_variants.csv", "variants/analysed_variants_counts.csv"], new)
+    check("no_file_gone", not (base_files - here_files), sorted(base_files - here_files))
+    changed = []
+    for rel in sorted(base_files & here_files):
+        a, b = _git_show(base, f"phase1/{OUT}/{rel}"), (OUT / rel).read_bytes()
+        if a == b:
+            continue
+        if rel.endswith(".png"):
+            pa = np.asarray(Image.open(io.BytesIO(a)).convert("RGBA"))
+            pb = np.asarray(Image.open(io.BytesIO(b)).convert("RGBA"))
+            if pa.shape == pb.shape and (pa == pb).all():
+                continue
+        changed.append(rel)
+    check("only_contents_and_manifest_change", changed == ["contents.csv", "manifest.csv"], changed)
+    ca = list(csv.reader(io.StringIO(_git_show(base, f"phase1/{OUT}/contents.csv").decode())))
+    cb = list(csv.reader(io.StringIO((OUT / "contents.csv").read_text())))
+    extra = [r for r in cb if r not in ca]
+    check("contents_gains_one_row", [r for r in cb if r != extra[0]] == ca if len(extra) == 1 else False,
+          [r[:4] for r in extra])
+    check("contents_row_is_the_variant_list", len(extra) == 1 and extra[0][0] == "Variant list"
+          and extra[0][3] == "analysed_variants", extra[0][:4] if extra else None)
+    ma = {r["file"]: r for r in csv.DictReader(io.StringIO(_git_show(base, f"phase1/{OUT}/manifest.csv").decode()))}
+    mb = {r["file"]: r for r in csv.DictReader(io.StringIO((OUT / "manifest.csv").read_text()))}
+    gained = sorted(set(mb) - set(ma))
+    # a PNG's row may differ only where the PNG differs in its bytes and not its pixels
+    # (a run outside the reference image); in the image it is the same bytes
+    moved = sorted(k for k in ma if ma[k] != mb.get(k)
+                   and not (k.endswith(".png") and k.split("layout/", 1)[1] not in changed))
+    check("manifest_gains_the_two_files", gained == [f"phase1/{OUT}/variants/analysed_variants.csv",
+                                                      f"phase1/{OUT}/variants/analysed_variants_counts.csv"], gained)
+    check("manifest_changes_only_contents_row", moved == [f"phase1/{OUT}/contents.csv"]
+          and all(ma[moved[0]][f] == mb[moved[0]][f] for f in ("number", "content", "sources", "sources_sha256")), moved)
+
+    print("E8.5 the list")
+    df, raw = V.build()
+    printed = pd.read_csv(OUT / "variants/analysed_variants.csv", dtype=str, keep_default_na=False)
+    check("list_is_build", printed.equals(df.astype(str)), len(printed))
+    res = V.checks(df, raw)
+    for k, v in res.items():
+        check(f"check_{k}", not v, v[:5])
+    log.note("check_counts_detail", {
+        "rows": len(printed),
+        "by_set_gene_range": {f"{s} | {g} | {r}": int(n) for (s, g, r), n in
+                              printed.groupby(["Set", "Gene", "In the analysis range"], sort=False).size().items()}})
+    n = lambda s: int(str(s).replace(",", ""))                                    # noqa: E731
+    cnt = pd.read_csv(OUT / "variants/analysed_variants_counts.csv", dtype=str, keep_default_na=False)
+    keys = ["Set", "Gene", "In the analysis range", "Distance band", "Functional class in the main analysis"]
+    check("counts_file_counts_the_list", cnt.set_index(keys)["Variants"].map(n).to_dict()
+          == printed.groupby(keys, sort=False).size().to_dict())
+    rec = {}
+    t1 = pd.read_csv(OUT / "main/analysis_set_composition.by_gene.csv", dtype=str, keep_default_na=False)
+    t1.columns = [c.replace("\xa0", " ") for c in t1.columns]
+    s3 = pd.read_csv(OUT / "supplementary/analysis_set_by_status.csv", dtype=str, keep_default_na=False)
+    st3 = s3["Stratum (intronic offset, bp)"].str.replace("\xa0", " ")
+    bad = []
+    for gene in V.TRAINING:
+        g = printed[printed.Gene == gene]
+        r1 = t1[t1.Gene.str.replace("*", "", regex=False) == gene].iloc[0]
+        ok1 = n(r1["Variants at 3–50 bp"]) == (g["In the analysis range"] == "Yes").sum()
+        rows3 = s3[s3.Gene.str.replace("*", "", regex=False) == gene]
+        for band in ("3–10", "11–50"):
+            x = g[g["Distance band"] == f"{band} bp"]
+            cls = x["Functional class in the main analysis"]
+            lab, dmg = cls.isin(["damaging", "normal"]).sum(), (cls == "damaging").sum()
+            shown = r1[f"{band} bp: damaging (%)"].split(" ")[0]        # "–" where nothing is labelled
+            ok1 &= n(r1[f"{band} bp: labelled"]) == lab and (shown in (f"{dmg:,}", str(dmg)) or (shown == "–" and lab == 0))
+            r3 = rows3[st3[rows3.index] == band]
+            ok3 = (r3.Variants.map(n).sum(), r3.Damaging.map(n).sum(), r3.Normal.map(n).sum()) == (len(x), dmg, (cls == "normal").sum())
+            if not ok3:
+                bad.append(("S3", gene, band))
+        canon = rows3[st3[rows3.index].str.startswith("Canonical")]
+        if canon.Variants.map(n).sum() != (g["In the analysis range"] == "No").sum():
+            bad.append(("S3 canonical", gene))
+        if not ok1:
+            bad.append(("Table 1(a)", gene))
+        rec[gene] = "Table 1(a) and the analysis set by status: in range by band and class, and at 1–2 bp"
+    e = pd.read_csv(OUT / "supplementary/external_genes.csv", dtype=str, keep_default_na=False)
+    lab14 = pd.read_csv(OUT / "supplementary/new_external_genes.labels.csv", dtype=str, keep_default_na=False)
+    off14 = pd.read_csv(OUT / "supplementary/new_external_genes.counts_by_offset.csv", dtype=str, keep_default_na=False)
+    for gene in V.EXTERNAL:
+        g = printed[printed.Gene == gene]
+        prim = S.label_name(X.PRIMARY_LABEL[gene], gene)
+        rows = e[(e.Gene == gene) & (e["Label definition"] == prim)]
+        for st in ("s3_10", "s11_50"):
+            band = S._ext_band(gene, st)
+            r = rows[rows["Stratum (intronic offset, bp)"] == band].drop_duplicates(["Damaging", "Normal"])
+            x = g[g["Distance band"] == f"{band} bp"]["Functional class in the main analysis"]
+            if len(r) != 1 or (n(r.Damaging.iloc[0]), n(r.Normal.iloc[0])) != ((x == "damaging").sum(), (x == "normal").sum()):
+                bad.append(("S13", gene, band))
+        where = "the external genes' table (S13), in range by band and class"
+        if gene in X.NEW_GENES:
+            o = off14[(off14.Gene == gene) & (off14["Bin scheme"] == "per_nt") & off14["Bin (offset in bp, or stratum)"].isin(["1", "2"])]
+            if o["Intron-side SNVs in the bin and class"].map(n).sum() != (g["In the analysis range"] == "No").sum():
+                bad.append(("S14 counts by offset", gene))
+            where += "; the new genes' classes by offset (S14), at 1–2 bp"
+        else:
+            where += "; at 1–2 bp no table counts them (the author's counts only)"
+        rec[gene] = where
+    check("reconciled_with_the_tables", not bad, bad)
+    log.note("reconciled", rec)
+    log.note("labels_by_band_columns", list(lab14.columns))
+    check("second_brca2_group_empty", not (printed.Set == "Second BRCA2 dataset").any())
+    check("hgvs_g_present", printed["HGVS g."].str.startswith("NC_").all())
+    check("variant_urn_present", (printed["Variant in the source"] != "").all())
+    shas = {f: hashlib.sha256((OUT / "variants" / f).read_bytes()).hexdigest()
+            for f in ("analysed_variants.csv", "analysed_variants_counts.csv")}
+    log.note("sha256", shas)
+    print("    sha256:", shas)
 
 
 # the source papers' own numbers, which the renumbered layout keeps: the label audit's

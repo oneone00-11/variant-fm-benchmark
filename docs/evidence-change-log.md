@@ -2384,3 +2384,41 @@ and the workbook. The supplementary figures are as they were, byte for byte.
   italics, the main figures' widths, Figure 2's shading and crosses and Figure 3's
   letters; three tests read the new forms. The cell-, row- and pixel-level check is
   `scripts/stage_E8/check_e8.py --commit 2`.
+
+## A list of every analysed variant with its HGVS description (stage E8, commit 3, 2026-11-09)
+
+Why: the author's decision of 2026-11-07 (the change list's B8: D5; the format check of
+2026-11-07, item 8). No output changes but two new files under
+`phase1/reports/evidence/layout/variants/` and their rows in `contents.csv` and
+`manifest.csv` (`scripts/stage_E8/scope_e8_c3.json`).
+
+- **`analysed_variants.csv`**, one row per variant: each intron-side single-nucleotide
+  variant at 1-50 bp of the seven training genes (the analysis set) and of the seven
+  external genes, to the depth their deposits reach (DDX3X 25 bp, TP53 12 bp), 15,889 in
+  all. 3-50 bp is the analysis range; the 1,465 at 1-2 bp, the canonical dinucleotides,
+  are listed and marked outside it, as the supplementary tables count or analyse them.
+  A variant beyond 50 bp and a control that only sets a label are not listed. The
+  second BRCA2 dataset adds no row: its classes are joined to the analysis set's BRCA2
+  variants, so no variant of it outside the analysis set enters a refit.
+  - Columns: set; gene; in the analysis range; distance band (an external gene's cut
+    at its deposit's depth, as the tables print it: DDX3X 11-25 bp, TP53 11-12 bp,
+    SFPQ 11-44 bp); signed intronic offset; RefSeq and Ensembl transcripts (MANE
+    Select v1.5, one row of the summary); HGVS c. as the deposit writes it, without its
+    transcript; GRCh38 chromosome, position, reference and alternate alleles (VCF, the
+    forward strand); HGVS g. on the chromosome's RefSeq accession (NC_); the functional
+    class in the main analysis (the training genes' functional standard, the external
+    genes' primary labels); the MaveDB score set and the deposit's variant URN (TP53's
+    joined from the deposit copy on its c.).
+  - Everything is read from outputs and inputs already written; no coordinate is
+    mapped again and no service is asked (`src/evid_variant_list.py`).
+- **`analysed_variants_counts.csv`**: the variants by set, gene, range, band and class.
+- Six checks run before the files are written, and the stage stops if one fails; the
+  tests run them too: every c. an intron-side SNV; its offset's size the distance the
+  source records, in that distance's band; its bases the genome's on the gene's strand
+  (strand from the MANE summary); no variant twice in a group; every transcript the MANE
+  summary's; and the counts the author set, gene by gene, in the range (7,997 and
+  6,427) and at 1-2 bp (856 and 609).
+- The list is reconciled with Table 1(a), the analysis set by ClinVar status, the
+  external genes' table and the new genes' classes by offset (`check_e8.py --commit 3`,
+  `phase1/tests/test_evid_variant_list.py`). A path above `phase1/` (TP53's deposit
+  copy) is named from the repository root in `contents.csv` and `manifest.csv`.

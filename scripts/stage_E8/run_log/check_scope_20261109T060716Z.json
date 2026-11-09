@@ -1,0 +1,68 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/repo/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E8/scope_e8_c3.json",
+  "--base",
+  "ab53122"
+ ],
+ "git_commit": "ab5312232becc7abbead562511d42368d2c007a6",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-09T06:05:47+00:00",
+ "end_utc": "2026-11-09T06:07:16+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E8/scope_e8_c3.json",
+   "bytes": 1109,
+   "sha256": "62cce5d590cefb1f088781c2d981d1e622a17302ff14dc0d06497e4202a8a6d8"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E8/scope_e8_c3.json",
+  "base": "ab53122",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/layout/contents.csv": {
+    "changed": 1,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/manifest.csv": {
+    "changed": 4,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/variants/analysed_variants.csv": {
+    "status": "declared",
+    "why": "E8.5: new, the list of every analysed variant with its HGVS description (src/evid_variant_list.py; six checks before it is written; check_e8.py --commit 3)",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/variants/analysed_variants_counts.csv": {
+    "status": "declared",
+    "why": "E8.5: new, the list's counts by set, gene, range, band and class",
+    "change": "added"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

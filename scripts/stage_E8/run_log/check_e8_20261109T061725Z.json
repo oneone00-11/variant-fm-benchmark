@@ -1,0 +1,188 @@
+{
+ "script": "scripts/stage_E8/check_e8.py",
+ "argv": [
+  "scripts/stage_E8/check_e8.py",
+  "--commit",
+  "3",
+  "--base",
+  "ab53122"
+ ],
+ "git_commit": "ab5312232becc7abbead562511d42368d2c007a6",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E8/check_e8.py": "3d2ad90b7e669dc5d8503a5de64a385602b5a867e598b1b170ba5931d967f73c",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-09T06:17:09+00:00",
+ "end_utc": "2026-11-09T06:17:25+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "base": "ab53122",
+  "commit": 3,
+  "new_files_are_the_list": {
+   "ok": true,
+   "value": [
+    "variants/analysed_variants.csv",
+    "variants/analysed_variants_counts.csv"
+   ]
+  },
+  "no_file_gone": {
+   "ok": true,
+   "value": []
+  },
+  "only_contents_and_manifest_change": {
+   "ok": true,
+   "value": [
+    "contents.csv",
+    "manifest.csv"
+   ]
+  },
+  "contents_gains_one_row": {
+   "ok": true,
+   "value": [
+    [
+     "Variant list",
+     "variants",
+     "list",
+     "analysed_variants"
+    ]
+   ]
+  },
+  "contents_row_is_the_variant_list": {
+   "ok": true,
+   "value": [
+    "Variant list",
+    "variants",
+    "list",
+    "analysed_variants"
+   ]
+  },
+  "manifest_gains_the_two_files": {
+   "ok": true,
+   "value": [
+    "phase1/reports/evidence/layout/variants/analysed_variants.csv",
+    "phase1/reports/evidence/layout/variants/analysed_variants_counts.csv"
+   ]
+  },
+  "manifest_changes_only_contents_row": {
+   "ok": true,
+   "value": [
+    "phase1/reports/evidence/layout/contents.csv"
+   ]
+  },
+  "list_is_build": {
+   "ok": true,
+   "value": 15889
+  },
+  "check_counts": {
+   "ok": true,
+   "value": []
+  },
+  "check_form": {
+   "ok": true,
+   "value": []
+  },
+  "check_distance": {
+   "ok": true,
+   "value": []
+  },
+  "check_bases": {
+   "ok": true,
+   "value": []
+  },
+  "check_unique": {
+   "ok": true,
+   "value": []
+  },
+  "check_transcripts": {
+   "ok": true,
+   "value": []
+  },
+  "check_counts_detail": {
+   "rows": 15889,
+   "by_set_gene_range": {
+    "Analysis set | BAP1 | No": 192,
+    "Analysis set | BAP1 | Yes": 2268,
+    "Analysis set | BARD1 | No": 119,
+    "Analysis set | BARD1 | Yes": 1931,
+    "Analysis set | BRCA1 | No": 143,
+    "Analysis set | BRCA1 | Yes": 891,
+    "Analysis set | BRCA2 | Yes": 551,
+    "Analysis set | BRCA2 | No": 138,
+    "Analysis set | PALB2 | No": 144,
+    "Analysis set | PALB2 | Yes": 1041,
+    "Analysis set | RAD51C | No": 96,
+    "Analysis set | RAD51C | Yes": 1152,
+    "Analysis set | VHL | No": 24,
+    "Analysis set | VHL | Yes": 163,
+    "External gene | DDX3X | No": 192,
+    "External gene | DDX3X | Yes": 1665,
+    "External gene | TP53 | Yes": 240,
+    "External gene | TP53 | No": 48,
+    "External gene | CTCF | Yes": 1370,
+    "External gene | CTCF | No": 90,
+    "External gene | SFPQ | No": 102,
+    "External gene | SFPQ | Yes": 1019,
+    "External gene | RAD51D | No": 108,
+    "External gene | RAD51D | Yes": 1296,
+    "External gene | XRCC2 | No": 24,
+    "External gene | XRCC2 | Yes": 390,
+    "External gene | SBDS | No": 45,
+    "External gene | SBDS | Yes": 447
+   }
+  },
+  "counts_file_counts_the_list": true,
+  "reconciled_with_the_tables": {
+   "ok": true,
+   "value": []
+  },
+  "reconciled": {
+   "BAP1": "Table 1(a) and the analysis set by status: in range by band and class, and at 1–2 bp",
+   "BARD1": "Table 1(a) and the analysis set by status: in range by band and class, and at 1–2 bp",
+   "BRCA1": "Table 1(a) and the analysis set by status: in range by band and class, and at 1–2 bp",
+   "BRCA2": "Table 1(a) and the analysis set by status: in range by band and class, and at 1–2 bp",
+   "PALB2": "Table 1(a) and the analysis set by status: in range by band and class, and at 1–2 bp",
+   "RAD51C": "Table 1(a) and the analysis set by status: in range by band and class, and at 1–2 bp",
+   "VHL": "Table 1(a) and the analysis set by status: in range by band and class, and at 1–2 bp",
+   "DDX3X": "the external genes' table (S13), in range by band and class; at 1–2 bp no table counts them (the author's counts only)",
+   "TP53": "the external genes' table (S13), in range by band and class; at 1–2 bp no table counts them (the author's counts only)",
+   "CTCF": "the external genes' table (S13), in range by band and class; the new genes' classes by offset (S14), at 1–2 bp",
+   "SFPQ": "the external genes' table (S13), in range by band and class; the new genes' classes by offset (S14), at 1–2 bp",
+   "RAD51D": "the external genes' table (S13), in range by band and class; the new genes' classes by offset (S14), at 1–2 bp",
+   "XRCC2": "the external genes' table (S13), in range by band and class; the new genes' classes by offset (S14), at 1–2 bp",
+   "SBDS": "the external genes' table (S13), in range by band and class; the new genes' classes by offset (S14), at 1–2 bp"
+  },
+  "labels_by_band_columns": [
+   "Gene",
+   "Stratum (intronic offset, bp)",
+   "Intron-side SNVs",
+   "Damaging",
+   "Normal",
+   "Indeterminate (neither damaging nor normal)",
+   "Unassigned (no class)",
+   "Positive rate (damaging / labelled)",
+   "Evaluable (at least 10 damaging and 10 normal)"
+  ],
+  "second_brca2_group_empty": true,
+  "hgvs_g_present": true,
+  "variant_urn_present": true,
+  "sha256": {
+   "analysed_variants.csv": "cc20cac8d5cb5dcc17c12dc6da1bb4947a7fc8ff1c9b535e709e94ce5f67c2e7",
+   "analysed_variants_counts.csv": "caca7406d8377e081e11aab8d211431f2f41dc0ac6c9318208931b31829447a7"
+  }
+ }
+}

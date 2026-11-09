@@ -636,6 +636,24 @@ supplementary:
     parts:
       - {part: by_position, source: reports/evidence/suppl_analyses/c7_by_position.csv}
 
+# The analysed variants, one row each with its HGVS description, and their counts by set,
+# gene, band and class (E8.5, the author's decision of 2026-11-07, D5): a file of its own
+# beside the supplementary tables, under layout/variants/, written by
+# src/evid_variant_list.py after its six checks; listed in contents.csv as "Variant list".
+variants:
+  - content: analysed_variants
+    kind: list
+    number: Variant list
+    make: variant_list
+    title: "Every analysed variant: the intron-side single-nucleotide variants at 1–50 bp of the seven training genes and the seven external genes, with RefSeq and Ensembl transcripts, HGVS c. and g., GRCh38 coordinates, functional class and source record"
+    description: "Each analysed variant with its HGVS description, GRCh38 coordinates, functional class and MaveDB record, and the counts by gene, distance band and class."
+    sources: [data/evidence/analysis_set_v1.parquet, data/evidence/external/ddx3x_splice.parquet,
+              data/evidence/external/tp53_splice_scored_12nt.parquet, ../data/external/tp53_mavedb_scores.tsv,
+              data/evidence/external/ctcf_variants.parquet, data/evidence/external/sfpq_variants.parquet,
+              data/evidence/external/rad51d_variants.parquet, data/evidence/external/xrcc2_variants.parquet,
+              data/evidence/external/sbds_variants.parquet,
+              data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz]
+
 # Outputs added after 2026-09-30 that no table or figure numbers: the supplementary
 # materials' contents name them with their path.
 repository_only:

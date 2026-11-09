@@ -39,8 +39,10 @@ def _cfg() -> dict:
 
 
 def _items() -> list[dict]:
+    """Every numbered item, in contents.csv's order: the main ones, the supplementary
+    ones, and the variant list (E8.5)."""
     c = _cfg()
-    return c["main"] + c["supplementary"]
+    return c["main"] + c["supplementary"] + c.get("variants", [])
 
 
 def _new_parts():
