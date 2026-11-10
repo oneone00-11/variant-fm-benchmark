@@ -49,6 +49,7 @@ above the part.
 Outputs, under reports/evidence/layout/:
   main/<content>.pdf, .png                the main figures
   main/<content>[.<part>].csv             the main tables
+  main/<content>.docx                     each main table as an editable file (E8.11)
   supplementary/<content>.pdf, .png       the supplementary figures
   supplementary/<content>[.<part>].csv    the supplementary tables
   supplementary_tables.xlsx               the supplementary tables, README sheet first
@@ -1467,6 +1468,10 @@ def variant_list(item: dict, folder: Path, cfg: dict) -> list[Path]:
     return V.write(folder)
 
 
+# the distance bands as the text names them (the conventions)
+BAND_NAME = {"s3_10": "proximal band", "s11_50": "distal band", "s3_50": "pooled window"}
+
+
 @maker
 def table_practical_performance(item: dict, folder: Path, cfg: dict) -> list[Path]:
     """The practical-performance table: (a) at the study's thresholds in the seven genes,
@@ -1529,16 +1534,17 @@ def table_practical_performance(item: dict, folder: Path, cfg: dict) -> list[Pat
                     r[name] = f"{P._two(x.bp4_sensitivity)} ({int(x.bp4_n_neg_at_or_below):,}/{int(x.n_blb):,})"
             rows.append(r)
     clinvar = pd.DataFrame(rows)
-    # the bands left out of (b), from the same file: how many P/LP variants, and why
-    notes = []
+    # the bands left out of (b): the approved notes name each, with its P/LP variants of at
+    # least one star (E8.11), and the run stops if a count there is not this file's
+    said = " ".join(_resolve(n, _numbers(cfg)) for n in item.get("notes", []))
     for st in [s for s in P.CURVE_STRATA if s not in bands]:
         sub = c1[c1.tool.isin(tools) & (c1.stratum == st)]
         n_plp = sorted({int(v) for v in sub.n_plp})
-        why = sorted({str(v) for v in sub.note.dropna()} | {str(v) for v in sub.status if v != "ok"})
-        notes.append(f"(b) leaves out {F.STRATUM_LABEL[st]}: "
-                     f"{' or '.join(map(str, n_plp))} P/LP variants of at least one star "
-                     f"({'; '.join(why)})")
-    item["_notes"] = notes
+        phrase = (f"The {BAND_NAME[st]}, with {n_plp[0]} P/LP variant{'' if n_plp[0] == 1 else 's'}, "
+                  "is left out." if len(n_plp) == 1 else None)
+        if phrase is None or phrase not in said:
+            raise SystemExit(f"[layout] {item['content']}: (b) leaves out {F.STRATUM_LABEL[st]}, "
+                             f"{n_plp} P/LP variants, which its notes do not say as '{phrase}'")
     item["_frames"] = []
     out = []
     for part, df in zip(item["parts"], (sge, clinvar)):
@@ -1778,6 +1784,213 @@ def submission_workbook(items: list[dict], cfg: dict, numbers: dict, path: Path)
 
 
 # ---------------------------------------------------------------------------
+# The main tables as editable files (E8.11): a minimal WordprocessingML writer, so that
+# a file is the same bytes on every run, as the workbook is (fixed member order and
+# times, no document properties). A table's cells are its CSV's, read back from the file
+# the stage wrote; a gene's italics, marked *BRCA1* there, are italic runs.
+# ---------------------------------------------------------------------------
+W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+A4_MM = (210.0, 297.0)
+TWIPS_PER_MM = 1440 / 25.4
+CELL_MARGIN_MM = 1.9            # a cell's left and right margins (Word's default, 0.19 cm)
+CELL_SLACK_MM = 0.4             # and a little more, so that a word measured to fit does
+MM_PER_PT = 25.4 / 72
+NO_GLYPH = 600                  # a glyph Helvetica's metrics lack (≥, ≤, ρ): its width, in 1/1000 em
+
+
+def _twips(mm: float) -> int:
+    return round(mm * TWIPS_PER_MM)
+
+
+_AFM: dict = {}
+
+
+def text_mm(text: str, pt: float, bold: bool = False) -> float:
+    """A text's width in Arial at `pt`, in mm, from the metrics of Helvetica, which
+    Arial's match glyph for glyph (matplotlib's own copy, the same wherever the stage
+    runs); italics as wide as upright."""
+    from fontTools.agl import UV2AGL
+    from matplotlib import _afm, get_data_path
+    if bold not in _AFM:
+        with open(Path(get_data_path()) / "fonts" / "afm" / ("phvb8a.afm" if bold else "phvr8a.afm"), "rb") as f:
+            _AFM[bold] = _afm.AFM(f)
+    units = 0.0
+    for ch in text:
+        try:
+            units += _AFM[bold].get_width_from_char_name(UV2AGL[ord(ch)])
+        except KeyError:
+            units += NO_GLYPH
+    return units / 1000 * pt * MM_PER_PT
+
+
+def _w_runs(text: str, pt: float, font: str, bold: bool = False) -> str:
+    """A paragraph's runs: the text, each *GENE* an italic run without its marks."""
+    def props(italic: bool) -> str:
+        return (f'<w:rPr><w:rFonts w:ascii="{font}" w:hAnsi="{font}" w:cs="{font}"/>'
+                + ("<w:b/>" if bold else "") + ("<w:i/>" if italic else "")
+                + f'<w:sz w:val="{round(pt * 2)}"/><w:szCs w:val="{round(pt * 2)}"/></w:rPr>')
+    runs, at = [], 0
+    for m in ITALIC.finditer(text):
+        runs += [(text[at:m.start()], False), (m.group(1), True)]
+        at = m.end()
+    runs.append((text[at:], False))
+    return "".join(f'<w:r>{props(it)}<w:t xml:space="preserve">{escape(s)}</w:t></w:r>'
+                   for s, it in runs if s)
+
+
+def _w_p(runs: str, before_pt: float = 0, after_pt: float = 0, keep_next: bool = False) -> str:
+    ppr = (("<w:keepNext/>" if keep_next else "")
+           + f'<w:spacing w:before="{round(before_pt * 20)}" w:after="{round(after_pt * 20)}"/>')
+    return f"<w:p><w:pPr>{ppr}</w:pPr>{runs}</w:p>"
+
+
+def _plain(text: str) -> str:
+    return ITALIC.sub(lambda m: m.group(1), text)
+
+
+def column_widths(rows: list[list[str]], pt: float) -> tuple[list[float], list[float]]:
+    """Each column's width in mm, its margins included: as wide as its widest cell, its
+    bold header wrapping at its spaces (natural); and as wide as its longest word (least)."""
+    pad = 2 * CELL_MARGIN_MM + CELL_SLACK_MM
+    head, body = rows[0], rows[1:]
+    natural, least = [], []
+    for j in range(len(head)):
+        cells = [_plain(r[j]) for r in body]
+        head_word = max([text_mm(w, pt, bold=True) for w in _plain(head[j]).split()] or [0])
+        body_word = max([text_mm(w, pt) for c in cells for w in c.split()] or [0])
+        natural.append(max([text_mm(c, pt) for c in cells] + [head_word]) + pad)
+        least.append(max(head_word, body_word) + pad)
+    return natural, least
+
+
+def page_for(tables: list[list[list[str]]], cfg: dict) -> tuple[bool, list[list[float]]]:
+    """A main table's page and its columns: upright if every part fits the upright
+    text width at its natural widths, else turned; each part's columns then share the
+    width in proportion to their natural widths, none below its least. The run stops if
+    a part is wider than the turned page at its least widths."""
+    d = cfg["docx"]
+    upright, turned = (A4_MM[0] - 2 * d["margin_cm"] * 10), (A4_MM[1] - 2 * d["margin_cm"] * 10)
+    sizes = [column_widths(t, d["table_pt"]) for t in tables]
+    landscape = any(sum(n) > upright for n, _ in sizes)
+    width = turned if landscape else upright
+    out = []
+    for natural, least in sizes:
+        if sum(least) > width + 1e-9:
+            raise SystemExit(f"[layout] a main table needs {sum(least):.0f} mm, more than the "
+                             f"{width:.0f} mm of the turned page")
+        w = [n * width / sum(natural) for n in natural]
+        fixed = [False] * len(w)
+        while True:                                   # a column below its least is set to it
+            low = [not f and x < m - 1e-9 for x, m, f in zip(w, least, fixed)]
+            free = sum(n for n, f, lo in zip(natural, fixed, low) if not (f or lo))
+            if not any(low) or not free:
+                break
+            fixed = [f or lo for f, lo in zip(fixed, low)]
+            rest = width - sum(m for m, f in zip(least, fixed) if f)
+            w = [m if f else n * rest / free for n, m, f in zip(natural, least, fixed)]
+        out.append(w)
+    return landscape, out
+
+
+def _w_table(rows: list[list[str]], widths_mm: list[float], cfg: dict) -> str:
+    d = cfg["docx"]
+    rule = f'w:val="single" w:sz="{round(d["rule_pt"] * 8)}" w:space="0" w:color="000000"'
+    tw = [_twips(w) for w in widths_mm]
+    out = [f'<w:tbl><w:tblPr><w:tblW w:w="{sum(tw)}" w:type="dxa"/>'
+           f'<w:tblBorders><w:top {rule}/><w:left w:val="nil"/><w:bottom {rule}/><w:right w:val="nil"/>'
+           '<w:insideH w:val="nil"/><w:insideV w:val="nil"/></w:tblBorders>'
+           '<w:tblLayout w:type="fixed"/>'
+           f'<w:tblCellMar><w:top w:w="0" w:type="dxa"/><w:left w:w="{_twips(CELL_MARGIN_MM)}" w:type="dxa"/>'
+           f'<w:bottom w:w="0" w:type="dxa"/><w:right w:w="{_twips(CELL_MARGIN_MM)}" w:type="dxa"/></w:tblCellMar>'
+           '<w:tblLook w:val="0000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" '
+           'w:noHBand="1" w:noVBand="1"/></w:tblPr>',
+           "<w:tblGrid>" + "".join(f'<w:gridCol w:w="{w}"/>' for w in tw) + "</w:tblGrid>"]
+    for i, row in enumerate(rows):
+        head = i == 0
+        cells = []
+        for text, w in zip(row, tw):
+            borders = f"<w:tcBorders><w:bottom {rule}/></w:tcBorders>" if head else ""
+            cells.append(f'<w:tc><w:tcPr><w:tcW w:w="{w}" w:type="dxa"/>{borders}<w:vAlign w:val="bottom"/></w:tcPr>'
+                         + _w_p(_w_runs(text, d["table_pt"], d["font"], bold=head), before_pt=1, after_pt=1)
+                         + "</w:tc>")
+        trpr = "<w:trPr><w:cantSplit/><w:tblHeader/></w:trPr>" if head else "<w:trPr><w:cantSplit/></w:trPr>"
+        out.append(f"<w:tr>{trpr}{''.join(cells)}</w:tr>")
+    return "".join(out) + "</w:tbl>"
+
+
+def written_rows(path: Path) -> list[list[str]]:
+    """A table as the stage wrote it: its header and rows, the comment lines above them
+    left out."""
+    lines = [l for l in path.read_text().splitlines(keepends=True) if not l.startswith("#")]
+    return list(csv.reader(io.StringIO("".join(lines))))
+
+
+def main_table_docx(item: dict, cfg: dict, numbers: dict, folder: Path) -> Path:
+    """A main table as an editable file: A4, "Table N." in bold and its title, each
+    part's title above its table, the table ruled across at its top, below its header and
+    at its foot, and the notes in one paragraph below; the cells read back from the CSVs
+    the stage wrote for the table."""
+    d = cfg["docx"]
+    tables = [written_rows(_part_path(folder, item, p)) for p in item["parts"]]
+    landscape, widths = page_for(tables, cfg)
+    body = [_w_p(_w_runs(f"{item['number']}.", d["text_pt"], d["font"], bold=True)
+                 + _w_runs(f" {grouped(_resolve(item['title'], numbers))}", d["text_pt"], d["font"]),
+                 after_pt=6, keep_next=True)]
+    for k, (rows, w) in enumerate(zip(tables, widths)):
+        if len(item["parts"]) > 1:
+            body.append(_w_p(_w_runs(part_title(item, k, numbers), d["text_pt"], d["font"]),
+                             before_pt=6 if k else 0, after_pt=3, keep_next=True))
+        body.append(_w_table(rows, w, cfg))
+    body.append(_w_p(_w_runs(" ".join(_notes(item, numbers)), d["text_pt"], d["font"]), before_pt=6))
+    page_w, page_h = (A4_MM[1], A4_MM[0]) if landscape else A4_MM
+    m = _twips(d["margin_cm"] * 10)
+    body.append(f'<w:sectPr><w:pgSz w:w="{_twips(page_w)}" w:h="{_twips(page_h)}"'
+                + (' w:orient="landscape"' if landscape else "")
+                + f'/><w:pgMar w:top="{m}" w:right="{m}" w:bottom="{m}" w:left="{m}" w:header="709" '
+                  'w:footer="709" w:gutter="0"/></w:sectPr>')
+    rel = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+    files = {
+        "[Content_Types].xml": (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+            '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+            '<Default Extension="xml" ContentType="application/xml"/>'
+            '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>'
+            '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>'
+            "</Types>"),
+        "_rels/.rels": (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+            f'<Relationship Id="rId1" Type="{rel}/officeDocument" Target="word/document.xml"/></Relationships>'),
+        "word/_rels/document.xml.rels": (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+            f'<Relationship Id="rId1" Type="{rel}/styles" Target="styles.xml"/></Relationships>'),
+        "word/styles.xml": (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            f'<w:styles xmlns:w="{W_NS}"><w:docDefaults><w:rPrDefault><w:rPr>'
+            f'<w:rFonts w:ascii="{d["font"]}" w:hAnsi="{d["font"]}" w:cs="{d["font"]}" w:eastAsia="{d["font"]}"/>'
+            f'<w:sz w:val="{round(d["text_pt"] * 2)}"/><w:szCs w:val="{round(d["text_pt"] * 2)}"/>'
+            '<w:lang w:val="en-GB"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr>'
+            '<w:spacing w:after="0" w:line="240" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults>'
+            '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style>'
+            "</w:styles>"),
+        "word/document.xml": (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            f'<w:document xmlns:w="{W_NS}"><w:body>{"".join(body)}</w:body></w:document>'),
+    }
+    path = folder / f"{item['content']}.docx"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(path, "w") as z:
+        for name, text in files.items():
+            info = zipfile.ZipInfo(name, date_time=ZIP_TIME)
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            z.writestr(info, text.encode("utf-8"), compresslevel=6)
+    return path
+
+
+# ---------------------------------------------------------------------------
 # The run
 # ---------------------------------------------------------------------------
 REFERENCE = re.compile(r"\{([a-z0-9_]+(?:,\s*[a-z0-9_]+)*)\}")
@@ -1928,6 +2141,8 @@ def main(config: Path = CONFIG, out: Path = OUT) -> None:
         for it in cfg.get(section, []):
             for p in MAKERS[it["make"]](it, folder, cfg):
                 written.append((p, it))
+            if section == "main" and it["kind"] == "table":      # its editable file (E8.11)
+                written.append((main_table_docx(it, cfg, numbers, folder), it))
             print(f"[layout] {it['number']}: {it['content']}")
     supp_tables = [it for it in cfg["supplementary"] if it["kind"] == "table"]
     book = workbook(supp_tables, cfg, numbers, out / "supplementary_tables.xlsx")

@@ -11,8 +11,9 @@
 # figures' and tables' titles, part titles, notes and legends, and the conventions, are
 # the author's wording, approved on 2026-11-09 (E8.10) and copied here word for word,
 # each reference to an item of this paper written {content} ({a, b} for several); a
-# gene's italics are marked *GENE*. The main items' titles and notes, and every
-# description, are not yet the text's. Paths are from phase1/.
+# gene's italics are marked *GENE*. So are the main tables' titles, part titles and notes
+# and the main figures' titles (E8.11; the main figures' legends are the manuscript's and
+# stay there). The descriptions are not yet the text's. Paths are from phase1/.
 
 # The figures' size and type (the author's decision of 2026-10-28, from the target's
 # artwork guide, checked against the guide's text on 2026-10-28): no wider than the
@@ -100,7 +101,7 @@ main:
   - content: published_cut_point_by_band
     kind: figure
     number: Figure 1
-    title: "band likelihood ratios at the published SpliceAI cut points, PP3 (a) and BP4 (b), seven genes, by distance band and ClinVar record status; local likelihood ratio of SpliceAI (published basis) along its score at 3–10 bp, with its in-sample PP3 thresholds and the published cut point (c)"
+    title: "Band likelihood ratios at the published SpliceAI cut points, and the local likelihood ratio along the score, in the seven training genes."
     make: figure_published_cut_point
     options: {c_tool: spliceai_walker, c_stratum: s3_10}
     sources:
@@ -112,7 +113,7 @@ main:
   - content: heldout_and_external_lr
     kind: figure
     number: Figure 2
-    title: "likelihood ratios at the fitted thresholds in held-out genes (a, b) and in the seven external genes (c), with the published cut point"
+    title: "Likelihood ratios at the fitted thresholds in held-out genes (a, b) and in the seven external genes (c)."
     make: figure_heldout_external
     sources:
       - reports/evidence/evidence_thresholds_logo_folds.csv
@@ -131,7 +132,7 @@ main:
   - content: roc_curves
     kind: figure
     number: Figure 3
-    title: "ROC curves of four predictors, seven genes pooled, by distance band, with the fitted thresholds and the published cut point"
+    title: "Receiver operating characteristic curves of four predictors in the seven training genes at 3–10 bp (a), 11–50 bp (b) and 3–50 bp (c)."
     make: figure_roc
     sources:
       - reports/evidence/practical_roc_curves.csv
@@ -141,44 +142,67 @@ main:
     notes:
       - "the legend gives the area under each curve drawn, the seven genes pooled into one curve; the text's AUROC combines per-gene AUROCs, a different quantity; {practical_metrics} gives both"
       - "the inset enlarges the high-specificity end"
+  # The main tables' titles, part titles and notes (the author's wording, 2026-11-09,
+  # E8.11), each also written as an editable file, main/<content>.docx (docx: below):
+  # "Table N." in bold and the title, each part's title above it, its table, and the
+  # notes in one paragraph below. Table 3 has one part, printed without a title.
   - content: analysis_set_composition
     kind: table
     number: Table 1
-    title: "composition of the analysis set, by gene (a) and by ClinVar record status (b)"
+    title: "Composition of the analysis set. (a) By gene. (b) By ClinVar record status, 3–50 bp."
     make: table_parts
     parts:
-      - {part: by_gene, title: By gene, source: reports/evidence/tables/table1a_composition_by_gene.csv}
-      - {part: by_clinvar_status, title: By ClinVar record status, source: reports/evidence/tables/table1b_composition_by_clinvar_status.csv}
+      - {part: by_gene, title: "By gene", source: reports/evidence/tables/table1a_composition_by_gene.csv}
+      - {part: by_clinvar_status, title: "By ClinVar record status, 3–50 bp", source: reports/evidence/tables/table1b_composition_by_clinvar_status.csv}
+    notes:
+      - "Labelled variants are those the assay calls damaging or normal; percentages are of labelled variants. *BRCA2*’s deposit stops at 10 bp, so the distal band holds six genes. All 13 predictors scored every variant. The 856 variants at the canonical dinucleotides, outside the scope of PP3 and BP4, are in {analysis_set_by_status}."
   - content: evidence_tiers_and_thresholds
     kind: table
     number: Table 2
-    title: "evidence tier of each predictor in-sample and in held-out genes (a); thresholds of SpliceAI (published basis) and Pangolin (b)"
+    title: "Evidence tier of each predictor, and the thresholds of SpliceAI and Pangolin."
     make: table_parts
     parts:
-      - {part: tiers, title: Tier reached in-sample and in held-out genes, source: reports/evidence/tables/table3_evidence_tiers.csv}
-      - {part: thresholds, title: Thresholds for SpliceAI (published basis) and Pangolin, source: reports/evidence/tables/table3b_thresholds.csv}
+      - {part: tiers, title: "In-sample tier, and held-out genes clearing each tier’s boundary", source: reports/evidence/tables/table3_evidence_tiers.csv}
+      - {part: thresholds, title: "In-sample thresholds for SpliceAI (published basis) and Pangolin", source: reports/evidence/tables/table3b_thresholds.csv}
+    notes:
+      - "(a) The in-sample tier is the highest PP3 tier reached with the seven genes pooled, six in the distal band; a dash marks a tier not reached. In a held-out entry k/n (m), the band likelihood ratio at a threshold fitted on the other genes clears the tier’s boundary in k of n genes, and m folds are not evaluable. † Counted without *BRCA1* and *RAD51C*, whose assays helped select the model. (b) Thresholds are rounded to three significant figures in the direction that admits no variant the fitted threshold excludes; full values are in {thresholds_pathogenic, thresholds_benign}."
   - content: published_cut_point_by_clinvar_status
     kind: table
     number: Table 3
-    title: "band likelihood ratios at the published SpliceAI cut point by ClinVar record status"
+    title: "Band likelihood ratios at the published SpliceAI PP3 cut point, by ClinVar record status."
     make: table_parts
     parts:
-      - {part: band_lr, title: Band likelihood ratio by ClinVar record status, source: reports/evidence/tables/table4a_spliceai_published_cut_by_arm.csv}
+      - {part: band_lr, source: reports/evidence/tables/table4a_spliceai_published_cut_by_arm.csv}
+    notes:
+      - "Values are the band likelihood ratio of SpliceAI on the published basis for scores of 0.2 or above, in the seven genes and without *BRCA1*. Record status stratifies the variants and never defines which are damaging. Counts, the benign side, each predictor at its in-sample Moderate threshold and the AUROC by arm are in {clinvar_status, within_gene_arms, arms_at_fitted_thresholds}."
   - content: practical_performance
     kind: table
     number: Table 4
-    title: "sensitivity, specificity and coverage at the study's thresholds in held-out genes (a); agreement with ClinVar classifications of at least one star (b)"
+    title: "Performance at the fitted thresholds and the published cut points."
     make: table_practical_performance
     options: {tools: [spliceai_walker, pangolin], clinvar_bands: [s3_10, s3_50]}
     sources:
       - reports/evidence/practical_metrics_by_threshold.csv
       - reports/evidence/suppl_analyses/c1_clinvar_reference_metrics.csv
     parts:
-      - {part: seven_genes, title: "The seven genes, held out"}
-      - {part: clinvar, title: "Against ClinVar, at least one star"}
+      - {part: seven_genes, title: "Held out in the seven genes"}
+      - {part: clinvar, title: "Agreement with ClinVar classifications of at least one review star"}
+    # the band (b) leaves out is named in the notes, with its P/LP count: the stage stops
+    # if the note's count is not the one the source gives (E8.11)
     notes:
-      - "(a) held-out values only; the in-sample values are in {practical_metrics}"
-      - "(a) last column: for each tier, the folds whose threshold reached it, of the genes held out; not the k/n of {evidence_tiers_and_thresholds}(a), which counts the folds with an evaluable ratio"
+      - "(a) Each fold’s threshold, fitted on the other genes, is applied to the gene left out, and counts are added over the folds whose threshold reached the tier. Coverage is the share of labelled variants in the score band; a dash marks a tier not reached in-sample. The last column counts the folds reaching Supporting, Moderate and Strong (S, M, St), including folds too small for a likelihood ratio, so it can differ from the k/n of {evidence_tiers_and_thresholds}. (b) Among ClinVar classifications of at least one review star, the share of pathogenic or likely pathogenic (P/LP) variants at or above the published PP3 cut point and each in-sample PP3 threshold, and of benign or likely benign (B/LB) variants at or below the BP4 ones; no likelihood ratio or tier is formed from them. The distal band, with 3 P/LP variants, is left out. Further values are in {practical_metrics, clinvar_consistency}."
+
+# The main tables' editable files (E8.11, the author's decision of 2026-11-09): A4, the
+# margins all round, upright, or turned where the table is wider than the upright page
+# allows; Arial, the table at table_pt and the title, part titles and notes at text_pt;
+# the table ruled across only, at its top, below its header and at its foot, each rule
+# rule_pt thick, no rule down and no shading.
+docx:
+  margin_cm: 2.5
+  table_pt: 8
+  text_pt: 9
+  rule_pt: 1
+  font: Arial
 
 supplementary:
   # figures, numbered in the order the text first cites them (2026-11-08)

@@ -29,10 +29,28 @@ readers of a CSV and of the printed texts.
               the layout drawn with every item, the notes among them, renumbered (Q1, Q2,
               ...), no printed text names an item of this paper by its number.
 
+  --commit 5  E8.11. The manuscript (read only, --manuscript): its paragraph of each of
+              Tables 1-4 is "Table N. " and the approved title, a space and the approved
+              notes, and each approved part title stands on a line of its own. The main
+              tables' titles, part titles and notes and the main figures' titles, as the
+              configuration prints them, are the approved texts. Against the base, only
+              contents.csv (the main items' titles and notes, the tables' files) and
+              manifest.csv (the four new files' rows and contents.csv's) change; every other
+              output byte for byte. Each main table's file: "Table N." in bold and the
+              title, the part titles, the notes, the approved texts; its tables the CSVs'
+              cells, each cell; A4 at 2.5 cm, Tables 2 and 4 turned; ruled across at the
+              top, below the header and at the foot, each rule at least 1 pt, no rule down
+              and no shading; Arial; its members dated as the workbook's. The number gate's
+              cells mode on each file (each data cell a paragraph, bound to the same cell of
+              the CSV): every number matches. What is printed, the files' texts among it,
+              holds no residue, and no number of this paper is left fixed when renumbered.
+
 Run from the repository root:
     .venv/bin/python scripts/stage_E8/check_e8_part2.py --commit 4 [--base 1495bd9]
 or in the reference image:
     ... IMAGE bash scripts/stage_E8/in_image.sh scripts/stage_E8/check_e8_part2.py --commit 4
+(--commit 5 reads the manuscript, --manuscript PATH: in the image, a copy under
+phase1/results/scratch/, which git ignores, removed after the run.)
 """
 from __future__ import annotations
 
@@ -161,11 +179,14 @@ def cut(rows: list[dict], n_parts: int, lengths: list[int]) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--commit", type=int, required=True, choices=[4])
+    ap.add_argument("--commit", type=int, required=True, choices=[4, 5])
     ap.add_argument("--base", default=None, help="the commit before (default: HEAD)")
+    ap.add_argument("--manuscript", default=None, help="commit 5: the manuscript, read only")
     args = ap.parse_args()
     base = args.base or subprocess.run(["git", "-C", str(REPO), "rev-parse", "--short", "HEAD"],
                                        check=True, capture_output=True, text=True).stdout.strip()
+    if args.manuscript:                         # from the folder it is run in, before the next line
+        args.manuscript = str(Path(args.manuscript).resolve())
     os.chdir(PHASE1)
     sys.path.insert(0, str(PHASE1))
     import numpy as np
@@ -189,6 +210,8 @@ def main() -> None:
         old_cfg = yaml.safe_load(_git_show(base, "phase1/config/layout.yaml"))
         if args.commit == 4:
             commit4(cfg, old_cfg, base, check, log, np, Image, L, yaml)
+        if args.commit == 5:
+            commit5(cfg, old_cfg, base, check, log, L, yaml, args.manuscript)
         if failed:
             print(f"{len(failed)} check(s) failed: {failed}")
             raise SystemExit(1)
@@ -523,6 +546,302 @@ def commit4(cfg, old_cfg, base, check, log, np, Image, L, yaml) -> None:
         print(f"      {x[0]}: «{x[1]}»  {x[2][:110]}")
     q_notes = sorted({m.group(0) for _, t in q_texts for m in re.finditer(r"Supplementary Notes? Q\d+", t)})
     check("the_notes_are_numbered_by_the_configuration", len(q_notes) >= 5, q_notes)
+
+
+# ------------------------------------------------------------------------- commit 5
+W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+
+
+def docx_blocks(data: bytes):
+    """A main table's file: its body's blocks in order, each ("p", text, its bold runs'
+    texts) or ("tbl", rows of cell texts, the element), an italic run as *GENE*; and its
+    section's properties (page size, orientation, margins)."""
+    from xml.etree import ElementTree as ET
+    root = ET.fromstring(zipfile.ZipFile(io.BytesIO(data)).read("word/document.xml"))
+
+    def runs(el):
+        out, bold = [], []
+        for r in el.iter(f"{W}r"):
+            t = "".join(x.text or "" for x in r.iter(f"{W}t"))
+            rpr = r.find(f"{W}rPr")
+            out.append(f"*{t}*" if rpr is not None and rpr.find(f"{W}i") is not None else t)
+            if rpr is not None and rpr.find(f"{W}b") is not None:
+                bold.append(t)
+        return "".join(out), bold
+
+    body = root.find(f"{W}body")
+    blocks = []
+    for el in body:
+        if el.tag == f"{W}p":
+            blocks.append(("p",) + runs(el))
+        elif el.tag == f"{W}tbl":
+            blocks.append(("tbl", [[runs(c)[0] for c in tr.findall(f"{W}tc")] for tr in el.findall(f"{W}tr")], el))
+    sect = body.find(f"{W}sectPr")
+    size, mar = sect.find(f"{W}pgSz"), sect.find(f"{W}pgMar")
+    page = {"w": int(size.get(f"{W}w")), "h": int(size.get(f"{W}h")), "orient": size.get(f"{W}orient"),
+            "margins": sorted({int(mar.get(f"{W}{k}")) for k in ("top", "right", "bottom", "left")})}
+    return blocks, page
+
+
+def docx_texts(root: Path) -> list[tuple[str, str]]:
+    """Every text the main tables' files print under `root`: (where, text) for each
+    paragraph and cell."""
+    out = []
+    for p in sorted(root.rglob("*.docx")):
+        blocks, _ = docx_blocks(p.read_bytes())
+        rel = str(p.relative_to(root))
+        for k, b in enumerate(blocks):
+            if b[0] == "p":
+                out.append((f"{rel} paragraph {k}", b[1]))
+            else:
+                out += [(f"{rel} table {k} row {i} col {j}", c) for i, r in enumerate(b[1]) for j, c in enumerate(r)]
+    return out
+
+
+def cells_mode(tables: dict[str, list[list[str]]], csv_root: Path, tmp: Path, name: str) -> dict:
+    """The number gate's cells mode (scripts/check_evidence_manuscript_numbers.py) on a
+    printed table: each data cell written as a paragraph of its own, and each number in
+    it bound to the same cell of the layout's CSV (the row by its first columns, enough
+    to tell the rows apart; the column by its header): a number cell's value, or a text
+    cell that holds the number. Header rows are not read. Returns the gate's counts and
+    its last lines; writes only into `tmp`."""
+    sys.path.insert(0, str(REPO / "scripts"))
+    import check_evidence_manuscript_numbers as G
+    lines, where = [], {}
+    for rel, rows in tables.items():
+        lay = list(csv.reader(io.StringIO((csv_root / rel).read_text())))
+        nkey = 1
+        while len({tuple(r[:nkey]) for r in lay[1:]}) < len(lay) - 1:
+            nkey += 1
+        lines += [f"# {name} {rel}", ""]
+        for i, row in enumerate(rows[1:], 1):
+            for j, cell in enumerate(row):
+                where[len(lines) + 1] = (rel, lay[0], lay[i], lay[1:], j, nkey)
+                lines += [cell.strip(), ""]
+    text = "\n".join(lines) + "\n"
+    md = tmp / f"{name}.md"
+    md.write_text(text)
+    out = []
+    for t in G.read_tokens(text):
+        rel, head, row, rows, j, nkey = where[t.line]
+        if any(row[k] != row[k].strip() for k in range(nkey)):
+            # a label the condition reader would strip: the row as the one no other is
+            conds = f"{head[0]} not in {'|'.join(sorted({r[0] for r in rows if r[0] != row[0]}))}"
+        else:
+            conds = "; ".join(f"{head[k]}={row[k]}" for k in range(nkey))
+        measured = not t.reason
+        out.append({"document": "main", "line": t.line, "occurrence": t.occurrence, "printed": t.printed,
+                    "excerpt": t.excerpt_space, "kind": "measured" if measured else "constant",
+                    "reason": t.reason or "", "file": f"phase1/reports/evidence/layout/{rel}" if measured else "",
+                    "rows": conds if measured else "", "column": head[j] if measured else "",
+                    "derive": ("value" if G._decimal(row[j]) is not None else "text") if measured else "",
+                    "scale": 1 if measured else ""})
+    tsv = tmp / f"{name}_bindings.tsv"
+    G.write_bindings(tsv, out)
+    res = G.cells_results(text, G.read_bindings(tsv))
+    n = {k: sum(1 for r in res if r.status == k)
+         for k in ("constant", "match", "mismatch", "cannot_bind", "not_in_table")}
+    bad = [(r.binding.printed if r.binding else r.token.printed, r.status, r.why) for r in res
+           if r.status in ("mismatch", "cannot_bind", "not_in_table")]
+    return {"numbers": sum(1 for r in res if r.token is not None), **n, "problems": bad[:5]}
+
+
+def commit5(cfg, old_cfg, base, check, log, L, yaml, manuscript) -> None:
+    A = yaml.safe_load(APPROVED.read_text())
+    numbers = L._numbers(cfg)
+    check("approved_texts_file_is_the_authors", _sha(APPROVED.read_bytes()) == APPROVED_SHA256)
+
+    def printed(t: str) -> str:
+        return L.grouped(L._resolve(t, numbers))
+
+    main = {it["content"]: it for it in cfg["main"]}
+    tables = [it for it in cfg["main"] if it["kind"] == "table"]
+
+    # ------------------------------------------------------------- the manuscript, read only
+    print("E8.11 the manuscript's paragraphs of Tables 1-4 against the approved texts")
+    if not manuscript:
+        check("manuscript_given", False, "--manuscript")
+    else:
+        import docx
+        doc = docx.Document(manuscript)
+        log.note("manuscript_sha256", _sha(Path(manuscript).read_bytes()))
+
+        def with_italics(p) -> str:
+            return re.sub(r"\*\*", "", "".join(f"*{r.text}*" if r.italic and r.text.strip() else r.text
+                                               for r in p.runs))
+        paras = doc.paragraphs
+        found = {}
+        for c, a in A["main_tables"].items():
+            want = f"{a['number']}. {a['title']} {a['notes']}"
+            hits = [p for p in paras if p.text.startswith(a["number"] + ".")]
+            lines = [f"({chr(97 + k)}) {t}" for k, t in enumerate(a["parts"].values()) if t]
+            found[c] = {"paragraphs": len(hits),
+                        "equal": len(hits) == 1 and with_italics(hits[0]) == want,
+                        "bold": len(hits) == 1 and [r.text.strip() for r in hits[0].runs if r.bold] == [f"{a['number']}."],
+                        "part_lines": [sum(1 for p in paras if p.text.strip() == x) for x in lines]}
+        check("manuscript_table_paragraphs_are_the_approved_texts",
+              all(v["equal"] and v["bold"] and all(n == 1 for n in v["part_lines"]) for v in found.values()), found)
+
+    # ------------------------------------------------------------- the configuration's texts
+    print("E8.11 the configuration's texts against the approved ones")
+    bad = []
+    for c, a in A["main_tables"].items():
+        it = main[c]
+        titles = [t for t in a["parts"].values() if t]
+        got = (it["number"], printed(it["title"]), [printed(n) for n in it.get("notes", [])],
+               [printed(p["title"]) for p in it["parts"] if "title" in p])
+        if got != (a["number"], a["title"], [a["notes"]], titles):
+            bad.append((c, got))
+    for c, a in A["main_figures"].items():
+        if (main[c]["number"], printed(main[c]["title"])) != (a["number"], a["title"]) or "legend" in main[c]:
+            bad.append((c, main[c]["title"][:80]))
+    check("configuration_prints_the_approved_main_texts", not bad, bad[:4])
+
+    # ------------------------------------------------------------- files against the base
+    print("E8.11 every output against the base")
+    new_files = {f"main/{it['content']}.docx" for it in tables}
+    base_files = {p.split("layout/", 1)[1] for p in _git_ls(base, f"phase1/{OUT}")}
+    here_files = {str(p.relative_to(OUT)) for p in OUT.rglob("*") if p.is_file()}
+    check("files_are_the_bases_and_the_four_main_table_files",
+          here_files - base_files == new_files and base_files <= here_files, sorted(base_files ^ here_files))
+    differs = sorted(f for f in base_files if _git_show(base, f"phase1/{OUT}/{f}") != (OUT / f).read_bytes())
+    check("only_contents_and_manifest_differ", differs == ["contents.csv", "manifest.csv"], differs)
+
+    # contents.csv: the main items' titles and notes, the tables' files
+    text_a = _git_show(base, f"phase1/{OUT}/contents.csv").decode()
+    a_rows = list(csv.DictReader(io.StringIO(text_a)))
+    b_rows = list(csv.DictReader(io.StringIO((OUT / "contents.csv").read_text())))
+    check("contents_same_rows_and_columns", [(r["content"], list(r)) for r in a_rows]
+          == [(r["content"], list(r)) for r in b_rows])
+    bad, per_field = [], {}
+    for ra, rb in zip(a_rows, b_rows):
+        it = main.get(ra["content"])
+        for f in ra:
+            x, y = ra[f], rb[f]
+            if x != y:
+                per_field[f] = per_field.get(f, 0) + 1
+            want = x
+            if it is not None and f == "title":
+                want = (A["main_tables"] if it["kind"] == "table" else A["main_figures"])[it["content"]]["title"]
+            elif it is not None and it["kind"] == "table" and f == "notes":
+                want = A["main_tables"][it["content"]]["notes"]
+            elif it is not None and it["kind"] == "table" and f == "files":
+                want = f"{x}; phase1/reports/evidence/layout/main/{it['content']}.docx"
+            if want != y:
+                bad.append((ra["content"], f, x[:80], y[:80]))
+    check("contents_changes_explained", not bad, bad[:6])
+    log.note("contents_changed_fields", per_field)
+    print("    contents.csv changed fields:", per_field)
+
+    # manifest.csv: a row for each new file, right after its table's CSVs, and contents.csv's
+    a_man = list(csv.DictReader(io.StringIO(_git_show(base, f"phase1/{OUT}/manifest.csv").decode())))
+    b_man = list(csv.DictReader(io.StringIO((OUT / "manifest.csv").read_text())))
+    want_order = []
+    for r in a_man:
+        want_order.append(r["file"])
+        for it in tables:
+            last = [x["file"] for x in a_man if x["content"] == it["content"]][-1]
+            if r["file"] == last:
+                want_order.append(f"phase1/reports/evidence/layout/main/{it['content']}.docx")
+    check("manifest_rows_the_bases_and_the_four_files_after_their_tables", [r["file"] for r in b_man] == want_order)
+    ka = {r["file"]: r for r in a_man}
+    bad = [(r["file"], f) for r in b_man if r["file"] in ka for f in r
+           if r[f] != ka[r["file"]][f] and not (r["file"].endswith("contents.csv") and f in ("bytes", "sha256"))]
+    new_rows = [r for r in b_man if r["file"] not in ka]
+    for r in new_rows:
+        it = main[r["content"]]
+        srcs = [L._rel(s) for s in L._sources(it)]
+        if (r["number"], r["sources"], r["sources_sha256"].split("; ")) != (
+                it["number"], "; ".join(srcs), [_sha((PHASE1 / s).read_bytes()) for s in L._sources(it)]):
+            bad.append((r["file"], "sources"))
+    check("manifest_changes_explained", not bad, bad[:6])
+    check("manifest_hashes_true", all(_sha((REPO / r["file"]).read_bytes()) == r["sha256"]
+                                      for r in b_man if not r["file"].endswith("manifest.csv")))
+
+    # ------------------------------------------------------------- the four files
+    print("E8.11 the main tables' files")
+    turned = {"evidence_tiers_and_thresholds", "practical_performance"}
+    margin = round(cfg["docx"]["margin_cm"] * 10 * 1440 / 25.4)
+    bad, sizes, gate = [], {}, {}
+    with tempfile.TemporaryDirectory() as tmp:
+        for it in tables:
+            a = A["main_tables"][it["content"]]
+            data = (OUT / "main" / f"{it['content']}.docx").read_bytes()
+            blocks, page = docx_blocks(data)
+            parts = [t for t in a["parts"].values() if t]
+            kinds = [b[0] for b in blocks]
+            want_kinds = ["p"] + (["p", "tbl"] * len(parts) if parts else ["tbl"]) + ["p"]
+            if kinds != want_kinds:
+                bad.append((it["content"], "blocks", kinds))
+                continue
+            if blocks[0][1] != f"{it['number']}. {a['title']}" or blocks[0][2] != [f"{it['number']}."]:
+                bad.append((it["content"], "title paragraph", blocks[0][1][:80]))
+            if [b[1] for b in blocks[1:-1] if b[0] == "p"] != [f"({chr(97 + k)}) {t}" for k, t in enumerate(parts)]:
+                bad.append((it["content"], "part titles"))
+            if blocks[-1][1] != a["notes"] or blocks[-1][2]:
+                bad.append((it["content"], "notes"))
+            got_tables = [b for b in blocks if b[0] == "tbl"]
+            csvs = {}
+            for part, (_, rows, el) in zip(it["parts"], got_tables):
+                rel = "main/" + L._part_path(Path("."), it, part).name
+                if rows != L.written_rows(OUT / rel):
+                    bad.append((it["content"], rel, "cells"))
+                csvs[rel] = rows
+                tb = el.find(f"{W}tblPr/{W}tblBorders")
+                rules = {s: (tb.find(f"{W}{s}").get(f"{W}val"), int(tb.find(f"{W}{s}").get(f"{W}sz") or 0))
+                         for s in ("top", "bottom", "left", "right", "insideH", "insideV")}
+                head_rules = [[(x.tag.replace(W, ""), x.get(f"{W}val"), int(x.get(f"{W}sz") or 0))
+                               for x in list(tc.find(f"{W}tcPr/{W}tcBorders")
+                                             if tc.find(f"{W}tcPr/{W}tcBorders") is not None else [])]
+                              for tc in el.findall(f"{W}tr")[0].findall(f"{W}tc")]
+                body_rules = [tc.find(f"{W}tcPr/{W}tcBorders") for tr in el.findall(f"{W}tr")[1:]
+                              for tc in tr.findall(f"{W}tc")]
+                ok = (all(rules[s][0] == "single" and rules[s][1] >= 8 for s in ("top", "bottom"))
+                      and all(rules[s][0] == "nil" for s in ("left", "right", "insideH", "insideV"))
+                      and all(h == [("bottom", "single", h[0][2])] and h[0][2] >= 8 for h in head_rules)
+                      and all(b is None for b in body_rules))
+                if not ok:
+                    bad.append((it["content"], rel, "rules", rules))
+                sizes[rel] = sorted({int(s.get(f"{W}val")) for s in el.iter(f"{W}sz")})
+            xml = zipfile.ZipFile(io.BytesIO(data)).read("word/document.xml").decode()
+            a4 = (16838, 11906) if it["content"] in turned else (11906, 16838)
+            if ((page["w"], page["h"]) != a4 or (page["orient"] == "landscape") != (it["content"] in turned)
+                    or page["margins"] != [margin]):
+                bad.append((it["content"], "page", page))
+            if "w:shd" in xml or set(re.findall(r'w:rFonts w:ascii="([^"]+)"', xml)) != {"Arial"}:
+                bad.append((it["content"], "shading or font"))
+            if {i.date_time for i in zipfile.ZipFile(io.BytesIO(data)).infolist()} != {(1980, 1, 1, 0, 0, 0)}:
+                bad.append((it["content"], "member dates"))
+            gate[it["number"]] = cells_mode(csvs, OUT, Path(tmp), it["number"].replace(" ", ""))
+    check("main_table_files_as_approved_and_ruled_across_only", not bad, bad[:6])
+    check("main_table_files_table_type_8pt", all(v == [16] for v in sizes.values()), sizes)
+    check("cells_mode_every_number_matches",
+          all(g["mismatch"] == g["cannot_bind"] == g["not_in_table"] == 0 and g["match"] > 0 for g in gate.values()),
+          gate)
+    log.note("cells_mode_on_the_files", gate)
+    for k, g in gate.items():
+        print(f"    cells mode, {k}: {g['numbers']} numbers, {g['constant']} constants, "
+              f"{g['match']} match, {g['mismatch']} mismatch, {g['cannot_bind']} cannot bind, "
+              f"{g['not_in_table']} not in the table")
+
+    # ------------------------------------------------------------- residues, numbering
+    print("E8.11 residues in what is printed, the files' texts among it")
+    texts = printed_texts(OUT) + docx_texts(OUT)
+    for name, pat in RESIDUES.items():
+        hits = [(w, m.group(0)) for w, t in texts for m in pat.finditer(t)]
+        check(f"no_{name.replace(' ', '_').replace('(', '').replace(')', '')}", not hits, hits[:8])
+    with tempfile.TemporaryDirectory() as tmp:
+        q_texts = q_render(Path(tmp), L) + docx_texts(Path(tmp) / "layout")
+    left = sorted({(w.split(" ")[0].split("!")[0], m.group(0), t) for w, t in q_texts
+                   for m in NUMBERED.finditer(t)})
+    ours = [x[:2] + (x[2][:140],) for x in left
+            if OURS.match(x[1]) and not SOURCE_PAPERS.search(x[2]) and not SOURCE_PAPERS_TOO.search(x[2])]
+    check("no_number_of_this_paper_left_fixed", not ours, ours[:10])
+    q_docx = [t for w, t in q_texts if w.endswith(".docx paragraph 0") or ".docx paragraph" in w]
+    check("the_files_name_their_tables_and_others_by_the_configuration",
+          any(t.startswith("Table Q1.") for t in q_docx) and any("Supplementary Tables Q8 and Q9" in t for t in q_docx)
+          and any("Supplementary Tables Q10–Q12" in t for t in q_docx),
+          [t[:60] for t in q_docx][:6])
 
 
 def s4_label_box(L, cfg, np, old_label: str) -> list[int]:

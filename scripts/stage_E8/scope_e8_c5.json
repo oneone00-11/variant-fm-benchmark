@@ -1,0 +1,34 @@
+{
+ "commit": "E8 commit 5 (the main tables' titles, part titles and notes and the main figures' titles in the author's approved wording; the four main tables as editable files; the author's decisions of 2026-11-09)",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/layout/main/analysis_set_composition.docx": {
+   "kind": "file",
+   "why": "E8.11: new, Table 1 as an editable file (A4, ruled across only; its cells the CSVs'); checked by check_e8_part2.py --commit 5, the cells mode among it"
+  },
+  "phase1/reports/evidence/layout/main/evidence_tiers_and_thresholds.docx": {
+   "kind": "file",
+   "why": "E8.11: new, Table 2 as an editable file, turned (wider than the upright page)"
+  },
+  "phase1/reports/evidence/layout/main/published_cut_point_by_clinvar_status.docx": {
+   "kind": "file",
+   "why": "E8.11: new, Table 3 as an editable file"
+  },
+  "phase1/reports/evidence/layout/main/practical_performance.docx": {
+   "kind": "file",
+   "why": "E8.11: new, Table 4 as an editable file, turned (wider than the upright page)"
+  },
+  "phase1/reports/evidence/layout/contents.csv": {
+   "kind": "file",
+   "why": "E8.11: the main items' titles and the main tables' notes in the approved wording (Table 4's note the approved one, its count of the band left out checked by the stage), and each main table's file among its files; checked field by field by check_e8_part2.py"
+  },
+  "phase1/reports/evidence/layout/manifest.csv": {
+   "kind": "lines",
+   "patterns": [
+    "^phase1/reports/evidence/layout/main/(analysis_set_composition|evidence_tiers_and_thresholds|published_cut_point_by_clinvar_status|practical_performance)\\.docx,",
+    "^phase1/reports/evidence/layout/contents\\.csv,"
+   ],
+   "why": "E8.11: the four new files' rows, and contents.csv's size and hash"
+  }
+ }
+}

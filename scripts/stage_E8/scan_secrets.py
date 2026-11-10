@@ -3,7 +3,7 @@ files this stage writes, by scripts/stage_E5/scan_secrets.py's method (a copy of
 scripts/stage_E7/scan_secrets.py): this stage's scripts and run logs (scripts/stage_E8),
 the change log, the layout stage's code, configuration and tests, the variant list's
 stage and test, the tests' fixtures (the approved texts, part two), and the layout's
-outputs, each workbook's members unzipped and read as text. Prints every match (the pattern's name and the file, never the matched text) and
+outputs, each workbook's and each main table file's members unzipped and read as text. Prints every match (the pattern's name and the file, never the matched text) and
 the count of files scanned; exits 1 on a match. Extra folders or files (the report, made
 outside the repository) can be named on the command line.
 
@@ -36,8 +36,8 @@ def _files(paths: list[Path]) -> list[Path]:
 
 
 def _texts(p: Path) -> list[tuple[str, str]]:
-    """A file's text, or each member's of a workbook: (name, text)."""
-    if p.suffix == ".xlsx":
+    """A file's text, or each member's of a workbook or a main table's file: (name, text)."""
+    if p.suffix in (".xlsx", ".docx"):
         with zipfile.ZipFile(p) as z:
             return [(f"{p}:{n}", z.read(n).decode("utf-8", errors="replace")) for n in z.namelist()]
     return [(str(p), p.read_bytes().decode("utf-8", errors="replace"))]

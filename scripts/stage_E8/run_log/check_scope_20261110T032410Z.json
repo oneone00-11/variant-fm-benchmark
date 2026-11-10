@@ -1,0 +1,78 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/repo/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E8/scope_e8_c5.json",
+  "--base",
+  "754bf4f"
+ ],
+ "git_commit": "754bf4f0f676fb95f09c375450a29e02c227860e",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-10T03:23:01+00:00",
+ "end_utc": "2026-11-10T03:24:10+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E8/scope_e8_c5.json",
+   "bytes": 1789,
+   "sha256": "a995af98c7d0503dd16793e9a2a2d4a06890c63a166a6c22d74180ac05a17d43"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E8/scope_e8_c5.json",
+  "base": "754bf4f",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/layout/contents.csv": {
+    "status": "declared",
+    "why": "E8.11: the main items' titles and the main tables' notes in the approved wording (Table 4's note the approved one, its count of the band left out checked by the stage), and each main table's file among its files; checked field by field by check_e8_part2.py",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/main/analysis_set_composition.docx": {
+    "status": "declared",
+    "why": "E8.11: new, Table 1 as an editable file (A4, ruled across only; its cells the CSVs'); checked by check_e8_part2.py --commit 5, the cells mode among it",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/evidence_tiers_and_thresholds.docx": {
+    "status": "declared",
+    "why": "E8.11: new, Table 2 as an editable file, turned (wider than the upright page)",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/practical_performance.docx": {
+    "status": "declared",
+    "why": "E8.11: new, Table 4 as an editable file, turned (wider than the upright page)",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/main/published_cut_point_by_clinvar_status.docx": {
+    "status": "declared",
+    "why": "E8.11: new, Table 3 as an editable file",
+    "change": "added"
+   },
+   "phase1/reports/evidence/layout/manifest.csv": {
+    "changed": 6,
+    "outside": [],
+    "status": "within the scope"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

@@ -2467,3 +2467,33 @@ prints, Supplementary Figure S4's axis label, and one new file
   title, note and legend against the approved file; every CSV, both workbooks and S4
   against `1495bd9`, cell by cell and pixel by pixel; the layout drawn renumbered) and by
   the tests.
+
+## The main tables' approved titles and notes; the four main tables as editable files (stage E8, commit 5, 2026-11-10)
+
+Why: the author's approved wording of 2026-11-09 (E8 part two, E8.11). No table's cells
+change: `contents.csv` and `manifest.csv`, and four new files
+(`scripts/stage_E8/scope_e8_c5.json`).
+
+- **`config/layout.yaml`**: Tables 1-4's titles, part titles and notes and Figures 1-3's
+  titles in the approved wording (the figures' legends stay in the manuscript); Table 3,
+  of one part, prints no part title. The notes name other items as `{content}`, lists
+  among them ("Supplementary Tables S8 and S9", "S10–S12", "S17 and S26").
+- Table 4 no longer writes a note of its own on the band (b) leaves out: the approved
+  notes say "The distal band, with 3 P/LP variants, is left out.", and the stage stops if
+  that count is not the one `c1_clinvar_reference_metrics.csv` gives.
+- **`layout/main/<content>.docx`**, new, one per main table, written by the stage the
+  same bytes on every run (a minimal WordprocessingML writer, members dated as the
+  workbook's): A4 with margins of 2.5 cm, Tables 2 and 4 turned because they are wider
+  than the upright page; Arial, the table at 8 pt and the rest at 9 pt; "Table N." in
+  bold and the title, each part's title above its table, the notes in one paragraph
+  below; each table ruled across only, at its top, below its header and at its foot, each
+  rule 1 pt, with no rule down and no shading (`docx:` in the configuration). Each cell
+  is read back from the CSV the stage wrote; a gene's italics are italic runs. A column's
+  width follows its text, measured in Arial's metrics (Helvetica's, from matplotlib's own
+  copy, so the same wherever the stage runs); a table wider than the turned page stops
+  the run.
+- Checked by `scripts/stage_E8/check_e8_part2.py --commit 5`: the manuscript's paragraph of
+  each of Tables 1-4 is "Table N. " and the approved title, a space and the approved
+  notes, and its part titles are the approved ones (read only); every text against the
+  approved file; every cell against its CSV; the rules, page and fonts; and the number
+  gate's cells mode on each file, every number matching its CSV cell.

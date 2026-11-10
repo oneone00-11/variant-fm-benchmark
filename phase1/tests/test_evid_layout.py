@@ -365,8 +365,9 @@ def test_the_clinvar_part_leaves_out_the_band_it_cannot_evaluate():
     t = pd.read_csv(OUT / "main" / f"{item['content']}.{item['parts'][1]['part']}.csv", dtype=str,
                     keep_default_na=False)
     assert sorted(set(t.Band)) == ["3–10 bp", "3–50 bp"]
+    # the approved notes say so, with the band's P/LP count, which the stage checks (E8.11)
     c = pd.read_csv(OUT / "contents.csv", dtype=str, keep_default_na=False)
-    assert "(b) leaves out 11–50 bp: 3 P/LP variants of at least one star" in \
+    assert "The distal band, with 3 P/LP variants, is left out." in \
         c[c.content == item["content"]].notes.iloc[0]
 
 
@@ -1367,3 +1368,162 @@ def test_the_seven_cells_the_author_reworded_print_as_approved(tmp_path, monkeyp
     L.figure_clinvar_coverage(next(i for i in cfg["supplementary"] if i["content"] == "clinvar_coverage_by_position"),
                               tmp_path, cfg)
     assert kept[0].axes[1].get_xlabel() == want[("clinvar_coverage_by_position", "figure x-axis label")]
+
+
+# ---------------------------------------------------------------------------
+# E8.11: the main tables' approved texts and their editable files
+# ---------------------------------------------------------------------------
+W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+
+
+def _docx(path: Path):
+    """A main table's file: its body's blocks in order, each ("p", text, bold texts) or
+    ("tbl", rows of cell texts, the table element), an italic run as *GENE*; and its
+    section's page size, orientation and margins."""
+    from xml.etree import ElementTree as ET
+    with zipfile.ZipFile(path) as z:
+        root = ET.fromstring(z.read("word/document.xml"))
+
+    def runs(p):
+        out, bold = [], []
+        for r in p.iter(f"{W}r"):
+            t = "".join(x.text or "" for x in r.iter(f"{W}t"))
+            rpr = r.find(f"{W}rPr")
+            it = rpr is not None and rpr.find(f"{W}i") is not None
+            out.append(f"*{t}*" if it else t)
+            if rpr is not None and rpr.find(f"{W}b") is not None:
+                bold.append(t)
+        return "".join(out), bold
+
+    blocks = []
+    body = root.find(f"{W}body")
+    for el in body:
+        if el.tag == f"{W}p":
+            blocks.append(("p",) + runs(el))
+        elif el.tag == f"{W}tbl":
+            rows = [[runs(c)[0] for c in tr.findall(f"{W}tc")] for tr in el.findall(f"{W}tr")]
+            blocks.append(("tbl", rows, el))
+    sect = body.find(f"{W}sectPr")
+    size, mar = sect.find(f"{W}pgSz"), sect.find(f"{W}pgMar")
+    page = {"w": int(size.get(f"{W}w")), "h": int(size.get(f"{W}h")), "orient": size.get(f"{W}orient"),
+            "margins": {k: int(mar.get(f"{W}{k}")) for k in ("top", "right", "bottom", "left")}}
+    return blocks, page
+
+
+def test_the_main_items_hold_the_approved_texts_word_for_word():
+    """E8.11: the main tables' titles, part titles (none printed for Table 3, which has
+    one part) and notes, and the main figures' titles, as the configuration prints them,
+    are the approved texts; the main figures' legends are the manuscript's, not here."""
+    A, cfg = _approved(), _cfg()
+    numbers = L._numbers(cfg)
+    main = {it["content"]: it for it in cfg["main"]}
+    printed = lambda t: L.grouped(L._resolve(t, numbers))        # noqa: E731
+    for c, a in A["main_tables"].items():
+        it = main[c]
+        assert it["number"] == a["number"] and printed(it["title"]) == a["title"], c
+        assert [printed(n) for n in it["notes"]] == [a["notes"]], c
+        titles = [t for t in a["parts"].values()]
+        if len(titles) == 1:
+            assert titles == [None] and len(it["parts"]) == 1 and "title" not in it["parts"][0], c
+        else:
+            assert [printed(p["title"]) for p in it["parts"]] == titles, c
+    for c, a in A["main_figures"].items():
+        assert main[c]["number"] == a["number"] and printed(main[c]["title"]) == a["title"], c
+        assert "legend" not in main[c], c
+
+
+@need_out
+def test_each_main_table_is_an_editable_file_as_approved():
+    """E8.11: each main table's file holds "Table N." in bold and its title, each part's
+    title above its table, its tables cell for cell as the CSVs the stage wrote (italics as
+    runs), and the notes in one paragraph below, all the approved texts; it is listed with
+    the table's files and in the manifest."""
+    A, cfg = _approved(), _cfg()
+    c = pd.read_csv(OUT / "contents.csv", dtype=str, keep_default_na=False).set_index("content")
+    manifest = pd.read_csv(OUT / "manifest.csv", dtype=str, keep_default_na=False)
+    for it in [i for i in cfg["main"] if i["kind"] == "table"]:
+        a = A["main_tables"][it["content"]]
+        path = OUT / "main" / f"{it['content']}.docx"
+        blocks, page = _docx(path)
+        kinds = [b[0] for b in blocks]
+        parts = [t for t in a["parts"].values() if t]
+        want = ["p"] + (["p", "tbl"] * len(parts) if parts else ["tbl"]) + ["p"]
+        assert kinds == want, it["content"]
+        assert blocks[0][1] == f"{it['number']}. {a['title']}" and blocks[0][2] == [f"{it['number']}."]
+        assert [b[1] for b in blocks[1:-1] if b[0] == "p"] == [f"({chr(97 + k)}) {t}" for k, t in enumerate(parts)]
+        assert blocks[-1][1] == a["notes"] and not blocks[-1][2]
+        tables = [b[1] for b in blocks if b[0] == "tbl"]
+        for part, rows in zip(it["parts"], tables):
+            assert rows == L.written_rows(OUT / "main" / L._part_path(Path("."), it, part).name), it["content"]
+        assert c.loc[it["content"], "files"].endswith(f"phase1/reports/evidence/layout/main/{it['content']}.docx")
+        assert c.loc[it["content"], "title"] == a["title"] and c.loc[it["content"], "notes"] == a["notes"]
+        assert f"phase1/reports/evidence/layout/main/{it['content']}.docx" in set(manifest.file)
+
+
+@need_out
+def test_the_main_table_files_are_a4_ruled_across_only_and_reproducible():
+    """E8.11: A4, margins of 2.5 cm, Tables 2 and 4 turned (wider than the upright page),
+    Arial at 8 pt in the table and 9 pt around it; each table ruled at its top, below its
+    header and at its foot, every rule at least 1 pt, with no rule down and no shading; the
+    file's members dated as the workbook's, so that it is the same bytes on every run."""
+    import xml.etree.ElementTree as ET
+    cfg = _cfg()
+    margin = round(25 * 1440 / 25.4)
+    turned = {"evidence_tiers_and_thresholds", "practical_performance"}
+    for it in [i for i in cfg["main"] if i["kind"] == "table"]:
+        path = OUT / "main" / f"{it['content']}.docx"
+        blocks, page = _docx(path)
+        a4 = (11906, 16838) if it["content"] not in turned else (16838, 11906)
+        assert (page["w"], page["h"]) == a4 and (page["orient"] == "landscape") == (it["content"] in turned)
+        assert set(page["margins"].values()) == {margin}
+        with zipfile.ZipFile(path) as z:
+            assert {i.date_time for i in z.infolist()} == {L.ZIP_TIME}
+            xml = z.read("word/document.xml").decode()
+        assert "w:shd" not in xml and "w:vMerge" not in xml
+        assert set(re.findall(r'w:rFonts w:ascii="([^"]+)"', xml)) == {"Arial"}
+        for _, rows, tbl in [b for b in blocks if b[0] == "tbl"]:
+            borders = tbl.find(f"{W}tblPr/{W}tblBorders")
+            for side in ("top", "bottom"):
+                e = borders.find(f"{W}{side}")
+                assert e.get(f"{W}val") == "single" and int(e.get(f"{W}sz")) >= 8
+            for side in ("left", "right", "insideH", "insideV"):
+                assert borders.find(f"{W}{side}").get(f"{W}val") == "nil"
+            trs = tbl.findall(f"{W}tr")
+            for k, tr in enumerate(trs):
+                for tc in tr.findall(f"{W}tc"):
+                    b = tc.find(f"{W}tcPr/{W}tcBorders")
+                    if k == 0:
+                        assert [x.tag for x in b] == [f"{W}bottom"] and int(b[0].get(f"{W}sz")) >= 8
+                    else:
+                        assert b is None
+            sizes = {int(s.get(f"{W}val")) for s in tbl.iter(f"{W}sz")}
+            assert sizes == {16}
+        outside = ET.fromstring(xml)
+        texts = [p for p in outside.find(f"{W}body") if p.tag == f"{W}p"]
+        assert {int(s.get(f"{W}val")) for p in texts for s in p.iter(f"{W}sz")} == {18}
+
+
+def test_a_main_table_wider_than_the_turned_page_stops_the_run():
+    cfg = _cfg()
+    narrow = [["Gene", "N"], ["*RAD51C*", "1,152"]]
+    assert L.page_for([narrow], cfg)[0] is False
+    wide = [["Head"] * 12, ["supercalifragilistic"] * 12]
+    with pytest.raises(SystemExit, match="turned page"):
+        L.page_for([wide], cfg)
+    turned = [["Head"] * 9, ["a rather longer cell text"] * 9]
+    landscape, widths = L.page_for([turned], cfg)
+    assert landscape and abs(sum(widths[0]) - 247) < 1e-6
+    # Arial's widths, from Helvetica's metrics: an uppercase gene name is wider than its
+    # letters' count suggests, a word of i, t and f narrower
+    assert L.text_mm("RAD51C", 8) > L.text_mm("specificity", 8) * 0.8
+    assert abs(L.text_mm("0", 10) - 0.556 * 10 * 25.4 / 72) < 1e-9
+
+
+def test_table_4_stops_if_its_notes_misstate_the_band_it_leaves_out(tmp_path, monkeypatch):
+    monkeypatch.chdir(PHASE1)
+    cfg = L.load_config()
+    item = dict(next(i for i in cfg["main"] if i["content"] == "practical_performance"))
+    L.table_practical_performance(dict(item), tmp_path, cfg)                       # as approved
+    item["notes"] = [item["notes"][0].replace("with 3 P/LP variants", "with 4 P/LP variants")]
+    with pytest.raises(SystemExit, match="do not say"):
+        L.table_practical_performance(item, tmp_path, cfg)

@@ -1,0 +1,10 @@
+pipeline_from_20261110T031712Z.json: superseded, kept (the run records' rule: a run that does not count keeps its record).
+
+An image run of E8 commit 5 made before a rename in the code it ran: the layout's reader of
+the CSVs it has written, read_table in src/evid_layout.py, was renamed written_rows, because
+the read-back guard (phase1/tests/test_evid_read_back.py) reads "read_table(" as pandas'
+default parser, and check_e8_part2.py calls it by the new name. Nothing else changed. The
+run that counts was made after the rename, in the same image: pipeline_from_20261110T033103Z
+(every output byte for byte as this run wrote it), check_scope_20261110T033218Z (6 files
+differ from 754bf4f, 0 outside the scope) and check_e8_part2_20261110T033314Z (0 checks
+failed).

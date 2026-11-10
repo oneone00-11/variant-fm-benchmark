@@ -1,0 +1,255 @@
+{
+ "script": "scripts/stage_E8/check_e8_part2.py",
+ "argv": [
+  "scripts/stage_E8/check_e8_part2.py",
+  "--commit",
+  "5",
+  "--base",
+  "754bf4f",
+  "--manuscript",
+  "results/scratch/manuscript_d39ac3fb.docx"
+ ],
+ "git_commit": "754bf4f0f676fb95f09c375450a29e02c227860e",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E8/check_e8_part2.py": "ccfa76a63a4a9c69958b2896cdf0a90022c700da4809867f75431fdacee01819",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-10T03:32:24+00:00",
+ "end_utc": "2026-11-10T03:33:14+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "base": "754bf4f",
+  "commit": 5,
+  "approved_texts_file_is_the_authors": true,
+  "manuscript_sha256": "d39ac3fbb35d1394c34e7fc76184eb249b15d94153b5e2fd1a4664478d2d6617",
+  "manuscript_table_paragraphs_are_the_approved_texts": {
+   "ok": true,
+   "value": {
+    "analysis_set_composition": {
+     "paragraphs": 1,
+     "equal": true,
+     "bold": true,
+     "part_lines": [
+      1,
+      1
+     ]
+    },
+    "evidence_tiers_and_thresholds": {
+     "paragraphs": 1,
+     "equal": true,
+     "bold": true,
+     "part_lines": [
+      1,
+      1
+     ]
+    },
+    "published_cut_point_by_clinvar_status": {
+     "paragraphs": 1,
+     "equal": true,
+     "bold": true,
+     "part_lines": []
+    },
+    "practical_performance": {
+     "paragraphs": 1,
+     "equal": true,
+     "bold": true,
+     "part_lines": [
+      1,
+      1
+     ]
+    }
+   }
+  },
+  "configuration_prints_the_approved_main_texts": {
+   "ok": true,
+   "value": []
+  },
+  "files_are_the_bases_and_the_four_main_table_files": {
+   "ok": true,
+   "value": [
+    "main/analysis_set_composition.docx",
+    "main/evidence_tiers_and_thresholds.docx",
+    "main/practical_performance.docx",
+    "main/published_cut_point_by_clinvar_status.docx"
+   ]
+  },
+  "only_contents_and_manifest_differ": {
+   "ok": true,
+   "value": [
+    "contents.csv",
+    "manifest.csv"
+   ]
+  },
+  "contents_same_rows_and_columns": true,
+  "contents_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "contents_changed_fields": {
+   "title": 7,
+   "notes": 4,
+   "files": 4
+  },
+  "manifest_rows_the_bases_and_the_four_files_after_their_tables": true,
+  "manifest_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "manifest_hashes_true": true,
+  "main_table_files_as_approved_and_ruled_across_only": {
+   "ok": true,
+   "value": []
+  },
+  "main_table_files_table_type_8pt": {
+   "ok": true,
+   "value": {
+    "main/analysis_set_composition.by_gene.csv": [
+     16
+    ],
+    "main/analysis_set_composition.by_clinvar_status.csv": [
+     16
+    ],
+    "main/evidence_tiers_and_thresholds.tiers.csv": [
+     16
+    ],
+    "main/evidence_tiers_and_thresholds.thresholds.csv": [
+     16
+    ],
+    "main/published_cut_point_by_clinvar_status.csv": [
+     16
+    ],
+    "main/practical_performance.seven_genes.csv": [
+     16
+    ],
+    "main/practical_performance.clinvar.csv": [
+     16
+    ]
+   }
+  },
+  "cells_mode_every_number_matches": {
+   "ok": true,
+   "value": {
+    "Table 1": {
+     "numbers": 98,
+     "constant": 3,
+     "match": 95,
+     "mismatch": 0,
+     "cannot_bind": 0,
+     "not_in_table": 0,
+     "problems": []
+    },
+    "Table 2": {
+     "numbers": 167,
+     "constant": 56,
+     "match": 111,
+     "mismatch": 0,
+     "cannot_bind": 0,
+     "not_in_table": 0,
+     "problems": []
+    },
+    "Table 3": {
+     "numbers": 30,
+     "constant": 12,
+     "match": 18,
+     "mismatch": 0,
+     "cannot_bind": 0,
+     "not_in_table": 0,
+     "problems": []
+    },
+    "Table 4": {
+     "numbers": 166,
+     "constant": 24,
+     "match": 142,
+     "mismatch": 0,
+     "cannot_bind": 0,
+     "not_in_table": 0,
+     "problems": []
+    }
+   }
+  },
+  "cells_mode_on_the_files": {
+   "Table 1": {
+    "numbers": 98,
+    "constant": 3,
+    "match": 95,
+    "mismatch": 0,
+    "cannot_bind": 0,
+    "not_in_table": 0,
+    "problems": []
+   },
+   "Table 2": {
+    "numbers": 167,
+    "constant": 56,
+    "match": 111,
+    "mismatch": 0,
+    "cannot_bind": 0,
+    "not_in_table": 0,
+    "problems": []
+   },
+   "Table 3": {
+    "numbers": 30,
+    "constant": 12,
+    "match": 18,
+    "mismatch": 0,
+    "cannot_bind": 0,
+    "not_in_table": 0,
+    "problems": []
+   },
+   "Table 4": {
+    "numbers": 166,
+    "constant": 24,
+    "match": 142,
+    "mismatch": 0,
+    "cannot_bind": 0,
+    "not_in_table": 0,
+    "problems": []
+   }
+  },
+  "no_provisional": {
+   "ok": true,
+   "value": []
+  },
+  "no_revision_code": {
+   "ok": true,
+   "value": []
+  },
+  "no_v5": {
+   "ok": true,
+   "value": []
+  },
+  "no_Table_3b": {
+   "ok": true,
+   "value": []
+  },
+  "no_number_of_this_paper_left_fixed": {
+   "ok": true,
+   "value": []
+  },
+  "the_files_name_their_tables_and_others_by_the_configuration": {
+   "ok": true,
+   "value": [
+    "Table Q1. Composition of the analysis set. (a) By gene. (b) ",
+    "(a) By gene",
+    "(b) By ClinVar record status, 3–50 bp",
+    "Labelled variants are those the assay calls damaging or norm",
+    "Table Q2. Evidence tier of each predictor, and the threshold",
+    "(a) In-sample tier, and held-out genes clearing each tier’s "
+   ]
+  }
+ }
+}
