@@ -16,7 +16,10 @@ Matching is at the printed precision: a token is matched when a pool value round
 to it at half a unit in its last printed digit. A number printed as a percentage
 ("%" or "per cent") is also matched against a stored proportion times one hundred,
 because the tables store proportions and the text prints percentages; a number not
-printed as a percentage is matched only as it stands.
+printed as a percentage is matched only as it stands. The first number of a range
+whose second carries the sign, the number followed at once by an en dash or a hyphen
+and a number with "%", is printed as a percentage too: in "55–67%" both numbers are,
+in "55–67" and "3–50 bp" neither is (E8, 2026-11-10).
 
 A token is declared by what it is in its sentence, not by its digits alone: "95" is
 the confidence level in "95% CI" and a measurement in "at least 95% of the cases",
@@ -196,9 +199,15 @@ IDENTIFIER = re.compile(r"(?:https?://\S+|doi:\S+|10\.\d{4,}/\S+|urn:\S+|\bzenod
                         r"\bNM_\d+(?:\.\d+)?|\b[0-9a-f]{7,40}\b)", re.I)
 
 
+# a range's second number with the percent sign, right after the first: "–67%" in "55–67%"
+RANGE_TO_PERCENT = re.compile(r"[–-]\d[\d,]*(?:\.\d+)?%")
+
+
 def is_percent(printed: str, after: str) -> bool:
-    """Printed as a percentage: with a percent sign, or followed by "per cent"."""
-    return printed.endswith("%") or bool(PER_CENT.match(after))
+    """Printed as a percentage: with a percent sign, or followed by "per cent", or
+    followed at once by an en dash or a hyphen and a number with a percent sign (the
+    first number of "55–67%")."""
+    return printed.endswith("%") or bool(PER_CENT.match(after)) or bool(RANGE_TO_PERCENT.match(after))
 
 
 def tolerance(tok: str) -> float:

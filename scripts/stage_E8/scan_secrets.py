@@ -20,7 +20,9 @@ REPO = Path(__file__).resolve().parents[2]
 E8 = ["scripts/stage_E8", "docs/evidence-change-log.md", "phase1/config/layout.yaml",
       "phase1/src/evid_layout.py", "phase1/tests/test_evid_layout.py",
       "phase1/src/evid_variant_list.py", "phase1/tests/test_evid_variant_list.py",
-      "phase1/tests/fixtures", "phase1/reports/evidence/layout", "tests/test_supplementary_pdf.py"]
+      "phase1/tests/fixtures", "phase1/reports/evidence/layout", "tests/test_supplementary_pdf.py",
+      "docs/manuscript_bindings_v6.tsv", "scripts/check_evidence_manuscript_numbers.py",
+      "tests/test_evidence_manuscript_numbers.py"]
 SKIP_SUFFIXES = {".db", ".fa", ".fai", ".gtf", ".bgz", ".png", ".pdf", ".pyc"}
 
 

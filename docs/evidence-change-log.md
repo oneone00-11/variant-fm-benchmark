@@ -2529,3 +2529,38 @@ supplementary notes, so it is not committed: the script that writes it and its t
   limit. `tests/test_supplementary_pdf.py` checks the assembled document on a small
   manuscript made in the test, and the whole build where the manuscript and LibreOffice
   are at hand.
+
+## The v6 text's numbers bound to their cells, and checked; the gate reads "55–67%" as two percentages (stage E8, commit 7, 2026-11-10)
+
+Why: E8 part two, E8.13, and the author's decision of 2026-11-10 on the one number the gate
+could not bind. No output changes (`scripts/stage_E8/scope_e8_c7.json` declares none).
+
+- **The number gate** (`scripts/check_evidence_manuscript_numbers.py`): a number followed
+  at once by an en dash or a hyphen and a number with "%" is printed as a percentage, so
+  that in "55–67%" both numbers are, as a reader takes them; in "55–67" and "3–50 bp"
+  neither is (`is_percent`; the file's docstring says so; a test in
+  `tests/test_evidence_manuscript_numbers.py`). Before the change the 55 of "SpliceAI’s
+  55–67%" could not be bound: read as a plain 55, it may not be held to a proportion
+  times one hundred, and no output holds 55.
+- **v5 checked again, before and after** (`scripts/stage_E8/rerun_v5.py`, in the reference
+  image): `scripts/stage_E5/check_bindings_v5.py` as it stands (the cells mode against
+  E5.0 number by number: 0 differences; 104 of 106 bindings read at 8e0d609, the two
+  expected exceptions), and the bound mode, the self-test and the pool mode on the v5
+  texts. Every mode's output after the change is the same as before it, line for line.
+  v5's table and scripts are unchanged.
+- **`docs/manuscript_bindings_v6.tsv`**, by `scripts/stage_E8/build_bindings_v6.py`: the
+  v6 text (the F3 file's abstract, the main text with the figure legends, the tables'
+  titles and notes, and the supplementary notes; read only) written as the gate reads it,
+  and each of its 235 numbers bound: 120 measured, to the one cell its sentence means (v5's
+  way: the threshold and fold-count tables, the external summary, the ClinVar checks,
+  walker2023.yaml's published values, the DDX3X manifest, ...), 115 constants with their
+  reasons (the gate's, or one written where the gate's does not fit the sentence). Two
+  numbers whose sources carry comment lines above their header, which the gate's reader
+  does not skip, are bound to the supplementary tables the layout prints from them.
+- **`scripts/stage_E8/check_bindings_v6.py`**, in the reference image: the pool mode (the
+  manuscript and the two texts), the bound mode (texts tagged from the bindings) and the
+  self-test (6 of 6 caught), the cells mode on the texts (113 of 113 and 7 of 7 measured
+  numbers match), and the cells mode on the manuscript's Tables 1-4 and on the four
+  editable files of E8.11 (every number matches); with a tally of the numbers the gate
+  leaves out (identifiers, citations, labels, digits within words, the reference lists,
+  the notes' list numbers).

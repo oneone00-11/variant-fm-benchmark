@@ -380,3 +380,22 @@ def test_the_pool_mode_compares_percentages_only_when_printed(monkeypatch, tmp_p
     assert gate.pool_check(md) == 1
     out = capsys.readouterr().out
     assert "tokens: 1 matched, 0 declared, 1 unmatched" in out and "UNMATCHED 12.34" in out
+
+
+# ---------------------------------------------------------------------------
+# E8.13: the first number of a range whose second number carries the percent sign
+# ---------------------------------------------------------------------------
+def test_a_range_with_the_percent_sign_on_its_second_number_is_two_percentages():
+    """"55–67%": both numbers are printed as percentages (with a hyphen too); "55–67" and
+    "3–50 bp" have no sign, and neither of their numbers is. The dash must follow the
+    first number at once."""
+    assert gate.is_percent("55", "–67% of the held-out pairs")
+    assert gate.is_percent("55", "-67%")
+    assert gate.is_percent("67%", " of the held-out pairs")
+    assert not gate.is_percent("55", "–67 of the held-out pairs")
+    assert not gate.is_percent("3", "–50 bp from the exon")
+    assert not gate.is_percent("55", " –67%")
+    text = ("# Abstract\n\nSpliceAI cleared 55–67% of the pairs. The range was 55–67 pairs. "
+            "The pooled window is 3–50 bp.\n\n# References\n")
+    got = [(t.printed, t.context.percent) for t in gate.read_tokens(text)]
+    assert got == [("55", True), ("67%", True), ("55", False), ("67", False), ("3", False), ("50", False)]
