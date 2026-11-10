@@ -1,0 +1,1011 @@
+{
+ "script": "scripts/stage_E8/check_e8_part2.py",
+ "argv": [
+  "scripts/stage_E8/check_e8_part2.py",
+  "--commit",
+  "8",
+  "--base",
+  "87b8515"
+ ],
+ "git_commit": "87b85155e255f10d09f1f9556bed1d23d5c9db33",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E8/check_e8_part2.py": "8dde8c424adfcfaf9e68f28a3284314b09fcb0641a58e432e7f3e6a7666b17d0",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-10T08:35:27+00:00",
+ "end_utc": "2026-11-10T08:35:57+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "base": "87b8515",
+  "commit": 8,
+  "config_s32_rows_map": true,
+  "config_s32_rows_column_uses_the_map": true,
+  "config_s32_one_replacement_added": true,
+  "config_s32_names_supplementary_table_s31": true,
+  "config_workbook_block_and_gene_symbols_new": {
+   "ok": true,
+   "value": {
+    "workbook": {
+     "font_pt": 10,
+     "line_pt": 12.75,
+     "min_width": 8,
+     "max_width": 50,
+     "max_word_width": 80,
+     "header_lines": 3,
+     "paragraph_width": 90
+    },
+    "gene_symbols": [
+     "BAP1",
+     "BARD1",
+     "BRCA1",
+     "BRCA2",
+     "PALB2",
+     "RAD51C",
+     "VHL",
+     "DDX3X",
+     "TP53",
+     "CTCF",
+     "SFPQ",
+     "RAD51D",
+     "XRCC2",
+     "SBDS",
+     "ATM"
+    ]
+   }
+  },
+  "config_nothing_else_changed": true,
+  "gene_symbols_the_fourteen_and_atm": {
+   "ok": true,
+   "value": [
+    "BAP1",
+    "BARD1",
+    "BRCA1",
+    "BRCA2",
+    "PALB2",
+    "RAD51C",
+    "VHL",
+    "DDX3X",
+    "TP53",
+    "CTCF",
+    "SFPQ",
+    "RAD51D",
+    "XRCC2",
+    "SBDS",
+    "ATM"
+   ]
+  },
+  "symbol_like_words_not_in_the_list": {
+   "PP3": 6471,
+   "BP4": 5850,
+   "GPN": 1105,
+   "MSA": 1105,
+   "CADD": 1084,
+   "LOGO": 425,
+   "GPU": 106,
+   "AUROC": 83,
+   "FDR": 57,
+   "BP7": 38,
+   "VUS": 23,
+   "SGE": 20,
+   "ENIGMA": 18,
+   "RNA": 16,
+   "DATA": 13,
+   "GN077": 12,
+   "RFS": 10,
+   "HGVS": 10,
+   "API": 10,
+   "PVS1": 10,
+   "GN092": 9,
+   "GN097": 9,
+   "GN078": 9,
+   "CC0": 8,
+   "PMC": 8,
+   "VCV": 8,
+   "RCV": 8,
+   "PMID": 7,
+   "UCSC": 7,
+   "HAP1": 7,
+   "URN": 6,
+   "SVI": 6,
+   "S31": 6,
+   "ALL4": 5,
+   "GPL": 4,
+   "ENCODE": 4,
+   "AVI": 4,
+   "SHA": 3,
+   "PPV": 3,
+   "PMC6181777": 2,
+   "SNV": 2,
+   "HTTP": 2,
+   "PMC11821525": 2,
+   "PMC12147941": 2,
+   "STAR": 2,
+   "PHRED": 2,
+   "MIT": 2,
+   "NPV": 2,
+   "AUPRC": 2,
+   "DOI": 2,
+   "LOF1": 1,
+   "LOF2": 1,
+   "ENST00000644876": 1,
+   "IGVF": 1,
+   "D14": 1,
+   "PMC11250436": 1,
+   "BBI": 1,
+   "GMM": 1,
+   "KURIS": 1,
+   "NDD": 1,
+   "PMC11250367": 1,
+   "GTF": 1,
+   "HMM": 1,
+   "NVIDIA": 1,
+   "A6000": 1,
+   "S24": 1,
+   "UTC": 1,
+   "URL": 1,
+   "ENST00000246868": 1,
+   "MCC": 1,
+   "VCEP": 1,
+   "GN096": 1
+  },
+  "same_files_as_the_base": {
+   "ok": true,
+   "value": []
+  },
+  "only_s32_the_workbooks_contents_and_manifest_differ": {
+   "ok": true,
+   "value": [
+    "contents.csv",
+    "manifest.csv",
+    "submission/supplementary_tables.xlsx",
+    "supplementary/vcep_rules.csv",
+    "supplementary_tables.xlsx"
+   ]
+  },
+  "files_that_differ_from_the_base": [
+   "contents.csv",
+   "manifest.csv",
+   "submission/supplementary_tables.xlsx",
+   "supplementary/vcep_rules.csv",
+   "supplementary_tables.xlsx"
+  ],
+  "s32_source_unchanged": true,
+  "s32_csv_same_comments_header_and_rows": true,
+  "s32_csv_changes_only_the_48_cells": {
+   "ok": true,
+   "value": {
+    "Rows: band_lr -> Band likelihood ratio": 24,
+    "Rows: bp7 -> BP7": 15,
+    "Checked cell for cell against: -> Supplementary Table S31, condition (a)": 6,
+    "Rows: no_specification -> No specification": 3
+   }
+  },
+  "s32_csv_changed_cells": {
+   "Rows: band_lr -> Band likelihood ratio": 24,
+   "Rows: bp7 -> BP7": 15,
+   "Checked cell for cell against: -> Supplementary Table S31, condition (a)": 6,
+   "Rows: no_specification -> No specification": 3
+  },
+  "contents_changes_only_s32s_one_page_estimate": {
+   "ok": true,
+   "value": [
+    [
+     "Supplementary Table S32",
+     "vcep_rules",
+     "fits_one_page_estimate",
+     "no (55 lines, 870 mm wide)",
+     "no (55 lines, 877 mm wide)"
+    ]
+   ]
+  },
+  "contents_changed_fields": [
+   [
+    "Supplementary Table S32",
+    "vcep_rules",
+    "fits_one_page_estimate",
+    "no (55 lines, 870 mm wide)",
+    "no (55 lines, 877 mm wide)"
+   ]
+  ],
+  "manifest_changes_are_the_sizes_and_hashes_of_the_files_that_differ": {
+   "ok": true,
+   "value": [
+    [
+     "phase1/reports/evidence/layout/supplementary/vcep_rules.csv",
+     "bytes"
+    ],
+    [
+     "phase1/reports/evidence/layout/supplementary/vcep_rules.csv",
+     "sha256"
+    ],
+    [
+     "phase1/reports/evidence/layout/supplementary_tables.xlsx",
+     "bytes"
+    ],
+    [
+     "phase1/reports/evidence/layout/supplementary_tables.xlsx",
+     "sha256"
+    ],
+    [
+     "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx",
+     "bytes"
+    ],
+    [
+     "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx",
+     "sha256"
+    ],
+    [
+     "phase1/reports/evidence/layout/contents.csv",
+     "sha256"
+    ]
+   ]
+  },
+  "manifest_hashes_true": true,
+  "manifest_changed_fields": [
+   [
+    "phase1/reports/evidence/layout/supplementary/vcep_rules.csv",
+    "bytes"
+   ],
+   [
+    "phase1/reports/evidence/layout/supplementary/vcep_rules.csv",
+    "sha256"
+   ],
+   [
+    "phase1/reports/evidence/layout/supplementary_tables.xlsx",
+    "bytes"
+   ],
+   [
+    "phase1/reports/evidence/layout/supplementary_tables.xlsx",
+    "sha256"
+   ],
+   [
+    "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx",
+    "bytes"
+   ],
+   [
+    "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx",
+    "sha256"
+   ],
+   [
+    "phase1/reports/evidence/layout/contents.csv",
+    "sha256"
+   ]
+  ],
+  "styles_supplementary_tables.xlsx_numbers_at_the_top_and_three_wrapping_text_styles": {
+   "ok": true,
+   "value": {
+    "xfs": [
+     34,
+     37
+    ]
+   }
+  },
+  "styles_submission_numbers_at_the_top_and_three_wrapping_text_styles": {
+   "ok": true,
+   "value": {
+    "xfs": [
+     34,
+     37
+    ]
+   }
+  },
+  "repository_same_sheets": {
+   "ok": true,
+   "value": [
+    "README",
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+   ]
+  },
+  "repository_values_change_only_in_s32s_48_cells": {
+   "ok": true,
+   "value": 48
+  },
+  "repository_styles_by_role": {
+   "ok": true,
+   "value": []
+  },
+  "repository_italics_only_the_gene_symbols_of_the_tables_cells": {
+   "ok": true,
+   "value": []
+  },
+  "repository_widths_merges_and_heights": {
+   "ok": true,
+   "value": []
+  },
+  "repository_sheets": {
+   "README": {
+    "columns": 9,
+    "width": 455.59,
+    "merged_to": 2,
+    "fewest_columns": true,
+    "paragraphs": 3,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S1": {
+    "columns": 16,
+    "width": 436.75,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 3,
+    "paragraphs_given_heights": 3,
+    "tallest_paragraph_lines": 3
+   },
+   "S2": {
+    "columns": 23,
+    "width": 560.94,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 6,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S3": {
+    "columns": 8,
+    "width": 143.6,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S4": {
+    "columns": 18,
+    "width": 735.9,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 1,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S5": {
+    "columns": 6,
+    "width": 259.43,
+    "merged_to": 2,
+    "fewest_columns": true,
+    "paragraphs": 1,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S6": {
+    "columns": 7,
+    "width": 104.73,
+    "merged_to": 6,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 3
+   },
+   "S7": {
+    "columns": 15,
+    "width": 336.89,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 3
+   },
+   "S8": {
+    "columns": 15,
+    "width": 236.89,
+    "merged_to": 7,
+    "fewest_columns": true,
+    "paragraphs": 3,
+    "paragraphs_given_heights": 3,
+    "tallest_paragraph_lines": 3
+   },
+   "S9": {
+    "columns": 8,
+    "width": 119.17,
+    "merged_to": 7,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S10": {
+    "columns": 16,
+    "width": 283.47,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S11": {
+    "columns": 10,
+    "width": 253.31,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 4,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S12": {
+    "columns": 7,
+    "width": 131.45,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 3,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S13": {
+    "columns": 52,
+    "width": 980.89,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 4
+   },
+   "S14": {
+    "columns": 29,
+    "width": 868.38,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 7,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S15": {
+    "columns": 12,
+    "width": 230.18,
+    "merged_to": 6,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S16": {
+    "columns": 10,
+    "width": 250.03,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 4,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S17": {
+    "columns": 56,
+    "width": 1167.46,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 8,
+    "paragraphs_given_heights": 3,
+    "tallest_paragraph_lines": 3
+   },
+   "S18": {
+    "columns": 17,
+    "width": 251.47,
+    "merged_to": 5,
+    "fewest_columns": true,
+    "paragraphs": 12,
+    "paragraphs_given_heights": 3,
+    "tallest_paragraph_lines": 2
+   },
+   "S19": {
+    "columns": 27,
+    "width": 402.49,
+    "merged_to": 8,
+    "fewest_columns": true,
+    "paragraphs": 1,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S20": {
+    "columns": 18,
+    "width": 363.06,
+    "merged_to": 5,
+    "fewest_columns": true,
+    "paragraphs": 6,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 3
+   },
+   "S21": {
+    "columns": 13,
+    "width": 176.76,
+    "merged_to": 7,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S22": {
+    "columns": 22,
+    "width": 390.27,
+    "merged_to": 5,
+    "fewest_columns": true,
+    "paragraphs": 29,
+    "paragraphs_given_heights": 18,
+    "tallest_paragraph_lines": 8
+   },
+   "S23": {
+    "columns": 26,
+    "width": 559.77,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 3
+   },
+   "S24": {
+    "columns": 35,
+    "width": 557.8,
+    "merged_to": 6,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S25": {
+    "columns": 10,
+    "width": 148.04,
+    "merged_to": 6,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 0,
+    "tallest_paragraph_lines": 1
+   },
+   "S26": {
+    "columns": 41,
+    "width": 929.15,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 9,
+    "paragraphs_given_heights": 3,
+    "tallest_paragraph_lines": 3
+   },
+   "S27": {
+    "columns": 11,
+    "width": 241.45,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S28": {
+    "columns": 13,
+    "width": 213.18,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 10,
+    "paragraphs_given_heights": 9,
+    "tallest_paragraph_lines": 5
+   },
+   "S29": {
+    "columns": 19,
+    "width": 295.2,
+    "merged_to": 7,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S30": {
+    "columns": 20,
+    "width": 303.94,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 26,
+    "paragraphs_given_heights": 3,
+    "tallest_paragraph_lines": 2
+   },
+   "S31": {
+    "columns": 10,
+    "width": 184.89,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 6,
+    "paragraphs_given_heights": 4,
+    "tallest_paragraph_lines": 3
+   },
+   "S32": {
+    "columns": 38,
+    "width": 881.1,
+    "merged_to": 5,
+    "fewest_columns": true,
+    "paragraphs": 16,
+    "paragraphs_given_heights": 15,
+    "tallest_paragraph_lines": 9
+   },
+   "S33": {
+    "columns": 19,
+    "width": 356.18,
+    "merged_to": 8,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S34": {
+    "columns": 19,
+    "width": 301.22,
+    "merged_to": 10,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   }
+  },
+  "repository_counts": {
+   "cells": 290184,
+   "text_cells_restyled": 157575,
+   "merged_paragraphs": 188,
+   "rows_given_heights": 101,
+   "columns_given_widths": 675,
+   "cells_newly_italic": 10025,
+   "italic_runs_added": 14590,
+   "number_cells": 132609,
+   "s32_cells": 48
+  },
+  "repository_merged_past_paragraph_width_for_a_tall_paragraph": [],
+  "submission_same_sheets": {
+   "ok": true,
+   "value": [
+    "Contents",
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+   ]
+  },
+  "submission_values_change_only_in_s32s_48_cells": {
+   "ok": true,
+   "value": 48
+  },
+  "submission_styles_by_role": {
+   "ok": true,
+   "value": []
+  },
+  "submission_italics_only_the_gene_symbols_of_the_tables_cells": {
+   "ok": true,
+   "value": []
+  },
+  "submission_widths_merges_and_heights": {
+   "ok": true,
+   "value": []
+  },
+  "submission_sheets": {
+   "Contents": {
+    "columns": 2,
+    "width": 90.01,
+    "merged_to": 2,
+    "fewest_columns": true,
+    "paragraphs": 3,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 15
+   },
+   "S1": {
+    "columns": 16,
+    "width": 436.75,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 3,
+    "paragraphs_given_heights": 3,
+    "tallest_paragraph_lines": 3
+   },
+   "S2": {
+    "columns": 23,
+    "width": 560.94,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 6,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S3": {
+    "columns": 8,
+    "width": 143.6,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S4": {
+    "columns": 18,
+    "width": 735.9,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 1,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S7": {
+    "columns": 15,
+    "width": 336.89,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 3
+   },
+   "S8": {
+    "columns": 15,
+    "width": 236.89,
+    "merged_to": 7,
+    "fewest_columns": true,
+    "paragraphs": 3,
+    "paragraphs_given_heights": 3,
+    "tallest_paragraph_lines": 3
+   },
+   "S9": {
+    "columns": 8,
+    "width": 119.17,
+    "merged_to": 7,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S10": {
+    "columns": 16,
+    "width": 283.47,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S11": {
+    "columns": 10,
+    "width": 253.31,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 4,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S13": {
+    "columns": 52,
+    "width": 980.89,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 4
+   },
+   "S14": {
+    "columns": 29,
+    "width": 868.38,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 7,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S15": {
+    "columns": 12,
+    "width": 230.18,
+    "merged_to": 6,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S16": {
+    "columns": 10,
+    "width": 250.03,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 4,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S17": {
+    "columns": 56,
+    "width": 1167.46,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 8,
+    "paragraphs_given_heights": 3,
+    "tallest_paragraph_lines": 3
+   },
+   "S18": {
+    "columns": 17,
+    "width": 251.47,
+    "merged_to": 5,
+    "fewest_columns": true,
+    "paragraphs": 3,
+    "paragraphs_given_heights": 3,
+    "tallest_paragraph_lines": 2
+   },
+   "S19": {
+    "columns": 27,
+    "width": 402.49,
+    "merged_to": 8,
+    "fewest_columns": true,
+    "paragraphs": 1,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S20": {
+    "columns": 18,
+    "width": 363.06,
+    "merged_to": 5,
+    "fewest_columns": true,
+    "paragraphs": 6,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 3
+   },
+   "S21": {
+    "columns": 13,
+    "width": 176.76,
+    "merged_to": 7,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S22": {
+    "columns": 22,
+    "width": 390.27,
+    "merged_to": 5,
+    "fewest_columns": true,
+    "paragraphs": 7,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 6
+   },
+   "S23": {
+    "columns": 26,
+    "width": 559.77,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 3
+   },
+   "S24": {
+    "columns": 35,
+    "width": 557.8,
+    "merged_to": 6,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   },
+   "S26": {
+    "columns": 41,
+    "width": 929.15,
+    "merged_to": 3,
+    "fewest_columns": true,
+    "paragraphs": 9,
+    "paragraphs_given_heights": 3,
+    "tallest_paragraph_lines": 3
+   },
+   "S27": {
+    "columns": 11,
+    "width": 241.45,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S29": {
+    "columns": 19,
+    "width": 295.2,
+    "merged_to": 7,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S30": {
+    "columns": 20,
+    "width": 303.94,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 4,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S31": {
+    "columns": 10,
+    "width": 184.89,
+    "merged_to": 4,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 3
+   },
+   "S32": {
+    "columns": 38,
+    "width": 881.1,
+    "merged_to": 5,
+    "fewest_columns": true,
+    "paragraphs": 5,
+    "paragraphs_given_heights": 5,
+    "tallest_paragraph_lines": 4
+   },
+   "S33": {
+    "columns": 19,
+    "width": 356.18,
+    "merged_to": 8,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 1,
+    "tallest_paragraph_lines": 2
+   },
+   "S34": {
+    "columns": 19,
+    "width": 301.22,
+    "merged_to": 10,
+    "fewest_columns": true,
+    "paragraphs": 2,
+    "paragraphs_given_heights": 2,
+    "tallest_paragraph_lines": 2
+   }
+  },
+  "submission_counts": {
+   "cells": 289048,
+   "text_cells_restyled": 156881,
+   "merged_paragraphs": 102,
+   "rows_given_heights": 58,
+   "columns_given_widths": 625,
+   "cells_newly_italic": 9984,
+   "italic_runs_added": 14549,
+   "number_cells": 132167,
+   "s32_cells": 48
+  },
+  "submission_merged_past_paragraph_width_for_a_tall_paragraph": [],
+  "submission_sheets_are_the_repositorys_less_the_comment_lines_same_widths": {
+   "ok": true,
+   "value": [
+    68,
+    68
+   ]
+  },
+  "comment_lines_left_out_now_and_in_the_base": [
+   68,
+   68
+  ],
+  "sheets_merged_to_another_column_in_the_two_workbooks": [],
+  "summary": {
+   "repository": {
+    "cells": 290184,
+    "text_cells_restyled": 157575,
+    "merged_paragraphs": 188,
+    "rows_given_heights": 101,
+    "columns_given_widths": 675,
+    "cells_newly_italic": 10025,
+    "italic_runs_added": 14590,
+    "number_cells": 132609,
+    "s32_cells": 48,
+    "merged_past_paragraph_width": []
+   },
+   "submission": {
+    "cells": 289048,
+    "text_cells_restyled": 156881,
+    "merged_paragraphs": 102,
+    "rows_given_heights": 58,
+    "columns_given_widths": 625,
+    "cells_newly_italic": 9984,
+    "italic_runs_added": 14549,
+    "number_cells": 132167,
+    "s32_cells": 48,
+    "merged_past_paragraph_width": []
+   }
+  }
+ }
+}

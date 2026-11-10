@@ -112,7 +112,7 @@ def book(data: bytes) -> dict[str, list[dict]]:
     out = {}
     for name, i in re.findall(r'<sheet name="([^"]+)" sheetId="(\d+)"', z.read("xl/workbook.xml").decode()):
         rows: list[dict] = []
-        for r, body in re.findall(r'<row r="(\d+)">(.*?)</row>', z.read(f"xl/worksheets/sheet{i}.xml").decode()):
+        for r, body in re.findall(r'<row r="(\d+)"[^>]*>(.*?)</row>', z.read(f"xl/worksheets/sheet{i}.xml").decode()):
             while len(rows) < int(r) - 1:
                 rows.append({})
             row = {}
@@ -133,7 +133,7 @@ def book_xml(data: bytes) -> dict[str, list[list[str]]]:
     for name, i in re.findall(r'<sheet name="([^"]+)" sheetId="(\d+)"', z.read("xl/workbook.xml").decode()):
         xml = z.read(f"xl/worksheets/sheet{i}.xml").decode()
         out[_unxml(name)] = [re.findall(r'<c r="[A-Z]+\d+"(.*?)</c>', body)
-                             for body in re.findall(r'<row r="\d+">(.*?)</row>', xml)]
+                             for body in re.findall(r'<row r="\d+"[^>]*>(.*?)</row>', xml)]
     return out
 
 
@@ -179,7 +179,7 @@ def cut(rows: list[dict], n_parts: int, lengths: list[int]) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--commit", type=int, required=True, choices=[4, 5])
+    ap.add_argument("--commit", type=int, required=True, choices=[4, 5, 8])
     ap.add_argument("--base", default=None, help="the commit before (default: HEAD)")
     ap.add_argument("--manuscript", default=None, help="commit 5: the manuscript, read only")
     args = ap.parse_args()
@@ -212,6 +212,8 @@ def main() -> None:
             commit4(cfg, old_cfg, base, check, log, np, Image, L, yaml)
         if args.commit == 5:
             commit5(cfg, old_cfg, base, check, log, L, yaml, args.manuscript)
+        if args.commit == 8:
+            commit8(cfg, old_cfg, base, check, log, L, yaml)
         if failed:
             print(f"{len(failed)} check(s) failed: {failed}")
             raise SystemExit(1)
@@ -886,6 +888,311 @@ def q_render(tmp: Path, L) -> list:
     finally:
         L.load_config = orig_load
     return printed_texts(tmp / "layout")
+
+
+# ------------------------------------------------------------------------- commit 8
+# S32's two columns in words (the author's decision of 2026-11-10): each code of "Rows" as
+# printed now, and the table "Checked cell for cell against" names
+VCEP_ROWS = {"band_lr": "Band likelihood ratio", "bp7": "BP7", "no_specification": "No specification"}
+VCEP_CHECKED = ("c6_bp4_bp7.csv, (a) SpliceAI at or below the published cut, 0.1",
+                "Supplementary Table S31, condition (a)")
+VCEP_SOURCE = "phase1/reports/evidence/suppl_analyses/c13_vcep_band_lr.csv"
+
+
+def sheet_parts(data: bytes) -> dict:
+    """A workbook's sheets, each {"cols": widths, "merges": ranges, "rows": [...]}, each
+    row (its height or None, {column: cell}), each cell (kind "n" a number or "s" text,
+    its value: a number as written, a text its runs joined, its style, the text with each
+    italic run marked *GENE*), an empty row (None, {})."""
+    z = zipfile.ZipFile(io.BytesIO(data))
+    out = {}
+    for name, i in re.findall(r'<sheet name="([^"]+)" sheetId="(\d+)"', z.read("xl/workbook.xml").decode()):
+        xml = z.read(f"xl/worksheets/sheet{i}.xml").decode()
+        rows: list = []
+        for r, attrs, body in re.findall(r'<row r="(\d+)"([^>]*)>(.*?)</row>', xml):
+            while len(rows) < int(r) - 1:
+                rows.append((None, {}))
+            ht = re.search(r' ht="([\d.]+)"', attrs)
+            cells = {}
+            for col, cattrs, inner in re.findall(r'<c r="([A-Z]+)\d+"([^>]*)>(.*?)</c>', body):
+                s = re.search(r's="(\d+)"', cattrs)
+                style = int(s.group(1)) if s else 0
+                if 't="inlineStr"' in cattrs:
+                    runs = re.findall(r"<r><rPr>(.*?)</rPr><t[^>]*>(.*?)</t></r>", inner)
+                    if runs:
+                        plain = "".join(_unxml(t) for _, t in runs)
+                    else:
+                        plain = _unxml("".join(re.findall(r"<t[^>]*>(.*?)</t>", inner)))
+                    cells[col] = ("s", plain, style, _xml_text(inner))
+                else:
+                    v = re.search(r"<v>(.*?)</v>", inner).group(1)
+                    cells[col] = ("n", v, style, v)
+            rows.append((float(ht.group(1)) if ht else None, cells))
+        out[_unxml(name)] = {"cols": [float(x) for x in re.findall(r'<col min="\d+" max="\d+" width="([\d.]+)" customWidth="1"/>', xml)],
+                             "merges": re.findall(r'<mergeCell ref="([^"]+)"/>', xml), "rows": rows}
+    return out
+
+
+def _col_index(letters: str) -> int:
+    n = 0
+    for ch in letters:
+        n = n * 26 + ord(ch) - 64
+    return n
+
+
+def paragraph_rows(rows: list) -> set[int]:
+    """The rows (from 1) a sheet sets as paragraphs: every row before its first empty row,
+    and after each empty row the rows before the next of more than one cell (a part's
+    title, its comment lines, the contents' conventions and last sentence)."""
+    out, above = set(), True
+    for r, (_, cells) in enumerate(rows, start=1):
+        if not cells:
+            above = True
+        elif len(cells) > 1:
+            above = False
+        elif above:
+            out.add(r)
+    return out
+
+
+def commit8(cfg, old_cfg, base, check, log, L, yaml) -> None:
+    import copy
+    from collections import Counter
+    raw = yaml.safe_load((PHASE1 / "config" / "layout.yaml").read_text())
+    w, genes = raw["workbook"], raw["gene_symbols"]
+
+    # ------------------------------------------------------------- the configuration
+    print("E8 commit 8: the configuration against the base")
+    old_part = next(it for it in old_cfg["supplementary"] if it["content"] == "vcep_rules")["parts"][0]
+    new_part = next(it for it in raw["supplementary"] if it["content"] == "vcep_rules")["parts"][0]
+    added_replace = {"old": VCEP_CHECKED[0], "new": "{bp4_at_bp7_positions}, condition (a)", "count": 6}
+    check("config_s32_rows_map", raw["display"]["values"].get("vcep_part") == VCEP_ROWS
+          and "vcep_part" not in old_cfg["display"]["values"])
+    check("config_s32_rows_column_uses_the_map", raw["columns"]["vcep_rules"]["part"] == ["Rows", "vcep_part"]
+          and old_cfg["columns"]["vcep_rules"]["part"] == ["Rows", "text"])
+    check("config_s32_one_replacement_added", new_part["replace"] == old_part["replace"] + [added_replace])
+    check("config_s32_names_supplementary_table_s31", L._numbers(raw)["bp4_at_bp7_positions"] == "Supplementary Table S31")
+    check("config_workbook_block_and_gene_symbols_new", "workbook" not in old_cfg and "gene_symbols" not in old_cfg,
+          {"workbook": w, "gene_symbols": genes})
+    rest_new, rest_old = copy.deepcopy(raw), copy.deepcopy(old_cfg)
+    for c in (rest_new, rest_old):
+        c["display"]["values"].pop("vcep_part", None)
+        c["columns"]["vcep_rules"]["part"] = None
+        c.pop("workbook", None)
+        c.pop("gene_symbols", None)
+        next(it for it in c["supplementary"] if it["content"] == "vcep_rules")["parts"][0]["replace"] = None
+    check("config_nothing_else_changed", rest_new == rest_old)
+    training = ["BAP1", "BARD1", "BRCA1", "BRCA2", "PALB2", "RAD51C", "VHL"]
+    external = ["DDX3X", "TP53", "CTCF", "SFPQ", "RAD51D", "XRCC2", "SBDS"]
+    check("gene_symbols_the_fourteen_and_atm", genes == training + external + ["ATM"], genes)
+    # every symbol-like word the tables print that the list leaves out, for the report
+    tables = [it for it in raw["supplementary"] if it["kind"] == "table"]
+    words = Counter()
+    for it in tables:
+        for p in it["parts"]:
+            _, header, rows = csv_cells((OUT / "supplementary" / L._part_path(Path("."), it, p).name).read_bytes())
+            for cell in header + [c for r in rows for c in r]:
+                for m in re.finditer(r"(?<![\w*])[A-Z][A-Z0-9]{1,}\d[A-Z0-9]*(?![\w*])|(?<![\w*])[A-Z]{3,6}(?![\w*])", cell):
+                    if m.group(0) not in genes:
+                        words[m.group(0)] += 1
+    log.note("symbol_like_words_not_in_the_list", dict(words.most_common()))
+    print(f"    symbol-like words in the tables not in the list ({len(words)}):",
+          ", ".join(f"{k} {v}" for k, v in words.most_common(60)))
+
+    # ------------------------------------------------------------- files against the base
+    print("E8 commit 8: the layout's outputs against the base")
+    base_files = sorted(p.split("layout/", 1)[1] for p in _git_ls(base, f"phase1/{OUT}"))
+    now_files = sorted(str(p.relative_to(OUT)) for p in OUT.rglob("*") if p.is_file())
+    check("same_files_as_the_base", base_files == now_files, sorted(set(base_files) ^ set(now_files)))
+    differs = sorted(f for f in base_files if _git_show(base, f"phase1/{OUT}/{f}") != (OUT / f).read_bytes())
+    want = ["contents.csv", "manifest.csv", "submission/supplementary_tables.xlsx", "supplementary/vcep_rules.csv",
+            "supplementary_tables.xlsx"]
+    check("only_s32_the_workbooks_contents_and_manifest_differ", differs == want, differs)
+    log.note("files_that_differ_from_the_base", differs)
+    check("s32_source_unchanged", _git_show(base, VCEP_SOURCE) == (REPO / VCEP_SOURCE).read_bytes())
+    # S32's CSV, cell by cell
+    ca, ha, ra = csv_cells(_git_show(base, f"phase1/{OUT}/supplementary/vcep_rules.csv"))
+    cb, hb, rb = csv_cells((OUT / "supplementary/vcep_rules.csv").read_bytes())
+    check("s32_csv_same_comments_header_and_rows", (ca, ha, len(ra)) == (cb, hb, len(rb)))
+    s32_csv, bad = Counter(), []
+    for i, (x, y) in enumerate(zip(ra, rb), start=1):
+        for j, (u, v) in enumerate(zip(x, y)):
+            if u == v:
+                continue
+            if ha[j] == "Rows" and VCEP_ROWS.get(u) == v:
+                s32_csv[f"Rows: {u} -> {v}"] += 1
+            elif ha[j] == "Checked cell for cell against" and (u, v) == VCEP_CHECKED:
+                s32_csv[f"Checked cell for cell against: -> {v}"] += 1
+            else:
+                bad.append((i, ha[j], u[:60], v[:60]))
+    check("s32_csv_changes_only_the_48_cells", not bad and sum(s32_csv.values()) == 48, bad[:5] or dict(s32_csv))
+    log.note("s32_csv_changed_cells", dict(s32_csv))
+    # contents.csv, field by field
+    a = list(csv.DictReader(io.StringIO(_git_show(base, f"phase1/{OUT}/contents.csv").decode())))
+    b = list(csv.DictReader(io.StringIO((OUT / "contents.csv").read_text())))
+    diffs = [[x["number"], x["content"], f, x[f], y[f]] for x, y in zip(a, b) for f in x if x[f] != y[f]]
+    check("contents_changes_only_s32s_one_page_estimate", len(a) == len(b) and len(diffs) == 1
+          and diffs[0][1:3] == ["vcep_rules", "fits_one_page_estimate"], diffs)
+    log.note("contents_changed_fields", diffs)
+    # manifest.csv, field by field
+    a = list(csv.DictReader(io.StringIO(_git_show(base, f"phase1/{OUT}/manifest.csv").decode())))
+    b = list(csv.DictReader(io.StringIO((OUT / "manifest.csv").read_text())))
+    diffs = [[x["file"], f] for x, y in zip(a, b) for f in x if x[f] != y[f]]
+    check("manifest_changes_are_the_sizes_and_hashes_of_the_files_that_differ",
+          [x["file"] for x in a] == [y["file"] for y in b]
+          and all(f in ("bytes", "sha256") and k.split("layout/", 1)[1] in differs for k, f in diffs), diffs)
+    check("manifest_hashes_true", all(_sha((REPO / r["file"]).read_bytes()) == r["sha256"]
+                                      for r in b if not r["file"].endswith("manifest.csv")))
+    log.note("manifest_changed_fields", diffs)
+
+    # ------------------------------------------------------------- the workbooks' styles
+    print("E8 commit 8: the workbooks' styles")
+    for rel in ("supplementary_tables.xlsx", "submission/supplementary_tables.xlsx"):
+        sa = zipfile.ZipFile(io.BytesIO(_git_show(base, f"phase1/{OUT}/{rel}"))).read("xl/styles.xml").decode()
+        sb = zipfile.ZipFile(OUT / rel).read("xl/styles.xml").decode()
+        xa = re.findall(r"<xf [^>]*?(?:/>|>.*?</xf>)", sa.split("<cellXfs")[1])
+        xb = re.findall(r"<xf [^>]*?(?:/>|>.*?</xf>)", sb.split("<cellXfs")[1])
+        nums = list(range(L.NUMBER_STYLE, L.WRAP_STYLE))
+        ok = (len(xb) == L.HEAD_STYLE + 1 == len(xa) + 3 and xb[:2] == xa[:2]
+              and all(xb[k] == xa[k][:-2] + ' applyAlignment="1"><alignment vertical="top"/></xf>' for k in nums)
+              and 'fontId="0"' in xb[L.WRAP_STYLE] and '<alignment vertical="top" wrapText="1"/>' in xb[L.WRAP_STYLE]
+              and 'fontId="1"' in xb[L.BOLD_WRAP_STYLE] and '<alignment vertical="top" wrapText="1"/>' in xb[L.BOLD_WRAP_STYLE]
+              and 'fontId="1"' in xb[L.HEAD_STYLE] and '<alignment vertical="bottom" wrapText="1"/>' in xb[L.HEAD_STYLE]
+              and sa.split("<cellXfs")[0] == sb.split("<cellXfs")[0])
+        check(f"styles_{rel.split('/')[0]}_numbers_at_the_top_and_three_wrapping_text_styles", ok,
+              {"xfs": [len(xa), len(xb)]})
+
+    # ------------------------------------------------------------- the workbooks, cell by cell
+    excel = [it for it in tables if it["destination"] == "excel"]
+    s32 = L._sheet_name(next(it["number"] for it in tables if it["content"] == "vcep_rules"))
+    summary = {}
+    for label, rel in (("repository", "supplementary_tables.xlsx"), ("submission", "submission/supplementary_tables.xlsx")):
+        print(f"E8 commit 8: the {label} workbook against the base, cell by cell")
+        A_, B_ = sheet_parts(_git_show(base, f"phase1/{OUT}/{rel}")), sheet_parts((OUT / rel).read_bytes())
+        check(f"{label}_same_sheets", list(A_) == list(B_), list(B_)[:5])
+        values, styles, italics, layout = [], [], [], []
+        n = Counter()
+        sheets = {}
+        for name in A_:
+            ra_, rb_ = A_[name]["rows"], B_[name]["rows"]
+            if len(ra_) != len(rb_) or any(sorted(x[1]) != sorted(y[1]) for x, y in zip(ra_, rb_)):
+                values.append((name, "rows or cells moved"))
+                continue
+            table_sheet = name not in ("README", "Contents")
+            paras = paragraph_rows(rb_)
+            allowed_cols = {}
+            if name == s32:
+                for _, cells in rb_:
+                    for col, c in cells.items():
+                        if c[1] in ("Rows", "Checked cell for cell against") and c[2] == L.HEAD_STYLE:
+                            allowed_cols[col] = c[1]
+            for r, ((_, xa), (hb_, xb)) in enumerate(zip(ra_, rb_), start=1):
+                for col in xa:
+                    ka, va, sa_, ma = xa[col]
+                    kb, vb, sb_, mb = xb[col]
+                    # the value
+                    if (ka, va) != (kb, vb):
+                        ok = (kb == ka == "s" and (
+                            (allowed_cols.get(col) == "Rows" and VCEP_ROWS.get(va) == vb)
+                            or (allowed_cols.get(col) == "Checked cell for cell against" and (va, vb) == VCEP_CHECKED)))
+                        if ok:
+                            n["s32_cells"] += 1
+                        else:
+                            values.append((name, f"{col}{r}", va[:60], vb[:60]))
+                    # the style
+                    if ka == "n":
+                        want = sa_
+                    elif sa_ == BOLD:
+                        want = L.HEAD_STYLE if len(xa) > 1 else L.BOLD_WRAP_STYLE
+                    else:
+                        want = L.WRAP_STYLE
+                    if sb_ != want:
+                        styles.append((name, f"{col}{r}", sa_, sb_, want))
+                    n["cells"] += 1
+                    n["text_cells_restyled" if ka == "s" else "number_cells"] += 1
+                    # the italics: a gene symbol in a table's header or cells, nowhere else new
+                    if ka == "s":
+                        source = ma if (ka, va) == (kb, vb) else vb
+                        expect = L.italic_genes(source, genes) if table_sheet and r not in paras else source
+                        if mb != expect:
+                            italics.append((name, f"{col}{r}", ma[:60], mb[:60]))
+                        if mb != ma and (ka, va) == (kb, vb):
+                            n["cells_newly_italic"] += 1
+                            n["italic_runs_added"] += mb.count("*") // 2 - ma.count("*") // 2
+            # the layout: widths, merged paragraphs, heights
+            cols, merges = B_[name]["cols"], B_[name]["merges"]
+            body = [cells for r, (_, cells) in enumerate(rb_, start=1) if cells and r not in paras]
+            ncols = max(_col_index(c) for cells in body for c in cells)
+            spans = {m.split(":")[1].rstrip("0123456789") for m in merges}
+            merged = {int(re.match(r"A(\d+):", m).group(1)) for m in merges}
+            span = _col_index(next(iter(spans))) if len(spans) == 1 else None
+            heights = {r: h for r, (h, _) in enumerate(rb_, start=1) if h is not None}
+            fewest = span is not None and (span == 1 or sum(cols[:span - 1]) < w["paragraph_width"])
+            problems = []
+            if len(cols) != ncols:
+                problems.append(f"{len(cols)} widths for {ncols} columns")
+            if min(cols) < w["min_width"] - 1e-9 or sum(cols) < w["paragraph_width"] - 0.01:
+                problems.append("a column below min_width, or the table narrower than paragraph_width")
+            if span is None or merged != paras or sum(cols[:span]) < min(w["paragraph_width"], sum(cols)) - 0.01:
+                problems.append(f"paragraphs {sorted(paras)[:6]} merged {sorted(merged)[:6]} spans {spans}")
+            if not set(heights) <= paras or any(h / w["line_pt"] != int(h / w["line_pt"]) or h / w["line_pt"] < 2
+                                                  or h > 409 for h in heights.values()):
+                problems.append(f"heights {dict(list(heights.items())[:6])}")
+            if any(c[2] == BOLD for cells in body for c in cells.values()):
+                problems.append("a bold cell left without its header style")
+            if problems:
+                layout.append((name, problems))
+            sheets[name] = {"columns": ncols, "width": round(sum(cols), 2), "merged_to": span,
+                            "fewest_columns": fewest, "paragraphs": len(paras), "paragraphs_given_heights": len(heights),
+                            "tallest_paragraph_lines": int(max(heights.values(), default=w["line_pt"]) / w["line_pt"])}
+            n["merged_paragraphs"] += len(merged)
+            n["rows_given_heights"] += len(heights)
+            n["columns_given_widths"] += len(cols)
+        check(f"{label}_values_change_only_in_s32s_48_cells", not values and n["s32_cells"] == 48,
+              values[:6] or n["s32_cells"])
+        check(f"{label}_styles_by_role", not styles, styles[:6])
+        check(f"{label}_italics_only_the_gene_symbols_of_the_tables_cells", not italics, italics[:6])
+        check(f"{label}_widths_merges_and_heights", not layout, layout[:4])
+        not_fewest = [k for k, v in sheets.items() if not v["fewest_columns"]]
+        log.note(f"{label}_sheets", sheets)
+        log.note(f"{label}_counts", dict(n))
+        log.note(f"{label}_merged_past_paragraph_width_for_a_tall_paragraph", not_fewest)
+        summary[label] = dict(n) | {"merged_past_paragraph_width": not_fewest}
+        print(f"    {label}: {dict(n)}; merged past paragraph_width: {not_fewest}")
+
+    # ------------------------------------------------------------- the two workbooks together
+    print("E8 commit 8: the workbook for submission against the repository's")
+    book_, sub_ = (sheet_parts((OUT / r).read_bytes()) for r in ("supplementary_tables.xlsx",
+                                                                     "submission/supplementary_tables.xlsx"))
+    base_book, base_sub = (sheet_parts(_git_show(base, f"phase1/{OUT}/{r}"))
+                           for r in ("supplementary_tables.xlsx", "submission/supplementary_tables.xlsx"))
+    bad, spans_differ, gone_now, gone_base = [], [], 0, 0
+    for it in excel:
+        name = L._sheet_name(it["number"])
+        for (a_, b_), tally in (((book_[name], sub_[name]), "now"), ((base_book[name], base_sub[name]), "base")):
+            j, gone = 0, []
+            rows_b = b_["rows"]
+            for _, cells in a_["rows"]:
+                if j < len(rows_b) and cells == rows_b[j][1]:
+                    j += 1
+                else:
+                    gone.append(cells)
+            if j != len(rows_b) or not all(len(g) == 1 and "A" in g for g in gone):
+                bad.append((name, tally, j, len(rows_b)))
+            if tally == "now":
+                gone_now += len(gone)
+            else:
+                gone_base += len(gone)
+        if book_[name]["cols"] != sub_[name]["cols"]:
+            bad.append((name, "widths differ"))
+        if {m.split(":")[1].rstrip("0123456789") for m in book_[name]["merges"]} != \
+                {m.split(":")[1].rstrip("0123456789") for m in sub_[name]["merges"]}:
+            spans_differ.append(name)
+    check("submission_sheets_are_the_repositorys_less_the_comment_lines_same_widths", not bad
+          and gone_now == gone_base, bad[:4] or [gone_now, gone_base])
+    log.note("comment_lines_left_out_now_and_in_the_base", [gone_now, gone_base])
+    log.note("sheets_merged_to_another_column_in_the_two_workbooks", spans_differ)
+    log.note("summary", summary)
 
 
 if __name__ == "__main__":

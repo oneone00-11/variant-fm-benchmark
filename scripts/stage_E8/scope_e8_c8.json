@@ -1,0 +1,85 @@
+{
+ "commit": "E8 commit 8 (layout: the workbooks' column widths, wrapping and merged paragraphs; the gene symbols in the tables' cells in italics; the expert-panel table's two columns in words; the author's decisions of 2026-11-10)",
+ "pairs": {
+  "vcep_rules": [],
+  "contents": [
+   "vcep_rules"
+  ],
+  "manifest": [
+   "phase1/reports/evidence/layout/supplementary/vcep_rules.csv",
+   "phase1/reports/evidence/layout/supplementary_tables.xlsx",
+   "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx",
+   "phase1/reports/evidence/layout/contents.csv"
+  ]
+ },
+ "files": {
+  "phase1/reports/evidence/layout/supplementary/vcep_rules.csv": {
+   "kind": "rows",
+   "key": [
+    "Gene",
+    "Criterion",
+    "Stratum (intronic offset, bp)",
+    "Score column",
+    "Side and positions counted",
+    "BP7 condition as applied"
+   ],
+   "tool": "Gene",
+   "gene_const": "vcep_rules",
+   "fields": [],
+   "why": "E8 commit 8, item 3: 48 cells in words, the source untouched (layout.yaml's map vcep_part and one replace): \"Checked cell for cell against\" names the table by its number, Supplementary Table S31, condition (a) (6 cells), and \"Rows\" prints its codes as words (band_lr 24, bp7 15, no_specification 3: 42 cells); with these renames made in the base's rows, in this order, every row is as it was",
+   "renames": [
+    [
+     "c6_bp4_bp7.csv, (a) SpliceAI at or below the published cut, 0.1",
+     "Supplementary Table S31, condition (a)"
+    ],
+    [
+     "band_lr",
+     "Band likelihood ratio"
+    ],
+    [
+     "no_specification",
+     "No specification"
+    ],
+    [
+     "bp7",
+     "BP7"
+    ]
+   ]
+  },
+  "phase1/reports/evidence/layout/supplementary_tables.xlsx": {
+   "kind": "file",
+   "why": "E8 commit 8, items 1-3: column widths, wrapping, merged paragraphs with their heights, the header and number styles; the gene symbols of each table's header and cells in italics; S32's 48 cells; every other cell's value as it was (check_e8_part2.py --commit 8, cell by cell)"
+  },
+  "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx": {
+   "kind": "file",
+   "why": "E8 commit 8, items 1-3, as in the repository's workbook, of which it is still the excel tables less their sources' comment lines (check_e8_part2.py --commit 8, cell by cell)"
+  },
+  "phase1/reports/evidence/layout/contents.csv": {
+   "kind": "rows",
+   "key": [
+    "number",
+    "content",
+    "sources"
+   ],
+   "tool": "content",
+   "gene_const": "contents",
+   "fields": [
+    "fits_one_page_estimate"
+   ],
+   "why": "E8 commit 8, item 3: S32's one-page estimate, measured on its cells' text, follows its two columns in words (870 to 877 mm wide); every other cell as it was"
+  },
+  "phase1/reports/evidence/layout/manifest.csv": {
+   "kind": "rows",
+   "key": [
+    "file"
+   ],
+   "tool": "file",
+   "gene_const": "manifest",
+   "fields": [
+    "bytes",
+    "sha256"
+   ],
+   "why": "E8 commit 8: the sizes and hashes of the four files that changed; every other cell as it was"
+  }
+ }
+}

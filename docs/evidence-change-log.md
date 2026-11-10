@@ -2564,3 +2564,40 @@ could not bind. No output changes (`scripts/stage_E8/scope_e8_c7.json` declares 
   editable files of E8.11 (every number matches); with a tally of the numbers the gate
   leaves out (identifiers, citations, labels, digits within words, the reference lists,
   the notes' list numbers).
+
+## Column widths and wrapping in the workbooks, the gene symbols of the tables' cells in italics, and two columns of the expert-panel table in words (stage E8, commit 8, 2026-11-10)
+
+Why: the author's review of E8 part two (2026-11-10): the workbooks' contents and long
+paragraphs were cramped into Excel's default columns, and the gene symbols of the tables'
+cells were upright (H12). Only printing changes, no number; every value of every cell is
+as it was except S32's 48 cells below (`scripts/stage_E8/scope_e8_c8.json`, checked cell
+for cell by `scripts/stage_E8/check_e8_part2.py --commit 8`).
+
+- **The workbooks' layout** (`evid_layout.sheet_layout`, config/layout.yaml's `workbook`
+  block): each column as wide as its cells' text in Arial at 10 pt (Helvetica's metrics, a
+  twentieth wider), a header wrapping at its spaces into at most three lines, within 8 and
+  50 of Excel's width unit and at least as wide as its longest word up to 80 (a path or a
+  checksum kept whole); longer text wraps, and the program sizes the row. Each sheet's
+  title, notes, part titles and comment lines, the contents' heading, conventions and last
+  sentence, and README's long lines are merged from column A across the table's first
+  columns, 90 units wide (the table widened to 90 where narrower, the columns that wrap
+  taking the difference), wrapped, set at the top, each row given the height of its lines
+  (12.75 pt a line), since Excel sizes no merged row. A header is bold, wrapping, at the
+  foot of its row; text and numbers at the top. Both workbooks are the same bytes on
+  every run, in the image as natively.
+- **The gene symbols in italics** (`evid_layout.italic_genes`, config/layout.yaml's
+  `gene_symbols`: the seven training genes, the seven external genes, and ATM, which a
+  predictor's training data name): in the header and cells of every table's sheet, in both
+  workbooks, and in the five tables of the supplementary PDF; a whole word only, never in a
+  URN, a DOI, a web address, a file's path or name, or an identifier with an underscore.
+  The CSVs keep their text; the main tables' files, italic already, are unchanged.
+- **S32 (vcep_rules)**, in the layout's mapping, the source untouched: "Rows" prints its
+  codes in words (band_lr Band likelihood ratio, bp7 BP7, no_specification No
+  specification; 42 cells), and "Checked cell for cell against" names the table by its
+  number, "Supplementary Table S31, condition (a)" (6 cells). Its one-page estimate in
+  contents.csv follows (870 to 877 mm wide).
+- **The supplementary PDF's script** (`scripts/stage_E8/build_supplementary_pdf.py`): a
+  range of numbers in the front page's contents and last sentence ("11–50", "S29–S34") is
+  kept on one line by a word joiner on each side of its dash, which prints nothing; a check
+  finds no range broken after its dash or before it, and the front page's text, the joiners
+  aside, in order. The last sentence names "the accompanying Excel file".

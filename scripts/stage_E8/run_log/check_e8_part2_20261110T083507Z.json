@@ -1,0 +1,318 @@
+{
+ "script": "scripts/stage_E8/check_e8_part2.py",
+ "argv": [
+  "scripts/stage_E8/check_e8_part2.py",
+  "--commit",
+  "8",
+  "--base",
+  "87b8515"
+ ],
+ "git_commit": "87b85155e255f10d09f1f9556bed1d23d5c9db33",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E8/check_e8_part2.py": "7ae665235b26679b2464ea49b2853ae466804fd0cd943ec545edd98f5f3f810f",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-10T08:34:55+00:00",
+ "end_utc": "2026-11-10T08:35:07+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": "Traceback (most recent call last):\n  File \"/repo/scripts/stage_E8/check_e8_part2.py\", line 216, in main\n    commit8(cfg, old_cfg, base, check, log, L, yaml)\n  File \"/repo/scripts/stage_E8/check_e8_part2.py\", line 1141, in commit8\n    if any(c[2] == L.BOLD for cells in body for c in cells.values()):\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/repo/scripts/stage_E8/check_e8_part2.py\", line 1141, in <genexpr>\n    if any(c[2] == L.BOLD for cells in body for c in cells.values()):\n                   ^^^^^^\nAttributeError: module 'src.evid_layout' has no attribute 'BOLD'\n",
+ "notes": {
+  "base": "87b8515",
+  "commit": 8,
+  "config_s32_rows_map": true,
+  "config_s32_rows_column_uses_the_map": true,
+  "config_s32_one_replacement_added": true,
+  "config_s32_names_supplementary_table_s31": true,
+  "config_workbook_block_and_gene_symbols_new": {
+   "ok": true,
+   "value": {
+    "workbook": {
+     "font_pt": 10,
+     "line_pt": 12.75,
+     "min_width": 8,
+     "max_width": 50,
+     "max_word_width": 80,
+     "header_lines": 3,
+     "paragraph_width": 90
+    },
+    "gene_symbols": [
+     "BAP1",
+     "BARD1",
+     "BRCA1",
+     "BRCA2",
+     "PALB2",
+     "RAD51C",
+     "VHL",
+     "DDX3X",
+     "TP53",
+     "CTCF",
+     "SFPQ",
+     "RAD51D",
+     "XRCC2",
+     "SBDS",
+     "ATM"
+    ]
+   }
+  },
+  "config_nothing_else_changed": true,
+  "gene_symbols_the_fourteen_and_atm": {
+   "ok": true,
+   "value": [
+    "BAP1",
+    "BARD1",
+    "BRCA1",
+    "BRCA2",
+    "PALB2",
+    "RAD51C",
+    "VHL",
+    "DDX3X",
+    "TP53",
+    "CTCF",
+    "SFPQ",
+    "RAD51D",
+    "XRCC2",
+    "SBDS",
+    "ATM"
+   ]
+  },
+  "symbol_like_words_not_in_the_list": {
+   "PP3": 6471,
+   "BP4": 5850,
+   "GPN": 1105,
+   "MSA": 1105,
+   "CADD": 1084,
+   "LOGO": 425,
+   "GPU": 106,
+   "AUROC": 83,
+   "FDR": 57,
+   "BP7": 38,
+   "VUS": 23,
+   "SGE": 20,
+   "ENIGMA": 18,
+   "RNA": 16,
+   "DATA": 13,
+   "GN077": 12,
+   "RFS": 10,
+   "HGVS": 10,
+   "API": 10,
+   "PVS1": 10,
+   "GN092": 9,
+   "GN097": 9,
+   "GN078": 9,
+   "CC0": 8,
+   "PMC": 8,
+   "VCV": 8,
+   "RCV": 8,
+   "PMID": 7,
+   "UCSC": 7,
+   "HAP1": 7,
+   "URN": 6,
+   "SVI": 6,
+   "S31": 6,
+   "ALL4": 5,
+   "GPL": 4,
+   "ENCODE": 4,
+   "AVI": 4,
+   "SHA": 3,
+   "PPV": 3,
+   "PMC6181777": 2,
+   "SNV": 2,
+   "HTTP": 2,
+   "PMC11821525": 2,
+   "PMC12147941": 2,
+   "STAR": 2,
+   "PHRED": 2,
+   "MIT": 2,
+   "NPV": 2,
+   "AUPRC": 2,
+   "DOI": 2,
+   "LOF1": 1,
+   "LOF2": 1,
+   "ENST00000644876": 1,
+   "IGVF": 1,
+   "D14": 1,
+   "PMC11250436": 1,
+   "BBI": 1,
+   "GMM": 1,
+   "KURIS": 1,
+   "NDD": 1,
+   "PMC11250367": 1,
+   "GTF": 1,
+   "HMM": 1,
+   "NVIDIA": 1,
+   "A6000": 1,
+   "S24": 1,
+   "UTC": 1,
+   "URL": 1,
+   "ENST00000246868": 1,
+   "MCC": 1,
+   "VCEP": 1,
+   "GN096": 1
+  },
+  "same_files_as_the_base": {
+   "ok": true,
+   "value": []
+  },
+  "only_s32_the_workbooks_contents_and_manifest_differ": {
+   "ok": true,
+   "value": [
+    "contents.csv",
+    "manifest.csv",
+    "submission/supplementary_tables.xlsx",
+    "supplementary/vcep_rules.csv",
+    "supplementary_tables.xlsx"
+   ]
+  },
+  "files_that_differ_from_the_base": [
+   "contents.csv",
+   "manifest.csv",
+   "submission/supplementary_tables.xlsx",
+   "supplementary/vcep_rules.csv",
+   "supplementary_tables.xlsx"
+  ],
+  "s32_source_unchanged": true,
+  "s32_csv_same_comments_header_and_rows": true,
+  "s32_csv_changes_only_the_48_cells": {
+   "ok": true,
+   "value": {
+    "Rows: band_lr -> Band likelihood ratio": 24,
+    "Rows: bp7 -> BP7": 15,
+    "Checked cell for cell against: -> Supplementary Table S31, condition (a)": 6,
+    "Rows: no_specification -> No specification": 3
+   }
+  },
+  "s32_csv_changed_cells": {
+   "Rows: band_lr -> Band likelihood ratio": 24,
+   "Rows: bp7 -> BP7": 15,
+   "Checked cell for cell against: -> Supplementary Table S31, condition (a)": 6,
+   "Rows: no_specification -> No specification": 3
+  },
+  "contents_changes_only_s32s_one_page_estimate": {
+   "ok": true,
+   "value": [
+    [
+     "Supplementary Table S32",
+     "vcep_rules",
+     "fits_one_page_estimate",
+     "no (55 lines, 870 mm wide)",
+     "no (55 lines, 877 mm wide)"
+    ]
+   ]
+  },
+  "contents_changed_fields": [
+   [
+    "Supplementary Table S32",
+    "vcep_rules",
+    "fits_one_page_estimate",
+    "no (55 lines, 870 mm wide)",
+    "no (55 lines, 877 mm wide)"
+   ]
+  ],
+  "manifest_changes_are_the_sizes_and_hashes_of_the_files_that_differ": {
+   "ok": true,
+   "value": [
+    [
+     "phase1/reports/evidence/layout/supplementary/vcep_rules.csv",
+     "bytes"
+    ],
+    [
+     "phase1/reports/evidence/layout/supplementary/vcep_rules.csv",
+     "sha256"
+    ],
+    [
+     "phase1/reports/evidence/layout/supplementary_tables.xlsx",
+     "bytes"
+    ],
+    [
+     "phase1/reports/evidence/layout/supplementary_tables.xlsx",
+     "sha256"
+    ],
+    [
+     "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx",
+     "bytes"
+    ],
+    [
+     "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx",
+     "sha256"
+    ],
+    [
+     "phase1/reports/evidence/layout/contents.csv",
+     "sha256"
+    ]
+   ]
+  },
+  "manifest_hashes_true": true,
+  "manifest_changed_fields": [
+   [
+    "phase1/reports/evidence/layout/supplementary/vcep_rules.csv",
+    "bytes"
+   ],
+   [
+    "phase1/reports/evidence/layout/supplementary/vcep_rules.csv",
+    "sha256"
+   ],
+   [
+    "phase1/reports/evidence/layout/supplementary_tables.xlsx",
+    "bytes"
+   ],
+   [
+    "phase1/reports/evidence/layout/supplementary_tables.xlsx",
+    "sha256"
+   ],
+   [
+    "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx",
+    "bytes"
+   ],
+   [
+    "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx",
+    "sha256"
+   ],
+   [
+    "phase1/reports/evidence/layout/contents.csv",
+    "sha256"
+   ]
+  ],
+  "styles_supplementary_tables.xlsx_numbers_at_the_top_and_three_wrapping_text_styles": {
+   "ok": true,
+   "value": {
+    "xfs": [
+     34,
+     37
+    ]
+   }
+  },
+  "styles_submission_numbers_at_the_top_and_three_wrapping_text_styles": {
+   "ok": true,
+   "value": {
+    "xfs": [
+     34,
+     37
+    ]
+   }
+  },
+  "repository_same_sheets": {
+   "ok": true,
+   "value": [
+    "README",
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+   ]
+  }
+ }
+}

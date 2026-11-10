@@ -929,15 +929,13 @@ def test_a_replacement_prints_its_text_exactly_as_often_as_declared(tmp_path):
 
 @need_out
 def test_the_replaced_texts_are_gone_from_what_is_printed():
-    """Each part's replaced text is printed nowhere in its table, CSV or sheet; what
-    replaced it is. (Another table may cite a source's own text: vcep_rules names the
-    condition of c6_bp4_bp7.csv, which the source keeps, as the file it was checked
-    against.)"""
+    """Each part's replaced text is printed nowhere in its table, CSV or sheet (its cells'
+    text, read as printed); what replaced it is."""
     cfg = _cfg()
     numbers = L._numbers(cfg)
-    with zipfile.ZipFile(OUT / "supplementary_tables.xlsx") as z:
-        ids = re.findall(r'<sheet name="([^"]+)" sheetId="(\d+)"', z.read("xl/workbook.xml").decode())
-        sheet = {name: z.read(f"xl/worksheets/sheet{i}.xml").decode() for name, i in ids}
+    # each sheet's cells, as printed: a text's runs joined (a gene's italics aside)
+    sheet = {name: "\n".join(L._plain(t) for row in rows.values() for t in row.values())
+             for name, rows in _book_rows(OUT / "supplementary_tables.xlsx").items()}
     seen = 0
     for it in cfg["supplementary"]:
         for p in it.get("parts", []):
@@ -947,17 +945,11 @@ def test_the_replaced_texts_are_gone_from_what_is_printed():
                 # the old text may stand inside the new one ("Supplementary Table S1 cites
                 # no paper" holds "Table S1 cites no paper"): nowhere else
                 assert old not in (csv_text.replace(new, "") if new else csv_text), (it["content"], old)
-                assert escape_xml(old) not in (book.replace(escape_xml(new), "") if new else book), \
-                    (it["content"], old)
+                assert old not in (book.replace(new, "") if new else book), (it["content"], old)
                 if new:
-                    assert escape_xml(new) in book, (it["content"], new)
+                    assert new in book, (it["content"], new)
                 seen += 1
     assert seen >= 30
-
-
-def escape_xml(s: str) -> str:
-    from xml.sax.saxutils import escape
-    return escape(s)
 
 
 @need_out
@@ -1179,7 +1171,7 @@ def _sheet_cells(path: Path) -> dict[str, list[list[str]]]:
         for name, i in re.findall(r'<sheet name="([^"]+)" sheetId="(\d+)"', z.read("xl/workbook.xml").decode()):
             xml = z.read(f"xl/worksheets/sheet{i}.xml").decode()
             out[_unxml(name)] = [re.findall(r'<c r="[A-Z]+\d+"(.*?)</c>', body)
-                                 for body in re.findall(r"<row r=\"\d+\">(.*?)</row>", xml)]
+                                 for body in re.findall(r"<row r=\"\d+\"[^>]*>(.*?)</row>", xml)]
     return out
 
 
@@ -1286,8 +1278,9 @@ def test_the_workbook_for_submission_is_the_excel_tables_without_their_sources_c
             else:
                 gone.append(row)
         assert j == len(b), it["content"]                         # the sheet's rows, in order
-        # what was left out: one plain text cell a row, each a comment line of a source
-        assert all(len(r) == 1 and ' s="' not in r[0].split(">")[0] for r in gone), it["content"]
+        # what was left out: one text cell a row, set as a paragraph, each a comment line of
+        # a source
+        assert all(len(r) == 1 and f' s="{L.WRAP_STYLE}"' in r[0].split(">")[0] for r in gone), it["content"]
         assert [_cell_text(r[0]) for r in gone] == comments, it["content"]
         left_out += len(gone)
     assert left_out > 0
@@ -1527,3 +1520,178 @@ def test_table_4_stops_if_its_notes_misstate_the_band_it_leaves_out(tmp_path, mo
     item["notes"] = [item["notes"][0].replace("with 3 P/LP variants", "with 4 P/LP variants")]
     with pytest.raises(SystemExit, match="do not say"):
         L.table_practical_performance(item, tmp_path, cfg)
+
+
+# ---------------------------------------------------------------------------
+# E8 commit 8: the workbooks' column widths, wrapping and merged paragraphs; the gene
+# symbols in the tables' cells in italics (H12); S32's two columns in words (the
+# author's decisions of 2026-11-10)
+# ---------------------------------------------------------------------------
+GENES = ["BAP1", "BARD1", "BRCA1", "BRCA2", "PALB2", "RAD51C", "VHL", "DDX3X", "TP53", "CTCF", "SFPQ",
+         "RAD51D", "XRCC2", "SBDS", "ATM"]
+
+
+def _screen_px(width: float) -> int:
+    """A column's width on the screen, in pixels, for Arial at 10 pt (ECMA-376, 18.3.1.13)."""
+    return int(((256 * width + int(128 / 7)) / 256) * 7)
+
+
+def test_the_configuration_lists_the_gene_symbols_and_the_workbooks_layout():
+    cfg = _cfg()
+    assert cfg["gene_symbols"] == GENES
+    w = cfg["workbook"]
+    assert w["min_width"] < w["max_width"] < w["max_word_width"] < w["paragraph_width"]
+    assert w["header_lines"] >= 2 and w["line_pt"] * 2 <= L.MAX_ROW_PT
+
+
+@pytest.mark.parametrize("text, want", [
+    ("BAP1", "*BAP1*"), ("BAP1;VHL", "*BAP1*;*VHL*"), ("BAP1=10.4; BARD1=n.e.;", "*BAP1*=10.4; *BARD1*=n.e.;"),
+    ("RAD51C=11.2†;", "*RAD51C*=11.2†;"),
+    ("SNVs on CTCF-dependent HAP1 cell survival", "SNVs on *CTCF*-dependent HAP1 cell survival"),
+    ("ENIGMA BRCA1 and BRCA2 Variant Curation Expert Panel",
+     "ENIGMA *BRCA1* and *BRCA2* Variant Curation Expert Panel"),
+    ("Direct for *BRCA1*, RAD51C and DDX3X", "Direct for *BRCA1*, *RAD51C* and *DDX3X*"),
+    ("(BAP1, BARD1)", "(*BAP1*, *BARD1*)"), ("SBDS's deposit", "*SBDS*'s deposit"),
+    ("an ATM prime-editing screen", "an *ATM* prime-editing screen"),
+    # not a whole symbol; in a URN, a DOI, a web address, a path, a file's name, an identifier
+    ("BRCA12 xBRCA1 BRCA1x BRCA1.2", "BRCA12 xBRCA1 BRCA1x BRCA1.2"),
+    ("urn:mavedb:BRCA1-a-1", "urn:mavedb:BRCA1-a-1"), ("doi:10.1000/BRCA1", "doi:10.1000/BRCA1"),
+    ("https://example.org/BRCA1", "https://example.org/BRCA1"),
+    ("data/evidence/BRCA1/scores", "data/evidence/BRCA1/scores"), ("BRCA1.csv", "BRCA1.csv"),
+    ("BRCA1_SGE", "BRCA1_SGE"), ("NM_007294.4(BRCA1):c.5074+2T>C", "NM_007294.4(BRCA1):c.5074+2T>C"),
+    ("sge_scores BRCA1", "sge_scores *BRCA1*"),
+    ("1,410", "1,410"), ("", ""), ("c.*123A>G at 0.2", "c.*123A>G at 0.2"),
+])
+def test_a_gene_symbol_is_set_in_italics_as_a_whole_word_and_never_in_an_identifier(text, want):
+    assert L.italic_genes(text, GENES) == want
+    assert L._plain(L.italic_genes(text, GENES)) == L._plain(text)        # the text printed is the same
+
+
+def test_each_role_gives_its_cells_their_style():
+    assert L._cell_xml("A1", "Gene", True, L.HEAD) == \
+        f'<c r="A1" s="{L.HEAD_STYLE}" t="inlineStr"><is><t xml:space="preserve">Gene</t></is></c>'
+    assert f' s="{L.WRAP_STYLE}" ' in L._cell_xml("A1", "a text", False, L.BODY)
+    assert f' s="{L.WRAP_STYLE}" ' in L._cell_xml("A1", "a note", False, L.PARA)
+    assert f' s="{L.BOLD_WRAP_STYLE}" ' in L._cell_xml("A1", "A title", True, L.PARA)
+    # a number keeps its format whatever its row
+    assert L._cell_xml("A1", "1,410", False, L.BODY) == f'<c r="A1" s="{L.GROUPED_STYLE}"><v>1410</v></c>'
+    assert L._cell_xml("A1", "0.500", False, L.BODY) == f'<c r="A1" s="{L.NUMBER_STYLE + 3}"><v>0.500</v></c>'
+
+
+def test_a_sheets_columns_fit_their_text_and_its_paragraphs_are_merged_to_the_paragraph_width():
+    w = _cfg()["workbook"]
+    path = "reports/evidence/suppl_analyses/c13_vcep_band_lr.csv"
+    rows = [(["Supplementary Table S99. " + "A title long enough to wrap. " * 6], True, L.PARA),
+            (["a note " * 150], False, L.PARA), ([], False, L.BLANK),
+            (["Gene", "A header that wraps at its spaces into lines", "Path"], True, L.HEAD),
+            (["*BRCA1*", "1.5", path], False, L.BODY),
+            (["BAP1", "a text much longer than the widest a column may be " * 4, "x"], False, L.BODY)]
+    widths, heights, merges = L.sheet_layout(rows, w)
+    assert len(widths) == 3 and min(widths) >= w["min_width"]
+    assert widths[1] <= w["max_width"] + 0.01                             # the long text wraps
+    room = _screen_px(widths[2]) - L.PAD_PX
+    assert L._lines(path, False, room, w["font_pt"]) == 1                # a path is kept whole
+    assert sum(widths) >= w["paragraph_width"] - 0.01
+    # the paragraphs, merged from A across the fewest columns as wide as paragraph_width
+    end = merges[0].split(":")[1].rstrip("0123456789")
+    k = ord(end) - 64
+    assert merges == [f"A1:{end}1", f"A2:{end}2"]
+    assert sum(widths[:k]) >= w["paragraph_width"] and sum(widths[:k - 1]) < w["paragraph_width"]
+    # only the paragraphs are given a height, line_pt a line; the long note's the taller
+    assert set(heights) == {1, 2} and heights[2] > heights[1] >= 2 * w["line_pt"]
+    assert all(h / w["line_pt"] == int(h / w["line_pt"]) for h in heights.values())
+
+
+def test_a_narrow_table_is_widened_to_the_paragraph_width_and_a_tall_paragraph_merged_further():
+    w = _cfg()["workbook"]
+    narrow = [(["Title"], True, L.PARA), ([], False, L.BLANK),
+              (["A", "B"], True, L.HEAD), (["1", "a text long enough to wrap " * 3], False, L.BODY)]
+    widths, _, merges = L.sheet_layout(narrow, w)
+    assert abs(sum(widths) - w["paragraph_width"]) < 0.05 and widths[0] == w["min_width"]   # B, which wraps, takes it
+    assert merges == ["A1:B1"]
+    # a paragraph taller than a row may be at the paragraph width is merged across more
+    wide = [(["word " * 2500], False, L.PARA), ([], False, L.BLANK),
+            ([f"Header {j}" for j in range(8)], True, L.HEAD), (["x" * 60] * 8, False, L.BODY)]
+    widths, heights, merges = L.sheet_layout(wide, w)
+    k = ord(merges[0].split(":")[1].rstrip("0123456789")) - 64
+    assert sum(widths[:k - 1]) >= w["paragraph_width"] and heights[1] <= L.MAX_ROW_PT
+    # and one that no merge can hold stops the run
+    with pytest.raises(SystemExit, match="taller than"):
+        L.sheet_layout([(["word " * 20000], False, L.PARA), ([], False, L.BLANK),
+                        (["A", "B"], True, L.HEAD), (["1", "2"], False, L.BODY)], w)
+
+
+def _printed_cell(v: str, genes) -> str | None:
+    """A CSV cell as _book_rows reads it back from the workbook: a number as written,
+    without its commas; a text with its gene symbols in italics; None if empty."""
+    if v == "":
+        return None
+    if 't="inlineStr"' not in L._cell_xml("A1", v, False, L.BODY):
+        return v.replace(",", "")
+    return L.italic_genes(v, genes)
+
+
+@need_out
+def test_the_tables_set_their_gene_symbols_in_italics_in_header_and_cells_and_the_csvs_do_not():
+    """Every table's sheet, in both workbooks: its header and rows are its CSV's, each
+    gene symbol of the configuration set in italics (read back as *GENE*); the CSVs keep
+    their text as the stage wrote it."""
+    cfg = _cfg()
+    genes = cfg["gene_symbols"]
+    italic = {}
+    for wb in ("supplementary_tables.xlsx", "submission/supplementary_tables.xlsx"):
+        book, n = _book_rows(OUT / wb), 0
+        for it in (i for i in cfg["supplementary"] if i["kind"] == "table"):
+            rows = book.get(L._sheet_name(it["number"]))
+            if rows is None:
+                assert wb.startswith("submission") and it["destination"] == "pdf", it["content"]
+                continue
+            after = 0
+            for p in it["parts"]:
+                header, *body = L.written_rows(OUT / "supplementary" / L._part_path(Path("."), it, p).name)
+                want = [{L._col(j): x for j, c in enumerate(r) if (x := _printed_cell(c, genes)) is not None}
+                        for r in [header] + body]
+                start = next(k for k in sorted(rows) if k > after and rows[k] == want[0])
+                assert [rows.get(start + i, {}) for i in range(len(want))] == want, (wb, it["content"], p["part"])
+                after = start + len(want) - 1
+                n += sum(t.count("*") // 2 for r in want for t in r.values())
+        italic[wb] = n
+    assert italic["supplementary_tables.xlsx"] > italic["submission/supplementary_tables.xlsx"] > 1000
+    csv_text = (OUT / "supplementary" / "vcep_rules.csv").read_text()
+    assert "*BRCA1*" not in csv_text and ",BRCA1," in csv_text
+
+
+@need_out
+def test_the_workbooks_size_their_columns_and_merge_and_size_their_paragraphs():
+    w = _cfg()["workbook"]
+    for wb in ("supplementary_tables.xlsx", "submission/supplementary_tables.xlsx"):
+        with zipfile.ZipFile(OUT / wb) as z:
+            for name, i in re.findall(r'<sheet name="([^"]+)" sheetId="(\d+)"', z.read("xl/workbook.xml").decode()):
+                xml = z.read(f"xl/worksheets/sheet{i}.xml").decode()
+                widths = [float(x) for x in re.findall(r'<col min="\d+" max="\d+" width="([\d.]+)" customWidth="1"/>', xml)]
+                merges = re.findall(r'<mergeCell ref="A(\d+):([A-Z]+)\1"/>', xml)
+                assert widths and min(widths) >= w["min_width"], (wb, name)
+                assert sum(widths) >= w["paragraph_width"] - 0.01, (wb, name)
+                assert merges and merges[0][0] == "1" and len({c for _, c in merges}) == 1, (wb, name)
+                k = sum((ord(ch) - 64) * 26 ** e for e, ch in enumerate(reversed(merges[0][1])))
+                assert sum(widths[:k]) >= min(w["paragraph_width"], sum(widths)) - 0.01, (wb, name)
+                tall = [r for r, a in re.findall(r'<row r="(\d+)"([^>]*)>', xml) if "customHeight" in a]
+                assert set(tall) <= {r for r, _ in merges}, (wb, name)
+                # a paragraph's cell alone in its row
+                for r, _ in merges:
+                    assert re.findall(rf'<c r="([A-Z]+){r}"', xml) == ["A"], (wb, name, r)
+
+
+@need_out
+def test_s32_prints_its_rows_and_the_table_its_rows_were_checked_against_in_words():
+    """S32's "Rows" by kind in words, and the BP7 rows' check named by the table's
+    number and its condition (a); the source keeps its codes."""
+    df = pd.read_csv(OUT / "supplementary" / "vcep_rules.csv", dtype=str, keep_default_na=False)
+    assert df["Rows"].value_counts().to_dict() == {"Band likelihood ratio": 24, "BP7": 15, "No specification": 3}
+    checked = df["Checked cell for cell against"]
+    assert checked.value_counts().to_dict() == {"": 36, "Supplementary Table S31, condition (a)": 6}
+    assert L._numbers(_cfg())["bp4_at_bp7_positions"] == "Supplementary Table S31"
+    src, _ = L.read_source(PHASE1 / "reports" / "evidence" / "suppl_analyses" / "c13_vcep_band_lr.csv")
+    assert src["part"].map(_cfg()["display"]["values"]["vcep_part"]).tolist() == df["Rows"].tolist()
+    assert (src["checked_against"] != "").tolist() == (checked != "").tolist()
+    assert set(src["checked_against"]) == {"", "c6_bp4_bp7.csv, (a) SpliceAI at or below the published cut, 0.1"}

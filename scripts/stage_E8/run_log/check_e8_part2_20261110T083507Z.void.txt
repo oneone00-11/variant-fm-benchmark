@@ -1,0 +1,7 @@
+Void (E8 commit 8, 2026-11-10): this run stopped with an error in the checker itself, not
+in what it checks: its new commit-8 section named the workbook's bold style as
+evid_layout.BOLD, a name the layout does not have (the bold style is this script's own
+constant BOLD), so it raised AttributeError after the configuration, the files against the
+base, the styles and the first workbook's sheets were read; every check it reached had
+passed. The name was corrected and the same checks run again in the same image on the
+same outputs; the run that counts is the one after this.

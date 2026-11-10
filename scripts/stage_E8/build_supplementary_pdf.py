@@ -3,7 +3,7 @@ assembled from the manuscript, read only, and the layout's outputs. The PDF hold
 manuscript's supplementary notes, so it is not committed: this script and its test are.
 
 In order: a front page (the heading, the paper's title, the author, and the contents with
-page numbers); the conventions (config/layout.yaml's supplementary_format); the
+page numbers, a range of numbers never broken at its dash, E8 commit 8); the conventions (config/layout.yaml's supplementary_format); the
 supplementary notes word for word, as the manuscript holds them, from its heading
 "Supplementary Notes" to the last entry of "References cited in the Supplementary Notes"
 (headings, numbered items, run-in headings and italics as they are, the type set in Arial
@@ -13,7 +13,9 @@ centred between side margins of 1.5 cm, with "Supplementary Figure Sx." and its 
 legend below it, or at the top of the next page where they do not fit below (S1, 240 mm
 tall); then the tables marked pdf in the configuration, each its title, notes and parts,
 the cells the layout's CSVs', ruled across only as the main tables' files are (E8.11),
-turned where wide, a wide table's short columns kept whole and its long ones wrapping. A4; text pages with margins of 2 cm; page numbers at the foot.
+turned where wide, a wide table's short columns kept whole and its long ones wrapping,
+the gene symbols in their headers and cells in italics (evid_layout.italic_genes, E8 commit
+8). A4; text pages with margins of 2 cm; page numbers at the foot.
 
 The pages are typeset by LibreOffice from a document built here with python-docx on a copy
 of the manuscript, so that the notes keep their own numbering and styles; a figure's page
@@ -27,6 +29,8 @@ stops if one fails:
   included), but for white space;
 - each of the five figures and the tables marked pdf appears once, in order, after the
   notes, whose headings stand in order; the contents' page numbers are where they are;
+- the front page prints its text in order, the joiners aside, and breaks no range across
+  two lines, after its dash or before it;
 - the figures' pages hold no image, only vector drawing, and each figure is laid at a
   scale of 1 within its page;
 - every font is embedded;
@@ -79,6 +83,19 @@ FONTS_CONF = """<?xml version="1.0"?>
 </fontconfig>
 """
 MARK = "FIGUREMARK{}"            # in a figure's space, first typesetting only
+# a range of numbers, "11–50" or "S29–S34", is kept on one line by a word joiner on each
+# side of its dash (U+2060, which prints nothing; E8 commit 8)
+JOINER = "\u2060"
+RANGE_DASH = re.compile(r"(?<=\d)–(?=[A-Z]?\d)")
+
+
+# a range broken across two lines of a page's text, after its dash or before it
+RANGE_BROKEN = re.compile(r"\d[\u2060 ]*–[\u2060 ]*\n[\u2060 ]*[A-Z]?\d|\d[\u2060 ]*\n[\u2060 ]*–[\u2060 ]*[A-Z]?\d")
+
+
+def unbroken(text: str) -> str:
+    """A text with each range's dash joined to the numbers on either side."""
+    return RANGE_DASH.sub(JOINER + "–" + JOINER, text)
 
 
 def twips(mm: float) -> int:
@@ -219,11 +236,27 @@ def para(L, runs: str, before: float = 0, after: float = 0, keep_next: bool = Fa
     return f"<w:p><w:pPr>{ppr}</w:pPr>{runs}</w:p>"
 
 
+def front_texts(L, numbers, headings, figures, pdf_tables, excel_tables) -> list[tuple[str, str]]:
+    """The contents' entries, each its label (bold) and the rest, then the sentence that
+    names the tables in the Excel file (its label empty)."""
+    out = [("Abbreviations and conventions", "")]
+    for h in headings:
+        num, _, rest = h.partition(". ")
+        out.append((f"{num}.", f" {rest}"))
+    for it in figures + pdf_tables:
+        out.append((f"{it['number']}.", f" {L.grouped(L._resolve(it['title'], numbers))}"))
+    named = L._resolve("{" + ", ".join(it["content"] for it in excel_tables) + "}", numbers)
+    out.append(("", f"The other {len(excel_tables)} supplementary tables, {named}, are in the accompanying Excel file."))
+    return out
+
+
 def front_page(L, cfg, numbers, headings, figures, pdf_tables, excel_tables, pages) -> list[str]:
     """The front page: the heading, the paper, the author and the contents, each entry's
     page number at the right after a dotted leader (two digits where it is not known yet,
-    so that the first typesetting lays the page out as the second)."""
-    run = lambda text, pt=TEXT_PT, bold=False: L._w_runs(text, pt, FONT, bold=bold)   # noqa: E731
+    so that the first typesetting lays the page out as the second), and the sentence that
+    names the tables in the Excel file; a range in an entry or the sentence is not broken
+    at its dash (unbroken())."""
+    run = lambda text, pt=TEXT_PT, bold=False: L._w_runs(unbroken(text), pt, FONT, bold=bold)   # noqa: E731
     width = twips(A4[0] - 2 * TEXT_MARGIN_MM)
     tabs = f'<w:tabs><w:tab w:val="right" w:leader="dot" w:pos="{width}"/></w:tabs>'
     out = [para(L, run(HEADING, 18, bold=True), after=12),
@@ -235,17 +268,11 @@ def front_page(L, cfg, numbers, headings, figures, pdf_tables, excel_tables, pag
         page = pages.get(key, "00")
         return para(L, run(label, bold=True) + run(rest) + f"<w:r><w:tab/></w:r>" + run(str(page)),
                     after=3, tabs=tabs)
-    out.append(entry("conventions", "Abbreviations and conventions", ""))
-    for h in headings:
-        num, _, rest = h.partition(". ")
-        out.append(entry(num, f"{num}.", f" {rest}"))
-    for it in figures:
-        out.append(entry(it["number"], f"{it['number']}.", f" {L.grouped(L._resolve(it['title'], numbers))}"))
-    for it in pdf_tables:
-        out.append(entry(it["number"], f"{it['number']}.", f" {L.grouped(L._resolve(it['title'], numbers))}"))
-    named = L._resolve("{" + ", ".join(it["content"] for it in excel_tables) + "}", numbers)
-    out.append(para(L, run(f"The other {len(excel_tables)} supplementary tables, {named}, are in the Excel file."),
-                    before=6))
+    *entries, (_, sentence) = front_texts(L, numbers, headings, figures, pdf_tables, excel_tables)
+    keys = (["conventions"] + [h.partition(". ")[0] for h in headings]
+            + [it["number"] for it in figures + pdf_tables])
+    out += [entry(key, label, rest) for key, (label, rest) in zip(keys, entries)]
+    out.append(para(L, run(sentence), before=6))
     return out
 
 
@@ -290,12 +317,16 @@ def top_aligned(table_xml: str) -> str:
                                            for r in rows[1:]])
 
 
-def table_blocks(L, cfg, numbers, it) -> tuple[bool, list[str]]:
+def table_blocks(L, cfg, numbers, it) -> tuple[bool, list[str], int]:
     """A table marked pdf: its title, its notes, and each part's title and table, the cells
-    read from the CSVs the layout wrote, ruled across only (evid_layout._w_table); turned
-    where a part is wider than the upright page. Returns whether turned, and the blocks."""
+    read from the CSVs the layout wrote, their gene symbols in italics
+    (evid_layout.italic_genes), ruled across only (evid_layout._w_table); turned where a
+    part is wider than the upright page. Returns whether turned, the blocks, and how many
+    cells set a gene symbol in italics."""
     folder = PHASE1 / "reports" / "evidence" / "layout" / "supplementary"
-    rows = [L.written_rows(L._part_path(folder, it, p)) for p in it["parts"]]
+    written = [L.written_rows(L._part_path(folder, it, p)) for p in it["parts"]]
+    rows = [[[L.italic_genes(c, cfg["gene_symbols"]) for c in r] for r in t] for t in written]
+    italic = sum(a != b for t, u in zip(written, rows) for r, q in zip(t, u) for a, b in zip(r, q))
     pdf_cfg = dict(cfg)
     pdf_cfg["docx"] = dict(cfg["docx"], margin_cm=TEXT_MARGIN_MM / 10, table_pt=TABLE_PT)
     landscape, widths = table_widths(L, rows)
@@ -307,7 +338,7 @@ def table_blocks(L, cfg, numbers, it) -> tuple[bool, list[str]]:
         if len(it["parts"]) > 1:
             out.append(para(L, run(L.part_title(it, k, numbers)), before=6, after=3, keep_next=True))
         out.append(top_aligned(L._w_table(r, w, pdf_cfg)))
-    return landscape, out
+    return landscape, out, italic
 
 
 def assemble(manuscript: Path, dest: Path, L, cfg, pages: dict, marks: bool) -> dict:
@@ -334,7 +365,9 @@ def assemble(manuscript: Path, dest: Path, L, cfg, pages: dict, marks: bool) -> 
     for xml in blocks:
         first.addprevious(element(xml))
     ends_section(list(body)[-1])                          # the notes' last entry ends the text pages
-    laid = {"headings": headings, "figures": [], "tables": []}
+    laid = {"headings": headings, "figures": [], "tables": [],
+            "front": front_texts(L, numbers, headings, figures, pdf_tables, excel_tables),
+            "front_joiners": sum(x.count(JOINER) for x in blocks[:len(blocks) - 2])}
     for k, it in enumerate(figures):
         w_mm, h_mm = figure_size_mm(figure_pdf(it))
         if w_mm > A4[0] - 2 * FIGURE_SIDE_MM + 1e-6 or h_mm > A4[1] - 2 * TEXT_MARGIN_MM + 1e-6:
@@ -353,12 +386,12 @@ def assemble(manuscript: Path, dest: Path, L, cfg, pages: dict, marks: bool) -> 
                                 "width_mm": round(w_mm, 2), "height_mm": round(h_mm, 2)})
         ends_section(cap, side_mm=FIGURE_SIDE_MM)          # the figure's page: side margins of 1.5 cm
     for k, it in enumerate(pdf_tables):
-        landscape, xml = table_blocks(L, cfg, numbers, it)
+        landscape, xml, italic = table_blocks(L, cfg, numbers, it)
         for x in xml:
             body.append(element(x))
         last = element('<w:p><w:pPr><w:spacing w:before="0" w:after="0"/></w:pPr></w:p>')
         body.append(last)
-        laid["tables"].append({"number": it["number"], "turned": landscape})
+        laid["tables"].append({"number": it["number"], "turned": landscape, "italic_cells": italic})
         if k < len(pdf_tables) - 1:
             ends_section(last, landscape)
         else:
@@ -544,6 +577,22 @@ def main() -> None:
         with open(out, "wb") as fh_:
             writer.write(fh_)
         final_texts = page_texts(out)
+        # the front page: its text, the joiners and white space aside, in order, and no line
+        # ending at a range's dash
+        bare = lambda t: "".join(t.replace(JOINER, "").split())             # noqa: E731
+        front_text = "\n".join(final_texts[:front])
+        at, missing = 0, []
+        for piece in [HEADING, PAPER, AUTHOR, "Contents"] + [a + b for a, b in laid["front"]]:
+            k = bare(front_text).find(bare(L._plain(piece)), at)          # an italic run without its marks
+            if k < 0:
+                missing.append(piece[:80])
+            else:
+                at = k + len(bare(L._plain(piece)))
+        check("front_page_prints_its_text_in_order_but_for_the_joiners", not missing, missing)
+        broken = [m.group(0) for m in RANGE_BROKEN.finditer(front_text)]
+        check("front_page_breaks_no_range_at_its_dash", not broken, broken)
+        record["front_page_joiners"] = laid["front_joiners"]
+        record["front_page_joiners_in_the_pdf_text"] = front_text.count(JOINER)
         record["pages"] = len(final_texts)
         record["bytes"] = out.stat().st_size
         record["starts"] = pages | {"notes": found["conventions"][0], "front": 1}

@@ -155,6 +155,53 @@ def test_the_document_holds_the_parts_in_order_each_figure_its_own_page_at_its_s
         r.italic and r.text == "BRCA1" for p in d.paragraphs for r in p.runs)
 
 
+def test_a_range_keeps_its_dash_on_its_line_and_a_broken_one_is_found(B):
+    """E8 commit 8: a range of numbers is joined to its dash on both sides by a word
+    joiner, which prints nothing; a range broken after its dash or before it is found in
+    a page's text."""
+    j = B.JOINER
+    assert B.unbroken("S1–S4, S7–S11 and 3–10, 11–50 bp") == \
+        f"S1{j}–{j}S4, S7{j}–{j}S11 and 3{j}–{j}10, 11{j}–{j}50 bp"
+    assert B.unbroken("precision–recall; −21 to −22") == "precision–recall; −21 to −22"
+    found = lambda t: [m.group(0) for m in B.RANGE_BROKEN.finditer(t)]          # noqa: E731
+    assert found("S27 and S29–\nS34, are") and found("at 3–10, 11\n–50 and 3–50 bp")
+    assert not found("S27 and\nS29–S34, are") and not found("precision–\nrecall") and not found("3–10,\n11–50")
+
+
+def test_the_front_page_joins_its_ranges_and_names_the_accompanying_excel_file(B, layout, tmp_path):
+    """E8 commit 8: the front page's entries and its last sentence as before, each range's
+    dash joined to its numbers; the sentence names the accompanying Excel file; and the
+    tables marked pdf set the gene symbols of their cells in italics."""
+    import docx
+    L, cfg = layout
+    numbers = L._numbers(cfg)
+    out = tmp_path / "assembled.docx"
+    laid = B.assemble(_manuscript(tmp_path / "m.docx"), out, L, cfg, {}, marks=False)
+    d = docx.Document(str(out))
+    paras = [B.text_of(p) for p in d.element.body.iter(B.qn("p"))]
+    front = paras[:paras.index(L.grouped(L._resolve(cfg["supplementary_format"]["conventions"], numbers)))]
+    joined = "\n".join(front)
+    assert [p for p in front if p.startswith("The other ")] == [B.unbroken(
+        "The other 29 supplementary tables, Supplementary Tables S1–S4, S7–S11, S13–S24, S26, S27 and S29–S34, "
+        "are in the accompanying Excel file.")]
+    # every range's dash joined, and the text otherwise as written
+    assert not re.search(r"\d–|–[A-Z]?\d", joined.replace(f"{B.JOINER}–{B.JOINER}", "#"))
+    assert laid["front_joiners"] == joined.count(B.JOINER) > 0
+    # after "Contents", each entry its label and title, then its page number ("00" before
+    # the first typesetting), and the sentence
+    shown = [p.replace(B.JOINER, "") for p in front if p]
+    assert shown[shown.index("Contents") + 1:] == \
+        [L._plain(a + b) + "00" for a, b in laid["front"][:-1]] + [L._plain(laid["front"][-1][1])]
+    # the gene symbols in the tables' cells in italics: S25 and S28 print some
+    italic_cells = sum(t["italic_cells"] for t in laid["tables"])
+    cells = [c for tbl in d.element.body.iter(B.qn("tbl")) for c in tbl.iter(B.qn("tc"))]
+    genes = set(cfg["gene_symbols"])
+    with_gene = [c for c in cells if any(r.find(f"{B.qn('rPr')}/{B.qn('i')}") is not None and B.text_of(r) in genes
+                                         for r in c.iter(B.qn("r")))]
+    assert italic_cells > 0 and len(with_gene) >= italic_cells
+    assert [t["number"] for t in laid["tables"] if t["italic_cells"]] == ["Supplementary Table S25", "Supplementary Table S28"]
+
+
 def test_a_figure_too_large_for_its_page_stops_the_run(B, layout, tmp_path, monkeypatch):
     L, cfg = layout
     monkeypatch.setattr(B, "figure_size_mm", lambda path: (180.5, 100.0))

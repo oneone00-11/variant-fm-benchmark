@@ -1,0 +1,79 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/repo/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E8/scope_e8_c8.json",
+  "--base",
+  "87b8515"
+ ],
+ "git_commit": "87b85155e255f10d09f1f9556bed1d23d5c9db33",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-10T08:33:24+00:00",
+ "end_utc": "2026-11-10T08:34:42+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E8/scope_e8_c8.json",
+   "bytes": 3008,
+   "sha256": "39a437bc857ea9422f56e19b19c273be77031240780113be3379713536bd2484"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E8/scope_e8_c8.json",
+  "base": "87b8515",
+  "head": "working tree",
+  "files": {
+   "phase1/reports/evidence/layout/contents.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 1,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/manifest.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 4,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx": {
+    "status": "declared",
+    "why": "E8 commit 8, items 1-3, as in the repository's workbook, of which it is still the excel tables less their sources' comment lines (check_e8_part2.py --commit 8, cell by cell)",
+    "change": "differs"
+   },
+   "phase1/reports/evidence/layout/supplementary/vcep_rules.csv": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "outside": [],
+    "status": "within the scope"
+   },
+   "phase1/reports/evidence/layout/supplementary_tables.xlsx": {
+    "status": "declared",
+    "why": "E8 commit 8, items 1-3: column widths, wrapping, merged paragraphs with their heights, the header and number styles; the gene symbols of each table's header and cells in italics; S32's 48 cells; every other cell's value as it was (check_e8_part2.py --commit 8, cell by cell)",
+    "change": "differs"
+   }
+  },
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}

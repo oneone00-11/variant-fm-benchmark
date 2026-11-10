@@ -69,11 +69,13 @@ import csv
 import gzip
 import hashlib
 import io
+import math
 import os
 import re
 import shutil
 import zipfile
 from contextlib import contextmanager
+from functools import lru_cache
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -1582,6 +1584,15 @@ def one_page(frames: list, width_mm: float) -> tuple[bool, int, int]:
 # prints it grouped in thousands (1,410) is the same number shown so; any other is text,
 # with a gene's italics, marked *BRCA1* in the text (the CSV keeps the marks), as an
 # italic run.
+#
+# Each row has a role (E8 commit 8, the author's decision of 2026-11-10): a paragraph (a
+# sheet's title, a note, a part's title, a comment line, the contents' conventions: one
+# cell, merged from column A across the table's first columns, wrapping, as tall as its
+# lines), a header (bold, wrapping at its spaces, set at the foot of its row), a row of
+# the table (its text wrapping, every cell set at the top of the row) or an empty row.
+# The columns are as wide as their text in Arial (config/layout.yaml's workbook block,
+# sheet_layout()), and a table's sheet sets the configuration's gene symbols in italics
+# in its header and its cells (italic_genes(), H12).
 # ---------------------------------------------------------------------------
 DECIMAL = re.compile(r"^-?\d+(?:\.(\d+))?$")
 GROUPED_DECIMAL = re.compile(r"^-?\d{1,3}(?:,\d{3})+(?:\.(\d+))?$")
@@ -1590,6 +1601,44 @@ ZIP_TIME = (1980, 1, 1, 0, 0, 0)
 MAX_DECIMALS = 15
 NUMBER_STYLE = 2         # cellXfs index of 0 decimals; d decimals at NUMBER_STYLE + d
 GROUPED_STYLE = NUMBER_STYLE + MAX_DECIMALS + 1      # the same, grouped in thousands
+WRAP_STYLE = GROUPED_STYLE + MAX_DECIMALS + 1        # text, wrapping, at the top of its row
+BOLD_WRAP_STYLE = WRAP_STYLE + 1                     # the same in bold: a title, a part's title
+HEAD_STYLE = WRAP_STYLE + 2                          # a header: bold, wrapping, at the foot of its row
+PARA, HEAD, BODY, BLANK = "paragraph", "header", "body", "blank"
+# how the workbook's text is measured (sheet_layout()): by Helvetica's metrics, which
+# are Arial's, a twentieth wider for the way a screen sets the type; a column's padding
+# (Excel's 5 pixels and a little more); the tallest row Excel allows, in points
+SCREEN_MARGIN = 1.05
+PAD_PX = 8
+MAX_ROW_PT = 409
+# a word in which a gene's symbol stays upright: a URN, a DOI, a web address, a file's
+# path or name, an identifier with an underscore
+NOT_A_WORD = re.compile(r"urn:|doi:|https?:|www\.|\b10\.\d{4,9}/|_|/[^/\s]*/"
+                        r"|\.(?:csv|tsv|json|ya?ml|py|md|txt|docx?|xlsx|pdf|png|parquet|gz|zip|vcf|bed)\b",
+                        re.IGNORECASE)
+
+
+@lru_cache(maxsize=None)
+def _gene_word(symbols: tuple[str, ...]) -> re.Pattern:
+    names = "|".join(re.escape(s) for s in sorted(symbols, key=len, reverse=True))
+    return re.compile(rf"(?<![\w*])({names})(?![\w*]|\.\w)")
+
+
+def italic_genes(text: str, symbols) -> str:
+    """A cell's text with each of the gene symbols marked *BRCA1*, as a whole word (not
+    within a longer symbol, a word or a number: BRCA12, xBRCA1, BRCA1.2; *CTCF*-dependent,
+    *BAP1*=10.4 and *BAP1*;*VHL* are marked), and never in a URN, a DOI, a web address, a
+    file's path or name, or an identifier with an underscore (NOT_A_WORD, looked for in
+    each of the text's words between white space); a symbol marked already stays as it
+    is. The text printed is the same, the marks aside: the run stops if it is not."""
+    if not text or not symbols:
+        return text
+    gene = _gene_word(tuple(symbols))
+    out = "".join(w if not w or w.isspace() or NOT_A_WORD.search(w) else gene.sub(r"*\1*", w)
+                  for w in re.split(r"(\s+)", text))
+    if _plain(out) != _plain(text):
+        raise SystemExit(f"[layout] a gene's italics would change the text '{text}'")
+    return out
 
 
 def _col(i: int) -> str:
@@ -1616,7 +1665,10 @@ def _runs_xml(text: str, bold: bool) -> str:
                    for s, it in runs if s)
 
 
-def _cell_xml(ref: str, value, bold: bool) -> str:
+def _cell_xml(ref: str, value, bold: bool, role: str | None = None) -> str:
+    """A cell: a number (not bold) with its decimals' format, else text. Given its row's
+    role, text is set as the role sets it (wrapping; a header bold and at the foot of its
+    row); without one, bold text has the bold style and other text none."""
     text = "" if value is None else str(value)
     if text == "":
         return ""
@@ -1627,27 +1679,159 @@ def _cell_xml(ref: str, value, bold: bool) -> str:
             places = len(m.group(1) or "")
             if places <= MAX_DECIMALS:
                 return f'<c r="{ref}" s="{style + places}"><v>{digits}</v></c>'
-    style = ' s="1"' if bold else ""
+    if role is None:
+        style = ' s="1"' if bold else ""
+    else:
+        style = f' s="{HEAD_STYLE if role == HEAD else BOLD_WRAP_STYLE if bold else WRAP_STYLE}"'
     return f'<c r="{ref}"{style} t="inlineStr"><is>{_runs_xml(text, bold)}</is></c>'
 
 
-def _sheet_xml(rows: list[tuple[list, bool]]) -> str:
+@lru_cache(maxsize=None)
+def _text_px(text: str, bold: bool, pt: float) -> float:
+    """A text's width on a screen, in pixels at 96 to the inch: Arial at `pt`, measured
+    by text_mm() and SCREEN_MARGIN wider."""
+    return text_mm(text, pt, bold) / 25.4 * 96 * SCREEN_MARGIN
+
+
+def _lines(text: str, bold: bool, room: float, pt: float) -> int:
+    """The lines a text takes in `room` pixels, wrapped at its spaces, as Excel wraps
+    it; a word longer than a line is broken where the line ends."""
+    space = _text_px(" ", bold, pt)
+    n = 0
+    for para in text.split("\n"):
+        n += 1
+        line = 0.0
+        for word in para.split(" "):
+            x = _text_px(word, bold, pt)
+            if line and line + space + x <= room:
+                line += space + x
+                continue
+            if line:
+                n += 1
+            while x > room:
+                n += 1
+                x -= room
+            line = x
+    return n
+
+
+def _header_px(text: str, w: dict) -> float:
+    """The narrowest room, in pixels, in which a header (bold) takes at most the
+    workbook's header_lines lines, wrapping at its spaces: at least its longest word."""
+    pt = w["font_pt"]
+    lo = max([_text_px(x, True, pt) for x in text.split()] + [0.0])
+    hi = _text_px(text, True, pt)
+    if _lines(text, True, lo, pt) <= w["header_lines"]:
+        return lo
+    for _ in range(40):
+        mid = (lo + hi) / 2
+        lo, hi = (lo, mid) if _lines(text, True, mid, pt) <= w["header_lines"] else (mid, hi)
+    return hi
+
+
+def _number(x: float) -> str:
+    return f"{x:.2f}".rstrip("0").rstrip(".")
+
+
+def sheet_layout(rows: list[tuple[list, bool, str]], w: dict) -> tuple[list[float], dict[int, float], list[str]]:
+    """A sheet's column widths (Excel's unit, a digit's width), the heights of its
+    paragraphs of more than one line (points) and its merged ranges, from config/layout.yaml's
+    workbook block. Each column of the sheet's table (its headers and its rows) is as
+    wide as its widest cell, a header taking at most header_lines lines, within
+    min_width and max_width, and at least as wide as its longest word where that is at
+    most max_word_width (a path, a checksum); a table narrower than paragraph_width is
+    widened to it, the columns that wrap sharing the difference in proportion to their
+    widths (all the columns, where none wraps). The paragraphs are merged from column A
+    across the fewest columns as wide as paragraph_width (the whole table where it is
+    narrower), and across more where a paragraph would be taller than a row may be; a
+    paragraph's row is given its height, line_pt a line, since Excel sizes no merged
+    row to its text. The other rows are left to the program, which sizes a row to the
+    lines its cells wrap into. The run stops where a row would be taller than Excel
+    allows."""
+    pt = w["font_pt"]
+    digit = round(max(text_mm(d, pt) for d in "0123456789") / 25.4 * 96)    # 7 pixels at 10 pt
+
+    def col_px(c: float) -> int:                     # a column's width on the screen (ECMA-376, 18.3.1.13)
+        return int(((256 * c + int(128 / digit)) / 256) * digit)
+
+    def chars(px: float) -> float:                  # the width whose room (col_px - PAD_PX) holds px
+        return (math.ceil(px) + PAD_PX + 1) / digit
+
+    def cell(v) -> str:
+        return _plain("" if v is None else str(v))
+
+    table = [(cells, role) for cells, _, role in rows if role in (HEAD, BODY)]
+    ncols = max([len(c) for c, _ in table] + [1])
+    widths, natural = [], []
+    for j in range(ncols):
+        texts = [(cell(c[j]), role == HEAD) for c, role in table if j < len(c) and cell(c[j]) != ""]
+        full = chars(max([_header_px(t, w) if head else _text_px(t, False, pt) for t, head in texts] + [0.0]))
+        longest = chars(max([_text_px(x, head, pt) for t, head in texts for x in t.split()] + [0.0]))
+        c = min(max(full, w["min_width"]), w["max_width"])
+        if longest <= w["max_word_width"]:
+            c = max(c, longest)
+        widths.append(c)
+        natural.append(full)
+    short = w["paragraph_width"] - sum(widths)
+    if short > 0:
+        wrapping = [j for j in range(ncols) if natural[j] > widths[j] + 1e-9] or list(range(ncols))
+        share = sum(widths[j] for j in wrapping)
+        for j in wrapping:
+            widths[j] += short * widths[j] / share
+    widths = [math.ceil(round(c * 100, 6)) / 100 for c in widths]
+    most = int(MAX_ROW_PT // w["line_pt"])
+    paras = [(r, cell(cells[0]), bold) for r, (cells, bold, role) in enumerate(rows, start=1) if role == PARA]
+
+    def para_lines(k: int) -> dict[int, int]:
+        room = sum(col_px(c) for c in widths[:k]) - PAD_PX
+        return {r: _lines(t, bold, room, pt) for r, t, bold in paras}
+
+    span = next((k for k in range(1, ncols + 1) if sum(widths[:k]) >= w["paragraph_width"]), ncols)
+    lines = para_lines(span)
+    while span < ncols and max(lines.values(), default=0) > most:
+        span += 1
+        lines = para_lines(span)
+    for r, (cells, _, role) in enumerate(rows, start=1):
+        if role in (HEAD, BODY):
+            lines[r] = max([_lines(cell(v), role == HEAD, col_px(widths[j]) - PAD_PX, pt)
+                            for j, v in enumerate(cells) if cell(v) != ""] + [1])
+    tall = sorted(r for r, n in lines.items() if n > most)
+    if tall:
+        raise SystemExit(f"[layout] a workbook's rows {tall} would be taller than {MAX_ROW_PT} pt")
+    heights = {r: lines[r] * w["line_pt"] for r, _, _ in paras if lines[r] > 1}
+    merges = [f"A{r}:{_col(span - 1)}{r}" for r, _, _ in paras] if span > 1 else []
+    return widths, heights, merges
+
+
+def _sheet_xml(rows: list[tuple[list, bool, str]], layout=None) -> str:
+    widths, heights, merges = layout if layout else ([], {}, [])
     body = []
-    for r, (cells, bold) in enumerate(rows, start=1):
-        xs = "".join(_cell_xml(f"{_col(c)}{r}", v, bold) for c, v in enumerate(cells))
-        body.append(f'<row r="{r}">{xs}</row>')
+    for r, (cells, bold, role) in enumerate(rows, start=1):
+        xs = "".join(_cell_xml(f"{_col(c)}{r}", v, bold, role) for c, v in enumerate(cells))
+        ht = f' ht="{_number(heights[r])}" customHeight="1"' if r in heights else ""
+        body.append(f'<row r="{r}"{ht}>{xs}</row>')
+    cols = ("<cols>" + "".join(f'<col min="{j}" max="{j}" width="{_number(c)}" customWidth="1"/>'
+                               for j, c in enumerate(widths, start=1)) + "</cols>") if widths else ""
+    merged = (f'<mergeCells count="{len(merges)}">' + "".join(f'<mergeCell ref="{m}"/>' for m in merges)
+              + "</mergeCells>") if merges else ""
     return ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
             '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
-            f'<sheetData>{"".join(body)}</sheetData></worksheet>')
+            f'{cols}<sheetData>{"".join(body)}</sheetData>{merged}</worksheet>')
 
 
 def _styles_xml(ns: str) -> str:
-    # d decimals at numFmtId 164 + d; the same grouped in thousands after them
+    # d decimals at numFmtId 164 + d; the same grouped in thousands after them; every
+    # number set at the top of its row, beside text that wraps
     codes = [("0" if d == 0 else "0." + "0" * d) for d in range(MAX_DECIMALS + 1)]
     codes += ["#,##" + c for c in codes]
     formats = "".join(f'<numFmt numFmtId="{164 + k}" formatCode="{c}"/>' for k, c in enumerate(codes))
     numbers = "".join(f'<xf numFmtId="{164 + k}" fontId="0" fillId="0" borderId="0" xfId="0" '
-                      'applyNumberFormat="1"/>' for k in range(len(codes)))
+                      'applyNumberFormat="1" applyAlignment="1"><alignment vertical="top"/></xf>'
+                      for k in range(len(codes)))
+    text = "".join(f'<xf numFmtId="0" fontId="{font}" fillId="0" borderId="0" xfId="0"'
+                   + (' applyFont="1"' if font else "")
+                   + f' applyAlignment="1"><alignment vertical="{v}" wrapText="1"/></xf>'
+                   for font, v in ((0, "top"), (1, "top"), (1, "bottom")))      # WRAP, BOLD_WRAP, HEAD
     return ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
             f'<styleSheet xmlns="{ns}"><numFmts count="{len(codes)}">{formats}</numFmts>'
             '<fonts count="2"><font><sz val="10"/><name val="Arial"/></font>'
@@ -1655,14 +1839,16 @@ def _styles_xml(ns: str) -> str:
             '<fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills>'
             '<borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders>'
             '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>'
-            f'<cellXfs count="{GROUPED_STYLE + MAX_DECIMALS + 1}"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>'
+            f'<cellXfs count="{HEAD_STYLE + 1}"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>'
             '<xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/>'
-            f'{numbers}</cellXfs>'
+            f'{numbers}{text}</cellXfs>'
             '<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>'
             "</styleSheet>")
 
 
-def write_xlsx(path: Path, sheets: list[tuple[str, list[tuple[list, bool]]]]) -> Path:
+def write_xlsx(path: Path, sheets: list[tuple[str, list[tuple[list, bool, str]]]], w: dict) -> Path:
+    """A workbook of the sheets, each laid out by sheet_layout() with the workbook block
+    `w` of config/layout.yaml."""
     ns = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
     rel = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
     files = {
@@ -1696,7 +1882,7 @@ def write_xlsx(path: Path, sheets: list[tuple[str, list[tuple[list, bool]]]]) ->
         "xl/styles.xml": _styles_xml(ns),
     }
     for i, (_, rows) in enumerate(sheets, start=1):
-        files[f"xl/worksheets/sheet{i}.xml"] = _sheet_xml(rows)
+        files[f"xl/worksheets/sheet{i}.xml"] = _sheet_xml(rows, sheet_layout(rows, w))
     path.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(path, "w") as z:
         for name, text in files.items():
@@ -1717,33 +1903,36 @@ def part_title(item: dict, k: int, numbers: dict) -> str:
     return f"({chr(97 + k)}) {grouped(_resolve(str(part.get('title', part['part'])), numbers))}"
 
 
-def _sheet_rows(it: dict, numbers: dict, comments: bool = True) -> list[tuple[list, bool]]:
+def _sheet_rows(it: dict, numbers: dict, comments: bool = True,
+                genes=()) -> list[tuple[list, bool, str]]:
     """A table's sheet: its number and title, its notes, then each part after an empty
     row, its title (for a table of several parts), the comment lines its source carries
     above its header (unless `comments` is false) and the part's own notes, its header
-    and its rows."""
-    rows: list[tuple[list, bool]] = [([f"{it['number']}. {grouped(_resolve(it['title'], numbers))}"], True)]
+    and its rows, the header's and the rows' gene symbols in italics (italic_genes())."""
+    rows: list[tuple[list, bool, str]] = [
+        ([f"{it['number']}. {grouped(_resolve(it['title'], numbers))}"], True, PARA)]
     for n in _notes(it, numbers):
-        rows.append(([n], False))
+        rows.append(([n], False, PARA))
     for k, (part, df, notes) in enumerate(it["_frames"]):
-        rows.append(([], False))
+        rows.append(([], False, BLANK))
         if len(it["parts"]) > 1:
-            rows.append(([part_title(it, k, numbers)], True))
+            rows.append(([part_title(it, k, numbers)], True, PARA))
         for n in notes if comments else part.get("notes", []):
-            rows.append(([grouped(_resolve(n, numbers))], False))
-        rows.append((list(df.columns), True))
-        rows += [(list(r), False) for r in df.itertuples(index=False)]
+            rows.append(([grouped(_resolve(n, numbers))], False, PARA))
+        rows.append(([italic_genes(c, genes) for c in df.columns], True, HEAD))
+        rows += [([italic_genes(v, genes) for v in r], False, BODY) for r in df.itertuples(index=False)]
     return rows
 
 
 def workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
     fmt = cfg["supplementary_format"]
-    readme: list[tuple[list, bool]] = [
-        ([f"Supplementary tables ({fmt['numbering']}; titles and descriptions: config/layout.yaml)"], True),
-        ([_resolve(fmt["rule"], numbers)], False),
-        ([], False),
+    genes = cfg.get("gene_symbols", [])
+    readme: list[tuple[list, bool, str]] = [
+        ([f"Supplementary tables ({fmt['numbering']}; titles and descriptions: config/layout.yaml)"], True, PARA),
+        ([_resolve(fmt["rule"], numbers)], False, PARA),
+        ([], False, BLANK),
         (["Table", "Sheet", "Content", "Title", "Destination",
-          "Description", "Parts", "Source files", "Source sha256"], True)]
+          "Description", "Parts", "Source files", "Source sha256"], True, HEAD)]
     sheets = []
     for it in items:
         srcs = _sources(it)
@@ -1751,14 +1940,14 @@ def workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
         readme.append(([it["number"], _sheet_name(it["number"]), it["content"], title,
                         it["destination"], grouped(_resolve(it["description"], numbers)),
                         "; ".join(p["part"] for p in it["parts"]) if len(it["parts"]) > 1 else "",
-                        "; ".join(_rel(s) for s in srcs), "; ".join(_sha256(s) for s in srcs)], False))
-        sheets.append((_sheet_name(it["number"]), _sheet_rows(it, numbers)))
-    readme.append(([], False))
-    readme.append((["Kept in the repository only (not numbered)"], True))
-    readme.append((["Path", "What it holds"], True))
-    readme += [([_rel(r["path"]), _resolve(r["what"], numbers)], False)
+                        "; ".join(_rel(s) for s in srcs), "; ".join(_sha256(s) for s in srcs)], False, BODY))
+        sheets.append((_sheet_name(it["number"]), _sheet_rows(it, numbers, genes=genes)))
+    readme.append(([], False, BLANK))
+    readme.append((["Kept in the repository only (not numbered)"], True, PARA))
+    readme.append((["Path", "What it holds"], True, HEAD))
+    readme += [([_rel(r["path"]), _resolve(r["what"], numbers)], False, BODY)
                for r in cfg.get("repository_only", [])]
-    return write_xlsx(path, [("README", readme)] + sheets)
+    return write_xlsx(path, [("README", readme)] + sheets, cfg["workbook"])
 
 
 def submission_workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
@@ -1769,18 +1958,19 @@ def submission_workbook(items: list[dict], cfg: dict, numbers: dict, path: Path)
     number and title, and ends with the tables marked pdf, listed from their numbers."""
     fmt = cfg["supplementary_format"]
     sub = fmt["submission_workbook"]
+    genes = cfg.get("gene_symbols", [])
     excel = [it for it in items if it["destination"] == "excel"]
     pdf = [it for it in items if it["destination"] == "pdf"]
-    contents: list[tuple[list, bool]] = [([sub["heading"]], True), ([], False),
-                                         ([grouped(_resolve(fmt["conventions"], numbers))], False),
-                                         ([], False)]
-    contents += [([it["number"], grouped(_resolve(it["title"], numbers))], False) for it in excel]
+    contents: list[tuple[list, bool, str]] = [
+        ([sub["heading"]], True, PARA), ([], False, BLANK),
+        ([grouped(_resolve(fmt["conventions"], numbers))], False, PARA), ([], False, BLANK)]
+    contents += [([it["number"], grouped(_resolve(it["title"], numbers))], False, BODY) for it in excel]
     if pdf:
         named = _resolve("{" + ", ".join(it["content"] for it in pdf) + "}", numbers)
-        contents += [([], False), ([f"{named} {sub['pdf_tables']}"], False)]
+        contents += [([], False, BLANK), ([f"{named} {sub['pdf_tables']}"], False, PARA)]
     sheets = [(sub["sheet"], contents)]
-    sheets += [(_sheet_name(it["number"]), _sheet_rows(it, numbers, comments=False)) for it in excel]
-    return write_xlsx(path, sheets)
+    sheets += [(_sheet_name(it["number"]), _sheet_rows(it, numbers, comments=False, genes=genes)) for it in excel]
+    return write_xlsx(path, sheets, cfg["workbook"])
 
 
 # ---------------------------------------------------------------------------

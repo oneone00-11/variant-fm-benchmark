@@ -1,0 +1,181 @@
+{
+ "script": "scripts/stage_E8/check_bindings_v6.py",
+ "argv": [
+  "scripts/stage_E8/check_bindings_v6.py",
+  "--manuscript",
+  "results/scratch/v6/manuscript.docx",
+  "--texts",
+  "results/scratch/v6/texts"
+ ],
+ "git_commit": "87b85155e255f10d09f1f9556bed1d23d5c9db33",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E8/check_bindings_v6.py": "77cd01a5fd60241d49c29ac8492ee8cc4c948ec87a70e05db6f8d94b6bc34556",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-10T08:41:58+00:00",
+ "end_utc": "2026-11-10T08:42:24+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "manuscript_sha256": "d39ac3fbb35d1394c34e7fc76184eb249b15d94153b5e2fd1a4664478d2d6617",
+  "bindings_sha256": "931d7fe302caf9bdf2601f1a44017dfa0fe2c90ca5a1eae34100e64cd7ebb529",
+  "v6_main.md_sha256": "d54ad0e798f44232e99fcb5efbb823fc95d8842e08eb1062386de5bb5a6743a5",
+  "v6_supplement.md_sha256": "bba876d124ae121fa117ca9768883c7ef9a4e3b5d4bbcd3740b431dce6cabc28",
+  "v6_main_keyed.md_sha256": "2abcbe2286c3cfa0931fcb76ef8f90475f9fb9343fc2b79563a8fb7e30924f1c",
+  "v6_supplement_keyed.md_sha256": "69a56d8a860cc5b05c756311ca9b48eb164d37e62fc3b94bd72e9cfc40fbe1ec",
+  "pool_manuscript": {
+   "exit": 0,
+   "output": "NOTE: pool mode. It matches each number against every value the pipeline wrote, so a pass shows only that a number is not impossible. Run the source-tagged Markdown for the bound check.\npool: 692,589 distinct values from reports/evidence/, the manifests and the analysis-set totals\ntokens: 96 matched, 123 declared, 0 unmatched\n\nresult sentences asserting a count written as a word (11); read each against Table 1 or Table 2:\n  - The splicing recommendation of Walker and colleagues derived cut points for the maximum SpliceAI delta score from 2,736 variants outside the canonical\n  - Here, we test the published cut points against a functional standard measured in cells, and we ask (1) what evidence strength each predictor supports \n  - Thresholds were tested in each gene left out of the fit and then in seven further genes, five of them scored only after the fit was frozen.\n  - Fitted on all seven genes, the thresholds give the in-sample tier (Supplementary Tables S8 and S9).\n  - Band ratios and the area under the receiver operating characteristic curve (AUROC) were compared across the three arms at the published cut points and\n  - External genes Seven genes outside the training set were tested, each labelled by the classification its MaveDB deposit provides (Supplementary Tables\n  - Each fold holds out one of the seven genes, or one of six in the distal band.\n  - Each curve pools the seven genes, and the legend in each panel gives the area under that pooled curve; the AUROC reported in the text combines per-gen\n  - In the proximal band it gave Moderate in TP53 and SFPQ and Supporting in four genes, and XRCC2, with 7 damaging variants there, could not be evaluated\n  - Close to the exon, predictor-specific thresholds cleared the Strong boundary in most held-out genes, extending the Strong evidence the recommendation \n  - (2) Where PS3 or BS3 comes from one of these seven assays, a PP3 threshold calibrated on that assay should not be added at full weight, since both cou\n"
+  },
+  "pool_main": {
+   "exit": 0,
+   "output": "NOTE: pool mode. It matches each number against every value the pipeline wrote, so a pass shows only that a number is not impossible. Run the source-tagged Markdown for the bound check.\npool: 692,589 distinct values from reports/evidence/, the manifests and the analysis-set totals\ntokens: 101 matched, 138 declared, 0 unmatched\n\nresult sentences asserting a count written as a word (9); read each against Table 1 or Table 2:\n  - Each fold holds out one of the seven genes, or one of six in the distal band.\n  - Each curve pools the seven genes, and the legend in each panel gives the area under that pooled curve; the AUROC reported in the text combines per-gen\n  - In the proximal band it gave Moderate in TP53 and SFPQ and Supporting in four genes, and XRCC2, with 7 damaging variants there, could not be evaluated\n  - Close to the exon, predictor-specific thresholds cleared the Strong boundary in most held-out genes, extending the Strong evidence the recommendation \n  - (2) Where PS3 or BS3 comes from one of these seven assays, a PP3 threshold calibrated on that assay should not be added at full weight, since both cou\n  - BRCA2’s deposit stops at 10 bp, so the distal band holds six genes.\n  - (a) The in-sample tier is the highest PP3 tier reached with the seven genes pooled, six in the distal band; a dash marks a tier not reached.\n  - Values are the band likelihood ratio of SpliceAI on the published basis for scores of 0.2 or above, in the seven genes and without BRCA1.\n  - (a) Held out in the seven genes (b) Agreement with ClinVar classifications of at least one review star\n"
+  },
+  "pool_supplement": {
+   "exit": 1,
+   "output": "NOTE: pool mode. It matches each number against every value the pipeline wrote, so a pass shows only that a number is not impossible. Run the source-tagged Markdown for the bound check.\npool: 692,589 distinct values from reports/evidence/, the manifests and the analysis-set totals\ntokens: 17 matched, 26 declared, 1 unmatched\n  UNMATCHED 10,000  ...trap clustered on gene, with the variant-level bootstrap of 10,000 draws reported alongside....\n\nresult sentences asserting a count written as a word (3); read each against Table 1 or Table 2:\n  - The AUROC combined across genes needs at least two genes, and a gene that separates the classes completely leaves it undefined.\n  - Further genes: the in-sample thresholds were refitted on the seven genes together with the five further HAP1 genes, and tier changes are reported (Sup\n  - The summary in Supplementary Table S16 counts, as k/n (m), the genes in which each in-sample threshold clears its tier’s boundary, at the point estima\n"
+  },
+  "bound_main": {
+   "exit": 1,
+   "output": "bound mode on v6_main_keyed.md: 78 numbers matched in the file their sentence names, 108 declared constants, 11 not found in their named file, 2 in a paragraph that names no file\n  NOT IN NAMED FILE 13 [tableS3_predictor_columns.csv]  ...We evaluated 13 predictor scores (Supplementary Tables S4 and S5; Supplementary Notes 1 and 2). [tableS3_predictor_columns.csv] SpliceAI [22...\n  NOT IN NAMED FILE 6 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 7 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 4 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 7 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 7 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 7 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 4 [external_summary.csv]  ...In the external genes these BP4 thresholds cleared the Supporting boundary in 4/7 (1) genes for SpliceAI and 5/7 (1) for Pangolin in the pro...\n  NOT IN NAMED FILE 7 [external_summary.csv]  ...In the external genes these BP4 thresholds cleared the Supporting boundary in 4/7 (1) genes for SpliceAI and 5/7 (1) for Pangolin in the pro...\n  NOT IN NAMED FILE 5 [external_summary.csv]  ...In the external genes these BP4 thresholds cleared the Supporting boundary in 4/7 (1) genes for SpliceAI and 5/7 (1) for Pangolin in the pro...\n  NOT IN NAMED FILE 7 [external_summary.csv]  ...In the external genes these BP4 thresholds cleared the Supporting boundary in 4/7 (1) genes for SpliceAI and 5/7 (1) for Pangolin in the pro...\n  UNBOUND 95  ...Confidence intervals (95%) for the training genes come from a bootstrap clustered on gene with 2,000 draws, and for held-out and external ge...\n  UNBOUND 0.05  ...(1) The tier boundaries assume a prior of 0.10 [3, 4], and at a prior of 0.05 SpliceAI and Pangolin lose Strong in the proximal band and the...\n\nresult sentences asserting a count written as a word (9); read each against the tables:\n  - Each fold holds out one of the seven genes, or one of six in the distal band.\n  - Each curve pools the seven genes, and the legend in each panel gives the area under that pooled curve; the AUROC reported in the text combines per-gen\n  - In the proximal band it gave Moderate in TP53 and SFPQ and Supporting in four genes, and XRCC2, with 7 damaging variants there, could not be evaluated\n  - Close to the exon, predictor-specific thresholds cleared the Strong boundary in most held-out genes, extending the Strong evidence the recommendation \n  - (2) Where PS3 or BS3 comes from one of these seven assays, a PP3 threshold calibrated on that assay should not be added at full weight, since both cou\n  - BRCA2’s deposit stops at 10 bp, so the distal band holds six genes.\n  - (a) The in-sample tier is the highest PP3 tier reached with the seven genes pooled, six in the distal band; a dash marks a tier not reached.\n  - Values are the band likelihood ratio of SpliceAI on the published basis for scores of 0.2 or above, in the seven genes and without BRCA1.\n  - (a) Held out in the seven genes (b) Agreement with ClinVar classifications of at least one review star\n"
+  },
+  "bound_supplement": {
+   "exit": 1,
+   "output": "bound mode on v6_supplement_keyed.md: 5 numbers matched in the file their sentence names, 21 declared constants, 1 not found in their named file, 9 in a paragraph that names no file\n  NOT IN NAMED FILE 13 [tableS3_predictor_columns.csv]  ...In each distance band, the 13 predictors and the combination were read. [tableS3_predictor_columns.csv] A distance band with fewer than 10 p...\n  UNBOUND 112  ...Pangolin was run at git commit 5cf94b8 with Ensembl release 112 annotation, within 50 bp....\n  UNBOUND 10,000  ...(a) The bound comes from a bootstrap clustered on gene, with the variant-level bootstrap of 10,000 draws reported alongside....\n  UNBOUND 6  ...By position: band ratios with gene-clustered intervals in three donor groups (+3 to +6, +7 to +10, +11 to +50) and three acceptor groups (−3...\n  UNBOUND 7  ...By position: band ratios with gene-clustered intervals in three donor groups (+3 to +6, +7 to +10, +11 to +50) and three acceptor groups (−3...\n  UNBOUND 21  ...By position: band ratios with gene-clustered intervals in three donor groups (+3 to +6, +7 to +10, +11 to +50) and three acceptor groups (−3...\n  UNBOUND 7  ...BP4 at the BP7 positions: at donor +7 and beyond and acceptor −21 and beyond, the damaging and normal variants scoring at or below 0.1 were ...\n  UNBOUND 21  ...BP4 at the BP7 positions: at donor +7 and beyond and acceptor −21 and beyond, the damaging and normal variants scoring at or below 0.1 were ...\n  UNBOUND 0.05  ...Prior: the tiers were recomputed at priors of 0.05 and 0.185 (Supplementary Table S30)....\n  UNBOUND 0.185  ...Prior: the tiers were recomputed at priors of 0.05 and 0.185 (Supplementary Table S30)....\n\nresult sentences asserting a count written as a word (3); read each against the tables:\n  - The AUROC combined across genes needs at least two genes, and a gene that separates the classes completely leaves it undefined.\n  - Further genes: the in-sample thresholds were refitted on the seven genes together with the five further HAP1 genes, and tier changes are reported (Sup\n  - The summary in Supplementary Table S16 counts, as k/n (m), the genes in which each in-sample threshold clears its tier’s boundary, at the point estima\n"
+  },
+  "selftest": {
+   "exit": 0,
+   "output": "bound mode with 6 planted numbers beside the sentence on line 3, which names walker_thresholds.csv; checked first: no planted number is a declared constant or a value those files hold\n  caught 0.3712\n  caught 12.34\n  caught 987\n  caught 0.9137\n  caught 45.6%\n  caught 7,777\nSELFTEST caught 6 / 6: PASSED\n"
+  },
+  "excluded_whole": {
+   "main references": 240,
+   "notes references": 61,
+   "notes list numbers": 46
+  },
+  "numbers_main": {
+   "read": 199,
+   "headings": 0,
+   "source tags": 0,
+   "identifiers": 14,
+   "citations": 68,
+   "labels": 105,
+   "within words": 121,
+   "outside the body": 0
+  },
+  "cells_main": {
+   "constant": 86,
+   "match": 113,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "numbers": 199,
+   "problems": []
+  },
+  "numbers_supplement": {
+   "read": 36,
+   "headings": 6,
+   "source tags": 0,
+   "identifiers": 3,
+   "citations": 7,
+   "labels": 26,
+   "within words": 37,
+   "outside the body": 0
+  },
+  "cells_supplement": {
+   "constant": 29,
+   "match": 7,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "numbers": 36,
+   "problems": []
+  },
+  "cells_manuscript_Table 1": {
+   "numbers": 98,
+   "constant": 3,
+   "match": 95,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": []
+  },
+  "cells_file_Table 1": {
+   "numbers": 98,
+   "constant": 3,
+   "match": 95,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": []
+  },
+  "cells_manuscript_Table 2": {
+   "numbers": 167,
+   "constant": 56,
+   "match": 111,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": []
+  },
+  "cells_file_Table 2": {
+   "numbers": 167,
+   "constant": 56,
+   "match": 111,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": []
+  },
+  "cells_manuscript_Table 3": {
+   "numbers": 30,
+   "constant": 12,
+   "match": 18,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": []
+  },
+  "cells_file_Table 3": {
+   "numbers": 30,
+   "constant": 12,
+   "match": 18,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": []
+  },
+  "cells_manuscript_Table 4": {
+   "numbers": 166,
+   "constant": 24,
+   "match": 142,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": []
+  },
+  "cells_file_Table 4": {
+   "numbers": 166,
+   "constant": 24,
+   "match": 142,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": []
+  },
+  "failed": []
+ }
+}
