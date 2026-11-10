@@ -2497,3 +2497,35 @@ change: `contents.csv` and `manifest.csv`, and four new files
   notes, and its part titles are the approved ones (read only); every text against the
   approved file; every cell against its CSV; the rules, page and fonts; and the number
   gate's cells mode on each file, every number matching its CSV cell.
+
+## A script that assembles the supplementary information (stage E8, commit 6, 2026-11-10)
+
+Why: the author's decision of 2026-11-09 (E8 part two, E8.12). No output changes
+(`scripts/stage_E8/scope_e8_c6.json` declares none). The PDF holds the manuscript's
+supplementary notes, so it is not committed: the script that writes it and its tests are.
+
+- **`scripts/stage_E8/build_supplementary_pdf.py --manuscript <docx>`** writes
+  `~/Desktop/calibration/submission/Supplementary_Information.pdf`: a front page (the
+  heading, the paper's title, the author, the contents with page numbers, and the 29
+  tables in the Excel file named from their numbers); the conventions; the supplementary
+  notes word for word, copied as the manuscript holds them (from "Supplementary Notes" to
+  the last entry of "References cited in the Supplementary Notes": headings, numbered
+  items, run-in headings and italics; Arial at 10 pt, the headings bold); the five
+  supplementary figures, each on a page of its own, the layout's vector PDF at the size it
+  was drawn, centred between side margins of 1.5 cm, its number, title and legend below
+  (Supplementary Figure S1's, 240 mm tall, at the top of the next page); and the five
+  tables marked pdf, each title, notes and parts, the cells the layout's CSVs, ruled
+  across only as the main tables' files are, turned where wide (a wide table's short
+  columns kept whole, its long ones wrapping). A4, text pages with margins of 2 cm, page
+  numbers.
+- The pages are typeset by LibreOffice from a document built on a copy of the manuscript
+  (python-docx), so that the notes keep their numbering and styles; each figure is laid
+  onto a space of its height with pypdf, moved, never scaled. A first typesetting finds
+  the figures' pages and the contents' numbers; the second is the PDF.
+- It checks what it wrote and records it: the notes' text is the manuscript's but for
+  white space; the five figures and five tables appear once each, in order, after the
+  notes' headings in order; the figures' pages hold no image and each figure is laid at
+  a scale of 1; every font is embedded; the page count and the size against the 150 MB
+  limit. `tests/test_supplementary_pdf.py` checks the assembled document on a small
+  manuscript made in the test, and the whole build where the manuscript and LibreOffice
+  are at hand.
