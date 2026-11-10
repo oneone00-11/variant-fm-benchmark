@@ -1,0 +1,499 @@
+{
+ "script": "scripts/stage_E8/check_e8_part2.py",
+ "argv": [
+  "scripts/stage_E8/check_e8_part2.py",
+  "--commit",
+  "4",
+  "--base",
+  "1495bd9"
+ ],
+ "git_commit": "1495bd9802ec92935f5bbc00329e82c9bc7a7c31",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E8/check_e8_part2.py": "43360ef52a3f6a8f280f3057680355b7cb93be39dd9ac1ea9f3aaa50ccd57adf",
+  "scripts/stage_E8/_runlog.py": "035317271a12b86c3967e3fa1ccf2ce41456f81075676874335c6deb3da2beae"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-10T03:01:51+00:00",
+ "end_utc": "2026-11-10T03:02:55+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "base": "1495bd9",
+  "commit": 4,
+  "approved_texts_file_is_the_authors": true,
+  "every_item_of_the_approved_file_is_in_the_configuration": true,
+  "configuration_prints_the_approved_texts": {
+   "ok": true,
+   "value": []
+  },
+  "approved_texts_compared_in_the_configuration": 152,
+  "the_seven_fixes_as_checked": {
+   "supplementary/label_sources.audit.csv": [
+    [
+     "Table S1 cites no paper",
+     "Supplementary Table S1 cites no paper"
+    ]
+   ],
+   "supplementary/bp4_at_bp7_positions.csv": [
+    [
+     "(b) SpliceAI at or below Table 2(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758",
+     "(b) SpliceAI at or below the in-sample BP4 Supporting threshold of the band (Table 2(b))"
+    ],
+    [
+     "(a) SpliceAI at or below the published cut, 0.1",
+     "(a) SpliceAI at or below the published BP4 cut point, 0.1"
+    ]
+   ],
+   "supplementary/clinvar_coverage.csv": [
+    [
+     "Offset band (nt)",
+     "Offset band (bp)"
+    ]
+   ],
+   "supplementary/new_external_genes.counts_by_offset.csv": [
+    [
+     "per_nt",
+     "Per position"
+    ],
+    [
+     "stratum",
+     "By distance band"
+    ],
+    [
+     "pm12",
+     "1–2 (canonical dinucleotides)"
+    ],
+    [
+     "s3_10",
+     "3–10"
+    ],
+    [
+     "s11_50",
+     "11–50"
+    ],
+    [
+     "s3_50",
+     "3–50"
+    ],
+    [
+     "out_of_scope_deep",
+     "beyond 50"
+    ]
+   ]
+  },
+  "files_are_the_bases_and_the_workbook_for_submission": {
+   "ok": true,
+   "value": [
+    "submission/supplementary_tables.xlsx"
+   ]
+  },
+  "csv_changes_are_the_seven_fixes": {
+   "ok": true,
+   "value": []
+  },
+  "csv_changes_where_the_fixes_are": {
+   "ok": true,
+   "value": [
+    "supplementary/bp4_at_bp7_positions.csv",
+    "supplementary/clinvar_coverage.csv",
+    "supplementary/label_sources.audit.csv",
+    "supplementary/new_external_genes.counts_by_offset.csv"
+   ]
+  },
+  "label_audit_two_cells_and_conditions_24_each": true,
+  "csv_changed_cells": {
+   "supplementary/bp4_at_bp7_positions.csv": 48,
+   "supplementary/clinvar_coverage.csv": 1,
+   "supplementary/label_sources.audit.csv": 2,
+   "supplementary/new_external_genes.counts_by_offset.csv": 1220
+  },
+  "csv_fixes_made": [
+   [
+    "supplementary/bp4_at_bp7_positions.csv",
+    "(a) SpliceAI at or below the published cut, 0.1",
+    "(a) SpliceAI at or below the published BP4 cut point, 0.1",
+    24
+   ],
+   [
+    "supplementary/bp4_at_bp7_positions.csv",
+    "(b) SpliceAI at or below Table 2(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758",
+    "(b) SpliceAI at or below the in-sample BP4 Supporting threshold of the band (Table 2(b))",
+    24
+   ],
+   [
+    "supplementary/clinvar_coverage.csv",
+    "Offset band (nt)",
+    "Offset band (bp)",
+    1
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "Table S1 cites no paper: not applicable",
+    "Supplementary Table S1 cites no paper: not applicable",
+    2
+   ],
+   [
+    "supplementary/new_external_genes.counts_by_offset.csv",
+    "out_of_scope_deep",
+    "beyond 50",
+    20
+   ],
+   [
+    "supplementary/new_external_genes.counts_by_offset.csv",
+    "per_nt",
+    "Per position",
+    1020
+   ],
+   [
+    "supplementary/new_external_genes.counts_by_offset.csv",
+    "pm12",
+    "1–2 (canonical dinucleotides)",
+    20
+   ],
+   [
+    "supplementary/new_external_genes.counts_by_offset.csv",
+    "s11_50",
+    "11–50",
+    20
+   ],
+   [
+    "supplementary/new_external_genes.counts_by_offset.csv",
+    "s3_10",
+    "3–10",
+    20
+   ],
+   [
+    "supplementary/new_external_genes.counts_by_offset.csv",
+    "s3_50",
+    "3–50",
+    20
+   ],
+   [
+    "supplementary/new_external_genes.counts_by_offset.csv",
+    "stratum",
+    "By distance band",
+    100
+   ]
+  ],
+  "per_position_bins_as_they_were": {
+   "ok": true,
+   "value": [
+    "1",
+    "10",
+    "11",
+    "12",
+    "13"
+   ]
+  },
+  "contents_has_a_legend_column_after_the_title": {
+   "ok": true,
+   "value": [
+    "number",
+    "section",
+    "kind",
+    "content",
+    "title",
+    "legend",
+    "destination",
+    "fits_one_page_estimate",
+    "description",
+    "notes",
+    "files",
+    "sources",
+    "make"
+   ]
+  },
+  "contents_same_rows_in_the_same_order": true,
+  "contents_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "contents_changed_fields": {
+   "title": 39,
+   "legend": 5,
+   "notes": 31,
+   "fits_one_page_estimate": 3
+  },
+  "manifest_rows_are_the_bases_and_one_new": true,
+  "manifest_new_row_follows_the_workbooks": true,
+  "manifest_changes_are_sizes_and_hashes_of_the_files_that_differ": {
+   "ok": true,
+   "value": []
+  },
+  "manifest_new_row_has_the_workbooks_sources": true,
+  "manifest_hashes_true": true,
+  "manifest_changed_fields": {
+   "bytes": 7,
+   "sha256": 8
+  },
+  "files_that_differ_from_the_base": [
+   "contents.csv",
+   "manifest.csv",
+   "supplementary/bp4_at_bp7_positions.csv",
+   "supplementary/clinvar_coverage.csv",
+   "supplementary/clinvar_coverage_by_position.pdf",
+   "supplementary/clinvar_coverage_by_position.png",
+   "supplementary/label_sources.audit.csv",
+   "supplementary/new_external_genes.counts_by_offset.csv",
+   "supplementary_tables.xlsx"
+  ],
+  "sheets_as_before": true,
+  "readme_same_shape": true,
+  "readme_changes_are_the_titles": {
+   "ok": true,
+   "value": 34
+  },
+  "workbook_changes_explained": {
+   "ok": true,
+   "value": []
+  },
+  "workbook_changed_rows_or_cells": {
+   "S1 (functional_standards)": 2,
+   "S2 (label_sources)": 7,
+   "S3 (analysis_set_by_status)": 2,
+   "S4 (predictor_columns)": 1,
+   "S5 (training_signal)": 1,
+   "S6 (column_agreement)": 2,
+   "S7 (published_cut_points)": 2,
+   "S8 (thresholds_pathogenic)": 2,
+   "S9 (thresholds_benign)": 2,
+   "S10 (clinvar_status)": 2,
+   "S11 (within_gene_arms)": 4,
+   "S12 (arms_at_fitted_thresholds)": 2,
+   "S13 (external_genes)": 2,
+   "S14 (new_external_genes)": 1223,
+   "S15 (external_column_basis)": 2,
+   "S16 (external_summary)": 3,
+   "S17 (practical_metrics)": 5,
+   "S18 (confusion_matrices)": 2,
+   "S19 (without_bap1)": 1,
+   "S20 (heldout_intervals)": 5,
+   "S21 (dilution)": 2,
+   "S22 (label_sensitivity)": 7,
+   "S23 (family_holdout)": 2,
+   "S24 (fusion)": 2,
+   "S25 (clinvar_coverage)": 3,
+   "S26 (clinvar_consistency)": 4,
+   "S27 (inframe_attribution)": 2,
+   "S28 (inframe_true_positives)": 2,
+   "S29 (twelve_gene_refit)": 2,
+   "S30 (prior_sensitivity)": 2,
+   "S31 (bp4_at_bp7_positions)": 50,
+   "S32 (vcep_rules)": 2,
+   "S33 (alphagenome_definitions)": 2,
+   "S34 (by_splice_site_position)": 2,
+   "README": 34
+  },
+  "approved_texts_compared_in_the_workbook": 110,
+  "submission_sheets": {
+   "ok": true,
+   "value": [
+    "Contents",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S7",
+    "S8",
+    "S9"
+   ]
+  },
+  "submission_holds_29_tables_and_names_5_for_the_pdf": true,
+  "submission_sheets_are_the_workbooks_less_the_comment_lines": {
+   "ok": true,
+   "value": []
+  },
+  "comment_lines_left_out": 68,
+  "submission_contents_sheet": {
+   "ok": true,
+   "value": [
+    35,
+    35
+   ]
+  },
+  "submission_contents_heading_bold_the_rest_plain": true,
+  "submission_titles_are_the_approved": true,
+  "submission_contents_rows": 35,
+  "only_s4_differs_byte_for_byte": {
+   "ok": true,
+   "value": [
+    "supplementary/clinvar_coverage_by_position.pdf",
+    "supplementary/clinvar_coverage_by_position.png"
+   ]
+  },
+  "s4_differs_only_within_its_x_label": {
+   "ok": true,
+   "value": {
+    "box_px_x0_y0_x1_y1": [
+     675,
+     1234,
+     1536,
+     1267
+    ],
+    "pixels_differing": 9653,
+    "same_size": true
+   }
+  },
+  "s4_label_box_px": [
+   675,
+   1234,
+   1536,
+   1267
+  ],
+  "no_provisional": {
+   "ok": true,
+   "value": []
+  },
+  "no_revision_code": {
+   "ok": true,
+   "value": []
+  },
+  "no_v5": {
+   "ok": true,
+   "value": []
+  },
+  "no_Table_3b": {
+   "ok": true,
+   "value": []
+  },
+  "no_number_of_this_paper_left_fixed": {
+   "ok": true,
+   "value": []
+  },
+  "numbers_left_when_renumbered": [
+   [
+    "contents.csv",
+    "Supplementary Table 5",
+    "(d, e) The second dataset is the *BRCA2* SGE assay of Sahu and colleagues [44] (urn:mavedb:00001242-a-1), with the classes of Supplementary Table 5 of that publication. Variants were joined on GRCh38 "
+   ],
+   [
+    "submission/supplementary_tables.xlsx:Q2",
+    "Figure 3",
+    "paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a)"
+   ],
+   [
+    "submission/supplementary_tables.xlsx:Q2",
+    "Figure 3a",
+    "paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a)"
+   ],
+   [
+    "submission/supplementary_tables.xlsx:Q2",
+    "Figure 4e",
+    "paper rule 'Results and Methods: FDR and sign, depleted split at the printed median' (PMID 38969833; PMC11250367; doi:10.1038/s41588-024-01799-3; Results and Methods; Figure 4e legend)"
+   ],
+   [
+    "submission/supplementary_tables.xlsx:Q2",
+    "Supplementary Table 3",
+    "supplementary table: Supplementary Table 3 'Functional category', grouped as the Results group it (Results, paragraph beginning 'The combined benign')"
+   ],
+   [
+    "submission/supplementary_tables.xlsx:Q2",
+    "Table S3",
+    "PMC11821525 41586_2024_8388_MOESM3_ESM.xlsx sheet 'Table S3'"
+   ],
+   [
+    "submission/supplementary_tables.xlsx:Q22",
+    "Supplementary Table 5",
+    "(d, e) The second dataset is the BRCA2 SGE assay of Sahu and colleagues [44] (urn:mavedb:00001242-a-1), with the classes of Supplementary Table 5 of that publication. Variants were joined on GRCh38 co"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "Figure 3",
+    "paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a)"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "Figure 3a",
+    "paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a)"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "Figure 4e",
+    "paper rule 'Results and Methods: FDR and sign, depleted split at the printed median' (PMID 38969833; PMC11250367; doi:10.1038/s41588-024-01799-3; Results and Methods; Figure 4e legend)"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "Supplementary Table 3",
+    "supplementary table: Supplementary Table 3 'Functional category', grouped as the Results group it (Results, paragraph beginning 'The combined benign')"
+   ],
+   [
+    "supplementary/label_sources.audit.csv",
+    "Table S3",
+    "PMC11821525 41586_2024_8388_MOESM3_ESM.xlsx sheet 'Table S3'"
+   ],
+   [
+    "supplementary_tables.xlsx:Q2",
+    "Figure 3",
+    "paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a)"
+   ],
+   [
+    "supplementary_tables.xlsx:Q2",
+    "Figure 3a",
+    "paper rule 'Figure 3a legend: the same cut-offs on the function score' (PMID 30209399; PMC6181777; doi:10.1038/s41586-018-0461-z; Figure 3 legend, panel a)"
+   ],
+   [
+    "supplementary_tables.xlsx:Q2",
+    "Figure 4e",
+    "paper rule 'Results and Methods: FDR and sign, depleted split at the printed median' (PMID 38969833; PMC11250367; doi:10.1038/s41588-024-01799-3; Results and Methods; Figure 4e legend)"
+   ],
+   [
+    "supplementary_tables.xlsx:Q2",
+    "Supplementary Table 3",
+    "supplementary table: Supplementary Table 3 'Functional category', grouped as the Results group it (Results, paragraph beginning 'The combined benign')"
+   ],
+   [
+    "supplementary_tables.xlsx:Q2",
+    "Table S3",
+    "PMC11821525 41586_2024_8388_MOESM3_ESM.xlsx sheet 'Table S3'"
+   ],
+   [
+    "supplementary_tables.xlsx:Q22",
+    "Supplementary Table 5",
+    "(d, e) The second dataset is the BRCA2 SGE assay of Sahu and colleagues [44] (urn:mavedb:00001242-a-1), with the classes of Supplementary Table 5 of that publication. Variants were joined on GRCh38 co"
+   ],
+   [
+    "supplementary_tables.xlsx:Q22",
+    "Supplementary Table 5",
+    "Second set: urn:mavedb:00001242-a-1 (Sahu et al. 2025), classes by rule R6: Supplementary Table 5's Classification, abnormal / normal / intermediate by side (paper_rule.json)."
+   ],
+   [
+    "supplementary_tables.xlsx:Q22",
+    "Table 5",
+    "Joined on the genomic coordinate (the author's decisions of 2026-10-26). Table 5's 6,551 rows were checked one by one: each row's c., mapped as the further external genes' variants are mapped, gives i"
+   ],
+   [
+    "supplementary_tables.xlsx:Q22",
+    "Table 5",
+    "Shared with the analysis set's 551 BRCA2 variants at 3-10 nt: 201 by Table 5 (the screening record's 198, by MaveDB's score table, is unchanged)."
+   ],
+   [
+    "supplementary_tables.xlsx:Q22",
+    "Table 5",
+    "c.9505A>C/G/T thus stands twice in Table 5 (for g.32394937, the set's c.9501+4A>C/G/T, and for the exonic g.32396901); MaveDB's urn:mavedb:00001242-a-1 lacks all six rows."
+   ]
+  ],
+  "the_notes_are_numbered_by_the_configuration": {
+   "ok": true,
+   "value": [
+    "Supplementary Note Q2",
+    "Supplementary Note Q3",
+    "Supplementary Note Q4",
+    "Supplementary Note Q5",
+    "Supplementary Note Q6"
+   ]
+  }
+ }
+}

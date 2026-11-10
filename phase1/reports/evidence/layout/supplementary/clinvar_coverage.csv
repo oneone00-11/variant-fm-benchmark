@@ -1,4 +1,4 @@
-Gene,"Stratum (intronic offset, bp)",Offset band (nt),Analysis-set variants,Unrecorded in ClinVar,Share unrecorded in ClinVar,Recorded but not P/LP or B/LB,Share recorded but not P/LP or B/LB,Classified P/LP or B/LB,Share classified P/LP or B/LB
+Gene,"Stratum (intronic offset, bp)",Offset band (bp),Analysis-set variants,Unrecorded in ClinVar,Share unrecorded in ClinVar,Recorded but not P/LP or B/LB,Share recorded but not P/LP or B/LB,Classified P/LP or B/LB,Share classified P/LP or B/LB
 BAP1,Canonical dinucleotides (out of scope),1–2,192,112,0.583,11,0.057,69,0.359
 BAP1,3–10,3–10,768,507,0.660,108,0.141,153,0.199
 BAP1,11–50,11–50,"1,500","1,204",0.803,18,0.012,278,0.185

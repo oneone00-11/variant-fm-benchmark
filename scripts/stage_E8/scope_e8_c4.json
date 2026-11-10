@@ -1,0 +1,80 @@
+{
+ "commit": "E8 commit 4 (the supplementary items' titles, part titles, notes and legends and the conventions in the author's approved wording; seven reworded cells; a workbook for submission; the author's decisions of 2026-11-09)",
+ "pairs": {
+  "label_sources": [],
+  "bp4_at_bp7_positions": [],
+  "clinvar_coverage": [],
+  "new_external_genes": []
+ },
+ "files": {
+  "phase1/reports/evidence/layout/supplementary/label_sources.audit.csv": {
+   "kind": "rows",
+   "key": ["Gene", "Rule as applied, or why not applicable"],
+   "tool": "Gene",
+   "gene_const": "label_sources",
+   "fields": [],
+   "why": "E8.10 cell_fixes: the two cells naming this paper's Table S1 name it as the configuration numbers it, Supplementary Table S1 (layout.yaml's replace); every other cell as it was",
+   "renames": [["Table S1 cites no paper", "Supplementary Table S1 cites no paper"]]
+  },
+  "phase1/reports/evidence/layout/supplementary/bp4_at_bp7_positions.csv": {
+   "kind": "rows",
+   "key": ["Condition", "Splice-site side", "Gene"],
+   "tool": "Gene",
+   "gene_const": "bp4_at_bp7_positions",
+   "fields": [],
+   "why": "E8.10 cell_fixes: the condition's two texts as the author worded them, 24 cells each (layout.yaml's replace); every other cell as it was",
+   "renames": [["(a) SpliceAI at or below the published cut, 0.1", "(a) SpliceAI at or below the published BP4 cut point, 0.1"],
+               ["(b) SpliceAI at or below Table 2(b)'s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758", "(b) SpliceAI at or below the in-sample BP4 Supporting threshold of the band (Table 2(b))"]]
+  },
+  "phase1/reports/evidence/layout/supplementary/clinvar_coverage.csv": {
+   "kind": "rows",
+   "key": ["Gene", "Stratum (intronic offset, bp)"],
+   "tool": "Gene",
+   "gene_const": "clinvar_coverage",
+   "fields": [],
+   "why": "E8.10 cell_fixes: one header, the offset band in bp (layout.yaml's columns); every cell as it was",
+   "column_renames": [["Offset band (nt)", "Offset band (bp)"]]
+  },
+  "phase1/reports/evidence/layout/supplementary/new_external_genes.counts_by_offset.csv": {
+   "kind": "rows",
+   "key": ["Gene", "Bin scheme", "Bin (offset in bp, or stratum)", "Class in the deposit"],
+   "tool": "Gene",
+   "gene_const": "new_external_genes",
+   "fields": [],
+   "why": "E8.10 cell_fixes: the bin scheme's two codes and the bands' five codes printed as the author named them (layout.yaml's maps bin_scheme and offset_bin); the offsets and every other cell as they were",
+   "renames": [["per_nt", "Per position"], ["stratum", "By distance band"],
+               ["pm12", "1–2 (canonical dinucleotides)"], ["s3_10", "3–10"], ["s11_50", "11–50"],
+               ["s3_50", "3–50"], ["out_of_scope_deep", "beyond 50"]]
+  },
+  "phase1/reports/evidence/layout/supplementary/clinvar_coverage_by_position.pdf": {
+   "kind": "file",
+   "why": "E8.10 cell_fixes: Supplementary Figure S4's x-axis label gives the offset in bp; drawn again, otherwise as it was (check_e8.py: pixels differ only within the label's box)"
+  },
+  "phase1/reports/evidence/layout/supplementary/clinvar_coverage_by_position.png": {
+   "kind": "file",
+   "why": "E8.10 cell_fixes: Supplementary Figure S4's x-axis label gives the offset in bp; drawn again, otherwise as it was (check_e8.py: pixels differ only within the label's box)"
+  },
+  "phase1/reports/evidence/layout/supplementary_tables.xlsx": {
+   "kind": "file",
+   "why": "E8.10: each sheet's title row, notes and part titles in the approved wording (notes now the table's, none on a part), README's titles, and the cells of the seven fixes; every table cell, number format and source comment line as it was; checked cell by cell by check_e8.py"
+  },
+  "phase1/reports/evidence/layout/submission/supplementary_tables.xlsx": {
+   "kind": "file",
+   "why": "E8.10: new, the workbook for submission: a contents sheet, then the 29 tables marked excel without their sources' comment lines; checked cell by cell against the repository's workbook by check_e8.py"
+  },
+  "phase1/reports/evidence/layout/contents.csv": {
+   "kind": "file",
+   "why": "E8.10: a legend column (the supplementary figures' legends); the supplementary items' titles and notes in the approved wording; the one-page estimate of the three tables whose part notes became the table's; checked field by field by check_e8.py"
+  },
+  "phase1/reports/evidence/layout/manifest.csv": {
+   "kind": "lines",
+   "patterns": [
+    "^phase1/reports/evidence/layout/supplementary/(bp4_at_bp7_positions|clinvar_coverage|label_sources\\.audit|new_external_genes\\.counts_by_offset)\\.csv,",
+    "^phase1/reports/evidence/layout/supplementary/clinvar_coverage_by_position\\.(pdf|png),",
+    "^phase1/reports/evidence/layout/(submission/)?supplementary_tables\\.xlsx,",
+    "^phase1/reports/evidence/layout/contents\\.csv,"
+   ],
+   "why": "E8.10: the changed files' sizes and hashes, and the workbook for submission's new row"
+  }
+ }
+}

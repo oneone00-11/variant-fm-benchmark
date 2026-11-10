@@ -2422,3 +2422,48 @@ Why: the author's decision of 2026-11-07 (the change list's B8: D5; the format c
   external genes' table and the new genes' classes by offset (`check_e8.py --commit 3`,
   `phase1/tests/test_evid_variant_list.py`). A path above `phase1/` (TP53's deposit
   copy) is named from the repository root in `contents.csv` and `manifest.csv`.
+
+## The supplementary items' approved titles, notes and legends; seven reworded cells; a workbook for submission (stage E8, commit 4, 2026-11-10)
+
+Why: the author's approved wording of 2026-11-09 (E8 part two, E8.10; the change list's
+B8: F5), copied word for word from the author's file, which
+`phase1/tests/fixtures/approved_texts_20261109.yaml` keeps byte for byte. No analysis
+output changes: the layout's titles, part titles, notes and legends, seven cells it
+prints, Supplementary Figure S4's axis label, and one new file
+(`scripts/stage_E8/scope_e8_c4.json`).
+
+- **`config/layout.yaml`**: every supplementary table's title, part titles and notes and
+  every supplementary figure's title in the approved wording; the figures' legends in a
+  new field, `legend`; the conventions in `supplementary_format.conventions`. A table's
+  notes are the table's, in the approved order with their own "(a) " prefixes: the four
+  notes that stood on a part (S2's, S17's two, S20's) became the table's, in the approved
+  wording. Supplementary Figure S3's note, which its approved legend now states, is gone.
+- **References.** Every number of this paper in those texts is written `{content}`, as
+  before; `{a, b, c}` names several and prints them as the text lists them
+  (`evid_layout.listed`: "Supplementary Tables S8 and S9", "Supplementary Tables
+  S10–S12"). The supplementary notes are numbered in the configuration too
+  (`supplementary_notes`, Notes 1-6 by E8.1's table), so that "Supplementary Note 4" is
+  printed from it. A source paper's number ("Supplementary Table 5 of that
+  publication") and the reference numbers are printed as written.
+- **Seven reworded cells** (the approved `cell_fixes`), made in the layout's maps and
+  replacements, the sources as they were: S2's two cells name this paper's Supplementary
+  Table S1 from the configuration; S31's condition column, 24 cells each for (a) and (b),
+  in the author's words, the full-precision thresholds now in its note; S25's header
+  gives the offset band in bp; S14's classes by offset print their bin scheme and their
+  bands' codes as named (`display.values.bin_scheme`, `offset_bin`; a map may print a
+  number it does not name as it stands, `numbers as written`); Supplementary Figure S4's
+  x-axis label ends "bp". The other four supplementary figures and the main figures are
+  byte for byte as they were.
+- **`layout/submission/supplementary_tables.xlsx`**, new: the workbook for submission. A
+  contents sheet (the heading, the conventions, the 29 tables marked excel by number and
+  title, and the five marked pdf named from their numbers), then a sheet for each of the
+  29, as the repository's workbook prints it without the comment lines its sources carry
+  above their headers: the same cells, number formats and italics. Written the same
+  bytes on every run, like the repository's workbook, which keeps its README and every
+  sheet and comment line.
+- `contents.csv` gains a `legend` column; its one-page estimates of S2, S17 and S20 count
+  the part notes no longer above their parts.
+- Checked by `scripts/stage_E8/check_e8_part2.py --commit 4` (every printed title, part
+  title, note and legend against the approved file; every CSV, both workbooks and S4
+  against `1495bd9`, cell by cell and pixel by pixel; the layout drawn renumbered) and by
+  the tests.

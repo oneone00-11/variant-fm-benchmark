@@ -29,6 +29,13 @@ CONFIG = PHASE1 / "config" / "layout.yaml"
 OUT = PHASE1 / "reports" / "evidence" / "layout"
 V301 = "8e0d609370565fe50933b2c9ec2f62325289e24d"     # release 3.0.1, the layout v5 used
 NUMBERED = re.compile(r"(?i)\b(?:figure|table|fig|tab)\s*S?\d|(?:^|[_.])S\d+(?:[_.]|$)")
+NOTE_NUMBERED = re.compile(r"(?i)\bnotes?\s+\d")
+# a number of another publication that the approved texts name (E8.10): printed as it is
+SOURCE_PAPERS = re.compile(r"Supplementary Table 5 of that publication")
+# the author's approved texts of 2026-11-09 (E8.10), a copy of the file the instruction
+# names, byte for byte
+APPROVED = PHASE1 / "tests" / "fixtures" / "approved_texts_20261109.yaml"
+APPROVED_SHA256 = "654a1cc95d01ec84f872182ca289b8bd4af44e450e0864c7112f888a7c31b2c8"
 MM_PER_PT = 25.4 / 72
 
 need_out = pytest.mark.skipif(not (OUT / "manifest.csv").exists(), reason="the layout stage has not run")
@@ -191,14 +198,17 @@ def test_supplementary_items_have_a_destination_and_a_short_description():
 
 def test_notes_name_other_items_by_content():
     cfg = _cfg()
-    numbers = {it["content"]: it["number"] for it in _items()}
+    numbers = L._numbers(cfg)
     texts = [n for it in _items() for n in it.get("notes", [])]
     texts += [n for it in _items() for p in it.get("parts", []) for n in p.get("notes", [])]
-    texts += [r["what"] for r in cfg["repository_only"]]
-    refs = [m for t in texts for m in L.REFERENCE.findall(t)]
+    texts += [it["legend"] for it in _items() if "legend" in it]
+    texts += [r["what"] for r in cfg["repository_only"]] + [cfg["supplementary_format"]["conventions"]]
+    refs = [n.strip() for t in texts for m in L.REFERENCE.findall(t) for n in m.split(",")]
     assert refs and all(r in numbers for r in refs)
+    assert {"local_lr_calibration", "external_gene_analyses"} <= set(refs)       # the notes'
     for t in texts:
-        assert not NUMBERED.search(t), t
+        assert not NUMBERED.search(SOURCE_PAPERS.sub("", t)), t
+        assert not NOTE_NUMBERED.search(t), t
     with pytest.raises(SystemExit):
         L._resolve("see {no_such_item}", numbers)
 
@@ -689,7 +699,7 @@ def test_thresholds_benign_is_printed_as_it_stands_with_a_note_on_the_atlas_medi
         (PHASE1 / part["source"]).read_bytes()
     c = pd.read_csv(OUT / "contents.csv", dtype=str, keep_default_na=False)
     note = c[c.content == "thresholds_benign"].notes.iloc[0]
-    assert "combined Atlas score" in note and "BRCA1 and RAD51C" in note and "median" in note
+    assert "Atlas combined score" in note and "*BRCA1* and *RAD51C*" in note and "median" in note
 
 
 def test_a_column_to_leave_out_must_be_in_the_source():
@@ -734,14 +744,16 @@ def test_the_layout_names_the_method_as_the_text_does():
              "src/evid_layout.py": (PHASE1 / "src/evid_layout.py").read_text()}
     for p in sorted(OUT.rglob("*.csv")):
         texts[str(p.relative_to(OUT))] = p.read_text()
-    with zipfile.ZipFile(OUT / "supplementary_tables.xlsx") as z:
-        for n in z.namelist():
-            texts[f"supplementary_tables.xlsx:{n}"] = z.read(n).decode()
+    for book in ("supplementary_tables.xlsx", "submission/supplementary_tables.xlsx"):
+        with zipfile.ZipFile(OUT / book) as z:
+            for n in z.namelist():
+                texts[f"{book}:{n}"] = z.read(n).decode()
     assert not [k for k, v in texts.items() if old.search(v)]
     c = pd.read_csv(OUT / "contents.csv", dtype=str, keep_default_na=False).set_index("content")
     assert c.loc["thresholds_pathogenic", "title"].startswith(
-        "Local likelihood-ratio calibration thresholds, pathogenic side")
-    assert c.loc["thresholds_benign", "title"] == "Local likelihood-ratio calibration thresholds, benign side"
+        "PP3 thresholds by local likelihood-ratio calibration for every predictor column")
+    assert c.loc["thresholds_benign", "title"].startswith(
+        "BP4 thresholds by local likelihood-ratio calibration for every predictor column")
     head = pd.read_csv(OUT / "supplementary" / "practical_metrics.by_threshold.csv", nrows=0).columns
     assert "Tier by the calibration rule" in head
 
@@ -841,9 +853,10 @@ def _printed_config_texts(cfg: dict) -> list[str]:
     and a part's notes, part titles, a mark's text, what a replacement prints, the
     supplement's rule and numbering, and the repository-only entries."""
     fmt = cfg["supplementary_format"]
-    out = [fmt["rule"], fmt["numbering"]] + [f["description"] for f in fmt["files"]]
+    out = [fmt["rule"], fmt["numbering"], fmt["conventions"]] + [f["description"] for f in fmt["files"]]
+    out += [str(v) for v in fmt["submission_workbook"].values()]
     for it in cfg["main"] + cfg["supplementary"]:
-        out += [it.get("title", ""), it.get("description", "")] + list(it.get("notes", []))
+        out += [it.get("title", ""), it.get("description", ""), it.get("legend", "")] + list(it.get("notes", []))
         for p in it.get("parts", []):
             out += [str(p.get("title", ""))] + list(p.get("notes", []))
             out += [r["new"] for r in p.get("replace", [])] + [m["text"] for m in p.get("marks", [])]
@@ -879,7 +892,8 @@ def test_what_the_configuration_prints_names_items_only_as_content():
     texts = _printed_config_texts(cfg)
     assert len(texts) > 100
     for t in texts:
-        assert not NUMBERED.search(t), t
+        assert not NUMBERED.search(SOURCE_PAPERS.sub("", t)), t
+        assert not NOTE_NUMBERED.search(t), t
         assert not re.search(r"(?i)provisional|\bv5\b", t), t
         assert not re.search(r"\b[CE]\d{1,2}(?:\.\d+)?\b|\b[CE]\d{1,2}'s", t), t
         L._resolve(t, numbers)
@@ -914,18 +928,26 @@ def test_a_replacement_prints_its_text_exactly_as_often_as_declared(tmp_path):
 
 @need_out
 def test_the_replaced_texts_are_gone_from_what_is_printed():
-    """Each part's replaced text is printed nowhere, CSV or workbook; what replaced it is."""
+    """Each part's replaced text is printed nowhere in its table, CSV or sheet; what
+    replaced it is. (Another table may cite a source's own text: vcep_rules names the
+    condition of c6_bp4_bp7.csv, which the source keeps, as the file it was checked
+    against.)"""
     cfg = _cfg()
     numbers = L._numbers(cfg)
     with zipfile.ZipFile(OUT / "supplementary_tables.xlsx") as z:
-        book = "".join(z.read(n).decode() for n in z.namelist() if n.startswith("xl/worksheets/"))
+        ids = re.findall(r'<sheet name="([^"]+)" sheetId="(\d+)"', z.read("xl/workbook.xml").decode())
+        sheet = {name: z.read(f"xl/worksheets/sheet{i}.xml").decode() for name, i in ids}
     seen = 0
     for it in cfg["supplementary"]:
         for p in it.get("parts", []):
+            book = sheet.get(L._sheet_name(it["number"]), "")
             for old, new, count in L._replacements(p, numbers):
                 csv_text = (OUT / "supplementary" / L._part_path(Path("."), it, p).name).read_text()
-                assert old not in csv_text, (it["content"], old)
-                assert escape_xml(old) not in book, (it["content"], old)
+                # the old text may stand inside the new one ("Supplementary Table S1 cites
+                # no paper" holds "Table S1 cites no paper"): nowhere else
+                assert old not in (csv_text.replace(new, "") if new else csv_text), (it["content"], old)
+                assert escape_xml(old) not in (book.replace(escape_xml(new), "") if new else book), \
+                    (it["content"], old)
                 if new:
                     assert escape_xml(new) in book, (it["content"], new)
                 seen += 1
@@ -989,7 +1011,7 @@ def test_transcripts_are_read_from_the_mane_summary_not_written_by_hand():
                                        ("new_external_genes", "records", "Target transcript accession")):
         it, p = _part_of(content, part_name)
         assert p["transcripts"]["column"] == column and p["transcripts"]["mane"] == mane
-        assert any("Transcripts are MANE Select (v1.5)" in n for n in it["notes"])
+        assert any("Transcripts are MANE Select (version 1.5)" in n for n in it["notes"])
 
 
 @need_out
@@ -1099,3 +1121,249 @@ def test_figure_3_letters_its_panels_and_ticks_of_a_thousand_are_grouped(main_fi
         labels = {t.get_text() for t in main_figures[stem].findobj(plt.Text)}
         assert "1,000" in labels and "1000" not in labels, stem
     assert not any(re.fullmatch(r"\d{4,}", t.get_text()) for f in main_figures.values() for t in f.findobj(plt.Text))
+
+
+# ---------------------------------------------------------------------------
+# E8.10: the approved texts, the seven reworded cells, the workbook for submission
+# ---------------------------------------------------------------------------
+def _approved() -> dict:
+    assert hashlib.sha256(APPROVED.read_bytes()).hexdigest() == APPROVED_SHA256
+    return yaml.safe_load(APPROVED.read_text())
+
+
+def _notes_of(entry: dict) -> list[str]:
+    n = entry.get("notes") or []
+    return [n] if isinstance(n, str) else list(n)
+
+
+def _unxml(s: str) -> str:
+    return s.replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", '"').replace("&amp;", "&")
+
+
+def _book_rows(path: Path) -> dict[str, dict[int, dict[str, str]]]:
+    """A workbook's sheets, each {row: {column: text}}: a number as written, an inline
+    string's runs joined with each italic run marked *GENE* again, as the CSV marks it."""
+    out = {}
+    with zipfile.ZipFile(path) as z:
+        for name, i in re.findall(r'<sheet name="([^"]+)" sheetId="(\d+)"', z.read("xl/workbook.xml").decode()):
+            rows: dict = {}
+            for col, row, body in re.findall(r'<c r="([A-Z]+)(\d+)"[^>]*>(.*?)</c>',
+                                             z.read(f"xl/worksheets/sheet{i}.xml").decode()):
+                runs = re.findall(r"<r><rPr>(.*?)</rPr><t[^>]*>(.*?)</t></r>", body)
+                if runs:
+                    text = "".join(f"*{_unxml(t)}*" if "<i/>" in p else _unxml(t) for p, t in runs)
+                else:
+                    v = re.search(r"<v>(.*?)</v>", body)
+                    text = v.group(1) if v else _unxml("".join(re.findall(r"<t[^>]*>(.*?)</t>", body)))
+                rows.setdefault(int(row), {})[col] = text
+            out[_unxml(name)] = rows
+    return out
+
+
+def _cell_text(cell: str) -> str:
+    """A cell's text from its XML (as _sheet_cells gives it), an italic run as *GENE*."""
+    runs = re.findall(r"<r><rPr>(.*?)</rPr><t[^>]*>(.*?)</t></r>", cell)
+    if runs:
+        return "".join(f"*{_unxml(t)}*" if "<i/>" in p else _unxml(t) for p, t in runs)
+    v = re.search(r"<v>(.*?)</v>", cell)
+    return v.group(1) if v else _unxml("".join(re.findall(r"<t[^>]*>(.*?)</t>", cell)))
+
+
+def _sheet_cells(path: Path) -> dict[str, list[list[str]]]:
+    """A workbook's sheets, each a list of rows, each row its cells' XML with the row
+    number taken out of their references: what a cell holds, its style (the number's
+    format, bold) and its runs (italics), so that two rows compare cell for cell."""
+    out = {}
+    with zipfile.ZipFile(path) as z:
+        for name, i in re.findall(r'<sheet name="([^"]+)" sheetId="(\d+)"', z.read("xl/workbook.xml").decode()):
+            xml = z.read(f"xl/worksheets/sheet{i}.xml").decode()
+            out[_unxml(name)] = [re.findall(r'<c r="[A-Z]+\d+"(.*?)</c>', body)
+                                 for body in re.findall(r"<row r=\"\d+\">(.*?)</row>", xml)]
+    return out
+
+
+def test_the_configuration_holds_the_approved_texts_word_for_word():
+    """E8.10: every supplementary table's title, part titles and notes, every
+    supplementary figure's title and legend, and the conventions, as the configuration
+    prints them (its {content} references written as numbers), are the author's approved
+    texts of 2026-11-09 character for character; the notes are the table's, none a part's."""
+    A, cfg = _approved(), _cfg()
+    numbers = L._numbers(cfg)
+
+    def printed(t: str) -> str:
+        return L.grouped(L._resolve(t, numbers))
+
+    items = {it["content"]: it for it in cfg["supplementary"]}
+    assert set(A["supplementary_tables"]) == {c for c, it in items.items() if it["kind"] == "table"}
+    assert set(A["supplementary_figures"]) == {c for c, it in items.items() if it["kind"] == "figure"}
+    assert printed(cfg["supplementary_format"]["conventions"]) == A["conventions"]
+    compared = 1
+    for c, a in A["supplementary_figures"].items():
+        it = items[c]
+        assert (printed(it["title"]), printed(it["legend"])) == (a["title"], a["legend"]), c
+        assert not it.get("notes"), c
+        compared += 2
+    for c, a in A["supplementary_tables"].items():
+        it = items[c]
+        assert printed(it["title"]) == a["title"], c
+        assert [printed(n) for n in it.get("notes", [])] == _notes_of(a), c
+        parts = list((a.get("parts") or {}).values())
+        if parts:
+            assert [printed(p["title"]) for p in it["parts"]] == parts, c
+        else:
+            assert len(it["parts"]) == 1, c
+        assert not any(p.get("notes") for p in it["parts"]), c
+        compared += 1 + len(_notes_of(a)) + len(parts)
+    assert compared > 100
+
+
+@need_out
+def test_every_printed_title_note_and_legend_is_the_approved_text():
+    """E8.10: the same texts where the stage prints them: contents.csv (title, legend,
+    notes), the workbook (README's titles; each sheet's title row, notes and part titles)
+    and the workbook for submission (its contents sheet; each sheet's title row, notes and
+    part titles), an italic run read back as *GENE*."""
+    A, cfg = _approved(), _cfg()
+    c = pd.read_csv(OUT / "contents.csv", dtype=str, keep_default_na=False).set_index("content")
+    book = _book_rows(OUT / "supplementary_tables.xlsx")
+    sub = _book_rows(OUT / "submission" / "supplementary_tables.xlsx")
+    readme = {r["C"]: r for k, r in book["README"].items() if k >= 5 and "C" in r}
+    compared = 0
+    for name, a in A["supplementary_figures"].items():
+        assert (c.loc[name, "title"], c.loc[name, "legend"], c.loc[name, "notes"]) == (a["title"], a["legend"], "")
+        compared += 2
+    for name, a in A["supplementary_tables"].items():
+        it = next(i for i in cfg["supplementary"] if i["content"] == name)
+        notes = _notes_of(a)
+        parts = [f"({chr(97 + k)}) {t}" for k, t in enumerate((a.get("parts") or {}).values())]
+        assert (c.loc[name, "title"], c.loc[name, "notes"]) == (a["title"], " | ".join(notes)), name
+        assert readme[name]["D"] == a["title"], name
+        compared += 2 + len(notes)
+        sheet = L._sheet_name(it["number"])
+        for wb in (book, sub) if it["destination"] == "excel" else (book,):
+            rows = wb[sheet]
+            assert rows[1] == {"A": f"{it['number']}. {a['title']}"}, name
+            assert [rows[k] for k in range(2, 2 + len(notes))] == [{"A": n} for n in notes], name
+            assert 2 + len(notes) not in rows, name                     # the empty row after them
+            assert [r["A"] for r in rows.values() if r.keys() == {"A"} and r["A"] in parts] == parts, name
+            compared += 1 + len(notes) + len(parts)
+        if it["destination"] == "pdf":
+            assert sheet not in sub, name
+    assert sub["Contents"][1] == {"A": "Supplementary Tables"} and sub["Contents"][3] == {"A": A["conventions"]}
+    assert compared > 300
+
+
+@need_out
+def test_the_workbook_for_submission_is_the_excel_tables_without_their_sources_comment_lines(tmp_path, monkeypatch):
+    """E8.10: a contents sheet, then a sheet for each table marked excel in number order,
+    each the repository workbook's sheet cell for cell (each value with its number format
+    and italic runs) without the comment lines its sources carry above their headers, and
+    nothing else left out; the contents sheet lists the tables by number and title and
+    ends by naming the five tables marked pdf, listed from their numbers."""
+    cfg = _cfg()
+    numbers = L._numbers(cfg)
+    tables = [it for it in cfg["supplementary"] if it["kind"] == "table"]
+    excel = [it for it in tables if it["destination"] == "excel"]
+    pdf = [it for it in tables if it["destination"] == "pdf"]
+    assert len(excel) == 29 and [i["content"] for i in pdf] == [
+        "training_signal", "column_agreement", "arms_at_fitted_thresholds", "clinvar_coverage",
+        "inframe_true_positives"]
+    sub, book = _sheet_cells(OUT / "submission" / "supplementary_tables.xlsx"), _sheet_cells(OUT / "supplementary_tables.xlsx")
+    assert list(sub) == ["Contents"] + [L._sheet_name(it["number"]) for it in excel]
+    monkeypatch.chdir(PHASE1)
+    left_out = 0
+    for it in excel:
+        item = dict(it)
+        L.table_parts(item, tmp_path / it["content"], cfg)
+        comments = [L.grouped(L._resolve(n, numbers)) for part, _, notes in item["_frames"]
+                    for n in notes if n not in part.get("notes", [])]
+        a, b = book[L._sheet_name(it["number"])], sub[L._sheet_name(it["number"])]
+        gone, j = [], 0
+        for row in a:
+            if j < len(b) and row == b[j]:
+                j += 1
+            else:
+                gone.append(row)
+        assert j == len(b), it["content"]                         # the sheet's rows, in order
+        # what was left out: one plain text cell a row, each a comment line of a source
+        assert all(len(r) == 1 and ' s="' not in r[0].split(">")[0] for r in gone), it["content"]
+        assert [_cell_text(r[0]) for r in gone] == comments, it["content"]
+        left_out += len(gone)
+    assert left_out > 0
+    rows = _book_rows(OUT / "submission" / "supplementary_tables.xlsx")["Contents"]
+    listed = [rows[k] for k in sorted(rows) if k > 4 and "B" in rows[k]]
+    assert listed == [{"A": it["number"], "B": L.grouped(L._resolve(it["title"], numbers))} for it in excel]
+    assert rows[max(rows)] == {"A": "Supplementary Tables S5, S6, S12, S25 and S28 are in the Supplementary Information PDF."}
+
+
+def test_several_items_are_listed_as_the_text_lists_them():
+    """{a, b, c} prints the items' label once, in the plural, then their numbers in
+    order, three or more in a row as a range, the last joined by "and" (E8.10)."""
+    T = "Supplementary Table S"
+    assert L.listed([f"{T}8", f"{T}9"]) == "Supplementary Tables S8 and S9"
+    assert L.listed([f"{T}12", f"{T}10", f"{T}11"]) == "Supplementary Tables S10–S12"
+    assert L.listed([f"{T}{k}" for k in (5, 6, 12, 25, 28)]) == "Supplementary Tables S5, S6, S12, S25 and S28"
+    assert L.listed(["Supplementary Note 1", "Supplementary Note 2"]) == "Supplementary Notes 1 and 2"
+    assert L.listed(["Table Q2", "Table Q3", "Table Q4", "Table Q7"]) == "Tables Q2–Q4 and Q7"
+    numbers = {"a": f"{T}8", "b": f"{T}9", "n": "Supplementary Note 4"}
+    assert L._resolve("in {a, b}; ({n})", numbers) == "in Supplementary Tables S8 and S9; (Supplementary Note 4)"
+    for bad in ([f"{T}8", "Supplementary Figure S2"], ["Table 2", "Table 2"]):
+        with pytest.raises(SystemExit):
+            L.listed(bad)
+    with pytest.raises(SystemExit, match="no item"):
+        L._resolve("{a, nothing}", numbers)
+
+
+def test_the_supplementary_notes_are_numbered_in_order_and_named_by_content(tmp_path, monkeypatch):
+    notes = _cfg()["supplementary_notes"]
+    assert [n["number"] for n in notes] == [f"Supplementary Note {k}" for k in range(1, 7)]
+    assert [n["content"] for n in notes] == ["predictor_scores", "alphagenome_and_atlas", "elastic_net",
+                                             "local_lr_calibration", "further_analyses",
+                                             "external_gene_analyses"]
+    text = CONFIG.read_text()
+    assert text.count("number: Supplementary Note 3}") == 1
+    (tmp_path / "layout.yaml").write_text(text.replace("number: Supplementary Note 3}", "number: Supplementary Note 9}"))
+    monkeypatch.chdir(PHASE1)
+    with pytest.raises(SystemExit, match="supplementary notes"):
+        L.load_config(tmp_path / "layout.yaml")
+
+
+def test_a_map_prints_a_number_it_does_not_name_only_when_its_entry_says_so():
+    values = {"offset_bin": {"s3_10": "3–10"}}
+    asis = [L.NUMBERS_AS_WRITTEN]
+    assert [L._cell(t, "offset_bin", {}, asis, values, "w") for t in ("s3_10", "17", ">50")] == ["3–10", "17", ">50"]
+    for text, extra in (("17", []), ("s9_9", asis), ("17b", asis)):
+        with pytest.raises(SystemExit):
+            L._cell(text, "offset_bin", {}, extra, values, "w")
+
+
+@need_out
+def test_the_seven_cells_the_author_reworded_print_as_approved(tmp_path, monkeypatch):
+    """E8.10's cell_fixes, made in the layout's maps, replacements and drawing; the
+    sources keep their own texts."""
+    fixes = _approved()["cell_fixes"]
+    numbers = L._numbers(_cfg())
+    want = {(f["item"], f["where"].split(",")[0]): L._resolve(f["print"], numbers) for f in fixes}
+    sup = OUT / "supplementary"
+    audit = (sup / "label_sources.audit.csv").read_text()
+    assert audit.count(want[("label_sources", "part audit")]) == 2
+    assert audit.replace(want[("label_sources", "part audit")], "").count("Table S1 cites no paper") == 0
+    bp = pd.read_csv(sup / "bp4_at_bp7_positions.csv", dtype=str, keep_default_na=False)
+    texts = [L._resolve(f["print"], numbers) for f in fixes if f["item"] == "bp4_at_bp7_positions"]
+    assert sorted(bp.Condition.value_counts().items()) == sorted((t, 24) for t in texts)
+    assert "Offset band (bp)" in pd.read_csv(sup / "clinvar_coverage.csv", nrows=0).columns
+    off = pd.read_csv(sup / "new_external_genes.counts_by_offset.csv", dtype=str, keep_default_na=False)
+    schemes = next(f for f in fixes if f["where"].endswith("Bin scheme"))["print"].split("; ")
+    bands = next(f for f in fixes if "Bin (offset" in f["where"])["print"].split("; ")
+    assert set(off["Bin scheme"]) == set(schemes)
+    assert set(off.loc[off["Bin scheme"] == schemes[1], "Bin (offset in bp, or stratum)"]) == set(bands)
+    assert off.loc[off["Bin scheme"] == schemes[0], "Bin (offset in bp, or stratum)"].str.fullmatch(r"\d+|>50").all()
+    src = (PHASE1 / "reports/evidence/suppl_analyses/c6_bp4_bp7.csv").read_text()
+    assert "Table 3(b)'s BP4 Supporting threshold" in src                     # the source as it was
+    kept, save = [], L._save
+    monkeypatch.chdir(PHASE1)
+    monkeypatch.setattr(L, "_save", lambda fig, folder, stem, cfg: (kept.append(fig), save(fig, folder, stem, cfg))[1])
+    cfg = L.load_config()
+    L.figure_clinvar_coverage(next(i for i in cfg["supplementary"] if i["content"] == "clinvar_coverage_by_position"),
+                              tmp_path, cfg)
+    assert kept[0].axes[1].get_xlabel() == want[("clinvar_coverage_by_position", "figure x-axis label")]

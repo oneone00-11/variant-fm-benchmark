@@ -2,8 +2,8 @@
 files this stage writes, by scripts/stage_E5/scan_secrets.py's method (a copy of
 scripts/stage_E7/scan_secrets.py): this stage's scripts and run logs (scripts/stage_E8),
 the change log, the layout stage's code, configuration and tests, the variant list's
-stage and test, and the layout's outputs, the workbook's members unzipped and read as
-text. Prints every match (the pattern's name and the file, never the matched text) and
+stage and test, the tests' fixtures (the approved texts, part two), and the layout's
+outputs, each workbook's members unzipped and read as text. Prints every match (the pattern's name and the file, never the matched text) and
 the count of files scanned; exits 1 on a match. Extra folders or files (the report, made
 outside the repository) can be named on the command line.
 
@@ -20,7 +20,7 @@ REPO = Path(__file__).resolve().parents[2]
 E8 = ["scripts/stage_E8", "docs/evidence-change-log.md", "phase1/config/layout.yaml",
       "phase1/src/evid_layout.py", "phase1/tests/test_evid_layout.py",
       "phase1/src/evid_variant_list.py", "phase1/tests/test_evid_variant_list.py",
-      "phase1/reports/evidence/layout"]
+      "phase1/tests/fixtures", "phase1/reports/evidence/layout"]
 SKIP_SUFFIXES = {".db", ".fa", ".fai", ".gtf", ".bgz", ".png", ".pdf", ".pyc"}
 
 

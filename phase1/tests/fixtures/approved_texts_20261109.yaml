@@ -1,0 +1,275 @@
+about: 'Approved by the author on 2026-11-09. Copy every string verbatim into phase1/config/layout.yaml. *X* marks italics (gene symbols). Part titles are given without their letter: the layout prints ''(a) '', ''(b) '' … before them. Notes are item-level and keep any ''(a) '' prefix they carry, in the order given.'
+conventions: 'Abbreviations and conventions used in the supplementary tables and figures. AUPRC, area under the precision–recall curve; AUROC, area under the receiver operating characteristic curve; B/LB, benign or likely benign; CI, confidence interval; F1, harmonic mean of precision and recall; LR, likelihood ratio; MCC, Matthews correlation coefficient; NPV, negative predictive value; P/LP, pathogenic or likely pathogenic; PPV, positive predictive value; SGE, saturation genome editing; SNV, single-nucleotide variant; VCEP, ClinGen variant curation expert panel; VUS, variant of uncertain significance. Distances are in bp from the exon: the proximal band is 3–10 bp, the distal band 11–50 bp and the pooled window 3–50 bp; the canonical dinucleotides (1–2 bp) lie outside the scope of PP3 and BP4. Evidence tiers are read against the likelihood-ratio boundaries of Tavtigian and colleagues at a prior of 0.10: 2.08, 4.33, 18.7 and 350 for Supporting, Moderate, Strong and Very strong on the PP3 side, and 0.481, 0.231 and 0.0535 for Supporting, Moderate and Strong on the BP4 side (Supplementary Note 4). In-sample thresholds are fitted on all training genes; held-out results apply a threshold fitted on the other genes to the gene left out; the published cut points are those of Walker and colleagues, 0.2 for PP3 and 0.1 for BP4 on SpliceAI. A dash marks a value not defined for that row.'
+main_tables:
+  analysis_set_composition:
+    number: Table 1
+    title: Composition of the analysis set. (a) By gene. (b) By ClinVar record status, 3–50 bp.
+    parts:
+      by_gene: By gene
+      by_clinvar_status: By ClinVar record status, 3–50 bp
+    notes: Labelled variants are those the assay calls damaging or normal; percentages are of labelled variants. *BRCA2*’s deposit stops at 10 bp, so the distal band holds six genes. All 13 predictors scored every variant. The 856 variants at the canonical dinucleotides, outside the scope of PP3 and BP4, are in Supplementary Table S3.
+  evidence_tiers_and_thresholds:
+    number: Table 2
+    title: Evidence tier of each predictor, and the thresholds of SpliceAI and Pangolin.
+    parts:
+      tiers: In-sample tier, and held-out genes clearing each tier’s boundary
+      thresholds: In-sample thresholds for SpliceAI (published basis) and Pangolin
+    notes: (a) The in-sample tier is the highest PP3 tier reached with the seven genes pooled, six in the distal band; a dash marks a tier not reached. In a held-out entry k/n (m), the band likelihood ratio at a threshold fitted on the other genes clears the tier’s boundary in k of n genes, and m folds are not evaluable. † Counted without *BRCA1* and *RAD51C*, whose assays helped select the model. (b) Thresholds are rounded to three significant figures in the direction that admits no variant the fitted threshold excludes; full values are in Supplementary Tables S8 and S9.
+  published_cut_point_by_clinvar_status:
+    number: Table 3
+    title: Band likelihood ratios at the published SpliceAI PP3 cut point, by ClinVar record status.
+    parts:
+      band_lr: null
+    notes: Values are the band likelihood ratio of SpliceAI on the published basis for scores of 0.2 or above, in the seven genes and without *BRCA1*. Record status stratifies the variants and never defines which are damaging. Counts, the benign side, each predictor at its in-sample Moderate threshold and the AUROC by arm are in Supplementary Tables S10–S12.
+  practical_performance:
+    number: Table 4
+    title: Performance at the fitted thresholds and the published cut points.
+    parts:
+      seven_genes: Held out in the seven genes
+      clinvar: Agreement with ClinVar classifications of at least one review star
+    notes: (a) Each fold’s threshold, fitted on the other genes, is applied to the gene left out, and counts are added over the folds whose threshold reached the tier. Coverage is the share of labelled variants in the score band; a dash marks a tier not reached in-sample. The last column counts the folds reaching Supporting, Moderate and Strong (S, M, St), including folds too small for a likelihood ratio, so it can differ from the k/n of Table 2. (b) Among ClinVar classifications of at least one review star, the share of pathogenic or likely pathogenic (P/LP) variants at or above the published PP3 cut point and each in-sample PP3 threshold, and of benign or likely benign (B/LB) variants at or below the BP4 ones; no likelihood ratio or tier is formed from them. The distal band, with 3 P/LP variants, is left out. Further values are in Supplementary Tables S17 and S26.
+main_figures:
+  published_cut_point_by_band:
+    number: Figure 1
+    title: Band likelihood ratios at the published SpliceAI cut points, and the local likelihood ratio along the score, in the seven training genes.
+  heldout_and_external_lr:
+    number: Figure 2
+    title: Likelihood ratios at the fitted thresholds in held-out genes (a, b) and in the seven external genes (c).
+  roc_curves:
+    number: Figure 3
+    title: Receiver operating characteristic curves of four predictors in the seven training genes at 3–10 bp (a), 11–50 bp (b) and 3–50 bp (c).
+supplementary_figures:
+  local_lr_curves:
+    title: Local likelihood ratio along the score for each of the 13 predictor columns, by distance band.
+    legend: Each row is a predictor column and each column a distance band. The line is the local likelihood ratio of a score window moving along the column’s score, and the shading its 5th–95th percentile range over 2,000 bootstrap draws clustered on gene. Dotted horizontal lines mark the Supporting, Moderate and Strong boundaries (2.08, 4.33 and 18.7), and the grey line a ratio of 1. Vertical lines mark the in-sample Moderate (dashed) and Strong (solid) thresholds where the tier is reached, and, for SpliceAI, the published PP3 cut point of 0.2 (orange). Each column is drawn on its own score scale (Supplementary Note 4).
+  threshold_dilution:
+    title: Strong thresholds and the number of training genes.
+    legend: 'The Strong threshold of four splice-aware predictors was refitted on every subset of two or more training genes. Top row: the share of subsets on which the Strong tier is reached. Bottom row: among the pairs of subset and held-out gene with an evaluable ratio, the share in which the band likelihood ratio at the subset’s threshold clears the Strong boundary. The distal band holds six genes, so its subsets have at most five (Supplementary Table S21).'
+  precision_recall_curves:
+    title: Precision–recall curves of four predictors in the seven training genes at 3–10, 11–50 and 3–50 bp.
+    legend: Each curve pools the seven genes, and the legend in each panel gives the area under that pooled curve (average precision). Markers show each predictor’s in-sample PP3 thresholds at Supporting (circle), Moderate (square) and Strong (triangle), and the open diamond the published PP3 cut point of 0.2 on SpliceAI; the dashed line marks the share of damaging variants. † The model of the Atlas combined score was selected on assays used in this study (Methods).
+  clinvar_coverage_by_position:
+    title: ClinVar coverage of the analysis set by signed intronic position in the seven training genes.
+    legend: (a) The share of variants with any ClinVar record, and with a P/LP or B/LB classification, at each position from −50 bp (acceptor side) to +50 bp (donor side). (b) The classes behind the records at each position. Shading marks the canonical dinucleotides, outside the scope of PP3 and BP4, and dotted lines separate the distance bands (Supplementary Table S25).
+  auroc_by_clinvar_status:
+    title: AUROC of each predictor column by ClinVar record status.
+    legend: The AUROC combined across genes, with its 95% CI, for variants classified in ClinVar (P/LP or B/LB), recorded without such a classification, and unrecorded. Left, 3–50 bp in the seven genes; centre, the same without *BRCA1*; right, 1–50 bp including the canonical dinucleotides, which lie outside the scope of PP3 and BP4. Record status stratifies the variants and never defines which are damaging.
+supplementary_tables:
+  functional_standards:
+    title: 'Functional standards of the seven training genes, *DDX3X* and *TP53*: assay, MaveDB accession, transcript, published classes and their mapping to damaging and normal, with variant counts.'
+    notes:
+    - Transcripts are MANE Select (version 1.5); for *DDX3X*, the Ensembl transcript named by the deposit is given in parentheses.
+    - Variants in a class mapped to missing are not labelled. The five further external genes are in Supplementary Table S14.
+  label_sources:
+    title: The training genes’ label files against their cited sources and archived versions, and the thresholds before and after the labels were rebuilt.
+    parts:
+      audit: Each label file against its cited source
+      versions: Each label file against the archived versions of its score set
+      effect: Thresholds and tiers before and after the labels were rebuilt
+    notes:
+    - (a) R1–R6 are the candidate rules for rebuilding a label file from its source, each described in its row.
+    - '(c) A dash in the fold counts of a BP4 row: folds are counted on the PP3 side only.'
+  analysis_set_by_status:
+    title: Composition of the analysis set by distance band, gene and ClinVar record status, with the canonical dinucleotides.
+    notes:
+    - Labelled variants are those the assay calls damaging or normal. The canonical dinucleotides lie outside the scope of PP3 and BP4.
+  predictor_columns:
+    title: 'The 13 predictor score columns: definition, version and scoring configuration, source, access date, licence, orientation, coverage and training data.'
+    notes: []
+  training_signal:
+    title: Training signal of each predictor, its relation to the functional readout and its terms of use.
+    notes: []
+  column_agreement:
+    title: 'Agreement between related score columns: SpliceAI on the published and atlas bases, and the four Atlas scores against the AlphaGenome splice score.'
+    notes:
+    - Spearman’s ρ over the 8,853 variants of the analysis set, including the canonical dinucleotides. For the two SpliceAI columns, the last two columns count the variants on opposite sides of the cut point of 0.2.
+  published_cut_points:
+    title: The published SpliceAI cut points on the published basis, by distance band and ClinVar record status, pooled and per gene.
+    notes:
+    - Band likelihood ratios for scores of 0.2 or above (PP3) and 0.1 or below (BP4). Pooled rows carry 95% CIs from 2,000 bootstrap draws clustered on gene, with the number of evaluable draws in the column ‘CI basis’; per-gene rows are point estimates.
+  thresholds_pathogenic:
+    title: 'PP3 thresholds by local likelihood-ratio calibration for every predictor column: in-sample tier, thresholds under the gene-clustered and variant-level bootstraps, and transfer to held-out genes.'
+    notes:
+    - '† Folds not counted: the model of the Atlas combined score was selected on the *BRCA1* and *RAD51C* assays, so its counts, median, minimum and maximum are taken over the other held-out genes, as in Table 2(a).'
+    - Thresholds are printed to four significant figures, or more where four would move a variant across the threshold (Supplementary Note 4).
+  thresholds_benign:
+    title: 'BP4 thresholds by local likelihood-ratio calibration for every predictor column: in-sample tier, thresholds under the two bootstraps, and the median held-out ratio.'
+    notes:
+    - In the rows of the Atlas combined score, the median held-out ratio includes the folds holding out *BRCA1* and *RAD51C*.
+  clinvar_status:
+    title: Band likelihood ratios and AUROC of each predictor column by ClinVar record status, in the seven genes and without *BRCA1*.
+    notes:
+    - The fitted threshold is the in-sample Moderate threshold, or Supporting where Moderate was not reached. Record status stratifies the variants and never defines which are damaging.
+  within_gene_arms:
+    title: 'Within-gene comparison of the ClinVar record status arms: AUROC of each predictor column by gene and arm.'
+    parts:
+      by_gene: AUROC per gene, arm and column
+      summary: Arm with the highest AUROC, per gene, over all columns
+    notes:
+    - 'Arms: classified in ClinVar (P/LP or B/LB), recorded without such a classification, and unrecorded.'
+  arms_at_fitted_thresholds:
+    title: The ClinVar record status arm with the highest band likelihood ratio at each column’s fitted threshold (a) and the highest AUROC (b).
+    parts:
+      highest_arm: Arm with the highest ratio at each column’s fitted threshold
+      auroc: Columns in which each arm has the highest AUROC
+    notes: []
+  external_genes:
+    title: 'External genes: the published cut point and the in-sample thresholds of the seven training genes applied to *DDX3X*, *TP53*, *CTCF*, *SFPQ*, *RAD51D*, *XRCC2* and *SBDS* under every label definition.'
+    notes:
+    - Primary labels, and the constructed labels used as sensitivity analyses, are described in Supplementary Note 6. Tiers are given at the point estimate and at the lower bound of the 95% CI from within-gene resampling. The sensitivity columns use the median of the leave-one-gene-out thresholds. Whether each external score is the same variable as the analysis set’s column is shown in Supplementary Table S15.
+  new_external_genes:
+    title: 'The five further external genes: MaveDB score-set records, labels by distance band, classes by intronic offset, and synonymous and nonsense controls.'
+    parts:
+      records: Score-set records
+      labels: Labels by distance band
+      counts_by_offset: Classes by intronic offset
+      controls: Synonymous and nonsense controls
+    notes:
+    - Transcripts are MANE Select (version 1.5); for *SBDS*, the Ensembl transcript named by the deposit is given in parentheses.
+    - Labels follow the investigator-provided ranges of each deposit, and for *SBDS* the class column of its score table (Supplementary Note 6); indeterminate and unassigned variants are not labelled. Part (c) counts every offset in each deposit, including those beyond 50 bp, which are not analysed.
+  external_column_basis:
+    title: 'Each external gene’s predictor columns against the analysis set’s: score ranges, correlation and whether the column is the same variable.'
+    notes:
+    - Nucleotide Transformer did not reproduce its reference values and does not enter the external test (Supplementary Note 6).
+  external_summary:
+    title: External genes in which each in-sample threshold clears its tier’s boundary (a), and distance bands without damaging variants (b).
+    parts:
+      tiers_reached: External genes clearing each tier’s boundary, in all seven genes and in *DDX3X* and *TP53* alone
+      normal_only: Normal variants at or above the thresholds where a band has no damaging variant
+    notes:
+    - '(a) k/n (m): of n genes, k clear the tier’s boundary at the point estimate under the primary labels and m are not evaluable.'
+  practical_metrics:
+    title: Sensitivity, specificity and coverage of every predictor column at the fitted thresholds and published cut points, with the areas under the curves.
+    parts:
+      by_threshold: Seven genes, in-sample and held out
+      by_heldout_gene: Each held-out gene
+      external: External genes
+      curve_areas: Areas under the curves
+    notes:
+    - Coverage is the share of variants in the score band, and intervals are Wilson 95% intervals. Held-out counts are added over the folds whose threshold reached the tier. The tier by the calibration rule and the tier by band likelihood ratio are described in Supplementary Note 4.
+    - (b) The band likelihood ratio is the held-out ratio at the threshold fitted on the other genes.
+    - (d) Two AUROCs are given. The AUROC of the pooled curve treats the seven genes as one sample and is the area under the curves of Figure 3. The AUROC pooled over genes combines each gene’s AUROC on the logit scale with random effects and is the value the text reports.
+  confusion_matrices:
+    title: Confusion matrices, precision, recall, F1 and MCC at each fitted threshold and published cut point, in-sample and held out.
+    notes:
+    - On the PP3 side, damaging is the positive class and a score at or above the threshold a positive call; on the BP4 side, normal is the positive class and a score at or below the threshold a positive call.
+    - Precision = TP/(TP + FP); recall = TP/(TP + FN); F1 = 2TP/(2TP + FP + FN); MCC = (TP × TN − FP × FN)/√[(TP + FP)(TP + FN)(TN + FP)(TN + FN)], left empty where a factor is zero.
+  without_bap1:
+    title: 'The distal band and pooled window without *BAP1*: composition by gene, thresholds refitted on the other genes, and their transfer to *BAP1*.'
+    notes: []
+  heldout_intervals:
+    title: Held-out likelihood ratios with 95% intervals, fold counts at the point estimate and at the lower bound, and the spread of the Strong thresholds over leave-one-gene-out fits.
+    parts:
+      intervals: Held-out ratios with intervals
+      fold_counts: Fold counts at the point estimate and at the lower bound
+      jackknife: Strong thresholds over the leave-one-gene-out fits
+    notes:
+    - (a) Intervals come from resampling within each class of the held-out gene. A dash marks a fold in which the other genes did not reach the tier, so that no threshold was fitted.
+    - (b) k/n (m) as in Table 2(a), counted once at the point estimate and once at the lower 95% bound.
+  dilution:
+    title: 'Thresholds refitted on every subset of the training genes: how often each tier is reached, the spread of the threshold and its transfer to the genes held out.'
+    notes:
+    - Four splice-aware predictors; each subset of two or more training genes is tested on the genes outside it (Supplementary Figure S2).
+  label_sensitivity:
+    title: 'Sensitivity of the thresholds to the labels: intermediate classes, superseded labels, *BARD1* and *PALB2* left out, and a second *BRCA2* dataset.'
+    parts:
+      intermediate: Intermediate classes counted as damaging or as normal
+      superseded: Superseded *PALB2* and *BARD1* labels against the current
+      without_bard1_palb2: '*BARD1* and *PALB2* left out, singly and together'
+      brca2_concordance: '*BRCA2* classes against a second dataset'
+      brca2_refits: Refits with the second *BRCA2* dataset
+    notes:
+    - '(d, e) The second dataset is the *BRCA2* SGE assay of Sahu and colleagues [44] (urn:mavedb:00001242-a-1), with the classes of Supplementary Table 5 of that publication. Variants were joined on GRCh38 coordinates: 28 of its 6,551 rows whose c. notation does not match the coordinate were joined by coordinate, and 4 whose reference base differs from GRCh38 were dropped. The two datasets share 201 of the 551 *BRCA2* variants at 3–10 bp, from +3 to +9 on the donor side and from −3 to −7 on the acceptor side; elsewhere *BRCA2* keeps its own labels in both refits. *BRCA2* has no variant at 11–50 bp.'
+  family_holdout:
+    title: Thresholds transferred between gene groups (a), and the seven-gene thresholds in the *RAD51C* paralogues *RAD51D* and *XRCC2* beside the other external genes (b).
+    notes:
+    - (a) Thresholds fitted on the homologous recombination genes are applied to *VHL* and *BAP1*, and the reverse. The rows of the Atlas combined score that hold out *BRCA1* or *RAD51C* are included here, although the other held-out counts leave them out because its model was selected on those two assays.
+  fusion:
+    title: 'Elastic-net combination of predictors: tier against the best single column, per-fold thresholds and coefficient stability.'
+    notes:
+    - Held-out ratios of the combination are optimistic, because the training genes’ out-of-fold scores come from models that saw the held-out gene (Supplementary Note 3).
+  clinvar_coverage:
+    title: ClinVar coverage of the analysis set by gene and distance band.
+    notes:
+    - 'Classified: P/LP or B/LB in the ClinVar release used (Methods).'
+  clinvar_consistency:
+    title: The predictors against ClinVar classifications, the ClinVar class against the assay’s call, and a low-circularity subset.
+    parts:
+      reference_metrics: Sensitivity, specificity and AUROC against ClinVar classifications
+      crosstab: ClinVar classification against the assay’s call
+      low_circularity_metrics: The low-circularity subset
+      low_circularity_composition: Composition of the low-circularity subset
+      first_public_dates: First public date of each assay
+      star_conversion: Review status as stars
+    notes:
+    - P/LP classifications count as positive and B/LB as negative; conflicting and uncertain classifications carry no reference label. No likelihood ratio or evidence tier is formed from ClinVar classifications (Supplementary Note 5).
+    - (c, d) Variants whose classification was last evaluated before the assay data of their gene were first public (part e).
+  inframe_attribution:
+    title: Reading frame of the predicted splicing event for variants at or above the PP3 cut point that the assay calls normal.
+    notes:
+    - The dominant event of each predictor is read as an exon skip or a cryptic site and judged in frame from the exon length or from the shift to the nearest natural site (Supplementary Note 5); transcripts were not measured.
+  inframe_true_positives:
+    title: Reading frame of the predicted splicing event among true positives beside false positives at the published PP3 cut point.
+    notes:
+    - True positives score at or above 0.2 and are called damaging by the assay; false positives score at or above 0.2 and are called normal (Supplementary Table S27). Whether an event keeps the frame is inferred from the dominant SpliceAI or Pangolin event against the transcript’s exon boundaries; nonsense-mediated decay, partial use of a new site and variants that change more than one site are not considered. *DDX3X* and *TP53* are read on SpliceAI’s events only, under each of their label definitions.
+    - The in-frame share is given with its Wilson 95% interval; the share among resolved events leaves out undetermined ones.
+  twelve_gene_refit:
+    title: Thresholds refitted on the seven training genes together with the five further genes, beside the seven-gene fit.
+    notes:
+    - The five further genes are described in Supplementary Table S14.
+  prior_sensitivity:
+    title: Tiers of the in-sample thresholds at priors of 0.05, 0.10 and 0.185.
+    parts:
+      tiers: Tiers at each prior
+      band_edges: Tier boundaries at each prior
+    notes:
+    - 'At a prior p, each tier’s boundary keeps the posterior probability that its boundary gives at 0.10: LR(p) = LR(0.10) × [0.10/(1 − 0.10)]/[p/(1 − p)]. The priors were fixed in advance; 0.10 is the prior of the frozen fit.'
+  bp4_at_bp7_positions:
+    title: BP4 at the positions the recommendation assigns to BP7, at the published cut point and at the in-sample BP4 Supporting threshold, by gene and side of the exon.
+    notes:
+    - BP7 positions are donor +7 and beyond and acceptor −21 and beyond. Condition (b) uses the fitted thresholds at full precision (0.026069 at 3–10 bp and 0.0012704 at 11–50 bp). With the rounded values of Table 2(b), the two normal variants that lie exactly on these thresholds would not be counted; the damaging counts are unchanged.
+  vcep_rules:
+    title: 'The splicing rules of the ClinGen expert panels’ specifications applied to this study’s data: band likelihood ratios and tiers, and BP7 as each specification defines it.'
+    notes:
+    - 'Specifications: *BRCA1* and *BRCA2*, ENIGMA (GN092 and GN097, version 1.2) [39, 40]; *PALB2*, Hereditary Breast, Ovarian and Pancreatic Cancer panel (GN077, version 1.3) [41]; *VHL* (GN078, version 1.1) [42]. *BAP1*, *BARD1* and *RAD51C* have no current approved specification.'
+    - Every rule is applied to SpliceAI on the published basis (version 1.3.1, distance 4,999, unmasked, the largest of the four delta scores). The ENIGMA appendix gives a maximum distance of 10,000, which neither SpliceAI column of this study has, so the rule’s cut point is applied to the column as it stands.
+    - 'BP7 follows each specification: ENIGMA, donor +7 and beyond and acceptor −21 and beyond, with BP4; *PALB2*, donor +8 and beyond and acceptor −22 and beyond, with and without BP4; *VHL* states no position, so this study’s distance bands are used, with SpliceAI at or below 0.1 and phyloP at or below 0.2. Not evaluated: VarSeak for *VHL*, and RNA evidence and PVS1 for *PALB2*.'
+    - Intervals come from resampling within each class of the gene (2,000 draws), and tiers are given at the point estimate and at the conservative end of the interval. The labels are this study’s assay labels, and the *VHL* panel’s concern about using the *VHL* SGE data as functional evidence is not evaluated here. No specification is taken as the truth for this study’s thresholds, and no threshold is changed.
+  alphagenome_definitions:
+    title: 'The AlphaGenome splice score by the developers’ definition beside the atlas’s quantile-based composite: thresholds, band ratios, held-out transfer and AUROC.'
+    notes:
+    - The developers’ definition is the one used throughout (Supplementary Note 2).
+  by_splice_site_position:
+    title: Band likelihood ratios at the published cut points by position group on the donor and acceptor sides.
+    notes:
+    - 'Position groups: donor +3 to +6, +7 to +10 and +11 to +50; acceptor −3 to −10, −11 to −20 and −21 to −50. Intervals are 95% CIs from the gene-clustered bootstrap.'
+cell_fixes:
+- item: label_sources
+  where: part audit, two cells
+  printed_now: Table S1 cites no paper
+  print: '{functional_standards} cites no paper'
+  note: the S1 of this study, written from the configuration (prints Supplementary Table S1)
+- item: bp4_at_bp7_positions
+  where: column Condition, 24 cells
+  printed_now: '(b) SpliceAI at or below Table 2(b)''s BP4 Supporting threshold: 3-10 nt 0.026069002225995064, 11-50 nt 0.0012704133987426758'
+  print: (b) SpliceAI at or below the in-sample BP4 Supporting threshold of the band ({evidence_tiers_and_thresholds}(b))
+- item: bp4_at_bp7_positions
+  where: column Condition, 24 cells
+  printed_now: (a) SpliceAI at or below the published cut, 0.1
+  print: (a) SpliceAI at or below the published BP4 cut point, 0.1
+- item: clinvar_coverage
+  where: column header
+  printed_now: Offset band (nt)
+  print: Offset band (bp)
+- item: new_external_genes
+  where: part counts_by_offset, column Bin scheme
+  printed_now: per_nt; stratum
+  print: Per position; By distance band
+- item: new_external_genes
+  where: part counts_by_offset, column Bin (offset in bp, or stratum)
+  printed_now: pm12; s3_10; s11_50; s3_50; out_of_scope_deep
+  print: 1–2 (canonical dinucleotides); 3–10; 11–50; 3–50; beyond 50
+- item: clinvar_coverage_by_position
+  where: figure x-axis label
+  printed_now: Signed intronic offset (acceptor side < 0 < donor side), nucleotides
+  print: Signed intronic offset (acceptor side < 0 < donor side), bp

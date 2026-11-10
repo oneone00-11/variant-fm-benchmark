@@ -10,12 +10,15 @@ so that the text and its supplement come from one commit.
 
 Numbers live only in config/layout.yaml, and in what this stage writes from it: the
 workbook's README sheet and sheet names, contents.csv and manifest.csv, and every text
-that names another item (written {content} in the configuration: a title, a
-description, a note, or a part's replacement of a source's text). Every file is named
-for its content, so renumbering figures or tables changes the configuration alone; each
+that names another item (written {content} in the configuration: a title, a part's
+title, a legend, a note, the conventions, or a part's replacement of a source's text;
+{a, b} names several, printed as the text lists them, listed()). The supplementary notes
+are numbered there too, though the stage prints none of them. Every file is named for
+its content, so renumbering figures or tables changes the configuration alone; each
 list there is in its number's order (the supplementary items numbered in the order the
-text first cites them, E8, 2026-11-08). Titles, descriptions and notes in the
-configuration are not yet the manuscript's wording.
+text first cites them, E8, 2026-11-08). The supplementary tables' and figures' titles,
+part titles, notes and legends, and the conventions, are the author's wording
+(approved 2026-11-09, E8.10), printed exactly as the configuration writes them.
 
 Figures follow the configuration's artwork block: no wider than its double-column width
 and no taller than its height limit, type no smaller and no larger than its sizes,
@@ -49,7 +52,10 @@ Outputs, under reports/evidence/layout/:
   supplementary/<content>.pdf, .png       the supplementary figures
   supplementary/<content>[.<part>].csv    the supplementary tables
   supplementary_tables.xlsx               the supplementary tables, README sheet first
-  contents.csv                            number, content, title, destination,
+  submission/supplementary_tables.xlsx    the tables marked excel, for submission: a
+                                          contents sheet, then each table without its
+                                          sources' comment lines (E8.10)
+  contents.csv                            number, content, title, legend, destination,
                                           description, notes, files and sources, and
                                           the outputs kept in the repository only
   manifest.csv                            every file written, with its sha256 and sources
@@ -828,7 +834,8 @@ def figure_clinvar_coverage(item: dict, folder: Path, cfg: dict) -> list[Path]:
         b.bar(x, v, bottom=bottom, width=0.8, color=colour, label=label, lw=0)
         bottom += v
     b.set_ylabel("Share of SGE variants")
-    b.set_xlabel("Signed intronic offset (acceptor side < 0 < donor side), nucleotides")
+    # distances in bp, as the text gives them (E8.10, the author's decision of 2026-11-09)
+    b.set_xlabel("Signed intronic offset (acceptor side < 0 < donor side), bp")
     b.legend(loc="upper right", ncol=5)
     for ax, letter in zip(axes, "ab"):
         F._panel_letter(ax, letter, x=-0.06)
@@ -968,6 +975,7 @@ MARK_RULES = {
 }
 DASH = "–"
 NOT_COUNTED = "†"          # a fold listed but left out of its row's counts (thresholds_pathogenic, Figure 2)
+NUMBERS_AS_WRITTEN = "numbers as written"     # a map's option: see _cell()
 
 
 def read_source(path: str | Path) -> tuple[pd.DataFrame, list[str]]:
@@ -1234,6 +1242,11 @@ def _cell(text: str, kind: str, row: dict, extra: list, values: dict, where: str
     if kind not in values:
         raise SystemExit(f"{where}: '{kind}' is no type and no map under display: values:")
     if text not in values[kind]:
+        # a map's third entry, `numbers as written`, prints a whole number the map does
+        # not name, or a bound such as >50, as it stands: an intronic offset beside the
+        # bands' codes (E8.10)
+        if extra and extra[0] == NUMBERS_AS_WRITTEN and re.fullmatch(r"[<>]?-?\d+", text):
+            return text
         raise SystemExit(f"{where}: config/layout.yaml names no '{text}' under display: values: {kind}")
     return values[kind][text]
 
@@ -1692,6 +1705,31 @@ def _sheet_name(number: str) -> str:
     return number.replace("Supplementary Table ", "")
 
 
+def part_title(item: dict, k: int, numbers: dict) -> str:
+    """A part's title as printed above it, its letter first: "(a) By gene"."""
+    part = item["parts"][k]
+    return f"({chr(97 + k)}) {grouped(_resolve(str(part.get('title', part['part'])), numbers))}"
+
+
+def _sheet_rows(it: dict, numbers: dict, comments: bool = True) -> list[tuple[list, bool]]:
+    """A table's sheet: its number and title, its notes, then each part after an empty
+    row, its title (for a table of several parts), the comment lines its source carries
+    above its header (unless `comments` is false) and the part's own notes, its header
+    and its rows."""
+    rows: list[tuple[list, bool]] = [([f"{it['number']}. {grouped(_resolve(it['title'], numbers))}"], True)]
+    for n in _notes(it, numbers):
+        rows.append(([n], False))
+    for k, (part, df, notes) in enumerate(it["_frames"]):
+        rows.append(([], False))
+        if len(it["parts"]) > 1:
+            rows.append(([part_title(it, k, numbers)], True))
+        for n in notes if comments else part.get("notes", []):
+            rows.append(([grouped(_resolve(n, numbers))], False))
+        rows.append((list(df.columns), True))
+        rows += [(list(r), False) for r in df.itertuples(index=False)]
+    return rows
+
+
 def workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
     fmt = cfg["supplementary_format"]
     readme: list[tuple[list, bool]] = [
@@ -1708,18 +1746,7 @@ def workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
                         it["destination"], grouped(_resolve(it["description"], numbers)),
                         "; ".join(p["part"] for p in it["parts"]) if len(it["parts"]) > 1 else "",
                         "; ".join(_rel(s) for s in srcs), "; ".join(_sha256(s) for s in srcs)], False))
-        rows: list[tuple[list, bool]] = [([f"{it['number']}. {title}"], True)]
-        for n in _notes(it, numbers):
-            rows.append(([n], False))
-        for k, (part, df, notes) in enumerate(it["_frames"]):
-            rows.append(([], False))
-            if len(it["parts"]) > 1:
-                rows.append(([f"({chr(97 + k)}) {grouped(_resolve(str(part.get('title', part['part'])), numbers))}"], True))
-            for n in notes:
-                rows.append(([grouped(_resolve(n, numbers))], False))
-            rows.append((list(df.columns), True))
-            rows += [(list(r), False) for r in df.itertuples(index=False)]
-        sheets.append((_sheet_name(it["number"]), rows))
+        sheets.append((_sheet_name(it["number"]), _sheet_rows(it, numbers)))
     readme.append(([], False))
     readme.append((["Kept in the repository only (not numbered)"], True))
     readme.append((["Path", "What it holds"], True))
@@ -1728,26 +1755,79 @@ def workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
     return write_xlsx(path, [("README", readme)] + sheets)
 
 
+def submission_workbook(items: list[dict], cfg: dict, numbers: dict, path: Path) -> Path:
+    """The workbook for submission (E8.10): a contents sheet, then a sheet for each table
+    marked excel, as the repository's workbook prints it (its cells, numbers and italics
+    the same) without the comment lines a source carries above its header. The contents
+    sheet opens with its heading and the conventions, lists the tables the file holds by
+    number and title, and ends with the tables marked pdf, listed from their numbers."""
+    fmt = cfg["supplementary_format"]
+    sub = fmt["submission_workbook"]
+    excel = [it for it in items if it["destination"] == "excel"]
+    pdf = [it for it in items if it["destination"] == "pdf"]
+    contents: list[tuple[list, bool]] = [([sub["heading"]], True), ([], False),
+                                         ([grouped(_resolve(fmt["conventions"], numbers))], False),
+                                         ([], False)]
+    contents += [([it["number"], grouped(_resolve(it["title"], numbers))], False) for it in excel]
+    if pdf:
+        named = _resolve("{" + ", ".join(it["content"] for it in pdf) + "}", numbers)
+        contents += [([], False), ([f"{named} {sub['pdf_tables']}"], False)]
+    sheets = [(sub["sheet"], contents)]
+    sheets += [(_sheet_name(it["number"]), _sheet_rows(it, numbers, comments=False)) for it in excel]
+    return write_xlsx(path, sheets)
+
+
 # ---------------------------------------------------------------------------
 # The run
 # ---------------------------------------------------------------------------
-REFERENCE = re.compile(r"\{([a-z0-9_]+)\}")
+REFERENCE = re.compile(r"\{([a-z0-9_]+(?:,\s*[a-z0-9_]+)*)\}")
+# a number as its label, its letter and its rank: "Supplementary Table", "S", 12
+NUMBER_PARTS = re.compile(r"^(.*\S)\s+([A-Z]?)(\d+)$")
 
 
 SECTIONS = ("main", "supplementary", "variants")   # each a folder of layout/
 
 
 def _numbers(cfg: dict) -> dict:
-    """Each item's number by its content name."""
-    return {it["content"]: it["number"] for s in SECTIONS for it in cfg.get(s, [])}
+    """Each item's number by its content name, the supplementary notes' among them."""
+    items = [it for s in SECTIONS for it in cfg.get(s, [])] + cfg.get("supplementary_notes", [])
+    return {it["content"]: it["number"] for it in items}
+
+
+def listed(numbers_: list[str]) -> str:
+    """Several items' numbers as the text lists them (E8.10): their label once, in the
+    plural, then their numbers in order, three or more in a row as a range and the last
+    joined by "and": Supplementary Tables S8 and S9, Supplementary Tables S10–S12,
+    Supplementary Tables S5, S6, S12, S25 and S28. Items of different kinds, or one item
+    twice, stop the run."""
+    parts = [NUMBER_PARTS.match(n) for n in numbers_]
+    if not all(parts) or len({(m.group(1), m.group(2)) for m in parts}) != 1:
+        raise SystemExit(f"config/layout.yaml: {numbers_} cannot be listed under one label")
+    ranks = sorted(int(m.group(3)) for m in parts)
+    if len(set(ranks)) != len(ranks):
+        raise SystemExit(f"config/layout.yaml: {numbers_} lists an item twice")
+    label, letter = parts[0].group(1), parts[0].group(2)
+    runs: list[list[int]] = []
+    for k in ranks:
+        if runs and k == runs[-1][-1] + 1:
+            runs[-1].append(k)
+        else:
+            runs.append([k])
+    words = []
+    for r in runs:
+        words += [f"{letter}{r[0]}–{letter}{r[-1]}"] if len(r) >= 3 else [f"{letter}{k}" for k in r]
+    return f"{label}s " + (words[0] if len(words) == 1 else ", ".join(words[:-1]) + " and " + words[-1])
 
 
 def _resolve(text: str, numbers: dict) -> str:
-    """A text's {content} references, as the items' numbers."""
+    """A text's {content} references, as the items' numbers; {a, b, c} lists several
+    (listed())."""
     def number(m):
-        if m.group(1) not in numbers:
-            raise SystemExit(f"config/layout.yaml: a note names '{m.group(1)}', which is no item")
-        return numbers[m.group(1)]
+        names = [n.strip() for n in m.group(1).split(",")]
+        unknown = [n for n in names if n not in numbers]
+        if unknown:
+            raise SystemExit(f"config/layout.yaml: a text names {unknown}, which is no item")
+        return numbers[names[0]] if len(names) == 1 else listed([numbers[n] for n in names])
     return REFERENCE.sub(number, text)
 
 
@@ -1779,11 +1859,16 @@ def _sources(item: dict) -> list[str]:
 def load_config(path: Path = CONFIG) -> dict:
     cfg = yaml.safe_load(path.read_text())
     items = [it for s in SECTIONS for it in cfg.get(s, [])]
+    notes_ = cfg.get("supplementary_notes", [])
     for key in ("content", "number"):
-        seen = [it[key] for it in items]
+        seen = [it[key] for it in items + notes_]
         twice = sorted({c for c in seen if seen.count(c) > 1})
         if twice:
             raise SystemExit(f"{path}: {key}s used twice: {twice}")
+    # the supplementary notes, numbered from 1 in their list's order as the tables are
+    if [n["number"] for n in notes_] != [f"Supplementary Note {k}" for k in range(1, len(notes_) + 1)]:
+        raise SystemExit(f"{path}: the supplementary notes are listed as "
+                         f"{[n['number'] for n in notes_]}, not numbered in their list's order")
     missing = [s for it in items for s in _sources(it) if not Path(s).is_file()]
     missing += [r["path"] for r in cfg.get("repository_only", []) if not Path(r["path"]).is_file()]
     if missing:
@@ -1808,11 +1893,18 @@ def load_config(path: Path = CONFIG) -> dict:
                     raise SystemExit(f"{path}: {it['content']}.{part['part']}: a replacement is "
                                      "{old: text, new: text, count: a whole number from 1}")
                 _resolve(r["new"], numbers)
-        for key in ("title", "description"):
+            for text in [part.get("title") or ""] + list(part.get("notes", [])):
+                _resolve(str(text), numbers)
+        for key in ("title", "description", "legend"):
             if key in it:
                 _resolve(it[key], numbers)
-    if not cfg["supplementary_format"].get("numbering"):
+        for n in it.get("notes", []):
+            _resolve(n, numbers)
+    fmt = cfg["supplementary_format"]
+    if not fmt.get("numbering"):
         raise SystemExit(f"{path}: supplementary_format names no numbering")
+    for key in ("conventions", "rule"):
+        _resolve(fmt[key], numbers)
     limit = cfg["supplementary_format"]["description_words"]
     for it in items:
         if it["make"] not in MAKERS:
@@ -1839,6 +1931,7 @@ def main(config: Path = CONFIG, out: Path = OUT) -> None:
             print(f"[layout] {it['number']}: {it['content']}")
     supp_tables = [it for it in cfg["supplementary"] if it["kind"] == "table"]
     book = workbook(supp_tables, cfg, numbers, out / "supplementary_tables.xlsx")
+    submission = submission_workbook(supp_tables, cfg, numbers, out / "submission" / "supplementary_tables.xlsx")
     width = cfg["artwork"]["double_column_mm"]
     contents = []
     for section in SECTIONS:
@@ -1850,6 +1943,7 @@ def main(config: Path = CONFIG, out: Path = OUT) -> None:
                 estimate = f"{'yes' if fits else 'no'} ({lines:,} lines, {wide:,} mm wide)"
             contents.append({"number": it["number"], "section": section, "kind": it["kind"],
                              "content": it["content"], "title": grouped(_resolve(it["title"], numbers)),
+                             "legend": grouped(_resolve(it.get("legend", ""), numbers)),
                              "destination": it.get("destination", ""),
                              "fits_one_page_estimate": estimate,
                              "description": grouped(_resolve(it.get("description", ""), numbers)),
@@ -1860,19 +1954,20 @@ def main(config: Path = CONFIG, out: Path = OUT) -> None:
                                                    if it["make"] == "redraw_figure" else "")})
     for r in cfg.get("repository_only", []):
         contents.append({"number": "repository only", "section": "", "kind": "", "content": "",
-                         "title": _resolve(r["what"], numbers), "destination": "",
+                         "title": _resolve(r["what"], numbers), "legend": "", "destination": "",
                          "fits_one_page_estimate": "", "description": "", "notes": "",
                          "files": "", "sources": _rel(r["path"]), "make": ""})
     _write_csv(pd.DataFrame(contents), out / "contents.csv")
     manifest = []
-    for p, it in written + [(book, None), (out / "contents.csv", None)]:
-        srcs = _sources(it) if it else [x for i in supp_tables for x in _sources(i)] if p == book else []
+    for p, it in written + [(book, None), (submission, None), (out / "contents.csv", None)]:
+        srcs = (_sources(it) if it else [x for i in supp_tables for x in _sources(i)]
+                if p in (book, submission) else [])
         manifest.append({"file": _rel(p), "bytes": p.stat().st_size, "sha256": _sha256(p),
                          "number": it["number"] if it else "", "content": it["content"] if it else "",
                          "sources": "; ".join(_rel(s) for s in dict.fromkeys(srcs)),
                          "sources_sha256": "; ".join(_sha256(s) for s in dict.fromkeys(srcs))})
     _write_csv(pd.DataFrame(manifest), out / "manifest.csv")
-    print(f"[layout] wrote {len(written) + 3} files to {out}")
+    print(f"[layout] wrote {len(written) + 4} files to {out}")
 
 
 if __name__ == "__main__":
