@@ -1,0 +1,6 @@
+Superseded (E9, 2026-11-14): commit 3's scope check as first made, against ab5ea36. Commit 2's
+run then failed one test in the image, and the author decided on a commit 2b (0478a79)
+between commits 2 and 3; commit 3 was taken onto it unchanged (git cherry-pick) before any
+push, and its scope was checked again against 0478a79: the record that counts is the one
+committed with it after this. Both found no output changed. This record is kept as the
+rule for such runs asks.

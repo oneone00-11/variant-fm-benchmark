@@ -2716,3 +2716,52 @@ both the workflows and the tests, the skips only, no assertion. No output change
   that cannot be run; the skip carrying its reason; each test that reads the history using
   the judgement and no other; and (`tests/test_container.py`) both image jobs fetching the
   whole history.
+
+## The submitted text's numbers bound to their cells (v7), and checked (stage E9, commit 3, 2026-11-14)
+
+Why: v6 bound the working draft of 2026-11-10. The three figure legends were shortened
+afterwards and the manuscript was assembled into the files for submission, so the numbers
+are bound again in the submitted files themselves: the manuscript (title page, abstract,
+main text, statements, figure legends), the four main tables' files (titles, part titles,
+notes) and the supplementary PDF (the notes). Only the binding table, its two scripts,
+their tests and run records are added; no output changes
+(`scripts/stage_E9/scope_e9_c3.json`). v5's and v6's tables and scripts stay as they are.
+
+- **`scripts/stage_E9/build_bindings_v7.py`** takes the files as arguments. The manuscript's
+  title page is written after the abstract in the text the gate reads (the gate reads from
+  "Abstract" on); the reference list is not read. The notes are read from the PDF's own
+  tagged structure (poppler's `pdfinfo -struct-text`, or its print given as a file where
+  poppler is not installed, as in the reference image), each paragraph then held to the
+  PDF's pages read with pypdf: all stand there in order, and nothing lies between two of
+  them but a list item's label. A number v6 bound or declared keeps v6's entry, found by
+  its sentence; the numbers read for the first time have their entries here, and the title
+  page's five counts are counted from the manuscript before they are declared as what they
+  are.
+- **`docs/manuscript_bindings_v7.tsv`**: 239 numbers, 120 measured and 119 constants
+  (main text 113 and 90, notes 7 and 29).
+- **v6 to v7**, read from the two tables: 185 numbers in place; 5 gone, all constants of
+  the legends as shortened (2,000; 0.2 twice; 4.33; 18.7); 9 new, all constants: the title
+  page's counts (3,934 words, 247 words, 3 figures, 4 tables, 42 references), and in the
+  statements the version of the ENIGMA specifications (1.2), the days of two dates (11
+  September 2026, 15 June 2026) and the digits of the repository owner's name in the
+  reference image's address; 4 with the same entry and other words beside them (the
+  legends' 0.2, 0.1, 3 and 10); 41 in another place: the legends' 39, which now follow the
+  statements, and Table 1's "3–50 bp" of part (b), which the table's file prints before its
+  note. No number of the abstract, the main text or the notes has another value or another
+  cell, and the notes' text is v6's, byte for byte.
+- **`scripts/stage_E9/check_bindings_v7.py`**: before the modes, the texts and the table
+  are built again from the files given and compared byte for byte, and each table file is
+  held to the layout's (`layout/main/<content>.docx`), byte for byte. Then the pool mode,
+  the bound mode with its self-test (6 of 6 caught), the cells mode on the texts (113 of 113
+  and 7 of 7 measured numbers match) and the cells mode on each of the four table files
+  (98, 167, 30 and 166 numbers; every one matches); with a tally of the numbers the gate
+  leaves out, for each part of the main text, and the difference from v6. The pool mode,
+  the weak one, leaves three numbers of the main text unmatched, none of them a number the
+  pipeline wrote: the title page's count of words, and the prefix of two DOIs in the
+  statements, which that mode does not take out as the other modes do.
+- **Tests** (`tests/test_manuscript_bindings_v7.py`), without the submitted files: every
+  measured number of the table is its cell at the printed precision and every constant has
+  a reason; v7 differs from v6 as above and every measured number of v6 keeps its cell; the
+  difference of two small tables; the notes read from a structure print without their list
+  labels; the title page's counts held to the manuscript; a number without an entry, and
+  an entry for a number bound already, stop the build.

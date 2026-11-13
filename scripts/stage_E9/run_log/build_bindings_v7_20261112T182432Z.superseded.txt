@@ -1,0 +1,5 @@
+Superseded (E9 commit 3, 2026-11-13): a trial of an earlier form of this script on the
+native interpreter (macOS), while it was being written; that form read the notes from
+poppler only and did not yet hold them to the PDF's pages with pypdf. The run that counts
+is build_bindings_v7_20261113T143057Z.json, in the reference image, of the script as
+committed. This record is kept as the rule for such runs asks.

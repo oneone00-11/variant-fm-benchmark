@@ -1,0 +1,908 @@
+{
+ "script": "scripts/stage_E9/check_bindings_v7.py",
+ "argv": [
+  "scripts/stage_E9/check_bindings_v7.py",
+  "--manuscript",
+  "results/scratch/v7/Manuscript.docx",
+  "--tables",
+  "results/scratch/v7/Table_1.docx",
+  "results/scratch/v7/Table_2.docx",
+  "results/scratch/v7/Table_3.docx",
+  "results/scratch/v7/Table_4.docx",
+  "--supplement",
+  "results/scratch/v7/Supplementary_Information.pdf",
+  "--structure",
+  "results/scratch/v7/Supplementary_Information.struct.txt",
+  "--texts",
+  "results/scratch/v7/texts"
+ ],
+ "git_commit": "028dbe5606b9eead5c431579e56986cdfbc77d49",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E9/check_bindings_v7.py": "42a27eb67ef657ad289498fd5afbf4bbf17909086a1d86cca1e86bcc3576379f",
+  "scripts/stage_E9/_runlog.py": "0104bfdfd2dd516b0f538490b9fa68081f378989ca7dfd97f7bbe05f7c5c950d"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-13T14:31:08+00:00",
+ "end_utc": "2026-11-13T14:31:26+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "manuscript_sha256": "325f8ce6ff3813a1dabee960af9a0d2ba5c465859feecde982b2a1c2717ab4cb",
+  "supplement_sha256": "fa3a1a5421ee940ef8fb49ad9426d6b711867eac4fc0acf42b89d47fd288f259",
+  "bindings_sha256": "dce702ba5bb1bcac8d30f4acc5acbdc5a35205581a60b835cf0fac8426a8a2d5",
+  "v7_main.md_sha256": "94d48b41f221c7692c7b1ec259c9e4029937e69e7062f3b462bcc142dff72630",
+  "v7_supplement.md_sha256": "bba876d124ae121fa117ca9768883c7ef9a4e3b5d4bbcd3740b431dce6cabc28",
+  "v7_main_keyed.md_sha256": "c5562997b4b037bbc5847e555bd26c4f5c922aa876e9628371fb51004d367a57",
+  "v7_supplement_keyed.md_sha256": "69a56d8a860cc5b05c756311ca9b48eb164d37e62fc3b94bd72e9cfc40fbe1ec",
+  "texts_and_table_are_the_builders_for_these_files": true,
+  "Table_1.docx_sha256": "4796e8af394f6bd6fb39d1f77c354c8bb3f67ee13828c3c18ef6868ea450a17c",
+  "Table_2.docx_sha256": "5723b4e904c50171a63289c54be7398e6797cdfa930d88364c59adad26f4243e",
+  "Table_3.docx_sha256": "65e2b0324617d238e29a607dd22c7558ffd1ad7a1f828f740f1fc428c40a59b2",
+  "Table_4.docx_sha256": "f583ab7b8d72b53b3876d28b56833982f43e96906a271daf7d76ff741683c748",
+  "table_files": {
+   "Table_1.docx": "layout/main/analysis_set_composition.docx (Table 1), byte for byte",
+   "Table_2.docx": "layout/main/evidence_tiers_and_thresholds.docx (Table 2), byte for byte",
+   "Table_3.docx": "layout/main/published_cut_point_by_clinvar_status.docx (Table 3), byte for byte",
+   "Table_4.docx": "layout/main/practical_performance.docx (Table 4), byte for byte"
+  },
+  "pool_manuscript": {
+   "exit": 1,
+   "output": "NOTE: pool mode. It matches each number against every value the pipeline wrote, so a pass shows only that a number is not impossible. Run the source-tagged Markdown for the bound check.\npool: 692,589 distinct values from reports/evidence/, the manifests and the analysis-set totals\ntokens: 89 matched, 95 declared, 3 unmatched\n  UNMATCHED 3,934  ...Word count: Main text 3,934 words; abstract 247 words; 3 figures; 4...\n  UNMATCHED 10.5281  ..., commit  , archived at Zenodo (version DOI  ; all versions 10.5281/zenodo.22674887) with the ClinVar file....\n  UNMATCHED 10.5281  ...r and reads release v2.5.0 of the companion atlas   (Zenodo 10.5281/zenodo.22751081)....\n\nresult sentences asserting a count written as a word (9); read each against Table 1 or Table 2:\n  - The splicing recommendation of Walker and colleagues derived cut points for the maximum SpliceAI delta score from 2,736 variants outside the canonical\n  - Here, we test the published cut points against a functional standard measured in cells, and we ask (1) what evidence strength each predictor supports \n  - Thresholds were tested in each gene left out of the fit and then in seven further genes, five of them scored only after the fit was frozen.\n  - Fitted on all seven genes, the thresholds give the in-sample tier (Supplementary Tables S8 and S9).\n  - Band ratios and the area under the receiver operating characteristic curve (AUROC) were compared across the three arms at the published cut points and\n  - External genes Seven genes outside the training set were tested, each labelled by the classification its MaveDB deposit provides (Supplementary Tables\n  - In the proximal band it gave Moderate in TP53 and SFPQ and Supporting in four genes, and XRCC2, with 7 damaging variants there, could not be evaluated\n  - Close to the exon, predictor-specific thresholds cleared the Strong boundary in most held-out genes, extending the Strong evidence the recommendation \n  - (2) Where PS3 or BS3 comes from one of these seven assays, a PP3 threshold calibrated on that assay should not be added at full weight, since both cou\n"
+  },
+  "pool_main": {
+   "exit": 1,
+   "output": "NOTE: pool mode. It matches each number against every value the pipeline wrote, so a pass shows only that a number is not impossible. Run the source-tagged Markdown for the bound check.\npool: 692,589 distinct values from reports/evidence/, the manifests and the analysis-set totals\ntokens: 107 matched, 139 declared, 3 unmatched\n  UNMATCHED 3,934  ...Word count: Main text 3,934 words; abstract 247 words; 3 figures; 4...\n  UNMATCHED 10.5281  ..., commit  , archived at Zenodo (version DOI  ; all versions 10.5281/zenodo.22674887) with the ClinVar file....\n  UNMATCHED 10.5281  ...r and reads release v2.5.0 of the companion atlas   (Zenodo 10.5281/zenodo.22751081)....\n\nresult sentences asserting a count written as a word (9); read each against Table 1 or Table 2:\n  - In the proximal band it gave Moderate in TP53 and SFPQ and Supporting in four genes, and XRCC2, with 7 damaging variants there, could not be evaluated\n  - Close to the exon, predictor-specific thresholds cleared the Strong boundary in most held-out genes, extending the Strong evidence the recommendation \n  - (2) Where PS3 or BS3 comes from one of these seven assays, a PP3 threshold calibrated on that assay should not be added at full weight, since both cou\n  - Each fold holds out one of the seven genes, or one of six in the distal band.\n  - Each curve pools the seven genes, and the legend in each panel gives the area under that pooled curve; the AUROC reported in the text combines per-gen\n  - BRCA2’s deposit stops at 10 bp, so the distal band holds six genes.\n  - (a) In-sample tier, and held-out genes clearing each tier’s boundary (b) In-sample thresholds for SpliceAI (published basis) and Pangolin (a) The in-s\n  - Values are the band likelihood ratio of SpliceAI on the published basis for scores of 0.2 or above, in the seven genes and without BRCA1.\n  - (a) Held out in the seven genes (b) Agreement with ClinVar classifications of at least one review star (a) Each fold’s threshold, fitted on the other \n"
+  },
+  "pool_supplement": {
+   "exit": 1,
+   "output": "NOTE: pool mode. It matches each number against every value the pipeline wrote, so a pass shows only that a number is not impossible. Run the source-tagged Markdown for the bound check.\npool: 692,589 distinct values from reports/evidence/, the manifests and the analysis-set totals\ntokens: 17 matched, 26 declared, 1 unmatched\n  UNMATCHED 10,000  ...trap clustered on gene, with the variant-level bootstrap of 10,000 draws reported alongside....\n\nresult sentences asserting a count written as a word (3); read each against Table 1 or Table 2:\n  - The AUROC combined across genes needs at least two genes, and a gene that separates the classes completely leaves it undefined.\n  - Further genes: the in-sample thresholds were refitted on the seven genes together with the five further HAP1 genes, and tier changes are reported (Sup\n  - The summary in Supplementary Table S16 counts, as k/n (m), the genes in which each in-sample threshold clears its tier’s boundary, at the point estima\n"
+  },
+  "bound_main": {
+   "exit": 1,
+   "output": "bound mode on v7_main_keyed.md: 78 numbers matched in the file their sentence names, 107 declared constants, 11 not found in their named file, 7 in a paragraph that names no file\n  NOT IN NAMED FILE 13 [tableS3_predictor_columns.csv]  ...We evaluated 13 predictor scores (Supplementary Tables S4 and S5; Supplementary Notes 1 and 2). [tableS3_predictor_columns.csv] SpliceAI [22...\n  NOT IN NAMED FILE 6 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 7 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 4 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 7 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 7 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 7 [external_summary.csv, external_summary.csv]  ...In the pooled window their Strong thresholds cleared the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (3) for SpliceAI. [external_s...\n  NOT IN NAMED FILE 4 [external_summary.csv]  ...In the external genes these BP4 thresholds cleared the Supporting boundary in 4/7 (1) genes for SpliceAI and 5/7 (1) for Pangolin in the pro...\n  NOT IN NAMED FILE 7 [external_summary.csv]  ...In the external genes these BP4 thresholds cleared the Supporting boundary in 4/7 (1) genes for SpliceAI and 5/7 (1) for Pangolin in the pro...\n  NOT IN NAMED FILE 5 [external_summary.csv]  ...In the external genes these BP4 thresholds cleared the Supporting boundary in 4/7 (1) genes for SpliceAI and 5/7 (1) for Pangolin in the pro...\n  NOT IN NAMED FILE 7 [external_summary.csv]  ...In the external genes these BP4 thresholds cleared the Supporting boundary in 4/7 (1) genes for SpliceAI and 5/7 (1) for Pangolin in the pro...\n  UNBOUND 3,934  ...Word count: Main text 3,934 words; abstract 247 words; 3 figures; 4 tables; 42 references...\n  UNBOUND 247  ...Word count: Main text 3,934 words; abstract 247 words; 3 figures; 4 tables; 42 references...\n  UNBOUND 4  ...Word count: Main text 3,934 words; abstract 247 words; 3 figures; 4 tables; 42 references...\n  UNBOUND 42  ...Word count: Main text 3,934 words; abstract 247 words; 3 figures; 4 tables; 42 references...\n  UNBOUND 95  ...Confidence intervals (95%) for the training genes come from a bootstrap clustered on gene with 2,000 draws, and for held-out and external ge...\n  UNBOUND 0.05  ...(1) The tier boundaries assume a prior of 0.10 [3, 4], and at a prior of 0.05 SpliceAI and Pangolin lose Strong in the proximal band and the...\n  UNBOUND 1.2  ...That table and the ENIGMA specification files (registry entries GN092 and GN097, version 1.2) are not redistributed: the repository records ...\n\nresult sentences asserting a count written as a word (9); read each against the tables:\n  - In the proximal band it gave Moderate in TP53 and SFPQ and Supporting in four genes, and XRCC2, with 7 damaging variants there, could not be evaluated\n  - Close to the exon, predictor-specific thresholds cleared the Strong boundary in most held-out genes, extending the Strong evidence the recommendation \n  - (2) Where PS3 or BS3 comes from one of these seven assays, a PP3 threshold calibrated on that assay should not be added at full weight, since both cou\n  - Each fold holds out one of the seven genes, or one of six in the distal band.\n  - Each curve pools the seven genes, and the legend in each panel gives the area under that pooled curve; the AUROC reported in the text combines per-gen\n  - BRCA2’s deposit stops at 10 bp, so the distal band holds six genes.\n  - (a) In-sample tier, and held-out genes clearing each tier’s boundary (b) In-sample thresholds for SpliceAI (published basis) and Pangolin (a) The in-s\n  - Values are the band likelihood ratio of SpliceAI on the published basis for scores of 0.2 or above, in the seven genes and without BRCA1.\n  - (a) Held out in the seven genes (b) Agreement with ClinVar classifications of at least one review star (a) Each fold’s threshold, fitted on the other \n"
+  },
+  "bound_supplement": {
+   "exit": 1,
+   "output": "bound mode on v7_supplement_keyed.md: 5 numbers matched in the file their sentence names, 21 declared constants, 1 not found in their named file, 9 in a paragraph that names no file\n  NOT IN NAMED FILE 13 [tableS3_predictor_columns.csv]  ...In each distance band, the 13 predictors and the combination were read. [tableS3_predictor_columns.csv] A distance band with fewer than 10 p...\n  UNBOUND 112  ...Pangolin was run at git commit 5cf94b8 with Ensembl release 112 annotation, within 50 bp....\n  UNBOUND 10,000  ...(a) The bound comes from a bootstrap clustered on gene, with the variant-level bootstrap of 10,000 draws reported alongside....\n  UNBOUND 6  ...By position: band ratios with gene-clustered intervals in three donor groups (+3 to +6, +7 to +10, +11 to +50) and three acceptor groups (−3...\n  UNBOUND 7  ...By position: band ratios with gene-clustered intervals in three donor groups (+3 to +6, +7 to +10, +11 to +50) and three acceptor groups (−3...\n  UNBOUND 21  ...By position: band ratios with gene-clustered intervals in three donor groups (+3 to +6, +7 to +10, +11 to +50) and three acceptor groups (−3...\n  UNBOUND 7  ...BP4 at the BP7 positions: at donor +7 and beyond and acceptor −21 and beyond, the damaging and normal variants scoring at or below 0.1 were ...\n  UNBOUND 21  ...BP4 at the BP7 positions: at donor +7 and beyond and acceptor −21 and beyond, the damaging and normal variants scoring at or below 0.1 were ...\n  UNBOUND 0.05  ...Prior: the tiers were recomputed at priors of 0.05 and 0.185 (Supplementary Table S30)....\n  UNBOUND 0.185  ...Prior: the tiers were recomputed at priors of 0.05 and 0.185 (Supplementary Table S30)....\n\nresult sentences asserting a count written as a word (3); read each against the tables:\n  - The AUROC combined across genes needs at least two genes, and a gene that separates the classes completely leaves it undefined.\n  - Further genes: the in-sample thresholds were refitted on the seven genes together with the five further HAP1 genes, and tier changes are reported (Sup\n  - The summary in Supplementary Table S16 counts, as k/n (m), the genes in which each in-sample threshold clears its tier’s boundary, at the point estima\n"
+  },
+  "selftest": {
+   "exit": 0,
+   "output": "bound mode with 6 planted numbers beside the sentence on line 3, which names walker_thresholds.csv; checked first: no planted number is a declared constant or a value those files hold\n  caught 0.3712\n  caught 12.34\n  caught 987\n  caught 0.9137\n  caught 45.6%\n  caught 7,777\nSELFTEST caught 6 / 6: PASSED\n"
+  },
+  "counted_in_the_manuscript": {
+   "main text words": 3934,
+   "abstract words": 247,
+   "figures": 3,
+   "tables": 4,
+   "references": 42,
+   "numbers in the reference list": 240
+  },
+  "excluded_whole": {
+   "main references": 240,
+   "notes references": 61,
+   "notes list numbers": 46
+  },
+  "numbers_main": {
+   "read": 203,
+   "headings": 0,
+   "source tags": 0,
+   "identifiers": 24,
+   "citations": 70,
+   "labels": 107,
+   "within words": 130,
+   "outside the body": 0
+  },
+  "numbers_main_by_part": {
+   "Abstract": {
+    "read": 8,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 0,
+    "labels": 0,
+    "within words": 9,
+    "outside the body": 0
+   },
+   "Title page": {
+    "read": 5,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 0,
+    "labels": 0,
+    "within words": 4,
+    "outside the body": 0
+   },
+   "Introduction": {
+    "read": 9,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 22,
+    "labels": 0,
+    "within words": 6,
+    "outside the body": 0
+   },
+   "Materials and methods": {
+    "read": 23,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 14,
+    "citations": 34,
+    "labels": 30,
+    "within words": 32,
+    "outside the body": 0
+   },
+   "Results": {
+    "read": 82,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 0,
+    "labels": 45,
+    "within words": 26,
+    "outside the body": 0
+   },
+   "Discussion": {
+    "read": 20,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 12,
+    "labels": 8,
+    "within words": 23,
+    "outside the body": 0
+   },
+   "Data availability": {
+    "read": 3,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 8,
+    "citations": 1,
+    "labels": 4,
+    "within words": 7,
+    "outside the body": 0
+   },
+   "Code availability": {
+    "read": 1,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 2,
+    "citations": 1,
+    "labels": 0,
+    "within words": 2,
+    "outside the body": 0
+   },
+   "Acknowledgements": {
+    "read": 0,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 0,
+    "labels": 0,
+    "within words": 0,
+    "outside the body": 0
+   },
+   "Author contributions": {
+    "read": 0,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 0,
+    "labels": 0,
+    "within words": 0,
+    "outside the body": 0
+   },
+   "Funding": {
+    "read": 0,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 0,
+    "labels": 0,
+    "within words": 0,
+    "outside the body": 0
+   },
+   "Ethical approval": {
+    "read": 0,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 0,
+    "labels": 0,
+    "within words": 0,
+    "outside the body": 0
+   },
+   "Competing interests": {
+    "read": 0,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 0,
+    "labels": 0,
+    "within words": 0,
+    "outside the body": 0
+   },
+   "Figure legends": {
+    "read": 43,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 0,
+    "labels": 8,
+    "within words": 10,
+    "outside the body": 0
+   },
+   "Tables": {
+    "read": 9,
+    "headings": 0,
+    "source tags": 0,
+    "identifiers": 0,
+    "citations": 0,
+    "labels": 12,
+    "within words": 11,
+    "outside the body": 0
+   }
+  },
+  "cells_main": {
+   "constant": 90,
+   "match": 113,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "numbers": 203,
+   "problems": []
+  },
+  "numbers_supplement": {
+   "read": 36,
+   "headings": 6,
+   "source tags": 0,
+   "identifiers": 3,
+   "citations": 7,
+   "labels": 26,
+   "within words": 37,
+   "outside the body": 0
+  },
+  "cells_supplement": {
+   "constant": 29,
+   "match": 7,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "numbers": 36,
+   "problems": []
+  },
+  "cells_Table_1.docx": {
+   "numbers": 98,
+   "constant": 3,
+   "match": 95,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": [],
+   "parts": [
+    "main/analysis_set_composition.by_gene.csv",
+    "main/analysis_set_composition.by_clinvar_status.csv"
+   ]
+  },
+  "cells_Table_2.docx": {
+   "numbers": 167,
+   "constant": 56,
+   "match": 111,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": [],
+   "parts": [
+    "main/evidence_tiers_and_thresholds.tiers.csv",
+    "main/evidence_tiers_and_thresholds.thresholds.csv"
+   ]
+  },
+  "cells_Table_3.docx": {
+   "numbers": 30,
+   "constant": 12,
+   "match": 18,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": [],
+   "parts": [
+    "main/published_cut_point_by_clinvar_status.csv"
+   ]
+  },
+  "cells_Table_4.docx": {
+   "numbers": 166,
+   "constant": 24,
+   "match": 142,
+   "mismatch": 0,
+   "cannot_bind": 0,
+   "not_in_table": 0,
+   "problems": [],
+   "parts": [
+    "main/practical_performance.seven_genes.csv",
+    "main/practical_performance.clinvar.csv"
+   ]
+  },
+  "before_sha256": "931d7fe302caf9bdf2601f1a44017dfa0fe2c90ca5a1eae34100e64cd7ebb529",
+  "v6_to_v7": {
+   "numbers_before": 235,
+   "numbers_after": 239,
+   "kept_in_place": 185,
+   "moved": [
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "95%",
+     "excerpt": "lished basis, and lines their 95% confidence intervals from 2,",
+     "kind": "constant",
+     "entry": "confidence level",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "2,000",
+     "excerpt": "95% confidence intervals from 2,000 bootstrap draws clustered on",
+     "kind": "constant",
+     "entry": "bootstrap resamples, gene-clustered (src/evid_walker_thresholds.py)",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "2.08",
+     "excerpt": "ed lines mark the Supporting (2.08), Moderate (4.33) and Strong",
+     "kind": "constant",
+     "entry": "Supporting tier boundary (config/walker2023.yaml)",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "4.33",
+     "excerpt": "Supporting (2.08), Moderate (4.33) and Strong (18.7) boundaries",
+     "kind": "constant",
+     "entry": "Moderate tier boundary (config/walker2023.yaml)",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "18.7",
+     "excerpt": ", Moderate (4.33) and Strong (18.7) boundaries of Tavtigian and",
+     "kind": "constant",
+     "entry": "Strong tier boundary (config/walker2023.yaml)",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "0.10",
+     "excerpt": "and colleagues at a prior of 0.10, with their reciprocals in (b",
+     "kind": "constant",
+     "entry": "prior probability of the Tavtigian point system",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "570",
+     "excerpt": "Damaging and normal variants: 570 and 2,539 at 3–10 bp, 223 and",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s3_10; clinvar_arm=all; scope=pooled] n_pos (value)",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "2,539",
+     "excerpt": "and normal variants: 570 and 2,539 at 3–10 bp, 223 and 4,328 at",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s3_10; clinvar_arm=all; scope=pooled] n_neg (value)",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "3",
+     "excerpt": "al variants: 570 and 2,539 at 3–10 bp, 223 and 4,328 at 11–50",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "10",
+     "excerpt": "variants: 570 and 2,539 at 3–10 bp, 223 and 4,328 at 11–50 bp",
+     "kind": "constant",
+     "entry": "stratum bound, the upper end of 3-10 nt",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "223",
+     "excerpt": "ts: 570 and 2,539 at 3–10 bp, 223 and 4,328 at 11–50 bp, and 79",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s11_50; clinvar_arm=all; scope=pooled] n_pos (value)",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "4,328",
+     "excerpt": "and 2,539 at 3–10 bp, 223 and 4,328 at 11–50 bp, and 793 and 6,86",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s11_50; clinvar_arm=all; scope=pooled] n_neg (value)",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "11",
+     "excerpt": "at 3–10 bp, 223 and 4,328 at 11–50 bp, and 793 and 6,867 at 3",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "50",
+     "excerpt": "3–10 bp, 223 and 4,328 at 11–50 bp, and 793 and 6,867 at 3–50",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "793",
+     "excerpt": "23 and 4,328 at 11–50 bp, and 793 and 6,867 at 3–50 bp; the cou",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled] n_pos (value)",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "6,867",
+     "excerpt": ",328 at 11–50 bp, and 793 and 6,867 at 3–50 bp; the counts by rec",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled] n_neg (value)",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "3",
+     "excerpt": "1–50 bp, and 793 and 6,867 at 3–50 bp; the counts by record s",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "50",
+     "excerpt": "50 bp, and 793 and 6,867 at 3–50 bp; the counts by record stat",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "163"
+    },
+    {
+     "document": "main",
+     "line": "73",
+     "printed": "25",
+     "excerpt": "he depth its deposit reaches: 25 bp in DDX3X, 44 bp in SFPQ an",
+     "kind": "measured",
+     "entry": "phase1/data/evidence/external/ddx3x_splice.manifest.json [] max_intron_offset (value)",
+     "line_after": "165"
+    },
+    {
+     "document": "main",
+     "line": "73",
+     "printed": "44",
+     "excerpt": "osit reaches: 25 bp in DDX3X, 44 bp in SFPQ and 12 bp in TP53.",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/layout/variants/analysed_variants.csv [Gene=SFPQ] Signed intronic offset (max)",
+     "line_after": "165"
+    },
+    {
+     "document": "main",
+     "line": "73",
+     "printed": "12",
+     "excerpt": "p in DDX3X, 44 bp in SFPQ and 12 bp in TP53.",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/layout/variants/analysed_variants.csv [Gene=TP53] Signed intronic offset (max)",
+     "line_after": "165"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "3",
+     "excerpt": "n the seven training genes at 3–10 bp (a), 11–50 bp (b) and 3",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "10",
+     "excerpt": "the seven training genes at 3–10 bp (a), 11–50 bp (b) and 3–50",
+     "kind": "constant",
+     "entry": "stratum bound, the upper end of 3-10 nt",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "11",
+     "excerpt": "raining genes at 3–10 bp (a), 11–50 bp (b) and 3–50 bp (c).",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "50",
+     "excerpt": "ning genes at 3–10 bp (a), 11–50 bp (b) and 3–50 bp (c).",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "3",
+     "excerpt": "3–10 bp (a), 11–50 bp (b) and 3–50 bp (c).",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "50",
+     "excerpt": "10 bp (a), 11–50 bp (b) and 3–50 bp (c).",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "570",
+     "excerpt": "Damaging and normal variants: 570 and 2,539 at 3–10 bp, 223 and",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s3_10; clinvar_arm=all; scope=pooled] n_pos (value)",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "2,539",
+     "excerpt": "and normal variants: 570 and 2,539 at 3–10 bp, 223 and 4,328 at",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s3_10; clinvar_arm=all; scope=pooled] n_neg (value)",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "3",
+     "excerpt": "al variants: 570 and 2,539 at 3–10 bp, 223 and 4,328 at 11–50",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "10",
+     "excerpt": "variants: 570 and 2,539 at 3–10 bp, 223 and 4,328 at 11–50 bp",
+     "kind": "constant",
+     "entry": "stratum bound, the upper end of 3-10 nt",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "223",
+     "excerpt": "ts: 570 and 2,539 at 3–10 bp, 223 and 4,328 at 11–50 bp, and 79",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s11_50; clinvar_arm=all; scope=pooled] n_pos (value)",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "4,328",
+     "excerpt": "and 2,539 at 3–10 bp, 223 and 4,328 at 11–50 bp, and 793 and 6,86",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s11_50; clinvar_arm=all; scope=pooled] n_neg (value)",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "11",
+     "excerpt": "at 3–10 bp, 223 and 4,328 at 11–50 bp, and 793 and 6,867 at 3",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "50",
+     "excerpt": "3–10 bp, 223 and 4,328 at 11–50 bp, and 793 and 6,867 at 3–50",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "793",
+     "excerpt": "23 and 4,328 at 11–50 bp, and 793 and 6,867 at 3–50 bp. † The m",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled] n_pos (value)",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "6,867",
+     "excerpt": ",328 at 11–50 bp, and 793 and 6,867 at 3–50 bp. † The model of th",
+     "kind": "measured",
+     "entry": "phase1/reports/evidence/walker_thresholds.csv [score_column=spliceai_walker; stratum=s3_50; clinvar_arm=all; scope=pooled] n_neg (value)",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "3",
+     "excerpt": "1–50 bp, and 793 and 6,867 at 3–50 bp. † The model of the Atl",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "50",
+     "excerpt": "50 bp, and 793 and 6,867 at 3–50 bp. † The model of the Atlas",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "167"
+    },
+    {
+     "document": "main",
+     "line": "129",
+     "printed": "3",
+     "excerpt": "(b) By ClinVar record status, 3–50 bp",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "175"
+    },
+    {
+     "document": "main",
+     "line": "129",
+     "printed": "50",
+     "excerpt": ") By ClinVar record status, 3–50 bp",
+     "kind": "constant",
+     "entry": "stratum bound",
+     "line_after": "175"
+    }
+   ],
+   "reworded": [
+    {
+     "before": {
+      "document": "main",
+      "line": "61",
+      "printed": "0.2",
+      "excerpt": "The PP3 score band, scores of 0.2 or above, by distance band an",
+      "kind": "constant",
+      "entry": "PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)"
+     },
+     "after": {
+      "document": "main",
+      "line": "163",
+      "printed": "0.2",
+      "excerpt": "The PP3 score band, scores of 0.2 or above, and (b) the BP4 sco",
+      "kind": "constant",
+      "entry": "PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)"
+     }
+    },
+    {
+     "before": {
+      "document": "main",
+      "line": "61",
+      "printed": "0.1",
+      "excerpt": "The BP4 score band, scores of 0.1 or below, where smaller value",
+      "kind": "constant",
+      "entry": "BP4 cut point, Walker et al. Table 1 (config/walker2023.yaml)"
+     },
+     "after": {
+      "document": "main",
+      "line": "163",
+      "printed": "0.1",
+      "excerpt": "the BP4 score band, scores of 0.1 or below, by distance band an",
+      "kind": "constant",
+      "entry": "BP4 cut point, Walker et al. Table 1 (config/walker2023.yaml)"
+     }
+    },
+    {
+     "before": {
+      "document": "main",
+      "line": "61",
+      "printed": "3",
+      "excerpt": "s score in the proximal band (3–10 bp).",
+      "kind": "constant",
+      "entry": "stratum bound"
+     },
+     "after": {
+      "document": "main",
+      "line": "163",
+      "printed": "3",
+      "excerpt": "score, in the proximal band (3–10 bp).",
+      "kind": "constant",
+      "entry": "stratum bound"
+     }
+    },
+    {
+     "before": {
+      "document": "main",
+      "line": "61",
+      "printed": "10",
+      "excerpt": "score in the proximal band (3–10 bp).",
+      "kind": "constant",
+      "entry": "stratum bound, the upper end of 3-10 nt"
+     },
+     "after": {
+      "document": "main",
+      "line": "163",
+      "printed": "10",
+      "excerpt": "core, in the proximal band (3–10 bp).",
+      "kind": "constant",
+      "entry": "stratum bound, the upper end of 3-10 nt"
+     }
+    }
+   ],
+   "vanished": [
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "2,000",
+     "excerpt": "5th to the 95th percentile of 2,000 bootstrap draws clustered on",
+     "kind": "constant",
+     "entry": "bootstrap resamples, gene-clustered (src/evid_walker_thresholds.py)"
+    },
+    {
+     "document": "main",
+     "line": "61",
+     "printed": "0.2",
+     "excerpt": "he published PP3 cut point of 0.2, and ticks on the dotted line",
+     "kind": "constant",
+     "entry": "PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)"
+    },
+    {
+     "document": "main",
+     "line": "73",
+     "printed": "4.33",
+     "excerpt": "nd dotted lines the Moderate (4.33) and Strong (18.7) boundaries",
+     "kind": "constant",
+     "entry": "Moderate tier boundary (config/walker2023.yaml)"
+    },
+    {
+     "document": "main",
+     "line": "73",
+     "printed": "18.7",
+     "excerpt": "e Moderate (4.33) and Strong (18.7) boundaries. \"Not reached in-",
+     "kind": "constant",
+     "entry": "Strong tier boundary (config/walker2023.yaml)"
+    },
+    {
+     "document": "main",
+     "line": "83",
+     "printed": "0.2",
+     "excerpt": "he published PP3 cut point of 0.2 on SpliceAI.",
+     "kind": "constant",
+     "entry": "PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)"
+    }
+   ],
+   "new": [
+    {
+     "document": "main",
+     "line": "19",
+     "printed": "3,934",
+     "excerpt": "Word count: Main text 3,934 words; abstract 247 words; 3",
+     "kind": "constant",
+     "entry": "counted from the manuscript by scripts/stage_E9/build_bindings_v7.py: words of the main text (Introduction to Discussion, headings aside)"
+    },
+    {
+     "document": "main",
+     "line": "19",
+     "printed": "247",
+     "excerpt": "in text 3,934 words; abstract 247 words; 3 figures; 4 tables; 4",
+     "kind": "constant",
+     "entry": "counted from the manuscript by scripts/stage_E9/build_bindings_v7.py: words of the abstract"
+    },
+    {
+     "document": "main",
+     "line": "19",
+     "printed": "3",
+     "excerpt": "34 words; abstract 247 words; 3 figures; 4 tables; 42 referen",
+     "kind": "constant",
+     "entry": "counted from the manuscript by scripts/stage_E9/build_bindings_v7.py: figure legends in the manuscript"
+    },
+    {
+     "document": "main",
+     "line": "19",
+     "printed": "4",
+     "excerpt": "bstract 247 words; 3 figures; 4 tables; 42 references",
+     "kind": "constant",
+     "entry": "counted from the manuscript by scripts/stage_E9/build_bindings_v7.py: table files given"
+    },
+    {
+     "document": "main",
+     "line": "19",
+     "printed": "42",
+     "excerpt": "7 words; 3 figures; 4 tables; 42 references",
+     "kind": "constant",
+     "entry": "counted from the manuscript by scripts/stage_E9/build_bindings_v7.py: entries of the reference list"
+    },
+    {
+     "document": "main",
+     "line": "135",
+     "printed": "1.2",
+     "excerpt": "ries GN092 and GN097, version 1.2) are not redistributed: the r",
+     "kind": "constant",
+     "entry": "the version of the two ENIGMA specifications, as their registry entries give it (references 39 and 40; phase1/data/evidence/suppl_analyses/c13_vcep_sources/manifest.json)"
+    },
+    {
+     "document": "main",
+     "line": "135",
+     "printed": "11",
+     "excerpt": "analysed, was superseded on 11 September 2026 by a version wit",
+     "kind": "constant",
+     "entry": "day of the date 11 September 2026"
+    },
+    {
+     "document": "main",
+     "line": "135",
+     "printed": "15",
+     "excerpt": "me from the GRCh38 release of 15 June 2026.",
+     "kind": "constant",
+     "entry": "day of the date 15 June 2026"
+    },
+    {
+     "document": "main",
+     "line": "139",
+     "printed": "11",
+     "excerpt": "ocker image (ghcr.io/oneone00-11/variant-fm-benchmark-referenc",
+     "kind": "constant",
+     "entry": "digits of the repository owner's name in the reference image's address (container/ENVIRONMENT.json)"
+    }
+   ]
+  },
+  "failed": []
+ }
+}

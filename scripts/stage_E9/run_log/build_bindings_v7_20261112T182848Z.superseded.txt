@@ -1,0 +1,4 @@
+Superseded (E9 commit 3, 2026-11-13): a trial of this script, as committed, on the native
+interpreter (macOS). The binding table and the four texts it wrote are the same bytes as
+those of the run that counts, build_bindings_v7_20261113T143057Z.json, in the reference
+image. This record is kept as the rule for such runs asks.

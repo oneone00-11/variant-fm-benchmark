@@ -1,0 +1,88 @@
+{
+ "script": "scripts/stage_E9/build_bindings_v7.py",
+ "argv": [
+  "scripts/stage_E9/build_bindings_v7.py",
+  "--manuscript",
+  "results/scratch/v7/Manuscript.docx",
+  "--tables",
+  "results/scratch/v7/Table_1.docx",
+  "results/scratch/v7/Table_2.docx",
+  "results/scratch/v7/Table_3.docx",
+  "results/scratch/v7/Table_4.docx",
+  "--supplement",
+  "results/scratch/v7/Supplementary_Information.pdf",
+  "--structure",
+  "results/scratch/v7/Supplementary_Information.struct.txt",
+  "--texts",
+  "results/scratch/v7/texts"
+ ],
+ "git_commit": "028dbe5606b9eead5c431579e56986cdfbc77d49",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E9/build_bindings_v7.py": "a5dd019ac2acdb680ff666eb1f0adf211ab1f1c1a0ed384f0cac411a9cfcab06",
+  "scripts/stage_E9/_runlog.py": "0104bfdfd2dd516b0f538490b9fa68081f378989ca7dfd97f7bbe05f7c5c950d"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-13T14:30:54+00:00",
+ "end_utc": "2026-11-13T14:30:57+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "docs/manuscript_bindings_v7.tsv",
+   "bytes": 43872,
+   "sha256": "dce702ba5bb1bcac8d30f4acc5acbdc5a35205581a60b835cf0fac8426a8a2d5"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "manuscript_sha256": "325f8ce6ff3813a1dabee960af9a0d2ba5c465859feecde982b2a1c2717ab4cb",
+  "supplement_sha256": "bba876d124ae121fa117ca9768883c7ef9a4e3b5d4bbcd3740b431dce6cabc28",
+  "table_1_sha256": "4796e8af394f6bd6fb39d1f77c354c8bb3f67ee13828c3c18ef6868ea450a17c",
+  "table_2_sha256": "5723b4e904c50171a63289c54be7398e6797cdfa930d88364c59adad26f4243e",
+  "table_3_sha256": "65e2b0324617d238e29a607dd22c7558ffd1ad7a1f828f740f1fc428c40a59b2",
+  "table_4_sha256": "f583ab7b8d72b53b3876d28b56833982f43e96906a271daf7d76ff741683c748",
+  "structure_read_from": "the file given, sha256 662925c302a75b883c3a95ea55f1141448aa869ae4a58189e3e40c683f10f26e",
+  "counted_in_the_manuscript": {
+   "main text words": 3934,
+   "abstract words": 247,
+   "figures": 3,
+   "tables": 4,
+   "references": 42,
+   "numbers in the reference list": 240
+  },
+  "read_from_the_supplementary_pdf": {
+   "note headings": [
+    "Supplementary Note 1. Predictor scores",
+    "Supplementary Note 2. The AlphaGenome splice score and the Atlas scores",
+    "Supplementary Note 3. The elastic-net combination",
+    "Supplementary Note 4. Local likelihood-ratio calibration",
+    "Supplementary Note 5. Further analyses",
+    "Supplementary Note 6. External genes"
+   ],
+   "list labels left out": 46,
+   "numbers in the notes' reference list": 61,
+   "entries of the notes' reference list": 9,
+   "paragraphs and headings found in the pages' text in order": 57,
+   "list labels between them": 46
+  },
+  "main_sha256": "94d48b41f221c7692c7b1ec259c9e4029937e69e7062f3b462bcc142dff72630",
+  "rows": {
+   "measured": 120,
+   "constant": 119,
+   "total": 239,
+   "main": 203,
+   "supplement": 36
+  }
+ }
+}

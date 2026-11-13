@@ -1,0 +1,5 @@
+Superseded (E9 commit 3, 2026-11-13): a trial of an earlier form of this script on the
+native interpreter (macOS); that form printed other lines of the pool mode's output. Its
+verdicts are those of the run that counts, check_bindings_v7_20261113T143126Z.json, in the
+reference image, of the script as committed. This record is kept as the rule for such runs
+asks.
