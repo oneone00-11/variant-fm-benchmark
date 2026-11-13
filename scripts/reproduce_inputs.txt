@@ -46,6 +46,8 @@
 # Then ENIGMA's specification files (vcep/raw/): the registry's pages that list them (the files
 # themselves only in the gitignored cache), the check of the sentences quoted from them, and
 # Crossref's record of the panel's paper, read for its licences.
+# E9 (2026-11-13) added the HGVS check's inputs (hgvs_check/): the excerpt of VariantValidator's
+# replies, their record, and the tool's lists of the Ensembl transcripts it holds for DDX3X and SBDS.
 phase1/data/evidence/FROZEN_AT_TAG.json
 phase1/data/evidence/alphagenome_official/ATLAS_COLUMNS_CHECK.json
 phase1/data/evidence/alphagenome_official/ENVIRONMENT.json
@@ -461,6 +463,10 @@ phase1/data/evidence/external/xrcc2_spliceai.parquet.provenance.json
 phase1/data/evidence/external/xrcc2_spliceai_walker.parquet
 phase1/data/evidence/external/xrcc2_spliceai_walker.parquet.environment.json
 phase1/data/evidence/external/xrcc2_spliceai_walker.parquet.provenance.json
+phase1/data/evidence/hgvs_check/excerpt.csv
+phase1/data/evidence/hgvs_check/manifest.json
+phase1/data/evidence/hgvs_check/transcripts_DDX3X_ensembl.json
+phase1/data/evidence/hgvs_check/transcripts_SBDS_ensembl.json
 phase1/data/evidence/inframe_events.parquet
 phase1/data/evidence/inframe_events.parquet.environment.json
 phase1/data/evidence/inframe_events.parquet.provenance.json

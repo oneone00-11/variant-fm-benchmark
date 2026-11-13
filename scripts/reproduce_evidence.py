@@ -262,6 +262,8 @@ STAGES = [
     ("src.evid_suppl_c13",          "E20 C13 the VCEP rules on this study's data", []),
     # E5, the manuscript's figures and tables from the outputs above, under layout/
     ("src.evid_layout",             "E5  the manuscript's layout, numbered by config/layout.yaml", []),
+    # E9, the variant list's HGVS descriptions against VariantValidator's replies, as committed
+    ("src.evid_hgvs_check",         "E9  the listed variants' HGVS descriptions, checked with VariantValidator", []),
 ]
 
 # Stages that need an input this script does not produce, and what produces it.

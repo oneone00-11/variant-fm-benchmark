@@ -125,13 +125,17 @@ DEFAULT_READS = {
     "evid_suppl_c3.py: lab = pd.read_csv(path, sep=None, engine=\"python\")":
         "a label file, read exactly as evid_build_set reads it (the join must be "
         "attach_labels' own), no threshold",
+    "evid_hgvs_check.py: rows, excerpt, manifest = read_csv(LIST), read_csv(EXCERPT), json.loads(MANIFEST.read_text())":
+        "the variant list and VariantValidator's excerpt, read as text with the csv module "
+        "(the stage's own read_csv, not pandas'): no number is parsed",
     "evid_tp53_extend.py: return pd.read_csv(buf, sep=\"\\t\")":
         "deliberate: reproduces the TSV write and default-parser read that the frozen "
         "TP53 spliceai, pangolin and nt values went through (TSV_STORED); read_back "
         "here would change the stored scores",
 }
 TWICE = {"evid_delta.py: return pd.read_csv(p) if p.exists() else pd.DataFrame()",
-         "evid_supp_tables.py: sc = _csv(REPORTS / \"set_counts.csv\")"}
+         "evid_supp_tables.py: sc = _csv(REPORTS / \"set_counts.csv\")",
+         "evid_hgvs_check.py: rows, excerpt, manifest = read_csv(LIST), read_csv(EXCERPT), json.loads(MANIFEST.read_text())"}
 
 
 def test_every_default_read_is_one_that_uses_no_threshold():

@@ -1,0 +1,45 @@
+{
+ "commit": "E9 commit 4 (a check of every listed variant's HGVS description with VariantValidator, stage 42; only new files, and the rows that register them)",
+ "pairs": {},
+ "files": {
+  "phase1/reports/evidence/layout/variants/hgvs_check.csv": {
+   "kind": "file",
+   "why": "E9.4: new, each listed variant's HGVS description against VariantValidator's reply (src/evid_hgvs_check.py, stage 42; four checks before it is written)"
+  },
+  "phase1/reports/evidence/layout/variants/hgvs_check_summary.csv": {
+   "kind": "file",
+   "why": "E9.4: new, the check's counts by set and gene"
+  },
+  "phase1/data/evidence/hgvs_check/excerpt.csv": {
+   "kind": "file",
+   "why": "E9.4: new, an input the stages only read: the fields of VariantValidator's replies, copied (scripts/stage_E9/extract_hgvs_check.py)"
+  },
+  "phase1/data/evidence/hgvs_check/manifest.json": {
+   "kind": "file",
+   "why": "E9.4: new, an input the stages only read: where the replies came from, and the archive of the raw replies"
+  },
+  "phase1/data/evidence/hgvs_check/transcripts_DDX3X_ensembl.json": {
+   "kind": "file",
+   "why": "E9.4: new, an input the stages only read: the tool's list of the Ensembl transcripts it holds for DDX3X, as received"
+  },
+  "phase1/data/evidence/hgvs_check/transcripts_SBDS_ensembl.json": {
+   "kind": "file",
+   "why": "E9.4: new, an input the stages only read: the same for SBDS"
+  },
+  "phase1/reports/evidence/layout/contents.csv": {
+   "kind": "lines",
+   "patterns": [
+    "^Variant list check,variants,check,hgvs_check,"
+   ],
+   "why": "E9.4: one row more, the check's"
+  },
+  "phase1/reports/evidence/layout/manifest.csv": {
+   "kind": "lines",
+   "patterns": [
+    "^phase1/reports/evidence/layout/variants/hgvs_check(_summary)?\\.csv,",
+    "^phase1/reports/evidence/layout/contents\\.csv,"
+   ],
+   "why": "E9.4: the two new files' rows, which stage 42 adds, and contents.csv's size and hash"
+  }
+ }
+}

@@ -2765,3 +2765,77 @@ their tests and run records are added; no output changes
   difference of two small tables; the notes read from a structure print without their list
   labels; the title page's counts held to the manuscript; a number without an entry, and
   an entry for a number bound already, stop the build.
+
+## A check of every listed variant's HGVS description with VariantValidator (stage 42) (stage E9, commit 4, 2026-11-14)
+
+Why: the target's guide asks that variant descriptions be checked with a tool such as
+VariantValidator or Mutalyzer and the check's output be submitted with the paper; the list
+of every analysed variant (stage 41, E8.5) had been checked only by the list's own six
+checks. Only new files are added, and `contents.csv` gains the row that registers them;
+`layout/main/`, `layout/submission/`, `analysed_variants.csv` and
+`analysed_variants_counts.csv` are byte for byte as they were
+(`scripts/stage_E9/scope_e9_c4.json`).
+
+- **The query** (`scripts/stage_E9/fetch_hgvs_check.py`, not a stage: run once, from
+  2026-11-12T13:33:11Z to 2026-11-13T15:06:44Z UTC, in two starts, the second after the session
+  that started the first had ended; resumable): VariantValidator's public REST interface, GRCh38, each
+  of the 15,889 rows as its RefSeq transcript and c. description with that transcript as
+  the only one to report, and SBDS's 492 rows a second time on their Ensembl transcript;
+  16,381 descriptions in 1,644 requests of at most ten, one at a time, at least a second
+  apart; 1,683 made, 39 of them again after a 500 (19), a 429 (18) or a network error (2),
+  with two pauses of ten minutes after five failures in a row. DDX3X's descriptions on
+  its Ensembl transcript were not submitted: the tool does not hold ENST00000644876 in any
+  version (its own list of the transcripts it holds is kept beside the excerpt), and DDX3X
+  is checked on NM_001356.5, the RefSeq transcript of the same MANE Select pair (the
+  author's decision of 2026-11-12). /hello/ gave the same five versions at the start and
+  at the end (variantvalidator_version 4.0.1.dev7+gbdab9c72f, variantvalidator_hgvs_version 4.0.0,
+  vvta_version vvta_2025_02, vvdb_version vvdb_2025_3, vvseqrepo_db VV_SR_2025_02). Fifty rows drawn with a fixed seed, asked again afterwards, came
+  back as stored, all 55 descriptions. The requests carried the descriptions only.
+- **The excerpt** (`scripts/stage_E9/extract_hgvs_check.py` →
+  `phase1/data/evidence/hgvs_check/excerpt.csv`, `manifest.json` and the two transcript
+  lists): for each description submitted, the reply's fields copied as they were (the
+  transcript and GRCh38 genomic descriptions, the VCF, the MANE flag, the reply's flag,
+  the warnings); the manifest records the interface, both /hello/ texts, the times, the
+  requests, the list's sha256 and the sha256 and bytes of the archive of the raw replies,
+  which is kept outside the repository (1,048,081 bytes, sha256
+  675effb7db872526fa42f6683a3caad5b631815308dc5feb1edfe095a7701835).
+- **Stage 42** (`src/evid_hgvs_check.py`), offline, reads only the list and the excerpt
+  and writes `layout/variants/hgvs_check.csv` (a row for each listed variant, in its order:
+  the list's five columns, the description submitted, the two returned, the warnings, the
+  second query's where there is one, and two conclusions, Yes or No: the transcript
+  description is the one submitted, the genomic description is the list's) and
+  `hgvs_check_summary.csv` (by set and gene, and in all), each with comment lines above its
+  header naming the tool, its versions, the days of the query and what was not submitted.
+  Before it writes, it holds every row of the list to exactly one entry of the excerpt,
+  character for character, and no entry to no row; the list and the excerpt to the
+  manifest's sha256; and the summary to a count made again from the descriptions. Result: all
+  15,889 rows Yes in both conclusions, and SBDS's 492 on its Ensembl transcript too; the only
+  warning, on all 2,050 rows of BARD1, "The current status of LRG_297 is pending therefore
+  changes may be made to the LRG reference sequence".
+- **Registered as stage 41's are**: the item `hgvs_check` in `config/layout.yaml`'s variant
+  list section, made by `later_stage` (stage 41 lists it in `contents.csv` and writes
+  nothing for it; stage 42 adds its two files to `manifest.csv`, so that the manifest still
+  lists every file under `layout/`, and `contents.csv`'s row in the manifest changes with
+  it); the stage table of `scripts/reproduce_evidence.py`; `scripts/reproduce_inputs.txt`
+  (the excerpt, its manifest and the transcript lists, read only); the README's count of
+  stages.
+- **Two guards made to know the new files**, each by a reason written beside it:
+  `phase1/tests/test_evid_newgenes.py`'s scan for files that name SBDS before its
+  scoring now counts the check's files as a fifth kind, fetched after the tag
+  `frozen-thresholds-v1` and carrying no predictor column (still scanned for one), and its
+  reading of a scoring time passes over a json that is not a record (the tool's list of
+  transcripts is a list); `phase1/tests/test_evid_read_back.py` lists stage 42's one line of
+  reads, the variant list and the excerpt read as text with the csv module, not pandas, so
+  that no number is parsed.
+- **Tests**: `phase1/tests/test_evid_hgvs_check.py` (each check catches what it is for, on
+  altered copies of a small list: a returned description changed, a row taken away, a row
+  too many, the list's hash replaced; the committed files hold together and are what the
+  stage writes) and `tests/test_hgvs_fetch.py` (the query and the excerpt against a
+  stand-in for the service; none asks it).
+- **The macOS job's comment** (`.github/workflows/reproduce.yml`) names the machine and the
+  system its first run on macos-15 printed (run 43578960713, at commit 2b): an Apple M1
+  (Virtual) on macOS 15.8.2 (24H232), as E9.2 asks; commit 2's own run had found no runner.
+- **The submitted files describe no individual variant**: in the manuscript, the four
+  tables, the supplementary PDF and the workbook, no c., g. or p. description, rs number
+  or ClinVar accession (the twelve matches of the search are page numbers of a citation and
+  two transcript names).

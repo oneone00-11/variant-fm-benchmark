@@ -1,0 +1,22 @@
+# A check of every listed variant's HGVS description with VariantValidator (src/evid_hgvs_check.py, stage 42): one row for each row of analysed_variants.csv, in its order.
+# Tool: VariantValidator, its public REST interface at https://rest.variantvalidator.org. Versions, as /hello/ gave them when the queries started and when they ended: variantvalidator_version 4.0.1.dev7+gbdab9c72f; variantvalidator_hgvs_version 4.0.0; vvta_version vvta_2025_02; vvdb_version vvdb_2025_3; vvseqrepo_db VV_SR_2025_02.
+# Queried on 2026-11-12 and 2026-11-13 (UTC), from 2026-11-12T13:33:11Z to 2026-11-13T15:06:44Z: 16,381 descriptions in 1,644 requests. Afterwards 50 rows drawn with a fixed seed were asked again, 55 descriptions: 55 came back the same as stored.
+# Each row was submitted as its RefSeq transcript (MANE Select) and its HGVS c., on GRCh38, with that transcript as the only one to report. "Transcript description same as submitted" is Yes where the transcript description returned is the one submitted, character for character; "Genomic description same as the list's" is Yes where the GRCh38 genomic description returned is the list's HGVS g., character for character. Nothing returned was changed.
+# The deposits of DDX3X and SBDS write c. on the Ensembl transcript of the MANE Select pair. The rows of SBDS were submitted a second time on that transcript, to the tool's interface for Ensembl transcripts (the columns that name the Ensembl transcript; empty for the other genes). The rows of DDX3X were not: the tool does not hold ENST00000644876.2 (data/evidence/hgvs_check/transcripts_DDX3X_ensembl.json is its own list of the Ensembl transcripts it holds for the gene), so DDX3X is checked on the RefSeq transcript of the same pair.
+# Warnings are the tool's own, as returned; several for one description are separated by "|".
+Set,Gene,Variants,Transcript description same as submitted,Genomic description same as the list's,Variants with a warning,Submitted on the Ensembl transcript,Ensembl transcript description same as submitted,Genomic description for the Ensembl transcript same as the list's,With a warning for the Ensembl transcript
+Analysis set,BAP1,"2,460","2,460","2,460",0,0,0,0,0
+Analysis set,BARD1,"2,050","2,050","2,050","2,050",0,0,0,0
+Analysis set,BRCA1,"1,034","1,034","1,034",0,0,0,0,0
+Analysis set,BRCA2,689,689,689,0,0,0,0,0
+Analysis set,PALB2,"1,185","1,185","1,185",0,0,0,0,0
+Analysis set,RAD51C,"1,248","1,248","1,248",0,0,0,0,0
+Analysis set,VHL,187,187,187,0,0,0,0,0
+External gene,DDX3X,"1,857","1,857","1,857",0,0,0,0,0
+External gene,TP53,288,288,288,0,0,0,0,0
+External gene,CTCF,"1,460","1,460","1,460",0,0,0,0,0
+External gene,SFPQ,"1,121","1,121","1,121",0,0,0,0,0
+External gene,RAD51D,"1,404","1,404","1,404",0,0,0,0,0
+External gene,XRCC2,414,414,414,0,0,0,0,0
+External gene,SBDS,492,492,492,0,492,492,492,0
+All,All,"15,889","15,889","15,889","2,050",492,492,492,0

@@ -1,0 +1,6 @@
+Superseded (E9, 2026-11-14): commit 4's scope check as first made, against the first commit 3
+(d2f5bed). After commit 2b (0478a79) was put between commits 2 and 3, commits 3 and 4 were
+taken onto it unchanged (git cherry-pick) before any push, and commit 4's scope was checked
+again against the new commit 3: the record that counts is the one committed with it after
+this. Both found the same eight files changed, all declared, and none outside the scope.
+This record is kept as the rule for such runs asks.

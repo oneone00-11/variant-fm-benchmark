@@ -673,6 +673,12 @@ TAG_UTC = "2026-10-22T16:34:25+00:00"
 # fetched after the tag (the second BRCA2 set's search, E19 C3 item 3); the time of each
 # is its fetch time in that search's manifest, the listing table's that of the newest page
 E19_SEARCH_MANIFEST = REPO / "phase1/data/evidence/second_set/brca2_raw/manifest.json"
+# A fifth kind: E9's check of the variant list's HGVS descriptions (hgvs_check/), the
+# excerpt of VariantValidator's replies, their record and the tool's lists of the Ensembl
+# transcripts it holds, which name SBDS's descriptions and transcripts and carry no
+# predictor column, all fetched after the tag; the time of each is the query's first
+# request, as its record gives it
+E9_HGVS_MANIFEST = REPO / "phase1/data/evidence/hgvs_check/manifest.json"
 
 
 def _e19_fetched() -> dict[str, str]:
@@ -687,12 +693,21 @@ def _e19_fetched() -> dict[str, str]:
     return files
 
 
+def _e9_fetched() -> dict[str, str]:
+    if not E9_HGVS_MANIFEST.exists():
+        return {}
+    first = json.loads(E9_HGVS_MANIFEST.read_text())["run"]["first_request_utc"]
+    return {p.relative_to(REPO).as_posix(): first for p in sorted(E9_HGVS_MANIFEST.parent.iterdir())
+            if p.is_file()}
+
+
 def _scored_after(rel: str) -> str | None:
     """The first scoring time an E18 score file records: the file's own record if it
     is one (a provenance or manifest json with scored_utc_range), else the provenance
     beside it (<file>.provenance.json; for <x>.environment.json, <x>.provenance.json),
     or for an assembled table <x>.parquet the manifest beside it (<x>.manifest.json, as
-    newgenes_scored.parquet has). None when there is no such record."""
+    newgenes_scored.parquet has). None when there is no such record, or when the json is
+    not a record (the tool's list of transcripts, E9, is a list)."""
     path = REPO / rel
     candidates = []
     if path.suffix == ".json" and not rel.endswith(".environment.json"):
@@ -703,7 +718,8 @@ def _scored_after(rel: str) -> str | None:
         candidates.append(REPO / f"{rel.removesuffix('.parquet')}.manifest.json")
     for c in candidates:
         if c.exists():
-            rng = json.loads(c.read_text()).get("scored_utc_range")
+            rec = json.loads(c.read_text())
+            rng = rec.get("scored_utc_range") if isinstance(rec, dict) else None
             if rng:
                 return rng[0]
     return None
@@ -723,10 +739,12 @@ def test_no_predictor_score_for_any_sbds_variant_is_in_the_repository():
     (the author's decision of 2026-10-23). phase1/reports is no longer scanned: from
     E18's external test on, its outputs carry SBDS results derived from E18's score
     files. A fourth kind are E19's records of MaveDB's listing (E19_SEARCH_MANIFEST),
-    fetched after the tag and carrying no predictor column."""
+    fetched after the tag and carrying no predictor column, and a fifth E9's check of
+    the listed variants' HGVS descriptions (E9_HGVS_MANIFEST), fetched after the tag and
+    carrying no predictor column either."""
     from datetime import datetime
     man = _manifest("SBDS")
-    e19 = _e19_fetched()
+    e19 = _e19_fetched() | _e9_fetched()
     tm = man["transcript_model"]
     ids = ["sbds", tm["mane_select"]["refseq_nuc"].split(".")[0].lower(),
            tm["mane_select"]["ensembl_nuc"].split(".")[0].lower()]

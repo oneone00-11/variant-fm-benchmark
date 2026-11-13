@@ -110,8 +110,9 @@ jobs:
   macos-arm64:
     # For the record, not required (the author's decision of 2026-10-22): the native
     # path, `bash reproduce.sh` with the runner's own Python 3.12 (GitHub's macos-15
-    # runner, Apple silicon on macOS 15; the first step prints the chip and the system),
-    # against the outputs the image wrote. It cannot end REPRODUCED there: Pillow
+    # runner: an Apple M1 (Virtual) on macOS 15.8.2, 24H232, when it first ran, on
+    # 2026-11-14; the first step prints the chip and the system), against the outputs
+    # the image wrote. It cannot end REPRODUCED there: Pillow
     # compresses the PNG figures into other bytes (the pixels are the same), the TP53
     # manifest's reproduction check counts one more value identical on arm64, and the
     # maths libraries move last digits. Its verdict is recorded, not enforced. After it,

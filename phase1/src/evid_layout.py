@@ -56,10 +56,17 @@ Outputs, under reports/evidence/layout/:
   submission/supplementary_tables.xlsx    the tables marked excel, for submission: a
                                           contents sheet, then each table without its
                                           sources' comment lines (E8.10)
+  variants/analysed_variants.csv, analysed_variants_counts.csv
+                                          every analysed variant, and their counts (E8.5)
+  variants/hgvs_check.csv, hgvs_check_summary.csv
+                                          the list's HGVS descriptions against
+                                          VariantValidator's replies: listed here, written
+                                          by the stage after this one (E9.4, later_stage())
   contents.csv                            number, content, title, legend, destination,
                                           description, notes, files and sources, and
                                           the outputs kept in the repository only
   manifest.csv                            every file written, with its sha256 and sources
+                                          (the stage after this one adds its two files)
 
 Run (PYTHONPATH=phase1):  python -m src.evid_layout
 """
@@ -1470,6 +1477,23 @@ def variant_list(item: dict, folder: Path, cfg: dict) -> list[Path]:
     return V.write(folder)
 
 
+@maker
+def later_stage(item: dict, folder: Path, cfg: dict) -> list[Path]:
+    """An item this stage lists and the stage after it writes (E9.4): the check of the
+    variant list's HGVS descriptions, src/evid_hgvs_check.py, which reads the list this
+    stage has just written. Nothing is written here. contents.csv names the item's files
+    from its `files`, and that stage adds them to manifest.csv once they exist. The item
+    must be the one that stage writes: its name, its files and its sources."""
+    from . import evid_hgvs_check as H
+    want = {"content": H.CONTENT, "files": [str(H.OUT / f) for f in H.FILES],
+            "sources": sorted([str(H.EXCERPT), str(H.MANIFEST)])}
+    got = {"content": item["content"], "files": list(item.get("files", [])), "sources": sorted(item.get("sources", []))}
+    if got != want:
+        raise SystemExit(f"[layout] {item['content']}: config/layout.yaml gives {got}, and the stage that "
+                         f"writes it {want}")
+    return []
+
+
 # the distance bands as the text names them (the conventions)
 BAND_NAME = {"s3_10": "proximal band", "s11_50": "distal band", "s3_50": "pooled window"}
 
@@ -2342,6 +2366,8 @@ def main(config: Path = CONFIG, out: Path = OUT) -> None:
     for section in SECTIONS:
         for it in cfg.get(section, []):
             files = [p for p, i in written if i is it]
+            if it["make"] == "later_stage":              # written after this stage, named from the item
+                files = [Path(f) for f in it["files"]]
             estimate = ""
             if it["kind"] == "table" and section == "supplementary":
                 fits, lines, wide = one_page(it["_frames"], width)
@@ -2356,7 +2382,8 @@ def main(config: Path = CONFIG, out: Path = OUT) -> None:
                              "files": "; ".join(_rel(p) for p in files),
                              "sources": "; ".join(_rel(s) for s in _sources(it)),
                              "make": it["make"] + (f" ({it['options']['function']})"
-                                                   if it["make"] == "redraw_figure" else "")})
+                                                   if it["make"] == "redraw_figure" else
+                                                   f" ({it['written_by']})" if it["make"] == "later_stage" else "")})
     for r in cfg.get("repository_only", []):
         contents.append({"number": "repository only", "section": "", "kind": "", "content": "",
                          "title": _resolve(r["what"], numbers), "legend": "", "destination": "",

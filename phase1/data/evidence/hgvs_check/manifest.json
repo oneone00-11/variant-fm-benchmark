@@ -1,0 +1,105 @@
+{
+ "what": "VariantValidator's replies to the HGVS descriptions of every listed variant (E9.4): where excerpt.csv comes from. Written by scripts/stage_E9/extract_hgvs_check.py from the replies scripts/stage_E9/fetch_hgvs_check.py stored.",
+ "tool": "VariantValidator",
+ "interface": {
+  "address": "https://rest.variantvalidator.org",
+  "paths": [
+   "/VariantValidator/variantvalidator/GRCh38/<descriptions>/<transcript>",
+   "/VariantValidator/variantvalidator_ensembl/GRCh38/<descriptions>/<transcript>"
+  ],
+  "genome_build": "GRCh38",
+  "descriptions_per_request_at_most": 10,
+  "seconds_between_requests_at_least": 1.0
+ },
+ "hello_at_start": {
+  "file": "hello_20261112T133307Z.json",
+  "text": "{\"metadata\":{\"variantvalidator_hgvs_version\":\"4.0.0\",\"variantvalidator_version\":\"4.0.1.dev7+gbdab9c72f\",\"vvdb_version\":\"vvdb_2025_3\",\"vvseqrepo_db\":\"VV_SR_2025_02\",\"vvta_version\":\"vvta_2025_02\"},\"status\":\"hello_world\"}\n"
+ },
+ "hello_at_end": {
+  "file": "hello_20261113T150646Z.json",
+  "text": "{\"metadata\":{\"variantvalidator_hgvs_version\":\"4.0.0\",\"variantvalidator_version\":\"4.0.1.dev7+gbdab9c72f\",\"vvdb_version\":\"vvdb_2025_3\",\"vvseqrepo_db\":\"VV_SR_2025_02\",\"vvta_version\":\"vvta_2025_02\"},\"status\":\"hello_world\"}\n"
+ },
+ "hello_files": [
+  "hello_20261112T133307Z.json",
+  "hello_20261113T142149Z.json",
+  "hello_20261113T150646Z.json"
+ ],
+ "versions_in_every_reply": {
+  "variantvalidator_hgvs_version": "4.0.0",
+  "variantvalidator_version": "4.0.1.dev7+gbdab9c72f",
+  "vvdb_version": "vvdb_2025_3",
+  "vvseqrepo_db": "VV_SR_2025_02/master",
+  "vvta_version": "vvta_2025_02"
+ },
+ "list": {
+  "path": "phase1/reports/evidence/layout/variants/analysed_variants.csv",
+  "rows": 15889,
+  "sha256": "cc20cac8d5cb5dcc17c12dc6da1bb4947a7fc8ff1c9b535e709e94ce5f67c2e7"
+ },
+ "descriptions": {
+  "submitted": 16381,
+  "by_interface": {
+   "variantvalidator": 15889,
+   "variantvalidator_ensembl": 492
+  },
+  "requests": 1644
+ },
+ "run": {
+  "list_sha256_the_run_read": [
+   "cc20cac8d5cb5dcc17c12dc6da1bb4947a7fc8ff1c9b535e709e94ce5f67c2e7"
+  ],
+  "runs_started": 2,
+  "first_request_utc": "2026-11-12T13:33:11Z",
+  "last_request_utc": "2026-11-13T15:06:44Z",
+  "requests_made": 1683,
+  "requests_stored": 1644,
+  "requests_made_again": 39,
+  "made_again_by_status": {
+   "0": 2,
+   "429": 18,
+   "500": 19
+  },
+  "pauses_of_ten_minutes": 2,
+  "second_asking_requests": 57,
+  "second_asking_last_utc": "2026-11-13T15:14:07Z"
+ },
+ "second_asking": {
+  "seed": 20261112,
+  "rows": 50,
+  "entries": 55,
+  "entries_the_same_as_stored": 55,
+  "entries_that_differ": []
+ },
+ "not_submitted": {
+  "gene": "DDX3X",
+  "transcript": "ENST00000644876.2",
+  "why": "The deposits of DDX3X and SBDS write their c. descriptions on the Ensembl transcript of the gene's MANE Select pair. VariantValidator's interface for Ensembl transcripts holds SBDS's (ENST00000246868.7) and does not hold DDX3X's in any version: on 2026-11-12 three descriptions on ENST00000644876.2 came back \"The transcript ENST00000644876.2 is not in our database. Please check the transcript ID\", and the tool's list of the Ensembl transcripts it holds for DDX3X (transcripts_DDX3X_ensembl.json, as received) does not name it. DDX3X's descriptions were therefore submitted on the RefSeq transcript of the same MANE Select pair (NM_001356.5) only (the author's decision of 2026-11-12)."
+ },
+ "excerpt": {
+  "path": "phase1/data/evidence/hgvs_check/excerpt.csv",
+  "rows": 16381,
+  "sha256": "964b51886d07c4ff5f1538c686c0d0cc6e82c3657fbcefc23ecee02c9fc82598",
+  "columns": [
+   "submitted_description",
+   "interface",
+   "transcript_description",
+   "genomic_description_grch38",
+   "vcf_chr",
+   "vcf_pos",
+   "vcf_ref",
+   "vcf_alt",
+   "mane_select",
+   "flag",
+   "warnings"
+  ]
+ },
+ "raw_replies_archive": {
+  "name": "variantvalidator_replies_hgvs_check.tar.gz",
+  "bytes": 1048081,
+  "sha256": "675effb7db872526fa42f6683a3caad5b631815308dc5feb1edfe095a7701835",
+  "files": 1710,
+  "tar_bytes": 37488640,
+  "tar_sha256": "979ed08afa5e68bb584da8ba0ab92f508835e741e297bf7c1e71111d3758b3be",
+  "kept": "outside the repository; to go into the release's archive of inputs"
+ }
+}

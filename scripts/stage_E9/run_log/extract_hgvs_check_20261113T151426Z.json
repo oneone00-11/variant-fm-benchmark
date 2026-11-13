@@ -1,0 +1,71 @@
+{
+ "script": "scripts/stage_E9/extract_hgvs_check.py",
+ "argv": [
+  "scripts/stage_E9/extract_hgvs_check.py",
+  "--raw",
+  "results/scratch/hgvs_raw",
+  "--archive",
+  "results/scratch/hgvs_archive/variantvalidator_replies_hgvs_check.tar.gz"
+ ],
+ "git_commit": "028dbe5606b9eead5c431579e56986cdfbc77d49",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E9/extract_hgvs_check.py": "b0498bd8aa32aa1dc4669697d9fd30615b3821404df6a24e07f57c854db19263",
+  "scripts/stage_E9/_runlog.py": "0104bfdfd2dd516b0f538490b9fa68081f378989ca7dfd97f7bbe05f7c5c950d"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-13T15:14:24+00:00",
+ "end_utc": "2026-11-13T15:14:26+00:00",
+ "inputs": [
+  {
+   "path": "phase1/reports/evidence/layout/variants/analysed_variants.csv",
+   "bytes": 2934964,
+   "sha256": "cc20cac8d5cb5dcc17c12dc6da1bb4947a7fc8ff1c9b535e709e94ce5f67c2e7"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "phase1/data/evidence/hgvs_check/excerpt.csv",
+   "bytes": 2336526,
+   "sha256": "964b51886d07c4ff5f1538c686c0d0cc6e82c3657fbcefc23ecee02c9fc82598"
+  },
+  {
+   "path": "phase1/data/evidence/hgvs_check/manifest.json",
+   "bytes": 4186,
+   "sha256": "aebc56f48af0830587dcc3427c9fa84b840eda179a04e0a4a234d274dd155b92"
+  },
+  {
+   "path": "phase1/data/evidence/hgvs_check/transcripts_DDX3X_ensembl.json",
+   "bytes": 8930,
+   "sha256": "edd6177f2ec912c55964bbf1f033e29476304a2fd6db89918584de2f02005f8e"
+  },
+  {
+   "path": "phase1/data/evidence/hgvs_check/transcripts_SBDS_ensembl.json",
+   "bytes": 2505,
+   "sha256": "2fd301090d09295e32761222f5a1268a3f66ab41338b77bac1f8cb6a97adf607"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "archive": {
+   "name": "variantvalidator_replies_hgvs_check.tar.gz",
+   "bytes": 1048081,
+   "sha256": "675effb7db872526fa42f6683a3caad5b631815308dc5feb1edfe095a7701835",
+   "files": 1710,
+   "tar_bytes": 37488640,
+   "tar_sha256": "979ed08afa5e68bb584da8ba0ab92f508835e741e297bf7c1e71111d3758b3be"
+  },
+  "rows": 16381
+ }
+}

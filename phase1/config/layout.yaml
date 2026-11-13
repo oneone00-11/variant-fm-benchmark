@@ -797,6 +797,20 @@ variants:
               data/evidence/external/rad51d_variants.parquet, data/evidence/external/xrcc2_variants.parquet,
               data/evidence/external/sbds_variants.parquet,
               data/evidence/reference_cache/mane/MANE.GRCh38.v1.5.summary.txt.gz]
+  # The check of the list's HGVS descriptions with VariantValidator (E9.4): two files beside
+  # the list, written by src/evid_hgvs_check.py, the stage after the layout, from the list
+  # and the excerpt of the tool's replies (data/evidence/hgvs_check/). The layout stage
+  # writes nothing for this item: it lists the files in contents.csv, and that stage adds
+  # them to manifest.csv.
+  - content: hgvs_check
+    kind: check
+    number: Variant list check
+    make: later_stage
+    written_by: "src/evid_hgvs_check.py, stage 42"
+    files: [reports/evidence/layout/variants/hgvs_check.csv, reports/evidence/layout/variants/hgvs_check_summary.csv]
+    title: "The HGVS description of every listed variant, checked with VariantValidator"
+    description: "For each listed variant: the description submitted to VariantValidator, the transcript and GRCh38 genomic descriptions it returned, its warnings, and whether they are the ones submitted and listed; and the counts by set and gene."
+    sources: [data/evidence/hgvs_check/excerpt.csv, data/evidence/hgvs_check/manifest.json]
 
 # Outputs added after 2026-09-30 that no table or figure numbers: the supplementary
 # materials' contents name them with their path.

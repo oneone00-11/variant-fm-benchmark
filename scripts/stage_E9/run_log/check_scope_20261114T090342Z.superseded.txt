@@ -1,0 +1,7 @@
+Superseded (E9, 2026-11-14): commit 4's scope check as made when commit 4 was first taken onto
+the new commit 3. Before its push, commit 4 was amended to add one comment in
+.github/workflows/reproduce.yml (the machine and system of the macOS job's first run on
+macos-15) and its line in the change log, both outside the output folders; the scope was
+checked again on the amended tree: the record that counts is the one committed with it after
+this. Both found the same eight output files changed, all declared, and none outside the
+scope. This record is kept as the rule for such runs asks.
