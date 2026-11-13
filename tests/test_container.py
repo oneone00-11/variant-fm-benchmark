@@ -226,6 +226,59 @@ def test_the_native_macos_job_is_kept_for_the_record_only():
     mac = yaml.safe_load((REPO / ".github/workflows/reproduce.yml").read_text())["jobs"]["macos-arm64"]
     assert mac["continue-on-error"] is True                  # the author's decision
     assert any(s.get("run") == "bash reproduce.sh" for s in mac["steps"])
+    assert mac["runs-on"] == "macos-15"                      # macos-14's image is retired (E9.2)
+
+
+# --------------------------------------------------------------------------
+# E9.2: the test suite in the image job; the actions pinned by commit
+# --------------------------------------------------------------------------
+def test_run_sh_runs_the_test_suite_under_the_settings_of_the_run():
+    run = RUN_SH.read_text()
+    assert re.search(r"^\s+test\)\s+python -m pytest -q -p no:cacheprovider -rs ;;$", run, re.M)
+    # one preamble for every subcommand: the settings stand above the case that picks it
+    assert run.index("NPY_DISABLE_CPU_FEATURES_PIN=") < run.index('case "${1:-}" in') < run.index("test)")
+    assert "fetch | verify | test | probe NAME | environment" in run
+
+
+@pytest.mark.parametrize("workflow, job, after", [
+    ("reproduce.yml", "image", "Require REPRODUCED, byte for byte"),
+    ("container.yml", "reproduce", "Run every stage and compare (no network)"),
+])
+def test_the_image_jobs_run_the_tests_after_the_comparison_with_no_network_and_a_clean_tree(workflow, job, after):
+    import yaml
+    steps = yaml.safe_load((REPO / ".github/workflows" / workflow).read_text())["jobs"][job]["steps"]
+    names = [s.get("name") for s in steps]
+    at = names.index("Run the test suite in the image (no network)")
+    assert names[at - 1] == after and "if" not in steps[at]      # only after a run that passed
+    run = steps[at]["run"]
+    assert "--network none" in run and "bash container/run.sh test" in run
+    clean = '[ -z "$(git status --short)" ]'
+    assert run.count(clean) == 2 and run.index(clean) < run.index("container/run.sh test") < run.rindex(clean)
+    assert run.index("git checkout -- .") < run.index(clean)     # the build times put back first
+
+
+def test_every_action_is_pinned_by_a_full_commit_with_its_version_beside_it():
+    used = []
+    for wf in sorted((REPO / ".github/workflows").glob("*.yml")):
+        for line in wf.read_text().splitlines():
+            if "uses:" in line:
+                m = re.fullmatch(r"\s*(?:- )?uses: (actions/[a-z-]+)@([0-9a-f]{40})  # (v\d+\.\d+\.\d+)", line)
+                assert m, f"{wf.name}: {line.strip()}"
+                used.append(m.groups())
+    assert {a for a, _, _ in used} == {"actions/checkout", "actions/setup-python", "actions/upload-artifact"}
+    assert len({(a, sha, v) for a, sha, v in used}) == 3          # one commit and one version an action
+
+
+def test_the_artifacts_keep_their_names():
+    import yaml
+    names = {}
+    for wf in ("reproduce.yml", "container.yml"):
+        jobs = yaml.safe_load((REPO / ".github/workflows" / wf).read_text())["jobs"]
+        names[wf] = [s["with"]["name"] for j in jobs.values() for s in j["steps"] if "upload-artifact" in s.get("uses", "")]
+    assert names["reproduce.yml"] == ["reproduce-report-image", "reproduce-not-identical-image",
+                                      "reproduce-report-macos-arm64", "reproduce-not-identical-macos-arm64"]
+    assert names["container.yml"] == ["reference-image-record", "reference-image", "cpu-probe-${{ inputs.probe_name }}",
+                                      "reproduce-report-image", "reproduce-not-identical-image"]
 
 
 def test_the_readme_gives_the_recorded_image():

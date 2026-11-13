@@ -34,14 +34,15 @@ defaults:
 jobs:
   image:
     # Required. It must end REPRODUCED, every output byte for byte (a manifest's build
-    # time aside); REPRODUCED NUMERICALLY does not pass here.
+    # time aside); REPRODUCED NUMERICALLY does not pass here. Then the test suite runs in
+    # the same image, with no network, and must pass and leave the tree as it found it.
     runs-on: ubuntu-24.04
     timeout-minutes: 300          # the ClinVar download alone has taken an hour
     permissions:
       contents: read
       packages: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
       - name: Pull the reference image by the digest container/ENVIRONMENT.json records
         env:
           TOKEN: ${{ github.token }}
@@ -67,9 +68,21 @@ jobs:
           sed -n 2p reproduce_report.txt
           [ "$(sed -n 2p reproduce_report.txt)" = \
             "# REPRODUCED: every output matches the committed one byte for byte." ]
+      - name: Run the test suite in the image (no network)
+        run: |
+          # A REPRODUCED run leaves the tree as committed but for the build time six
+          # records carry. Those are put back first, so that the tests read the committed
+          # files and the tree is clean before them; it must be clean after them too.
+          git checkout -- .
+          git status --short
+          [ -z "$(git status --short)" ]
+          docker run --rm --platform linux/amd64 --network none --user "$(id -u):$(id -g)" \
+            -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh test
+          git status --short
+          [ -z "$(git status --short)" ]
       - name: Upload the per-file comparison
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: reproduce-report-image
           path: reproduce_report.txt
@@ -86,7 +99,7 @@ jobs:
           fi
       - name: Upload the files that are not identical
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: reproduce-not-identical-image
           path: not-identical
@@ -94,21 +107,26 @@ jobs:
 
   macos-arm64:
     # For the record, not required (the author's decision of 2026-10-22): the native
-    # path, `bash reproduce.sh` with the runner's own Python 3.12 (an M1 on macOS 14),
+    # path, `bash reproduce.sh` with the runner's own Python 3.12 (GitHub's macos-15
+    # runner, Apple silicon on macOS 15; the first step prints the chip and the system),
     # against the outputs the image wrote. It cannot end REPRODUCED there: Pillow
     # compresses the PNG figures into other bytes (the pixels are the same), the TP53
     # manifest's reproduction check counts one more value identical on arm64, and the
     # maths libraries move last digits. Its verdict is recorded, not enforced. After it,
     # scripts/stage_B6/compare_png_pixels.py says in the job summary, for each PNG,
     # whether its bytes, or only its bytes and not its pixels, or its pixels differ.
-    runs-on: macos-14
+    runs-on: macos-15           # macos-14's image was retired on 2026-11-02
     continue-on-error: true
     timeout-minutes: 300          # the ClinVar download alone has taken an hour
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
         with:
           python-version: "3.12"
+      - name: The machine and the system
+        run: |
+          sysctl -n machdep.cpu.brand_string hw.model
+          sw_vers
       - name: bash reproduce.sh
         run: bash reproduce.sh
       - name: Compare the PNG figures pixel by pixel with the committed ones
@@ -119,7 +137,7 @@ jobs:
           tee -a "$GITHUB_STEP_SUMMARY" < "$RUNNER_TEMP/png_pixels.md"
       - name: Upload the per-file comparison
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: reproduce-report-macos-arm64
           path: reproduce_report.txt
@@ -136,7 +154,7 @@ jobs:
           fi
       - name: Upload the files that are not identical
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: reproduce-not-identical-macos-arm64
           path: not-identical

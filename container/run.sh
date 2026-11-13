@@ -12,6 +12,9 @@
 #                folders and check them (reproduce_evidence.py --fetch-only); no stage
 #   verify       every stage, then every output compared with the committed one
 #                (reproduce_evidence.py --verify, whose verdict decides the exit code)
+#   test         the test suite, under the same settings and with no network; the
+#                skipped tests are listed with their reasons, and nothing in the tree
+#                may change (the workflow checks that after it)
 #   probe NAME   the CPU, the BLAS kernels and numpy's dispatch under these settings,
 #                to container/cpu_probe/NAME.json (scripts/stage_B6/cpu_probe.py)
 #   environment  the image's interpreter and packages, to container/ENVIRONMENT.json
@@ -74,8 +77,9 @@ fi
 case "${1:-}" in
     fetch)       python scripts/reproduce_evidence.py --fetch-only ;;
     verify)      python scripts/reproduce_evidence.py --verify ;;
+    test)        python -m pytest -q -p no:cacheprovider -rs ;;
     probe)       python scripts/stage_B6/cpu_probe.py "${2:?probe needs a name}" ;;
     environment) python scripts/stage_B6/record_environment.py ;;
-    *)           echo "usage: bash container/run.sh fetch | verify | probe NAME | environment" >&2
+    *)           echo "usage: bash container/run.sh fetch | verify | test | probe NAME | environment" >&2
                  exit 2 ;;
 esac

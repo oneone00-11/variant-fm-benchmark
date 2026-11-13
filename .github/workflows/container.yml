@@ -7,7 +7,8 @@ name: container
 #   probe      in the image, given by digest: record this runner's CPU and what the
 #              maths libraries choose on it (container/run.sh probe)
 #   reproduce  in the image, given by digest: fetch the inputs online, then run every
-#              stage and --verify with no network (container/run.sh fetch, verify)
+#              stage and --verify with no network, then the test suite, also with no
+#              network (container/run.sh fetch, verify, test)
 # The push trigger only registers the workflow: GitHub dispatches a workflow that is
 # not on the default branch only after it has run once, so a push that changes this
 # file starts a run in which every job is skipped.
@@ -47,7 +48,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
       - name: Name the image after the repository's owner, as GitHub reports it
         env:
           GH_TOKEN: ${{ github.token }}
@@ -123,7 +124,7 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Keep the record
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: reference-image-record
           path: |
@@ -132,7 +133,7 @@ jobs:
             inspect.json
             push.txt
       - name: Keep the image, as docker save wrote it
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: reference-image
           path: image.tar
@@ -148,7 +149,7 @@ jobs:
       IMAGE: ${{ inputs.image }}
       PROBE_NAME: ${{ inputs.probe_name }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
       - name: Pull the image by digest
         env:
           TOKEN: ${{ github.token }}
@@ -160,7 +161,7 @@ jobs:
         run: |
           docker run --rm --platform linux/amd64 --network none --user "$(id -u):$(id -g)" \
             -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh probe "$PROBE_NAME"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: cpu-probe-${{ inputs.probe_name }}
           path: |
@@ -177,7 +178,7 @@ jobs:
     env:
       IMAGE: ${{ inputs.image }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
       - name: Pull the image by digest
         env:
           TOKEN: ${{ github.token }}
@@ -196,9 +197,21 @@ jobs:
           docker run --rm --platform linux/amd64 --network none --user "$(id -u):$(id -g)" \
             -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh verify
           echo "seconds: $(( $(date +%s) - start ))"
+      - name: Run the test suite in the image (no network)
+        run: |
+          # A REPRODUCED run leaves the tree as committed but for the build time six
+          # records carry. Those are put back first, so that the tests read the committed
+          # files and the tree is clean before them; it must be clean after them too.
+          git checkout -- .
+          git status --short
+          [ -z "$(git status --short)" ]
+          docker run --rm --platform linux/amd64 --network none --user "$(id -u):$(id -g)" \
+            -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh test
+          git status --short
+          [ -z "$(git status --short)" ]
       - name: Upload the per-file comparison
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: reproduce-report-image
           path: reproduce_report.txt
@@ -215,7 +228,7 @@ jobs:
           fi
       - name: Upload the files that are not identical
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
         with:
           name: reproduce-not-identical-image
           path: not-identical

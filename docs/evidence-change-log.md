@@ -2654,3 +2654,32 @@ are not edited; nothing that cannot be fetched is skipped.
   all fail; no source's bytes resumed by another; the table listing every cached file with
   its manifest's source once; the release archive first once it holds a file; a file the
   table does not list stopping the run; and only a missing or differing file fetched.
+
+## The macOS runner, actions that run on Node 24 pinned by commit, and the test suite in the image job (stage E9, commit 2, 2026-11-14)
+
+Why: B7 and F7 of the revision list. GitHub retired the macos-14 runner image on
+2026-11-02, so the record-only macOS job had been cancelled on every run since; the three
+actions the workflows use were named by a moving major tag of versions that run on Node 20;
+and the image job compared the outputs but never ran the tests in the image that wrote
+them. No output changes (`scripts/stage_E9/scope_e9_c2.json`).
+
+- **The macOS job** (`.github/workflows/reproduce.yml`): `runs-on: macos-15`. It is still
+  for the record and does not fail the workflow. Its first step now prints the chip, the
+  model and the system (`sysctl -n machdep.cpu.brand_string hw.model`, `sw_vers`), so that
+  each run's log says what machine it ran on.
+- **The actions**, in `ci.yml`, `container.yml` and `reproduce.yml`: each named by the full
+  commit of a release whose `action.yml` declares `runs.using: node24`, with the version
+  beside it: `actions/checkout` v7.0.1 (`3d3c42e5aac5ba805825da76410c181273ba90b1`, was
+  `@v4`), `actions/setup-python` v7.1.0 (`6d4fd22b20465ccc0f7354476588e8df7c9ca0e0`, was
+  `@v5`), `actions/upload-artifact` v7.0.2 (`cf430e030ddbb5b0abf93d22962f4752f3646cd9`, was
+  `@v4`). The artifacts keep their names. `ci.yml` changes in nothing else.
+- **The tests in the image**: `container/run.sh test` runs `python -m pytest -q -p
+  no:cacheprovider -rs` under the settings of `verify` (the image holds pytest 8.4.2, in its
+  lock; neither the image nor the lock changes). The image job of `reproduce.yml` runs it
+  after "Require REPRODUCED, byte for byte", with no network, and so does the reproduce job
+  of `container.yml`. Before the tests the six records that carry a build time are put back
+  (`git checkout -- .`) and the tree must be clean; it must be clean after them too.
+- **Tests** (`tests/test_container.py`): the macOS runner's label; `run.sh test` under the
+  settings of the run; the test step after the comparison, with no network and a clean tree
+  before and after, in both workflows; every action pinned by a full commit with its
+  version beside it, one commit an action; the artifacts' names.

@@ -1,0 +1,5 @@
+{
+ "commit": "E9 commit 2 (the macOS runner, actions that run on Node 24 pinned by commit, the test suite in the image job; no output changes)",
+ "pairs": {},
+ "files": {}
+}
