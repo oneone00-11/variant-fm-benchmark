@@ -2601,3 +2601,56 @@ for cell by `scripts/stage_E8/check_e8_part2.py --commit 8`).
   kept on one line by a word joiner on each side of its dash, which prints nothing; a check
   finds no range broken after its dash or before it, and the front page's text, the joiners
   aside, in order. The last sentence names "the accompanying Excel file".
+
+## The label audit's uncommitted files from sources tried in order; a reply that is not the file is a failed attempt (stage E9, commit 1, 2026-11-14)
+
+Why: B7 of the revision list. `--fetch-inputs` took each of the five cached files of the
+label audit (three MaveDB calibration memberships, Huang 2025's Supplementary Table 3, the
+second BRCA2 set's label source) from the one source its manifest records. Europe PMC's
+zip of Huang 2025's supplementary files stopped CI's first attempt in E18 and in E5, and
+on 2026-11-10 failed ten runs in a row ("gave up ... after 5 attempts") before the
+eleventh passed; and a reply of HTTP 200 that was not a zip raised `zipfile.BadZipFile`,
+untried again. No output changes (`scripts/stage_E9/scope_e9_c1.json`); the five manifests
+are not edited; nothing that cannot be fetched is skipped.
+
+- **A reply that is not the file is a failed attempt** (`reproduce_evidence._take`): a
+  body that is not a zip where the file is a member of one, a zip without the member, or
+  bytes whose sha256 is not the manifest's are thrown away and counted as one failed
+  attempt of that source; a connection cut short leaves its `.part`, which the next
+  attempt at the same source resumes, and nothing is resumed from another source's bytes.
+- **Sources tried in order** (`fetch_in_order`, `label_audit_sources`), as
+  `CLINVAR_SOURCES` are: each file's ordered list in `scripts/reproduce_sources.json`,
+  each source given five attempts (one, when it answers with a client error), every file
+  checked against its manifest's sha256 whichever source served it. If none serves it the
+  run stops and names each source tried with what it gave. An entry `"manifest": true`
+  stands for the source the file's manifest records; every other source is written there
+  with what it is and the day it was last seen to serve the file. At the front, an empty
+  place for this release's own archive of the inputs: at a release only the addresses go
+  in.
+- **Other sources of Huang 2025's table**: the publisher's two static addresses
+  (static-content.springer.com and media.springernature.com, as the second BRCA2 set's
+  manifest writes its own) serve the same bytes as the manifest records. PMC's copy
+  answers with a page that needs JavaScript and a cookie, and Europe PMC's article and FTP
+  addresses with a bot check: neither was used. The second BRCA2 set's table is also
+  served, the same bytes, at static-content.springer.com.
+- **Measured** (`scripts/stage_E9/measure_label_audit_sources.py`, its run record
+  `scripts/stage_E9/run_log/measure_label_audit_sources_20261113T165842Z.json`): each
+  source of Huang 2025's table asked ten times, in rounds twenty minutes apart and never
+  two requests less than a minute apart, on 2026-11-12 (18:07-19:11 UTC) and 2026-11-13
+  (14:22-16:59 UTC); each source of the other four files three times. Every source served
+  the file every time: each of Huang 2025's three ten times in ten, every other source
+  three in three. Huang 2025's are ordered by their slowest attempt: the publisher's
+  media.springernature.com address (24.4 s; median 6.5 s), its static-content.springer.com
+  address (34.8 s; median 9.5 s), then Europe PMC's zip, of 10 MB for a file of 4.8 MB
+  (66.5 s; median 8.7 s); the second BRCA2 set's table the same way, the address its
+  manifest records first (3.3 s, against 5.9 s). Rounds 1 to 4 were made by a first run of
+  the script that ended with the session that started it, before writing its record; its
+  attempts, written to the journal as each ended, are read from there and counted
+  (`--first-round 5`), as the record says.
+- **Tests** (`tests/test_fetch_sources.py`, offline, a stand-in serving prepared bytes):
+  the order; the sha256 of each source's file; a reply that is not a zip, a zip without
+  the member and a file of another sha256 each a failed attempt, the next source then; a
+  connection error tried again and a client error not; the message naming each source when
+  all fail; no source's bytes resumed by another; the table listing every cached file with
+  its manifest's source once; the release archive first once it holds a file; a file the
+  table does not list stopping the run; and only a missing or differing file fetched.

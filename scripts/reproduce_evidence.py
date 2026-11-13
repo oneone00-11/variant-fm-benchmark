@@ -42,7 +42,10 @@ their own environments; each is pinned by sha256 in a manifest or provenance fil
     pinned in each `label_audit/<gene>_raw/manifest.json`; three large calibration
     memberships and the BRCA2 paper's Supplementary Table 3 are not committed but
     kept in a gitignored cache that --fetch-inputs fills and checks, and the audit
-    reads the compact extracts committed in their place.
+    reads the compact extracts committed in their place. Each of those files, and
+    the second BRCA2 set's label source, is looked for at the sources
+    `scripts/reproduce_sources.json` lists for it, in order, until one serves the
+    file with the sha256 its manifest records.
 
 Each is tracked with a checksum or a provenance record, except four DDX3X score
 lookups (CADD, GPN-MSA, phyloP, phastCons). The ClinVar VCF and the SpliceAI event
@@ -164,6 +167,10 @@ NEWGENE_RAW = [PHASE1 / "data" / "evidence" / "external" / f"{g}_raw"
 # The label source audit's raw folders (E16c) and the cache of its uncommitted sources.
 LABEL_AUDIT = PHASE1 / "data" / "evidence" / "label_audit"
 LABEL_AUDIT_CACHE = PHASE1 / "data" / "evidence" / "label_audit_cache"
+# Where each of those uncommitted files is looked for, in the order tried (E9.1): the
+# source its manifest records and any other that serves the same bytes; first of all,
+# once a release has one, the release's own archive of the inputs.
+FETCH_SOURCES = REPO / "scripts" / "reproduce_sources.json"
 # E19's second BRCA2 set (C3 item 3): its label source, Sahu 2025's Supplementary Table 5,
 # kept in the gitignored phase1/data/e19_cache/ as Huang 2025's table is kept, with a
 # manifest in the label audit's form
@@ -344,7 +351,7 @@ def _download(url: str, dest: Path, attempts: int = 30) -> None:
         print(f"  interrupted at {got / 2**20:.0f} MB ({err}); resuming, attempt "
               f"{attempt + 1} of {attempts}", flush=True)
         time.sleep(min(30, 2 * attempt))
-    raise OSError(f"gave up on {url} after {attempts} attempts")
+    raise OSError(f"gave up on {url} after {attempts} attempt{'s' if attempts > 1 else ''} ({err})")
 
 
 def _fetch_md5(url: str, attempts: int = 3) -> str:
@@ -471,15 +478,104 @@ def fetch_reference_chromosomes(attempts: int = 3) -> None:
         print(f"  sha256 matches the manifest: {ref['file_fa']}")
 
 
+def label_audit_sources(entry: dict, table: dict | None = None) -> list[dict]:
+    """The sources of one cached file, in the order they are tried
+    (scripts/reproduce_sources.json): the release's archive first, where it holds the
+    file, then the table's entries, of which "manifest": true stands for the source the
+    file's manifest records. Each is {"url", "zip_member" (None for a file served as
+    itself), "what"}. A cached file the table does not list stops the run: nothing is
+    fetched from a place that is not written down."""
+    table = json.loads(FETCH_SOURCES.read_text()) if table is None else table
+    listed = table["files"].get(entry["path"])
+    if not listed:
+        sys.exit(f"{FETCH_SOURCES.relative_to(REPO)} lists no source for {entry['path']}")
+    out = []
+    archived = table["release_archive"]["urls"].get(entry["path"])
+    if archived:
+        out.append({"url": archived, "zip_member": None, "what": "this release's archive of the inputs"})
+    for src in listed:
+        if src.get("manifest"):
+            out.append({"url": entry["source_url"], "zip_member": entry.get("zip_member"),
+                        "what": src["what"]})
+        else:
+            out.append({"url": src["url"], "zip_member": src.get("zip_member"), "what": src["what"]})
+    return out
+
+
+def _take(source: dict, path: Path, sha256: str) -> tuple[str | None, bool]:
+    """One attempt at one source. (None, False) with the file at `path`, its sha256 the
+    one given; or (why the source did not give the file, whether another attempt is
+    pointless) with nothing left at `path`. A reply that is not the file is a failed
+    attempt like any other and is thrown away: a body that is not a zip where the file
+    is a member of one, a zip without the member, bytes with another sha256. Only a
+    connection cut short leaves its .part file, which the next attempt at the same
+    source resumes."""
+    got = path.with_name(path.name + (".zip" if source["zip_member"] else ".fetched"))
+    try:
+        _download(source["url"], got, attempts=1)
+    except urllib.error.HTTPError as e:                 # a 404, say: _download raises it
+        return f"HTTP {e.code} {e.reason}", True
+    except (OSError, http.client.HTTPException) as e:
+        return str(e), False
+    try:
+        if source["zip_member"]:
+            try:
+                with zipfile.ZipFile(got) as z:
+                    data = z.read(source["zip_member"])
+            except zipfile.BadZipFile:
+                return f"the reply is not a zip ({got.stat().st_size} bytes)", False
+            except KeyError:
+                return f"the zip served has no member {source['zip_member']}", False
+            except (OSError, zlib.error, EOFError) as e:
+                return f"the zip served cannot be read ({e})", False
+            got.write_bytes(data)
+        if _digest(got, "sha256") != sha256:
+            return (f"the file served is not the one the manifest records (sha256 differs; "
+                    f"{got.stat().st_size} bytes)"), False
+        got.replace(path)
+        return None, False
+    finally:
+        got.unlink(missing_ok=True)
+
+
+def fetch_in_order(entry: dict, sources: list[dict], attempts: int = 5, pause=time.sleep) -> str:
+    """The cached file of one manifest entry, from the first source that serves it: each
+    source is given `attempts` attempts (one, if it answers with a client error), then
+    set aside for the next. Returns the address it came from; if no source serves the
+    file, stops the run and says what each one gave."""
+    path, tried = REPO / entry["path"], []
+    path.parent.mkdir(parents=True, exist_ok=True)
+    for source in sources:
+        why = None
+        for attempt in range(1, attempts + 1):
+            print(f"downloading {source['url']}" + (f" (attempt {attempt} of {attempts})" if attempt > 1 else ""), flush=True)
+            why, pointless = _take(source, path, entry["sha256"])
+            if why is None:
+                print(f"  sha256 matches the manifest: {entry['path']}")
+                return source["url"]
+            print(f"  not the file ({why})", flush=True)
+            if pointless or attempt == attempts:
+                break
+            pause(min(30, 2 * attempt))
+        # never resume one source's bytes from another
+        for suffix in (".zip.part", ".fetched.part"):
+            path.with_name(path.name + suffix).unlink(missing_ok=True)
+        tried.append(f"{source['url']} ({source['what']}): {why}")
+    sys.exit(f"{entry['path']}: no source served the file its manifest records.\n  "
+             + "\n  ".join(tried))
+
+
 def fetch_label_audit_cache(attempts: int = 5) -> None:
     """The label audit's sources that are not committed (E16c; the author's decision of
     2026-10-21): each file a label_audit manifest lists as cached is fetched where it is
-    missing or differs (a zip member is taken out of the zip served), and checked
-    against the sha256 the manifest records; then every committed compact extract is
+    missing or differs, from the sources scripts/reproduce_sources.json lists for it,
+    tried in order (E9.1; a zip member is taken out of the zip served), and counts only
+    with the sha256 the manifest records; then every committed compact extract is
     checked, row for row, against the files it was made from. Any difference, or a
-    file that cannot be fetched, stops the run: after --fetch-inputs nothing may be
+    file that no source serves, stops the run: after --fetch-inputs nothing may be
     skipped."""
     from src import evid_label_sources as LS
+    table = json.loads(FETCH_SOURCES.read_text())
     for man_path in (sorted(LABEL_AUDIT.glob("*_raw/manifest.json"))
                      + sorted(SECOND_SET.glob("*_raw/label_source_manifest.json"))):
         man = json.loads(man_path.read_text())
@@ -489,20 +585,7 @@ def fetch_label_audit_cache(attempts: int = 5) -> None:
                 print(f"label audit source present, sha256 checked: {e['path']}")
                 continue
             path.unlink(missing_ok=True)
-            print(f"downloading {e['source_url']}", flush=True)
-            if e.get("zip_member"):
-                zpath = path.with_name(path.name + ".zip")
-                _download(e["source_url"], zpath, attempts=attempts)
-                with zipfile.ZipFile(zpath) as z:
-                    path.write_bytes(z.read(e["zip_member"]))
-                zpath.unlink()
-            else:
-                _download(e["source_url"], path, attempts=attempts)
-            if _digest(path, "sha256") != e["sha256"]:
-                path.unlink()
-                sys.exit(f"{e['path']}: the file served differs from the sha256 in "
-                         f"{man_path.relative_to(REPO)}; removed")
-            print(f"  sha256 matches the manifest: {e['path']}")
+            fetch_in_order(e, label_audit_sources(e, table), attempts=attempts)
         differ, absent = LS.extract_differences(man, REPO)
         if differ or absent:
             sys.exit("label audit extracts do not match their sources: "

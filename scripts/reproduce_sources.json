@@ -1,0 +1,32 @@
+{
+ "about": [
+  "Where --fetch-inputs looks for the files the label audit's manifests list as cached: the sources of each file, tried in the order written (stage E9.1).",
+  "A file counts only if its sha256 is the one its manifest records. A reply that is not the file (not a zip where the file is a member of one, a zip without the member, any other bytes) is a failed attempt at that source; after the attempts allowed, the next source is tried. If no source serves a file, the run stops and names each source tried and what it gave.",
+  "An entry with \"manifest\": true stands for the source the file's own manifest records, its source_url and, where the file is a member of a zip, its zip_member. The manifests record where each file was first fetched and are not edited; a source added later is written here, with what it is.",
+  "\"checked\" is the day the source was last seen to serve the file with the manifest's sha256 (scripts/stage_E9/measure_label_audit_sources.py and its run record)."
+ ],
+ "release_archive": {
+  "what": "This release's own archive of the inputs, tried before every other source for each file it holds. Empty until the release is made: then the address of each file the archive holds goes into \"urls\", under the file's path, and nothing else changes.",
+  "urls": {}
+ },
+ "files": {
+  "phase1/data/evidence/label_audit_cache/bap1/calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json": [
+   {"manifest": true, "what": "MaveDB's API: the variants of the calibration, by its URN", "checked": "2026-11-13"}
+  ],
+  "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx": [
+   {"url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx", "what": "the publisher's static copy of the article's supplementary file", "checked": "2026-11-13"},
+   {"url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx", "what": "the same file at the publisher's other static address", "checked": "2026-11-13"},
+   {"manifest": true, "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member", "checked": "2026-11-13"}
+  ],
+  "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_755b0203-eb68-48b0-a04d-da90e949e916.json": [
+   {"manifest": true, "what": "MaveDB's API: the variants of the calibration, by its URN", "checked": "2026-11-13"}
+  ],
+  "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_d44db3f4-c70d-41b9-b45b-81ef2af90b88.json": [
+   {"manifest": true, "what": "MaveDB's API: the variants of the calibration, by its URN", "checked": "2026-11-13"}
+  ],
+  "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx": [
+   {"manifest": true, "what": "the publisher's static copy of the article's supplementary file", "checked": "2026-11-13"},
+   {"url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08349-1/MediaObjects/41586_2024_8349_MOESM6_ESM.xlsx", "what": "the same file at the publisher's other static address", "checked": "2026-11-13"}
+  ]
+ }
+}

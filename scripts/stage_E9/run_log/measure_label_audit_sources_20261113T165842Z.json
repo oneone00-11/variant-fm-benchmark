@@ -1,0 +1,684 @@
+{
+ "script": "scripts/stage_E9/measure_label_audit_sources.py",
+ "argv": [
+  "scripts/stage_E9/measure_label_audit_sources.py",
+  "--rounds",
+  "10",
+  "--first-round",
+  "5",
+  "--gap-minutes",
+  "20",
+  "--others-in",
+  "1,5,9",
+  "--journal",
+  "/Users/cliffzhang/Desktop/整理文件/E9_工作文件/fetch_measure/attempts.jsonl"
+ ],
+ "git_commit": "028dbe5606b9eead5c431579e56986cdfbc77d49",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E9/measure_label_audit_sources.py": "4de71f18d504f82b6cfb1ae7abed2773a7f6a0c90df3e52e7d2863072d81a9ed",
+  "scripts/stage_E9/_runlog.py": "0104bfdfd2dd516b0f538490b9fa68081f378989ca7dfd97f7bbe05f7c5c950d"
+ },
+ "python": "3.12.13",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-13T14:22:19+00:00",
+ "end_utc": "2026-11-13T16:58:42+00:00",
+ "inputs": [
+  {
+   "path": "scripts/reproduce_sources.json",
+   "bytes": 3094,
+   "sha256": "5d49ebd7a5a89ae945a4d8c9b4adebcb0cbbd84efc920cbd1ce13b35ab9efca6"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "rounds": 10,
+  "first_round_of_this_run": 5,
+  "rounds_read_from_the_journal": {
+   "rounds": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "attempts": 17,
+   "first_utc": "2026-11-12T18:07:58Z",
+   "last_utc": "2026-11-12T19:10:38Z",
+   "why": "made by an earlier run of this script, whose process ended with the session that started it before its last round, so that it wrote no run record; each attempt was written to the journal as it ended, and is counted here as written"
+  },
+  "gap_minutes": 20.0,
+  "others_in_rounds": [
+   1,
+   5,
+   9
+  ],
+  "attempts": [
+   {
+    "utc": "2026-11-12T18:07:58Z",
+    "round": 1,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 8.3
+   },
+   {
+    "utc": "2026-11-12T18:09:06Z",
+    "round": 1,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 6.1
+   },
+   {
+    "utc": "2026-11-12T18:10:12Z",
+    "round": 1,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+    "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member",
+    "zip_member": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 12.0
+   },
+   {
+    "utc": "2026-11-12T18:11:24Z",
+    "round": 1,
+    "file": "phase1/data/evidence/label_audit_cache/bap1/calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json",
+    "url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3/variants",
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 7.7
+   },
+   {
+    "utc": "2026-11-12T18:12:32Z",
+    "round": 1,
+    "file": "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_755b0203-eb68-48b0-a04d-da90e949e916.json",
+    "url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-755b0203-eb68-48b0-a04d-da90e949e916/variants",
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 16.0
+   },
+   {
+    "utc": "2026-11-12T18:13:48Z",
+    "round": 1,
+    "file": "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_d44db3f4-c70d-41b9-b45b-81ef2af90b88.json",
+    "url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-d44db3f4-c70d-41b9-b45b-81ef2af90b88/variants",
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 4.8
+   },
+   {
+    "utc": "2026-11-12T18:14:53Z",
+    "round": 1,
+    "file": "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08349-1/MediaObjects/41586_2024_8349_MOESM6_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 2.9
+   },
+   {
+    "utc": "2026-11-12T18:15:56Z",
+    "round": 1,
+    "file": "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08349-1/MediaObjects/41586_2024_8349_MOESM6_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 5.9
+   },
+   {
+    "utc": "2026-11-12T18:27:58Z",
+    "round": 2,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 6.1
+   },
+   {
+    "utc": "2026-11-12T18:29:04Z",
+    "round": 2,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+    "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member",
+    "zip_member": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 11.7
+   },
+   {
+    "utc": "2026-11-12T18:30:16Z",
+    "round": 2,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 7.9
+   },
+   {
+    "utc": "2026-11-12T18:47:58Z",
+    "round": 3,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+    "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member",
+    "zip_member": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 4.5
+   },
+   {
+    "utc": "2026-11-12T18:49:03Z",
+    "round": 3,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 10.7
+   },
+   {
+    "utc": "2026-11-12T18:50:13Z",
+    "round": 3,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 6.3
+   },
+   {
+    "utc": "2026-11-12T19:07:58Z",
+    "round": 4,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 34.8
+   },
+   {
+    "utc": "2026-11-12T19:09:33Z",
+    "round": 4,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 5.6
+   },
+   {
+    "utc": "2026-11-12T19:10:38Z",
+    "round": 4,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+    "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member",
+    "zip_member": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 10.7
+   },
+   {
+    "utc": "2026-11-13T14:22:19Z",
+    "round": 5,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 8.0
+   },
+   {
+    "utc": "2026-11-13T14:23:27Z",
+    "round": 5,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+    "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member",
+    "zip_member": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 5.0
+   },
+   {
+    "utc": "2026-11-13T14:24:32Z",
+    "round": 5,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 8.0
+   },
+   {
+    "utc": "2026-11-13T14:25:40Z",
+    "round": 5,
+    "file": "phase1/data/evidence/label_audit_cache/bap1/calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json",
+    "url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3/variants",
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 9.1
+   },
+   {
+    "utc": "2026-11-13T14:26:49Z",
+    "round": 5,
+    "file": "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_755b0203-eb68-48b0-a04d-da90e949e916.json",
+    "url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-755b0203-eb68-48b0-a04d-da90e949e916/variants",
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 7.1
+   },
+   {
+    "utc": "2026-11-13T14:27:56Z",
+    "round": 5,
+    "file": "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_d44db3f4-c70d-41b9-b45b-81ef2af90b88.json",
+    "url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-d44db3f4-c70d-41b9-b45b-81ef2af90b88/variants",
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 37.3
+   },
+   {
+    "utc": "2026-11-13T14:29:33Z",
+    "round": 5,
+    "file": "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08349-1/MediaObjects/41586_2024_8349_MOESM6_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 3.3
+   },
+   {
+    "utc": "2026-11-13T14:30:37Z",
+    "round": 5,
+    "file": "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08349-1/MediaObjects/41586_2024_8349_MOESM6_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 5.8
+   },
+   {
+    "utc": "2026-11-13T14:42:19Z",
+    "round": 6,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+    "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member",
+    "zip_member": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 27.1
+   },
+   {
+    "utc": "2026-11-13T14:43:46Z",
+    "round": 6,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 8.0
+   },
+   {
+    "utc": "2026-11-13T14:44:54Z",
+    "round": 6,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 6.3
+   },
+   {
+    "utc": "2026-11-13T15:02:19Z",
+    "round": 7,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 12.9
+   },
+   {
+    "utc": "2026-11-13T15:03:32Z",
+    "round": 7,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 24.4
+   },
+   {
+    "utc": "2026-11-13T15:04:56Z",
+    "round": 7,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+    "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member",
+    "zip_member": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 6.7
+   },
+   {
+    "utc": "2026-11-13T15:22:28Z",
+    "round": 8,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 9.4
+   },
+   {
+    "utc": "2026-11-13T15:23:37Z",
+    "round": 8,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+    "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member",
+    "zip_member": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 4.0
+   },
+   {
+    "utc": "2026-11-13T15:24:41Z",
+    "round": 8,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 13.8
+   },
+   {
+    "utc": "2026-11-13T16:36:26Z",
+    "round": 9,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+    "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member",
+    "zip_member": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 66.5
+   },
+   {
+    "utc": "2026-11-13T16:38:33Z",
+    "round": 9,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 23.1
+   },
+   {
+    "utc": "2026-11-13T16:39:56Z",
+    "round": 9,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 8.6
+   },
+   {
+    "utc": "2026-11-13T16:41:04Z",
+    "round": 9,
+    "file": "phase1/data/evidence/label_audit_cache/bap1/calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json",
+    "url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3/variants",
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 30.2
+   },
+   {
+    "utc": "2026-11-13T16:42:34Z",
+    "round": 9,
+    "file": "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_755b0203-eb68-48b0-a04d-da90e949e916.json",
+    "url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-755b0203-eb68-48b0-a04d-da90e949e916/variants",
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 4.0
+   },
+   {
+    "utc": "2026-11-13T16:43:38Z",
+    "round": 9,
+    "file": "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_d44db3f4-c70d-41b9-b45b-81ef2af90b88.json",
+    "url": "https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-d44db3f4-c70d-41b9-b45b-81ef2af90b88/variants",
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 8.3
+   },
+   {
+    "utc": "2026-11-13T16:44:47Z",
+    "round": 9,
+    "file": "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08349-1/MediaObjects/41586_2024_8349_MOESM6_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 1.6
+   },
+   {
+    "utc": "2026-11-13T16:45:48Z",
+    "round": 9,
+    "file": "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08349-1/MediaObjects/41586_2024_8349_MOESM6_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 2.1
+   },
+   {
+    "utc": "2026-11-13T16:56:26Z",
+    "round": 10,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the publisher's static copy of the article's supplementary file",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 5.9
+   },
+   {
+    "utc": "2026-11-13T16:57:32Z",
+    "round": 10,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx",
+    "what": "the same file at the publisher's other static address",
+    "zip_member": null,
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 6.7
+   },
+   {
+    "utc": "2026-11-13T16:58:39Z",
+    "round": 10,
+    "file": "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles",
+    "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member",
+    "zip_member": "41586_2024_8388_MOESM3_ESM.xlsx",
+    "served_the_file": true,
+    "failure": null,
+    "seconds": 3.3
+   }
+  ],
+  "void_attempts": [],
+  "by_source": {
+   "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx <- https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx": {
+    "what": "the publisher's static copy of the article's supplementary file",
+    "attempts": 10,
+    "served_the_file": 10,
+    "seconds_when_served": [
+     8.3,
+     7.9,
+     10.7,
+     34.8,
+     8.0,
+     8.0,
+     12.9,
+     13.8,
+     23.1,
+     5.9
+    ],
+    "failures": {},
+    "seconds_when_failed": []
+   },
+   "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx <- https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08388-8/MediaObjects/41586_2024_8388_MOESM3_ESM.xlsx": {
+    "what": "the same file at the publisher's other static address",
+    "attempts": 10,
+    "served_the_file": 10,
+    "seconds_when_served": [
+     6.1,
+     6.1,
+     6.3,
+     5.6,
+     8.0,
+     6.3,
+     24.4,
+     9.4,
+     8.6,
+     6.7
+    ],
+    "failures": {},
+    "seconds_when_failed": []
+   },
+   "phase1/data/evidence/label_audit_cache/brca2/41586_2024_8388_MOESM3_ESM.xlsx <- https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11821525/supplementaryFiles": {
+    "what": "Europe PMC's zip of the article's supplementary files, of which the file is a member",
+    "attempts": 10,
+    "served_the_file": 10,
+    "seconds_when_served": [
+     12.0,
+     11.7,
+     4.5,
+     10.7,
+     5.0,
+     27.1,
+     6.7,
+     4.0,
+     66.5,
+     3.3
+    ],
+    "failures": {},
+    "seconds_when_failed": []
+   },
+   "phase1/data/evidence/label_audit_cache/bap1/calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json <- https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3/variants": {
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "attempts": 3,
+    "served_the_file": 3,
+    "seconds_when_served": [
+     7.7,
+     9.1,
+     30.2
+    ],
+    "failures": {},
+    "seconds_when_failed": []
+   },
+   "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_755b0203-eb68-48b0-a04d-da90e949e916.json <- https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-755b0203-eb68-48b0-a04d-da90e949e916/variants": {
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "attempts": 3,
+    "served_the_file": 3,
+    "seconds_when_served": [
+     16.0,
+     7.1,
+     4.0
+    ],
+    "failures": {},
+    "seconds_when_failed": []
+   },
+   "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_d44db3f4-c70d-41b9-b45b-81ef2af90b88.json <- https://api.mavedb.org/api/v1/score-calibrations/urn:mavedb:calibration-d44db3f4-c70d-41b9-b45b-81ef2af90b88/variants": {
+    "what": "MaveDB's API: the variants of the calibration, by its URN",
+    "attempts": 3,
+    "served_the_file": 3,
+    "seconds_when_served": [
+     4.8,
+     37.3,
+     8.3
+    ],
+    "failures": {},
+    "seconds_when_failed": []
+   },
+   "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx <- https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-024-08349-1/MediaObjects/41586_2024_8349_MOESM6_ESM.xlsx": {
+    "what": "the publisher's static copy of the article's supplementary file",
+    "attempts": 3,
+    "served_the_file": 3,
+    "seconds_when_served": [
+     2.9,
+     3.3,
+     1.6
+    ],
+    "failures": {},
+    "seconds_when_failed": []
+   },
+   "phase1/data/e19_cache/brca2_second_set/41586_2024_8349_MOESM6_ESM.xlsx <- https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-08349-1/MediaObjects/41586_2024_8349_MOESM6_ESM.xlsx": {
+    "what": "the same file at the publisher's other static address",
+    "attempts": 3,
+    "served_the_file": 3,
+    "seconds_when_served": [
+     5.9,
+     5.8,
+     2.1
+    ],
+    "failures": {},
+    "seconds_when_failed": []
+   }
+  }
+ }
+}
