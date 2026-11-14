@@ -15,7 +15,7 @@ main	19	1	42	7 words; 3 figures; 4 tables; 42 references	constant	counted from t
 main	25	1	2,736	mum SpliceAI delta score from 2,736 variants outside the canonica	constant	size of Walker et al.'s calibration set, their p. 1051					
 main	25	1	0.2	A score of 0.2 or above reached Moderate evi	constant	PP3 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
 main	25	1	0.1	idence for PP3 and a score of 0.1 or below Moderate evidence fo	constant	BP4 cut point, Walker et al. Table 1 (config/walker2023.yaml)					
-main	25	1	0.5	and colleagues , a score of 0.5 or above gave Strong evidence	measured		phase1/config/walker2023.yaml		thresholds.applied_weight.higher_score_check_cut_point	value	1
+main	25	1	0.5	me editing data , a score of 0.5 or above gave Strong evidence	measured		phase1/config/walker2023.yaml		thresholds.applied_weight.higher_score_check_cut_point	value	1
 main	27	1	1	easured in cells, and we ask (1) what evidence strength each	constant	inline enumeration, (1) (2) (3)					
 main	27	1	2	ance from the exon boundary, (2) whether a threshold fitted o	constant	inline enumeration, (1) (2) (3)					
 main	27	1	3	enes holds in a seventh, and (3) whether it holds in genes ou	constant	inline enumeration, (1) (2) (3)					
@@ -29,7 +29,7 @@ main	35	1	10	d window of 3–50 bp, split at 10 bp into a proximal and a dist	co
 main	39	1	13	We evaluated 13 predictor scores ( ; ).	measured		phase1/reports/evidence/supplement/tableS3_predictor_columns.csv		Score column	count	1
 main	39	1	4,999	maximum delta score within 4,999 bp and unmasked , which every c	constant	SpliceAI scoring distance, Walker's basis (provenance record)					
 main	39	1	50	on the atlas basis within 50 bp ( ).	constant	stratum bound					
-main	43	1	0.10	ues at a prior probability of 0.10 .	constant	prior probability of the Tavtigian point system					
+main	43	1	0.10	tem at a prior probability of 0.10 .	constant	prior probability of the Tavtigian point system					
 main	43	1	2.08	Supporting evidence starts at 2.08 and Moderate at 4.33.	constant	Supporting tier boundary (config/walker2023.yaml)					
 main	43	1	4.33	tarts at 2.08 and Moderate at 4.33.	constant	Moderate tier boundary (config/walker2023.yaml)					
 main	43	1	18.7	Strong starts at 18.7 and Very strong at 350, with	constant	Strong tier boundary (config/walker2023.yaml)					
@@ -106,7 +106,7 @@ main	101	1	11	thresholds the share fell to 11/74 for SpliceAI and 52/74 for	meas
 main	101	2	74	resholds the share fell to 11/74 for SpliceAI and 52/74 for Pa	measured		phase1/reports/evidence/suppl_analyses/c1_clinvar_reference_metrics.csv	star_level=stars_ge_1; analysis=main; measure=threshold; tool=spliceai_walker; stratum=s3_10; threshold_kind=strong	n_plp	value	1
 main	101	1	52	ell to 11/74 for SpliceAI and 52/74 for Pangolin.	measured		phase1/reports/evidence/suppl_analyses/c1_clinvar_reference_metrics.csv	star_level=stars_ge_1; analysis=main; measure=threshold; tool=pangolin; stratum=s3_10; threshold_kind=strong	n_pos_above	value	1
 main	101	3	74	to 11/74 for SpliceAI and 52/74 for Pangolin.	measured		phase1/reports/evidence/suppl_analyses/c1_clinvar_reference_metrics.csv	star_level=stars_ge_1; analysis=main; measure=threshold; tool=pangolin; stratum=s3_10; threshold_kind=strong	n_plp	value	1
-main	105	1	7	n four genes, and XRCC2, with 7 damaging variants there, coul	measured		phase1/reports/evidence/external_xrcc2.csv	label_definition=y_investigator_range; tool=spliceai_walker; stratum=s3_10	n_pos	value	1
+main	105	1	7	XRCC2 had only 7 damaging variants in that ban	measured		phase1/reports/evidence/external_xrcc2.csv	label_definition=y_investigator_range; tool=spliceai_walker; stratum=s3_10	n_pos	value	1
 main	107	1	6	leared the Strong boundary in 6/7 (1) genes for Pangolin and	measured		phase1/reports/evidence/external_summary.csv	Gene set=Seven external genes; Stratum (intronic offset, bp)=3–50; Tool=Pangolin; Side=PP3; Tier=Strong	External genes reaching the tier, k/n (m)	text	1
 main	107	1	7	ared the Strong boundary in 6/7 (1) genes for Pangolin and 4/	measured		phase1/reports/evidence/external_summary.csv	Gene set=Seven external genes; Stratum (intronic offset, bp)=3–50; Tool=Pangolin; Side=PP3; Tier=Strong	External genes reaching the tier, k/n (m)	text	1
 main	107	1	1	d the Strong boundary in 6/7 (1) genes for Pangolin and 4/7 (	measured		phase1/reports/evidence/external_summary.csv	Gene set=Seven external genes; Stratum (intronic offset, bp)=3–50; Tool=Pangolin; Side=PP3; Tier=Strong	External genes reaching the tier, k/n (m)	text	1
@@ -156,8 +156,8 @@ main	163	1	95%	lished basis, and lines their 95% confidence intervals from 2,	co
 main	163	1	2,000	95% confidence intervals from 2,000 bootstrap draws clustered on	constant	bootstrap resamples, gene-clustered (src/evid_walker_thresholds.py)					
 main	163	1	2.08	ed lines mark the Supporting (2.08), Moderate (4.33) and Strong	constant	Supporting tier boundary (config/walker2023.yaml)					
 main	163	1	4.33	Supporting (2.08), Moderate (4.33) and Strong (18.7) boundaries	constant	Moderate tier boundary (config/walker2023.yaml)					
-main	163	1	18.7	, Moderate (4.33) and Strong (18.7) boundaries of Tavtigian and	constant	Strong tier boundary (config/walker2023.yaml)					
-main	163	1	0.10	and colleagues at a prior of 0.10, with their reciprocals in (b	constant	prior probability of the Tavtigian point system					
+main	163	1	18.7	, Moderate (4.33) and Strong (18.7) boundaries at a prior of 0.1	constant	Strong tier boundary (config/walker2023.yaml)					
+main	163	1	0.10	8.7) boundaries at a prior of 0.10 , with their reciprocals in (	constant	prior probability of the Tavtigian point system					
 main	163	1	570	Damaging and normal variants: 570 and 2,539 at 3–10 bp, 223 and	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_10; clinvar_arm=all; scope=pooled	n_pos	value	1
 main	163	1	2,539	and normal variants: 570 and 2,539 at 3–10 bp, 223 and 4,328 at	measured		phase1/reports/evidence/walker_thresholds.csv	score_column=spliceai_walker; stratum=s3_10; clinvar_arm=all; scope=pooled	n_neg	value	1
 main	163	1	3	al variants: 570 and 2,539 at 3–10 bp, 223 and 4,328 at 11–50	constant	stratum bound					

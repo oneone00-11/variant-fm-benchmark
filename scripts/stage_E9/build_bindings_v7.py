@@ -35,7 +35,9 @@ The table. One row per number the gate reads, in reading order. A number that v6
 declared keeps v6's entry (its cell, or its reason), found by the sentence it stands in;
 the numbers read here for the first time, on the title page and in the statements, have
 their entries below (NEW_REASONS), and the title page's counts are counted from the
-manuscript before they are written down as what they are.
+manuscript before they are written down as what they are. A v6 entry whose sentence a
+revision of the text reworded, so that the piece v6 found it by is gone, is found by a
+piece of the new sentence (REKEYED), its cell or its reason unchanged.
 
 Checks before writing; any failure stops it:
 - every number of the two texts has one entry, and every entry of v6's and of the new
@@ -93,6 +95,19 @@ NEW_REASONS: list[tuple[str, str, str, int, str]] = [
     ("main", "ghcr.io/oneone00-11/variant-fm-benchmark-reference", "11", 1,
      "digits of the repository owner's name in the reference image's address (container/ENVIRONMENT.json)"),
 ]
+
+# The v6 entries whose sentence the revision of the submitted text of 2026-11-14 reworded, so
+# that the piece of the sentence v6 finds them by is gone: (document, v6's piece, the number
+# as printed, its place) -> a piece of the new sentence. Each keeps its cell (the author's
+# decision of 2026-11-14); the revision changed no number.
+REKEYED: dict[tuple[str, str, str, int], str] = {
+    ("main", "XRCC2, with 7 damaging variants there", "7", 1): "XRCC2 had only 7 damaging variants",
+}
+
+
+def rekeyed(entries: list) -> list:
+    """The entries given, each that REKEYED names found by its piece of the new sentence."""
+    return [(e[0], REKEYED.get(tuple(e[:4]), e[1]), *e[2:]) for e in entries]
 
 
 # ------------------------------------------------------------------ the manuscript
@@ -276,6 +291,7 @@ def rows_for(doc: str, text: str, bindings: list, reasons: list) -> tuple[list[d
     """Each number of a text with its entry, as v6 found it (build_bindings_v6.rows_for,
     with the entries given); the entries matched, for the check that each is used once."""
     out, used = [], []
+    bindings, reasons = rekeyed(bindings), rekeyed(reasons)
     ranks: dict[tuple[str, str], int] = {}
     for t in gate.read_tokens(text):
         k = (t.sentence, t.printed)
@@ -329,6 +345,10 @@ def main() -> None:
         log.note("counted_in_the_manuscript", counts)
         log.note("read_from_the_supplementary_pdf", notes)
         reasons = V6.REASONS + NEW_REASONS + counted_reasons(main_md, counts)
+        stray = set(REKEYED) - {tuple(e[:4]) for e in V6.BINDINGS + V6.REASONS}
+        if stray:
+            raise SystemExit(f"REKEYED names entries that v6 does not hold: {sorted(stray)}")
+        log.note("rekeyed", {f"{k[0]}: {k[2]} in '{k[1]}'": v for k, v in REKEYED.items()})
         rows, used = [], []
         for doc, text in (("main", main_md), ("supplement", supp_md)):
             r, u = rows_for(doc, text, V6.BINDINGS, reasons)
@@ -336,7 +356,7 @@ def main() -> None:
             used += u
             (folder / f"v7_{doc}_keyed.md").write_text(V6.keyed(text, r))
             log.note(f"{doc}_sha256", hashlib.sha256((folder / f"v7_{doc}.md").read_bytes()).hexdigest())
-        unused = [e[:4] for e in V6.BINDINGS + reasons if e not in used]
+        unused = [e[:4] for e in rekeyed(V6.BINDINGS + reasons) if e not in used]
         twice = [e[:4] for e in used if used.count(e) > 1]
         if unused or twice:
             raise SystemExit(f"entries matched no number: {unused[:5]}; matched twice: {twice[:5]}")

@@ -52,8 +52,10 @@ def test_every_measured_number_is_its_cell_and_every_constant_has_a_reason():
 
 def test_v7_differs_from_v6_where_the_submitted_text_does():
     """The legends' constants that went when the legends were shortened; the title page's
-    counts and the statements' numbers, read for the first time; and no number of the
-    abstract, the main text or the notes with another value or another cell."""
+    counts and the statements' numbers, read for the first time; the numbers whose
+    sentences were reworded, in the shortened legends and by the revision of 2026-11-14;
+    and no number of the abstract, the main text or the notes with another value or
+    another cell."""
     d = C.difference(C.table_rows(V6), C.table_rows(V7))
     assert (d["numbers_before"], d["numbers_after"]) == (235, 239)
     assert sorted(x["printed"] for x in d["vanished"]) == ["0.2", "0.2", "18.7", "2,000", "4.33"]
@@ -61,7 +63,10 @@ def test_v7_differs_from_v6_where_the_submitted_text_does():
     assert sorted(x["printed"] for x in d["new"]) == ["1.2", "11", "11", "15", "247", "3", "3,934", "4", "42"]
     assert {x["kind"] for x in d["new"]} == {"constant"} and {x["document"] for x in d["new"]} == {"main"}
     assert sum("counted from the manuscript" in x["entry"] for x in d["new"]) == 5
-    assert sorted(x["before"]["printed"] for x in d["reworded"]) == ["0.1", "0.2", "10", "3"]
+    # 0.1, 0.2, 10 and 3 in the shortened legends; 0.5, 0.10 twice, 7 and 18.7 where the text
+    # of 2026-11-14 is reworded (E9 supplement)
+    assert sorted(x["before"]["printed"] for x in d["reworded"]) == [
+        "0.1", "0.10", "0.10", "0.2", "0.5", "10", "18.7", "3", "7"]
     assert all(x["before"]["entry"] == x["after"]["entry"] for x in d["reworded"])
     assert d["kept_in_place"] + len(d["moved"]) + len(d["reworded"]) + len(d["vanished"]) == 235
     assert not [x for x in d["moved"] if x["document"] == "supplement"]

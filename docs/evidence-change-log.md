@@ -2866,3 +2866,32 @@ required job that runs the quick check. No output changes
   matches and every test passes.`
 - **Tests** (`tests/test_container.py`): the job's settings and its demand of `CHECKED`;
   the jobs of `reproduce.yml` now include it.
+
+## The submitted text's bindings (v7) rebuilt on its revised wording (stage E9, supplement, 2026-11-14)
+
+Why: the author approved two rounds of wording changes to the submitted text on 2026-11-14:
+ten "X and colleagues" taken out of nine sentences (the references' numbers stand alone),
+"[3, 4]" added to a sentence of Figure 1's legend, and fourteen other changes of wording,
+among them the abstract's first sentence. No number changed. The binding table of E9.3
+(commit 3) was built on the text of 2026-11-12, so it is built again on the revised one, in
+the reference image, with the same scripts and the same inputs but the manuscript
+(sha256 2bba1518...; the four tables' files and the supplementary PDF unchanged).
+
+- **One v6 entry found by its new sentence** (`scripts/stage_E9/build_bindings_v7.py`,
+  `REKEYED`; the author's decision of 2026-11-14): the build finds each number's v6 entry
+  by a piece of its sentence, and the revision split the sentence of XRCC2's 7 in two, so
+  that v6's piece is gone; it is found by a piece of the new sentence, its cell unchanged.
+  The first build in the image stopped there, as it is written to
+  (`run_log/build_bindings_v7_20261114T171058Z.void.txt`). v6's script is unchanged.
+- **The table** (`docs/manuscript_bindings_v7.tsv`): 239 numbers, 120 measured and 119
+  constants, as before; every row has the line, number, kind and entry (cell or reason) it
+  had; five rows' excerpts changed, the sentences around them reworded (0.5, 0.10, 7, 18.7
+  and 0.10). The "[3, 4]" are read as references, not as numbers.
+- **The check** (`check_bindings_v7.py`, in the image): every mode's verdict is the one of
+  E9.3 (pool, bound, self-test 6 of 6, cells on the two texts and on the four tables'
+  files, no mismatch); the main text's citations count 72 where they counted 70.
+- **Tests** (`tests/test_manuscript_bindings_v7.py`): the numbers reworded between v6 and
+  v7 are nine, the legends' four and the revision's five; no other assertion changed.
+- The scope check's first run is void: git crashed in the image while reading one file of
+  the base (`run_log/check_scope_20261114T172016Z.void.txt`); run again, no output
+  changed (`scripts/stage_E9/scope_e9_s2.json`).

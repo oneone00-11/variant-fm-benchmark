@@ -1,0 +1,8 @@
+Void (E9 supplement S2, 2026-11-14): in this run git crashed inside the reference image
+(under Rosetta's amd64 emulation, through Colima) while it read the base's copy of one
+output, `git -C /repo show 0ec8b1a:phase1/data/evidence/external/sbds_reference_check.json`,
+and left a core file in the repository's root (moved out, not committed). The script took
+the failed read for a file the base does not have and reported it as added, outside the
+scope. The file is the same in 0ec8b1a and in the working tree (sha256 7c28c8281914eba6...),
+so the report says nothing about the commit. The same check was run again; the run that
+counts is the one after this. This record is kept as the rule for such runs asks.

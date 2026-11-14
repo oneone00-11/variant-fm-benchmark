@@ -1,0 +1,7 @@
+Void (E9 supplement, 2026-11-14): this run, in the reference image, on the manuscript
+revised on 2026-11-14 (sha256 2bba1518…), stopped as the build is written to: "main line
+105: 7 is measured and has no binding (XRCC2 had only 7 damaging variants in that band and
+could not be evaluated.)". The build finds each number's v6 entry by a piece of its
+sentence, and v6's piece for this one, "XRCC2, with 7 damaging variants there", is not in
+the revised sentence, which was split in two. No table was written; the texts it wrote went
+to results/scratch/ only. This record is kept as the rule for such runs asks.

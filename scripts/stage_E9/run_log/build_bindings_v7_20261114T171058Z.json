@@ -1,0 +1,74 @@
+{
+ "script": "scripts/stage_E9/build_bindings_v7.py",
+ "argv": [
+  "scripts/stage_E9/build_bindings_v7.py",
+  "--manuscript",
+  "results/scratch/v7_1114/Manuscript.docx",
+  "--tables",
+  "results/scratch/v7_1114/Table_1.docx",
+  "results/scratch/v7_1114/Table_2.docx",
+  "results/scratch/v7_1114/Table_3.docx",
+  "results/scratch/v7_1114/Table_4.docx",
+  "--supplement",
+  "results/scratch/v7_1114/Supplementary_Information.pdf",
+  "--structure",
+  "results/scratch/v7_1114/Supplementary_Information.struct.txt",
+  "--texts",
+  "results/scratch/v7_1114/texts"
+ ],
+ "git_commit": "0ec8b1a7bdd78732ee013b52aea7b7380aea8cc3",
+ "git_worktree_clean": true,
+ "code_sha256": {
+  "scripts/stage_E9/build_bindings_v7.py": "a5dd019ac2acdb680ff666eb1f0adf211ab1f1c1a0ed384f0cac411a9cfcab06",
+  "scripts/stage_E9/_runlog.py": "0104bfdfd2dd516b0f538490b9fa68081f378989ca7dfd97f7bbe05f7c5c950d"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-14T17:10:56+00:00",
+ "end_utc": "2026-11-14T17:10:58+00:00",
+ "inputs": [],
+ "outputs": [],
+ "exception": "Traceback (most recent call last):\n  File \"/repo/scripts/stage_E9/build_bindings_v7.py\", line 334, in main\n    r, u = rows_for(doc, text, V6.BINDINGS, reasons)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/repo/scripts/stage_E9/build_bindings_v7.py\", line 301, in rows_for\n    raise SystemExit(f\"{doc} line {t.line}: {t.printed} is measured and has no binding ({t.sentence[:120]})\")\nSystemExit: main line 105: 7 is measured and has no binding (XRCC2 had only 7 damaging variants in that band and could not be evaluated.)\n",
+ "notes": {
+  "manuscript_sha256": "2bba151865bbd33a142ce2d90872d29abfc3e9d5493cf96a9977f90d29580f84",
+  "supplement_sha256": "fa3a1a5421ee940ef8fb49ad9426d6b711867eac4fc0acf42b89d47fd288f259",
+  "table_1_sha256": "4796e8af394f6bd6fb39d1f77c354c8bb3f67ee13828c3c18ef6868ea450a17c",
+  "table_2_sha256": "5723b4e904c50171a63289c54be7398e6797cdfa930d88364c59adad26f4243e",
+  "table_3_sha256": "65e2b0324617d238e29a607dd22c7558ffd1ad7a1f828f740f1fc428c40a59b2",
+  "table_4_sha256": "f583ab7b8d72b53b3876d28b56833982f43e96906a271daf7d76ff741683c748",
+  "structure_read_from": "the file given, sha256 662925c302a75b883c3a95ea55f1141448aa869ae4a58189e3e40c683f10f26e",
+  "counted_in_the_manuscript": {
+   "main text words": 3934,
+   "abstract words": 247,
+   "figures": 3,
+   "tables": 4,
+   "references": 42,
+   "numbers in the reference list": 240
+  },
+  "read_from_the_supplementary_pdf": {
+   "note headings": [
+    "Supplementary Note 1. Predictor scores",
+    "Supplementary Note 2. The AlphaGenome splice score and the Atlas scores",
+    "Supplementary Note 3. The elastic-net combination",
+    "Supplementary Note 4. Local likelihood-ratio calibration",
+    "Supplementary Note 5. Further analyses",
+    "Supplementary Note 6. External genes"
+   ],
+   "list labels left out": 46,
+   "numbers in the notes' reference list": 61,
+   "entries of the notes' reference list": 9,
+   "paragraphs and headings found in the pages' text in order": 57,
+   "list labels between them": 46
+  }
+ }
+}
