@@ -2683,3 +2683,36 @@ them. No output changes (`scripts/stage_E9/scope_e9_c2.json`).
   settings of the run; the test step after the comparison, with no network and a clean tree
   before and after, in both workflows; every action pinned by a full commit with its
   version beside it, one commit an action; the artifacts' names.
+
+## The tests that read the history skip on one judgement, and the image jobs check out the whole history (stage E9, commit 2b, 2026-11-14)
+
+Why: in commit 2's run (43476779054) the image job's comparison ended `REPRODUCED`, but the
+test suite that now runs after it in the image failed one test of 1,225:
+`test_the_label_files_entered_the_repository_on_the_date_the_audit_uses` read 2026-11-14
+where 2026-07-08 is right. actions/checkout fetches one commit, and in such a shallow clone
+`git log --diff-filter=A` takes that commit for the one that added every file; the test's
+skip for a shallow clone fired only on an empty answer. Eight other tests that read the
+history skipped there, each by a judgement of its own. The author's decision (2026-11-14):
+both the workflows and the tests, the skips only, no assertion. No output changes
+(`scripts/stage_E9/scope_e9_c2b.json`).
+
+- **One judgement** (`tests/_checkout.missing_history`, `needs_history`): a tree without .git
+  is a release archive, and git is not asked at all (an archive unpacked inside another
+  clone would read that clone's history); a clone whose `git rev-parse
+  --is-shallow-repository` is not `false` is shallow; a full clone must hold each commit the
+  test names; a git that cannot be run counts as no history, never as an error.
+- **The tests that read the history** use it, and only their skips for want of history
+  changed: `tests/test_container.py` (the rebaselined PNGs), `tests/test_evidence_manuscript_numbers.py`
+  (v5 against E5.0's outputs, and v5's texts, which skip first without `EVID_V5_MAIN`),
+  `phase1/tests/test_evid_layout.py` (outputs added since 3.0.1),
+  `phase1/tests/test_evid_newgenes.py` (E16's files as they were), `phase1/tests/test_label_build.py`
+  (the audit's counts, the switch commit, the superseded files) and
+  `phase1/tests/test_evid_label_audit.py` (the label files' date). The skips that are not
+  about history stay (the switch not yet made, its folder not yet there).
+- **The image jobs** (`reproduce.yml`'s `image`, `container.yml`'s `reproduce`) check out the
+  whole history (`fetch-depth: 0`), so that those tests run there as in a clone.
+- **Tests** (`tests/test_history_judgement.py`): the judgement in a full clone, a shallow
+  clone and a tree without .git, each made in a small repository of its own, and with a git
+  that cannot be run; the skip carrying its reason; each test that reads the history using
+  the judgement and no other; and (`tests/test_container.py`) both image jobs fetching the
+  whole history.

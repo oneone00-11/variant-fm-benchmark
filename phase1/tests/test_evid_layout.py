@@ -21,6 +21,8 @@ import yaml
 
 PHASE1 = Path(__file__).resolve().parents[1]
 REPO = PHASE1.parent
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tests"))
+from _checkout import needs_history  # noqa: E402  one judgement for the tests that read the history (E9)
 if str(PHASE1) not in sys.path:
     sys.path.insert(0, str(PHASE1))
 from src import evid_layout as L  # noqa: E402
@@ -95,9 +97,7 @@ def test_every_source_exists_and_every_maker_is_known():
 def test_every_output_added_since_release_301_has_a_place():
     """Each output an earlier stage added after release 3.0.1 is a source of a numbered
     table or figure, or is listed as kept in the repository only (E5.0 §4.4)."""
-    if subprocess.run(["git", "-C", str(REPO), "cat-file", "-e", f"{V301}^{{commit}}"],
-                      capture_output=True).returncode != 0:
-        pytest.skip("release 3.0.1's commit is not in this clone")
+    needs_history(V301)
     added = subprocess.run(["git", "-C", str(REPO), "diff", "--name-only", "--diff-filter=A", V301,
                             "HEAD", "--", "phase1/reports/evidence"],
                            capture_output=True, text=True, check=True).stdout.split()

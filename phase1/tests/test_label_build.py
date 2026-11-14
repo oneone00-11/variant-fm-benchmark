@@ -25,6 +25,8 @@ import pytest
 
 PHASE1 = Path(__file__).resolve().parents[1]
 REPO = PHASE1.parent
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tests"))
+from _checkout import needs_history  # noqa: E402  one judgement for the tests that read the history (E9)
 LABELS = PHASE1 / "data/assay_labels"
 GENERATED = LABELS / "_generated"
 SUPERSEDED = LABELS / "superseded"
@@ -161,9 +163,8 @@ def test_palb2_and_bard1_differ_from_the_july_files_exactly_where_the_audit_said
     assert set(gen) == set(july)
     differ = {k for k in gen if gen[k] != july[k]}
     assert len(differ) == AUDIT_COUNTS[gene]
+    needs_history(AUDIT_COMMIT)              # the count is checked above in any checkout
     shown = _git("show", f"{AUDIT_COMMIT}:phase1/reports/evidence/label_audit_diff.csv")
-    if shown.returncode:
-        pytest.skip(f"the audit's commit {AUDIT_COMMIT[:7]} is not in this clone; the count is checked")
     listed = {_norm_hgvs(r["hgvs_nt"]) for r in csv.DictReader(io.StringIO(shown.stdout))
               if r["gene"] == gene and r["rule"] == "R1" and r["version"] == B.RULES[gene]["version"]}
     assert differ == listed
@@ -183,14 +184,11 @@ def test_no_score_of_a_ranged_source_is_unassigned_or_on_a_shared_end_point():
 def test_the_switch_commit_changes_no_code():
     """E16d.0 rule 2, on the commit that replaces the two label files, once it exists
     and its parent is in the clone."""
-    if not (REPO / ".git").exists():
-        pytest.skip("a release archive has no .git")
+    needs_history()
     log = _git("log", "--format=%H\t%s").stdout.splitlines()
     hits = [h for h, s in (l.split("\t", 1) for l in log) if s.startswith(SWITCH_SUBJECT)]
     if not hits:
         pytest.skip("the switch commit has not been made yet")
-    if _git("rev-parse", "--verify", "--quiet", f"{hits[0]}^").returncode:
-        pytest.skip("the switch commit's parent is not in this clone (shallow)")
     check = _module("check_switch_commit")
     assert not [p for p in check.changed(hits[0]) if check.is_code(p)]
 
@@ -199,12 +197,11 @@ def test_the_superseded_files_are_the_july_files():
     if not SUPERSEDED.exists():
         pytest.skip("the switch has not been made yet")
     assert (SUPERSEDED / "README.md").is_file()
+    needs_history(JULY_COMMIT)               # the README is checked above in any checkout
     for gene in RELABELLED:
         name = C.ASSAY_LABELS[gene]["file"]
         shown = subprocess.run(["git", "-C", str(REPO), "show",
                                 f"{JULY_COMMIT}:phase1/data/assay_labels/{name}"], capture_output=True)
-        if shown.returncode:
-            pytest.skip(f"commit {JULY_COMMIT} is not in this clone")
         assert (SUPERSEDED / name).read_bytes() == shown.stdout, name
 
 

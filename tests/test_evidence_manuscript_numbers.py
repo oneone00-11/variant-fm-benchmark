@@ -24,6 +24,8 @@ import pytest
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 import check_evidence_manuscript_numbers as gate  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tests"))
+from _checkout import needs_history  # noqa: E402  one judgement for the tests that read the history (E9)
 
 V5_TABLE = REPO / "docs" / "manuscript_bindings_v5.tsv"
 V5_EXPECTED = REPO / "tests" / "fixtures" / "manuscript_bindings_v5_expected.tsv"
@@ -326,9 +328,7 @@ def test_the_v5_table_reproduces_e5_0_on_the_outputs_it_read(tmp_path):
     number, and E5.0's value where it does not match (main text 19 mismatches, E5.0's 14
     and the 5 its bound mode could not find; supplementary notes 8, E5.0's 3 and the 5 of
     its 10 not found that have changed)."""
-    if subprocess.run(["git", "-C", str(REPO), "cat-file", "-e", f"{E5_0_COMMIT}^{{commit}}"],
-                      capture_output=True).returncode != 0:
-        pytest.skip(f"E5.0's commit {E5_0_COMMIT[:7]} is not in this clone")
+    needs_history(E5_0_COMMIT)
     rows = gate.read_bindings(V5_TABLE)
     for f in sorted({b.file for b in rows if b.kind == "measured"}):
         blob = subprocess.run(["git", "-C", str(REPO), "show", f"{E5_0_COMMIT}:{f}"],
@@ -356,9 +356,7 @@ def test_the_v5_texts_read_number_by_number(doc, env):
     path = os.environ.get(env)
     if not path or not Path(path).expanduser().is_file():
         pytest.skip(f"set {env} to the v5 {doc} text to run this")
-    if subprocess.run(["git", "-C", str(REPO), "cat-file", "-e", f"{E5_0_COMMIT}^{{commit}}"],
-                      capture_output=True).returncode != 0:
-        pytest.skip(f"E5.0's commit {E5_0_COMMIT[:7]} is not in this clone")
+    needs_history(E5_0_COMMIT)
     rows = [b for b in gate.read_bindings(V5_TABLE) if b.document == doc]
     text = Path(path).expanduser().read_text()
     head = subprocess.run(["git", "-C", str(REPO), "diff", "--quiet", E5_0_COMMIT, "--",

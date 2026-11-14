@@ -19,6 +19,8 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tests"))
+from _checkout import needs_history  # noqa: E402  one judgement for the tests that read the history (E9)
 LOCK = REPO / "requirements-evidence.lock.txt"
 IMAGE_LOCK = REPO / "container" / "requirements.linux-amd64.txt"
 DOCKERFILE = REPO / "container" / "Dockerfile"
@@ -330,9 +332,7 @@ def test_the_rebaselined_pngs_differ_in_their_bytes_only():
     rows = dict(re.findall(r"^\| `([^`]+)` \| ([^|]+?) \|", doc, re.M))
     assert len(rows) == 13 and set(rows.values()) == {P.SAME_PIXELS}
     assert "old = commit e12220c, new = commit 7125246" in doc
-    if subprocess.run(["git", "-C", str(REPO), "cat-file", "-e", "e12220c^{commit}"],
-                      capture_output=True).returncode:
-        pytest.skip("the two commits are not in this clone; the document is checked")
+    needs_history("e12220c", "7125246")      # the document is checked above in any checkout
     assert sorted(rows) == P.pngs("e12220c") == P.pngs("7125246")
     for path, status in rows.items():
         assert P.classify(P.read("e12220c", path), P.read("7125246", path))["status"] == status
@@ -362,3 +362,13 @@ def test_the_macos_job_compares_the_pngs_by_pixel_after_the_comparator():
     pixels = next(i for i, r in enumerate(runs) if "compare_png_pixels.py" in r)
     assert pixels == comparator + 1
     assert steps[pixels]["if"] == "always()" and "GITHUB_STEP_SUMMARY" in runs[pixels]
+
+
+@pytest.mark.parametrize("workflow, job", [("reproduce.yml", "image"), ("container.yml", "reproduce")])
+def test_the_image_jobs_check_out_the_whole_history(workflow, job):
+    """E9: the tests that read the history run in the image job as in a clone, not as in
+    a shallow one (actions/checkout fetches one commit unless told otherwise)."""
+    import yaml
+    steps = yaml.safe_load((REPO / ".github/workflows" / workflow).read_text())["jobs"][job]["steps"]
+    checkout = steps[0]
+    assert checkout["uses"].startswith("actions/checkout@") and checkout["with"]["fetch-depth"] == 0

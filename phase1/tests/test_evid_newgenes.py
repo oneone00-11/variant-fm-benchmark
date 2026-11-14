@@ -26,6 +26,8 @@ import pytest
 
 PHASE1 = Path(__file__).resolve().parents[1]
 REPO = PHASE1.parent
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tests"))
+from _checkout import needs_history  # noqa: E402  one judgement for the tests that read the history (E9)
 EXT = PHASE1 / "data/evidence/external"
 REPORTS = PHASE1 / "reports/evidence"
 CACHE = PHASE1 / "data/evidence/reference_cache"
@@ -932,11 +934,7 @@ def test_without_the_argument_the_stage_writes_e16s_files_as_they_were():
     provenance record aside. reproduce_evidence.py --verify reruns the stage; this
     holds the result to E16's commit, where git has it (not in a shallow clone)."""
     assert len(E16_OUTPUTS) == 15
-    if not (REPO / ".git").exists():
-        pytest.skip("a release archive has no .git")
-    if subprocess.run(["git", "-C", str(REPO), "cat-file", "-e", f"{E16_COMMIT}^{{commit}}"],
-                      capture_output=True).returncode:
-        pytest.skip(f"E16's commit {E16_COMMIT[:7]} is not in this clone (shallow)")
+    needs_history(E16_COMMIT)
     for rel in E16_OUTPUTS:
         then = subprocess.run(["git", "-C", str(REPO), "show", f"{E16_COMMIT}:{rel}"],
                               capture_output=True, check=True).stdout

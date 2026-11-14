@@ -22,6 +22,8 @@ import pytest
 
 PHASE1 = Path(__file__).resolve().parents[1]
 REPO = PHASE1.parent
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tests"))
+from _checkout import needs_history  # noqa: E402  one judgement for the tests that read the history (E9)
 AUDIT = PHASE1 / "data/evidence/label_audit"
 REPORTS = PHASE1 / "reports/evidence"
 
@@ -243,15 +245,12 @@ def test_the_label_audit_sources_are_stored_byte_for_byte():
 
 
 def test_the_label_files_entered_the_repository_on_the_date_the_audit_uses():
-    if not (REPO / ".git").exists():
-        pytest.skip("a release archive has no .git")
+    needs_history()
     dates = set()
     for spec in C.ASSAY_LABELS.values():
         out = subprocess.run(["git", "-C", str(REPO), "log", "--diff-filter=A", "--format=%cs",
                               "--", f"phase1/data/assay_labels/{spec['file']}"],
                              capture_output=True, text=True, check=True).stdout.split()
-        if not out:
-            pytest.skip("the commit that added the label files is not in this clone (shallow)")
         dates.add(out[-1])
     assert dates == {A.LABEL_FILES_COMMITTED}
 
