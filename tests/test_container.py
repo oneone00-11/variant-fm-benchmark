@@ -211,7 +211,9 @@ BYTE_FOR_BYTE = "REPRODUCED: every output matches the committed one byte for byt
 def test_the_required_job_runs_the_recorded_image_and_demands_reproduced():
     import yaml
     jobs = yaml.safe_load((REPO / ".github/workflows/reproduce.yml").read_text())["jobs"]
-    assert set(jobs) == {"image", "macos-arm64"}        # the native Linux job is gone
+    # the native Linux reproduction is gone; "check" is the quick check, which reproduces
+    # nothing (E9)
+    assert set(jobs) == {"image", "check", "macos-arm64"}
     image = jobs["image"]
     assert not image.get("continue-on-error")
     steps = "\n".join(s.get("run", "") for s in image["steps"])
@@ -372,3 +374,24 @@ def test_the_image_jobs_check_out_the_whole_history(workflow, job):
     steps = yaml.safe_load((REPO / ".github/workflows" / workflow).read_text())["jobs"][job]["steps"]
     checkout = steps[0]
     assert checkout["uses"].startswith("actions/checkout@") and checkout["with"]["fetch-depth"] == 0
+
+
+CHECKED = "CHECKED: every recorded checksum matches and every test passes."
+
+
+def test_the_quick_check_job_runs_as_a_reader_does_and_demands_checked():
+    """E9 (the author's decision of 2026-11-14): a required job runs `bash reproduce.sh
+    --check` on Linux in a checkout with the whole history, fetching no input, and its
+    last line must be CHECKED."""
+    import yaml
+    job = yaml.safe_load((REPO / ".github/workflows/reproduce.yml").read_text())["jobs"]["check"]
+    assert not job.get("continue-on-error") and job["runs-on"] == "ubuntu-24.04"
+    steps = job["steps"]
+    assert steps[0]["uses"].startswith("actions/checkout@") and steps[0]["with"]["fetch-depth"] == 0
+    runs = "\n".join(s.get("run", "") for s in steps)
+    assert re.findall(r"\S*reproduce\S*", runs) == ["reproduce.sh"]     # one call, the quick one
+    assert "bash reproduce.sh --check" in runs
+    for fetch in ("--fetch-inputs", "container/run.sh", "docker", "curl", "wget"):
+        assert fetch not in runs, fetch
+    assert f'"{CHECKED}" ]' in runs and "tail -n 1" in runs
+    assert f'"\\n{CHECKED}"' in (REPO / "scripts" / "reproduce_evidence.py").read_text()

@@ -2839,3 +2839,30 @@ checks. Only new files are added, and `contents.csv` gains the row that register
   tables, the supplementary PDF and the workbook, no c., g. or p. description, rs number
   or ClinVar accession (the twelve matches of the search are page numbers of a citation and
   two transcript names).
+
+## The quick check ends `CHECKED` without the atlas, and a required job runs it (stage E9, commit 4b, 2026-11-14)
+
+Why: `bash reproduce.sh --check`, which the README gives a reader first and says ends
+`CHECKED`, ended `CHECK FAILED` at commit 4 both in a fresh clone (every one of the 692
+checksums matching; the test suite 1 failed, 1,258 passed, 28 skipped) and in a
+`git archive` package (1 failed, 1,245 passed, 41 skipped). The one failure,
+`phase1/tests/test_evid_second_set.py::test_every_row_is_checked_against_its_own_g`
+(E19 C3, 2026-10-26), imports the companion atlas's mapping module, which `--check` does
+not fetch; the other tests that read the atlas skip where it is not, and this one had no
+such condition. It ran and passed where the atlas was beside the checkout or fetched (the
+image job). The author's decision (2026-11-14): the skip, in a commit of its own, and a
+required job that runs the quick check. No output changes
+(`scripts/stage_E9/scope_e9_c4b.json`).
+
+- **The skip** asks the rule by which every stage finds the atlas
+  (`evid_common.resolve_atlas`: `EVID_ATLAS_REPO`, a checkout beside this one or the
+  fetched archive, holding every file the stages read), as `test_evid_label_audit.py`
+  does, and is not a catch of `ImportError`: where the atlas is and its import fails, the
+  test fails. Its reason says how to make it run (the atlas beside this checkout,
+  `EVID_ATLAS_REPO`, or `--fetch-inputs`). No assertion changed.
+- **A required job, `check`** (`reproduce.yml`): on ubuntu-24.04, in a checkout with the
+  whole history (`fetch-depth: 0`) and with no input fetched, `bash reproduce.sh --check`
+  with the runner's Python 3.12; its last line must be `CHECKED: every recorded checksum
+  matches and every test passes.`
+- **Tests** (`tests/test_container.py`): the job's settings and its demand of `CHECKED`;
+  the jobs of `reproduce.yml` now include it.

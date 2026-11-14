@@ -6,8 +6,9 @@ name: reproduce
 # The inputs the repository does not carry are fetched online (ClinVar from NCBI, the
 # atlas release archive from Zenodo, the four Ensembl chromosomes of the E16
 # reference-base check, the label audit's sources); then every stage runs and every
-# output is compared with the committed file, with no network (container/run.sh). A tag
-# push runs it on exactly the tagged tree.
+# output is compared with the committed file, with no network (container/run.sh). Beside
+# it, the quick check a reader runs first (`bash reproduce.sh --check`, no input fetched)
+# must end CHECKED. A tag push runs both on exactly the tagged tree.
 on:
   push:
     branches: [evidence/rework]
@@ -106,6 +107,35 @@ jobs:
           name: reproduce-not-identical-image
           path: not-identical
           if-no-files-found: ignore
+
+  check:
+    # Required (E9, the author's decision of 2026-11-14). The quick check as a reader
+    # runs it from a clone: `bash reproduce.sh --check` with the runner's own Python 3.12,
+    # in a checkout with the whole history and with no input fetched. It must end
+    # CHECKED: every checksum the manifests and provenance records carry about the files
+    # here matches, and the test suite passes, the tests that need a fetched input or the
+    # companion atlas skipping.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          fetch-depth: 0          # the whole history: the tests that read it run as in a clone
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: bash reproduce.sh --check (no input fetched)
+        run: |
+          start=$(date +%s)
+          bash reproduce.sh --check 2>&1 | tee "$RUNNER_TEMP/check.log"
+          echo "seconds: $(( $(date +%s) - start ))"
+      - name: Require CHECKED
+        run: |
+          tail -n 1 "$RUNNER_TEMP/check.log"
+          [ "$(tail -n 1 "$RUNNER_TEMP/check.log")" = \
+            "CHECKED: every recorded checksum matches and every test passes." ]
 
   macos-arm64:
     # For the record, not required (the author's decision of 2026-10-22): the native

@@ -25,6 +25,7 @@ RAW = PHASE1 / "data/evidence/second_set/brca2_raw"
 if str(PHASE1) not in sys.path:
     sys.path.insert(0, str(PHASE1))
 
+from src import evid_common as K  # noqa: E402
 from src import evid_label_sources as LS  # noqa: E402
 from src import evid_second_set as SS  # noqa: E402
 
@@ -81,6 +82,13 @@ def test_the_classes_grouped_as_the_paper_counts_them_are_the_papers():
 
 
 def test_every_row_is_checked_against_its_own_g(monkeypatch):
+    # the atlas found by the rule every stage uses (evid_common.resolve_atlas); where it is,
+    # the test runs, and an import that fails there fails it (E9)
+    if K.resolve_atlas()[1]:
+        pytest.skip("the companion atlas is not here (its mapping module maps each row's c.): "
+                    "to run this test, put release v2.5.0 of the atlas beside this checkout as "
+                    "functional-standard-atlas, set EVID_ATLAS_REPO to it, or run "
+                    "scripts/reproduce_evidence.py --fetch-inputs")
     monkeypatch.chdir(PHASE1)
     kept, check = SS.table5_rows()
     assert (check["rows"], check["kept"]) == (6551, 6547)
