@@ -1,27 +1,20 @@
 # Variant-FM-Benchmark
 
-**Functional-evidence benchmarking of splice and sequence-based variant-effect
-predictors in hereditary-cancer genes**, using **Saturation Genome Editing (SGE) /
-MAVE functional assays as the primary, independent gold standard** (not ClinVar
-labels — to avoid circularity).
+This repository holds the analyses of three manuscripts on splice-region variant effect
+predictors against saturation genome editing (SGE) data. The current one comes first, on
+the branch `evidence/rework`; the two earlier ones, Studies A and B, follow under
+[Earlier manuscripts](#earlier-manuscripts-studies-a-and-b), each with its tags and the
+commands that reproduce it.
 
-- **Gene panel (7):** BRCA1, BRCA2, BARD1, PALB2, RAD51C, VHL, BAP1
-- **Analysis set:** 21,410 SNVs (GRCh38) that have **both** a functional score
-  **and** a ClinVar record. Content-hash-pinned as **`frozen-matrix-v2`**
-  (`phase1/data/frozen/`; the published `frozen-matrix-v1` is kept beside it and
-  is what v2 is rebuilt from — see [docs/frozen-matrix-v2.md](docs/frozen-matrix-v2.md));
-  the flat TSV view is `data/processed/score_matrix_final.tsv`
-- **External held-out gene:** TP53 (192 splice SNVs in Studies A and B; 288, to
-  |offset| 12, in the evidence-strength analysis), never used for fitting
-
-## Evidence strength of splice-region predictors (the current manuscript)
+## Evidence strength of splice-region variant effect predictors against saturation genome editing data, by distance from the exon and across genes
 
 What evidence strength, in the ClinGen likelihood-ratio sense behind PP3/BP4, do
 splice-region predictors support against saturation genome editing data, by distance
 from the exon boundary, and do the thresholds hold in genes they were not fitted on?
 
 - **Analysis set:** `analysis_set_v1` (`phase1/data/evidence/`), 8,853 intron-side
-  SNVs within 50 nt of the exon boundary in the seven genes, 8,501 labelled by each
+  SNVs within 50 nt of the exon boundary in the seven genes (BRCA1, BRCA2, BARD1, PALB2,
+  RAD51C, VHL, BAP1), 7,997 of them at 3–50 nt, the analysis range; 8,501 labelled by each
   deposit's own functional classification; built from the companion atlas score
   matrix (release v2.5.0) and the ClinVar GRCh38 release of 15 June 2026.
 - **External genes:** DDX3X (1,857 intron-side SNVs to 25 nt; labelled by the
@@ -32,11 +25,24 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   table's per-variant class column, a source fixed before any predictor was run on
   it (stage E16b, `docs/sbds-record-check.md`). The five were scored only after the
   seven genes' thresholds were frozen (tag `frozen-thresholds-v1`), and all seven external
-  genes are tested at those thresholds (stage E18).
+  genes are tested at those thresholds (stage E18). The seven hold 7,036 intron-side SNVs
+  within 50 nt, 6,427 of them at 3–50 nt.
+- **Reproducing it**, three ways (below):
+  - in the reference Docker image: Docker, about 730 MB of downloads (the image and the
+    inputs), 35 to 60 minutes on a GitHub-hosted runner; it ends `REPRODUCED`, every
+    output byte for byte;
+  - the quick check: Python 3.12, two to three minutes, no data download; it ends `CHECKED`;
+  - natively: Python 3.12 and the same downloads, about 40 minutes of computation on an
+    Apple M5; on macOS arm64 it ends `NOT REPRODUCED`, for the differences listed below.
+- **Where the outputs are:** `phase1/reports/evidence/`, with the analysis set and the
+  external-gene tables under `phase1/data/evidence/`. For every table, figure and
+  supplementary table of the manuscript, `phase1/reports/evidence/layout/contents.csv`
+  gives its number, its title and its files. Every analysed variant is listed with its
+  HGVS description in `phase1/reports/evidence/layout/variants/analysed_variants.csv`,
+  and each description's check with VariantValidator is in `hgvs_check.csv` beside it,
+  counted in `hgvs_check_summary.csv` (stage 42).
 - **Entry point:** `python scripts/reproduce_evidence.py` (42 stages; 22 in release
-  3.0.1). Outputs:
-  `phase1/reports/evidence/`, with the analysis set and the external-gene tables
-  under `phase1/data/evidence/`.
+  3.0.1).
 - **Companion atlas:** release v2.5.0 (Zenodo 10.5281/zenodo.22751081), found through
   `EVID_ATLAS_REPO`, as a checkout named `functional-standard-atlas` beside this one,
   or as the release archive that `--fetch-inputs` unpacks under
@@ -58,24 +64,38 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   `phase1/data/evidence/alphagenome_official/` and read as they stand, and scoring them
   again (`scripts/stage_E17/score_official.py`) needs an AlphaGenome API key, read from
   `ALPHAGENOME_API_KEY` or `~/.config/alphagenome/key` and never kept in the repository.
+  Nor is VariantValidator asked again: stage 42 reads the excerpt of its replies
+  committed under `phase1/data/evidence/hgvs_check/`, with their record
+  (`manifest.json`); `scripts/stage_E9/fetch_hgvs_check.py` asked it once.
 - **Environment:** Python 3.12 with the package set in
   `requirements-evidence.lock.txt`. Changes between rounds are recorded in
   `docs/evidence-change-log.md`; data terms per column in `LICENSE-DATA`.
 - **Archive:** release 3.0.1, tag `v3.0.1-submission`, on Zenodo as version DOI
   10.5281/zenodo.23051009 (all versions: 10.5281/zenodo.22674887), which also holds
-  the ClinVar file.
+  the ClinVar file. This branch is after it.
 
-**Reproducing from a fresh clone, in the reference environment.** On this branch, after
-release 3.0.1, the reference environment is a Docker image, and every committed output
-was written in it (stage B6): Python 3.12.13 on Debian bookworm, linux/amd64, with
-exactly the packages of `requirements-evidence.lock.txt`, each checked against the hash
-of its wheel. It is built from `container/Dockerfile`; `container/ENVIRONMENT.json`
-records its digests and what it holds. With Docker installed:
+### Getting the code
 
 ```bash
 git clone https://github.com/oneone00-11/variant-fm-benchmark
 cd variant-fm-benchmark
 git checkout evidence/rework
+```
+
+Every command below runs in that folder. A reader who starts from a release archive, a
+`git archive` of a tag with no `.git`, unpacks it and runs them in the unpacked folder
+instead; `--verify` then compares with the tree as first unpacked.
+
+### In the reference environment (Docker)
+
+On this branch, after release 3.0.1, the reference environment is a Docker image, and
+every committed output was written in it (stage B6): Python 3.12.13 on Debian bookworm,
+linux/amd64, with exactly the packages of `requirements-evidence.lock.txt`, each checked
+against the hash of its wheel. It is built from `container/Dockerfile`;
+`container/ENVIRONMENT.json` records its digests and what it holds. With Docker
+installed:
+
+```bash
 IMAGE=ghcr.io/oneone00-11/variant-fm-benchmark-reference@sha256:0dc03436cd94cf46effe25160efa3015ab9808852179d58908c72e16e0537776
 # online: download and check the inputs the repository does not carry
 docker run --rm --platform linux/amd64 --user "$(id -u):$(id -g)" \
@@ -93,8 +113,12 @@ into gitignored folders and checks each file before any stage runs:
 - the atlas release archive: 50 MB, from Zenodo; md5 against Zenodo's;
 - the four Ensembl release-112 chromosomes of the E16 genes: 165 MB; sha256 against each
   gene's raw manifest;
-- the label source audit's uncommitted sources: 46 MB, from MaveDB and Europe PMC;
-  sha256 against its manifests.
+- the label source audit's five uncommitted files: 41 MB, from MaveDB and from the
+  publisher's static addresses (Europe PMC's zip of the paper's supplementary files after
+  them), each from the sources `scripts/reproduce_sources.json` lists for it, tried in
+  order; a file counts only with the sha256 its manifest records, and a reply that is not
+  the file is a failed attempt. If no source serves a file, the step stops and names each
+  source tried.
 
 The second step runs every stage of `scripts/reproduce_evidence.py` and `--verify`, as
 the host user. The maths are single-threaded, and OpenBLAS's kernels and numpy's
@@ -105,62 +129,102 @@ files as HEAD has them, and in a release archive, the tree as first unpacked. A
 committed output the run leaves untouched fails too, unless
 `scripts/reproduce_inputs.txt` lists it as an input the stages only read. The run ends
 `REPRODUCED` when every output matches byte for byte (a manifest's build time aside);
-otherwise it lists what differs and exits non-zero. It ended `REPRODUCED` on a
-GitHub-hosted runner (AMD EPYC 9V45; the second step took 21 minutes) and on an Apple
-M5 Mac running the image under amd64 emulation (Rosetta, through Colima; 21 minutes).
+otherwise it lists what differs and exits non-zero. It ended `REPRODUCED` on
+GitHub-hosted runners (ubuntu-24.04, 2026-11-13 and 2026-11-14; the first step took 1 to
+2.5 minutes and the second 36 to 57 minutes, by the runner's processor) and on an Apple
+M5 Mac running the image under amd64 emulation (Rosetta, through Colima; the second step
+took about 75 minutes).
 
 `.github/workflows/reproduce.yml` runs these two steps on every push to this branch
 that changes more than documentation and on every release tag, and requires
-`REPRODUCED`. Each run keeps its `reproduce_report.txt`, one line per output, and the
-files that are not identical as artifacts. Not tested: Apptainer or Singularity,
-Windows, and the image on arm64 without emulation.
+`REPRODUCED`; then it runs the test suite in the same image with no network
+(`bash container/run.sh test`), which must pass and leave the tree as it was. A second
+required job runs the quick check below on the same kind of runner without Docker, in a
+clone with the whole history and with no input fetched, and requires `CHECKED`. Each run
+keeps its `reproduce_report.txt`, one line per output, and the files that are not
+identical as artifacts. Not tested: Apptainer or Singularity, Windows, and the image on
+arm64 without emulation.
 
-**Without Docker: numerical agreement only.** `bash reproduce.sh` builds `.venv` from
-`requirements-evidence.lock.txt` with the machine's own Python 3.12, then runs
-`scripts/reproduce_evidence.py --fetch-inputs --verify`. It needs the same downloads,
-about 25 minutes of computation, and network access. The machine's maths libraries can
-move the last digits of the numbers, so against the image's outputs this path agrees
-in the numbers only:
-- `REPRODUCED NUMERICALLY`, on a GitHub-hosted Linux runner (x86_64): every printed
-  table and figure matches byte for byte, and other files differ only in the last
-  digits of their numbers (relative 1e-9).
-- `NOT REPRODUCED`, on macOS arm64 (an Apple M5 with macOS 26.6, and a GitHub-hosted M1
-  with macOS 14). Every printed table matches byte for byte, and 21 files differ only in
-  the last digits of their numbers. But 13 PNG figures differ in their compressed bytes,
-  not their pixels, as Pillow writes them there. And the TP53 manifest counts 24 of 24
-  re-scored Nucleotide Transformer values identical where the image counts 23 (pandas'
-  default float parser on x86_64), a count the supplementary-table manifest's hash
-  carries.
-
-The `reproduce.yml` macOS job runs this path for the record and does not fail the
-workflow.
-
-Release 3.0.1 (tag `v3.0.1-submission`), whose outputs were made on macOS arm64, is
-reproduced by this path: `git checkout v3.0.1-submission && bash reproduce.sh`. It
-ended `REPRODUCED` on the machine the outputs were made on (Apple M5, macOS 26.6,
-Python 3.12.13) and `REPRODUCED NUMERICALLY` on a GitHub-hosted M1 (macOS 14).
-
-**Quick check: five minutes, no data download.** For a reader who does not want the
-full run:
+### Quick check: no data download
 
 ```bash
 bash reproduce.sh --check
 ```
 
-It builds `.venv` as above (a minute or two, the only network use), then checks every
+It builds `.venv` from `requirements-evidence.lock.txt` with the machine's own Python
+3.12 (a minute or two, the only network use), then checks every
 checksum the repository's manifests and provenance records carry about files it
 holds: the analysis set and the sources it was built from, the external-gene tables
 and the model scores they merge, the frozen matrices and their rescored columns, the
 reference cache, and the supplementary tables with their sources (on this branch
 also the E16 and E16b deposits). The ClinVar release, the atlas and the E16
 chromosomes are checked too when they are here. It then runs the test
-suite, which checks the printed tables against the files they are drawn from. It
+suite, which checks the printed tables against the files they are drawn from. The tests
+that need a file the check does not download skip, each giving its reason: the atlas, the
+E16 chromosomes and the label audit's files, which the full run downloads, and the texts
+of the manuscripts, which the repository does not hold. In a release archive, with no
+`.git`, the tests that read the repository's history skip too. It
 recomputes nothing, prints how many checksums it checked, and ends with `CHECKED` or
-lists what failed; the full run above is what rebuilds every output.
+lists what failed; the full run above is what rebuilds every output. It took 144 seconds
+on a GitHub-hosted runner (ubuntu-24.04) and 122 seconds on an Apple M5, building `.venv`
+included.
 
-## What this repository contains
+### Without Docker: numerical agreement only
 
-This repository carries **two related analyses** over the same frozen matrix. They
+`bash reproduce.sh` builds `.venv` from `requirements-evidence.lock.txt` with the
+machine's own Python 3.12, then runs `scripts/reproduce_evidence.py --fetch-inputs
+--verify`. It needs the same downloads, about 40 minutes of computation on an Apple M5, and
+network access. The machine's maths libraries can move the last digits of the numbers, so
+against the image's outputs this path agrees in the numbers only:
+- `NOT REPRODUCED`, on macOS arm64: an Apple M5 with macOS 26.6 (2026-11-13), and GitHub's
+  macos-15 runner, an Apple M1 (Virtual) with macOS 15.8.2 (2026-11-14). Of the 1,109 files
+  compared, 1,045 match byte for byte (1,046 on the M1) and 6 but for a build time, among
+  them every table the stages print and every PDF figure; 32 differ only in the last
+  digits of their numbers (31 on the M1, where
+  `phase1/reports/evidence/suppl_analyses/c5_jackknife_strong.csv` matches). The 22 PNG
+  figures differ in their compressed bytes, not their pixels, as Pillow writes them
+  there. And 4 differ otherwise, on both: the TP53 manifest counts 24 of 24
+  re-scored Nucleotide Transformer values identical where the image counts 23 (pandas'
+  default float parser on x86_64), and three files carry the hashes of files that differ:
+  the supplementary tables' manifest, the layout's manifest and the README sheet of the
+  supplementary workbook.
+- On a GitHub-hosted Linux runner (ubuntu-24.04, x86_64) this path last ran on
+  2026-10-21, at commit 7125246, against outputs the image had just written, and ended
+  `REPRODUCED NUMERICALLY`: every printed table and figure matched byte for byte, and 17
+  other files differed only in the last digits of their numbers (relative 1e-9). The
+  image job then took that job's place (stage B6); it has not run since.
+
+The `reproduce.yml` macOS job runs this path for the record and does not fail the
+workflow; after it, `scripts/stage_B6/compare_png_pixels.py` writes into the job's
+summary, for each PNG, whether its bytes, or only its bytes and not its pixels, or its
+pixels differ.
+
+Release 3.0.1 (tag `v3.0.1-submission`), whose outputs were made on macOS arm64, is
+reproduced by this path: `git checkout v3.0.1-submission && bash reproduce.sh`. It
+ended `REPRODUCED` on the machine the outputs were made on (Apple M5, macOS 26.6,
+Python 3.12.13) and `REPRODUCED NUMERICALLY` on a GitHub-hosted M1 (macOS 14).
+
+## Earlier manuscripts: Studies A and B
+
+**Functional-evidence benchmarking of splice and sequence-based variant-effect
+predictors in hereditary-cancer genes**, using **Saturation Genome Editing (SGE) /
+MAVE functional assays as the primary, independent gold standard** (not ClinVar
+labels — to avoid circularity).
+
+- **Gene panel (7):** BRCA1, BRCA2, BARD1, PALB2, RAD51C, VHL, BAP1
+- **Analysis set:** 21,410 SNVs (GRCh38) that have **both** a functional score
+  **and** a ClinVar record. Content-hash-pinned as **`frozen-matrix-v2`**
+  (`phase1/data/frozen/`; the published `frozen-matrix-v1` is kept beside it and
+  is what v2 is rebuilt from — see [docs/frozen-matrix-v2.md](docs/frozen-matrix-v2.md));
+  the flat TSV view is `data/processed/score_matrix_final.tsv`
+- **External held-out gene:** TP53 (192 splice SNVs in Studies A and B; 288, to
+  |offset| 12, in the evidence-strength analysis), never used for fitting
+- **Releases:** v1.0.0 (tag `v1.0.0-submission`, "the analysis as submitted") and
+  v2.0.0 (tag `v2.0.0-submission`, which adopted `frozen-matrix-v2`) archived the
+  repository with Study A as its manuscript; Study B has no release of its own and
+  reads the same frozen matrices.
+
+Studies A and B are **two related analyses** over the same frozen matrix. They
 answer different questions and have separate entry points.
 
 ### Study A — calibration and fusion (an earlier manuscript)
@@ -213,7 +277,7 @@ circular with its SGE).
 - Results: `results/tables/`, `results/figures/`
 - Method/results detail: `docs/milestone1`–`milestone8b`
 
-## Study B headline result
+### Study B headline result
 
 On the splice subset (N = 1,781), meta Spearman ρ vs. the functional gold standard:
 
@@ -235,7 +299,7 @@ is structurally blind to splice. Models are **complementary** — each strong on
 its own regime. Full results: [docs/milestone8_results.md](docs/milestone8_results.md)
 and [docs/milestone8b_results.md](docs/milestone8b_results.md).
 
-## Repository layout
+### Repository layout (Studies A and B)
 
 ```
 variant-fm-benchmark/
@@ -264,7 +328,7 @@ variant-fm-benchmark/
 └── refs/                      scoring provenance scripts (FASTA/GTF binaries git-ignored)
 ```
 
-## Installation (CPU-only — no GPU)
+### Installation (Studies A and B; CPU-only — no GPU)
 
 ```bash
 git clone <repo-url> && cd variant-fm-benchmark
@@ -275,7 +339,7 @@ pip install -r requirements.txt
 Python 3.9; tested with pandas 2.3.3 / numpy 2.0.2 / scipy 1.13.1 /
 scikit-learn 1.6.1 / matplotlib 3.9.4.
 
-## Reproduce the results
+### Reproduce Studies A and B
 
 Clean-clone reproduction is two commands per study — install, then run. Neither
 re-scores any model: both start from the frozen matrix that ships in the repo.
@@ -322,25 +386,6 @@ regenerated** — `reproduce_calibration.py` writes all of it except the
 a module that neither script runs, so the entry points cannot fall behind the
 pipeline again.
 
-**Evidence strength (the current manuscript; branch `evidence/rework`):**
-```bash
-python scripts/reproduce_evidence.py
-```
-Rebuilds the wider analysis set (intron-side SNVs at 1 <= |offset| <= 50, three
-strata, three ClinVar arms) and runs the evidence-strength stages on it: the
-ClinGen SVI fixed cut points, the Pejaver-style score-to-evidence intervals, the
-territory and ClinVar-arm metrics, the in-frame attribution, and the two external
-genes. Writes `phase1/reports/evidence/`. It leaves `phase1/reports/phase1/`
-untouched, so the published tables stay beside it as the control. Five kinds of
-input are downloads or model re-scores rather than analysis steps and are tracked
-with checksums or provenance records instead of rebuilt (see the section above).
-The stages also write the printed main and supplementary tables and the figures, and,
-after release 3.0.1, sensitivity, specificity, coverage and ROC curves at the evidence
-thresholds (`docs/practical-metrics-summary.md`). It
-ran under Python 3.12 with the exact package set in `requirements-evidence.lock.txt`;
-the companion atlas repository is found through `EVID_ATLAS_REPO`, or as a checkout
-named `functional-standard-atlas` beside this one.
-
 **Study B — coverage & complementarity:**
 ```bash
 pip install -r requirements.txt
@@ -351,7 +396,7 @@ regenerates every table in `results/tables/` and all three figures in
 `results/figures/`. All randomness is seeded (`np.random.default_rng(20260619)`),
 so output is deterministic. The script prints the headline splice ranking at the end.
 
-### Reproducibility scope — what is and is not reproducible
+#### Reproducibility scope — what is and is not reproducible
 
 **The analyses above are fully reproducible on CPU from the committed matrix.**
 **The upstream model *scores*** were not all reproducible in the published
@@ -370,7 +415,7 @@ The TP53 external validation therefore uses all ten predictors under v2 (an
 [docs/column-provenance.md](docs/column-provenance.md) and the manifests beside
 the matrix.
 
-## The final evaluation matrix — `data/processed/score_matrix_final.tsv`
+### The final evaluation matrix — `data/processed/score_matrix_final.tsv`
 
 One row per SNV (21,410). Key columns:
 - **Variant:** `gene, chrom, pos, ref, alt, region_class, splice_class, intron_offset, hgvs_nt`
@@ -384,7 +429,7 @@ One row per SNV (21,410). Key columns:
 **Directionality** (see `scripts/phase3_lib.py` `ORIENT`): all oriented so higher =
 more pathogenic. GPN-MSA and gnomAD AF are negated; functional pathogenicity = `-functional_score`.
 
-## Data acquisition (inputs NOT committed — large / re-downloadable)
+### Data acquisition (inputs NOT committed — large / re-downloadable)
 
 `data/raw/` and the large `refs/` binaries are git-ignored. To rebuild the pipeline
 from scratch (not needed to reproduce results — the final matrix ships in the repo):
@@ -398,7 +443,7 @@ from scratch (not needed to reproduce results — the final matrix ships in the 
 | GPN-MSA scores | HuggingFace `songlab/gpn-msa-hg38-scores` (remote tabix) | only the small `.tbi` index is local |
 | MaveDB SGE score sets | MaveDB API `api.mavedb.org/api/v1` (URNs below) | the functional gold standard |
 
-## Models / tools evaluated
+### Models / tools evaluated
 
 | Model | Kind | Version / source |
 |---|---|---|
@@ -412,7 +457,7 @@ from scratch (not needed to reproduce results — the final matrix ships in the 
 | phyloP / phastCons | conservation | UCSC 100-way |
 | gnomAD AF | frequency baseline | gnomAD v4 |
 
-## Functional gold-standard datasets (cite & attribute)
+### Functional gold-standard datasets (cite & attribute)
 
 Primary SGE/MAVE score set per gene (the independent gold standard):
 
@@ -431,11 +476,22 @@ their MANE-Select RefSeq equivalents and validated 12/12 against MaveDB's own
 post-mapping (see [docs/milestone2_goldstandard.md](docs/milestone2_goldstandard.md),
 [docs/milestone4_candidate_genes.md](docs/milestone4_candidate_genes.md)).
 
+### Status of Studies A and B
+
+Both analyses are complete and reproducible on CPU from the committed frozen
+matrices. The three model columns that could not be regenerated byte-identically
+in `frozen-matrix-v1` were re-scored under pinned environments for
+`frozen-matrix-v2`, which is the analysis set the manuscript reports (see
+"Reproducibility scope" above). Pending future work: Evo2 / ESM (need GPU; columns
+reserved as NA).
+
 ## Credentials
 
 No credentials are needed to reproduce the results. **Re-scoring** AlphaGenome
-requires a Google AlphaGenome API key, read **only** from the environment variable
-`ALPHAGENOME_API_KEY` (never hard-coded, cached, or committed):
+requires a Google AlphaGenome API key, never hard-coded, cached, or committed. The current
+study's `scripts/stage_E17/score_official.py` reads it from `ALPHAGENOME_API_KEY` or
+`~/.config/alphagenome/key`; Study B's `scripts/91_score_alphagenome.py` reads it **only**
+from the environment variable `ALPHAGENOME_API_KEY`:
 ```bash
 export ALPHAGENOME_API_KEY=...   # only for scripts/91_score_alphagenome.py
 ```
@@ -455,12 +511,3 @@ responsibility for the content.
 Code: MIT (see [LICENSE](LICENSE)). Third-party data and model scores retain their
 own licenses (CC0 / CC BY 4.0 for MaveDB sets; AlphaMissense CC BY-NC-SA 4.0,
 non-commercial) — see the table above and the data-licensing note in `LICENSE`.
-
-## Status
-
-Both analyses are complete and reproducible on CPU from the committed frozen
-matrices. The three model columns that could not be regenerated byte-identically
-in `frozen-matrix-v1` were re-scored under pinned environments for
-`frozen-matrix-v2`, which is the analysis set the manuscript reports (see
-"Reproducibility scope" above). Pending future work: Evo2 / ESM (need GPU; columns
-reserved as NA).
