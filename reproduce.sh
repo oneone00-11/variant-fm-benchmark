@@ -72,12 +72,14 @@ environment is a Docker image, in which every committed output was written:
         -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh fetch      # online
     docker run --rm --platform linux/amd64 --network none --user "$(id -u):$(id -g)" \
         -v "$PWD:/repo" -w /repo "$IMAGE" bash container/run.sh verify     # no network
-There the run ends REPRODUCED. Run natively, expect three differences from it (README,
-the reproduction section):
+There the run ends REPRODUCED. Run natively, expect four kinds of difference from it
+(README, "Without Docker: numerical agreement only"):
   - PNG figures whose compressed bytes differ while every pixel is the same;
   - the TP53 manifest's exact count of re-scored values identical to the archived ones
     (24 of 24 on arm64, 23 of 24 in the image);
-  - numbers that differ in their last digits.
+  - numbers that differ in their last digits;
+  - three files that record the hashes of files that differ (the supplementary tables'
+    manifest, the layout's manifest and the README sheet of the supplementary workbook).
 To compare the PNG figures pixel by pixel with the committed ones:
     .venv/bin/python scripts/stage_B6/compare_png_pixels.py
 EOF

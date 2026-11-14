@@ -2895,3 +2895,17 @@ the reference image, with the same scripts and the same inputs but the manuscrip
 - The scope check's first run is void: git crashed in the image while reading one file of
   the base (`run_log/check_scope_20261114T172016Z.void.txt`); run again, no output
   changed (`scripts/stage_E9/scope_e9_s2.json`).
+
+## The note after a native run names the README's section and the four kinds of difference (stage E9, after the rehearsal, 2026-11-14)
+
+Why: in the rehearsal of the README (E9.5), the reader of the native path found that the note
+`reproduce.sh` prints after the verdict points to "README, the reproduction section", a
+section the README does not have, and lists three kinds of difference where the README, and
+the run, have four. The note is the only thing changed (E9.5 lets a prompt's text be
+corrected without the author's decision; nothing it prints is read by a test but the image's
+commands and the pixel comparison's, which stay).
+
+- **`reproduce.sh`**: the note names the README's section, "Without Docker: numerical
+  agreement only", and adds the fourth kind: three files that record the hashes of files that
+  differ (the supplementary tables' manifest, the layout's manifest and the README sheet of the
+  supplementary workbook). The run and its exit status are unchanged.

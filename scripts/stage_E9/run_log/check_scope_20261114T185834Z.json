@@ -1,0 +1,47 @@
+{
+ "script": "scripts/stage_E18/check_scope.py",
+ "argv": [
+  "/repo/scripts/stage_E18/check_scope.py",
+  "--scope",
+  "scripts/stage_E9/scope_e9_c6a.json",
+  "--base",
+  "b8d56f1"
+ ],
+ "git_commit": "b8d56f1585a5d3cb04ebd58ad11f9877ecdf8601",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E18/check_scope.py": "40278427a7b8b3538fd37311c1d41cc1e112b72d2bfbbf259ccb56726e10dd0c",
+  "scripts/stage_E9/_runlog.py": "0104bfdfd2dd516b0f538490b9fa68081f378989ca7dfd97f7bbe05f7c5c950d"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-14T18:57:23+00:00",
+ "end_utc": "2026-11-14T18:58:34+00:00",
+ "inputs": [
+  {
+   "path": "scripts/stage_E9/scope_e9_c6a.json",
+   "bytes": 197,
+   "sha256": "d080e75880f627af992edd6ab7cf649e61d166c00223ca30fc21c64ae47d0500"
+  }
+ ],
+ "outputs": [],
+ "exception": null,
+ "notes": {
+  "scope": "scripts/stage_E9/scope_e9_c6a.json",
+  "base": "b8d56f1",
+  "head": "working tree",
+  "files": {},
+  "declared_but_unchanged": [],
+  "outside": []
+ }
+}
