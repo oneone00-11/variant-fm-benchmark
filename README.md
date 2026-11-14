@@ -29,11 +29,12 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   within 50 nt, 6,427 of them at 3–50 nt.
 - **Reproducing it**, three ways (below):
   - in the reference Docker image: Docker, about 730 MB of downloads (the image and the
-    inputs), 35 to 60 minutes on a GitHub-hosted runner; it ends `REPRODUCED`, every
+    inputs), 35 to 70 minutes on a GitHub-hosted runner; it ends `REPRODUCED`, every
     output byte for byte;
   - the quick check: Python 3.12, two to three minutes, no data download; it ends `CHECKED`;
-  - natively: Python 3.12 and the same downloads, about 40 minutes of computation on an
-    Apple M5; on macOS arm64 it ends `NOT REPRODUCED`, for the differences listed below.
+  - natively: Python 3.12, the same data downloads and about 120 MB of Python packages,
+    about 45 minutes on an Apple M5, downloads included; on macOS arm64 it ends
+    `NOT REPRODUCED`, for the differences listed below.
 - **Where the outputs are:** `phase1/reports/evidence/`, with the analysis set and the
   external-gene tables under `phase1/data/evidence/`. For every table, figure and
   supplementary table of the manuscript, `phase1/reports/evidence/layout/contents.csv`
@@ -82,7 +83,8 @@ cd variant-fm-benchmark
 git checkout evidence/rework
 ```
 
-Every command below runs in that folder. A reader who starts from a release archive, a
+Each of the three ways below starts there: every command below runs in that folder. A
+reader who starts from a release archive, a
 `git archive` of a tag with no `.git`, unpacks it and runs them in the unpacked folder
 instead; `--verify` then compares with the tree as first unpacked.
 
@@ -92,8 +94,9 @@ On this branch, after release 3.0.1, the reference environment is a Docker image
 every committed output was written in it (stage B6): Python 3.12.13 on Debian bookworm,
 linux/amd64, with exactly the packages of `requirements-evidence.lock.txt`, each checked
 against the hash of its wheel. It is built from `container/Dockerfile`;
-`container/ENVIRONMENT.json` records its digests and what it holds. With Docker
-installed:
+`container/ENVIRONMENT.json` records its digests and what it holds. On Apple silicon
+Docker runs the image under amd64 emulation (here Colima, a virtual machine of 6 CPUs
+and 8 GB of memory, with Rosetta). With Docker installed, in one shell:
 
 ```bash
 IMAGE=ghcr.io/oneone00-11/variant-fm-benchmark-reference@sha256:0dc03436cd94cf46effe25160efa3015ab9808852179d58908c72e16e0537776
@@ -106,10 +109,12 @@ docker run --rm --platform linux/amd64 --network none --user "$(id -u):$(id -g)"
 ```
 
 The image is a 282 MB download. On first use the first step downloads about 450 MB
-into gitignored folders and checks each file before any stage runs:
+into gitignored folders and checks each file before any stage runs (the folder grows by
+about 1.2 GB, the chromosomes kept both compressed and unpacked):
 - the ClinVar GRCh38 release of 15 June 2026: 192 MB, from NCBI's archive, or NCBI's
   file unchanged from this release's Zenodo record (10.5281/zenodo.23051009) when NCBI
-  cannot serve it; md5 against NCBI's file, sha256 against the analysis-set manifest;
+  cannot serve it; md5 against NCBI's file, sha256 against the analysis-set manifest.
+  Nothing is printed while it downloads; on 2026-11-14 NCBI served it in 9 to 19 minutes;
 - the atlas release archive: 50 MB, from Zenodo; md5 against Zenodo's;
 - the four Ensembl release-112 chromosomes of the E16 genes: 165 MB; sha256 against each
   gene's raw manifest;
@@ -125,15 +130,18 @@ the host user. The maths are single-threaded, and OpenBLAS's kernels and numpy's
 dispatch are held to one instruction level on every CPU (`container/run.sh`).
 
 `--verify` compares every committed output with what the run writes: in a clone, the
-files as HEAD has them, and in a release archive, the tree as first unpacked. A
-committed output the run leaves untouched fails too, unless
-`scripts/reproduce_inputs.txt` lists it as an input the stages only read. The run ends
-`REPRODUCED` when every output matches byte for byte (a manifest's build time aside);
-otherwise it lists what differs and exits non-zero. It ended `REPRODUCED` on
-GitHub-hosted runners (ubuntu-24.04, 2026-11-13 and 2026-11-14; the first step took 1 to
-2.5 minutes and the second 36 to 57 minutes, by the runner's processor) and on an Apple
-M5 Mac running the image under amd64 emulation (Rosetta, through Colima; the second step
-took about 75 minutes).
+files as HEAD has them, and in a release archive, the tree as first unpacked, which the
+first `--verify` there records in `.reproduce_baseline/` and every later one reuses, so
+no unpacked file is to be changed before it. A committed output the run leaves untouched
+fails too, unless `scripts/reproduce_inputs.txt` lists it as an input the stages only
+read. The run ends `REPRODUCED` when every output matches byte for byte (but for the
+build time six records carry, which they keep afterwards; in a clone
+`git checkout -- .` puts them back); otherwise it lists what differs and exits non-zero.
+It ended `REPRODUCED` on GitHub-hosted runners (ubuntu-24.04, 2026-11-13 and 2026-11-14;
+the first step took 1 to 2.5 minutes and the second 36 to 66 minutes, by the runner's
+processor) and on an Apple M5 Mac running the image under amd64 emulation (Rosetta,
+through Colima; the first step took 19 to 27 minutes, most of it downloading, and the
+second 43 to 75 minutes).
 
 `.github/workflows/reproduce.yml` runs these two steps on every push to this branch
 that changes more than documentation and on every release tag, and requires
@@ -151,43 +159,72 @@ arm64 without emulation.
 bash reproduce.sh --check
 ```
 
-It builds `.venv` from `requirements-evidence.lock.txt` with the machine's own Python
-3.12 (a minute or two, the only network use), then checks every
-checksum the repository's manifests and provenance records carry about files it
-holds: the analysis set and the sources it was built from, the external-gene tables
+It builds `.venv` from `requirements-evidence.lock.txt` with the machine's own Python 3.12
+(`python3.12`, or `python3` where that is 3.12): about 120 MB of packages, which pip also
+keeps in its cache in the home folder, and a minute or two, the only network use. It then
+checks every checksum the repository's manifests and provenance records carry about files
+it holds: the analysis set and the sources it was built from, the external-gene tables
 and the model scores they merge, the frozen matrices and their rescored columns, the
 reference cache, and the supplementary tables with their sources (on this branch
-also the E16 and E16b deposits). The ClinVar release, the atlas and the E16
-chromosomes are checked too when they are here. It then runs the test
-suite, which checks the printed tables against the files they are drawn from. The tests
-that need a file the check does not download skip, each giving its reason: the atlas, the
-E16 chromosomes and the label audit's files, which the full run downloads, and the texts
-of the manuscripts, which the repository does not hold. In a release archive, with no
-`.git`, the tests that read the repository's history skip too. It
-recomputes nothing, prints how many checksums it checked, and ends with `CHECKED` or
-lists what failed; the full run above is what rebuilds every output. It took 144 seconds
-on a GitHub-hosted runner (ubuntu-24.04) and 122 seconds on an Apple M5, building `.venv`
+also the E16 and E16b deposits). It names each recorded file that is not here, with when
+its checksum is checked: the ClinVar release, the atlas, the E16 chromosomes and the label
+audit's five files in the full run, which downloads them; five files kept only in
+gitignored caches (E19's ClinVar variant summary and four ENIGMA specification files),
+which no stage reads and the full run does not download, only where those caches hold
+them. It then runs the test suite, which checks the printed tables against the files they
+are drawn from. The tests that need a file the check does not download skip: the atlas,
+the E16 chromosomes and the label audit's files, which the full run downloads, and the
+texts of the manuscripts, which the repository does not hold. In a release archive, with
+no `.git`, the tests that need the repository's history or its list of tracked files skip
+too. pytest marks each skip with an `s`;
+`.venv/bin/python -m pytest -q -p no:cacheprovider -rs` lists the skipped tests with their
+reasons. The warnings pytest lists (deprecations, and on macOS numpy's
+RuntimeWarnings from matrix products in `phase1/tests/test_evid_fusion_stability.py`) do
+not count against the check, and matplotlib writes its font cache in the home folder. It
+recomputes nothing, prints how many checksums it checked, and ends with the line
+`CHECKED: every recorded checksum matches and every test passes.`, or with
+`CHECK FAILED: see above.` after what failed; the full run above is what rebuilds every
+output. On 2026-11-14 it checked 692 checksums over 595 files, and 1,259 tests passed and
+29 skipped in a clone, 1,246 and 42 in a release archive; it took 144 seconds on a
+GitHub-hosted runner (ubuntu-24.04) and 122 seconds on an Apple M5, building `.venv`
 included.
 
 ### Without Docker: numerical agreement only
 
-`bash reproduce.sh` builds `.venv` from `requirements-evidence.lock.txt` with the
-machine's own Python 3.12, then runs `scripts/reproduce_evidence.py --fetch-inputs
---verify`. It needs the same downloads, about 40 minutes of computation on an Apple M5, and
-network access. The machine's maths libraries can move the last digits of the numbers, so
-against the image's outputs this path agrees in the numbers only:
-- `NOT REPRODUCED`, on macOS arm64: an Apple M5 with macOS 26.6 (2026-11-13), and GitHub's
+```bash
+bash reproduce.sh
+```
+
+It builds `.venv` from `requirements-evidence.lock.txt` with the machine's own Python 3.12
+(`python3.12`, or `python3` where that is 3.12), then runs `scripts/reproduce_evidence.py
+--fetch-inputs --verify`. It needs network access: it downloads the inputs the image's
+first step does (about 450 MB) and about 120 MB of Python packages, and the folder takes
+about 2 GB at the end. On an Apple M5 on 2026-11-14 the whole command took 44 minutes, 19
+of them for the downloads.
+
+The run writes its outputs over the committed files; in a clone, `git checkout -- .` puts
+the committed ones back (`reproduce_report.txt`, one line per file, is ignored by git). Its
+verdict line is followed by a note: the image's two commands, the kinds of difference to
+expect here, and the command that compares the PNG figures pixel by pixel with the
+committed ones, `.venv/bin/python scripts/stage_B6/compare_png_pixels.py`. On macOS,
+scikit-learn prints RuntimeWarnings from matrix products (divide by zero, overflow and
+invalid value encountered in matmul); they do not change the verdict.
+
+The machine's maths libraries can move the last digits of the numbers, so against the
+image's outputs this path agrees in the numbers only:
+- `NOT REPRODUCED: every file not marked identical (listed above)`, with exit status 1, on
+  macOS arm64: an Apple M5 with macOS 26.6 (2026-11-13 and 2026-11-14), and GitHub's
   macos-15 runner, an Apple M1 (Virtual) with macOS 15.8.2 (2026-11-14). Of the 1,109 files
-  compared, 1,045 match byte for byte (1,046 on the M1) and 6 but for a build time, among
-  them every table the stages print and every PDF figure; 32 differ only in the last
-  digits of their numbers (31 on the M1, where
+  compared, 769 are inputs the stages only read. 1,045 match byte for byte (1,046 on the
+  M1) and 6 but for a build time, among them every table the stages print and every PDF
+  figure; 32 differ only in the last digits of their numbers (31 on the M1, where
   `phase1/reports/evidence/suppl_analyses/c5_jackknife_strong.csv` matches). The 22 PNG
-  figures differ in their compressed bytes, not their pixels, as Pillow writes them
-  there. And 4 differ otherwise, on both: the TP53 manifest counts 24 of 24
-  re-scored Nucleotide Transformer values identical where the image counts 23 (pandas'
-  default float parser on x86_64), and three files carry the hashes of files that differ:
-  the supplementary tables' manifest, the layout's manifest and the README sheet of the
-  supplementary workbook.
+  figures differ in their compressed bytes, not their pixels, as Pillow writes them there.
+  And 4 differ otherwise, on both: the TP53 manifest counts 24 of 24 re-scored Nucleotide
+  Transformer values identical where the image counts 23 (pandas' default float parser on
+  x86_64), and three files carry the hashes of files that differ: the supplementary
+  tables' manifest, the layout's manifest and the README sheet of the supplementary
+  workbook.
 - On a GitHub-hosted Linux runner (ubuntu-24.04, x86_64) this path last ran on
   2026-10-21, at commit 7125246, against outputs the image had just written, and ended
   `REPRODUCED NUMERICALLY`: every printed table and figure matched byte for byte, and 17
