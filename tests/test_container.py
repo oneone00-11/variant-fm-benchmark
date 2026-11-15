@@ -379,13 +379,21 @@ def test_the_image_jobs_check_out_the_whole_history(workflow, job):
 CHECKED = "CHECKED: every recorded checksum matches and every test passes."
 
 
-def test_the_quick_check_job_runs_as_a_reader_does_and_demands_checked():
+@pytest.mark.parametrize("workflow", ["reproduce.yml", "ci.yml"])
+def test_the_quick_check_job_runs_as_a_reader_does_and_demands_checked(workflow):
     """E9 (the author's decision of 2026-11-14): a required job runs `bash reproduce.sh
     --check` on Linux in a checkout with the whole history, fetching no input, and its
-    last line must be CHECKED."""
+    last line must be CHECKED. E10 (the author's decision of 2026-11-15): ci.yml, on a
+    push to main and on pull requests, runs the same job and nothing else."""
     import yaml
-    job = yaml.safe_load((REPO / ".github/workflows/reproduce.yml").read_text())["jobs"]["check"]
+    flow = yaml.safe_load((REPO / ".github/workflows" / workflow).read_text())
+    assert flow["defaults"]["run"]["shell"] == "bash"     # -eo pipefail: the pipe through tee
+    if workflow == "ci.yml":
+        assert set(flow["jobs"]) == {"check"}
+        assert flow[True] == {"push": {"branches": ["main"]}, "pull_request": None}  # `on:`
+    job = flow["jobs"]["check"]
     assert not job.get("continue-on-error") and job["runs-on"] == "ubuntu-24.04"
+    assert job["timeout-minutes"] == 60 and job["permissions"] == {"contents": "read"}
     steps = job["steps"]
     assert steps[0]["uses"].startswith("actions/checkout@") and steps[0]["with"]["fetch-depth"] == 0
     runs = "\n".join(s.get("run", "") for s in steps)

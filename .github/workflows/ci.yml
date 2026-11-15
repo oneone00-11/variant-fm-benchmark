@@ -1,29 +1,42 @@
 name: ci
 
+# On a push to main and on every pull request: the quick check a reader runs first from a
+# clone, `bash reproduce.sh --check`, with the runner's own Python 3.12, in a checkout with
+# the whole history and with no input fetched. It builds .venv from
+# requirements-evidence.lock.txt, checks every checksum the manifests and provenance
+# records carry about the files here, and runs the test suite, the tests that need a
+# fetched input or the companion atlas skipping. Its last line must be CHECKED. The same
+# job runs in reproduce.yml (job check), beside the full reproduction in the reference
+# image, on the branch the work is done on and on every release tag.
 on:
   push:
     branches: [main]
   pull_request:
 
+defaults:
+  run:
+    shell: bash        # -eo pipefail: a failure inside the pipe through tee fails the step
+
 jobs:
-  pytest:
-    runs-on: ubuntu-latest
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
-
+        with:
+          fetch-depth: 0          # the whole history: the tests that read it run as in a clone
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
         with:
           python-version: "3.12"
-
-      - name: Install the pinned analysis stack
-        run: pip install -r requirements.txt
-
-      # Everything pytest needs is tracked in the repo (the frozen matrix and
-      # the report CSVs ship under phase1/), so a clean clone runs the suite
-      # as-is. Tests that bind numbers to the unpublished manuscript draft on
-      # the author's Desktop skip by design when the draft is absent; the rest
-      # collect and pass. Reference behaviour on a clean clone: 48 collected /
-      # 44 passed / 4 skipped for the pre-revision suite, more as guardrail
-      # tests are added.
-      - name: Run the guardrail suite
-        run: pytest
+      - name: bash reproduce.sh --check (no input fetched)
+        run: |
+          start=$(date +%s)
+          bash reproduce.sh --check 2>&1 | tee "$RUNNER_TEMP/check.log"
+          echo "seconds: $(( $(date +%s) - start ))"
+      - name: Require CHECKED
+        run: |
+          tail -n 1 "$RUNNER_TEMP/check.log"
+          [ "$(tail -n 1 "$RUNNER_TEMP/check.log")" = \
+            "CHECKED: every recorded checksum matches and every test passes." ]

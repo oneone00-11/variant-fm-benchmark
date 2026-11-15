@@ -2909,3 +2909,24 @@ commands and the pixel comparison's, which stay).
   agreement only", and adds the fourth kind: three files that record the hashes of files that
   differ (the supplementary tables' manifest, the layout's manifest and the README sheet of the
   supplementary workbook). The run and its exit status are unchanged.
+
+## The workflow on main and on pull requests runs the quick check (stage E10, commit 1, 2026-11-15)
+
+Why: `ci.yml`, which runs on a push to `main` and on pull requests, still installed
+`requirements.txt`, the stack of the two earlier studies, and ran `pytest` with it; that
+stack has not run the present test suite. It was this workflow that failed after `main`
+was fast-forwarded to release 3.0.0 (see "After 3.0.0"), and its comment's counts ("48
+collected / 44 passed / 4 skipped") were long out of date. The author's decision
+(2026-11-15): before `main` is fast-forwarded to release 3.1.0, the workflow runs what the
+required `check` job of `reproduce.yml` runs, and a pull request from the branch to `main`
+tries it first. No output changes.
+
+- **`ci.yml`**: one job, `check`, as in `reproduce.yml`: ubuntu-24.04, the same actions
+  pinned by commit, a checkout with the whole history (`fetch-depth: 0`), Python 3.12, and
+  `bash reproduce.sh --check` with no input fetched, whose last line must be `CHECKED: every
+  recorded checksum matches and every test passes.` Its steps run in bash with `pipefail`,
+  so that a failure inside the pipe through `tee` fails the step; 60 minutes at most;
+  contents read only. The triggers are unchanged. The comment says what the job does and
+  gives no counts.
+- **Tests** (`tests/test_container.py`): the test of the quick check job runs on both
+  workflows, and for `ci.yml` also requires its one job and its triggers.
