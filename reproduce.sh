@@ -3,18 +3,19 @@
 # checked against the committed outputs:
 #
 #     bash reproduce.sh            # everything: about 25 minutes of computation
-#     bash reproduce.sh --check    # about five minutes, no data download: every
+#     bash reproduce.sh --check    # two to three minutes, no data download: every
 #                                  # recorded checksum, then the test suite
 #
 # It builds .venv with Python 3.12 from requirements-evidence.lock.txt (once), downloads
-# and checks the two public inputs the repository does not carry (the ClinVar release
-# from NCBI, the companion atlas release archive from Zenodo) and the four Ensembl
-# chromosomes the E16 genes' reference-base check reads, runs all stages of
+# and checks the public inputs the repository does not carry (the ClinVar release from
+# NCBI, the companion atlas release archive from Zenodo, the four Ensembl chromosomes
+# the E16 genes' reference-base check reads, and the label source audit's five files
+# from the sources scripts/reproduce_sources.json lists), runs all stages of
 # scripts/reproduce_evidence.py, and compares every output with the committed one. It
-# exits non-zero unless all of them match. First use downloads about 530 MB: about
-# 120 MB of Python packages for .venv, and 410 MB of data (ClinVar 192 MB, the atlas
-# 50 MB, the chromosomes 165 MB), which can take an hour when NCBI is slow. Needs
-# python3.12 and network access.
+# exits non-zero unless all of them match. First use downloads about 120 MB of Python
+# packages for .venv and about 450 MB of data (ClinVar 192 MB, the atlas 50 MB, the
+# chromosomes 165 MB, the label audit's files 41 MB), which can take an hour when NCBI
+# is slow. Needs python3.12 and network access.
 set -euo pipefail
 cd "$(dirname "$0")"
 

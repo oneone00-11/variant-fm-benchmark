@@ -101,7 +101,7 @@ Outputs land in `phase1/reports/evidence/`; stages 23 to 27 also write a page un
 `suppl_analyses/`, and the layout layer (stage 41) under its `layout/`.
 
     bash reproduce.sh                                       # from a fresh clone: everything
-    bash reproduce.sh --check                               # five minutes, no download
+    bash reproduce.sh --check                               # two to three minutes, no download
     python scripts/reproduce_evidence.py --fetch-inputs --verify
     python scripts/reproduce_evidence.py
     python scripts/reproduce_evidence.py --from 3      # resume at a stage
@@ -133,10 +133,11 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 PHASE1 = REPO / "phase1"
 
-# The two public inputs this repository does not carry, and where --fetch-inputs
-# gets them. NCBI's archive keeps every release; the weekly directory is the
-# fallback. The sha256 is the one phase1/data/evidence/analysis_set_v1.manifest.json
-# records (a test keeps the two equal).
+# The ClinVar release and the atlas release archive, two of the public inputs this
+# repository does not carry, and where --fetch-inputs gets them. NCBI's archive keeps
+# every release; the weekly directory is the fallback. The sha256 is the one
+# phase1/data/evidence/analysis_set_v1.manifest.json records (a test keeps the two
+# equal).
 CLINVAR_VCF = PHASE1 / "data" / "evidence" / "clinvar" / "clinvar_20260615.vcf.gz"
 # Tried in order: (url, url of the source's own md5 file, or None). A mirror without
 # an md5 file is checked by the sha256 alone, which is the check that matters.
@@ -146,7 +147,11 @@ CLINVAR_SOURCES = [
      _NCBI + "archive_2.0/2026/clinvar_20260615.vcf.gz.md5"),
     (_NCBI + "weekly/clinvar_20260615.vcf.gz",
      _NCBI + "weekly/clinvar_20260615.vcf.gz.md5"),
-    # NCBI's file, unchanged, in this release's Zenodo record (10.5281/zenodo.23051009)
+    # NCBI's file, unchanged, in this release's Zenodo record (3.1.0,
+    # 10.5281/zenodo.24243120), and after it in release 3.0.1's (10.5281/zenodo.23051009),
+    # which holds the same file and is asked when this release's record does not
+    # serve it, as before the record is published
+    ("https://zenodo.org/api/records/24243120/files/clinvar_20260615.vcf.gz/content", None),
     ("https://zenodo.org/api/records/23051009/files/clinvar_20260615.vcf.gz/content", None),
 ]
 CLINVAR_URLS = [url for url, _ in CLINVAR_SOURCES]
@@ -298,7 +303,7 @@ def _digest(path: Path, algo: str) -> str:
 
 
 # --------------------------------------------------------------------------
-# --fetch-inputs: the two public inputs this repository does not carry
+# --fetch-inputs: the public inputs this repository does not carry
 # --------------------------------------------------------------------------
 def _permanent(e: urllib.error.HTTPError) -> bool:
     """A client error that another attempt will not cure (a 408 or 429 may)."""
@@ -1284,7 +1289,7 @@ def main() -> None:
                          "first step of a run in the reference image, whose stages then "
                          "run with no network (container/run.sh)")
     ap.add_argument("--check", action="store_true",
-                    help="quick path, about five minutes, no data download: check every "
+                    help="quick path, two to three minutes, no data download: check every "
                          "checksum the manifests and provenance records carry, then run "
                          "the test suite; no stage runs")
     ap.add_argument("--verify", action="store_true",

@@ -1,10 +1,10 @@
 # Variant-FM-Benchmark
 
 This repository holds the analyses of three manuscripts on splice-region variant effect
-predictors against saturation genome editing (SGE) data. The current one comes first, on
-the branch `evidence/rework`; the two earlier ones, Studies A and B, follow under
-[Earlier manuscripts](#earlier-manuscripts-studies-a-and-b), each with its tags and the
-commands that reproduce it.
+predictors against saturation genome editing (SGE) data. The current one comes first: it
+is release 3.1.0, tag `v3.1.0-submission`. The two earlier ones, Studies A and B, follow
+under [Earlier manuscripts](#earlier-manuscripts-studies-a-and-b), each with its tags and
+the commands that reproduce it.
 
 ## Evidence strength of splice-region variant effect predictors against saturation genome editing data, by distance from the exon and across genes
 
@@ -13,12 +13,12 @@ splice-region predictors support against saturation genome editing data, by dist
 from the exon boundary, and do the thresholds hold in genes they were not fitted on?
 
 - **Analysis set:** `analysis_set_v1` (`phase1/data/evidence/`), 8,853 intron-side
-  SNVs within 50 nt of the exon boundary in the seven genes (BRCA1, BRCA2, BARD1, PALB2,
-  RAD51C, VHL, BAP1), 7,997 of them at 3–50 nt, the analysis range; 8,501 labelled by each
+  SNVs within 50 bp of the exon boundary in the seven genes (BRCA1, BRCA2, BARD1, PALB2,
+  RAD51C, VHL, BAP1), 7,997 of them at 3–50 bp, the analysis range; 8,501 labelled by each
   deposit's own functional classification; built from the companion atlas score
   matrix (release v2.5.0) and the ClinVar GRCh38 release of 15 June 2026.
-- **External genes:** DDX3X (1,857 intron-side SNVs to 25 nt; labelled by the
-  deposit's own classification) and TP53 (288 SNVs to 12 nt). Four further HAP1
+- **External genes:** DDX3X (1,857 intron-side SNVs to 25 bp; labelled by the
+  deposit's own classification) and TP53 (288 SNVs to 12 bp). Four further HAP1
   deposits (CTCF, SFPQ, RAD51D, XRCC2) have their records, GRCh38 coordinates and
   labels from the deposits' own score ranges (stage E16,
   `docs/newgenes-record-check.md`), and a fifth, SBDS, its labels from the score
@@ -26,7 +26,7 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
   it (stage E16b, `docs/sbds-record-check.md`). The five were scored only after the
   seven genes' thresholds were frozen (tag `frozen-thresholds-v1`), and all seven external
   genes are tested at those thresholds (stage E18). The seven hold 7,036 intron-side SNVs
-  within 50 nt, 6,427 of them at 3–50 nt.
+  within 50 bp, 6,427 of them at 3–50 bp.
 - **Reproducing it**, three ways (below):
   - in the reference Docker image: Docker, about 730 MB of downloads (the image and the
     inputs), 35 to 70 minutes on a GitHub-hosted runner; it ends `REPRODUCED`, every
@@ -71,16 +71,18 @@ from the exon boundary, and do the thresholds hold in genes they were not fitted
 - **Environment:** Python 3.12 with the package set in
   `requirements-evidence.lock.txt`. Changes between rounds are recorded in
   `docs/evidence-change-log.md`; data terms per column in `LICENSE-DATA`.
-- **Archive:** release 3.0.1, tag `v3.0.1-submission`, on Zenodo as version DOI
-  10.5281/zenodo.23051009 (all versions: 10.5281/zenodo.22674887), which also holds
-  the ClinVar file. This branch is after it.
+- **Archive:** release 3.1.0, tag `v3.1.0-submission`, on Zenodo as version DOI
+  10.5281/zenodo.24243120 (all versions: 10.5281/zenodo.22674887). Beside the tag's archive
+  (a `git archive` of it), the record holds the ClinVar file, the label audit's three
+  MaveDB files, the reference image as a `docker save` archive, and VariantValidator's
+  raw replies to the HGVS check.
 
 ### Getting the code
 
 ```bash
 git clone https://github.com/oneone00-11/variant-fm-benchmark
 cd variant-fm-benchmark
-git checkout evidence/rework
+git checkout v3.1.0-submission
 ```
 
 Each of the three ways below starts there: every command below runs in that folder. A
@@ -90,7 +92,7 @@ instead; `--verify` then compares with the tree as first unpacked.
 
 ### In the reference environment (Docker)
 
-On this branch, after release 3.0.1, the reference environment is a Docker image, and
+Since release 3.1.0 the reference environment is a Docker image, and
 every committed output was written in it (stage B6): Python 3.12.13 on Debian bookworm,
 linux/amd64, with exactly the packages of `requirements-evidence.lock.txt`, each checked
 against the hash of its wheel. It is built from `container/Dockerfile`;
@@ -112,18 +114,28 @@ The image is a 282 MB download. On first use the first step downloads about 450 
 into gitignored folders and checks each file before any stage runs (the folder grows by
 about 1.2 GB, the chromosomes kept both compressed and unpacked):
 - the ClinVar GRCh38 release of 15 June 2026: 192 MB, from NCBI's archive, or NCBI's
-  file unchanged from this release's Zenodo record (10.5281/zenodo.23051009) when NCBI
-  cannot serve it; md5 against NCBI's file, sha256 against the analysis-set manifest.
-  Nothing is printed while it downloads; on 2026-11-14 NCBI served it in 9 to 19 minutes;
+  file unchanged from this release's Zenodo record (10.5281/zenodo.24243120), and after
+  it from release 3.0.1's (10.5281/zenodo.23051009), when NCBI cannot serve it; md5
+  against NCBI's file, sha256 against the analysis-set manifest. Nothing is printed
+  while it downloads; on 2026-11-14 NCBI served it in 9 to 19 minutes;
 - the atlas release archive: 50 MB, from Zenodo; md5 against Zenodo's;
 - the four Ensembl release-112 chromosomes of the E16 genes: 165 MB; sha256 against each
   gene's raw manifest;
-- the label source audit's five uncommitted files: 41 MB, from MaveDB and from the
-  publisher's static addresses (Europe PMC's zip of the paper's supplementary files after
-  them), each from the sources `scripts/reproduce_sources.json` lists for it, tried in
-  order; a file counts only with the sha256 its manifest records, and a reply that is not
-  the file is a failed attempt. If no source serves a file, the step stops and names each
-  source tried.
+- the label source audit's five uncommitted files: 41 MB. The three MaveDB files come
+  from this release's Zenodo record, and from MaveDB when the record does not serve
+  them; the other two from the publisher's static addresses (Europe PMC's zip of the
+  paper's supplementary files after them). Each comes from the sources
+  `scripts/reproduce_sources.json` lists for it, tried in order; a file counts only with
+  the sha256 its manifest records, and a reply that is not the file is a failed attempt.
+  If no source serves a file, the step stops and names each source tried.
+
+The image is also in this release's Zenodo record, as
+`variant-fm-benchmark-reference-image.tar`, a `docker save` archive (879,031,296 bytes,
+sha256 `e46e2e95a9752e9dd6d82556af7aa2f355b471d75d20c8aed773fe9a6ef51d0d`).
+`docker load -i variant-fm-benchmark-reference-image.tar` gives it the name
+`ghcr.io/oneone00-11/variant-fm-benchmark-reference:b6-9b15c3478dd9`, a tag and not the
+registry's digest, so the two commands then run after
+`IMAGE=ghcr.io/oneone00-11/variant-fm-benchmark-reference:b6-9b15c3478dd9`.
 
 The second step runs every stage of `scripts/reproduce_evidence.py` and `--verify`, as
 the host user. The maths are single-threaded, and OpenBLAS's kernels and numpy's
@@ -143,7 +155,7 @@ processor) and on an Apple M5 Mac running the image under amd64 emulation (Roset
 through Colima; the first step took 19 to 27 minutes, most of it downloading, and the
 second 43 to 75 minutes).
 
-`.github/workflows/reproduce.yml` runs these two steps on every push to this branch
+`.github/workflows/reproduce.yml` runs these two steps on every push to `evidence/rework`
 that changes more than documentation and on every release tag, and requires
 `REPRODUCED`; then it runs the test suite in the same image with no network
 (`bash container/run.sh test`), which must pass and leave the tree as it was. A second
@@ -152,6 +164,9 @@ clone with the whole history and with no input fetched, and requires `CHECKED`. 
 keeps its `reproduce_report.txt`, one line per output, and the files that are not
 identical as artifacts. Not tested: Apptainer or Singularity, Windows, and the image on
 arm64 without emulation.
+
+`.github/workflows/ci.yml` runs the quick check below on every push to `main` and on
+every pull request, and requires `CHECKED`.
 
 ### Quick check: no data download
 
@@ -165,7 +180,7 @@ keeps in its cache in the home folder, and a minute or two, the only network use
 checks every checksum the repository's manifests and provenance records carry about files
 it holds: the analysis set and the sources it was built from, the external-gene tables
 and the model scores they merge, the frozen matrices and their rescored columns, the
-reference cache, and the supplementary tables with their sources (on this branch
+reference cache, and the supplementary tables with their sources (since release 3.1.0
 also the E16 and E16b deposits). It names each recorded file that is not here, with when
 its checksum is checked: the ClinVar release, the atlas, the E16 chromosomes and the label
 audit's five files in the full run, which downloads them; five files kept only in

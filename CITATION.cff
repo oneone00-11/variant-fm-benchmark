@@ -19,7 +19,8 @@ abstract: >-
   (BRCA1, BRCA2, BARD1, PALB2, RAD51C, VHL, BAP1): the published SpliceAI cut
   points of the ClinGen splicing recommendation, predictor-specific interval
   calibration of PP3/BP4 likelihood ratios under leave-one-gene-out evaluation,
-  and transfer to two genes outside the seven (DDX3X and TP53).
+  and tests of the published cut points and the fitted thresholds in seven
+  external genes (DDX3X, TP53, CTCF, SFPQ, RAD51D, XRCC2, SBDS).
 keywords:
   - variant effect prediction
   - saturation genome editing
@@ -30,18 +31,18 @@ keywords:
   - reproducibility
 license: MIT
 license-url: "https://opensource.org/licenses/MIT"
-version: "3.0.1"
-date-released: "2026-09-30"
+version: "3.1.0"
+date-released: "2026-11-15"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.22674887"
     description: Concept DOI for all versions of the archived repository
   - type: doi
-    value: "10.5281/zenodo.23051009"
+    value: "10.5281/zenodo.24243120"
     description: Version DOI of this release
 preferred-citation:
   type: article
-  title: "Evidence strength of splice-region variant effect predictors assessed against saturation genome editing data in seven cancer susceptibility genes"
+  title: "Evidence strength of splice-region variant effect predictors against saturation genome editing data, by distance from the exon and across genes"
   authors:
     - family-names: Zhang
       given-names: Ningyi

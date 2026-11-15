@@ -6,8 +6,12 @@
   "\"checked\" is the day the source was last seen to serve the file with the manifest's sha256 (scripts/stage_E9/measure_label_audit_sources.py and its run record)."
  ],
  "release_archive": {
-  "what": "This release's own archive of the inputs, tried before every other source for each file it holds. Empty until the release is made: then the address of each file the archive holds goes into \"urls\", under the file's path, and nothing else changes.",
-  "urls": {}
+  "what": "This release's own archive of the inputs, tried before every other source for each file it holds: the Zenodo record of release 3.1.0 (10.5281/zenodo.24243120), which holds the three MaveDB files, each under its own name, and not the two publishers' supplementary tables (Huang 2025, Sahu 2025). A record serves nothing before it is published: until then each address here is a failed attempt and the next source is tried.",
+  "urls": {
+   "phase1/data/evidence/label_audit_cache/bap1/calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json": "https://zenodo.org/api/records/24243120/files/calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json/content",
+   "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_755b0203-eb68-48b0-a04d-da90e949e916.json": "https://zenodo.org/api/records/24243120/files/calibration_variants_755b0203-eb68-48b0-a04d-da90e949e916.json/content",
+   "phase1/data/evidence/label_audit_cache/rad51c/calibration_variants_d44db3f4-c70d-41b9-b45b-81ef2af90b88.json": "https://zenodo.org/api/records/24243120/files/calibration_variants_d44db3f4-c70d-41b9-b45b-81ef2af90b88.json/content"
+  }
  },
  "files": {
   "phase1/data/evidence/label_audit_cache/bap1/calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json": [

@@ -286,10 +286,17 @@ def test_the_artifacts_keep_their_names():
 
 
 def test_the_readme_gives_the_recorded_image():
-    ref = json.loads(ENVIRONMENT.read_text())["image"]["reference"]
+    image = json.loads(ENVIRONMENT.read_text())["image"]
+    ref = image["reference"]
     readme = (REPO / "README.md").read_text()
     assert f"IMAGE={ref}" in readme
     assert "bash container/run.sh fetch" in readme and "bash container/run.sh verify" in readme
+    # E10: the image's docker save archive in the release's record, with the size and the
+    # sha256 recorded here, and the name it loads under, which the commands then run with
+    assert "`variant-fm-benchmark-reference-image.tar`, a `docker save` archive" in readme
+    assert f"({image['docker_save_bytes']:,} bytes,\nsha256 `{image['docker_save_sha256']}`)" in readme
+    assert image["docker_save_tags"] == [image["loaded_here"]["image"]]
+    assert f"`IMAGE={image['loaded_here']['image']}`" in readme
 
 
 # --------------------------------------------------------------------------

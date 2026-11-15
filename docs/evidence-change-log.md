@@ -2930,3 +2930,60 @@ tries it first. No output changes.
   gives no counts.
 - **Tests** (`tests/test_container.py`): the test of the quick check job runs on both
   workflows, and for `ci.yml` also requires its one job and its triggers.
+
+## Release 3.1.0 (2026-11-15): `v3.1.0-submission`
+
+Archived at Zenodo as version DOI 10.5281/zenodo.24243120 (all versions:
+10.5281/zenodo.22674887). The release commit changes no output
+(`scripts/stage_E10/scope_e10_c2.json`); what was added and reworked since release 3.0.1
+is in the entries above, from "After 3.0.1" on.
+
+- **What changed since 3.0.1**, in short: the practical metrics at the thresholds; five
+  further external genes (CTCF, SFPQ, RAD51D, XRCC2, SBDS), scored only after the seven
+  genes' thresholds were frozen (tag `frozen-thresholds-v1`), and all seven external genes
+  tested at those thresholds; the reference environment, a Docker image in which every
+  committed output was written again; the `alphagenome` column by the definition of the
+  model's own variant-scoring notebook; the audit of the labels' sources, with PALB2 and
+  BARD1 relabelled from the sources they cite; the supplementary analyses; the layout of
+  the manuscript's figures and tables; the list of every analysed variant with its HGVS
+  description, and the descriptions' check with VariantValidator; and the quick check,
+  which CI requires.
+- **The record's seven files:** the tag's archive, a `git archive` of it
+  (`variant-fm-benchmark-v3.1.0-submission.zip`); NCBI's `clinvar_20260615.vcf.gz`,
+  unchanged, as in the records of 3.0.0 and 3.0.1; the label audit's three MaveDB files,
+  which the repository does not carry
+  (`calibration_variants_20e83efa-f8e5-4e9e-8d3e-bb3b09b2c9b3.json`,
+  `calibration_variants_755b0203-eb68-48b0-a04d-da90e949e916.json` and
+  `calibration_variants_d44db3f4-c70d-41b9-b45b-81ef2af90b88.json`); VariantValidator's
+  raw replies to the HGVS check (`variantvalidator_replies_hgvs_check.tar.gz`), of which
+  stage 42 reads the committed excerpt; and the reference image as a `docker save`
+  archive (`variant-fm-benchmark-reference-image.tar`).
+- **The addresses point at this record.** The ClinVar mirror (`CLINVAR_SOURCES`), tried
+  after NCBI's two addresses, is this release's record, and after it release 3.0.1's,
+  which holds the same file. The three MaveDB files are asked of this release's record
+  first (`scripts/reproduce_sources.json`, `release_archive`) and then of MaveDB; the two
+  publishers' supplementary tables (Huang 2025, Sahu 2025) are not in the record and are
+  fetched from the publishers as before. A record serves nothing before it is published:
+  until then each of its addresses is a failed attempt and the next source is tried.
+- **`ci.yml`** runs the quick check on a push to `main` and on pull requests (stage E10,
+  commit 1, above).
+- **`CITATION.cff`**: version 3.1.0, its date and its DOI; the abstract's last clause
+  names the seven external genes; the preferred citation carries the manuscript's present
+  title.
+- **The README**: the current study is release 3.1.0, tag `v3.1.0-submission`, and the
+  clone checks that tag out; the archive and what its record holds; the image's `docker
+  save` archive in the record, with its size, its sha256 and the name it loads under; the
+  ClinVar mirror and the MaveDB files as above; `ci.yml`; "bp" for "nt" in the current
+  study's section, as in the manuscript; and three sentences that said "this branch" say
+  what holds at the tag.
+- **Comments and help text that had gone out of date** (`reproduce.sh`'s header; in
+  `scripts/reproduce_evidence.py` the docstring, two comments and the help of `--check`):
+  the quick check takes two to three minutes, not five; the public inputs fetched are no
+  longer two, and come to about 450 MB of data beside about 120 MB of Python packages, as
+  the README has them measured. No behaviour changes.
+- **Tests**: `tests/test_fetch_sources.py`: the archive's address is the first source of
+  each file it holds and a source of no other; it holds exactly the three MaveDB files,
+  each at the record whose DOI `CITATION.cff` gives as this release's; the ClinVar mirrors
+  are that record and then 3.0.1's; and the README gives the release's tag and record as
+  `CITATION.cff` does. `tests/test_container.py`: the README gives the image archive's
+  size, sha256 and loaded name as `container/ENVIRONMENT.json` records them.

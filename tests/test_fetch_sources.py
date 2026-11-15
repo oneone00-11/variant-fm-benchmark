@@ -7,6 +7,7 @@ from __future__ import annotations
 import hashlib
 import io
 import json
+import re
 import sys
 import urllib.error
 import zipfile
@@ -190,6 +191,7 @@ def cached_entries() -> list[dict]:
 
 def test_the_table_lists_every_cached_file_and_nothing_else_with_its_manifests_source_once():
     table, entries = json.loads(E.FETCH_SOURCES.read_text()), cached_entries()
+    archive = table["release_archive"]["urls"]
     assert sorted(table["files"]) == sorted(e["path"] for e in entries) and len(entries) == 5
     for e in entries:
         listed = table["files"][e["path"]]
@@ -199,23 +201,71 @@ def test_the_table_lists_every_cached_file_and_nothing_else_with_its_manifests_s
             assert s.get("manifest") or s["url"].startswith("https://")
             assert s["checked"] == "" or len(s["checked"]) == 10        # a day, once the source has been checked
         sources = E.label_audit_sources(e, table)
-        assert len(sources) == len(listed) and len({s["url"] for s in sources}) == len(sources)
-        own = next(s for s, t in zip(sources, listed) if t.get("manifest"))
+        held = e["path"] in archive        # in the release's archive: one source more, and it is the first
+        assert len(sources) == len(listed) + held and len({s["url"] for s in sources}) == len(sources)
+        if held:
+            assert sources[0] == {"url": archive[e["path"]], "zip_member": None,
+                                  "what": "this release's archive of the inputs"}
+        assert not any(s["url"] in archive.values() for s in sources[held:])      # and nowhere else
+        own = next(s for s, t in zip(sources[held:], listed) if t.get("manifest"))
         assert own["url"] == e["source_url"] and own["zip_member"] == e.get("zip_member")
-    assert set(table["release_archive"]["urls"]) <= {e["path"] for e in entries}
-    assert all(u.startswith("https://") for u in table["release_archive"]["urls"].values())
+    assert set(archive) <= {e["path"] for e in entries}
+    assert all(u.startswith("https://") for u in archive.values())
+
+
+def this_release() -> tuple[str, str, str]:
+    """The version, the Zenodo record number of its DOI, and the DOI of all versions, as
+    CITATION.cff gives them."""
+    import yaml
+    cff = yaml.safe_load((REPO / "CITATION.cff").read_text())
+    doi = {i["description"]: i["value"] for i in cff["identifiers"]}
+    record = re.fullmatch(r"10\.5281/zenodo\.([0-9]+)", doi["Version DOI of this release"]).group(1)
+    return cff["version"], record, doi["Concept DOI for all versions of the archived repository"]
+
+
+def test_the_release_archive_holds_the_three_mavedb_files_at_this_releases_record():
+    """E10 (release 3.1.0): the release's Zenodo record holds the label audit's three files
+    from MaveDB, each under its own name, and neither publisher's table; the record is the
+    one whose DOI CITATION.cff gives as this release's."""
+    table, entries = json.loads(E.FETCH_SOURCES.read_text()), cached_entries()
+    mavedb = sorted(e["path"] for e in entries if e["source_url"].startswith("https://api.mavedb.org/"))
+    assert len(mavedb) == 3 and sorted(table["release_archive"]["urls"]) == mavedb    # no file more, none fewer
+    record = this_release()[1]
+    assert table["release_archive"]["urls"] == {
+        p: f"https://zenodo.org/api/records/{record}/files/{Path(p).name}/content" for p in mavedb}
+
+
+def test_the_clinvar_mirrors_are_this_releases_record_and_then_the_one_before():
+    """E10: after NCBI's two addresses, the release's own record, which serves nothing
+    before it is published, and then release 3.0.1's, which holds the same file."""
+    record = this_release()[1]
+    assert [u for u in E.CLINVAR_URLS if "ncbi" not in u] == E.CLINVAR_URLS[2:] == [
+        f"https://zenodo.org/api/records/{r}/files/{E.CLINVAR_VCF.name}/content" for r in (record, "23051009")]
+    assert all(md5 is None for _, md5 in E.CLINVAR_SOURCES[2:])        # checked by the sha256 alone
+
+
+def test_the_readme_gives_this_releases_tag_and_record():
+    """E10: the README names the release, its tag and its record as CITATION.cff gives them."""
+    version, record, concept = this_release()
+    readme = " ".join((REPO / "README.md").read_text().split())
+    assert (f"**Archive:** release {version}, tag `v{version}-submission`, on Zenodo as version DOI "
+            f"10.5281/zenodo.{record} (all versions: {concept})") in readme
+    assert f"it is release {version}, tag `v{version}-submission`." in readme
+    assert f"cd variant-fm-benchmark git checkout v{version}-submission ```" in readme
+    assert f"this release's Zenodo record (10.5281/zenodo.{record})" in readme     # the ClinVar mirror
 
 
 def test_the_release_archive_is_tried_first_for_the_files_it_holds_once_its_addresses_are_filled_in():
     table, entries = json.loads(E.FETCH_SOURCES.read_text()), cached_entries()
     e, other = entries[0], entries[1]
-    before = E.label_audit_sources(e, table)
+    table["release_archive"]["urls"] = {}               # the table's own entries, no archive
+    before, before_other = E.label_audit_sources(e, table), E.label_audit_sources(other, table)
     table["release_archive"]["urls"] = {e["path"]: "https://archive.example/records/1/files/the-file/content"}
     after = E.label_audit_sources(e, table)
     assert after[0] == {"url": "https://archive.example/records/1/files/the-file/content", "zip_member": None,
                         "what": "this release's archive of the inputs"}
     assert after[1:] == before
-    assert E.label_audit_sources(other, table) == E.label_audit_sources(other, json.loads(E.FETCH_SOURCES.read_text()))
+    assert E.label_audit_sources(other, table) == before_other     # a file the archive does not hold
 
 
 def test_a_cached_file_the_table_does_not_list_stops_the_run():
