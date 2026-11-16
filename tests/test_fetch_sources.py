@@ -225,8 +225,8 @@ def this_release() -> tuple[str, str, str]:
 
 def test_the_release_archive_holds_the_three_mavedb_files_at_this_releases_record():
     """E10 (release 3.1.0): the release's Zenodo record holds the label audit's three files
-    from MaveDB, each under its own name, and neither publisher's table; the record is the
-    one whose DOI CITATION.cff gives as this release's."""
+    from MaveDB, each under its own name, and neither of the publisher's two tables; the
+    record is the one whose DOI CITATION.cff gives as this release's."""
     table, entries = json.loads(E.FETCH_SOURCES.read_text()), cached_entries()
     mavedb = sorted(e["path"] for e in entries if e["source_url"].startswith("https://api.mavedb.org/"))
     assert len(mavedb) == 3 and sorted(table["release_archive"]["urls"]) == mavedb    # no file more, none fewer

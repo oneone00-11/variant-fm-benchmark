@@ -3023,3 +3023,18 @@ table is built and checked again on it, in the reference image, with the same sc
 - Added: the two run records of the build and the check, the test, this entry and the
   scope record with its helpers (`scripts/stage_E11/`). No output changes
   (`scripts/stage_E11/scope_e11_c1.json`).
+
+## Wording: the two supplementary tables are served by one publisher (stage E11, commit 2, 2026-11-16)
+
+Why: where the release commit says which of the label audit's files the release's record
+does not hold, it wrote "the two publishers' supplementary tables". The two tables (Huang
+2025, Supplementary Table 3; Sahu 2025, Supplementary Table 5) are served by one publisher,
+from one static host, and the words read as if there were two.
+
+- Corrected on the branch in two places: the `what` of `release_archive` in
+  `scripts/reproduce_sources.json` ("the publisher's two supplementary tables") and a
+  docstring of `tests/test_fetch_sources.py`. Words only: no address, no behaviour and no
+  assertion changes.
+- The entry "Release 3.1.0" above stands as it was written at the release, and the tagged
+  tree (`v3.1.0-submission`) keeps the first wording in those two files.
+- No output changes (`scripts/stage_E11/scope_e11_c2.json`).
