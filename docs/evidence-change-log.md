@@ -3059,3 +3059,31 @@ PDF's front page and wrote the same line as the PDF's Author. The line is now an
   the page it started on.
 - The PDF is not in the repository, and neither is any manuscript. `CITATION.cff`, the
   README and every output are unchanged (`scripts/stage_E12/scope_e12_c1.json`).
+
+## The submitted text's bindings (v7) checked again after a change to its author line and statements (stage E12, commit 2, 2026-11-16)
+
+Why: on 2026-11-16 the submitted text's author line and three of its statements were
+changed: the title page's author line; three words of the paragraph on the use of large
+language models, which keeps its 61 words; two sentences added to the author
+contributions; and the competing interests' sentence, now in the plural. The
+supplementary PDF was generated again with its front page's author line given on the
+command line (commit 1). No number changed, and the words added hold none. The binding
+table is built and checked again on the two files, in the reference image, with the same
+scripts (the manuscript's sha256 is now 34a766e1..., the supplementary PDF's 949cdd03...;
+the four tables' files are unchanged).
+
+- **The table** (`docs/manuscript_bindings_v7.tsv`) is unchanged, byte for byte: 239
+  numbers, 120 measured and 119 constants. The gate reads nothing of the new words as a
+  number.
+- **The texts**: four lines of the main text differ from those of E11's check, the four
+  paragraphs named above; the notes' text is the same, the PDF's front page being no part
+  of it.
+- **The check** (`check_bindings_v7.py`, in the image;
+  `scripts/stage_E9/run_log/check_bindings_v7_20261116T094600Z.json`): every line it
+  prints is the one of E11's check (`check_bindings_v7_20261116T051138Z.json`): the pool
+  mode's 89 / 95 / 4, 107 / 139 / 4 and 17 / 26 / 1, the bound mode, its self-test (6 of 6
+  caught), the cells mode on the two texts and on the four tables' files, and every count
+  of what the gate leaves out. The two records differ in the paths, the times, the commit
+  and the files' sha256, and in nothing else.
+- Added: the two run records of the build and the check, and this entry. No output changes
+  (`scripts/stage_E12/scope_e12_c2.json`).
