@@ -3,7 +3,8 @@ PDF, from the manuscript (read only) and the layout. The PDF itself holds the ma
 notes and is not committed; these tests build the document it is typeset from, on a
 manuscript made here, with the layout's own outputs, and check what goes where. The whole
 build, which needs LibreOffice and the manuscript, runs only where E8_MANUSCRIPT names the
-manuscript and soffice is installed."""
+manuscript and soffice is installed. The front page's author line can be given (E12): the
+tests give one made up here."""
 from __future__ import annotations
 
 import importlib.util
@@ -202,6 +203,56 @@ def test_the_front_page_joins_its_ranges_and_names_the_accompanying_excel_file(B
     assert [t["number"] for t in laid["tables"] if t["italic_cells"]] == ["Supplementary Table S25", "Supplementary Table S28"]
 
 
+GIVEN = "Ada Example, Bao Sample"          # an author line made up for these tests
+
+
+def test_the_front_pages_author_line_is_the_one_given_and_the_scripts_own_without_it(B, layout, tmp_path):
+    """E12: the front page's author line is an argument. Given, it is the line under the
+    paper's title and nothing else of the document differs; not given, the line is the
+    script's own (AUTHOR) and the document is the one built with that line."""
+    import docx
+    L, cfg = layout
+    ms = _manuscript(tmp_path / "m.docx")
+    B.assemble(ms, tmp_path / "default.docx", L, cfg, {}, marks=False)
+    B.assemble(ms, tmp_path / "own.docx", L, cfg, {}, marks=False, authors=B.AUTHOR)
+    B.assemble(ms, tmp_path / "given.docx", L, cfg, {}, marks=False, authors=GIVEN)
+    xml = lambda name: zipfile.ZipFile(tmp_path / name).read("word/document.xml")              # noqa: E731
+    assert xml("default.docx") == xml("own.docx") != xml("given.docx")
+    paras = lambda name: [B.text_of(q) for q in docx.Document(str(tmp_path / name)).element.body.iter(B.qn("p"))]   # noqa: E731
+    default, given = paras("default.docx"), paras("given.docx")
+    at = default.index(B.PAPER) + 1
+    assert default[at] == B.AUTHOR and given[at] == GIVEN and B.AUTHOR not in given
+    # the one paragraph differs, and nothing before or after it
+    assert len(default) == len(given) and [k for k, (a, b) in enumerate(zip(default, given)) if a != b] == [at]
+
+
+def test_the_option_reaches_the_document_and_an_empty_line_is_refused(B, layout, tmp_path, monkeypatch):
+    """E12: --authors is what the script hands to the document's assembly, its ends trimmed,
+    and the script's own line without the option; an empty line stops the run before
+    anything is built."""
+    import sys
+    seen = []
+
+    class Reached(Exception):
+        pass
+
+    def assemble(manuscript, dest, L, cfg, pages, marks, authors=None):
+        seen.append(authors)
+        raise Reached
+
+    monkeypatch.setattr(B, "assemble", assemble)
+    base = [str(SCRIPT), "--manuscript", str(_manuscript(tmp_path / "m.docx")), "--out", str(tmp_path / "out.pdf")]
+    for extra in ([], ["--authors", GIVEN], ["--authors", f"  {GIVEN} "]):
+        monkeypatch.setattr(sys, "argv", base + extra)
+        with pytest.raises(Reached):
+            B.main()
+    assert seen == [B.AUTHOR, GIVEN, GIVEN]
+    monkeypatch.setattr(sys, "argv", base + ["--authors", "   "])
+    with pytest.raises(SystemExit):
+        B.main()
+    assert len(seen) == 3 and not (tmp_path / "out.pdf").exists()
+
+
 def test_a_figure_too_large_for_its_page_stops_the_run(B, layout, tmp_path, monkeypatch):
     L, cfg = layout
     monkeypatch.setattr(B, "figure_size_mm", lambda path: (180.5, 100.0))
@@ -222,3 +273,30 @@ def test_the_whole_build_passes_its_checks(B, tmp_path):
     rec = json.loads(out.with_suffix(".check.json").read_text())
     assert rec["failed"] == [] and all(c["ok"] for c in rec["checks"].values())
     assert all(f["scale"] == 1.0 and f["images"] == 0 for f in rec["figures"])
+
+
+@pytest.mark.skipif(not (os.environ.get("E8_MANUSCRIPT") and shutil.which("soffice") and shutil.which("pdftotext")),
+                    reason="the whole build needs the manuscript (E8_MANUSCRIPT), LibreOffice and poppler")
+def test_the_whole_build_prints_the_author_line_given_and_makes_it_the_pdfs_author(B, tmp_path):
+    """E12: with --authors the PDF's front page prints that line where it printed the
+    script's own, the PDF's Author is that line and its Title is unchanged, every check
+    passes, and each part starts on the page it starts on without the option."""
+    import subprocess
+    import sys
+    from pypdf import PdfReader
+    made = {}
+    for name, extra in (("own", []), ("given", ["--authors", GIVEN])):
+        out = tmp_path / name / "Supplementary_Information.pdf"
+        r = subprocess.run([sys.executable, str(SCRIPT), "--manuscript", os.environ["E8_MANUSCRIPT"], "--out", str(out)] + extra,
+                           capture_output=True, text=True, timeout=1800)
+        assert r.returncode == 0, r.stdout[-2000:] + r.stderr[-2000:]
+        made[name] = (PdfReader(str(out)), json.loads(out.with_suffix(".check.json").read_text()))
+    (own, own_rec), (given, given_rec) = made["own"], made["given"]
+    assert (own.metadata.title, own.metadata.author) == (B.HEADING, B.AUTHOR)
+    assert (given.metadata.title, given.metadata.author) == (B.HEADING, GIVEN)
+    front = lambda reader: reader.pages[0].extract_text()                                      # noqa: E731
+    assert B.AUTHOR in front(own) and B.AUTHOR not in front(given)
+    assert front(own).replace(B.AUTHOR, GIVEN) == front(given)
+    assert [q.extract_text() for q in own.pages[1:]] == [q.extract_text() for q in given.pages[1:]]
+    assert given_rec["failed"] == [] and all(c["ok"] for c in given_rec["checks"].values())
+    assert (given_rec["pages"], given_rec["starts"]) == (own_rec["pages"], own_rec["starts"])

@@ -2,7 +2,7 @@
 assembled from the manuscript, read only, and the layout's outputs. The PDF holds the
 manuscript's supplementary notes, so it is not committed: this script and its test are.
 
-In order: a front page (the heading, the paper's title, the author, and the contents with
+In order: a front page (the heading, the paper's title, the author line, and the contents with
 page numbers, a range of numbers never broken at its dash, E8 commit 8); the conventions (config/layout.yaml's supplementary_format); the
 supplementary notes word for word, as the manuscript holds them, from its heading
 "Supplementary Notes" to the last entry of "References cited in the Supplementary Notes"
@@ -39,6 +39,11 @@ stops if one fails:
     .venv/bin/python scripts/stage_E8/build_supplementary_pdf.py \\
         --manuscript ~/Desktop/calibration/CALInewversion.docx
 
+--authors gives the front page's author line, as it is to be printed (E12); it is also the
+PDF's Author, and the check of the front page's text looks for it. Without the option the
+line is AUTHOR below, and the PDF is what it was before the option existed. --out says
+where the PDF goes.
+
 Needs LibreOffice (soffice) and Arial (macOS: /System/Library/Fonts/Supplemental, given to
 LibreOffice through fontconfig). Writes nothing into the repository.
 """
@@ -63,7 +68,7 @@ OUT = Path.home() / "Desktop" / "calibration" / "submission" / "Supplementary_In
 HEADING = "Supplementary Information"
 PAPER = ("Evidence strength of splice-region variant effect predictors against saturation genome "
          "editing data, by distance from the exon and across genes")
-AUTHOR = "Ningyi Zhang"
+AUTHOR = "Ningyi Zhang"         # the front page's author line unless --authors gives another
 NOTES_FROM = "Supplementary Notes"
 NOTES_REFS = "References cited in the Supplementary Notes"
 FONT, TEXT_PT, TABLE_PT = "Arial", 10, 8
@@ -250,8 +255,9 @@ def front_texts(L, numbers, headings, figures, pdf_tables, excel_tables) -> list
     return out
 
 
-def front_page(L, cfg, numbers, headings, figures, pdf_tables, excel_tables, pages) -> list[str]:
-    """The front page: the heading, the paper, the author and the contents, each entry's
+def front_page(L, cfg, numbers, headings, figures, pdf_tables, excel_tables, pages,
+               authors: str = AUTHOR) -> list[str]:
+    """The front page: the heading, the paper, the author line and the contents, each entry's
     page number at the right after a dotted leader (two digits where it is not known yet,
     so that the first typesetting lays the page out as the second), and the sentence that
     names the tables in the Excel file; a range in an entry or the sentence is not broken
@@ -261,7 +267,7 @@ def front_page(L, cfg, numbers, headings, figures, pdf_tables, excel_tables, pag
     tabs = f'<w:tabs><w:tab w:val="right" w:leader="dot" w:pos="{width}"/></w:tabs>'
     out = [para(L, run(HEADING, 18, bold=True), after=12),
            para(L, run(PAPER, 12, bold=True), after=12),
-           para(L, run(AUTHOR), after=24),
+           para(L, run(authors), after=24),
            para(L, run("Contents", 11, bold=True), after=6, keep_next=True)]
 
     def entry(key: str, label: str, rest: str) -> str:
@@ -341,10 +347,12 @@ def table_blocks(L, cfg, numbers, it) -> tuple[bool, list[str], int]:
     return landscape, out, italic
 
 
-def assemble(manuscript: Path, dest: Path, L, cfg, pages: dict, marks: bool) -> dict:
+def assemble(manuscript: Path, dest: Path, L, cfg, pages: dict, marks: bool,
+             authors: str = AUTHOR) -> dict:
     """The document LibreOffice typesets: the manuscript's copy cut to its notes, the
-    front page and the conventions before them, the figures' pages and the tables after.
-    Returns what was laid out where it is known before typesetting."""
+    front page (its author line as given) and the conventions before them, the figures'
+    pages and the tables after. Returns what was laid out where it is known before
+    typesetting."""
     import docx
     from docx.enum.text import WD_ALIGN_PARAGRAPH
     numbers = L._numbers(cfg)
@@ -358,7 +366,7 @@ def assemble(manuscript: Path, dest: Path, L, cfg, pages: dict, marks: bool) -> 
     set_fonts(doc)
     figures, pdf_tables, excel_tables = figures_and_tables(L, cfg)
     first = list(body)[0]
-    blocks = front_page(L, cfg, numbers, headings, figures, pdf_tables, excel_tables, pages)
+    blocks = front_page(L, cfg, numbers, headings, figures, pdf_tables, excel_tables, pages, authors)
     blocks += ['<w:p><w:r><w:br w:type="page"/></w:r></w:p>',
                para(L, L._w_runs(L.grouped(L._resolve(cfg["supplementary_format"]["conventions"], numbers)),
                                  TEXT_PT, FONT), after=12)]
@@ -504,7 +512,13 @@ def main() -> None:
     ap.add_argument("--record", type=Path, default=None,
                     help="where the check record goes (default: beside the PDF, <name>.check.json)")
     ap.add_argument("--soffice", default=shutil.which("soffice") or "soffice")
+    ap.add_argument("--authors", default=AUTHOR,
+                    help="the front page's author line as it is to be printed, which is also the PDF's "
+                         "Author (default: %(default)s)")
     args = ap.parse_args()
+    authors = args.authors.strip()
+    if not authors:
+        ap.error("--authors: an author line is needed")
     manuscript, out = args.manuscript.expanduser().resolve(), args.out.expanduser().resolve()
     record_path = (args.record.expanduser().resolve() if args.record else out.with_suffix(".check.json"))
     from pypdf import PdfReader, PdfWriter, Transformation
@@ -525,7 +539,7 @@ def main() -> None:
     with tempfile.TemporaryDirectory() as tmp:
         work = Path(tmp)
         # first typesetting: a mark in each figure's space, the contents' numbers unknown
-        laid = assemble(manuscript, work / "first.docx", L, cfg, {}, marks=True)
+        laid = assemble(manuscript, work / "first.docx", L, cfg, {}, marks=True, authors=authors)
         texts = page_texts(typeset(work / "first.docx", work, args.soffice))
         conv = squeeze(L._resolve(cfg["supplementary_format"]["conventions"], numbers))[:60]
         conv_page = [i + 1 for i, t in enumerate(texts) if conv in squeeze(t)]
@@ -547,7 +561,7 @@ def main() -> None:
         pages |= {it["number"]: found[f"mark {k + 1}"][0] for k, it in enumerate(figures)}
         pages |= {it["number"]: found[it["number"]][0] for it in pdf_tables}
         # the second typesetting, the contents' numbers filled in and no mark
-        assemble(manuscript, work / "Supplementary_Information.docx", L, cfg, pages, marks=False)
+        assemble(manuscript, work / "Supplementary_Information.docx", L, cfg, pages, marks=False, authors=authors)
         second = typeset(work / "Supplementary_Information.docx", work, args.soffice)
         texts2 = page_texts(second)
         found2 = find_pages(texts2, front, {k: v for k, v in wanted.items() if not k.startswith("mark")})
@@ -572,7 +586,7 @@ def main() -> None:
                            "width_mm": round(fw / 72 * 25.4, 2), "height_mm": round(fh / 72 * 25.4, 2),
                            "within_page": x >= FIGURE_SIDE_MM / 25.4 * 72 - 1e-6 and y >= TEXT_MARGIN_MM / 25.4 * 72 - 1e-6,
                            "images": images_in(page)})
-        writer.add_metadata({"/Title": HEADING, "/Author": AUTHOR})
+        writer.add_metadata({"/Title": HEADING, "/Author": authors})
         out.parent.mkdir(parents=True, exist_ok=True)
         with open(out, "wb") as fh_:
             writer.write(fh_)
@@ -582,7 +596,7 @@ def main() -> None:
         bare = lambda t: "".join(t.replace(JOINER, "").split())             # noqa: E731
         front_text = "\n".join(final_texts[:front])
         at, missing = 0, []
-        for piece in [HEADING, PAPER, AUTHOR, "Contents"] + [a + b for a, b in laid["front"]]:
+        for piece in [HEADING, PAPER, authors, "Contents"] + [a + b for a, b in laid["front"]]:
             k = bare(front_text).find(bare(L._plain(piece)), at)          # an italic run without its marks
             if k < 0:
                 missing.append(piece[:80])

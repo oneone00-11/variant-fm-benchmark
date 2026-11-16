@@ -3038,3 +3038,24 @@ from one static host, and the words read as if there were two.
 - The entry "Release 3.1.0" above stands as it was written at the release, and the tagged
   tree (`v3.1.0-submission`) keeps the first wording in those two files.
 - No output changes (`scripts/stage_E11/scope_e11_c2.json`).
+
+## Supplementary PDF: the front page's author line can be given on the command line (stage E12, commit 1, 2026-11-16)
+
+Why: `scripts/stage_E8/build_supplementary_pdf.py` printed one fixed author line on the
+PDF's front page and wrote the same line as the PDF's Author. The line is now an argument.
+
+- **`--authors`** gives the front page's author line as it is to be printed. The same line
+  is the PDF's Author, and the check of the front page's text looks for it. Without the
+  option everything is as it was: the line is the script's own (`AUTHOR`), and the document
+  handed to the typesetter is, byte for byte, the one the script built before (checked on
+  the working manuscript, for both typesettings). An empty line stops the run.
+- **Tests** (`tests/test_supplementary_pdf.py`), with a line made up for them: given, it is
+  the paragraph under the paper's title and no other paragraph of the document differs;
+  not given, the document is the one built with the script's own line; the option reaches
+  the assembly with its ends trimmed, and an empty line is refused. Where LibreOffice and
+  the manuscript are at hand, the whole build with the option: the front page prints the
+  line where it printed the script's own, the PDF's Author is the line and its Title is
+  unchanged, every check passes, the other pages' text is the same and each part starts on
+  the page it started on.
+- The PDF is not in the repository, and neither is any manuscript. `CITATION.cff`, the
+  README and every output are unchanged (`scripts/stage_E12/scope_e12_c1.json`).
