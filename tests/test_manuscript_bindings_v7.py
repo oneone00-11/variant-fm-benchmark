@@ -184,3 +184,16 @@ def test_the_table_is_written_as_the_gate_reads_it():
         rows = list(csv.DictReader(f, delimiter="\t"))
     assert list(rows[0]) == gate.BINDING_COLUMNS and len(rows) == 239
     assert all(r["excerpt"] and r["printed"] in r["excerpt"] for r in rows)
+
+
+def test_the_release_its_commit_and_the_dois_of_the_data_availability_statement_are_not_read():
+    """E11: the submitted text's Data availability statement gives the release, its commit
+    and its version DOI where it held three placeholders. The gate reads none of them as a
+    number (a version stands within a word; a commit and a DOI are identifiers), so the
+    table has no row for them. A date beside them is read as before."""
+    said = ("the repository at https://github.com/oneone00-11/variant-fm-benchmark, release v3.1.0, commit "
+            "29bbbe56b52c766b050bb04ad62c3d37a4314972, archived at Zenodo (version DOI 10.5281/zenodo.24243120; "
+            "all versions 10.5281/zenodo.22674887)")
+    assert gate.read_tokens(f"# Abstract\n\nThe code and the derived data are in {said}.\n\n# References\n") == []
+    dated = gate.read_tokens(f"# Abstract\n\nThe code is in {said}, and the release is of 15 June 2026.\n\n# References\n")
+    assert [(t.printed, t.reason) for t in dated] == [("15", "day of the date 15 June 2026")]

@@ -2987,3 +2987,39 @@ is in the entries above, from "After 3.0.1" on.
   are that record and then 3.0.1's; and the README gives the release's tag and record as
   `CITATION.cff` does. `tests/test_container.py`: the README gives the image archive's
   size, sha256 and loaded name as `container/ENVIRONMENT.json` records them.
+
+## The submitted text's bindings (v7) built again with the release, its commit and its DOI filled in (stage E11, commit 1, 2026-11-16)
+
+Why: release 3.1.0 is published on Zenodo (record 24243120), and the Data availability
+statement of the submitted text now gives the release, its commit and its version DOI
+where it held three placeholders in square brackets: "release v3.1.0, commit 29bbbe5...,
+archived at Zenodo (version DOI 10.5281/zenodo.24243120; all versions
+10.5281/zenodo.22674887)". The rest of the manuscript is as it was (its sha256 is now
+ddaa2727...; the four tables' files and the supplementary PDF are unchanged). The binding
+table is built and checked again on it, in the reference image, with the same scripts.
+
+- **The table** (`docs/manuscript_bindings_v7.tsv`) is the one of 2026-11-14, byte for
+  byte: 239 numbers, 120 measured and 119 constants. The gate reads none of the three new
+  values as a number: "v3.1.0" stands within a word, and the commit and the DOIs are
+  identifiers, which the bound mode, its self-test and the cells mode take out of a
+  sentence before they read it. So no entry is added, and none changes.
+- **The check** (`check_bindings_v7.py`, in the image;
+  `scripts/stage_E9/run_log/check_bindings_v7_20261116T051138Z.json`): the bound mode, its
+  self-test (6 of 6 caught) and the cells mode, on the two texts and on the four tables'
+  files, give what they gave on the text of 2026-11-14, with no mismatch. The pool mode,
+  the weak one, does not take identifiers out: it leaves four numbers of the main text
+  unmatched where it left three. The fourth is the prefix "10.5281" of the version DOI now
+  filled in, beside the same prefix of the two DOIs that were there and the title page's
+  count of words; none is a number the pipeline wrote. It is recorded as it is and the gate
+  is not changed (the author's decision of 2026-11-16).
+- **What the gate leaves out** moves with the three values. In the main text the
+  identifiers hold 36 numbers where they held 24 (ten runs of digits in the commit, two in
+  the DOI), the citations in brackets count 71 where they counted 72 (the placeholder
+  "[v3.1.0]" is gone), and the words with digits 131 where 130 ("v3.1.0"); the numbers
+  read stay 203.
+- **Tests** (`tests/test_manuscript_bindings_v7.py`): a sentence that gives a release, a
+  commit and two DOIs as the statement does gives the gate no number to read, and a date
+  beside them is read as before.
+- Added: the two run records of the build and the check, the test, this entry and the
+  scope record with its helpers (`scripts/stage_E11/`). No output changes
+  (`scripts/stage_E11/scope_e11_c1.json`).
