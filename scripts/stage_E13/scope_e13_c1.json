@@ -1,0 +1,5 @@
+{
+ "commit": "E13 commit 1 (the v7 binding table follows the submitted text's new abstract: its build script retires v6's entries of the old abstract and binds the new one's numbers; the table, its tests, its run records and the change log; no output changes)",
+ "pairs": {},
+ "files": {}
+}

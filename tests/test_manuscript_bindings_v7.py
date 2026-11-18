@@ -2,8 +2,8 @@
 scripts that build and check it (scripts/stage_E9/build_bindings_v7.py,
 check_bindings_v7.py). The submitted files are not in the repository, so what is held here
 needs none of them: the table against the outputs (every measured number is its one cell at
-the printed precision, every constant has its reason), its difference from v6's, and the
-scripts' own steps on small texts made here."""
+the printed precision, every constant has its reason), its difference from v6's, the new
+abstract's entries (E13), and the scripts' own steps on small texts made here."""
 from __future__ import annotations
 
 import csv
@@ -37,7 +37,8 @@ def _holds(b) -> bool:
 def test_every_measured_number_is_its_cell_and_every_constant_has_a_reason():
     bindings = gate.read_bindings(V7)
     kinds = Counter((b.document, b.kind) for b in bindings)
-    assert kinds == {("main", "measured"): 113, ("main", "constant"): 90,
+    # E13: the new abstract holds 17 numbers where the old held 8 (main 113 and 90 before)
+    assert kinds == {("main", "measured"): 117, ("main", "constant"): 95,
                      ("supplement", "measured"): 7, ("supplement", "constant"): 29}
     for b in bindings:
         if b.kind == "measured":
@@ -53,28 +54,72 @@ def test_every_measured_number_is_its_cell_and_every_constant_has_a_reason():
 def test_v7_differs_from_v6_where_the_submitted_text_does():
     """The legends' constants that went when the legends were shortened; the title page's
     counts and the statements' numbers, read for the first time; the numbers whose
-    sentences were reworded, in the shortened legends and by the revision of 2026-11-14;
-    and no number of the abstract, the main text or the notes with another value or
-    another cell."""
+    sentences were reworded, in the shortened legends, by the revision of 2026-11-14 and in
+    the abstract written anew on 2026-11-17 (E13), and the new abstract's further numbers;
+    and no number of the main text or the notes with another value or another cell."""
     d = C.difference(C.table_rows(V6), C.table_rows(V7))
-    assert (d["numbers_before"], d["numbers_after"]) == (235, 239)
+    assert (d["numbers_before"], d["numbers_after"]) == (235, 248)
     assert sorted(x["printed"] for x in d["vanished"]) == ["0.2", "0.2", "18.7", "2,000", "4.33"]
     assert {x["kind"] for x in d["vanished"]} == {"constant"}
-    assert sorted(x["printed"] for x in d["new"]) == ["1.2", "11", "11", "15", "247", "3", "3,934", "4", "42"]
-    assert {x["kind"] for x in d["new"]} == {"constant"} and {x["document"] for x in d["new"]} == {"main"}
+    # the title page's counts and the statements' numbers (E9.3); the new abstract's numbers
+    # that the old one did not print: 13, 7,997, 0.1, 16.3, 5.0 and four distances of 10 bp
+    # (the difference pairs rows by their entry, so a legend's row may stand for one of them)
+    first_read = ["1.2", "11", "11", "15", "247", "3", "3,934", "4", "42"]
+    abstract_added = ["0.1", "10", "10", "10", "10", "13", "16.3", "5.0", "7,997"]
+    assert sorted(x["printed"] for x in d["new"]) == sorted(first_read + abstract_added)
+    assert {x["document"] for x in d["new"]} == {"main"}
+    assert sorted(x["printed"] for x in d["new"] if x["kind"] == "measured") == ["13", "16.3", "5.0", "7,997"]
     assert sum("counted from the manuscript" in x["entry"] for x in d["new"]) == 5
     # 0.1, 0.2, 10 and 3 in the shortened legends; 0.5, 0.10 twice, 7 and 18.7 where the text
-    # of 2026-11-14 is reworded (E9 supplement)
-    assert sorted(x["before"]["printed"] for x in d["reworded"]) == [
-        "0.1", "0.10", "0.10", "0.2", "0.5", "10", "18.7", "3", "7"]
+    # of 2026-11-14 is reworded (E9 supplement); and the old abstract's eight numbers, each
+    # with its entry in the new abstract (E13)
+    legends_and_revision = ["0.1", "0.10", "0.10", "0.2", "0.5", "10", "18.7", "3", "7"]
+    old_abstract = ["0.2", "10", "11.1", "3", "50", "6.36", "8.27", "95%"]
+    assert sorted(x["before"]["printed"] for x in d["reworded"]) == sorted(legends_and_revision + old_abstract)
     assert all(x["before"]["entry"] == x["after"]["entry"] for x in d["reworded"])
     assert d["kept_in_place"] + len(d["moved"]) + len(d["reworded"]) + len(d["vanished"]) == 235
     assert not [x for x in d["moved"] if x["document"] == "supplement"]
-    # every measured number of v6 is in v7 with the cell it had
+    # every measured number of v6 is in v7 with the cell it had; v7 adds the new abstract's four
     cell = lambda r: tuple(r[k] for k in ("document", "printed", "file", "rows", "column", "derive", "scale"))   # noqa: E731
     before = Counter(cell(r) for r in C.table_rows(V6) if r["kind"] == "measured")
     after = Counter(cell(r) for r in C.table_rows(V7) if r["kind"] == "measured")
-    assert before == after and sum(after.values()) == 120
+    assert not before - after and sum(after.values()) == 124
+    assert sorted(k[1] for k in (after - before).elements()) == ["13", "16.3", "5.0", "7,997"]
+
+
+def test_the_new_abstract_is_bound_as_the_main_text_binds_its_numbers():
+    """E13: the abstract written anew on 2026-11-17. v6's entries keyed by the old abstract's
+    sentences are retired and are entries v6 holds; the new abstract's 17 numbers each have
+    the cell or the reason the same number has where the main text prints it, but for the
+    count of the analysis range (3-50 bp), which is the set's 8,853 less its canonical
+    dinucleotides and Table 1(a)'s total."""
+    V6m = B.V6                                  # build_bindings_v6, as the build reads it
+    assert set(B.ABSTRACT_RETIRED) <= {tuple(e[:4]) for e in V6m.BINDINGS + V6m.REASONS}
+    bindings, reasons = B.current(V6m.BINDINGS, V6m.REASONS)
+    assert not {tuple(e[:4]) for e in bindings + reasons} & set(B.ABSTRACT_RETIRED)
+    assert all(e in bindings for e in B.ABSTRACT_BINDINGS) and all(e in reasons for e in B.ABSTRACT_REASONS)
+    rows = C.table_rows(V7)
+    abstract = [r for r in rows if r["document"] == "main" and r["line"] == "3"]
+    text = [r for r in rows if r["document"] == "main" and r["line"] != "3"]
+    assert Counter(r["kind"] for r in abstract) == {"measured": 7, "constant": 10}
+    entry = lambda r: (r["printed"], r["kind"], r["reason"], r["file"], r["rows"], r["column"], r["derive"], r["scale"])  # noqa: E731
+    elsewhere = {entry(r) for r in text}
+    alone = [r["printed"] for r in abstract if entry(r) not in elsewhere]
+    assert alone == ["7,997"]
+    count = next(r for r in abstract if r["printed"] == "7,997")
+    (value,) = gate.resolve(gate.read_bindings(V7)[rows.index(count)], REPO)
+    sets = REPO / "phase1/reports/evidence/set_counts.csv"
+    with open(sets, newline="") as f:
+        by_stratum = Counter()
+        for r in csv.DictReader(f):
+            by_stratum[r["stratum"]] += int(r["n"])
+    assert value == 7997 == sum(by_stratum.values()) - by_stratum["pm12"]
+    with open(REPO / "phase1/reports/evidence/tables/table1a_composition_by_gene.csv", newline="") as f:
+        total = next(r for r in csv.DictReader(f) if r["Gene"] == "Total")
+    assert total["Variants at 3\u201350\u00a0bp"] == "7,997"          # the header as printed: an en dash, a no-break space
+    assert sorted(r["printed"] for r in abstract if r["kind"] == "constant") == \
+        ["0.1", "0.2", "10", "10", "10", "10", "10", "3", "50", "95%"]
+    assert {r["reason"] for r in abstract if r["printed"] == "10"} == {V6m.BAND}
 
 
 def _rows(*items) -> list[dict]:
@@ -182,7 +227,7 @@ def test_a_number_without_an_entry_and_an_entry_without_a_number_stop_the_build(
 def test_the_table_is_written_as_the_gate_reads_it():
     with open(V7, newline="") as f:
         rows = list(csv.DictReader(f, delimiter="\t"))
-    assert list(rows[0]) == gate.BINDING_COLUMNS and len(rows) == 239
+    assert list(rows[0]) == gate.BINDING_COLUMNS and len(rows) == 248
     assert all(r["excerpt"] and r["printed"] in r["excerpt"] for r in rows)
 
 

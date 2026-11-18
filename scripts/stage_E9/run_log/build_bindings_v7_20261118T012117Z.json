@@ -1,0 +1,115 @@
+{
+ "script": "scripts/stage_E9/build_bindings_v7.py",
+ "argv": [
+  "scripts/stage_E9/build_bindings_v7.py",
+  "--manuscript",
+  "results/scratch/v7_e13/Manuscript.docx",
+  "--tables",
+  "results/scratch/v7_e13/Table_1.docx",
+  "results/scratch/v7_e13/Table_2.docx",
+  "results/scratch/v7_e13/Table_3.docx",
+  "results/scratch/v7_e13/Table_4.docx",
+  "--supplement",
+  "results/scratch/v7_e13/Supplementary_Information.pdf",
+  "--structure",
+  "results/scratch/v7_e13/Supplementary_Information.struct.txt",
+  "--texts",
+  "results/scratch/v7_e13/texts"
+ ],
+ "git_commit": "10128f900a4fcfe152180126b5775930a9df2754",
+ "git_worktree_clean": false,
+ "code_sha256": {
+  "scripts/stage_E9/build_bindings_v7.py": "73095cacf1c8a4ec7563d73c7626490190159858c5620044a84488b1c6b626bb",
+  "scripts/stage_E9/_runlog.py": "0104bfdfd2dd516b0f538490b9fa68081f378989ca7dfd97f7bbe05f7c5c950d"
+ },
+ "python": "3.12.13",
+ "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.36",
+ "packages": {
+  "numpy": "2.0.2",
+  "pandas": "2.3.3",
+  "pyarrow": "21.0.0",
+  "scipy": "1.13.1",
+  "PyYAML": "6.0.3",
+  "requests": "2.32.5",
+  "matplotlib": "3.9.4",
+  "pillow": "12.3.0"
+ },
+ "start_utc": "2026-11-18T01:21:12+00:00",
+ "end_utc": "2026-11-18T01:21:17+00:00",
+ "inputs": [],
+ "outputs": [
+  {
+   "path": "docs/manuscript_bindings_v7.tsv",
+   "bytes": 45472,
+   "sha256": "ed27fd829949a9ac85eacc021c866af790c7e740f2aa353a93cfe04e015c7cf3"
+  }
+ ],
+ "exception": null,
+ "notes": {
+  "manuscript_sha256": "416cfa0c0bcbedc82cb737523574030acc260cb42d497edc5f8e2cd7a93e431e",
+  "supplement_sha256": "bba876d124ae121fa117ca9768883c7ef9a4e3b5d4bbcd3740b431dce6cabc28",
+  "table_1_sha256": "4796e8af394f6bd6fb39d1f77c354c8bb3f67ee13828c3c18ef6868ea450a17c",
+  "table_2_sha256": "5723b4e904c50171a63289c54be7398e6797cdfa930d88364c59adad26f4243e",
+  "table_3_sha256": "65e2b0324617d238e29a607dd22c7558ffd1ad7a1f828f740f1fc428c40a59b2",
+  "table_4_sha256": "f583ab7b8d72b53b3876d28b56833982f43e96906a271daf7d76ff741683c748",
+  "structure_read_from": "the file given, sha256 561596d46c5b3dcd82f997228e3e20dfc4f89ab5d4af9a8b631fb7115ff1aa27",
+  "counted_in_the_manuscript": {
+   "main text words": 3934,
+   "abstract words": 247,
+   "figures": 3,
+   "tables": 4,
+   "references": 42,
+   "numbers in the reference list": 240
+  },
+  "read_from_the_supplementary_pdf": {
+   "note headings": [
+    "Supplementary Note 1. Predictor scores",
+    "Supplementary Note 2. The AlphaGenome splice score and the Atlas scores",
+    "Supplementary Note 3. The elastic-net combination",
+    "Supplementary Note 4. Local likelihood-ratio calibration",
+    "Supplementary Note 5. Further analyses",
+    "Supplementary Note 6. External genes"
+   ],
+   "list labels left out": 46,
+   "numbers in the notes' reference list": 61,
+   "entries of the notes' reference list": 9,
+   "paragraphs and headings found in the pages' text in order": 57,
+   "list labels between them": 46
+  },
+  "rekeyed": {
+   "main: 7 in 'XRCC2, with 7 damaging variants there'": "XRCC2 had only 7 damaging variants"
+  },
+  "abstract": {
+   "retired": [
+    "main: 8.27 in 'the published PP3 cut point was 8.27'",
+    "main: 6.36 in 'the published PP3 cut point was 8.27'",
+    "main: 11.1 in 'the published PP3 cut point was 8.27'",
+    "main: 10 in 'The BP4 cut point gave Moderate evidence within 10 bp'"
+   ],
+   "bound": [
+    "main: 13 in 'We calibrated 13 predictor scores'",
+    "main: 7,997 in 'We calibrated 13 predictor scores'",
+    "main: 8.27 in 'The published PP3 cut point (0.2) gave a likelihood ratio of 8.27'",
+    "main: 6.36 in 'The published PP3 cut point (0.2) gave a likelihood ratio of 8.27'",
+    "main: 11.1 in 'The published PP3 cut point (0.2) gave a likelihood ratio of 8.27'",
+    "main: 16.3 in 'The ratio at the PP3 cut point was 16.3 among ClinVar-classified variants'",
+    "main: 5.0 in 'The ratio at the PP3 cut point was 16.3 among ClinVar-classified variants'"
+   ],
+   "declared": [
+    "main: 10 in 'thresholds within and beyond 10 bp, and tested them'",
+    "main: 10 in 'The BP4 cut point (0.1) gave Moderate evidence within 10 bp'",
+    "main: 10 in 'Within 10 bp, SpliceAI and Pangolin thresholds reached Strong evidence'",
+    "main: 10 in 'Beyond 10 bp, no predictor held Strong in any held-out gene'",
+    "main: 10 in 'the published PP3 calibration and a Moderate ceiling beyond 10 bp'"
+   ]
+  },
+  "main_sha256": "5719b74bf6b72bd030bb27e2f932c20ea0c2dfda2528e56531a260e0f42a7fd5",
+  "rows": {
+   "measured": 124,
+   "constant": 124,
+   "total": 248,
+   "main": 212,
+   "supplement": 36
+  }
+ }
+}

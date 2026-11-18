@@ -3087,3 +3087,47 @@ the four tables' files are unchanged).
   and the files' sha256, and in nothing else.
 - Added: the two run records of the build and the check, and this entry. No output changes
   (`scripts/stage_E12/scope_e12_c2.json`).
+
+## The submitted text's bindings (v7) follow its new abstract (stage E13, commit 1, 2026-11-18)
+
+Why: the abstract of the submitted text was written anew and approved on 2026-11-17. The
+new one is still one paragraph of 247 words, so the title page's counts are unchanged
+(3,934 / 247 / 3 / 4 / 42); nothing else of the manuscript changed (its sha256 is now
+416cfa0c...; the four tables' files and the supplementary PDF are unchanged). The new
+abstract prints 17 numbers the gate reads, where the old printed 8. The binding table is
+built and checked again on it, in the reference image, with the same scripts.
+
+- **`scripts/stage_E9/build_bindings_v7.py`**: v6's four entries keyed by the sentences of
+  the old abstract, which the new one does not hold, are retired (`ABSTRACT_RETIRED`: the
+  band ratio at the published PP3 cut point, its interval, and one distance of 10 bp); the
+  new abstract's numbers have their own entries (`ABSTRACT_BINDINGS`, `ABSTRACT_REASONS`).
+  Each measured number is bound to the cell the same number has where the main text prints
+  it: the predictors' count (13), the band ratio and its interval at the published PP3 cut
+  point (8.27, 6.36–11.1) and the ratios by ClinVar record status (16.3, 5.0). The count of
+  the analysis range (7,997), which the text has not printed before, is bound to
+  `set_counts.csv`: the variants of the bands 3–10 and 11–50 bp (`stratum in s3_10|s11_50`,
+  `n`, summed), the same file as the set's 8,853 in the introduction and the methods; Table
+  1(a) prints the same total. The five distances of 10 bp carry the reason the old
+  abstract's one carried, a distance band's bound; the gate declares the other constants
+  (3 and 50, 0.2 and 0.1, 95%) for the reason they bear. The build stops if a retired
+  entry is not v6's or if its sentence is still in the text. v6's script is unchanged.
+- **The table** (`docs/manuscript_bindings_v7.tsv`): 248 numbers where it held 239, 124
+  measured and 124 constants where 120 and 119; the abstract's one line holds 17 rows
+  where it held 8; the other 231 rows are unchanged, byte for byte.
+- **The check** (`check_bindings_v7.py`, in the image;
+  `scripts/stage_E9/run_log/check_bindings_v7_20261118T012209Z.json`): every measured
+  number matches its cell (cells mode, main text 117 and 95 constants), the bound mode
+  finds each of the abstract's measured numbers in the file its sentence names (still 11
+  numbers not in their named file and 7 in a paragraph that names no file, as before), the
+  self-test catches 6 of 6, the pool mode leaves the same four numbers unmatched, and the
+  notes and the four tables' files give what they gave. Of what the gate leaves out, only
+  the abstract's count of digits within words changed (9 to 8).
+- **Tests** (`tests/test_manuscript_bindings_v7.py`): the counts of rows, measured numbers
+  and constants; the difference from v6's table, where the old abstract's eight numbers are
+  now reworded and the new abstract's nine further numbers are new, and every measured
+  number of v6 keeps its cell; and a new test that the retired entries are v6's and are
+  gone, that each of the new abstract's numbers has the cell or the reason the same number
+  has in the main text, and that its count of the analysis range is the set's 8,853 less
+  the canonical dinucleotides, Table 1(a)'s total.
+- Added: the two run records, this entry and the scope record with its helpers
+  (`scripts/stage_E13/`). No output changes (`scripts/stage_E13/scope_e13_c1.json`).

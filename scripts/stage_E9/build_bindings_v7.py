@@ -37,11 +37,16 @@ the numbers read here for the first time, on the title page and in the statement
 their entries below (NEW_REASONS), and the title page's counts are counted from the
 manuscript before they are written down as what they are. A v6 entry whose sentence a
 revision of the text reworded, so that the piece v6 found it by is gone, is found by a
-piece of the new sentence (REKEYED), its cell or its reason unchanged.
+piece of the new sentence (REKEYED), its cell or its reason unchanged. The abstract was
+written anew on 2026-11-17 (E13): v6's entries keyed by the sentences of the abstract it
+bound are retired (ABSTRACT_RETIRED), and the new abstract's numbers have their own
+entries (ABSTRACT_BINDINGS, ABSTRACT_REASONS), each the cell or the reason the same
+number has in the main text, but for the count of the analysis range, which is new.
 
 Checks before writing; any failure stops it:
 - every number of the two texts has one entry, and every entry of v6's and of the new
-  ones is used once;
+  ones is used once, v6's retired entries aside;
+- a retired entry is one v6 holds, and its sentence is no longer in the text;
 - every excerpt is a piece of its sentence as the gate reads it;
 - the title page's counts are the manuscript's own: words of the main text and of the
   abstract, figure legends, table files, references.
@@ -105,9 +110,64 @@ REKEYED: dict[tuple[str, str, str, int], str] = {
 }
 
 
+# The abstract of the submitted text was written anew on 2026-11-17 (E13). The v6 entries
+# keyed by the sentences of the abstract v6 bound, whose sentences the new one does not
+# hold: (document, v6's piece, the number as printed, its place). The numbers of the old
+# abstract that the gate itself declares (3, 50, 0.2, 95%) had no entry.
+ABSTRACT_RETIRED: list[tuple[str, str, str, int]] = [
+    ("main", "the published PP3 cut point was 8.27", "8.27", 1),
+    ("main", "the published PP3 cut point was 8.27", "6.36", 1),
+    ("main", "the published PP3 cut point was 8.27", "11.1", 1),
+    ("main", "The BP4 cut point gave Moderate evidence within 10 bp", "10", 1),
+]
+
+# The new abstract's measured numbers, each bound to the cell the same number has where the
+# main text gives it (the predictors' count in the introduction and the methods; the band
+# ratio and its interval at the published PP3 cut point, and the ratios by ClinVar record
+# status, in the results), but for the count of the analysis range, 3-50 bp, which the text
+# has not given before: the analysis set's variants in the two bands of that range, the
+# set's 8,853 that the introduction and the methods bind, less the canonical dinucleotides.
+ABSTRACT_BINDINGS: list[tuple[str, str, str, int, dict]] = [
+    ("main", "We calibrated 13 predictor scores", "13", 1, V6.b(V6.S3P, "Score column", derive="count")),
+    ("main", "We calibrated 13 predictor scores", "7,997", 1,
+     V6.b(V6.SC, "n", "stratum in s3_10|s11_50", derive="sum")),
+    ("main", "The published PP3 cut point (0.2) gave a likelihood ratio of 8.27", "8.27", 1, V6.wt("s3_50", "lr_pp3")),
+    ("main", "The published PP3 cut point (0.2) gave a likelihood ratio of 8.27", "6.36", 1,
+     V6.wt("s3_50", "lr_pp3_lo")),
+    ("main", "The published PP3 cut point (0.2) gave a likelihood ratio of 8.27", "11.1", 1,
+     V6.wt("s3_50", "lr_pp3_hi")),
+    ("main", "The ratio at the PP3 cut point was 16.3 among ClinVar-classified variants", "16.3", 1,
+     V6.wt("s3_50", "lr_pp3", arm="classified")),
+    ("main", "The ratio at the PP3 cut point was 16.3 among ClinVar-classified variants", "5.0", 1,
+     V6.wt("s3_50", "lr_pp3", arm="recorded_unclassified")),
+]
+
+# The new abstract's distances of 10 bp: the bound between the two distance bands, as the
+# old abstract's was. The gate declares a 10 by itself for another reason (the minimum band
+# occupancy), which these sentences do not bear. Its other constants (3 and 50, the range;
+# 0.2 and 0.1, the published cut points; 95%, the confidence level) the gate declares for the
+# reason they bear, as it does where the main text prints them.
+ABSTRACT_REASONS: list[tuple[str, str, str, int, str]] = [
+    ("main", "thresholds within and beyond 10 bp, and tested them", "10", 1, V6.BAND),
+    ("main", "The BP4 cut point (0.1) gave Moderate evidence within 10 bp", "10", 1, V6.BAND),
+    ("main", "Within 10 bp, SpliceAI and Pangolin thresholds reached Strong evidence", "10", 1, V6.BAND),
+    ("main", "Beyond 10 bp, no predictor held Strong in any held-out gene", "10", 1, V6.BAND),
+    ("main", "the published PP3 calibration and a Moderate ceiling beyond 10 bp", "10", 1, V6.BAND),
+]
+
+
 def rekeyed(entries: list) -> list:
     """The entries given, each that REKEYED names found by its piece of the new sentence."""
     return [(e[0], REKEYED.get(tuple(e[:4]), e[1]), *e[2:]) for e in entries]
+
+
+def current(bindings: list, reasons: list) -> tuple[list, list]:
+    """The entries given as the submitted text needs them now: rekeyed (REKEYED), v6's
+    entries of the old abstract left out (ABSTRACT_RETIRED), and the new abstract's own
+    added (ABSTRACT_BINDINGS, ABSTRACT_REASONS)."""
+    retired = set(ABSTRACT_RETIRED)
+    keep = lambda entries: [e for e in rekeyed(entries) if tuple(e[:4]) not in retired]     # noqa: E731
+    return keep(bindings) + ABSTRACT_BINDINGS, keep(reasons) + ABSTRACT_REASONS
 
 
 # ------------------------------------------------------------------ the manuscript
@@ -289,9 +349,10 @@ def supplement_text(pdf: Path, structure: Path | None = None) -> tuple[str, dict
 # ------------------------------------------------------------------ the rows
 def rows_for(doc: str, text: str, bindings: list, reasons: list) -> tuple[list[dict], list]:
     """Each number of a text with its entry, as v6 found it (build_bindings_v6.rows_for,
-    with the entries given); the entries matched, for the check that each is used once."""
+    with the entries given, as current() makes them); the entries matched, for the check
+    that each is used once."""
     out, used = [], []
-    bindings, reasons = rekeyed(bindings), rekeyed(reasons)
+    bindings, reasons = current(bindings, reasons)
     ranks: dict[tuple[str, str], int] = {}
     for t in gate.read_tokens(text):
         k = (t.sentence, t.printed)
@@ -349,6 +410,16 @@ def main() -> None:
         if stray:
             raise SystemExit(f"REKEYED names entries that v6 does not hold: {sorted(stray)}")
         log.note("rekeyed", {f"{k[0]}: {k[2]} in '{k[1]}'": v for k, v in REKEYED.items()})
+        stray = set(ABSTRACT_RETIRED) - {tuple(e[:4]) for e in V6.BINDINGS + V6.REASONS}
+        if stray:
+            raise SystemExit(f"ABSTRACT_RETIRED names entries that v6 does not hold: {sorted(stray)}")
+        flat = " ".join(main_md.split())
+        still = sorted({e[1] for e in ABSTRACT_RETIRED if e[1] in flat})
+        if still:
+            raise SystemExit(f"a retired entry's sentence is still in the text: {still}")
+        log.note("abstract", {"retired": [f"{e[0]}: {e[2]} in '{e[1]}'" for e in ABSTRACT_RETIRED],
+                              "bound": [f"{e[0]}: {e[2]} in '{e[1]}'" for e in ABSTRACT_BINDINGS],
+                              "declared": [f"{e[0]}: {e[2]} in '{e[1]}'" for e in ABSTRACT_REASONS]})
         rows, used = [], []
         for doc, text in (("main", main_md), ("supplement", supp_md)):
             r, u = rows_for(doc, text, V6.BINDINGS, reasons)
@@ -356,7 +427,7 @@ def main() -> None:
             used += u
             (folder / f"v7_{doc}_keyed.md").write_text(V6.keyed(text, r))
             log.note(f"{doc}_sha256", hashlib.sha256((folder / f"v7_{doc}.md").read_bytes()).hexdigest())
-        unused = [e[:4] for e in rekeyed(V6.BINDINGS + reasons) if e not in used]
+        unused = [e[:4] for e in sum(current(V6.BINDINGS, reasons), []) if e not in used]
         twice = [e[:4] for e in used if used.count(e) > 1]
         if unused or twice:
             raise SystemExit(f"entries matched no number: {unused[:5]}; matched twice: {twice[:5]}")
